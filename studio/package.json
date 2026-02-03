@@ -1,0 +1,12 @@
+{
+    "name": "sanity-studio",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "sanity dev --port 3333",
+        "build": "sanity build"
+    },
+    "dependencies": {
+        "styled-components": "^6.3.8"
+    }
+}
