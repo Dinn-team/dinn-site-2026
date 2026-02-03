@@ -2,25 +2,22 @@
 
 ## GitHub Setup
 
-### 1. Criar Repositório no GitHub
+### 1. Repositório no GitHub
 
-1. Acesse https://github.com/new
-2. Nome do repositório: `dinn-site-2026` (ou o nome que preferir)
-3. Descrição: "Site institucional Dinn com Sanity CMS"
-4. Escolha: **Private** (recomendado) ou Public
-5. **NÃO** marque "Initialize with README" (já temos)
-6. Clique em "Create repository"
+O repositório já está configurado na organização `dinn-AI`.
+
+URL: `https://github.com/dinn-AI/dinn-site-2026`
 
 ### 2. Conectar Repositório Local ao GitHub
 
-Após criar o repositório, execute:
+Se ainda não estiver conectado, execute:
 
 ```bash
-# Adicione o remote do GitHub (substitua SEU-USUARIO pelo seu username)
-git remote add origin https://github.com/SEU-USUARIO/dinn-site-2026.git
+# Adicione o remote do GitHub
+git remote add origin https://github.com/dinn-AI/dinn-site-2026.git
 
 # Ou use SSH (se configurado):
-git remote add origin git@github.com:SEU-USUARIO/dinn-site-2026.git
+git remote add origin git@github.com:dinn-AI/dinn-site-2026.git
 
 # Push do código
 git push -u origin main

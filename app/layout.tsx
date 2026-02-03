@@ -1,7 +1,54 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+const brittiSans = localFont({
+  src: [
+    {
+      path: "./fonts/BrittiSans-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/BrittiSans-LightItalic.otf",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "./fonts/BrittiSans-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/BrittiSans-RegularItalic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/BrittiSans-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/BrittiSans-SemiBoldItalic.otf",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "./fonts/BrittiSans-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/BrittiSans-BoldItalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-britti-sans",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -36,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={brittiSans.variable}>
       <head>
         <script
           type="application/ld+json"
