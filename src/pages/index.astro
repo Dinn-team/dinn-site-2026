@@ -1,0 +1,86 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { AnimatedHero } from '@/components/ui/animated-hero';
+import FAQ from '@/components/FAQ';
+import CTASection from '@/components/CTASection';
+import { ClientLogos } from '@/components/ui/ClientLogos';
+import { SolucoesSection } from '@/components/ui/SolucoesSection';
+import { CasosDeUsoSection } from '@/components/ui/CasosDeUsoSection';
+import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
+import { AntesEDepoisSection } from '@/components/ui/AntesEDepoisSection';
+
+const painPoints = [
+  "Dificuldade em controlar o estoque e evitar rupturas",
+  "Falta de visibilidade sobre a competitividade de preços",
+  "Perda de tempo procurando produtos no estoque",
+  "Decisões de compra baseadas em intuição, não em dados",
+  "Dificuldade em acompanhar tendências do mercado farmacêutico"
+];
+
+const features = [
+  {
+    icon: "📦",
+    title: "Gestão de Estoque",
+    description: "Controle inteligente do seu inventário com alertas de ruptura e reposição automática.",
+    href: "/estoque"
+  },
+  {
+    icon: "💰",
+    title: "Monitoramento de Preço",
+    description: "Acompanhe preços da concorrência em tempo real e mantenha-se competitivo.",
+    href: "/monitoramento-de-preco"
+  },
+  {
+    icon: "📍",
+    title: "Localização de Produtos",
+    description: "Encontre produtos rapidamente no estoque com sistema de mapeamento inteligente.",
+    href: "/localizacao-de-produtos"
+  },
+  {
+    icon: "📊",
+    title: "Estimativa de Giro",
+    description: "Previsões semanais e mensais para otimizar suas compras e reduzir perdas.",
+    href: "/estimativa-de-giro"
+  },
+  {
+    icon: "🔬",
+    title: "Estudos e Pesquisas",
+    description: "Pesquisas personalizadas sobre tendências e oportunidades do mercado farmacêutico.",
+    href: "/estudos-e-pesquisas"
+  }
+];
+
+const clients = [
+  "Farmácia Exemplo 1",
+  "Farmácia Exemplo 2",
+  "Farmácia Exemplo 3",
+  "Farmácia Exemplo 4"
+];
+
+// FAQ items are now handled internally via translations
+---
+
+<Layout>
+  {/* ── Hero ── */}
+  <AnimatedHero client:load />
+
+  {/* ── Social Proof / Logos & Soluções (BG Unificado) ── */}
+  <div style="display: flex; flex-direction: column; background: #1F2328; width: 100%;">
+    <ClientLogos client:visible />
+    <SolucoesSection client:visible />
+    {/* ── Antes e Depois ── */}
+    <AntesEDepoisSection client:visible />
+  </div>
+
+  {/* ── Casos de Uso ── */}
+  <CasosDeUsoSection client:visible />
+
+  {/* ── Testimonials ── */}
+  <TestimonialsSection client:visible />
+
+  {/* ── FAQ ── */}
+  <FAQ client:visible />
+
+  {/* ── CTA Final ── */}
+  <CTASection client:visible />
+</Layout>

@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Feedback from '@/components/Feedback';
+---
+
+<Layout title="Feedback | Dinn">
+  <main style="background: #ffffff; min-height: 100vh; padding-top: 160px; padding-bottom: 120px;">
+    <div class="wrap" style="max-width: 800px; margin: 0 auto;">
+      <Feedback client:visible />
+      <script src="https://server.fillout.com/embed/v1/" is:inline></script>
+    </div>
+  </main>
+</Layout>

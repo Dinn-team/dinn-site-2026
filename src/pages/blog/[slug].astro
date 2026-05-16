@@ -1,0 +1,131 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PortableTextWrapper from '@/components/PortableTextWrapper';
+import { client, urlFor } from '@/sanity/lib/client';
+import { postBySlugQuery, recentPostsQuery } from '@/sanity/lib/queries';
+
+export async function getStaticPaths() {
+    const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
+    return posts.map((post: any) => ({
+        params: { slug: post.slug },
+    }));
+}
+
+const { slug } = Astro.params;
+
+let post = null;
+let recentPosts = [];
+try {
+    post = await client.fetch(postBySlugQuery, { slug });
+    recentPosts = await client.fetch(recentPostsQuery);
+} catch (error) {
+    console.error('Error fetching post:', error);
+}
+
+if (!post) {
+    return Astro.redirect('/404');
+}
+---
+
+<Layout title={post.title} description={post.excerpt}>
+    <article class="pt-24 pb-20">
+        {/* Header */}
+        <header class="py-12 border-b border-color-border">
+            <div class="container max-w-4xl mx-auto flex flex-col items-center text-center gap-6">
+                <a href="/blog" class="text-[13px] font-semibold text-text-muted hover:text-color-accent transition-colors flex items-center gap-2">
+                    ← Voltar para o blog
+                </a>
+
+                {post.categories && post.categories.length > 0 && (
+                    <div class="flex flex-wrap justify-center gap-2">
+                        {post.categories.map((cat: string) => (
+                            <span class="badge badge-accent">{cat}</span>
+                        ))}
+                    </div>
+                )}
+
+                <h1 class="text-3xl md:text-[48px] font-bold text-text-primary leading-[1.1]">{post.title}</h1>
+
+                <div class="flex items-center gap-4 text-[14px] text-text-muted font-medium mt-2">
+                    <span>Por {post.author}</span>
+                    <span class="w-1 h-1 rounded-full bg-color-border"></span>
+                    <span>
+                        {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        })}
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        {/* Cover Image */}
+        {post.coverImage && (
+            <div class="my-12">
+                <div class="container max-w-5xl mx-auto">
+                    <div class="rounded-2xl overflow-hidden shadow-md">
+                        <img
+                            src={urlFor(post.coverImage).width(1200).height(600).url()}
+                            alt={post.coverImage.alt || post.title}
+                            class="w-full h-auto max-h-[600px] object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        )}
+
+        {/* Content */}
+        <div class="py-8">
+            <div class="container max-w-3xl mx-auto">
+                <div class="prose prose-lg prose-slate max-w-none">
+                    {post.excerpt && <p class="text-[20px] text-text-muted leading-relaxed font-medium mb-12">{post.excerpt}</p>}
+                    <div class="text-[18px] text-text-body leading-relaxed space-y-6">
+                        <PortableTextWrapper body={post.body} />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Related Posts */}
+        {recentPosts.length > 0 && (
+            <section class="py-20 bg-bg-surface mt-20">
+                <div class="container max-w-5xl mx-auto">
+                    <h2 class="text-[32px] font-bold text-text-primary text-center mb-12">Artigos Recentes</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {recentPosts
+                            .filter((p: any) => p.slug.current !== slug)
+                            .slice(0, 2)
+                            .map((relatedPost: any) => (
+                                <a
+                                    href={`/blog/${relatedPost.slug.current}`}
+                                    class="card flex flex-col h-full group hover:-translate-y-1 transition-transform duration-300"
+                                >
+                                    <h3 class="text-[20px] font-bold text-text-primary group-hover:text-color-accent transition-colors mb-4">{relatedPost.title}</h3>
+                                    <p class="text-[16px] text-text-muted line-clamp-3 mb-6 flex-grow">{relatedPost.excerpt}</p>
+                                    <span class="text-[14px] font-semibold text-color-accent group-hover:text-color-accent-hov flex items-center gap-2 transition-colors">
+                                        Ler mais 
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:translate-x-1">
+                                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </a>
+                            ))}
+                    </div>
+                </div>
+            </section>
+        )}
+
+        {/* CTA */}
+        <section class="py-24 bg-color-black text-white text-center mt-20 relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-color-accent/20 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="container max-w-3xl mx-auto relative z-10 flex flex-col items-center gap-6">
+                <h2 class="text-3xl md:text-[48px] font-bold">Gostou do conteúdo?</h2>
+                <p class="text-[18px] md:text-[20px] text-gray-300 max-w-2xl mb-4">Descubra como o Dinn pode transformar a gestão da sua farmácia com dados e inteligência.</p>
+                <a href="/contato" class="btn btn-primary btn-lg">
+                    Solicitar demo
+                </a>
+            </div>
+        </section>
+    </article>
+</Layout>
