@@ -2,8 +2,8 @@ import { createClient } from '@sanity/client';
 import { createImageUrlBuilder } from '@sanity/image-url';
 
 export const client = createClient({
-    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'sutrqo3v',
-    dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
+    projectId: 'sutrqo3v', // Hardcoded to bypass old Vercel env vars
+    dataset: 'production',
     apiVersion: '2024-01-01',
     useCdn: false, // Must be false for static builds (Vercel) to fetch the freshest data
     token: import.meta.env.SANITY_API_TOKEN, // Only needed for write operations
