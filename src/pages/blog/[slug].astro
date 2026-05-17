@@ -1,13 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { client, urlFor } from '@/sanity/lib/client';
-import { postBySlugQuery, postsQuery } from '@/sanity/lib/queries';
+import { postBySlugQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 
 export async function getStaticPaths() {
   const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
-  return posts.map((post: any) => ({ 
-    params: { slug: post.slug } 
+  return posts.map((post: any) => ({
+    params: { slug: post.slug }
   }));
 }
 
@@ -18,49 +18,87 @@ if (!post) {
   return Astro.redirect('/blog');
 }
 
-const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : null;
-const publishedDate = post.publishedAt 
+// Calcular tempo de leitura (média 200 palavras/min)
+function calcReadTime(body: any[]): number {
+  if (!body) return 1;
+  const totalChars = body.reduce((acc: number, block: any) => {
+    if (block._type === 'block' && block.children) {
+      return acc + block.children.reduce((a: number, child: any) => a + (child.text?.length || 0), 0);
+    }
+    return acc;
+  }, 0);
+  const words = totalChars / 5; // ~5 chars por palavra
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+const readTime = calcReadTime(post.body);
+const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(700).fit('crop').url() : null;
+const publishedDate = post.publishedAt
   ? new Date(post.publishedAt).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
   : null;
 ---
 
-<Layout 
-  title={`${post.title} | Blog Dinn`} 
+<Layout
+  title={`${post.title} | Blog Dinn`}
   description={post.excerpt || `Leia o artigo: ${post.title}`}
 >
-  <article class="blog-article">
+  <div class="bp-page">
+
+    <!-- Hero Image -->
     {coverUrl && (
-      <div class="blog-cover">
-        <img src={coverUrl} alt={post.title} />
+      <div class="bp-hero">
+        <img src={coverUrl} alt={post.title} class="bp-hero-img" />
+        <div class="bp-hero-overlay" />
       </div>
     )}
 
-    <div class="blog-container">
-      <header class="blog-header">
-        {post.categories && post.categories.length > 0 && (
-          <div class="blog-categories">
-            {post.categories.map((cat: string) => (
-              <span class="blog-tag">{cat}</span>
-            ))}
-          </div>
-        )}
-        <h1>{post.title}</h1>
-        {post.excerpt && <p class="blog-excerpt">{post.excerpt}</p>}
-        <div class="blog-meta">
-          {post.author && <span class="blog-author">Por {post.author}</span>}
-          {publishedDate && <span class="blog-date">{publishedDate}</span>}
-        </div>
-      </header>
+    <!-- Reading column -->
+    <div class="bp-content">
 
-      <div class="blog-content">
+      <!-- Meta: category + read time -->
+      <div class="bp-meta">
+        {post.categories && post.categories.length > 0 && (
+          <span class="bp-category">{post.categories[0]}</span>
+        )}
+        <span class="bp-dot">·</span>
+        <span class="bp-readtime">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {readTime} min de leitura
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="bp-title">{post.title}</h1>
+
+      <!-- Date + author -->
+      <div class="bp-byline">
+        {post.author && <span class="bp-author">{post.author}</span>}
+        {post.author && publishedDate && <span class="bp-dot">·</span>}
+        {publishedDate && <time class="bp-date">{publishedDate}</time>}
+      </div>
+
+      <!-- Excerpt / Lead -->
+      {post.excerpt && (
+        <p class="bp-excerpt">{post.excerpt}</p>
+      )}
+
+      <hr class="bp-divider" />
+
+      <!-- Article body -->
+      <div class="bp-body">
         {post.body && (
-          <PortableText 
+          <PortableText
             value={post.body}
             components={{
               types: {
                 image: ({ value }: any) => {
-                  const url = urlFor(value).width(800).url();
-                  return `<img src="${url}" alt="${value.alt || ''}" class="blog-inline-img" />`;
+                  const url = urlFor(value).width(900).url();
+                  return `<figure class="bp-figure">
+                    <img src="${url}" alt="${value.alt || ''}" class="bp-img" />
+                    ${value.caption ? `<figcaption class="bp-caption">${value.caption}</figcaption>` : ''}
+                  </figure>`;
                 }
               }
             }}
@@ -68,158 +106,374 @@ const publishedDate = post.publishedAt
         )}
       </div>
 
-      <footer class="blog-footer">
-        <a href="/blog" class="blog-back">← Voltar para o Blog</a>
-      </footer>
+      <!-- CTA Dinn -->
+      <div class="bp-cta">
+        <div class="bp-cta-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <p class="bp-cta-title">Transforme dados em decisões estratégicas</p>
+        <p class="bp-cta-text">
+          A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real.
+        </p>
+        <a href="/#contato" class="bp-cta-btn">
+          Solicitar demonstração
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Back link -->
+      <a href="/blog" class="bp-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Voltar para o Blog
+      </a>
+
     </div>
-  </article>
+  </div>
 </Layout>
 
 <style is:global>
-  .blog-article {
+  /* ── Reset & Page ── */
+  .bp-page {
+    background-color: #FAFAF8;
     min-height: 100vh;
-    background: #1F2328;
-    color: #e2e8f0;
+    color: #1a1a1a;
   }
 
-  .blog-cover {
+  /* ── Hero ── */
+  .bp-hero {
+    position: relative;
     width: 100%;
-    max-height: 500px;
+    height: 480px;
     overflow: hidden;
   }
-  .blog-cover img {
+  .bp-hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .bp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(250,250,248,0.6) 100%);
   }
 
-  .blog-container {
-    max-width: 768px;
+  /* ── Reading column ── */
+  .bp-content {
+    max-width: 720px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 52px 24px 96px;
   }
 
-  .blog-header {
-    margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 2rem;
-  }
-
-  .blog-categories {
+  /* ── Meta ── */
+  .bp-meta {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-  .blog-tag {
-    background: rgba(2, 196, 175, 0.15);
-    color: #02C4AF;
-    border: 1px solid rgba(2, 196, 175, 0.3);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .blog-header h1 {
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.2;
-    margin: 1rem 0;
-  }
-
-  .blog-excerpt {
-    font-size: 1.2rem;
-    color: #94a3b8;
-    line-height: 1.6;
-    font-style: italic;
-    border-left: 3px solid #02C4AF;
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  .blog-meta {
-    display: flex;
-    gap: 1.5rem;
     align-items: center;
-    font-size: 0.9rem;
-    color: #64748b;
-    margin-top: 1rem;
+    gap: 10px;
+    margin-bottom: 20px;
   }
-  .blog-author {
-    font-weight: 600;
-    color: #94a3b8;
+  .bp-category {
+    background-color: #E6FBF8;
+    color: #017D6F;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .bp-dot {
+    color: #d1d5db;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .bp-readtime {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #9ca3af;
+    font-weight: 500;
+    letter-spacing: 0.03em;
   }
 
-  .blog-content {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #cbd5e1;
-  }
-  .blog-content p {
-    margin-bottom: 1.5rem;
-  }
-  .blog-content h2 {
-    font-size: 1.75rem;
+  /* ── Title ── */
+  .bp-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: clamp(28px, 4.5vw, 42px);
     font-weight: 700;
-    color: #fff;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    line-height: 1.18;
+    color: #111827;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
   }
-  .blog-content h3 {
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: #e2e8f0;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+
+  /* ── Byline ── */
+  .bp-byline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
   }
-  .blog-content ul, .blog-content ol {
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .blog-content li {
-    margin-bottom: 0.5rem;
-  }
-  .blog-content strong {
-    color: #fff;
+  .bp-author {
+    font-size: 14px;
     font-weight: 600;
+    color: #374151;
   }
-  .blog-content a {
+  .bp-date {
+    font-size: 14px;
+    color: #9ca3af;
+  }
+
+  /* ── Excerpt / Lead ── */
+  .bp-excerpt {
+    font-size: 19px;
+    line-height: 1.65;
+    color: #374151;
+    border-left: 3px solid #02C4AF;
+    padding-left: 20px;
+    margin-bottom: 36px;
+    font-style: italic;
+    font-family: Georgia, serif;
+  }
+
+  /* ── Divider ── */
+  .bp-divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin-bottom: 44px;
+  }
+
+  /* ── Article Body ── */
+  .bp-body {
+    font-size: 17px;
+    line-height: 1.82;
+    color: #1f2937;
+  }
+  .bp-body p {
+    margin-bottom: 26px;
+  }
+  .bp-body h2 {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 60px;
+    margin-bottom: 18px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .bp-body h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 44px;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .bp-body h4 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+  .bp-body ul,
+  .bp-body ol {
+    padding-left: 26px;
+    margin-bottom: 26px;
+  }
+  .bp-body li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .bp-body ul li::marker {
     color: #02C4AF;
+  }
+  .bp-body strong {
+    font-weight: 600;
+    color: #111827;
+  }
+  .bp-body em {
+    font-style: italic;
+    color: #374151;
+  }
+  .bp-body a {
+    color: #017D6F;
     text-decoration: underline;
     text-underline-offset: 3px;
+    text-decoration-color: rgba(1,125,111,0.35);
+    transition: text-decoration-color 0.2s;
   }
-  .blog-content blockquote {
+  .bp-body a:hover {
+    text-decoration-color: #017D6F;
+  }
+  .bp-body blockquote {
     border-left: 3px solid #02C4AF;
-    padding-left: 1rem;
-    margin: 2rem 0;
-    color: #94a3b8;
+    padding: 6px 0 6px 22px;
+    margin: 36px 0;
+    color: #374151;
     font-style: italic;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
   }
-  .blog-inline-img {
-    width: 100%;
-    border-radius: 0.75rem;
-    margin: 2rem 0;
+  .bp-body code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #374151;
+  }
+  .bp-body pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 24px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 32px 0;
+    font-size: 14px;
+    line-height: 1.6;
   }
 
-  .blog-footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+  /* ── Figure / Image ── */
+  .bp-figure {
+    margin: 40px 0;
   }
-  .blog-back {
+  .bp-img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+  }
+  .bp-caption {
+    text-align: center;
+    font-size: 13px;
+    color: #9ca3af;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* ── CTA Block ── */
+  .bp-cta {
+    background: linear-gradient(135deg, #E6FBF8 0%, #F0FDFA 100%);
+    border: 1px solid #A7F3ED;
+    border-radius: 16px;
+    padding: 40px 36px;
+    margin-top: 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .bp-cta::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(2,196,175,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .bp-cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 12px;
+    margin: 0 auto 20px;
     color: #02C4AF;
-    text-decoration: none;
-    font-weight: 600;
+    box-shadow: 0 1px 8px rgba(2,196,175,0.15);
+  }
+  .bp-cta-title {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .bp-cta-text {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .bp-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: opacity 0.2s;
+    gap: 8px;
+    background-color: #02C4AF;
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: background-color 0.2s, transform 0.15s;
   }
-  .blog-back:hover {
-    opacity: 0.7;
+  .bp-cta-btn:hover {
+    background-color: #017D6F;
+    transform: translateY(-1px);
+  }
+
+  /* ── Back link ── */
+  .bp-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 52px;
+    transition: color 0.2s;
+  }
+  .bp-back:hover {
+    color: #017D6F;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .bp-hero {
+      height: 260px;
+    }
+    .bp-content {
+      padding: 36px 20px 72px;
+    }
+    .bp-title {
+      font-size: 26px;
+    }
+    .bp-excerpt {
+      font-size: 17px;
+    }
+    .bp-body {
+      font-size: 16px;
+    }
+    .bp-body h2 {
+      font-size: 22px;
+      margin-top: 48px;
+    }
+    .bp-body h3 {
+      font-size: 18px;
+      margin-top: 36px;
+    }
+    .bp-cta {
+      padding: 28px 20px;
+    }
   }
 </style>
+
