@@ -68,6 +68,7 @@ export const CircularTestimonials = ({
   const [hoverPrev, setHoverPrev] = useState(false);
   const [hoverNext, setHoverNext] = useState(false);
   const [containerWidth, setContainerWidth] = useState(1200);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -77,6 +78,11 @@ export const CircularTestimonials = ({
     () => testimonials[activeIndex],
     [activeIndex, testimonials]
   );
+
+  // Reset expansion when testimonial changes
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [activeIndex]);
 
   // Responsive gap calculation
   useEffect(() => {
@@ -100,7 +106,7 @@ export const CircularTestimonials = ({
     return () => {
       if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
     };
-  }, [autoplay, testimonialsLength]);
+  }, [autoplay, testimonialsLength, isExpanded]); // Pause autoplay if they are reading? Actually let's just keep it simple, but adding isExpanded as a dependency will restart the interval.
 
   // Keyboard navigation
   useEffect(() => {
@@ -202,6 +208,7 @@ export const CircularTestimonials = ({
         <div className="testimonial-content" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <AnimatePresence mode="wait">
             <motion.div
+              layout
               key={activeIndex}
               variants={quoteVariants}
               initial="initial"
@@ -221,34 +228,65 @@ export const CircularTestimonials = ({
               >
                 {activeTestimonial.designation}
               </p>
-              <motion.p
-                className="quote"
-                style={{ color: colorTestimony, fontSize: fontSizeQuote, lineHeight: 1.75 }}
-              >
-                {activeTestimonial.quote.split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{
-                      filter: "blur(10px)",
-                      opacity: 0,
-                      y: 5,
+              
+              <div className="quote-container relative">
+                <motion.p
+                  layout
+                  className="quote"
+                  style={{ 
+                    color: colorTestimony, 
+                    fontSize: fontSizeQuote, 
+                    lineHeight: 1.75,
+                    display: '-webkit-box',
+                    WebkitLineClamp: isExpanded ? 'unset' : 4,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {activeTestimonial.quote.split(" ").map((word, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{
+                        filter: "blur(10px)",
+                        opacity: 0,
+                        y: 5,
+                      }}
+                      animate={{
+                        filter: "blur(0px)",
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.22,
+                        ease: "easeInOut",
+                        delay: 0.025 * i,
+                      }}
+                      style={{ display: "inline-block" }}
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))}
+                </motion.p>
+
+                {activeTestimonial.quote.length > 150 && (
+                  <motion.button
+                    layout
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    style={{
+                      marginTop: '12px',
+                      color: colorArrowHoverBg,
+                      fontWeight: 600,
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                      fontSize: '15px'
                     }}
-                    animate={{
-                      filter: "blur(0px)",
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: 0.22,
-                      ease: "easeInOut",
-                      delay: 0.025 * i,
-                    }}
-                    style={{ display: "inline-block" }}
                   >
-                    {word}&nbsp;
-                  </motion.span>
-                ))}
-              </motion.p>
+                    {isExpanded ? 'Ver menos' : 'Ver mais'}
+                  </motion.button>
+                )}
+              </div>
             </motion.div>
           </AnimatePresence>
           <div className="arrow-buttons flex gap-6 pt-12 md:pt-0">
