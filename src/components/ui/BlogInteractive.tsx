@@ -79,9 +79,8 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
   return (
     <div className="blog-page">
       {/* Hero */}
-      <div className="blog-hero pt-32 md:pt-40">
+      <div className="blog-hero pt-40 md:pt-48">
         <h1>{t('blog.heroTitle', 'Conteúdos do Dinn')}</h1>
-        <p>{t('blog.heroSubtitle', 'Inteligência de dados para o varejo farmacêutico')}</p>
         <div className="blog-search">
           <input 
             type="text" 
@@ -96,19 +95,6 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
             <Search size={20} />
           </span>
         </div>
-      </div>
-
-      {/* Filters */}
-      <div className="blog-filters">
-        {allCategories.map(category => (
-          <button 
-            key={category}
-            className={`blog-filter-btn ${activeCategory === category ? 'active' : ''}`}
-            onClick={() => handleCategoryChange(category)}
-          >
-            {category}
-          </button>
-        ))}
       </div>
 
       <div className="blog-container">
@@ -160,7 +146,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
                 <div className="blog-grid">
                   {gridPosts.map(post => (
                     <a key={post._id} href={`/blog/${post.slug.current}`} className="blog-card group">
-                      <div className="w-full aspect-video rounded-xl overflow-hidden mb-4 bg-slate-100">
+                      <div className="w-full aspect-video rounded-xl overflow-hidden mb-6 bg-slate-100">
                         <img
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           src={post.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"}
