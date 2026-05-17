@@ -120,16 +120,14 @@ const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(70
 
       <!-- CTA Dinn -->
       <div class="bp-cta">
-        <div class="bp-cta-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-          </svg>
-        </div>
-        <p class="bp-cta-title"><Translate client:load i18nKey="blog.ctaTitle" fallback="Transforme dados em decisões estratégicas" /></p>
+        <div class="bp-cta-blob-1"></div>
+        <div class="bp-cta-blob-2"></div>
+
+        <h2 class="bp-cta-title"><Translate client:load i18nKey="blog.ctaTitle" fallback="Transforme dados em decisões estratégicas" /></h2>
         <p class="bp-cta-text"><Translate client:load i18nKey="blog.ctaText" fallback="A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real." /></p>
-        <a href="/#contato" class="bp-cta-btn">
+        <a href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4" target="_blank" rel="noopener noreferrer" class="bp-cta-btn">
           <Translate client:load i18nKey="blog.ctaBtn" fallback="Solicitar demonstração" />
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
@@ -368,64 +366,80 @@ const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(70
     margin-top: 12px;
   }
 
-  /* ── CTA Block ── */
+  /* ── CTA Block (Home Style) ── */
   .bp-cta {
-    background: var(--bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: 48px 36px;
+    background: linear-gradient(135deg, #F8F9FA 0%, #ffffff 100%);
+    border: 1px solid #E5E7EB;
+    border-radius: 24px;
+    padding: clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px);
     margin-top: 72px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 40px rgba(86, 37, 242, 0.06);
   }
-  .bp-cta-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 52px;
-    background: white;
-    border-radius: 12px;
-    margin: 0 auto 24px;
-    color: var(--color-accent);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-border);
+  .bp-cta-blob-1 {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    background: rgba(86, 37, 242, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .bp-cta-blob-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 280px;
+    height: 280px;
+    background: rgba(86, 37, 242, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
   }
   .bp-cta-title {
     font-family: var(--font-heading);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-    line-height: 1.3;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    color: #1F2328;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    position: relative;
   }
   .bp-cta-text {
-    font-size: 16px;
-    color: var(--text-body);
+    font-size: clamp(16px, 2vw, 18px);
+    color: #6B7280;
     line-height: 1.65;
-    margin-bottom: 32px;
-    max-width: 480px;
+    margin-bottom: 40px;
+    max-width: 560px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
   }
   .bp-cta-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background-color: var(--color-accent);
     color: #fff;
     padding: 14px 32px;
-    border-radius: 999px;
+    border-radius: 9999px;
     font-weight: 600;
     text-decoration: none;
-    font-size: 15px;
-    transition: all 0.2s;
+    font-size: 16px;
+    font-family: var(--font-sans);
+    transition: all 0.18s ease;
+    border: 1.5px solid var(--color-accent);
+    position: relative;
   }
   .bp-cta-btn:hover {
     background-color: var(--color-accent-hov);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(86, 37, 242, 0.25);
+    border-color: var(--color-accent-hov);
   }
 
   /* ── Recommended Articles ── */
