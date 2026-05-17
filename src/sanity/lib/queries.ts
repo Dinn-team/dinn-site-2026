@@ -5,7 +5,7 @@ export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
   title,
   slug,
   excerpt,
-  "coverImage": coverImage.asset->url,
+  coverImage,
   author,
   publishedAt,
   categories
@@ -16,7 +16,7 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   title,
   slug,
   excerpt,
-  "coverImage": coverImage.asset->url,
+  coverImage,
   author,
   publishedAt,
   categories,
@@ -28,7 +28,7 @@ export const recentPostsQuery = `*[_type == "post"] | order(publishedAt desc)[0.
   title,
   slug,
   excerpt,
-  "coverImage": coverImage.asset->url,
+  coverImage,
   author,
   publishedAt
 }`;
@@ -38,7 +38,7 @@ export const postsByCategoryQuery = `*[_type == "post" && $category in categorie
   title,
   slug,
   excerpt,
-  "coverImage": coverImage.asset->url,
+  coverImage,
   author,
   publishedAt,
   categories

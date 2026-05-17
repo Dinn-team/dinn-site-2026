@@ -1,131 +1,225 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import PortableTextWrapper from '@/components/PortableTextWrapper';
 import { client, urlFor } from '@/sanity/lib/client';
-import { postBySlugQuery, recentPostsQuery } from '@/sanity/lib/queries';
+import { postBySlugQuery, postsQuery } from '@/sanity/lib/queries';
+import { PortableText } from '@portabletext/react';
 
 export async function getStaticPaths() {
-    const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
-    return posts.map((post: any) => ({
-        params: { slug: post.slug },
-    }));
+  const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
+  return posts.map((post: any) => ({ 
+    params: { slug: post.slug } 
+  }));
 }
 
 const { slug } = Astro.params;
-
-let post = null;
-let recentPosts = [];
-try {
-    post = await client.fetch(postBySlugQuery, { slug });
-    recentPosts = await client.fetch(recentPostsQuery);
-} catch (error) {
-    console.error('Error fetching post:', error);
-}
+const post = await client.fetch(postBySlugQuery, { slug });
 
 if (!post) {
-    return Astro.redirect('/404');
+  return Astro.redirect('/blog');
 }
+
+const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : null;
+const publishedDate = post.publishedAt 
+  ? new Date(post.publishedAt).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
 ---
 
-<Layout title={post.title} description={post.excerpt}>
-    <article class="pt-24 pb-20">
-        {/* Header */}
-        <header class="py-12 border-b border-color-border">
-            <div class="container max-w-4xl mx-auto flex flex-col items-center text-center gap-6">
-                <a href="/blog" class="text-[13px] font-semibold text-text-muted hover:text-color-accent transition-colors flex items-center gap-2">
-                    ← Voltar para o blog
-                </a>
+<Layout 
+  title={`${post.title} | Blog Dinn`} 
+  description={post.excerpt || `Leia o artigo: ${post.title}`}
+>
+  <article class="blog-article">
+    {coverUrl && (
+      <div class="blog-cover">
+        <img src={coverUrl} alt={post.title} />
+      </div>
+    )}
 
-                {post.categories && post.categories.length > 0 && (
-                    <div class="flex flex-wrap justify-center gap-2">
-                        {post.categories.map((cat: string) => (
-                            <span class="badge badge-accent">{cat}</span>
-                        ))}
-                    </div>
-                )}
-
-                <h1 class="text-3xl md:text-[48px] font-bold text-text-primary leading-[1.1]">{post.title}</h1>
-
-                <div class="flex items-center gap-4 text-[14px] text-text-muted font-medium mt-2">
-                    <span>Por {post.author}</span>
-                    <span class="w-1 h-1 rounded-full bg-color-border"></span>
-                    <span>
-                        {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                        })}
-                    </span>
-                </div>
-            </div>
-        </header>
-
-        {/* Cover Image */}
-        {post.coverImage && (
-            <div class="my-12">
-                <div class="container max-w-5xl mx-auto">
-                    <div class="rounded-2xl overflow-hidden shadow-md">
-                        <img
-                            src={urlFor(post.coverImage).width(1200).height(600).url()}
-                            alt={post.coverImage.alt || post.title}
-                            class="w-full h-auto max-h-[600px] object-cover"
-                        />
-                    </div>
-                </div>
-            </div>
+    <div class="blog-container">
+      <header class="blog-header">
+        {post.categories && post.categories.length > 0 && (
+          <div class="blog-categories">
+            {post.categories.map((cat: string) => (
+              <span class="blog-tag">{cat}</span>
+            ))}
+          </div>
         )}
-
-        {/* Content */}
-        <div class="py-8">
-            <div class="container max-w-3xl mx-auto">
-                <div class="prose prose-lg prose-slate max-w-none">
-                    {post.excerpt && <p class="text-[20px] text-text-muted leading-relaxed font-medium mb-12">{post.excerpt}</p>}
-                    <div class="text-[18px] text-text-body leading-relaxed space-y-6">
-                        <PortableTextWrapper body={post.body} />
-                    </div>
-                </div>
-            </div>
+        <h1>{post.title}</h1>
+        {post.excerpt && <p class="blog-excerpt">{post.excerpt}</p>}
+        <div class="blog-meta">
+          {post.author && <span class="blog-author">Por {post.author}</span>}
+          {publishedDate && <span class="blog-date">{publishedDate}</span>}
         </div>
+      </header>
 
-        {/* Related Posts */}
-        {recentPosts.length > 0 && (
-            <section class="py-20 bg-bg-surface mt-20">
-                <div class="container max-w-5xl mx-auto">
-                    <h2 class="text-[32px] font-bold text-text-primary text-center mb-12">Artigos Recentes</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {recentPosts
-                            .filter((p: any) => p.slug.current !== slug)
-                            .slice(0, 2)
-                            .map((relatedPost: any) => (
-                                <a
-                                    href={`/blog/${relatedPost.slug.current}`}
-                                    class="card flex flex-col h-full group hover:-translate-y-1 transition-transform duration-300"
-                                >
-                                    <h3 class="text-[20px] font-bold text-text-primary group-hover:text-color-accent transition-colors mb-4">{relatedPost.title}</h3>
-                                    <p class="text-[16px] text-text-muted line-clamp-3 mb-6 flex-grow">{relatedPost.excerpt}</p>
-                                    <span class="text-[14px] font-semibold text-color-accent group-hover:text-color-accent-hov flex items-center gap-2 transition-colors">
-                                        Ler mais 
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:translate-x-1">
-                                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
-                                </a>
-                            ))}
-                    </div>
-                </div>
-            </section>
+      <div class="blog-content">
+        {post.body && (
+          <PortableText 
+            value={post.body}
+            components={{
+              types: {
+                image: ({ value }: any) => {
+                  const url = urlFor(value).width(800).url();
+                  return `<img src="${url}" alt="${value.alt || ''}" class="blog-inline-img" />`;
+                }
+              }
+            }}
+          />
         )}
+      </div>
 
-        {/* CTA */}
-        <section class="py-24 bg-color-black text-white text-center mt-20 relative overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-color-accent/20 blur-[120px] rounded-full pointer-events-none"></div>
-            <div class="container max-w-3xl mx-auto relative z-10 flex flex-col items-center gap-6">
-                <h2 class="text-3xl md:text-[48px] font-bold">Gostou do conteúdo?</h2>
-                <p class="text-[18px] md:text-[20px] text-gray-300 max-w-2xl mb-4">Descubra como o Dinn pode transformar a gestão da sua farmácia com dados e inteligência.</p>
-                <a href="/contato" class="btn btn-primary btn-lg">
-                    Solicitar demo
-                </a>
-            </div>
-        </section>
-    </article>
+      <footer class="blog-footer">
+        <a href="/blog" class="blog-back">← Voltar para o Blog</a>
+      </footer>
+    </div>
+  </article>
 </Layout>
+
+<style is:global>
+  .blog-article {
+    min-height: 100vh;
+    background: #1F2328;
+    color: #e2e8f0;
+  }
+
+  .blog-cover {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  .blog-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .blog-header {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 2rem;
+  }
+
+  .blog-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .blog-tag {
+    background: rgba(2, 196, 175, 0.15);
+    color: #02C4AF;
+    border: 1px solid rgba(2, 196, 175, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin: 1rem 0;
+  }
+
+  .blog-excerpt {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 3px solid #02C4AF;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .blog-meta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 1rem;
+  }
+  .blog-author {
+    font-weight: 600;
+    color: #94a3b8;
+  }
+
+  .blog-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+  }
+  .blog-content p {
+    margin-bottom: 1.5rem;
+  }
+  .blog-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .blog-content h3 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .blog-content ul, .blog-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .blog-content li {
+    margin-bottom: 0.5rem;
+  }
+  .blog-content strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .blog-content a {
+    color: #02C4AF;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .blog-content blockquote {
+    border-left: 3px solid #02C4AF;
+    padding-left: 1rem;
+    margin: 2rem 0;
+    color: #94a3b8;
+    font-style: italic;
+  }
+  .blog-inline-img {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .blog-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .blog-back {
+    color: #02C4AF;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+  }
+  .blog-back:hover {
+    opacity: 0.7;
+  }
+</style>
