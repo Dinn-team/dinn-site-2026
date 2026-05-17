@@ -1,10 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, BookOpen, ArrowRight } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 
-// We map sanity image urls outside in Astro or here.
-// Assuming Astro maps them and passes `imageUrl` as string.
 export interface BlogPost {
   _id: string;
   title: string;
@@ -20,196 +18,189 @@ interface BlogInteractiveProps {
   posts: BlogPost[];
 }
 
+const ITEMS_PER_PAGE = 7; // 1 featured + 6 in the grid
+
 export default function BlogInteractive({ posts }: BlogInteractiveProps) {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
-  const [tappedCardId, setTappedCardId] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredPosts = useMemo(() => {
-    if (!searchTerm) return posts;
-    const lowerTerm = searchTerm.toLowerCase();
-    return posts.filter((post) => post.title.toLowerCase().includes(lowerTerm));
-  }, [posts, searchTerm]);
-
-  // Framer motion variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
+  // Extract unique categories from all posts
+  const allCategories = useMemo(() => {
+    const cats = new Set<string>();
+    posts.forEach(post => {
+      if (post.categories) {
+        post.categories.forEach(c => cats.add(c));
       }
+    });
+    return ['Todos', ...Array.from(cats)];
+  }, [posts]);
+
+  // Filter posts by search and category
+  const filteredPosts = useMemo(() => {
+    let result = posts;
+
+    if (activeCategory !== 'Todos') {
+      result = result.filter(post => post.categories?.includes(activeCategory));
     }
+
+    if (searchTerm) {
+      const lowerTerm = searchTerm.toLowerCase();
+      result = result.filter(post => post.title.toLowerCase().includes(lowerTerm) || post.excerpt?.toLowerCase().includes(lowerTerm));
+    }
+
+    return result;
+  }, [posts, searchTerm, activeCategory]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
+  const currentPosts = filteredPosts.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  // Split into featured and grid (only on first page, or always?)
+  // Usually, the first post is featured, the rest are in the grid.
+  const featured = currentPosts[0];
+  const gridPosts = currentPosts.slice(1);
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString(t('locale', 'pt-BR'), {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
-    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
+  // Handle category change
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    setCurrentPage(1); // Reset to first page
   };
 
   return (
-    <div className="w-full flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section 
-        className="bg-[#1a1f2e] w-full flex flex-col items-center justify-center relative overflow-hidden"
-        style={{ paddingTop: '220px', paddingBottom: '120px' }}
-      >
-        <div className="container max-w-3xl mx-auto px-4 z-10 flex flex-col items-center">
-          <h1 
-            className="text-white text-4xl md:text-5xl lg:text-6xl font-thin text-center tracking-tight"
-            style={{ marginBottom: '40px' }}
+    <div className="blog-page">
+      {/* Hero */}
+      <div className="blog-hero pt-32 md:pt-40">
+        <h1>{t('blog.heroTitle', 'Conteúdos do Dinn')}</h1>
+        <p>{t('blog.heroSubtitle', 'Inteligência de dados para o varejo farmacêutico')}</p>
+        <div className="blog-search">
+          <input 
+            type="text" 
+            placeholder={t('blog.searchPlaceholder', 'Busque um artigo...')}
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+          <span className="blog-search-icon">
+            <Search size={20} />
+          </span>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="blog-filters">
+        {allCategories.map(category => (
+          <button 
+            key={category}
+            className={`blog-filter-btn ${activeCategory === category ? 'active' : ''}`}
+            onClick={() => handleCategoryChange(category)}
           >
-            {t('blog.heroTitle', 'Conteúdos do Dinn')}
-          </h1>
-          
-          <div className="relative w-full max-w-2xl group" style={{ margin: '0 auto' }}>
-            <input
-              type="text"
-              placeholder={t('blog.searchPlaceholder', 'Busque seu conteúdo aqui')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-full outline-none focus:bg-white/15 focus:border-white/40 transition-all backdrop-blur-md"
-              style={{ padding: '16px 56px 16px 32px', fontSize: '16px', lineHeight: '1.5' }}
-            />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-white/70">
-              <Search size={22} />
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div className="blog-container">
+        {filteredPosts.length === 0 ? (
+          <div className="w-full py-32 flex flex-col items-center justify-center text-center">
+            <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4 text-slate-400">
+              <Search size={32} />
             </div>
+            <h3 className="text-xl font-medium text-slate-900 mb-2">{t('blog.noResultsTitle', 'Nenhum conteúdo encontrado')}</h3>
+            <p className="text-slate-500">{t('blog.noResultsDesc', 'Tente ajustar sua busca por outros termos ou categorias.')}</p>
           </div>
-        </div>
-        
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-[#5625F2] opacity-20 blur-[120px] rounded-full mix-blend-screen" />
-        </div>
-      </section>
-
-      {/* Cards Section */}
-      <section className="bg-white flex-1 py-20 w-full">
-        <div className="container mx-auto px-4 max-w-7xl">
-          {filteredPosts.length === 0 ? (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              className="w-full py-32 flex flex-col items-center justify-center text-center"
-            >
-              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-gray-400">
-                <Search size={32} />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">{t('blog.noResultsTitle', 'Nenhum conteúdo encontrado')}</h3>
-              <p className="text-gray-500">{t('blog.noResultsDesc', 'Tente ajustar sua busca por outros termos.')}</p>
-            </motion.div>
-          ) : (
+        ) : (
+          <AnimatePresence mode="wait">
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              key={`${activeCategory}-${searchTerm}-${currentPage}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
             >
-              <AnimatePresence>
-                {filteredPosts.map((post) => {
-                  const isTapped = tappedCardId === post._id;
-                  
-                  return (
-                    <motion.a
-                      href={`/blog/${post.slug.current}`}
-                      key={post._id}
-                      variants={cardVariants}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                      layout
-                      className="group relative flex flex-col w-full h-full bg-white rounded-2xl overflow-hidden cursor-pointer"
-                      style={{
-                        // Default state
-                        border: '1px solid transparent',
-                        transition: 'all 0.3s ease-out'
-                      }}
-                      whileHover={{
-                        y: -6,
-                        boxShadow: '0 20px 25px -5px rgba(86, 37, 242, 0.1), 0 10px 10px -5px rgba(86, 37, 242, 0.04)',
-                        borderColor: 'rgba(86, 37, 242, 0.5)',
-                        background: 'rgba(255,255,255,0.3)',
-                        backdropFilter: 'blur(12px)',
-                      }}
-                      onTap={() => {
-                        // Mobile tap interaction
-                        if (window.innerWidth < 768) {
-                          setTappedCardId(post._id);
-                          setTimeout(() => setTappedCardId(null), 2000);
-                        }
-                      }}
-                    >
-                      {/* Image Container */}
-                      <div className="w-full aspect-video relative overflow-hidden bg-gray-100 rounded-t-2xl">
-                        {post.imageUrl ? (
-                          <img
-                            src={post.imageUrl}
-                            alt={post.title}
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out md:group-hover:scale-110"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-4xl">📝</div>
-                        )}
-                        
-                        {/* Dark Overlay with Button (Hover/Tap) */}
-                        <motion.div 
-                          className={`absolute inset-0 bg-black/40 flex items-center justify-center z-10 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 ${isTapped ? 'opacity-100' : 'opacity-0'}`}
-                        >
-                          <motion.div 
-                            className="bg-white text-[#5625F2] font-medium py-3 px-6 rounded-full flex items-center gap-2 shadow-lg transform transition-transform duration-300 md:scale-95 md:group-hover:scale-100"
-                            style={{ scale: isTapped ? 1 : 0.95 }}
-                          >
-                            <BookOpen size={18} />
-                            <span>{t('blog.readArticle', 'Ler artigo')}</span>
-                          </motion.div>
-                        </motion.div>
+              {/* Featured */}
+              {featured && (
+                <div className="blog-featured">
+                  <a href={`/blog/${featured.slug.current}`} className="block w-full overflow-hidden rounded-xl">
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                      className="blog-featured-image"
+                      src={featured.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80"}
+                      alt={featured.title}
+                    />
+                  </a>
+                  <div>
+                    <span className="blog-featured-tag">{featured.categories?.[0] ?? 'Destaque'}</span>
+                    <a href={`/blog/${featured.slug.current}`} className="block">
+                      <h2 className="blog-featured-title">{featured.title}</h2>
+                    </a>
+                    <p className="blog-featured-excerpt">{featured.excerpt}</p>
+                    <p className="blog-featured-meta">{formatDate(featured.publishedAt)}</p>
+                    <a href={`/blog/${featured.slug.current}`} className="blog-featured-link">
+                      {t('blog.readArticle', 'Ler artigo')} →
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* Grid */}
+              {gridPosts.length > 0 && (
+                <div className="blog-grid">
+                  {gridPosts.map(post => (
+                    <a key={post._id} href={`/blog/${post.slug.current}`} className="blog-card group">
+                      <div className="w-full aspect-video rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          src={post.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"}
+                          alt={post.title}
+                          loading="lazy"
+                        />
                       </div>
-
-                      {/* Content */}
-                      <div className="p-6 flex flex-col flex-1 relative z-20">
-                        {/* Meta */}
-                        <div className="text-gray-400 text-sm mb-3 font-medium flex items-center gap-2">
-                          <span>
-                            {new Date(post.publishedAt).toLocaleDateString(t('locale', 'pt-BR'), {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric'
-                            })}
-                          </span>
-                          {post.categories && post.categories.length > 0 && (
-                            <>
-                              <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                              <span className="text-[#5625F2]/80 truncate">{post.categories[0]}</span>
-                            </>
-                          )}
-                        </div>
-
-                        {/* Title */}
-                        <h2 className="text-xl font-semibold text-[#1F2328] mb-4 line-clamp-3 transition-colors duration-300 group-hover:text-[#5625F2]">
-                          {post.title}
-                        </h2>
-
-                        {/* Spacer */}
-                        <div className="flex-1"></div>
-
-                        {/* Footer / Button */}
-                        <div className="mt-4 flex items-center text-[#5625F2] font-medium text-sm pt-4 border-t border-gray-100 group-hover:border-transparent transition-colors">
-                          <span className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#5625F2]/20 group-hover:bg-[#5625F2] group-hover:text-white transition-all duration-300">
-                            {t('blog.viewContent', 'Ver conteúdo')}
-                            <ArrowRight size={16} />
-                          </span>
-                        </div>
+                      <div className="blog-card-meta">
+                        <span className="blog-card-category">{post.categories?.[0] ?? 'Artigo'}</span>
+                        <span>·</span>
+                        <span>{formatDate(post.publishedAt)}</span>
                       </div>
-                    </motion.a>
-                  );
-                })}
-              </AnimatePresence>
+                      <h3 className="blog-card-title">{post.title}</h3>
+                      <p className="blog-card-excerpt">{post.excerpt}</p>
+                    </a>
+                  ))}
+                </div>
+              )}
             </motion.div>
-          )}
-        </div>
-      </section>
+          </AnimatePresence>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="blog-pagination">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button 
+                key={i} 
+                className={currentPage === i + 1 ? 'active' : ''}
+                onClick={() => {
+                  setCurrentPage(i + 1);
+                  window.scrollTo({ top: 300, behavior: 'smooth' });
+                }}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
