@@ -1,10 +1,8 @@
 import { useState, useEffect, ReactNode, useMemo } from "react";
 import { motion, AnimatePresence, Transition } from "motion/react";
 import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 // --- Types ---
-
 type HeadingData = {
   id: string;
   text: string;
@@ -13,7 +11,6 @@ type HeadingData = {
 };
 
 // --- Shared Animation Configs ---
-
 const islandTransition: Transition = {
   type: "tween",
   ease: [0.22, 1, 0.36, 1],
@@ -21,23 +18,22 @@ const islandTransition: Transition = {
 };
 
 // --- Progress Circle Component ---
-
 function CircleProgress({ percentage }: { percentage: number }) {
-  const size = 24;
-  const strokeWidth = 2.5;
+  const size = 26;
+  const strokeWidth = 3;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
 
   return (
-    <svg width={size} height={size} className="-rotate-90 shrink-0">
-      <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--muted, #e5e7eb)" strokeWidth={strokeWidth} />
+    <svg width={size} height={size} style={{ transform: 'rotate(-90deg)', flexShrink: 0 }}>
+      <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#E5E7EB" strokeWidth={strokeWidth} />
       <motion.circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="var(--foreground, #111827)"
+        stroke="var(--color-accent, #5625F2)"
         strokeWidth={strokeWidth}
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
@@ -50,13 +46,8 @@ function CircleProgress({ percentage }: { percentage: number }) {
 }
 
 // --- Main Component ---
-
 type DynamicIslandTOCProps = {
   children?: ReactNode;
-  /**
-   * CSS selector to find headings.
-   * Defaults to common blog content wrappers and explicit [data-toc] elements.
-   */
   selector?: string;
 };
 
@@ -70,15 +61,14 @@ export function DynamicIslandTOC({
   const [isExpanded, setIsExpanded] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  // 1. DOM Scanning Strategy
+  // 1. DOM Scanning
   useEffect(() => {
     const getHeadings = () => {
       const elements = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
 
       const validHeadings = elements
-        .filter((el) => !el.hasAttribute("data-toc-ignore")) // Allow explicit skipping
+        .filter((el) => !el.hasAttribute("data-toc-ignore"))
         .map((el, index) => {
-          // Auto-generate ID if missing (common in generic Markdown/CMS output)
           if (!el.id) {
             const generatedId =
               el.textContent
@@ -88,9 +78,6 @@ export function DynamicIslandTOC({
             el.id = generatedId;
           }
 
-          // 1. Check data-toc-depth attribute
-          // 2. Fallback to standard HTML tag levels (H1 = 1, H2 = 2)
-          // 3. Default to level 2 if not a heading tag
           const depthAttr = el.getAttribute("data-toc-depth");
           let level = 2;
 
@@ -103,13 +90,10 @@ export function DynamicIslandTOC({
             }
           }
 
-          // Allow title overrides via data-toc-title
-          const text = el.getAttribute("data-toc-title") || el.textContent || "Section";
-
+          const text = el.getAttribute("data-toc-title") || el.textContent || "Seção";
           return { id: el.id, text, level, element: el };
         });
 
-      // Sort by DOM order mathematically
       validHeadings.sort((a, b) =>
         a.element.compareDocumentPosition(b.element) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1,
       );
@@ -117,8 +101,7 @@ export function DynamicIslandTOC({
       setHeadings(validHeadings);
     };
 
-    // Slight delay ensures CMS/Markdown hydration is complete
-    const timer = setTimeout(getHeadings, 100);
+    const timer = setTimeout(getHeadings, 500);
     return () => clearTimeout(timer);
   }, [selector]);
 
@@ -128,8 +111,7 @@ export function DynamicIslandTOC({
       let currentActiveId: string | null = null;
       for (const heading of headings) {
         const top = heading.element.getBoundingClientRect().top;
-        // 120px offset to trigger active state just as heading reaches the top
-        if (top <= 120) {
+        if (top <= 140) {
           currentActiveId = heading.id;
         } else {
           break;
@@ -142,19 +124,21 @@ export function DynamicIslandTOC({
 
       setActiveId(currentActiveId);
 
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(total > 0 ? Math.min(100, Math.max(0, (window.scrollY / total) * 100)) : 0);
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const currentProgress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      setProgress(currentProgress);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    // Trigger once on mount
+    setTimeout(handleScroll, 100);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [headings]);
 
   const activeHeading = headings.find((h) => h.id === activeId);
 
-  // Normalize depths so the highest-level heading in the doc touches the left edge
   const minLevel = useMemo(() => {
     if (headings.length === 0) return 1;
     return Math.min(...headings.map((h) => h.level));
@@ -164,7 +148,6 @@ export function DynamicIslandTOC({
     <>
       {children}
 
-      {/* Backdrop Blur Overlay */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -172,18 +155,17 @@ export function DynamicIslandTOC({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={islandTransition}
-            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-[4px]"
+            style={{ position: 'fixed', inset: 0, zIndex: 9998, backgroundColor: 'rgba(0,0,0,0.2)', backdropFilter: 'blur(4px)' }}
             onClick={() => setIsExpanded(false)}
           />
         )}
       </AnimatePresence>
 
-      {/* Dynamic Island Wrapper */}
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className="fixed bottom-[30px] left-1/2 z-[9999] flex -translate-x-1/2 flex-col items-center"
+        style={{ position: 'fixed', bottom: '40px', left: '50%', transform: 'translateX(-50%)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
         <motion.div
           onClick={() => {
@@ -191,15 +173,21 @@ export function DynamicIslandTOC({
           }}
           initial={false}
           animate={{
-            width: isExpanded ? 340 : 280,
-            height: isExpanded ? 400 : 52,
-            borderRadius: isExpanded ? 24 : 26,
+            width: isExpanded ? 360 : 300,
+            height: isExpanded ? 440 : 56,
+            borderRadius: isExpanded ? 24 : 28,
           }}
           transition={islandTransition}
-          style={{ cursor: isExpanded ? "default" : "pointer" }}
-          className="relative overflow-hidden border border-foreground/10 bg-background text-foreground shadow-2xl"
+          style={{ 
+            cursor: isExpanded ? "default" : "pointer",
+            position: 'relative',
+            overflow: 'hidden',
+            backgroundColor: '#ffffff',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+            border: '1px solid rgba(0,0,0,0.05)'
+          }}
         >
-          {/* CLOSED PILL CONTENT */}
+          {/* CLOSED PILL */}
           <motion.div
             initial={false}
             animate={{
@@ -208,11 +196,14 @@ export function DynamicIslandTOC({
               filter: isExpanded ? "blur(4px)" : "blur(0px)",
             }}
             transition={{ ...islandTransition, delay: isExpanded ? 0 : 0.1 }}
-            className={cn("absolute inset-0 flex items-center gap-4 px-4 sm:px-5", isExpanded && "pointer-events-none")}
+            style={{
+              position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', gap: '16px', padding: '0 20px',
+              pointerEvents: isExpanded ? 'none' : 'auto'
+            }}
           >
-            <div className="h-2 w-2 shrink-0 rounded-full bg-foreground" style={{ backgroundColor: 'var(--foreground, #111827)' }} />
+            <div style={{ width: '8px', height: '8px', flexShrink: 0, borderRadius: '50%', backgroundColor: '#111827' }} />
 
-            <div className="relative flex h-full flex-1 items-center overflow-hidden text-left">
+            <div style={{ position: 'relative', display: 'flex', height: '100%', flex: 1, alignItems: 'center', overflow: 'hidden' }}>
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span
                   key={activeId || "empty"}
@@ -220,10 +211,9 @@ export function DynamicIslandTOC({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-foreground"
-                  style={{ color: 'var(--foreground, #111827)' }}
+                  style={{ display: 'block', width: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '14px', fontWeight: 600, color: '#111827' }}
                 >
-                  {activeHeading?.text || "Contents"}
+                  {activeHeading?.text || "Índice do Artigo"}
                 </motion.span>
               </AnimatePresence>
             </div>
@@ -231,7 +221,7 @@ export function DynamicIslandTOC({
             <CircleProgress percentage={progress} />
           </motion.div>
 
-          {/* EXPANDED MENU CONTENT */}
+          {/* EXPANDED MENU */}
           <motion.div
             initial={false}
             animate={{
@@ -239,32 +229,33 @@ export function DynamicIslandTOC({
               scale: isExpanded ? 1 : 1.05,
             }}
             transition={{ ...islandTransition, delay: isExpanded ? 0.1 : 0 }}
-            className={cn("absolute inset-0 flex flex-col", !isExpanded && "pointer-events-none")}
+            style={{
+              position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
+              pointerEvents: !isExpanded ? 'none' : 'auto'
+            }}
           >
-            <div className="flex shrink-0 items-center justify-between px-6 pb-3 pt-5">
-              <span className="text-[11px] font-semibold tracking-[0.08em] text-muted-foreground" style={{ color: 'var(--muted-foreground, #6b7280)' }}>
-                TABLE OF CONTENTS
+            <div style={{ display: 'flex', flexShrink: 0, alignItems: 'center', justifyContent: 'space-between', padding: '24px 24px 16px' }}>
+              <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', color: '#6B7280', textTransform: 'uppercase' }}>
+                Conteúdo do Artigo
               </span>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsExpanded(false);
                 }}
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                style={{ color: 'var(--muted-foreground, #6b7280)' }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B7280', padding: '4px' }}
               >
-                <X className="h-5 w-5" />
+                <X size={20} />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4" data-lenis-prevent="true">
-              <div className="flex flex-col gap-0.5">
+            <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px 24px', overscrollBehavior: 'contain' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 {headings.map((h) => {
                   const isActive = activeId === h.id;
                   const isHovered = hoveredId === h.id;
-
                   const indentLevel = Math.max(0, h.level - minLevel);
-                  const paddingLeft = indentLevel * 14 + 12;
+                  const paddingLeft = indentLevel * 16 + 16; // 16px base + 16px per depth
 
                   return (
                     <button
@@ -273,21 +264,29 @@ export function DynamicIslandTOC({
                       onMouseLeave={() => setHoveredId(null)}
                       onClick={(e) => {
                         e.stopPropagation();
-                        const yOffset = -80;
+                        const yOffset = -100;
                         const y = h.element.getBoundingClientRect().top + window.scrollY + yOffset;
                         window.scrollTo({ top: y, behavior: "smooth" });
                         setIsExpanded(false);
                       }}
-                      style={{ paddingLeft: `${paddingLeft}px` }}
-                      className={cn(
-                        "group flex w-full shrink-0 cursor-pointer items-center rounded-lg border-none py-2 pr-3 text-left text-sm transition-all duration-300 ease-out",
-                        isActive && "bg-foreground/10 font-medium text-foreground",
-                        !isActive && isHovered && "bg-foreground/5 text-foreground/85",
-                        !isActive && !isHovered && "bg-transparent text-foreground/45",
-                      )}
+                      style={{
+                        padding: `10px 16px 10px ${paddingLeft}px`,
+                        display: 'flex',
+                        width: '100%',
+                        flexShrink: 0,
+                        cursor: 'pointer',
+                        alignItems: 'center',
+                        borderRadius: '8px',
+                        border: 'none',
+                        textAlign: 'left',
+                        fontSize: '15px',
+                        transition: 'all 0.2s ease-out',
+                        backgroundColor: isActive ? 'rgba(86, 37, 242, 0.08)' : (isHovered ? '#F3F4F6' : 'transparent'),
+                        color: isActive ? 'var(--color-accent, #5625F2)' : (isHovered ? '#1F2328' : '#6B7280'),
+                        fontWeight: isActive ? 600 : 500,
+                      }}
                     >
-                      <span className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1"
-                        style={{ color: isActive ? 'var(--foreground, #111827)' : 'var(--muted-foreground, #6b7280)' }}>
+                      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', transition: 'transform 0.2s', transform: (isHovered && !isActive) ? 'translateX(4px)' : 'none' }}>
                         {h.text}
                       </span>
 
@@ -295,8 +294,7 @@ export function DynamicIslandTOC({
                         initial={false}
                         animate={{ scale: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="ml-3 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground"
-                        style={{ backgroundColor: 'var(--foreground, #111827)' }}
+                        style={{ marginLeft: '12px', width: '6px', height: '6px', flexShrink: 0, borderRadius: '50%', backgroundColor: 'var(--color-accent, #5625F2)' }}
                       />
                     </button>
                   );
