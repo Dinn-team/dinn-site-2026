@@ -162,10 +162,10 @@ export function DynamicIslandTOC({
       </AnimatePresence>
 
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: 50, x: "-50%", opacity: 0 }}
+        animate={{ y: 0, x: "-50%", opacity: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        style={{ position: 'fixed', bottom: '40px', left: '50%', transform: 'translateX(-50%)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        style={{ position: 'fixed', bottom: '40px', left: '50%', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
         <motion.div
           onClick={() => {
