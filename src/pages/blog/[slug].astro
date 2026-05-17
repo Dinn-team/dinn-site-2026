@@ -4,6 +4,7 @@ import { client, urlFor } from '@/sanity/lib/client';
 import { postBySlugQuery } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
 import { Translate, TranslatedDate } from '@/components/ui/Translate';
+import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
 
 export async function getStaticPaths() {
   const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
@@ -46,6 +47,8 @@ const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(70
   title={`${post.title} | Blog Dinn`}
   description={post.excerpt || `Leia o artigo: ${post.title}`}
 >
+  <DynamicIslandTOC client:load selector=".bp-body h2, .bp-body h3, .bp-body h4" />
+  
   <div class="bp-page pt-24">
 
     <!-- Hero Image -->
