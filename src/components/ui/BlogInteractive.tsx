@@ -149,7 +149,10 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
                 <div className="blog-grid">
                   {gridPosts.map(post => (
                     <a key={post._id} href={`/blog/${post.slug.current}`} className="blog-card group">
-                      <div className="w-full aspect-video rounded-xl overflow-hidden mb-6 bg-slate-100">
+                      <div 
+                        className="w-full aspect-video rounded-xl overflow-hidden bg-slate-100"
+                        style={{ marginBottom: '32px' }}
+                      >
                         <img
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           src={post.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"}
