@@ -369,11 +369,18 @@ export const enUS = {
     ]
   },
   blog: {
-    heroTitle: "Dinn Content",
-    searchPlaceholder: "Search for content here",
+    heroTitle: "Dinn Insights",
+    searchPlaceholder: "Search content here",
     noResultsTitle: "No content found",
     noResultsDesc: "Try adjusting your search terms.",
     readArticle: "Read article",
-    viewContent: "View content"
+    viewContent: "View content",
+    minRead: "min read",
+    backToBlog: "Back to Blog",
+    ctaTitle: "Transform data into strategic decisions",
+    ctaText: "Dinn centralizes market intelligence for the pharmaceutical industry — real-time POS monitoring, out-of-stock tracking, and sell-out data.",
+    ctaBtn: "Request a demo",
+    recommended: "Recommended for you",
+    writtenBy: "By"
   }
 };

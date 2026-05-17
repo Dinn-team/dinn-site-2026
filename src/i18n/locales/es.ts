@@ -374,6 +374,13 @@ export const es419 = {
     noResultsTitle: "No se encontró contenido",
     noResultsDesc: "Intenta ajustar los términos de búsqueda.",
     readArticle: "Leer artículo",
-    viewContent: "Ver contenido"
+    viewContent: "Ver contenido",
+    minRead: "min de lectura",
+    backToBlog: "Volver al Blog",
+    ctaTitle: "Transforma datos en decisiones estratégicas",
+    ctaText: "Dinn centraliza la inteligencia de mercado para la industria farmacéutica: monitoreo de punto de venta, quiebres de stock y sell-out en tiempo real.",
+    ctaBtn: "Solicitar demostración",
+    recommended: "Recomendados para ti",
+    writtenBy: "Por"
   }
 };

@@ -374,6 +374,13 @@ export const ptBR = {
     noResultsTitle: "Nenhum conteúdo encontrado",
     noResultsDesc: "Tente ajustar sua busca por outros termos.",
     readArticle: "Ler artigo",
-    viewContent: "Ver conteúdo"
+    viewContent: "Ver conteúdo",
+    minRead: "min de leitura",
+    backToBlog: "Voltar para o Blog",
+    ctaTitle: "Transforme dados em decisões estratégicas",
+    ctaText: "A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real.",
+    ctaBtn: "Solicitar demonstração",
+    recommended: "Recomendados para você",
+    writtenBy: "Por"
   }
 };
