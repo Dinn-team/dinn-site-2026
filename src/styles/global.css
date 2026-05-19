@@ -172,7 +172,7 @@
 html, body {
   background: #ffffff !important;
   color: #1F2328 !important;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 
