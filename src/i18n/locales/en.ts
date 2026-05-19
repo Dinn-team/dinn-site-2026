@@ -341,6 +341,8 @@ export const enUS = {
   },
   testimonials: {
     title: "What our clients say",
+    readMore: "Read more",
+    readLess: "Read less",
     items: [
       {
         quote: "The Dinn team stood out for their ability to deeply understand our business, going beyond delivering a simple digital product. They offered valuable business insights and showed a constant willingness to welcome feedback and make adjustments, ensuring that the developed solution truly added value to our sales team. This collaborative and adaptive approach was crucial to the success of our partnership.",

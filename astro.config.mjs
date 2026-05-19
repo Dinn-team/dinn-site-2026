@@ -7,6 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react()],
 
+  redirects: {
+    '/blog/[slug]': '/articles/[slug]',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

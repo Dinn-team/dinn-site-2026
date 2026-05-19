@@ -144,7 +144,7 @@ const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(70
           </h3>
           <div class="bp-recommended-grid">
             {recommendedPosts.map((rec: any) => (
-              <a href={`/blog/${rec.slug.current}`} class="bp-rec-card">
+              <a href={`/articles/${rec.slug.current}`} class="bp-rec-card">
                 {rec.coverImage && (
                   <div class="bp-rec-img-wrap">
                     <img src={urlFor(rec.coverImage).width(400).height(250).url()} alt={rec.title} class="bp-rec-img" />

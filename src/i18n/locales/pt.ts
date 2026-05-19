@@ -341,6 +341,8 @@ export const ptBR = {
   },
   testimonials: {
     title: "O que nossos clientes dizem",
+    readMore: "Ver mais",
+    readLess: "Ver menos",
     items: [
       {
         quote: "A equipe do Dinn se destacou por sua capacidade de entender profundamente nosso negócio, indo além da entrega de um simples produto digital. Eles ofereceram insights valiosos de negócios e mostraram uma disposição constante para acolher feedbacks e realizar ajustes, garantindo que a solução desenvolvida realmente agregasse valor à nossa equipe de vendas. Essa abordagem colaborativa e adaptativa foi crucial para o sucesso de nossa parceria.",

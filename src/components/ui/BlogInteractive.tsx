@@ -121,7 +121,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
               {/* Featured */}
               {featured && (
                 <div className="blog-featured">
-                  <a href={`/blog/${featured.slug.current}`} className="block w-full overflow-hidden rounded-xl">
+                  <a href={`/articles/${featured.slug.current}`} className="block w-full overflow-hidden rounded-xl">
                     <motion.img
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}
@@ -132,12 +132,12 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
                   </a>
                   <div>
                     <span className="blog-featured-tag">{featured.categories?.[0] ?? 'Destaque'}</span>
-                    <a href={`/blog/${featured.slug.current}`} className="block">
+                    <a href={`/articles/${featured.slug.current}`} className="block">
                       <h2 className="blog-featured-title">{featured.title}</h2>
                     </a>
                     <p className="blog-featured-excerpt">{featured.excerpt}</p>
                     <p className="blog-featured-meta">{formatDate(featured.publishedAt)}</p>
-                    <a href={`/blog/${featured.slug.current}`} className="blog-featured-link">
+                    <a href={`/articles/${featured.slug.current}`} className="blog-featured-link">
                       {t('blog.readArticle', 'Ler artigo')} →
                     </a>
                   </div>
@@ -148,7 +148,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
               {gridPosts.length > 0 && (
                 <div className="blog-grid">
                   {gridPosts.map(post => (
-                    <a key={post._id} href={`/blog/${post.slug.current}`} className="blog-card group">
+                    <a key={post._id} href={`/articles/${post.slug.current}`} className="blog-card group">
                       <div 
                         className="w-full aspect-video rounded-xl overflow-hidden bg-slate-100"
                         style={{ marginBottom: '32px' }}

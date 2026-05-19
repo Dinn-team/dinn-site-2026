@@ -14,9 +14,15 @@ export const TestimonialsSection = () => {
   })) as Testimonial[];
 
   return (
-    <section style={{ background: '#ffffff', padding: '100px 0' }}>
+    <section
+      style={{
+        background:
+          "linear-gradient(180deg, #ffffff 0%, #fafbfc 45%, #ffffff 100%)",
+        padding: "100px 0",
+      }}
+    >
       <div className="wrap">
-        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+        <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 style={{
             fontFamily: "var(--font)",
             fontSize: "clamp(28px, 4vw, 48px)",
@@ -38,18 +44,20 @@ export const TestimonialsSection = () => {
           <CircularTestimonials
             testimonials={testimonialsData}
             autoplay={true}
+            readMoreLabel={t("testimonials.readMore")}
+            readLessLabel={t("testimonials.readLess")}
             colors={{
               name: "#1F2328",
               designation: "#6B7280",
               testimony: "#4B5563",
               arrowBackground: "#ffffff",
               arrowForeground: "#1F2328",
-              arrowHoverBackground: "#5625F2", // Dinn's primary purple hover
+              arrowHoverBackground: "#5625F2",
             }}
             fontSizes={{
-              name: "24px",
-              designation: "16px",
-              quote: "clamp(18px, 2vw, 22px)",
+              name: "15px",
+              designation: "13px",
+              quote: "clamp(16px, 1.8vw, 18px)",
             }}
           />
         </div>

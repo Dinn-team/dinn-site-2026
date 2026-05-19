@@ -1,6 +1,8 @@
 "use client";
+
 import React, {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   useMemo,
@@ -15,6 +17,7 @@ export interface Testimonial {
   designation: string;
   src: string;
 }
+
 interface Colors {
   name?: string;
   designation?: string;
@@ -23,65 +26,80 @@ interface Colors {
   arrowForeground?: string;
   arrowHoverBackground?: string;
 }
+
 interface FontSizes {
   name?: string;
   designation?: string;
   quote?: string;
 }
+
 interface CircularTestimonialsProps {
   testimonials: Testimonial[];
   autoplay?: boolean;
   colors?: Colors;
   fontSizes?: FontSizes;
+  readMoreLabel?: string;
+  readLessLabel?: string;
 }
 
-function calculateGap(width: number) {
-  const minWidth = 1024;
-  const maxWidth = 1456;
-  const minGap = 60;
-  const maxGap = 86;
-  if (width <= minWidth) return minGap;
-  if (width >= maxWidth)
-    return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
-  return minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth));
-}
+const STACK_LAYERS = [
+  { rotate: -2.2, y: 14, scale: 0.97, opacity: 0.45 },
+  { rotate: 1.4, y: 7, scale: 0.985, opacity: 0.7 },
+] as const;
+
+/**
+ * Espaçamento em px (inline) — garante aplicação mesmo quando
+ * utilitários Tailwind em constantes não entram no bundle.
+ */
+const CARD_PADDING = {
+  paddingTop: "clamp(32px, 4vw, 44px)",
+  paddingRight: "clamp(36px, 6vw, 56px)",
+  paddingBottom: "clamp(36px, 5vw, 48px)",
+  paddingLeft: "clamp(36px, 6vw, 56px)",
+} as const;
+
+const QUOTE_LINE_CLAMP = 3;
+
+const GAP = {
+  stackTop: 24,
+  stackBottom: 20,
+  quoteMarkBottom: 20,
+  readMoreTop: 20,
+  footerMarginTop: 40,
+  footerPaddingTop: 28,
+  footerGap: 16,
+  authorNameTop: 6,
+  arrowsMarginTop: 48,
+  arrowsGap: 24,
+  dotsMarginTop: 24,
+  dotsGap: 10,
+} as const;
 
 export const CircularTestimonials = ({
   testimonials,
   autoplay = true,
   colors = {},
   fontSizes = {},
+  readMoreLabel = "Ver mais",
+  readLessLabel = "Ver menos",
 }: CircularTestimonialsProps) => {
-  // Color & font config
-  const colorName = colors.name ?? "#000";
+  const colorName = colors.name ?? "#1F2328";
   const colorDesignation = colors.designation ?? "#6b7280";
   const colorTestimony = colors.testimony ?? "#4b5563";
-  const colorArrowBg = colors.arrowBackground ?? "#141414";
-  const colorArrowFg = colors.arrowForeground ?? "#f1f1f7";
-  const colorArrowHoverBg = colors.arrowHoverBackground ?? "#5625F2"; // Updated to Dinn's primary purple
-  const fontSizeName = fontSizes.name ?? "1.5rem";
-  const fontSizeDesignation = fontSizes.designation ?? "0.925rem";
-  const fontSizeQuote = fontSizes.quote ?? "1.125rem";
+  const colorArrowBg = colors.arrowBackground ?? "#ffffff";
+  const colorArrowFg = colors.arrowForeground ?? "#1F2328";
+  const colorArrowHoverBg = colors.arrowHoverBackground ?? "#5625F2";
+  const fontSizeName = fontSizes.name ?? "0.9375rem";
+  const fontSizeDesignation = fontSizes.designation ?? "0.8125rem";
+  const fontSizeQuote = fontSizes.quote ?? "1.0625rem";
 
-  // Responsive / screen size state
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // State
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverPrev, setHoverPrev] = useState(false);
   const [hoverNext, setHoverNext] = useState(false);
-  const [containerWidth, setContainerWidth] = useState(1200);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
 
-  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const quoteRef = useRef<HTMLParagraphElement>(null);
   const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const testimonialsLength = useMemo(() => testimonials.length, [testimonials]);
@@ -90,36 +108,60 @@ export const CircularTestimonials = ({
     [activeIndex, testimonials]
   );
 
-  // Reset expansion when testimonial changes
   useEffect(() => {
     setIsExpanded(false);
+    setIsTruncated(false);
   }, [activeIndex]);
 
-  // Responsive gap calculation
-  useEffect(() => {
-    function handleResize() {
-      if (imageContainerRef.current) {
-        setContainerWidth(imageContainerRef.current.offsetWidth);
-      }
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const measureTruncation = useCallback(() => {
+    const el = quoteRef.current;
+    if (!el) return;
 
-  // Autoplay
-  useEffect(() => {
-    if (autoplay) {
-      autoplayIntervalRef.current = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % testimonialsLength);
-      }, 5000);
+    if (isExpanded) {
+      setIsTruncated(true);
+      return;
     }
+
+    setIsTruncated(el.scrollHeight > el.clientHeight + 1);
+  }, [isExpanded]);
+
+  useLayoutEffect(() => {
+    measureTruncation();
+  }, [activeIndex, activeTestimonial.quote, measureTruncation]);
+
+  useEffect(() => {
+    const el = quoteRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(() => measureTruncation());
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [measureTruncation]);
+
+  useEffect(() => {
+    if (!autoplay) return;
+
+    autoplayIntervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonialsLength);
+    }, 6000);
+
     return () => {
       if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
     };
-  }, [autoplay, testimonialsLength, isExpanded]); // Pause autoplay if they are reading? Actually let's just keep it simple, but adding isExpanded as a dependency will restart the interval.
+  }, [autoplay, testimonialsLength, activeIndex]);
 
-  // Keyboard navigation
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonialsLength);
+    if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
+  }, [testimonialsLength]);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex(
+      (prev) => (prev - 1 + testimonialsLength) % testimonialsLength
+    );
+    if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
+  }, [testimonialsLength]);
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") handlePrev();
@@ -127,226 +169,269 @@ export const CircularTestimonials = ({
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-    // eslint-disable-next-line
-  }, [activeIndex, testimonialsLength]);
+  }, [handleNext, handlePrev]);
 
-  // Navigation handlers
-  const handleNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % testimonialsLength);
-    if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
-  }, [testimonialsLength]);
-  const handlePrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + testimonialsLength) % testimonialsLength);
-    if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);
-  }, [testimonialsLength]);
-
-  // Compute transforms for each image (always show 3: left, center, right)
-  function getImageStyle(index: number): React.CSSProperties {
-    const gap = isMobile ? containerWidth * 0.15 : calculateGap(containerWidth);
-    const maxStickUp = isMobile ? gap * 0.4 : gap * 0.8;
-    const offset = (index - activeIndex + testimonialsLength) % testimonialsLength;
-    const isActive = index === activeIndex;
-    const isLeft = (activeIndex - 1 + testimonialsLength) % testimonialsLength === index;
-    const isRight = (activeIndex + 1) % testimonialsLength === index;
-    if (isActive) {
-      return {
-        zIndex: 3,
-        opacity: 1,
-        pointerEvents: "auto",
-        transform: `translateX(0px) translateY(0px) scale(${isMobile ? 0.82 : 1}) rotateY(0deg)`,
-        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
-      };
-    }
-    if (isLeft) {
-      return {
-        zIndex: 2,
-        opacity: 1,
-        pointerEvents: "auto",
-        transform: `translateX(-${gap}px) translateY(-${maxStickUp}px) scale(${isMobile ? 0.65 : 0.85}) rotateY(15deg)`,
-        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
-      };
-    }
-    if (isRight) {
-      return {
-        zIndex: 2,
-        opacity: 1,
-        pointerEvents: "auto",
-        transform: `translateX(${gap}px) translateY(-${maxStickUp}px) scale(${isMobile ? 0.65 : 0.85}) rotateY(-15deg)`,
-        transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
-      };
-    }
-    // Hide all other images
-    return {
-      zIndex: 1,
-      opacity: 0,
-      pointerEvents: "none",
-      transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
-    };
-  }
-
-  // Framer Motion variants for quote
   const quoteVariants = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: 12 },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
+    exit: { opacity: 0, y: -12 },
   };
 
+  const showExpandControl = isTruncated || isExpanded;
+
   return (
-    <div className="testimonial-container w-full max-w-5xl">
-      <div className="testimonial-grid grid gap-12 md:gap-20 grid-cols-1 md:grid-cols-2">
-        {/* Images */}
-        <div className="image-container" ref={imageContainerRef} style={{ position: 'relative', width: '100%', height: isMobile ? '16rem' : '24rem', perspective: '1000px' }}>
-          {testimonials.map((testimonial, index) => (
-            <img
-              key={testimonial.src}
-              src={testimonial.src}
-              alt={testimonial.name}
-              className="testimonial-image"
-              data-index={index}
-              style={{
-                ...getImageStyle(index),
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '1.5rem',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-              }}
-            />
-          ))}
-        </div>
-        {/* Content */}
-        <div className="testimonial-content" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <AnimatePresence mode="wait">
+    <motion.div
+      className="testimonial-container mx-auto w-full max-w-2xl px-2 sm:px-0"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <motion.div
+        className="relative"
+        style={{
+          paddingTop: GAP.stackTop,
+          paddingBottom: GAP.stackBottom,
+        }}
+        animate={{ y: [0, -2, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {STACK_LAYERS.map((layer, i) => (
+          <div
+            key={i}
+            aria-hidden
+            className="absolute rounded-[20px] border border-[#E8EAED] bg-white"
+            style={{
+              left: "clamp(12px, 3vw, 20px)",
+              right: "clamp(12px, 3vw, 20px)",
+              top: 0,
+              bottom: 0,
+              transform: `rotate(${layer.rotate}deg) translateY(${layer.y}px) scale(${layer.scale})`,
+              opacity: layer.opacity,
+              boxShadow: "0 8px 28px rgba(15, 23, 42, 0.06)",
+              zIndex: i,
+            }}
+          />
+        ))}
+
+        <AnimatePresence mode="wait">
+          <motion.article
+            key={activeIndex}
+            className="relative z-10 rounded-[20px] border border-[#E5E7EB] bg-white"
+            style={{
+              ...CARD_PADDING,
+              boxShadow:
+                "0 16px 40px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04)",
+            }}
+            variants={quoteVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+          >
             <motion.div
-              layout
-              key={activeIndex}
-              variants={quoteVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="pointer-events-none absolute left-1/2 top-0 h-3 w-14 -translate-x-1/2 rounded-b-full bg-[#F3F4F6]"
+              aria-hidden
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            />
+
+            <span
+              className="block font-bold leading-none text-[#1F2328]"
+              aria-hidden
+              style={{
+                fontSize: "clamp(2.25rem, 5vw, 3rem)",
+                marginBottom: GAP.quoteMarkBottom,
+              }}
             >
-              <h3
-                className="name"
-                style={{ color: colorName, fontSize: fontSizeName, fontWeight: 'bold', marginBottom: '0.25rem' }}
+              “
+            </span>
+
+            <motion.div className="quote-container relative">
+              <motion.p
+                ref={quoteRef}
+                layout
+                className="quote m-0"
+                style={{
+                  color: colorTestimony,
+                  fontSize: fontSizeQuote,
+                  lineHeight: 1.8,
+                  display: isExpanded ? "block" : "-webkit-box",
+                  WebkitLineClamp: isExpanded ? "unset" : QUOTE_LINE_CLAMP,
+                  WebkitBoxOrient: "vertical",
+                  overflow: isExpanded ? "visible" : "hidden",
+                }}
               >
-                {activeTestimonial.name}
-              </h3>
-              <p
-                className="designation"
-                style={{ color: colorDesignation, fontSize: fontSizeDesignation, marginBottom: '2rem' }}
-              >
-                {activeTestimonial.designation}
-              </p>
-              
-              <div className="quote-container relative">
-                <motion.p
-                  layout
-                  className="quote"
-                  style={{ 
-                    color: colorTestimony, 
-                    fontSize: fontSizeQuote, 
-                    lineHeight: 1.75,
-                    display: '-webkit-box',
-                    WebkitLineClamp: isExpanded ? 'unset' : 4,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
+                {activeTestimonial.quote.split(" ").map((word, i) => (
+                  <motion.span
+                    key={`${activeIndex}-${i}`}
+                    initial={{ filter: "blur(8px)", opacity: 0, y: 4 }}
+                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeOut",
+                      delay: 0.02 * Math.min(i, 24),
+                    }}
+                    style={{ display: "inline-block" }}
+                  >
+                    {word}&nbsp;
+                  </motion.span>
+                ))}
+              </motion.p>
+
+              {showExpandControl && (
+                <button
+                  type="button"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="cursor-pointer border-0 bg-transparent p-0 font-semibold"
+                  style={{
+                    color: colorArrowHoverBg,
+                    fontSize: "0.875rem",
+                    marginTop: GAP.readMoreTop,
                   }}
                 >
-                  {activeTestimonial.quote.split(" ").map((word, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{
-                        filter: "blur(10px)",
-                        opacity: 0,
-                        y: 5,
-                      }}
-                      animate={{
-                        filter: "blur(0px)",
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        duration: 0.22,
-                        ease: "easeInOut",
-                        delay: 0.025 * i,
-                      }}
-                      style={{ display: "inline-block" }}
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
-                </motion.p>
+                  {isExpanded ? readLessLabel : readMoreLabel}
+                </button>
+              )}
+            </motion.div>
 
-                {activeTestimonial.quote.length > 150 && (
-                  <motion.button
-                    layout
-                    onClick={() => setIsExpanded(!isExpanded)}
+            <footer
+              className="flex items-center justify-between border-t border-[#ECEEF1]"
+              style={{
+                marginTop: GAP.footerMarginTop,
+                paddingTop: GAP.footerPaddingTop,
+              }}
+            >
+              <motion.div
+                className="flex min-w-0 items-center"
+                style={{ gap: GAP.footerGap }}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.15, duration: 0.3 }}
+              >
+                <div
+                  className="relative shrink-0 overflow-hidden rounded-full ring-1 ring-[#E5E7EB]"
+                  style={{ width: 44, height: 44 }}
+                >
+                  <img
+                    src={activeTestimonial.src}
+                    alt={activeTestimonial.name}
+                    width={44}
+                    height={44}
+                    className="h-full w-full object-cover"
                     style={{
-                      marginTop: '12px',
-                      color: colorArrowHoverBg,
-                      fontWeight: 600,
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      padding: 0,
-                      fontSize: '15px'
+                      filter: "grayscale(100%)",
+                      opacity: 0.88,
+                      transform: "scale(1.08)",
+                    }}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p
+                    className="name m-0 truncate font-bold"
+                    style={{
+                      color: colorName,
+                      fontSize: fontSizeName,
+                      lineHeight: 1.3,
                     }}
                   >
-                    {isExpanded ? 'Ver menos' : 'Ver mais'}
-                  </motion.button>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          <div className="arrow-buttons flex gap-6 pt-12 md:pt-0">
-            <button
-              className="arrow-button prev-button"
-              onClick={handlePrev}
-              style={{
-                backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
-                width: '2.7rem',
-                height: '2.7rem',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'background-color 0.3s',
-                border: 'none'
-              }}
-              onMouseEnter={() => setHoverPrev(true)}
-              onMouseLeave={() => setHoverPrev(false)}
-              aria-label="Previous testimonial"
-            >
-              <ArrowLeft size={24} color={colorArrowFg} />
-            </button>
-            <button
-              className="arrow-button next-button"
-              onClick={handleNext}
-              style={{
-                backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
-                width: '2.7rem',
-                height: '2.7rem',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'background-color 0.3s',
-                border: 'none'
-              }}
-              onMouseEnter={() => setHoverNext(true)}
-              onMouseLeave={() => setHoverNext(false)}
-              aria-label="Next testimonial"
-            >
-              <ArrowRight size={24} color={colorArrowFg} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+                    {activeTestimonial.name}
+                  </p>
+                  <p
+                    className="designation m-0 truncate"
+                    style={{
+                      color: colorDesignation,
+                      fontSize: fontSizeDesignation,
+                      lineHeight: 1.45,
+                      marginTop: GAP.authorNameTop,
+                    }}
+                  >
+                    {activeTestimonial.designation}
+                  </p>
+                </div>
+              </motion.div>
+            </footer>
+          </motion.article>
+        </AnimatePresence>
+      </motion.div>
+
+      <motion.div
+        className="arrow-buttons flex justify-center"
+        style={{ marginTop: GAP.arrowsMarginTop, gap: GAP.arrowsGap }}
+      >
+        <button
+          type="button"
+          className="arrow-button prev-button"
+          onClick={handlePrev}
+          style={{
+            backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
+            width: "2.7rem",
+            height: "2.7rem",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            transition: "background-color 0.3s, border-color 0.3s",
+            border: "1px solid #E5E7EB",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+          }}
+          onMouseEnter={() => setHoverPrev(true)}
+          onMouseLeave={() => setHoverPrev(false)}
+          aria-label="Previous testimonial"
+        >
+          <ArrowLeft size={22} color={hoverPrev ? "#fff" : colorArrowFg} />
+        </button>
+        <button
+          type="button"
+          className="arrow-button next-button"
+          onClick={handleNext}
+          style={{
+            backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
+            width: "2.7rem",
+            height: "2.7rem",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            transition: "background-color 0.3s, border-color 0.3s",
+            border: "1px solid #E5E7EB",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+          }}
+          onMouseEnter={() => setHoverNext(true)}
+          onMouseLeave={() => setHoverNext(false)}
+          aria-label="Next testimonial"
+        >
+          <ArrowRight size={22} color={hoverNext ? "#fff" : colorArrowFg} />
+        </button>
+      </motion.div>
+
+      <motion.div
+        className="flex justify-center"
+        style={{ marginTop: GAP.dotsMarginTop, gap: GAP.dotsGap }}
+        role="tablist"
+        aria-label="Depoimentos"
+      >
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            role="tab"
+            aria-selected={index === activeIndex}
+            aria-label={`Depoimento ${index + 1}`}
+            onClick={() => setActiveIndex(index)}
+            className="cursor-pointer border-0 p-0 transition-all duration-300"
+            style={{
+              width: index === activeIndex ? 22 : 8,
+              height: 8,
+              borderRadius: 999,
+              background: index === activeIndex ? colorArrowHoverBg : "#D1D5DB",
+            }}
+          />
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 
