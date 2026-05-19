@@ -54,6 +54,16 @@ export function CasosDeUsoSection() {
   const [progress, setProgress] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       const el = scrollRef.current;
@@ -81,15 +91,15 @@ export function CasosDeUsoSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "40% 60%",
+          gridTemplateColumns: isMobile ? "1fr" : "40% 60%",
           paddingTop: "clamp(64px, 8vh, 112px)",
           paddingBottom: "clamp(40px, 5vh, 72px)",
         }}
       >
         <div
           style={{
-            paddingLeft: "clamp(24px, 5vw, 80px)",
-            paddingRight: "clamp(24px, 3vw, 48px)",
+            paddingLeft: isMobile ? "24px" : "clamp(24px, 5vw, 80px)",
+            paddingRight: isMobile ? "24px" : "clamp(24px, 3vw, 48px)",
           }}
         >
           <p
@@ -141,103 +151,144 @@ export function CasosDeUsoSection() {
         </div>
       </div>
 
-      {/* ── Scrollytelling zone ─────────────────────── */}
-      <div ref={scrollRef} style={{ position: "relative", height: `${TOTAL * 100}vh` }}>
-
-        {/* Sticky two-panel — only this part sticks */}
-        <div
-          style={{
-            position: "sticky",
-            top: "120px",
-            height: "calc(100vh - 120px)",
-            display: "grid",
-            gridTemplateColumns: "40% 60%",
-            overflow: "hidden",
-          }}
-        >
-          {/* ── LEFT: topic list ─────────────────── */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              paddingLeft: "clamp(24px, 5vw, 80px)",
-              paddingRight: "clamp(24px, 3vw, 48px)",
-              paddingBottom: "24px",
-            }}
-          >
-            {topics.map((topic, i) => {
-              const isActive = i === activeIndex;
-              return (
-                <TopicRow
-                  key={topic.id}
-                  topic={topic}
-                  isActive={isActive}
-                  progress={isActive ? progress : 0}
-                />
-              );
-            })}
-          </div>
-
-          {/* ── RIGHT: full-bleed image, no box ──── */}
-          <div style={{ position: "relative", overflow: "hidden" }}>
-            {topics.map((topic, i) => {
-              const isActive = i === activeIndex;
-              // Parallax: active image scrolls up as progress goes 0→1
-              // Previous images are already scrolled up (-15%), next are at rest (0%)
-              const translateY = isActive
-                ? `${-progress * 12}%`
-                : i < activeIndex
-                ? "-12%"
-                : "4%";
-
-              return (
-                <img
-                  key={topic.id}
-                  src={topic.image}
-                  alt={topic.title}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    objectPosition: "left center",
-                    opacity: isActive ? 1 : 0,
-                    transform: `translateY(${translateY})`,
-                    transition: isActive
-                      ? "opacity 380ms ease, transform 380ms ease"
-                      : "opacity 380ms ease",
-                    willChange: "opacity, transform",
-                    background: "transparent",
-                  }}
-                />
-              );
-            })}
-
-
-            {/* Counter */}
+      {/* ── Scrollytelling zone or Mobile Stacked view ─────────────────────── */}
+      {isMobile ? (
+        <div style={{ padding: "0 24px 80px 24px", display: "flex", flexDirection: "column", gap: "32px" }}>
+          {topics.map((topic, i) => (
             <div
+              key={topic.id}
               style={{
-                position: "absolute",
-                bottom: "20px",
-                right: "20px",
-                background: "rgba(255,255,255,0.88)",
-                backdropFilter: "blur(8px)",
-                fontSize: "11px",
-                fontWeight: 700,
-                color: "#1F2328",
-                padding: "5px 14px",
-                borderRadius: "999px",
-                zIndex: 2,
-                letterSpacing: "0.06em",
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+                background: "#F8F8FA",
+                padding: "24px",
+                borderRadius: "20px",
+                border: "1px solid #E5E7EB",
               }}
             >
-              {activeIndex + 1} / {TOTAL}
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: "8px" }}>
+                  0{i + 1} . {topic.title}
+                </span>
+                <h3 style={{ fontFamily: "var(--font)", fontSize: "20px", fontWeight: 800, color: "#1F2328", margin: "0 0 12px" }}>
+                  {topic.title}
+                </h3>
+                <p style={{ fontFamily: "var(--font)", fontSize: "14px", color: "var(--color-body)", lineHeight: 1.6, margin: 0 }}>
+                  {topic.description}
+                </p>
+              </div>
+              <img
+                src={topic.image}
+                alt={topic.title}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                  objectFit: "contain",
+                  background: "transparent",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.04)"
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div ref={scrollRef} style={{ position: "relative", height: `${TOTAL * 100}vh` }}>
+          {/* Sticky two-panel — only this part sticks */}
+          <div
+            style={{
+              position: "sticky",
+              top: "120px",
+              height: "calc(100vh - 120px)",
+              display: "grid",
+              gridTemplateColumns: "40% 60%",
+              overflow: "hidden",
+            }}
+          >
+            {/* ── LEFT: topic list ─────────────────── */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                paddingLeft: "clamp(24px, 5vw, 80px)",
+                paddingRight: "clamp(24px, 3vw, 48px)",
+                paddingBottom: "24px",
+              }}
+            >
+              {topics.map((topic, i) => {
+                const isActive = i === activeIndex;
+                return (
+                  <TopicRow
+                    key={topic.id}
+                    topic={topic}
+                    isActive={isActive}
+                    progress={isActive ? progress : 0}
+                  />
+                );
+              })}
+            </div>
+
+            {/* ── RIGHT: full-bleed image, no box ──── */}
+            <div style={{ position: "relative", overflow: "hidden" }}>
+              {topics.map((topic, i) => {
+                const isActive = i === activeIndex;
+                // Parallax: active image scrolls up as progress goes 0→1
+                // Previous images are already scrolled up (-15%), next are at rest (0%)
+                const translateY = isActive
+                  ? `${-progress * 12}%`
+                  : i < activeIndex
+                  ? "-12%"
+                  : "4%";
+
+                return (
+                  <img
+                    key={topic.id}
+                    src={topic.image}
+                    alt={topic.title}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      objectPosition: "left center",
+                      opacity: isActive ? 1 : 0,
+                      transform: `translateY(${translateY})`,
+                      transition: isActive
+                        ? "opacity 380ms ease, transform 380ms ease"
+                        : "opacity 380ms ease",
+                      willChange: "opacity, transform",
+                      background: "transparent",
+                    }}
+                  />
+                );
+              })}
+
+              {/* Counter */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "20px",
+                  right: "20px",
+                  background: "rgba(255,255,255,0.88)",
+                  backdropFilter: "blur(8px)",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  color: "#1F2328",
+                  padding: "5px 14px",
+                  borderRadius: "999px",
+                  zIndex: 2,
+                  letterSpacing: "0.06em",
+                }}
+              >
+                {activeIndex + 1} / {TOTAL}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

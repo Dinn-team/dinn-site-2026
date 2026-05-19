@@ -33,6 +33,16 @@ export default function RadialOrbitalTimeline({
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === containerRef.current || e.target === orbitRef.current) {
       setExpandedItems({});
@@ -86,7 +96,7 @@ export default function RadialOrbitalTimeline({
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 190;
+    const radius = isMobile ? 120 : 190;
     const radian = (angle * Math.PI) / 180;
     const x = radius * Math.cos(radian);
     const y = radius * Math.sin(radian);
@@ -165,7 +175,8 @@ export default function RadialOrbitalTimeline({
           {/* Orbit ring */}
           <div style={{
             position: "absolute",
-            width: "380px", height: "380px",
+            width: isMobile ? "240px" : "380px",
+            height: isMobile ? "240px" : "380px",
             borderRadius: "50%",
             border: "1px solid rgba(255,255,255,0.08)",
             pointerEvents: "none",
@@ -229,14 +240,16 @@ export default function RadialOrbitalTimeline({
                   top: "52px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  whiteSpace: "nowrap",
-                  fontSize: "var(--text-xs)",
+                  whiteSpace: isMobile ? "normal" : "nowrap",
+                  width: isMobile ? "75px" : "auto",
+                  fontSize: isMobile ? "9px" : "var(--text-xs)",
                   fontFamily: "var(--font)",
                   fontWeight: 600,
                   letterSpacing: "0.04em",
                   color: isExpanded ? "#fff" : "rgba(255,255,255,0.65)",
                   transition: "color 0.3s",
                   textAlign: "center",
+                  lineHeight: 1.2,
                 }}>
                   {item.title}
                 </div>
@@ -247,7 +260,7 @@ export default function RadialOrbitalTimeline({
                     top: "72px",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "320px",
+                    width: isMobile ? "280px" : "320px",
                     background: "rgba(15,15,24,0.97)",
                     backdropFilter: "blur(20px)",
                     WebkitBackdropFilter: "blur(20px)",

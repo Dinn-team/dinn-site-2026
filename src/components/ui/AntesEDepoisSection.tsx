@@ -62,11 +62,14 @@ export function AntesEDepoisSection() {
         </div>
 
         {/* Comparison List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '1000px', margin: '0 auto' }}>
+        <div 
+          style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '1000px', margin: '0 auto' }}
+          className="md:gap-4"
+        >
           {COMPARISON_DATA.map((item, index) => (
             <div 
               key={index} 
-              className="flex flex-col md:flex-row items-center gap-4 md:gap-6"
+              className="flex flex-col md:flex-row items-center gap-2.5 md:gap-6"
             >
               
               {/* Bad Card (Left) */}
@@ -94,7 +97,7 @@ export function AntesEDepoisSection() {
               </div>
 
               {/* Arrow */}
-              <div style={{ color: 'rgba(255,255,255,0.3)', flexShrink: 0 }} className="rotate-90 md:rotate-0">
+              <div style={{ color: 'rgba(255,255,255,0.3)', flexShrink: 0 }} className="hidden md:block rotate-90 md:rotate-0">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>

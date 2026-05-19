@@ -8,9 +8,8 @@ export default function Footer() {
       <div className="wrap" style={{ paddingTop: '64px', paddingBottom: '48px' }}>
 
         {/* Main grid: brand + 4 columns */}
-        <div style={{
+        <div className="footer-grid" style={{
           display: 'grid',
-          gridTemplateColumns: '2.5fr 1fr 1.5fr 2fr',
           gap: '40px',
           marginBottom: '48px',
           alignItems: 'start',
@@ -127,14 +126,17 @@ export default function Footer() {
 
       {/* Responsive mobile styles */}
       <style>{`
+        .footer-grid {
+          grid-template-columns: 2.5fr 1fr 1.5fr 2fr;
+        }
         @media (max-width: 1024px) {
           .footer-grid {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: 1fr 1fr;
           }
         }
         @media (max-width: 640px) {
           .footer-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: 1fr;
           }
         }
       `}</style>

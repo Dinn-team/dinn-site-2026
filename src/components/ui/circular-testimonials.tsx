@@ -63,6 +63,17 @@ export const CircularTestimonials = ({
   const fontSizeDesignation = fontSizes.designation ?? "0.925rem";
   const fontSizeQuote = fontSizes.quote ?? "1.125rem";
 
+  // Responsive / screen size state
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // State
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverPrev, setHoverPrev] = useState(false);
@@ -131,8 +142,8 @@ export const CircularTestimonials = ({
 
   // Compute transforms for each image (always show 3: left, center, right)
   function getImageStyle(index: number): React.CSSProperties {
-    const gap = calculateGap(containerWidth);
-    const maxStickUp = gap * 0.8;
+    const gap = isMobile ? containerWidth * 0.15 : calculateGap(containerWidth);
+    const maxStickUp = isMobile ? gap * 0.4 : gap * 0.8;
     const offset = (index - activeIndex + testimonialsLength) % testimonialsLength;
     const isActive = index === activeIndex;
     const isLeft = (activeIndex - 1 + testimonialsLength) % testimonialsLength === index;
@@ -142,7 +153,7 @@ export const CircularTestimonials = ({
         zIndex: 3,
         opacity: 1,
         pointerEvents: "auto",
-        transform: `translateX(0px) translateY(0px) scale(1) rotateY(0deg)`,
+        transform: `translateX(0px) translateY(0px) scale(${isMobile ? 0.82 : 1}) rotateY(0deg)`,
         transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
       };
     }
@@ -151,7 +162,7 @@ export const CircularTestimonials = ({
         zIndex: 2,
         opacity: 1,
         pointerEvents: "auto",
-        transform: `translateX(-${gap}px) translateY(-${maxStickUp}px) scale(0.85) rotateY(15deg)`,
+        transform: `translateX(-${gap}px) translateY(-${maxStickUp}px) scale(${isMobile ? 0.65 : 0.85}) rotateY(15deg)`,
         transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
       };
     }
@@ -160,7 +171,7 @@ export const CircularTestimonials = ({
         zIndex: 2,
         opacity: 1,
         pointerEvents: "auto",
-        transform: `translateX(${gap}px) translateY(-${maxStickUp}px) scale(0.85) rotateY(-15deg)`,
+        transform: `translateX(${gap}px) translateY(-${maxStickUp}px) scale(${isMobile ? 0.65 : 0.85}) rotateY(-15deg)`,
         transition: "all 0.8s cubic-bezier(.4,2,.3,1)",
       };
     }
@@ -184,7 +195,7 @@ export const CircularTestimonials = ({
     <div className="testimonial-container w-full max-w-5xl">
       <div className="testimonial-grid grid gap-12 md:gap-20 grid-cols-1 md:grid-cols-2">
         {/* Images */}
-        <div className="image-container" ref={imageContainerRef} style={{ position: 'relative', width: '100%', height: '24rem', perspective: '1000px' }}>
+        <div className="image-container" ref={imageContainerRef} style={{ position: 'relative', width: '100%', height: isMobile ? '16rem' : '24rem', perspective: '1000px' }}>
           {testimonials.map((testimonial, index) => (
             <img
               key={testimonial.src}
