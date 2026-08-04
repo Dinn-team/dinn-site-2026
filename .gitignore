@@ -52,3 +52,6 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 /dist
+
+# Claude Code (config local por máquina)
+.claude/settings.local.json
