@@ -6,14 +6,11 @@ import Footer from '@/components/Footer';
 interface Props {
 	title?: string;
 	description?: string;
-	/** Mantém a página fora dos buscadores (usado nas páginas restritas de /reports). */
-	noindex?: boolean;
 }
 
 const {
 	title = "Dinn - Inteligência de Dados para Farmácias",
-	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais.",
-	noindex = false
+	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais."
 } = Astro.props;
 ---
 
@@ -23,7 +20,6 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
