@@ -7,6 +7,12 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react()],
 
+  // O Astro não lê PORT sozinho; sem isso o dev server ignora a porta atribuída
+  // pelo ambiente e tenta sempre a 4321.
+  server: {
+    port: Number(process.env.PORT) || 4321,
+  },
+
   redirects: {
     '/blog/[slug]': '/articles/[slug]',
   },
