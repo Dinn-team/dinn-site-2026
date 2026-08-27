@@ -13,6 +13,7 @@ export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
 
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   _id,
+  _updatedAt,
   title,
   slug,
   excerpt,

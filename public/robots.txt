@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Formulário interno — sem valor de busca
+Disallow: /feedback-pt
+
+Sitemap: https://dinn.ai/sitemap-index.xml

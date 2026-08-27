@@ -41,11 +41,36 @@ function calcReadTime(body: any[]): number {
 
 const readTime = calcReadTime(post.body);
 const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(700).fit('crop').url() : null;
+
+// Imagem de compartilhamento no formato que as redes esperam (1200x630).
+const shareImage = post.coverImage
+  ? urlFor(post.coverImage).width(1200).height(630).fit('crop').url()
+  : '/og-image.png';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.excerpt || `Leia o artigo: ${post.title}`,
+  "datePublished": post.publishedAt,
+  "dateModified": post._updatedAt || post.publishedAt,
+  "author": { "@type": "Person", "name": post.author || "Dinn" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dinn",
+    "logo": { "@type": "ImageObject", "url": new URL('/logo.png', Astro.site).href }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href },
+  ...(post.coverImage ? { image: shareImage } : {}),
+};
 ---
 
 <Layout
   title={`${post.title} | Blog Dinn`}
   description={post.excerpt || `Leia o artigo: ${post.title}`}
+  image={shareImage}
+  type="article"
+  jsonLd={articleSchema}
 >
   <DynamicIslandTOC client:load selector=".bp-body h2, .bp-body h3, .bp-body h4" />
   

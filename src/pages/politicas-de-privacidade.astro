@@ -3,10 +3,13 @@ import Layout from '@/layouts/Layout.astro';
 import PrivacyPolicy from '@/components/PrivacyPolicy';
 ---
 
-<Layout title="Políticas de Privacidade | Dinn">
-  <main style="background: #ffffff; min-height: 100vh; padding-top: 160px; padding-bottom: 120px;">
+<Layout
+  title="Políticas de Privacidade | Dinn"
+  description="Como a Dinn coleta, utiliza e protege os dados pessoais dos seus usuários e clientes."
+>
+  <div style="background: #ffffff; min-height: 100vh; padding-top: 160px; padding-bottom: 120px;">
     <div class="wrap" style="max-width: 800px; margin: 0 auto;">
       <PrivacyPolicy client:visible />
     </div>
-  </main>
+  </div>
 </Layout>

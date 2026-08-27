@@ -6,35 +6,118 @@ import Footer from '@/components/Footer';
 interface Props {
 	title?: string;
 	description?: string;
+	/** Caminho ou URL da imagem de compartilhamento (1200x630). */
+	image?: string;
+	/** og:type — 'article' nas páginas de post. */
+	type?: 'website' | 'article';
+	/** Bloqueia indexação (formulários, páginas internas). */
+	noindex?: boolean;
+	/** Structured data extra, anexado ao schema de Organization. */
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
 	title = "Dinn - Inteligência de Dados para Farmácias",
-	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais."
+	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais.",
+	image = '/og-image.png',
+	type = 'website',
+	noindex = false,
+	jsonLd,
 } = Astro.props;
+
+// Descrições vindas do Sanity trazem quebras de linha e tamanho livre; sem
+// normalizar, elas entram cruas no atributo e passam do corte do Google (~160).
+function normalizeDescription(text: string): string {
+	const clean = text.replace(/\s+/g, ' ').trim();
+	if (clean.length <= 160) return clean;
+	return `${clean.slice(0, 157).replace(/[\s,;:.-]+$/, '')}…`;
+}
+
+const metaDescription = normalizeDescription(description);
+
+// URL canônica sempre com barra final, para bater com o formato de diretório
+// que o Astro gera e com as URLs do sitemap. Divergir aqui faria a mesma página
+// ser indexada em duas variantes.
+const site = Astro.site ?? new URL('https://dinn.ai');
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(path, site).href;
+const imageUrl = new URL(image, site).href;
+
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Dinn",
+	"description": "Inteligência de Dados para Farmácias",
+	"url": site.href,
+	"logo": new URL('/logo.png', site).href,
+	"foundingDate": "2023",
+	"founders": [{
+		"@type": "Organization",
+		"name": "DiWE Ventures Studio"
+	}]
+};
+
+const schemas = [organizationSchema, ...(jsonLd ? [jsonLd].flat() : [])];
+
+// GA4. O measurement ID é público (aparece no HTML), então o default fica no
+// código; PUBLIC_GA_ID permite apontar para outra propriedade sem alterar fonte.
+// Só carrega em build de produção — senão navegação local suja os relatórios.
+const GA_ID = import.meta.env.PUBLIC_GA_ID ?? 'G-4JX0VZ49DD';
+const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 ---
 
 <!doctype html>
 <html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-        <meta name="keywords" content="farmácia, gestão de estoque, monitoramento de preços, inteligência de dados, dinn" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="pt_BR" />
-        <meta property="og:url" content="https://dinn.com.br" />
-        <meta property="og:site_name" content="Dinn" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-		
 
+		<title>{title}</title>
+		<meta name="description" content={metaDescription} />
+		<link rel="canonical" href={canonical} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+		<link rel="icon" type="image/png" href="/favicon.png" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={type} />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content="Dinn" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={metaDescription} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={title} />
+
+		<!-- Twitter/X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={metaDescription} />
+		<meta name="twitter:image" content={imageUrl} />
+
+		{schemas.map((schema) => (
+			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		))}
+
+		{enableAnalytics && (
+			<>
+				<link rel="preconnect" href="https://www.googletagmanager.com" />
+				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+				{/* set:html em vez de define:vars: o define:vars envolve o script num
+				    IIFE, o que deixaria gtag fora do escopo global e faria qualquer
+				    gtag('event', ...) posterior estourar ReferenceError. */}
+				<script is:inline set:html={`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GA_ID}');
+`}></script>
+			</>
+		)}
 	</head>
 	<body style="background-color: #1F2328; color: #1F2328; margin: 0; padding: 0; overflow-x: clip;">
 		<Header client:load />
@@ -42,18 +125,5 @@ const {
 			<slot />
 		</main>
 		<Footer client:load />
-        <script type="application/ld+json" set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Dinn",
-            "description": "Inteligência de Dados para Farmácias",
-            "url": "https://dinn.com.br",
-            "logo": "https://dinn.com.br/logo.png",
-            "foundingDate": "2023",
-            "founders": [{
-            "@type": "Organization",
-            "name": "DiWE Ventures Studio"
-            }]
-        })}></script>
 	</body>
 </html>

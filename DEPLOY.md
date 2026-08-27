@@ -43,12 +43,14 @@ A Vercel é a plataforma ideal para Next.js (criada pela mesma equipe).
 
 ### 3. Configurar Variáveis de Ambiente
 
+> O site apenas LÊ do Sanity (dataset público). NÃO configure SANITY_API_TOKEN —
+> um token de escrita aqui seria um segredo exposto sem nenhuma utilidade.
+
 Na tela de configuração, adicione as seguintes variáveis:
 
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=sutrqo3v
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=skVIqTt3DGLySAiQNxkEIhUB3PhFXFIll3iniKC2mcO7I4jYmb0xHoqbwL3HaHilWBpHNEH70Rv9jocqnJxyjxkNPx4zWx6DTO7nM1M79qNY8mKXP8UEdUGKRpyZBRHmRNDZmgecJwIAerXc9sM6lZFtJhHRz1jyh83hmbwu6Foq8Zc3n87l
 NEXT_PUBLIC_SITE_URL=https://seu-dominio.vercel.app
 ```
 
@@ -61,7 +63,7 @@ NEXT_PUBLIC_SITE_URL=https://seu-dominio.vercel.app
 ### 5. Domínio Personalizado (Opcional)
 
 1. No dashboard do projeto, vá em "Settings" → "Domains"
-2. Adicione `dinn.com.br`
+2. Adicione `dinn.ai`
 3. Configure os DNS conforme instruções da Vercel
 
 ---
@@ -117,7 +119,7 @@ Isso criará uma URL como: `https://dinn.sanity.studio`
 4. Adicione as URLs:
    - `http://localhost:3000` (desenvolvimento)
    - `https://seu-dominio.vercel.app` (produção)
-   - `https://dinn.com.br` (se usar domínio personalizado)
+   - `https://dinn.ai` (se usar domínio personalizado)
 
 ---
 
