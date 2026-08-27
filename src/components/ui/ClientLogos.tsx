@@ -30,10 +30,13 @@ export function ClientLogos() {
           opacity: 0.6,
           filter: "grayscale(1)",
         }}>
-          <img src="/clientes/2TT34cxYkS2JUU2rklS0yDIU5c.avif" alt="Eurofarma" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
-          <img src="/clientes/YewE4auu86Zyxd9HTI5pPwyZujk.avif" alt="Libbs" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
-          <img src="/clientes/marjanlogo-removebg-preview.png" alt="Marjan" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
-          <img src="/clientes/q5GXskJxl7qrQpg4qttvwnhJI.avif" alt="Sanofi" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+          {/* width/height são as dimensões reais dos arquivos: dão ao navegador
+              a proporção para reservar o espaço antes da imagem chegar, evitando
+              que a faixa de logos salte. O CSS acima segue mandando no tamanho. */}
+          <img src="/clientes/2TT34cxYkS2JUU2rklS0yDIU5c.avif" alt="Eurofarma" width={512} height={92} loading="lazy" decoding="async" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+          <img src="/clientes/YewE4auu86Zyxd9HTI5pPwyZujk.avif" alt="Libbs" width={512} height={189} loading="lazy" decoding="async" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+          <img src="/clientes/marjanlogo-removebg-preview.png" alt="Marjan" width={392} height={129} loading="lazy" decoding="async" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+          <img src="/clientes/q5GXskJxl7qrQpg4qttvwnhJI.avif" alt="Sanofi" width={512} height={132} loading="lazy" decoding="async" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
         </div>
       </div>
 

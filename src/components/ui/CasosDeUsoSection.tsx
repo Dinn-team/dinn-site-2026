@@ -16,36 +16,48 @@ export function CasosDeUsoSection() {
       title: t("casos.topics.0.title"),
       description: t("casos.topics.0.description"),
       image: "/prints_screns/trade-cs.avif",
+      width: 1304,
+      height: 813,
     },
     {
       id: "forca-vendas",
       title: t("casos.topics.1.title"),
       description: t("casos.topics.1.description"),
       image: "/prints_screns/forca-vendas.avif",
+      width: 1928,
+      height: 1382,
     },
     {
       id: "inteligencia-marketing",
       title: t("casos.topics.2.title"),
       description: t("casos.topics.2.description"),
       image: "/prints_screns/inteligencia-marketing.avif",
+      width: 1357,
+      height: 658,
     },
     {
       id: "diagnostico-diario",
       title: t("casos.topics.3.title"),
       description: t("casos.topics.3.description"),
       image: "/prints_screns/diagnostico-diario.avif",
+      width: 1236,
+      height: 573,
     },
     {
       id: "evidencias-negociacao",
       title: t("casos.topics.4.title"),
       description: t("casos.topics.4.description"),
       image: "/prints_screns/evidencias-negociacao.avif",
+      width: 1238,
+      height: 667,
     },
     {
       id: "monitoramento-concorrencia",
       title: t("casos.topics.5.title"),
       description: t("casos.topics.5.description"),
       image: "/prints_screns/monitoramento-concorrencia.avif",
+      width: 1362,
+      height: 674,
     },
   ];
   const TOTAL = topics.length;
@@ -181,6 +193,10 @@ export function CasosDeUsoSection() {
               <img
                 src={topic.image}
                 alt={topic.title}
+                width={topic.width}
+                height={topic.height}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: "100%",
                   height: "auto",
@@ -247,6 +263,10 @@ export function CasosDeUsoSection() {
                     key={topic.id}
                     src={topic.image}
                     alt={topic.title}
+                    width={topic.width}
+                    height={topic.height}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       position: "absolute",
                       inset: 0,

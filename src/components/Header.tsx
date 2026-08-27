@@ -89,9 +89,14 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 shrink-0">
+            {/* Logo do topo: fetchPriority alta e sem lazy — está acima da
+                dobra e é um dos primeiros elementos que o visitante vê. */}
             <img
               src={isLightBg ? '/Logo_Dinn_Cinza.svg' : '/Logo_Dinn_Branca.svg'}
               alt="Dinn"
+              width={1805}
+              height={681}
+              fetchPriority="high"
               className="h-8 w-auto"
             />
           </a>

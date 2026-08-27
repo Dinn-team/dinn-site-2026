@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
-              <img src="/Logo_Dinn_Cinza.svg" alt="Dinn Logo" style={{ height: '36px', width: 'auto' }} />
+              <img src="/Logo_Dinn_Cinza.svg" alt="Dinn Logo" width={1807} height={676} loading="lazy" decoding="async" style={{ height: '36px', width: 'auto' }} />
             </a>
             <p style={{ fontSize: '14px', color: '#9CA3AF', lineHeight: 1.7, margin: 0 }}>
               {t('footer.description')}
