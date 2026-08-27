@@ -1,3 +1,5 @@
+import { loadDictionary, isLoaded } from './translations';
+
 export type Language = 'pt' | 'en' | 'es';
 
 type Listener = (lang: Language) => void;
@@ -7,12 +9,24 @@ const listeners: Set<Listener> = new Set();
 
 const isClient = typeof window !== 'undefined';
 
+function notify() {
+  listeners.forEach((listener) => listener(currentLanguage));
+}
+
+/** Garante o dicionário em memória antes de avisar os componentes, senão eles
+ *  renderizariam uma vez em PT e outra no idioma certo. */
+function ensureDictionary(lang: Language) {
+  if (isLoaded(lang)) return;
+  loadDictionary(lang).then(notify);
+}
+
 export function initLanguage() {
   if (!isClient) return;
 
   const savedLang = localStorage.getItem('dinn-lang') as Language;
   if (savedLang && ['pt', 'en', 'es'].includes(savedLang)) {
     currentLanguage = savedLang;
+    ensureDictionary(currentLanguage);
     return;
   }
 
@@ -29,6 +43,7 @@ export function initLanguage() {
   }
 
   localStorage.setItem('dinn-lang', currentLanguage);
+  ensureDictionary(currentLanguage);
 }
 
 export function getLanguage(): Language {
@@ -41,7 +56,14 @@ export function setLanguage(lang: Language) {
   if (isClient) {
     localStorage.setItem('dinn-lang', lang);
   }
-  listeners.forEach(listener => listener(lang));
+
+  // Já em memória: troca na hora. Ainda não: o dicionário é buscado e os
+  // componentes são avisados quando ele chega.
+  if (isLoaded(lang)) {
+    notify();
+  } else {
+    loadDictionary(lang).then(notify);
+  }
 }
 
 export function subscribeToLanguage(listener: Listener) {
