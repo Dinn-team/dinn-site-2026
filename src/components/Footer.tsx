@@ -32,10 +32,10 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[[t('nav.home'), '/'], [t('nav.blog'), '/blog']].map(([label, href]) => (
-                <a key={href} href={href}
+                <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onmouseenter="this.style.color='#5625F2'"
-                  onmouseleave="this.style.color='#6B7280'"
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
                 >
                   {label}
                 </a>
@@ -56,10 +56,10 @@ export default function Footer() {
                 [t('footer.privacidade'), '/politicas-de-privacidade'],
                 [t('footer.cookies'), '/politicas-de-privacidade'],
               ].map(([label, href]) => (
-                <a key={href} href={href}
+                <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onmouseenter="this.style.color='#5625F2'"
-                  onmouseleave="this.style.color='#6B7280'"
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
                 >
                   {label}
                 </a>
