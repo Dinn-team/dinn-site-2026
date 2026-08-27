@@ -80,6 +80,11 @@ const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 
 		<link rel="icon" type="image/png" href="/favicon.png" />
 
+		{/* Pesos usados pelo H1 do hero (LCP). Sem o preload eles só seriam
+		    descobertos depois que o CSS baixasse e casasse as regras. */}
+		<link rel="preload" href="/fonts/BrittiSans-Bold.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/BrittiSans-LightItalic.woff2" as="font" type="font/woff2" crossorigin />
+
 		<!-- Open Graph -->
 		<meta property="og:type" content={type} />
 		<meta property="og:locale" content="pt_BR" />

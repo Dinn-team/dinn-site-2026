@@ -3,10 +3,16 @@
   "configurations": [
     {
       "name": "dinn-site",
-      "runtimeExecutable": "npm",
+      "runtimeExecutable": "pnpm",
       "runtimeArgs": ["run", "dev"],
       "port": 4321,
       "autoPort": true
+    },
+    {
+      "name": "dinn-site-preview",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "4322"],
+      "port": 4322
     }
   ]
 }
