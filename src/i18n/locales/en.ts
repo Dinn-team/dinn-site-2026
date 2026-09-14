@@ -172,6 +172,7 @@ export const enUS = {
     termos: "Terms",
     privacidade: "Privacy",
     cookies: "Cookies",
+    suporte: "Support",
     ctaTitle: "Ready to get started?",
     ctaDesc: "Request a free demo.",
     ctaButton: "Request a demo",

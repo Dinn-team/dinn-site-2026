@@ -52,9 +52,10 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                [t('footer.termos'), '/politicas-de-privacidade'],
+                [t('footer.termos'), '/termos-de-uso'],
                 [t('footer.privacidade'), '/politicas-de-privacidade'],
-                [t('footer.cookies'), '/politicas-de-privacidade'],
+                [t('footer.cookies'), '/politicas-de-privacidade#cookies'],
+                [t('footer.suporte'), '/suporte'],
               ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
