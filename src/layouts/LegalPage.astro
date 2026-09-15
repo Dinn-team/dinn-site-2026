@@ -1,0 +1,164 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  updatedAt: string;
+}
+
+const { title, description, eyebrow, updatedAt } = Astro.props;
+---
+
+<Layout title={`${title} | Dinn`} description={description}>
+  <div class="legal-page">
+    <article class="legal-document wrap">
+      <header class="legal-header">
+        <p class="legal-eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p class="legal-lead">{description}</p>
+        <p class="legal-updated">Versão vigente desde {updatedAt}.</p>
+        <p class="legal-language">Versão jurídica oficial em português (Brasil).</p>
+      </header>
+
+      <div class="legal-content">
+        <slot />
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .legal-page {
+    min-height: 100vh;
+    padding: 160px 0 120px;
+    background: var(--bg-page);
+  }
+
+  .legal-document {
+    max-width: 960px;
+  }
+
+  .legal-header {
+    max-width: 800px;
+    padding-bottom: var(--sp-12);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-eyebrow {
+    margin-bottom: var(--sp-4);
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin-bottom: var(--sp-5);
+    color: var(--text-primary);
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .legal-lead {
+    color: var(--text-body);
+    font-size: var(--text-md);
+    line-height: 1.7;
+  }
+
+  .legal-updated {
+    margin-top: var(--sp-4);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .legal-language {
+    margin-top: var(--sp-2);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .legal-content {
+    max-width: 800px;
+    padding-top: var(--sp-8);
+    color: var(--text-body);
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  .legal-content :global(section) {
+    scroll-margin-top: 120px;
+    padding: var(--sp-8) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-content :global(section:last-child) {
+    border-bottom: 0;
+  }
+
+  .legal-content :global(h2) {
+    margin-bottom: var(--sp-4);
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .legal-content :global(h3) {
+    margin: var(--sp-6) 0 var(--sp-3);
+    color: var(--text-primary);
+    font-size: var(--text-md);
+    font-weight: 600;
+  }
+
+  .legal-content :global(p),
+  .legal-content :global(ul) {
+    margin-bottom: var(--sp-4);
+  }
+
+  .legal-content :global(ul) {
+    padding-left: var(--sp-6);
+  }
+
+  .legal-content :global(li + li) {
+    margin-top: var(--sp-2);
+  }
+
+  .legal-content :global(a) {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .legal-content :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .legal-content :global(.legal-callout) {
+    margin: var(--sp-5) 0;
+    padding: var(--sp-5);
+    border: 1px solid rgba(86, 37, 242, 0.2);
+    border-radius: var(--r-lg);
+    background: rgba(86, 37, 242, 0.04);
+  }
+
+  @media (max-width: 640px) {
+    .legal-page {
+      padding: 120px 0 80px;
+    }
+
+    .legal-header {
+      padding-bottom: var(--sp-8);
+    }
+
+    .legal-content :global(section) {
+      padding: var(--sp-6) 0;
+    }
+  }
+</style>

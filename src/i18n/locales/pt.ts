@@ -172,6 +172,7 @@ export const ptBR = {
     termos: "Termos",
     privacidade: "Privacidade",
     cookies: "Cookies",
+    suporte: "Suporte",
     ctaTitle: "Pronto para começar?",
     ctaDesc: "Solicite uma demonstração gratuita.",
     ctaButton: "Solicitar demo",

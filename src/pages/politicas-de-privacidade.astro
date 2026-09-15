@@ -1,15 +1,202 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import PrivacyPolicy from '@/components/PrivacyPolicy';
+import LegalPage from '@/layouts/LegalPage.astro';
 ---
 
-<Layout
-  title="Políticas de Privacidade | Dinn"
-  description="Como a Dinn coleta, utiliza e protege os dados pessoais dos seus usuários e clientes."
+<LegalPage
+  title="Política de Privacidade"
+  eyebrow="Privacidade e proteção de dados"
+  updatedAt="14 de setembro de 2026"
+  description="Esta política explica como a Dinn trata dados pessoais em seu site, em sua plataforma e no Dinn Stock para ChatGPT."
 >
-  <div style="background: #ffffff; min-height: 100vh; padding-top: 160px; padding-bottom: 120px;">
-    <div class="wrap" style="max-width: 800px; margin: 0 auto;">
-      <PrivacyPolicy client:visible />
+  <section id="escopo">
+    <h2>1. Escopo e identificação</h2>
+    <p>
+      Esta Política de Privacidade se aplica ao site da Dinn, à plataforma Dinn
+      e ao <strong>Dinn Stock</strong>, integração somente leitura disponibilizada
+      no ChatGPT por meio de um servidor MCP remoto. “Dinn”, “nós” ou “nosso”
+      identificam <strong>Dinn Tecnologia Ltda.</strong>, inscrita no CNPJ sob o
+      nº 57.639.944/0001-20, com sede na Rua Dona Francisca, 8300, Bloco Agora,
+      Sala 5, Distrito Industrial, Joinville/SC, CEP 89219-600, responsável pelo
+      serviço apresentado em <a href="https://dinn.ai">dinn.ai</a>.
+    </p>
+    <p>
+      A Dinn pode atuar como controladora dos dados necessários para administrar
+      contas, segurança, suporte e seu site, ou como operadora conforme as
+      instruções do cliente empresarial. O contrato aplicável define esses papéis
+      quando o tratamento é realizado em nome de um cliente.
+    </p>
+  </section>
+
+  <section id="dados">
+    <h2>2. Dados que podemos tratar</h2>
+    <h3>Conta, autenticação e autorização</h3>
+    <ul>
+      <li>nome, e-mail, identificadores de conta e vínculo com a empresa;</li>
+      <li>perfil, carteira, funcionalidades contratadas e permissões;</li>
+      <li>eventos de autenticação OAuth, consentimentos, expiração e revogação de acesso.</li>
+    </ul>
+
+    <h3>Uso da plataforma e do Dinn Stock</h3>
+    <ul>
+      <li>consulta ou comando enviado à ferramenta e os parâmetros necessários para atendê-lo;</li>
+      <li>produto, SKU, rede, período, estado, cidade, região e filtros selecionados;</li>
+      <li>dados operacionais de disponibilidade, ruptura, execução e ponto de venda;</li>
+      <li>CNPJ, telefone e endereço comercial do PDV quando autorizados para a conta;</li>
+      <li>endereço, coordenada ou área informada para localizar produtos próximos e calcular distâncias.</li>
+    </ul>
+    <p>
+      A Dinn não precisa receber o histórico completo da conversa no ChatGPT.
+      Recebemos os argumentos que o ChatGPT envia à ferramenta MCP e devolvemos
+      apenas o resultado necessário para a solicitação autorizada.
+    </p>
+
+    <h3>Dados técnicos, site e suporte</h3>
+    <ul>
+      <li>endereço IP, data e hora, user agent, rota acessada, erros e eventos de segurança;</li>
+      <li>cookies essenciais e, quando habilitados, métricas de navegação e desempenho;</li>
+      <li>mensagens, anexos e dados de contato fornecidos em pedidos de suporte.</li>
+    </ul>
+
+    <div class="legal-callout">
+      <strong>Não envie dados de pacientes ou dados pessoais sensíveis.</strong>
+      O Dinn Stock foi desenhado para inteligência comercial e operacional do
+      varejo farmacêutico, não para prontuários, prescrição individual ou decisão
+      clínica. Se conteúdo desse tipo for recebido indevidamente, poderemos
+      restringir o tratamento e adotar medidas de exclusão e segurança.
     </div>
-  </div>
-</Layout>
+  </section>
+
+  <section id="finalidades">
+    <h2>3. Para que usamos os dados</h2>
+    <ul>
+      <li>autenticar o usuário e aplicar empresa, carteira e permissões corretas;</li>
+      <li>responder consultas de disponibilidade, ruptura, rankings, PDVs e localização;</li>
+      <li>operar componentes interativos e apresentar contexto de negócio compreensível;</li>
+      <li>prestar suporte, investigar erros e proteger contas, clientes e infraestrutura;</li>
+      <li>medir e melhorar desempenho, confiabilidade e usabilidade;</li>
+      <li>cumprir contratos, obrigações legais e solicitações válidas de autoridades;</li>
+      <li>prevenir fraude, abuso, acesso indevido e exfiltração de dados.</li>
+    </ul>
+  </section>
+
+  <section id="bases-legais">
+    <h2>4. Bases legais e instruções do cliente</h2>
+    <p>
+      Conforme o contexto, o tratamento pode se apoiar na execução de contrato ou
+      de procedimentos preliminares, no cumprimento de obrigação legal ou
+      regulatória, no exercício regular de direitos, em legítimo interesse após
+      avaliação de necessidade e impacto, ou em consentimento quando ele for
+      exigido. Quando atuamos como operadora, seguimos as instruções documentadas
+      do cliente controlador e o contrato de tratamento aplicável.
+    </p>
+  </section>
+
+  <section id="compartilhamento">
+    <h2>5. Compartilhamento e integrações</h2>
+    <p>Podemos compartilhar dados estritamente necessários com:</p>
+    <ul>
+      <li>a empresa do usuário e seus administradores autorizados;</li>
+      <li>provedores de nuvem, banco de dados, autenticação, observabilidade, segurança e suporte;</li>
+      <li>OpenAI/ChatGPT, quando o usuário escolhe usar o Dinn Stock nessa plataforma;</li>
+      <li>autoridades ou terceiros quando necessário para obrigação legal, segurança ou exercício de direitos.</li>
+    </ul>
+    <p>
+      No ChatGPT, a OpenAI seleciona e chama as ferramentas autorizadas. A Dinn
+      recebe os parâmetros da chamada e devolve o resultado ao ChatGPT, que o
+      apresenta conforme as configurações e políticas da conta ou workspace do
+      usuário. O tratamento realizado pela OpenAI é regido também pelos termos,
+      controles e políticas disponibilizados por ela.
+    </p>
+    <p>
+      O mapa interativo atual utiliza tiles da <strong>Esri</strong>. Para exibir o
+      mapa, o navegador solicita ao provedor os tiles correspondentes à área
+      visualizada, o que pode revelar endereço IP e a área geográfica aproximada
+      representada pelos tiles. A lista textual equivalente permanece disponível.
+    </p>
+  </section>
+
+  <section id="transferencia-internacional">
+    <h2>6. Transferências internacionais</h2>
+    <p>
+      Alguns provedores podem tratar dados fora do Brasil. Nesses casos, a Dinn
+      adota mecanismos contratuais, técnicos e organizacionais compatíveis com a
+      LGPD e considera o país, o provedor, a finalidade e a natureza dos dados.
+      Clientes empresariais podem solicitar informações sobre os provedores
+      aplicáveis ao seu ambiente.
+    </p>
+  </section>
+
+  <section id="retencao">
+    <h2>7. Retenção e eliminação</h2>
+    <p>
+      Mantemos dados pelo período necessário às finalidades descritas, ao contrato
+      aplicável, à segurança e às obrigações legais. Tokens de acesso expiram ou
+      podem ser revogados; registros técnicos são mantidos pelo tempo necessário
+      para segurança, auditoria e diagnóstico. Ao término da finalidade ou da
+      relação contratual, os dados são eliminados, anonimizados ou conservados
+      apenas quando houver fundamento jurídico para isso.
+    </p>
+  </section>
+
+  <section id="seguranca">
+    <h2>8. Segurança e isolamento empresarial</h2>
+    <p>
+      Aplicamos controles de autenticação, autorização, segregação por empresa,
+      criptografia em trânsito, registro de eventos e acesso limitado. No Dinn
+      Stock, a identidade, a empresa e a carteira vêm do token autenticado e não
+      de parâmetros livres fornecidos pelo usuário. Nenhum método de transmissão
+      ou armazenamento, contudo, elimina integralmente os riscos.
+    </p>
+  </section>
+
+  <section id="direitos">
+    <h2>9. Direitos dos titulares</h2>
+    <p>
+      Nos termos da LGPD e conforme aplicável, o titular pode solicitar confirmação
+      e acesso, correção, anonimização, bloqueio ou eliminação, portabilidade,
+      informação sobre compartilhamentos e consentimento, revogação do
+      consentimento, oposição e revisão de decisões automatizadas.
+    </p>
+    <p>
+      Para exercer direitos ou falar com o Encarregado de Proteção de Dados,
+      escreva para
+      <a href="mailto:vinicius.silva@diwe.com.br">vinicius.silva@diwe.com.br</a>.
+      Poderemos solicitar informações proporcionais para confirmar identidade e
+      legitimidade. Quando a Dinn atuar como operadora, a solicitação poderá ser
+      encaminhada ao cliente controlador.
+    </p>
+    <p>
+      O titular também pode apresentar petição à Autoridade Nacional de Proteção
+      de Dados, conforme os canais divulgados pela ANPD.
+    </p>
+  </section>
+
+  <section id="cookies">
+    <h2>10. Cookies e preferências</h2>
+    <p>
+      Usamos armazenamento local ou cookies estritamente necessários para idioma,
+      sessão, segurança e funcionamento do serviço. O site pode utilizar cookies
+      analíticos para entender audiência e desempenho. Quando a legislação exigir,
+      esses cookies dependerão da preferência registrada pelo usuário. O navegador
+      permite apagar ou bloquear cookies, embora isso possa limitar funcionalidades.
+    </p>
+  </section>
+
+  <section id="criancas">
+    <h2>11. Crianças e adolescentes</h2>
+    <p>
+      Os serviços empresariais da Dinn e o Dinn Stock não são direcionados a
+      crianças ou adolescentes. Não coletamos intencionalmente dados desse público
+      por meio do plugin.
+    </p>
+  </section>
+
+  <section id="alteracoes">
+    <h2>12. Alterações desta política</h2>
+    <p>
+      Podemos atualizar esta política para refletir mudanças legais, técnicas ou
+      operacionais. A página indicará a data da versão vigente. Alterações
+      relevantes serão comunicadas pelos meios adequados ao contexto e ao contrato.
+    </p>
+  </section>
+</LegalPage>

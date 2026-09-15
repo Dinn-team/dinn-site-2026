@@ -172,6 +172,7 @@ export const es419 = {
     termos: "Términos",
     privacidade: "Privacidad",
     cookies: "Cookies",
+    suporte: "Soporte",
     ctaTitle: "¿Listo para empezar?",
     ctaDesc: "Solicita una demostración gratuita.",
     ctaButton: "Solicitar demo",
