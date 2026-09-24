@@ -67,7 +67,10 @@ const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 
 // Apollo Website Visitors: identifica empresas que visitam o site pro
 // comercial (conta de intent data). Mesmo racional do GA — só produção.
-const APOLLO_TRACKER_ID = '663123272a6e2c030219f444';
+// Tracker da conta Apollo própria da Dinn (domínio permitido: só dinn.ai).
+// Substituiu o tracker de uma conta Apollo compartilhada, que jogava os
+// visitantes do dinn.ai na fila de outra empresa e a Dinn não os via.
+const APOLLO_TRACKER_ID = '6a98273f78e54c00204ecee9';
 const enableApolloTracking = import.meta.env.PROD;
 ---
 
