@@ -67,10 +67,11 @@ const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 
 // Apollo Website Visitors: identifica empresas que visitam o site pro
 // comercial (conta de intent data). Mesmo racional do GA — só produção.
-// Tracker da conta Apollo própria da Dinn (domínio permitido: só dinn.ai).
-// Substituiu o tracker de uma conta Apollo compartilhada, que jogava os
-// visitantes do dinn.ai na fila de outra empresa e a Dinn não os via.
-const APOLLO_TRACKER_ID = '6a98273f78e54c00204ecee9';
+// Tracker da conta Apollo paga, onde a Dinn executa a prospecção desde
+// 27/09/2026 (isolada por prefixo DINN- e dono; regras em dinn-os,
+// integrations/apollo-hubspot-prospecting.md). O snippet do Apollo é instância
+// única por página, então só um tracker roda: o da conta que executa.
+const APOLLO_TRACKER_ID = '663123272a6e2c030219f444';
 const enableApolloTracking = import.meta.env.PROD;
 ---
 
