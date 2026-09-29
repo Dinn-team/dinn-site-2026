@@ -1,14 +1,38 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
+type Lang = 'pt' | 'en' | 'es';
+
+interface LangLinks {
+  pt: string;
+  en: string;
+  es: string;
+}
+
 interface Props {
   title: string;
   description: string;
   eyebrow: string;
   updatedAt: string;
+  lang?: Lang;
+  langLinks?: LangLinks;
 }
 
-const { title, description, eyebrow, updatedAt } = Astro.props;
+const { title, description, eyebrow, updatedAt, lang = 'pt', langLinks } = Astro.props;
+
+/**
+ * Só a versão em português é o texto jurídico oficial (revisado pelo
+ * jurídico). As demais são traduções de cortesia, fiéis ao texto em
+ * português, para acompanhar a disponibilidade global do Dinn Stock — mas
+ * não substituem o original em caso de conflito.
+ */
+const languageNotice: Record<Lang, string> = {
+  pt: 'Versão jurídica oficial em português (Brasil).',
+  en: 'Unofficial translation, provided for convenience. The Portuguese (Brazil) version is the sole official, legally binding text; it governs in case of any conflict.',
+  es: 'Traducción no oficial, ofrecida solo por conveniencia. La versión en portugués (Brasil) es el único texto legal oficial y vinculante; prevalece en caso de conflicto.',
+};
+
+const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 'Español' };
 ---
 
 <Layout title={`${title} | Dinn`} description={description}>
@@ -18,8 +42,26 @@ const { title, description, eyebrow, updatedAt } = Astro.props;
         <p class="legal-eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         <p class="legal-lead">{description}</p>
-        <p class="legal-updated">Versão vigente desde {updatedAt}.</p>
-        <p class="legal-language">Versão jurídica oficial em português (Brasil).</p>
+        <p class="legal-updated">
+          {lang === 'pt' && `Versão vigente desde ${updatedAt}.`}
+          {lang === 'en' && `Version in effect since ${updatedAt}.`}
+          {lang === 'es' && `Versión vigente desde ${updatedAt}.`}
+        </p>
+        <p class="legal-language">{languageNotice[lang]}</p>
+        {langLinks && (
+          <p class="legal-lang-switch">
+            {(['pt', 'en', 'es'] as Lang[]).map((code, i) => (
+              <>
+                {i > 0 && <span aria-hidden="true"> · </span>}
+                {code === lang ? (
+                  <strong>{langLabels[code]}</strong>
+                ) : (
+                  <a href={langLinks[code]}>{langLabels[code]}</a>
+                )}
+              </>
+            ))}
+          </p>
+        )}
       </header>
 
       <div class="legal-content">
@@ -80,6 +122,21 @@ const { title, description, eyebrow, updatedAt } = Astro.props;
     margin-top: var(--sp-2);
     color: var(--text-muted);
     font-size: var(--text-sm);
+  }
+
+  .legal-lang-switch {
+    margin-top: var(--sp-3);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .legal-lang-switch :global(a) {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .legal-lang-switch :global(strong) {
+    color: var(--text-primary);
   }
 
   .legal-content {
