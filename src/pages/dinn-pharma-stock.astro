@@ -1,0 +1,125 @@
+---
+import LegalPage from '@/layouts/LegalPage.astro';
+---
+
+<LegalPage
+  title="Dinn Pharma Stock"
+  eyebrow="Documentação"
+  updatedAt="30 de setembro de 2026"
+  description="Como conectar o Dinn Pharma Stock a um assistente de IA e o que ele pode responder sobre a disponibilidade de estoque nas farmácias."
+  lang="pt"
+  langLinks={{
+    pt: '/dinn-pharma-stock',
+    en: '/en/dinn-pharma-stock',
+    es: '/es/dinn-pharma-stock',
+  }}
+  showLanguageNotice={false}
+>
+  <section>
+    <h2>O que é</h2>
+    <p>
+      O Dinn Pharma Stock é um conector somente leitura que permite a
+      profissionais da indústria farmacêutica perguntar a um assistente de IA
+      sobre a disponibilidade de estoque. Cobre indicadores executivos,
+      tendência de ruptura, rankings por SKU ou rede de varejo, os pontos de
+      venda mais críticos, o detalhe de cada loja e a localização de produtos
+      próximos em mapas interativos.
+    </p>
+    <p>
+      Toda resposta informa seu escopo e sua atualização e separa valores
+      observados de estimados. O conector nunca altera estoque, registros ou
+      dados operacionais.
+    </p>
+  </section>
+
+  <section>
+    <h2>Requisitos</h2>
+    <ul>
+      <li>Uma conta Dinn ativa em uma empresa cujo contrato inclua o Dinn Stock.</li>
+      <li>Um assistente de IA que suporte servidores MCP remotos com login OAuth.</li>
+    </ul>
+    <p>
+      O acesso sempre segue a conta conectada: a empresa, a carteira e as
+      funcionalidades contratadas daquele usuário. Nada fora desse escopo é
+      retornado.
+    </p>
+  </section>
+
+  <section>
+    <h2>Como conectar</h2>
+    <ol>
+      <li>
+        No seu assistente, adicione um conector personalizado com a URL do
+        servidor <code>https://api.dinn.ai/mcp</code>.
+      </li>
+      <li>Quando solicitado, entre com suas credenciais Dinn.</li>
+      <li>
+        Na tela de consentimento, revise o que está sendo solicitado e escolha
+        <strong>Autorizar</strong>. A permissão é somente leitura e pode ser
+        revogada.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>O que você pode perguntar</h2>
+    <ul>
+      <li><strong>Encontrar um produto:</strong> "Analise o Dorvalin 500 mg para mim."</li>
+      <li>
+        <strong>Acompanhar a tendência:</strong> "Mostre a tendência semanal de
+        ruptura dos últimos 90 dias em SP, em todas as redes."
+      </li>
+      <li>
+        <strong>Ranquear apresentações ou redes:</strong> "Quais apresentações
+        deste produto têm a maior ruptura?"
+      </li>
+      <li>
+        <strong>Abrir lojas críticas:</strong> "Liste os pontos de venda
+        críticos em São Paulo e abra o primeiro."
+      </li>
+      <li>
+        <strong>Localizar estoque por perto:</strong> "Onde encontro este
+        produto perto da Avenida Paulista, 1578, São Paulo?"
+      </li>
+    </ul>
+    <p>
+      O assistente identifica primeiro o produto e pergunta se você quer uma
+      rede de varejo específica ou todas antes de rodar uma análise.
+    </p>
+  </section>
+
+  <section>
+    <h2>Ferramentas disponíveis</h2>
+    <ul>
+      <li><code>stock.list_products</code> — encontra produtos, apresentações, SKUs e EANs.</li>
+      <li><code>stock.get_filter_options</code> — redes, estados, cidades e bricks válidos.</li>
+      <li><code>stock.list_saved_views</code> — suas próprias visualizações salvas.</li>
+      <li><code>stock.get_overview</code> — visão executiva: pontos de venda, SKUs, estoque aproximado, percentual sem estoque, criticidade.</li>
+      <li><code>stock.get_rupture_trend</code> — ruptura diária ou semanal ao longo do tempo.</li>
+      <li><code>stock.get_ranking</code> — ranking de ruptura por SKU ou rede de varejo.</li>
+      <li><code>stock.list_points_of_sale</code> — encontra e compara pontos de venda.</li>
+      <li><code>stock.get_point_of_sale</code> — detalhe de uma loja e seu ranking de SKUs.</li>
+      <li><code>stock.find_product_locations</code> — farmácias próximas com ou sem estoque.</li>
+    </ul>
+    <p>Todas as ferramentas são somente leitura.</p>
+  </section>
+
+  <section>
+    <h2>Dados e limites</h2>
+    <p>
+      Os valores são observados ou estimados, e cada resposta diz qual dos
+      dois. A data de corte aparece junto ao resultado. Os identificadores de
+      loja são referências opacas devolvidas por respostas anteriores;
+      identificadores livres não são aceitos.
+    </p>
+  </section>
+
+  <section>
+    <h2>Privacidade, termos e suporte</h2>
+    <p>
+      Leia a <a href="/politicas-de-privacidade">política de privacidade</a> e
+      os <a href="/termos-de-uso">termos de uso</a>. Para ajuda, acesse o
+      <a href="/suporte">suporte</a>.
+    </p>
+  </section>
+</LegalPage>
