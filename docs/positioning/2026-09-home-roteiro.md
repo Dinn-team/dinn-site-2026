@@ -4,8 +4,9 @@
 (DINN-OS-064 no Dinn OS).
 
 > Este é o texto que vai para a home, seção por seção, **antes** de virar código.
-> Os itens marcados **[CONFIRMAR]** precisam de validação antes de publicar
-> (regra DINN-OS-016: todo claim precisa de prova ou ressalva).
+> Os itens que estavam marcados **[CONFIRMAR]** foram respondidos pelo Renan em
+> 30/09 (ver o registro de claims). A publicação continua dependendo da
+> aprovação do Renan e do Edu.
 
 ## Fontes desta versão
 
@@ -50,7 +51,7 @@ nova arquitetura". Na coluna do dossiê Clay, *Signals & AI* está abreviado com
 |---|---|---|---|---|
 | **1. Observar** | Data & Intelligence | **Dinn Stock** (disponibilidade, ruptura e estoque observado/estimado); agentes que consultam os canais; modelo preditivo como parte do Stock | ativo, porta de entrada | produto com nome |
 | **2. Entender** | Signals | **Dinn Pulse** (mudanças de giro, demanda e movimento); sinais de ruptura, persistência e estoque parado | ativo, oferta padrão em validação | produto com nome |
-| **3. Priorizar** | Orchestration | **Dinn Manager** (a plataforma): 3 níveis de decisão e fila de verificação por loja. **Dinn Locator** (onde encontrar o produto, para SAC e campo) | Manager ativo; Locator em desenvolvimento | Manager como "a plataforma"; Locator **[CONFIRMAR se pode aparecer]** |
+| **3. Priorizar** | Orchestration | **Dinn Manager** (a plataforma): 3 níveis de decisão e fila de verificação por loja. **Dinn Locator** (onde encontrar o produto, para SAC e campo) | Manager ativo; Locator em desenvolvimento | Manager como "a plataforma"; Locator com nome (confirmado 30/09) |
 | **4. Levar à rotina** | Execution | exportação, API, **sua IA via MCP** (ChatGPT, Claude, Copilot), contexto para o CRM; **Dinn Conecta** leva dados de farma ao BI, Copilot e agentes do cliente | MCP somente leitura; Conecta decidido por Renan (registrar a decisão da 062 no Dinn OS) | Conecta com seção própria |
 | **5. Acompanhar** | (feedback) | rotinas diária, semanal e mensal no mesmo recorte | exemplos de configuração | sem produto |
 
@@ -130,14 +131,14 @@ botão **[Solicitar demo]**
 
   A saída é uma fila concreta: cada loja com o sinal, a pergunta a responder e o
   retorno esperado.
-- **Produto:** Dinn Manager (a plataforma) · Dinn Locator **[CONFIRMAR]**
+- **Produto:** Dinn Manager (a plataforma) · Dinn Locator
 - **Visual:** a tabela "Fila de verificação por loja" do deck Biolab
   (Loja · sinal · verificação sugerida · retorno), com dados fictícios.
 
 ### Etapa 4: Levar para a rotina do time
 - **Mensagem:** O sinal chega aonde o trabalho acontece.
 - **Texto:** Use na plataforma, exporte para a reunião com a rede, leve ao BI
-  por API **[CONFIRMAR]** ou pergunte direto na sua IA. **A Dinn prepara a
+  por API ou pergunte direto na sua IA. **A Dinn prepara a
   análise; a equipe decide** o que fazer com cada ponto de venda.
 - **Visual:** fontes → Dinn → saídas (Plataforma · Arquivo · API · Sua IA ·
   CRM), feito em código.
@@ -207,11 +208,10 @@ botão **[Solicitar demo]**
   seus agentes.
 - **Botão:** [Veja como se conecta] (leva à demo)
 - **Nota:** *Cada fonte depende de licença, autorização e escopo acordados.*
-- **[CONFIRMAR]**
-  - Registrar no Dinn OS a decisão da DINN-OS-062. A tarefa do site exige
-    coerência com ela.
-  - O nome "Dinn Conecta" ainda consta como *nome de trabalho*, sem aprovação
-    de marca.
+- **Decisão (Renan, 30/09):** sinal verde para o site, que funciona como teste
+  de conceito e de promessa comercial. Isso não significa que o Conecta está
+  pronto para Produto e Tecnologia.
+  - **Pendente fora do site:** registrar essa decisão na DINN-OS-062, no Dinn OS.
 
 ---
 
@@ -230,7 +230,7 @@ botão **[Solicitar demo]**
 | **Negociar com evidência** | Leve à reunião com a rede os dados de disponibilidade, persistência e lojas afetadas, com data de corte. |
 | **Priorizar o campo** | Uma lista do que verificar primeiro, em vez de um painel para interpretar. |
 | **Acompanhar lançamentos** | Veja a presença do produto novo por rede e região desde as primeiras semanas. |
-| **Orientar o SAC** | Indique farmácias com maior chance de ter o produto, com a confiança explícita. **[CONFIRMAR Locator]** |
+| **Orientar o SAC** | Indique farmácias com maior chance de ter o produto, com a confiança explícita. *(Locator)* |
 | **Entender o movimento** | Separe queda de demanda de ruptura, sortimento ou execução. *(Pulse)* |
 | **Dados de farma no seu BI e IA** | Mercado, dados internos e farmácias prontos para o seu stack. *(Conecta)* |
 
@@ -248,10 +248,10 @@ botão **[Solicitar demo]**
 
 ---
 
-## 9. Não é mais um painel (antes → com a Dinn)
+## 9. Não é só mais um painel (antes → com a Dinn)
 
 - **Selo:** O que muda
-- **Título:** A Dinn não é mais *um painel*.
+- **Título:** A Dinn não é só *mais um painel*.
 - **Texto:** É a camada de inteligência que liga o que acontece nas farmácias às
   decisões do seu time comercial.
 
@@ -286,8 +286,8 @@ implementação seguindo estas diretrizes.
 | 7 | "Como mapeiam estoque sem nossos dados?" | Manter e alinhar: agentes nos canais digitais; observado × estimado; confiança. Tirar a lista de fontes específicas. |
 | 8 | "Excesso de informação?" | Reescrever: filas priorizadas, não painel. **Tirar "lógica autônoma".** |
 | 9 | "Só para a força de vendas?" | Manter. **Tirar "Forecast IA".** |
-| 10 | "Dá para testar antes?" | Atualizar pela decisão 0016, com o texto aprovado da prospecção: *"liberamos 30 dias com um objetivo só, com termo simples e alguém nosso acompanhando"*. Tirar "trials de 14 a 21 dias". **[CONFIRMAR com Edu]** |
-| 11 | "Compliance?" | Reescrever: rastreabilidade (fonte, data, observado × estimado), dois fatores, SSO habilitável conforme configuração **[CONFIRMAR]**. **Tirar "declarada em conformidade com o AI Act" e "dados sintéticos".** |
+| 10 | "Dá para testar antes?" | Atualizar pela decisão 0016, com o texto aprovado da prospecção: *"liberamos 30 dias com um objetivo só, com termo simples e alguém nosso acompanhando"*. Tirar "trials de 14 a 21 dias". (Texto aprovado mantido, decisão do Renan em 30/09.) |
+| 11 | "Compliance?" | Reescrever: rastreabilidade (fonte, data, observado × estimado), dois fatores por e-mail e SSO habilitável (confirmado 30/09). **Tirar "declarada em conformidade com o AI Act" e "dados sintéticos".** |
 | 12 (nova) | "O que é o Dinn Conecta?" | Definição da seção 7. |
 | 13 (nova) | "Posso usar a Dinn no ChatGPT, Claude ou Copilot?" | Sim, via MCP, somente leitura, conforme o plano e a configuração. |
 | 14 (nova) | "O que é dado observado e dado estimado?" | Explicação da etapa 1. |
@@ -327,12 +327,12 @@ negrito, e não como asteriscos.
 | Consulta pontual "agora" de uma loja | apoiado com escopo | `realtime_stock_check`: só lojas elegíveis |
 | Uso na IA via MCP (ChatGPT, Claude, Copilot) | apoiado com escopo | decks; somente leitura, depende da configuração |
 | Exportação de dados | apoiado | deck Biolab |
-| API | **CONFIRMAR** | entitlement 04/09 diz "missing"; deck Lilly 24/09 mostra "API documentada" |
-| Locator para SAC | **CONFIRMAR** | `product.md`: em desenvolvimento |
-| Dinn Conecta | **CONFIRMAR** | decisão da 062 ainda não registrada; nome de trabalho |
+| API documentada | apoiado | Renan, 30/09: vale a atualização mais recente (deck Lilly 24/09) |
+| Locator para SAC | apoiado | Renan, 30/09: pode aparecer no site |
+| Dinn Conecta | apoiado para o site | Renan, 30/09: sinal verde para o site como teste de conceito e promessa comercial; não significa produto pronto para Produto e Tecnologia. Registrar a decisão na DINN-OS-062 |
 | Implantação em até 30 dias após pré-requisitos | apoiado | decisão 0007 |
-| Trial guiado de 30 dias | **CONFIRMAR** | decisão 0016 aprovada; redação pública precisa do Edu |
-| SSO e dois fatores | **CONFIRMAR** | deck Lilly (informado pelo owner); entitlement diz "missing" |
+| Trial guiado de 30 dias | apoiado | decisão 0016; texto já aprovado da prospecção, por decisão do Renan (30/09) |
+| Dois fatores por e-mail e SSO habilitável | apoiado com escopo | Renan, 30/09: dois fatores por e-mail existe hoje; SSO pode ser prometido como habilitável (ainda não implantado por falta de cliente pagante) |
 | ~~até 40% mais tempo produtivo~~ | não usar | sem fonte |
 | ~~Forecast IA~~ | não usar | `forecast_ai`: discovery_needed |
 | ~~valor em 48 horas / plug-and-play~~ | não usar | sem fonte; contradiz a política de implantação |
