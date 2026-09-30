@@ -1,0 +1,125 @@
+---
+import LegalPage from '@/layouts/LegalPage.astro';
+---
+
+<LegalPage
+  title="Dinn Pharma Stock"
+  eyebrow="Documentación"
+  updatedAt="30 de septiembre de 2026"
+  description="Cómo conectar Dinn Pharma Stock a un asistente de IA y qué puede responder sobre la disponibilidad de stock en las farmacias."
+  lang="es"
+  langLinks={{
+    pt: '/dinn-pharma-stock',
+    en: '/en/dinn-pharma-stock',
+    es: '/es/dinn-pharma-stock',
+  }}
+  showLanguageNotice={false}
+>
+  <section>
+    <h2>Qué es</h2>
+    <p>
+      Dinn Pharma Stock es un conector de solo lectura que permite a los
+      profesionales de la industria farmacéutica consultar a un asistente de IA
+      sobre la disponibilidad de stock. Cubre indicadores ejecutivos,
+      tendencias de quiebre, rankings por SKU o cadena minorista, los puntos de
+      venta más críticos, el detalle de cada tienda y la ubicación de
+      productos cercanos en mapas interactivos.
+    </p>
+    <p>
+      Cada respuesta indica su alcance y su actualización y separa los valores
+      observados de los estimados. El conector nunca modifica stock, registros
+      ni datos operativos.
+    </p>
+  </section>
+
+  <section>
+    <h2>Requisitos</h2>
+    <ul>
+      <li>Una cuenta Dinn activa en una empresa cuyo contrato incluya Dinn Stock.</li>
+      <li>Un asistente de IA que admita servidores MCP remotos con inicio de sesión OAuth.</li>
+    </ul>
+    <p>
+      El acceso siempre sigue a la cuenta conectada: la empresa, la cartera y
+      las funcionalidades contratadas de ese usuario. No se devuelve nada fuera
+      de ese alcance.
+    </p>
+  </section>
+
+  <section>
+    <h2>Cómo conectar</h2>
+    <ol>
+      <li>
+        En su asistente, agregue un conector personalizado con la URL del
+        servidor <code>https://api.dinn.ai/mcp</code>.
+      </li>
+      <li>Cuando se le solicite, inicie sesión con sus credenciales de Dinn.</li>
+      <li>
+        En la pantalla de consentimiento, revise lo que se solicita y elija
+        <strong>Autorizar</strong>. El permiso es de solo lectura y se puede
+        revocar.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Qué puede preguntar</h2>
+    <ul>
+      <li><strong>Encontrar un producto:</strong> "Analiza Dorvalin 500 mg para mí."</li>
+      <li>
+        <strong>Seguir la tendencia:</strong> "Muestra la tendencia semanal de
+        quiebre de los últimos 90 días en SP, en todas las cadenas."
+      </li>
+      <li>
+        <strong>Clasificar presentaciones o cadenas:</strong> "¿Qué
+        presentaciones de este producto tienen el mayor quiebre?"
+      </li>
+      <li>
+        <strong>Abrir tiendas críticas:</strong> "Lista los puntos de venta
+        críticos en São Paulo y abre el primero."
+      </li>
+      <li>
+        <strong>Ubicar stock cercano:</strong> "¿Dónde puedo encontrar este
+        producto cerca de la Avenida Paulista, 1578, São Paulo?"
+      </li>
+    </ul>
+    <p>
+      El asistente identifica primero el producto y pregunta si desea una
+      cadena minorista específica o todas antes de ejecutar un análisis.
+    </p>
+  </section>
+
+  <section>
+    <h2>Herramientas disponibles</h2>
+    <ul>
+      <li><code>stock.list_products</code> — encuentra productos, presentaciones, SKUs y EANs.</li>
+      <li><code>stock.get_filter_options</code> — cadenas, estados, ciudades y bricks válidos.</li>
+      <li><code>stock.list_saved_views</code> — sus propias vistas guardadas.</li>
+      <li><code>stock.get_overview</code> — vista ejecutiva: puntos de venta, SKUs, stock aproximado, porcentaje sin stock, criticidad.</li>
+      <li><code>stock.get_rupture_trend</code> — quiebre diario o semanal a lo largo del tiempo.</li>
+      <li><code>stock.get_ranking</code> — ranking de quiebre por SKU o cadena minorista.</li>
+      <li><code>stock.list_points_of_sale</code> — encuentra y compara puntos de venta.</li>
+      <li><code>stock.get_point_of_sale</code> — detalle de una tienda y su ranking de SKUs.</li>
+      <li><code>stock.find_product_locations</code> — farmacias cercanas con o sin stock.</li>
+    </ul>
+    <p>Todas las herramientas son de solo lectura.</p>
+  </section>
+
+  <section>
+    <h2>Datos y límites</h2>
+    <p>
+      Los valores son observados o estimados, y cada respuesta indica cuál de
+      los dos. La fecha de corte se muestra junto al resultado. Los
+      identificadores de tienda son referencias opacas devueltas por respuestas
+      anteriores; no se aceptan identificadores libres.
+    </p>
+  </section>
+
+  <section>
+    <h2>Privacidad, términos y soporte</h2>
+    <p>
+      Lea la <a href="/es/politica-de-privacidad">política de privacidad</a> y
+      los <a href="/es/terminos-de-uso">términos de uso</a>. Para obtener
+      ayuda, visite <a href="/es/soporte">soporte</a>.
+    </p>
+  </section>
+</LegalPage>
