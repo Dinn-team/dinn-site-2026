@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getLanguage, subscribeToLanguage, Language } from './store';
-import { getDictionary, resolvePath } from './translations';
+import { getDictionary, isLoaded, resolvePath } from './translations';
 
 // For non-React usage (e.g. Astro components on client side or vanilla JS)
 export function getTranslation(lang: Language, key: string) {
@@ -21,7 +21,11 @@ export function useTranslation() {
       setRevision((r) => r + 1);
     });
     // Double check in case it changed between mount and effect
-    setLang(getLanguage());
+    const current = getLanguage();
+    setLang(current);
+    // Se o dicionário chegou entre o render e esta inscrição, o aviso já
+    // passou sem ninguém ouvindo: renderiza de novo para não ficar em PT.
+    if (current !== 'pt' && isLoaded(current)) setRevision((r) => r + 1);
     return unsubscribe;
   }, []);
 
