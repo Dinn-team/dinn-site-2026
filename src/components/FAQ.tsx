@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { useTranslation } from "@/i18n/useTranslation";
+import { Rich } from "@/lib/rich-text";
+
+type Item = { question: string; answer: string };
 
 export default function FAQ() {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const items = Array.from({ length: 11 }).map((_, i) => ({
-    question: t(`faq.items.${i}.question`),
-    answer: t(`faq.items.${i}.answer`),
-  }));
+  const items = (t('faq.items') as Item[]) ?? [];
 
   return (
     <section style={{ padding: '96px 0', background: '#ffffff' }}>
       <div className="wrap">
         <h2 style={{
           fontSize: 'clamp(28px, 4vw, 44px)',
-          fontWeight: 800,
+          fontWeight: 700,
           color: '#1F2328',
           textAlign: 'center',
           marginBottom: '56px',
@@ -29,7 +29,7 @@ export default function FAQ() {
             const isOpen = openIndex === i;
             return (
               <div
-                key={i}
+                key={item.question}
                 style={{
                   background: '#fff',
                   border: `1.5px solid ${isOpen ? '#5625F2' : '#E5E7EB'}`,
@@ -90,14 +90,14 @@ export default function FAQ() {
                   transition: 'grid-template-rows 0.25s ease',
                 }}>
                   <div style={{ overflow: 'hidden' }}>
-                    <p style={{
+                    <p className="faq-answer" style={{
                       padding: '0 24px 20px',
                       fontSize: '15px',
                       color: '#6B7280',
                       lineHeight: 1.7,
                       margin: 0,
                     }}>
-                      {item.answer}
+                      <Rich text={item.answer} />
                     </p>
                   </div>
                 </div>

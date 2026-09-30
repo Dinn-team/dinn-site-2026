@@ -20,21 +20,26 @@ interface SlideTabsProps {
   scrolled: boolean;
 }
 
+// Itens do menu principal, compartilhados entre desktop e celular. As âncoras
+// levam a barra antes do # para funcionar também fora da home (ex.: no blog).
+export const NAV_LINKS: { key: string; href: string }[] = [
+  { key: "nav.howItWorks", href: "/#como-funciona" },
+  { key: "nav.solutions", href: "/#solucoes" },
+  { key: "nav.conecta", href: "/#conecta" },
+  { key: "nav.customers", href: "/#clientes" },
+  { key: "nav.blog", href: "/blog" },
+];
+
 export function SlideTabs({ scrolled }: SlideTabsProps) {
   const { t } = useTranslation();
-  
+
   const [position, setPosition] = useState<Position>({
     left: 0,
     width: 0,
     opacity: 0,
   });
 
-  const navItems: NavItem[] = [
-    { label: t("nav.home"), href: "/" },
-    { label: t("nav.solutions"), href: "#solucoes" },
-    { label: t("nav.useCases"), href: "#casos-de-uso" },
-    { label: t("nav.blog"), href: "/blog" },
-  ];
+  const navItems: NavItem[] = NAV_LINKS.map(({ key, href }) => ({ label: t(key), href }));
 
   return (
     <ul

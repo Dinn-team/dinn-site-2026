@@ -4,7 +4,7 @@ import { useTranslation } from "@/i18n/useTranslation";
 export function ClientLogos() {
   const { t } = useTranslation();
   return (
-    <section style={{ background: "transparent", width: "100%", overflow: "hidden", position: "relative", paddingBottom: "0" }}>
+    <section style={{ background: "transparent", width: "100%", overflow: "hidden", position: "relative", paddingBottom: "0", marginBottom: 0 }}>
       {/* Title + Logos */}
       <div className="wrap" style={{ paddingTop: "64px", paddingBottom: "48px" }}>
         {/* Title */}

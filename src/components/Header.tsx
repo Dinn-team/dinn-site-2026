@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { SlideTabs } from '@/components/ui/nav-header';
+import { SlideTabs, NAV_LINKS } from '@/components/ui/nav-header';
 import { useTranslation } from '@/i18n/useTranslation';
 import { setLanguage, Language } from '@/i18n/store';
+import { DEMO_URL } from '@/lib/links';
 
 // Globe / translate icon (lucide-style inline SVG)
 function GlobeIcon({ color }: { color: string }) {
@@ -112,8 +113,8 @@ export default function Header() {
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                aria-label="Idioma"
-                title="Trocar idioma"
+                aria-label={t('nav.languageLabel')}
+                title={t('nav.languageLabel')}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -161,13 +162,17 @@ export default function Header() {
                 </div>
               )}
             </div>
+
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              {t('nav.cta')}
+            </a>
           </div>
 
           {/* Mobile Hamburger */}
           <button
             className="md:hidden p-2 rounded-lg"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Abrir menu"
+            aria-label={t('nav.openMenu')}
           >
             <div className="flex flex-col gap-[5px]">
               {[0, 1, 2].map((i) => (
@@ -185,11 +190,13 @@ export default function Header() {
       {mobileOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
           <div className="wrap py-6 flex flex-col gap-4">
-            <a href="/" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.home')}</a>
-            <a href="#solucoes" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.solutions')}</a>
-            <a href="#casos-de-uso" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.useCases')}</a>
-            <a href="/blog" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.blog')}</a>
-            
+            {NAV_LINKS.map(({ key, href }) => (
+              <a key={href} href={href} onClick={() => setMobileOpen(false)} className="text-[16px] font-semibold text-[#1F2328]">{t(key)}</a>
+            ))}
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
+              {t('nav.cta')}
+            </a>
+
             <hr className="border-[#E5E7EB] my-2" />
             
             <div className="flex flex-col gap-3">

@@ -1,4 +1,5 @@
 import { useTranslation } from "@/i18n/useTranslation";
+import { DEMO_URL } from "@/lib/links";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -31,7 +32,12 @@ export default function Footer() {
               {t('footer.sectionA')}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[[t('nav.home'), '/'], [t('nav.blog'), '/blog']].map(([label, href]) => (
+              {[
+                [t('nav.howItWorks'), '/#como-funciona'],
+                [t('nav.solutions'), '/#solucoes'],
+                [t('nav.conecta'), '/#conecta'],
+                [t('nav.blog'), '/blog'],
+              ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
@@ -82,7 +88,7 @@ export default function Footer() {
               {t('footer.ctaDesc')}
             </p>
             <a
-              href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4"
+              href={DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"

@@ -15,7 +15,9 @@ export const TestimonialsSection = () => {
 
   return (
     <section
+      id="clientes"
       style={{
+        scrollMarginTop: "64px",
         background:
           "linear-gradient(180deg, #ffffff 0%, #fafbfc 45%, #ffffff 100%)",
         padding: "100px 0",

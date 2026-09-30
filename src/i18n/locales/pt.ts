@@ -1,172 +1,306 @@
 export const ptBR = {
   nav: {
     home: "Home",
+    howItWorks: "Como funciona",
     solutions: "Soluções",
-    useCases: "Casos de uso",
+    conecta: "Dinn Conecta",
+    customers: "Clientes",
     blog: "Blog",
-    pricing: "Preços",
+    cta: "Solicitar demo",
+    openMenu: "Abrir menu",
+    languageLabel: "Idioma",
     language: "Português",
     langShort: "PT"
   },
   hero: {
-    pill: "Seu orquestrador de vendas",
-    titlePart1: "IA-Farma conectando<br/>estratégia e execução com ",
-    titlePart2: ["inteligência", "ação", "decisão", "prioridade", "impacto", "receita", "precisão"],
-    description: "O Dinn transforma dados em decisões acionáveis no campo, conectando estratégia, operação e execução em tempo real.",
-    cta: "Solicitar demo"
+    pill: "A camada de inteligência para o canal farmacêutico",
+    title: "Transforme sinais do mercado farmacêutico em *ação comercial*",
+    description: "Quem vende em farmácias não precisa de mais um painel. Precisa saber onde agir, com qual confiança e com qual impacto.",
+    cta: "Solicitar demo",
+    secondary: "Ver como funciona",
+    card: {
+      label: "Exemplo ilustrativo",
+      steps: [
+        { tag: "Sinal", title: "Produto A · 32% dos PDVs sem estoque", meta: "SP · 96 de 300 PDVs · D-1" },
+        { tag: "Onde", title: "Rede A concentra o sinal", meta: "60% de ruptura em 30 dias" },
+        { tag: "Ação", title: "6 lojas para verificar primeiro", meta: "Com pergunta e retorno esperado" }
+      ],
+      stores: [
+        { name: "Loja 01 · São Paulo", level: "Crítico", value: "86,7%" },
+        { name: "Loja 02 · Campinas", level: "Alto", value: "60%" },
+        { name: "Loja 03 · Santos", level: "Moderado", value: "33,3%" }
+      ],
+      footnote: "Dados fictícios."
+    }
   },
   logos: {
-    title: "Quem já está transformando o varejo"
-  },
-  solucoes: {
-    tag: "Plataforma completa",
-    title1: "Descubra por que deixou",
-    title2: "de vender",
-    description: "Clique em cada solução para explorar como o Dinn transforma dados em decisões de alto impacto.",
-    cta: "Solicitar demo",
-    items: [
-      {
-        title: "Diagnóstico de Ruptura",
-        date: "Solução 1",
-        content: "O Dinn identifica rupturas, falhas de distribuição e ausência de produtos por SKU, loja e região com dados D-1. Em vez de mostrar apenas \"quanto vendeu\", ele mostra exatamente por que deixou de vender."
-      },
-      {
-        title: "Evidência para Negociação",
-        date: "Solução 2",
-        content: "Com provas reais do PDV, o Dinn mostra quando um produto não vendeu por falta de abastecimento, ausência de exposição ou baixa cobertura. Isso fortalece negociações comerciais com dados concretos."
-      },
-      {
-        title: "Prioridade Operacional",
-        date: "Solução 3",
-        content: "O Dinn aplica inteligência operacional para destacar quais lojas concentram maior perda de venda, ruptura recorrente ou potencial de recuperação rápida, ajudando o time a resolver 80% do problema com foco."
-      },
-      {
-        title: "Precisão Granular",
-        date: "Solução 4",
-        content: "Enquanto relatórios tradicionais mostram médias mensais, o Dinn entrega análises micro por bairro, loja e produto, permitindo ações rápidas, regionais e extremamente precisas."
-      },
-      {
-        title: "Monitoramento Competitivo",
-        date: "Solução 5",
-        content: "O Dinn compara presença, ruptura e participação no PDV entre marcas concorrentes no mesmo painel. Sua equipe identifica rapidamente onde perdeu espaço e onde existe oportunidade de reação imediata."
-      }
-    ]
-  },
-  casos: {
-    tag: "Casos de Uso",
-    title1: "Execução comercial com",
-    title2: "precisão cirúrgica",
-    intro: "Os casos de uso do Dinn são desenhados para resolver gargalos da execução comercial diária e se dividem entre funções específicas (personas) e cenários estratégicos focados em demanda, distribuição e vendas.",
-    topics: [
-      {
-        title: "Trade e Customer Success (CS)",
-        description: "Foco na meta de \"Ruptura Zero\", utilizando alertas ágeis e notificações (push) de reposição de estoque por Ponto de Venda (PDV), além de funcionar como um SAC localizador de produto de rápida implementação."
-      },
-      {
-        title: "Força de Vendas (Campo)",
-        description: "O Dinn otimiza o tempo do representante em até 40% indicando a \"Próxima Melhor Ação\" (NBA). Ele sugere as lojas com maior potencial de quebra de estoque, roteirizando visitas de alto impacto financeiro."
-      },
-      {
-        title: "Inteligência de Mercado e Marketing",
-        description: "Com o Forecast IA, antecipe tendências locais e simule impactos de campanhas de mercado cruzando dados do seu Sell-in com sinais de Sell-out e comportamento do concorrente."
-      },
-      {
-        title: "Diagnóstico Diário (D-1) e Correção de Ruptura",
-        description: "Diferente das auditorias tradicionais que olham o retrovisor (mês fechado), o Dinn mostra a fotografia de ontem para você agir hoje, antes de perder a venda."
-      },
-      {
-        title: "Geração de Evidências para Negociações",
-        description: "A equipe comercial ganha argumentos baseados em dados reais (giro, potencial de perda, ruptura) para levar à mesa de negociação com grandes redes e distribuidores."
-      },
-      {
-        title: "Monitoramento da Concorrência Loja a Loja",
-        description: "Tenha visibilidade de preço e presença digital em e-commerces, farmácias locais e marketplaces, garantindo competitividade pontual."
-      }
-    ]
+    title: "Indústrias farmacêuticas que já usam a Dinn"
   },
   antesDepois: {
-    subtitle: "Antes e depois do Dinn",
-    title: "O Dinn não é apenas um fornecedor de dados.",
-    description1: "Ele é um ",
-    descriptionHighlight1: "orquestrador de inteligência operacional",
-    description2: ", um ",
-    descriptionHighlight2: "filtro estratégico do ruído",
-    description3: " e um acelerador de performance no campo. Tudo em um modelo modular, escalável e integrado.",
+    eyebrow: "O que muda",
+    title: "A Dinn não é só *mais um painel*.",
+    description: "É a camada de inteligência que liga o que acontece nas farmácias às decisões do seu time comercial.",
+    beforeLabel: "Antes",
+    afterLabel: "Com a Dinn",
     items: [
+      { bad: "Discussão sobre ruptura sem evidência", good: "Evidência por loja, rede, cidade e SKU, com data de corte" },
+      { bad: "Painel para interpretar", good: "Uma lista do que verificar primeiro" },
+      { bad: "Dado sem origem clara", good: "Observado ou estimado, com fonte e confiança" },
+      { bad: "Bases e planilhas conciliadas à mão", good: "Uma base identificada, na plataforma, no arquivo, na API ou na sua IA" }
+    ]
+  },
+  comoFunciona: {
+    eyebrow: "Como funciona",
+    title: "Do sinal no canal à *próxima ação* do time",
+    intro: "A Dinn acompanha a disponibilidade dos seus produtos nas farmácias, separa o que mudou do que é ruído e organiza a leitura por produto, rede, região e ponto de venda. Tudo com fonte, data e confiança explícitas.",
+    stages: [
       {
-        bad: "Falta visão em tempo real, decisões baseadas em dados atrasados",
-        good: "Acesso granular e atualizado quase em tempo real sobre o que acontece no campo"
+        name: "Observar",
+        title: "Onde há estoque e onde falta produto",
+        description: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário. Onde não há resposta direta, a Dinn estima a partir de lojas comparáveis e do histórico. Base diária (D-1) e consulta pontual onde a fonte permite.",
+        products: "Dinn Stock"
       },
       {
-        bad: "Roteiros manuais, visitas mal priorizadas",
-        good: "Roteirização inteligente com foco em impacto, risco e potencial"
+        name: "Entender",
+        title: "Nem toda variação merece atenção",
+        description: "A Dinn transforma a leitura em sinais com nome: ruptura persistente, estoque sem movimento, mudança de giro, concentração em uma rede. A evolução no tempo separa um sinal pontual de um problema recorrente.",
+        products: "Dinn Stock · Dinn Pulse"
       },
       {
-        bad: "Demora para agir frente a quedas de prescrição ou ruptura",
-        good: "Alertas automáticos e ações sugeridas no app sem depender de acionamentos manuais"
+        name: "Priorizar",
+        title: "Uma base, três níveis de decisão",
+        description: "Estratégico: onde concentrar a atenção. Tático: o que discutir com cada rede. Operacional: quais lojas verificar primeiro. A saída é uma fila concreta, com o sinal, a pergunta e o retorno esperado.",
+        products: "Dinn Manager · Dinn Locator"
       },
       {
-        bad: "Dados soltos, retrabalho entre áreas",
-        good: "API e painel integrados com CRM, BI, ERP — tudo fluindo em um único ecossistema"
+        name: "Levar para a rotina",
+        title: "O sinal chega aonde o trabalho acontece",
+        description: "Use na plataforma, exporte para a reunião com a rede, leve ao seu BI pela API ou pergunte direto na sua IA. A Dinn prepara a análise; a equipe decide o que fazer com cada ponto de venda.",
+        products: "Plataforma · Arquivo · API · MCP"
+      },
+      {
+        name: "Acompanhar",
+        title: "Veja se o sinal persistiu depois da ação",
+        description: "Mantenha o mesmo produto e recorte para comparar a evolução sem misturar bases: comece o dia pelos desvios, chegue à reunião semanal com uma lista e acompanhe no mês o que mudou no canal.",
+        products: "Rotinas diária, semanal e mensal"
       }
+    ],
+    visuals: {
+      observe: {
+        observedTag: "Observado",
+        observedTitle: "Resposta direta da fonte",
+        observedRows: [
+          ["Produto", "Produto A · 2,5 mg"],
+          ["PDV", "Loja 01 · São Paulo"],
+          ["Origem", "Canal digital"],
+          ["Resposta", "Disponível · 10:32"]
+        ],
+        estimatedTag: "Estimado",
+        estimatedTitle: "Sem resposta direta",
+        estimatedRows: [
+          ["Referências", "Lojas comparáveis + histórico"],
+          ["Disponibilidade", "8–12 un."],
+          ["Confiança", "Nível B"]
+        ],
+        note: "Cada registro diz como foi obtido: observado ou estimado."
+      },
+      signals: {
+        title: "Sinais do recorte · SP",
+        items: [
+          { type: "Ruptura persistente", scope: "Produto A · 96 de 300 PDVs", value: "32%" },
+          { type: "Concentração em rede", scope: "Produto A · Rede A · 30 dias", value: "60%" },
+          { type: "Estoque sem movimento", scope: "Loja 04 · Sorocaba", value: "30 de 30 dias" },
+          { type: "Queda de giro", scope: "Produto B · Rede B", value: "−18%" }
+        ],
+        note: "Dados fictícios. Um sinal abre uma investigação, não uma conclusão."
+      },
+      priority: {
+        levels: [
+          { name: "Estratégico", question: "Onde concentrar a atenção?" },
+          { name: "Tático", question: "O que discutir com cada rede?" },
+          { name: "Operacional", question: "Quais lojas verificar primeiro?" }
+        ],
+        tableTitle: "Fila de verificação · Produto A · Rede A",
+        columns: ["PDV · sinal", "Verificação sugerida", "Retorno esperado"],
+        rows: [
+          ["Loja 01 · 86,7%", "Há pedido ou entrega pendente?", "Status e previsão da rede"],
+          ["Loja 02 · 60%", "Produto disponível na loja?", "Conferência do PDV"],
+          ["Loja 03 · 33,3%", "A ausência voltou a ocorrer?", "Nova leitura do recorte"]
+        ],
+        note: "Exemplo fictício. A equipe define responsáveis e prazos."
+      },
+      deliver: {
+        input: "Sinal priorizado",
+        hub: "Dinn",
+        outputs: [
+          { name: "Plataforma", desc: "Dinn Manager" },
+          { name: "Arquivo", desc: "Exportação para a reunião" },
+          { name: "API", desc: "Seu BI e sistemas" },
+          { name: "Sua IA", desc: "ChatGPT, Claude, Copilot" },
+          { name: "CRM", desc: "Contexto para o campo" }
+        ],
+        note: "A Dinn prepara a análise. A equipe decide."
+      },
+      follow: {
+        routines: [
+          { when: "Dias úteis · 08:00", title: "Comece o dia pelos desvios", desc: "As maiores pioras desde a última leitura." },
+          { when: "Segundas · 09:00", title: "Chegue à reunião com uma lista", desc: "Ranking de redes e os dez PDVs com maior ruptura." },
+          { when: "1º dia útil · 09:00", title: "Acompanhe o que mudou no canal", desc: "Tendência de 90 dias no mesmo recorte." }
+        ],
+        note: "Exemplos de rotina."
+      }
+    }
+  },
+  naPratica: {
+    eyebrow: "Na prática",
+    title: "Do sinal à *lista de investigação*",
+    intro: "O caminho completo em um exemplo, com dados fictícios.",
+    steps: [
+      { question: "Qual produto precisa de atenção?", answer: "O Produto A tem a maior proporção de PDVs sem estoque em SP.", data: "32% · 96 de 300 PDVs" },
+      { question: "Em quais redes investigar?", answer: "A Rede A concentra o sinal no mesmo recorte e período.", data: "60% em 30 dias" },
+      { question: "Quais lojas explicam o problema?", answer: "Seis lojas da Rede A, da crítica à moderada.", data: "86,7% → 23,3%" },
+      { question: "O que verificar em cada uma?", answer: "Pedido pendente? Produto na loja? A ausência voltou?", data: "Fila de verificação" },
+      { question: "Quem cuida de cada ponto?", answer: "A equipe define responsável, ação combinada e data para rever o mesmo recorte.", data: "Decisão do time" },
+      { question: "Como acompanhar?", answer: "A rotina semanal traz a lista atualizada para a reunião comercial.", data: "Segundas · 09:00" }
+    ],
+    note: "Exemplo ilustrativo. A causa da ruptura exige investigação; a Dinn não a presume."
+  },
+  naSuaIa: {
+    eyebrow: "Dinn + IA",
+    title: "Use a Dinn direto *na sua IA*",
+    description: "Conecte a Dinn ao ChatGPT, ao Claude ou ao Microsoft Copilot e peça análises, relatórios e materiais com os dados autorizados.",
+    envs: ["ChatGPT", "Claude", "Microsoft Copilot"],
+    bullets: [
+      "Pergunte em linguagem natural",
+      "Aprofunde sem recomeçar a análise",
+      "Transforme perguntas recorrentes em rotina"
+    ],
+    chat: {
+      header: "Dinn Stock · conversa ilustrativa",
+      user: "Compare a ruptura dos Produtos A, B e C em SP. Qual merece atenção primeiro?",
+      aiLabel: "IA · consulta à Dinn",
+      answer: "O Produto A tem o maior percentual sem estoque no recorte.",
+      rows: [
+        ["Produto A", "32%", "96 de 300 PDVs"],
+        ["Produto B", "20%", "48 de 240 PDVs"],
+        ["Produto C", "10%", "20 de 200 PDVs"]
+      ],
+      suggestion: "Sugestão: abrir as redes e os PDVs do Produto A para investigar a concentração."
+    },
+    note: "Acesso autorizado e somente leitura. Conexão, arquivos e agendamentos dependem do plano e da configuração da sua IA."
+  },
+  conecta: {
+    eyebrow: "Dinn Conecta",
+    title: "Dados de farma. *Trabalhando juntos.*",
+    description: "Mercado, dados internos e farmácias com o contexto que seu BI, Copilot e projetos de IA precisam. A Dinn conecta as fontes autorizadas, padroniza produto, loja e região, cuida da qualidade e da atualização e entrega no ambiente que sua equipe já usa.",
+    sourcesLabel: "Suas fontes",
+    sources: ["IQVIA / Close-Up", "ERP, CRM e data lake", "Farmácias"],
+    hub: "Dinn Conecta",
+    hubDesc: "Conexão, padronização e contexto de farma",
+    destLabel: "Seu stack continua o mesmo",
+    destinations: ["BI", "Copilot", "Agentes", "API"],
+    responsibilities: [
+      { title: "Com você", desc: "Dados, infraestrutura e governança continuam sob o seu controle." },
+      { title: "Com a Dinn", desc: "Conexão, higienização, padronização de produto, loja e região, e contexto de farma." },
+      { title: "Resultado", desc: "Informação pronta no seu BI, Copilot e agentes internos." }
+    ],
+    stripLabel: "Leve contexto de farma para",
+    stripItems: ["Copilot", "ChatGPT", "Claude", "Gemini", "seus agentes"],
+    cta: "Veja como se conecta",
+    note: "Cada fonte depende de licença, autorização e escopo acordados."
+  },
+  solucoes: {
+    eyebrow: "Soluções",
+    title: "Problemas do canal farma, *já entendidos*",
+    intro: "Você não precisa descobrir do zero quais sinais importam. A Dinn chega com as dores do canal farmacêutico mapeadas.",
+    tabs: { outcome: "Por resultado", team: "Por time" },
+    outcomes: [
+      { title: "Reduzir ruptura", desc: "Saiba onde falta produto por SKU, rede, cidade e loja, e aja antes de perder a venda.", tag: "Dinn Stock" },
+      { title: "Negociar com evidência", desc: "Leve à reunião com a rede os dados de disponibilidade, persistência e lojas afetadas, com data de corte.", tag: "Dinn Stock" },
+      { title: "Priorizar o campo", desc: "Uma lista do que verificar primeiro, em vez de um painel para interpretar.", tag: "Dinn Manager" },
+      { title: "Acompanhar lançamentos", desc: "Veja a presença do produto novo por rede e região desde as primeiras semanas.", tag: "Dinn Stock" },
+      { title: "Orientar o SAC", desc: "Indique as farmácias com maior chance de ter o produto, com a confiança explícita.", tag: "Dinn Locator" },
+      { title: "Entender o movimento", desc: "Separe queda de demanda de ruptura, sortimento ou execução.", tag: "Dinn Pulse" },
+      { title: "Dados de farma no seu BI e na sua IA", desc: "Mercado, dados internos e farmácias prontos para o seu stack.", tag: "Dinn Conecta" }
+    ],
+    teams: [
+      { title: "Liderança comercial", desc: "Onde concentrar a atenção e como a situação evoluiu em 30, 60 e 90 dias." },
+      { title: "Trade marketing", desc: "Redes, regiões, lojas e SKUs priorizados para agir no canal." },
+      { title: "Força de vendas e campo", desc: "Uma lista simples e confiável por carteira ou território." },
+      { title: "Demanda e supply", desc: "Sinais de ruptura e de giro, com exceções e confiança." },
+      { title: "Inteligência de mercado", desc: "Disponibilidade cruzada com a base de mercado autorizada." },
+      { title: "SAC e experiência do cliente", desc: "Onde encontrar o produto e qual alternativa indicar." },
+      { title: "Tecnologia e dados", desc: "Dados tratados com fonte, atualização e cobertura, via arquivo, API ou MCP." }
     ]
   },
   faq: {
-    title: "Perguntas Frequentes",
+    title: "Perguntas frequentes",
     items: [
       {
-        question: "1. Nós já utilizamos ferramentas de auditoria consolidadas como IQVIA e CloseUp. Por que precisaríamos do Dinn?",
-        answer: "O Dinn **não substitui** as auditorias de mercado; ele as **complementa**. Ferramentas tradicionais como IQVIA e CloseUp entregam dados retroativos (mês fechado) excelentes para planejamento, mensuração de market share e decisões estratégicas de longo prazo. O Dinn opera no momento presente da execução diária (D-1) nível loja (PDV), detectando problemas em tempo real e orientando a equipe sobre **o que fazer hoje** para corrigir rupturas antes que a venda seja perdida e o mês feche."
+        question: "Já usamos auditorias como IQVIA e Close-Up. Por que precisaríamos da Dinn?",
+        answer: "A Dinn **não substitui** as auditorias de mercado: ela as **complementa**. IQVIA e Close-Up são ótimas para planejamento, share e decisões de longo prazo, com dados de período fechado. A Dinn acompanha a disponibilidade no dia a dia (D-1), loja a loja, e mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, as duas leituras podem ser cruzadas no mesmo recorte."
       },
       {
-        question: "2. O processo de adoção exige um esforço grande de TI ou integrações complexas?",
-        answer: "Não. O Dinn atua em um modelo **plug-and-play**, capaz de entregar valor prático em até 48 horas após a contratação, operando de forma independente de sistemas legados ou integrações demoradas. Inicialmente, o Dinn pode funcionar perfeitamente **sem precisar dos dados internos do cliente**, pois capta e cruza múltiplos sinais externos (e-commerces, etc.). Quando o cliente estiver pronto, a plataforma é integrada à sua arquitetura interna de TI para elevar ainda mais a precisão preditiva."
+        question: "A implantação exige um esforço grande de TI?",
+        answer: "Não precisa. A Dinn pode começar com fontes externas, sem depender dos seus sistemas internos. A implantação tem escopo delimitado e acontece em **até 30 dias** depois que os pré-requisitos combinados estão prontos. Quando fizer sentido, seus dados internos entram para enriquecer a leitura."
       },
       {
-        question: "3. O Dinn é apenas mais um dashboard de Business Intelligence (BI) para o campo?",
-        answer: "O Dinn **não é um simples \"repositório de dados\"** ou painel de leitura. Ele foi desenhado para ser uma **ferramenta de orquestração de decisões** baseada em IA. Enquanto os relatórios exigem que os gestores interpretem os dados frios, o Dinn identifica falhas e recomenda automaticamente ações priorizadas (*Next Best Action* - NBA). Ele diz exatamente em qual loja atuar para resolver 80% do problema da categoria."
+        question: "A Dinn é só mais um dashboard?",
+        answer: "Não. A mesma base responde a três níveis de decisão: **estratégico** (onde concentrar a atenção), **tático** (o que discutir com cada rede) e **operacional** (quais lojas verificar primeiro). A saída não é um gráfico para interpretar, e sim uma fila concreta: cada loja com o sinal, a pergunta a responder e o retorno esperado."
       },
       {
-        question: "4. A inteligência do Dinn vai competir com o CRM (como Salesforce, Veeva ou SalesFarma) que já utilizamos na nossa força de vendas?",
-        answer: "Não, o Dinn atua como uma camada neutra acima do CRM. Ferramentas como o SalesFarma são fundamentais como sistemas de registro para apontar visitas, tirar pedidos e rastrear amostras. O Dinn, sendo o **\"sistema nervoso\" da execução**, não substitui seu CRM, mas o potencializa enviando alertas e tarefas roteirizadas e priorizadas diretamente para a agenda do representante dentro do sistema que sua equipe já utiliza."
+        question: "A Dinn compete com o CRM (Salesforce, Veeva, SalesFarma) que já usamos?",
+        answer: "Não. O CRM continua sendo o sistema de registro de visitas, pedidos e carteira. A Dinn é uma camada de inteligência sobre o canal: quando a integração é acordada, leva ao CRM o **contexto do que está acontecendo nas farmácias**, para o time priorizar melhor dentro da ferramenta que já usa."
       },
       {
-        question: "5. E se as auditorias (como IQVIA) passarem a entregar relatórios diários granulares (D-1)?",
-        answer: "Apenas ter o dado diário não resolve o problema; informação rápida sem priorização e recomendação tática é apenas mais ruído. A IQVIA foca em medição e auditoria para o planejamento. O grande diferencial do Dinn é a **capacidade de gerar uma decisão autônoma** (lógica *agentic*) e diagnosticar *por que* algo aconteceu. Ele foca na execução prática, indicando o impacto financeiro de corrigir a exposição ou repor o produto em uma farmácia específica, funcionalidade e cultura operacional que faltam na arquitetura de auditorias tradicionais."
+        question: "E se as auditorias passarem a entregar dados diários?",
+        answer: "Dado rápido sem prioridade é só mais ruído. O diferencial da Dinn é transformar a leitura do canal em **prioridade e próximo passo**: qual produto, em quais redes, em quais lojas, com fonte e confiança explícitas. A IA prepara a análise; **a equipe decide** o que fazer."
       },
       {
-        question: "6. Em quanto tempo nós começamos a ver o retorno sobre o investimento (ROI)?",
-        answer: "O Dinn é focado em entregar resultados rápidos, revelando gargalos financeiros logo no primeiro dia de uso. Ao fechar a parceria, operamos através de **pilotos ágeis de 30 a 90 dias** estruturados por marcos, nos quais o \"primeiro valor\" (*first value*), como a redução de rupturas ou o ganho de produtividade no tempo-até-reposição no aplicativo de campo, é percebido e validado em reuniões logo no marco de 30 dias."
+        question: "Em quanto tempo vemos valor?",
+        answer: "Começamos por **um objetivo**, por exemplo reduzir a ruptura de um produto em uma região, e acompanhamos o mesmo recorte ao longo do tempo. A primeira leitura já mostra onde o problema se concentra; em 30 dias, dá para ver se o sinal persistiu ou diminuiu depois das ações do time."
       },
       {
-        question: "7. Como o Dinn consegue mapear o estoque e as rupturas diariamente sem depender das nossas bases de dados internas?",
-        answer: "O Dinn opera de forma multimodal e utiliza uma captação \"não convencional\". Em vez de comprar auditorias ou exigir o dado do cliente de imediato, a ferramenta cruza sinais digitais de diversas fontes externas (como e-commerces, *clique-e-retire*, marketplaces como iFood e vitrines digitais). Por meio de seus modelos de Inteligência Artificial, ele processa esses sinais para inferir demandas, entender as rupturas reais por Ponto de Venda (PDV) e acompanhar o que a concorrência está fazendo nas gôndolas locais."
+        question: "Como a Dinn acompanha o estoque sem depender das nossas bases?",
+        answer: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário: esse é o **dado observado**. Onde não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro diz como foi obtido."
       },
       {
-        question: "8. Receber relatórios granulares todos os dias não vai gerar excesso de informação e sobrecarregar nossa equipe de campo?",
-        answer: "Pelo contrário, o Dinn resolve exatamente o problema do excesso de dados, pois a plataforma parte do princípio de que **informação diária sem priorização tática é apenas ruído**. A ferramenta não entrega apenas um painel para o representante interpretar, mas utiliza uma lógica autônoma baseada em Inteligência Artificial para prescrever a \"Próxima Melhor Ação\" (*Next Best Action* - NBA). Isso significa que ela filtra o \"barulho\" e entrega tarefas priorizadas pelo conceito 80/20, indicando à equipe exatamente **qual loja precisa de atenção, o que corrigir e qual é o impacto financeiro dessa ação**."
+        question: "Dados diários não vão sobrecarregar o time de campo?",
+        answer: "É o contrário: a Dinn existe para reduzir o excesso de informação. Em vez de um painel para o representante interpretar, ela entrega **listas priorizadas**: quais lojas verificar primeiro, o que conferir em cada uma e qual retorno esperar."
       },
       {
-        question: "9. Nossa operação corporativa é muito segmentada. O Dinn foi feito apenas para a força de vendas e representantes de campo?",
-        answer: "Não. Embora a ação de campo seja vital, o Dinn atua como um centralizador da visão, garantindo que Marketing, Comercial, Supply e Trade olhem para a \"mesma fotografia\" de ruptura e disponibilidade de gôndola, reduzindo os conflitos internos. O sistema atende diferentes frentes com valor específico: as áreas de **Trade e Customer Success** usam alertas de reposição para buscar \"Ruptura Zero\"; o time **Comercial e Campo** recebe roteirização tática e tarefas no aplicativo; já a área de **Inteligência e Marketing** ganha o benefício de monitorar os concorrentes por farmácia e estimar os impactos de campanhas de mercado usando *Forecast IA*."
+        question: "A Dinn é só para a força de vendas?",
+        answer: "Não. A mesma leitura atende **Trade**, **Comercial e campo**, **Demanda e supply**, **Inteligência de mercado**, **SAC** e **Tecnologia e dados**. Todos olham para a mesma fotografia de disponibilidade, o que reduz conflitos entre as áreas."
       },
       {
-        question: "10. Os contratos no mercado farmacêutico envolvem validações complexas. É possível testar a eficácia da inteligência antes de um compromisso de longo prazo?",
-        answer: "Sim. O modelo comercial da plataforma é flexível e voltado para gerar Ganhos Rápidos (*Quick Wins*). A indústria não precisa contratar toda a plataforma \"no escuro\" e pode começar com estratégias direcionadas (modelo *land and expand*) com base em escopos controlados. É possível validar a inteligência utilizando desde **Trials guiados rápidos de 14 a 21 dias** (como uma prova de conceito de ruptura em lojas específicas) até **Pilotos de 30, 60 ou 90 dias** amarrados a metas operacionais claras e provas práticas de Retorno Sobre o Investimento (ROI) antes da expansão para mais marcas ou usuários."
+        question: "Dá para testar antes de fechar um contrato longo?",
+        answer: "Sim. Liberamos **30 dias com um objetivo só**, com termo simples e alguém nosso acompanhando. No fim, fica claro se vale seguir, ajustar ou parar."
       },
       {
-        question: "11. A ferramenta lida com muitos dados. Como funciona a questão do compliance e conformidade legal em grandes indústrias?",
-        answer: "O Dinn é projetado nativamente para atender aos altos requisitos de regulação das grandes farmacêuticas multinacionais. A plataforma é segura e declarada em conformidade (*compliance* ativa) com regulações de privacidade como a **LGPD e o novo AI Act** (focado no uso da IA), podendo operar com modelos baseados em dados sintéticos e simulados que facilitam testes sem risco. No caso de expansão ou integração robusta, o ambiente atende parâmetros de segurança corporativa (*Enterprise*), fornecendo suporte para Single Sign-On (SSO) e contratos de dados que prevêem rastreabilidade e pseudonimização das informações."
+        question: "Como a Dinn trata segurança e confiabilidade dos dados?",
+        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões, e a integração com a identidade corporativa (**SSO**) pode ser habilitada. Cada dado é rastreável: fonte, data e a distinção entre observado e estimado ficam explícitas. As conexões com a IA do cliente são **somente leitura**."
+      },
+      {
+        question: "O que é o Dinn Conecta?",
+        answer: "É a camada que prepara e entrega **dados de farma no ambiente que sua equipe já usa**. A Dinn conecta fontes autorizadas (mercado, dados internos e farmácias), padroniza produto, loja e região, cuida da qualidade e da atualização e entrega no seu BI, Copilot, agentes ou API. Dados, infraestrutura e governança continuam com você."
+      },
+      {
+        question: "Posso usar a Dinn no ChatGPT, no Claude ou no Copilot?",
+        answer: "Sim. A Dinn se conecta ao seu ambiente de IA por **MCP**, com acesso autorizado e **somente leitura**. Você pergunta em linguagem natural e recebe a análise com recorte, período e limites. Recursos como agendamento e geração de arquivos dependem do plano e da configuração da sua IA."
+      },
+      {
+        question: "Qual a diferença entre dado observado e estimado?",
+        answer: "**Observado** é o que a fonte informou diretamente, com local e horário. **Estimado** é calculado a partir de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. A base é atualizada diariamente (D-1) e, em lojas elegíveis, dá para consultar a disponibilidade no momento."
       }
     ]
   },
   ctaFinal: {
-    title: "Pronto para usar seus dados de uma forma mais eficiente?",
-    description: "Solicite uma demonstração gratuita e descubra como o Dinn pode revolucionar a gestão do seu negócio.",
+    title: "Pronto para transformar sinais em *ação*?",
+    description: "Veja numa demonstração como a Dinn mostra onde agir, e com qual confiança, para os seus produtos.",
     button: "Solicitar demo"
   },
   footer: {
-    description: "Inteligência de dados para transformar o varejo farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
+    description: "A camada de inteligência para o canal farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
     sectionA: "A Dinn",
     sectionLegal: "Legal",
     termos: "Termos",
@@ -174,9 +308,9 @@ export const ptBR = {
     cookies: "Cookies",
     suporte: "Suporte",
     ctaTitle: "Pronto para começar?",
-    ctaDesc: "Solicite uma demonstração gratuita.",
+    ctaDesc: "Veja a Dinn com os seus produtos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2024 DiWE Ventures Studio. Todos os direitos reservados.",
+    rights: "© 2026 DiWE Ventures Studio. Todos os direitos reservados.",
     launch: "Lançamento"
   },
   privacy: {
@@ -381,7 +515,7 @@ export const ptBR = {
     minRead: "min de leitura",
     backToBlog: "Voltar para o Blog",
     ctaTitle: "Transforme dados em decisões estratégicas",
-    ctaText: "A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real.",
+    ctaText: "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança explícitas.",
     ctaBtn: "Solicitar demonstração",
     recommended: "Recomendados para você",
     writtenBy: "Por"

@@ -4,6 +4,7 @@
 @import "shadcn/tailwind.css";
 @import "./fonts.css";
 @import "./design-system.css";
+@import "./home.css";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -1,11 +1,13 @@
 import { useTranslation } from "@/i18n/useTranslation";
+import { Rich } from "@/lib/rich-text";
+import { DEMO_URL } from "@/lib/links";
 
 interface CTASectionProps {
   ctaHref?: string;
 }
 
 export default function CTASection({
-  ctaHref = 'https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4',
+  ctaHref = DEMO_URL,
 }: CTASectionProps) {
   const { t } = useTranslation();
 
@@ -36,16 +38,16 @@ export default function CTASection({
             filter: 'blur(60px)', pointerEvents: 'none',
           }} />
 
-          <h2 style={{
+          <h2 className="cta-title" style={{
             fontSize: 'clamp(26px, 4vw, 48px)',
-            fontWeight: 800,
+            fontWeight: 700,
             color: '#1F2328',
             letterSpacing: '-0.025em',
             lineHeight: 1.2,
             margin: '0 0 20px',
             position: 'relative',
           }}>
-            {t('ctaFinal.title')}
+            <Rich text={t('ctaFinal.title') as string} />
           </h2>
           <p style={{
             fontSize: 'clamp(16px, 2vw, 20px)',
