@@ -16,9 +16,18 @@ interface Props {
   updatedAt: string;
   lang?: Lang;
   langLinks?: LangLinks;
+  showLanguageNotice?: boolean;
 }
 
-const { title, description, eyebrow, updatedAt, lang = 'pt', langLinks } = Astro.props;
+const {
+  title,
+  description,
+  eyebrow,
+  updatedAt,
+  lang = 'pt',
+  langLinks,
+  showLanguageNotice = true,
+} = Astro.props;
 
 /**
  * Só a versão em português é o texto jurídico oficial (revisado pelo
@@ -47,7 +56,7 @@ const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 
           {lang === 'en' && `Version in effect since ${updatedAt}.`}
           {lang === 'es' && `Versión vigente desde ${updatedAt}.`}
         </p>
-        <p class="legal-language">{languageNotice[lang]}</p>
+        {showLanguageNotice && <p class="legal-language">{languageNotice[lang]}</p>}
         {langLinks && (
           <p class="legal-lang-switch">
             {(['pt', 'en', 'es'] as Lang[]).map((code, i) => (
