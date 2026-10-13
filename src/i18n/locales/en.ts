@@ -16,7 +16,7 @@ export const enUS = {
   hero: {
     pill: "Artificial intelligence for the pharmaceutical industry",
     title: "Dinn, the *AI for the pharma market*: from signal to commercial execution",
-    description: "The AI that reads pharmacy stock, turnover and price every day (D-1) and shows where there is a stock-out and where to act first.",
+    description: "The AI that reads pharmacy stock, turnover and price every day, and shows where the opportunities are and where to act first.",
     cta: "Request a demo",
     secondary: "See use cases by team"
   },

@@ -16,7 +16,7 @@ export const ptBR = {
   hero: {
     pill: "Inteligência artificial para a indústria farmacêutica",
     title: "Dinn, a *IA para o mercado farma*: do sinal à execução comercial",
-    description: "A IA que lê estoque, giro e preço das farmácias todo dia (D-1) e mostra onde há ruptura de estoque e onde agir primeiro.",
+    description: "A IA que lê estoque, giro e preço das farmácias todo dia, e mostra onde há oportunidades e onde agir primeiro.",
     cta: "Solicitar demo",
     secondary: "Ver casos de uso por time"
   },

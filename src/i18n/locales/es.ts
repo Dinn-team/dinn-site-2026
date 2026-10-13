@@ -16,7 +16,7 @@ export const es419 = {
   hero: {
     pill: "Inteligencia artificial para la industria farmacéutica",
     title: "Dinn, la *IA para el mercado farma*: de la señal a la ejecución comercial",
-    description: "La IA que lee inventario, rotación y precio de las farmacias todos los días (D-1) y muestra dónde hay desabasto y dónde actuar primero.",
+    description: "La IA que lee inventario, rotación y precio de las farmacias todos los días, y muestra dónde hay oportunidades y dónde actuar primero.",
     cta: "Solicitar demo",
     secondary: "Ver casos de uso por equipo"
   },
