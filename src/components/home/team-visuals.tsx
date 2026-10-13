@@ -337,7 +337,8 @@ export function StalledVisual({ v }: { v: { bands: { label: string; value: numbe
         <Store x={61} y={53} width={18} height={18} color="#B45309" strokeWidth={2} />
         <circle cx={290} cy={62} r={18} fill="#FEE2E2" stroke="#EF4444" strokeWidth={2.5} />
         <Store x={281} y={53} width={18} height={18} color="#B91C1C" strokeWidth={2} />
-        <text x={180} y={30} textAnchor="middle" fontSize="11" fontWeight="700" fill="#5625F2">{v.distance}</text>
+        {/* acima do arco (o topo da curva fica em y≈23), para a linha não cortar o número */}
+        <text x={180} y={14} textAnchor="middle" fontSize="11" fontWeight="700" fill="#5625F2">{v.distance}</text>
         <text x={70} y={100} textAnchor="middle" fontSize="11" fill="#4B5563">{v.from}</text>
         <text x={290} y={100} textAnchor="middle" fontSize="11" fill="#4B5563">{v.to}</text>
       </svg>
