@@ -2,7 +2,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import { Brain, Check, Lock } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
-import { NeuralField } from './NeuralField';
+import { CtaScene } from './CtaScene';
 import { DEMO_URL } from '@/lib/links';
 
 // Onde o Dinn entrega: plataforma, conversa, IA do cliente e Conecta.
@@ -152,8 +152,7 @@ export function FinalCta() {
   };
   return (
     <section className="final">
-      <NeuralField className="final-canvas" density={0.6} energy={0.4} />
-      <div className="final-vignette" aria-hidden="true" />
+      <CtaScene />
       <motion.div className="wrap final-inner" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: EASE }}>
         <h2><Rich text={t('ctaFinal.title') as string} /></h2>
         <p>{t('ctaFinal.description')}</p>

@@ -190,10 +190,20 @@
 }
 
 /* ── Chamada final ──────────────────────────────────────────────────────── */
-.final { position: relative; overflow: hidden; background: var(--ink-deep); color: #fff; padding: clamp(110px, 14vw, 200px) 0; isolation: isolate; }
-.final-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
-.final-vignette { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(86, 37, 242, 0.28), transparent 70%), radial-gradient(ellipse 120% 80% at 50% 50%, transparent 40%, rgba(10, 11, 14, 0.75)); }
-.wrap.final-inner { text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+/* Chamada final: a cena do Dinn (public/cta/) no topo, inteira à vista, e o
+   texto logo abaixo do pedestal, sobre a base da imagem que escurece até o
+   fundo da página. As camadas animadas e a cena são as do herói (home-v2.css). */
+.final {
+  --scene-w: min(100vw, 1920px);
+  --scene-h: calc(var(--scene-w) * 941 / 1672);
+  --u: calc(var(--scene-w) / 1672);
+  position: relative; overflow: hidden; background: var(--ink-deep); color: #fff;
+  padding: calc(var(--scene-h) * 0.76) 0 clamp(64px, 7vw, 110px);
+  isolation: isolate;
+}
+.final h2, .final p { text-shadow: 0 2px 24px rgba(8, 16, 11, 0.55); }
+@media (max-width: 640px) { .final { --scene-w: 170vw; } }
+.wrap.final-inner { position: relative; text-align: center; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .final h2 { font-size: clamp(30px, 4.4vw, 58px); font-weight: 600; letter-spacing: var(--track-display); line-height: 1.1; text-wrap: balance; }
 .final h2 .em-light { color: var(--lilac); }
 .final p { font-size: clamp(16px, 1.4vw, 18px); line-height: 1.6; letter-spacing: var(--track-body); color: var(--on-ink-body); max-width: 560px; }

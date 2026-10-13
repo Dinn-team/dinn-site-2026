@@ -76,17 +76,21 @@
    Provisório: título, uma frase e dois botões sobre a rede neural. A
    conversa com o Dinn mudou para a seção Dinn Insights. */
 .dh {
+  /* A cena (1672×941) ocupa o topo; o texto começa abaixo da esteira, já sobre
+     o rio e as árvores. --u é "1 px da imagem" na largura atual. */
+  --scene-w: min(100vw, 1920px);
+  --scene-h: calc(var(--scene-w) * 941 / 1672);
+  --u: calc(var(--scene-w) / 1672);
+  --scene-green: #14301c;
   position: relative;
-  min-height: min(100svh, 820px);
   display: flex;
   flex-direction: column;
   background: var(--ink-deep);
   color: #fff;
   overflow: hidden;
-  padding-top: 112px;
+  padding-top: calc(var(--scene-h) * 0.585);
   isolation: isolate;
 }
-.dh-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
 .dh-vignette {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
@@ -98,7 +102,7 @@
   position: relative;
   flex: 1;
   width: 100%;
-  max-width: 940px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -118,8 +122,11 @@
   color: var(--on-ink-body);
   padding: 6px 14px 6px 10px;
   border-radius: 999px;
-  border: 1px solid var(--glass-line);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* fica sobre o gramado da cena: precisa de fundo próprio para ler */
+  background: rgba(12, 24, 17, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 .dh-pill i {
   width: 7px; height: 7px; border-radius: 50%;
@@ -128,13 +135,16 @@
 }
 .dh-title {
   /* H1 com "Dinn" e "IA para o mercado farma" */
-  font-size: clamp(34px, min(5.6vw, 9vh), 76px);
+  /* duas linhas no desktop: "Dinn, a IA para o mercado farma:" / "do sinal à
+     execução comercial". A largura da coluna acompanha o corpo da fonte. */
+  font-size: clamp(30px, min(3.8vw, 7vh), 58px);
   font-weight: 700;
   letter-spacing: var(--track-display);
-  line-height: 1.06;
-  max-width: 20ch;
+  line-height: 1.1;
+  max-width: none;
   text-wrap: balance;
 }
+.dh-title { text-shadow: 0 2px 28px rgba(8, 16, 11, 0.55); }
 .dh-title .em-light { font-weight: 300; color: var(--lilac); padding-right: 0.04em; }
 .dh-desc {
   font-size: clamp(16px, 1.4vw, 19px);
@@ -150,11 +160,235 @@
 .dh-logos div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(28px, 5vw, 64px); opacity: 0.7; filter: grayscale(1) brightness(1.15); }
 .dh-logos img { height: 30px; width: auto; object-fit: contain; }
 
+/* ── Cena do herói ──────────────────────────────────────────────────────
+   Imagem + camadas animadas recortadas por máscaras (public/hero/mask-*.webp,
+   geradas da própria imagem). Só transform e opacity animam, que a GPU faz
+   sem repintar. Loops fechados: cada deslocamento é um múltiplo exato da
+   textura, então não há "salto" na volta. */
+.dh-scene {
+  position: absolute; top: 0; left: 50%;
+  width: var(--scene-w);
+  aspect-ratio: 1672 / 941;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.dh-scene-img { display: block; width: 100%; height: 100%; }
+/* a base da imagem vira o fundo da página: verde das árvores → preto do site */
+.dh-scene-fade {
+  position: absolute; inset: -1px;
+  background:
+    /* véu no topo: o menu (branco) lê bem sobre o céu claro */
+    linear-gradient(to bottom, rgba(10, 18, 30, 0.6) 0, rgba(10, 18, 30, 0.28) 56px, rgba(10, 18, 30, 0) 150px),
+    /* escurece só atrás do título; o rio nas laterais segue vivo */
+    radial-gradient(ellipse 36% 17% at 50% 70%, rgba(9, 18, 12, 0.6), rgba(9, 18, 12, 0) 100%),
+    linear-gradient(to bottom,
+      rgba(20, 48, 28, 0) 0%,
+      rgba(20, 48, 28, 0) 46%,
+      rgba(20, 48, 28, 0.3) 60%,
+      rgba(19, 38, 26, 0.7) 75%,
+      rgba(22, 25, 29, 0.95) 90%,
+      var(--ink-deep) 100%);
+}
+@media (min-width: 1921px) {
+  .dh-scene {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  }
+}
+
+.dh-fx {
+  position: absolute; inset: 0; overflow: hidden;
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.dh-flow, .dh-sweep, .dh-holo-scan { position: absolute; will-change: transform; }
+
+/* rio: três camadas em velocidades e escalas diferentes dão profundidade */
+.dh-fx-water { -webkit-mask-image: url(/hero/mask-agua.webp); mask-image: url(/hero/mask-agua.webp); }
+.dh-flow { left: -30%; top: -30%; width: 160%; height: 160%; background-repeat: repeat; }
+.dh-flow-a {
+  background-image: url(/hero/agua-ondas.webp);
+  background-size: calc(var(--u) * 420) calc(var(--u) * 210);
+  opacity: 0.8;
+  animation: dh-flow-a 11s linear infinite;
+}
+.dh-flow-b {
+  background-image: url(/hero/agua-ondas.webp);
+  background-size: calc(var(--u) * 260) calc(var(--u) * 130);
+  background-position: 40% 30%;
+  opacity: 0.55;
+  animation: dh-flow-b 7.5s linear infinite;
+}
+.dh-flow-c {
+  background-image: url(/hero/agua-brilho.webp);
+  background-size: calc(var(--u) * 256) calc(var(--u) * 256);
+  opacity: 0.9;
+  animation: dh-flow-c 16s linear infinite;
+}
+@keyframes dh-flow-a { from { transform: rotate(24deg) translateX(0); } to { transform: rotate(24deg) translateX(calc(var(--u) * 420)); } }
+@keyframes dh-flow-b { from { transform: rotate(20deg) translateX(0); } to { transform: rotate(20deg) translateX(calc(var(--u) * 260)); } }
+@keyframes dh-flow-c { from { transform: rotate(22deg) translateX(0); } to { transform: rotate(22deg) translateX(calc(var(--u) * 256)); } }
+
+/* queda d'água: fios descendo */
+.dh-fx-fall { -webkit-mask-image: url(/hero/mask-cachoeira.webp); mask-image: url(/hero/mask-cachoeira.webp); }
+.dh-fx-fall .dh-flow {
+  left: 0; top: -20%; width: 100%; height: 140%;
+  background-image: url(/hero/cachoeira-fios.webp);
+  background-size: calc(var(--u) * 48) calc(var(--u) * 128);
+  opacity: 0.9;
+  animation: dh-fall 0.85s linear infinite;
+}
+@keyframes dh-fall { from { transform: translateY(0); } to { transform: translateY(calc(var(--u) * 128)); } }
+
+/* esteira: faixas de luz percorrendo o neon, da fábrica para a farmácia */
+.dh-fx-belt { -webkit-mask-image: url(/hero/mask-esteira.webp); mask-image: url(/hero/mask-esteira.webp); }
+.dh-sweep {
+  left: calc(var(--u) * -420); top: 0;
+  width: calc(100% + var(--u) * 840); height: 100%;
+  background: repeating-linear-gradient(90deg,
+    transparent 0, transparent calc(var(--u) * 150),
+    rgba(190, 165, 255, 0.55) calc(var(--u) * 190),
+    #fff calc(var(--u) * 215),
+    rgba(190, 165, 255, 0.55) calc(var(--u) * 240),
+    transparent calc(var(--u) * 280), transparent calc(var(--u) * 420));
+  animation: dh-sweep 4.6s linear infinite;
+}
+@keyframes dh-sweep { from { transform: translateX(0); } to { transform: translateX(calc(var(--u) * 420)); } }
+
+/* hologramas: o brilho respira e uma linha de leitura sobe pelos painéis */
+.dh-fx-holo { -webkit-mask-image: url(/hero/mask-holograma.webp); mask-image: url(/hero/mask-holograma.webp); }
+.dh-holo-glow {
+  position: absolute; inset: 0;
+  background: url(/hero/cena-dinn.webp) 0 0 / 100% 100% no-repeat;
+  filter: brightness(1.55) saturate(1.5);
+  opacity: 0;
+  animation: dh-holo 3.4s ease-in-out infinite;
+}
+@keyframes dh-holo { 0%, 100% { opacity: 0; } 50% { opacity: 0.85; } }
+.dh-holo-scan {
+  left: 0; top: calc(var(--u) * -300); width: 100%; height: calc(100% + var(--u) * 600);
+  background: repeating-linear-gradient(0deg,
+    transparent 0, transparent calc(var(--u) * 120),
+    rgba(150, 230, 255, 0.0) calc(var(--u) * 126),
+    rgba(190, 240, 255, 0.75) calc(var(--u) * 150),
+    rgba(150, 230, 255, 0.0) calc(var(--u) * 174),
+    transparent calc(var(--u) * 180), transparent calc(var(--u) * 300));
+  animation: dh-scan 3.6s linear infinite;
+}
+@keyframes dh-scan { from { transform: translateY(0); } to { transform: translateY(calc(var(--u) * -300)); } }
+
+/* barras do cérebro: cada coluna acende a seu tempo, como um cálculo em curso */
+.dh-fx-bars { -webkit-mask-image: url(/hero/mask-barras.webp); mask-image: url(/hero/mask-barras.webp); }
+.dh-fx-bars i {
+  position: absolute; inset: 0;
+  background: url(/hero/cena-dinn.webp) 0 0 / 100% 100% no-repeat;
+  filter: brightness(1.9) saturate(1.6);
+  opacity: 0;
+  animation: dh-bar 1.9s ease-in-out infinite;
+}
+@keyframes dh-bar { 0%, 100% { opacity: 0; } 35% { opacity: 1; } 70% { opacity: 0.1; } }
+
+/* nuvens extras: puffs suaves cruzando o céu, em loop */
+.dh-fx-sky { -webkit-mask-image: url(/hero/mask-ceu.webp); mask-image: url(/hero/mask-ceu.webp); }
+.dh-fx-sky i {
+  position: absolute; left: 0;
+  width: calc(var(--u) * 460); height: calc(var(--u) * 130);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+  filter: blur(calc(var(--u) * 6));
+  opacity: 0.55;
+  animation: dh-cloud 110s linear infinite;
+}
+.dh-fx-sky i:nth-child(1) { top: calc(var(--u) * 8); }
+.dh-fx-sky i:nth-child(2) { top: calc(var(--u) * 54); width: calc(var(--u) * 360); animation-duration: 140s; animation-delay: -62s; opacity: 0.45; }
+.dh-fx-sky i:nth-child(3) { top: calc(var(--u) * 100); width: calc(var(--u) * 520); animation-duration: 95s; animation-delay: -31s; }
+.dh-fx-sky i:nth-child(4) { top: calc(var(--u) * 28); width: calc(var(--u) * 300); animation-duration: 125s; animation-delay: -88s; opacity: 0.4; }
+@keyframes dh-cloud { from { transform: translateX(calc(var(--u) * -520)); } to { transform: translateX(calc(var(--u) * 1700)); } }
+
+/* detalhes em SVG (mesmo sistema de coordenadas da imagem) */
+.dh-fx-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dh-bubbles circle { fill: rgba(255, 255, 255, 0.85); animation: dh-bubble 2.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes dh-bubble { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 20% { opacity: 0.9; } 100% { transform: translateY(-36px) scale(1.1); opacity: 0; } }
+.dh-data circle { fill: #d9ccff; animation: dh-data 3.2s ease-in infinite; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 4px rgba(183, 158, 255, 0.9)); }
+@keyframes dh-data { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-190px); opacity: 0; } }
+.dh-ring { fill: none; stroke: rgba(205, 188, 255, 0.9); stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: dh-ring 3.4s ease-out infinite; }
+.dh-ring-order { stroke: rgba(255, 255, 255, 0.95); stroke-width: 2; animation-duration: 2.6s; }
+.dh-ring-late { animation-delay: -1.7s; }
+.dh-ring-order.dh-ring-late { animation-delay: -1.3s; }
+@keyframes dh-ring { 0% { transform: scale(0.5); opacity: 0.9; } 100% { transform: scale(1.7); opacity: 0; } }
+
+/* chamada final: mesma cena animada, com as máscaras e a imagem da cena do Dinn */
+.cta-scene .dh-fx-water { -webkit-mask-image: url(/cta/mask-agua.webp); mask-image: url(/cta/mask-agua.webp); }
+.cta-scene .dh-fx-fall { -webkit-mask-image: url(/cta/mask-cachoeira.webp); mask-image: url(/cta/mask-cachoeira.webp); }
+.cta-scene .dh-fx-holo { -webkit-mask-image: url(/cta/mask-holograma.webp); mask-image: url(/cta/mask-holograma.webp); }
+.cta-scene .dh-fx-bars { -webkit-mask-image: url(/cta/mask-barras.webp); mask-image: url(/cta/mask-barras.webp); }
+.cta-scene .dh-fx-sky { -webkit-mask-image: url(/cta/mask-ceu.webp); mask-image: url(/cta/mask-ceu.webp); }
+.cta-scene .dh-holo-glow,
+.cta-scene .dh-fx-bars i { background-image: url(/cta/cena-dinn.webp); }
+/* a base da imagem escurece até o fundo da página, para o texto ler */
+.cta-fade {
+  position: absolute; inset: -1px;
+  background: linear-gradient(to bottom,
+    rgba(20, 48, 28, 0) 0%,
+    rgba(20, 48, 28, 0) 50%,
+    rgba(20, 48, 28, 0.35) 66%,
+    rgba(19, 38, 26, 0.78) 82%,
+    rgba(22, 25, 29, 0.97) 94%,
+    var(--ink-deep) 100%);
+}
+
+/* fora da tela, tudo dorme */
+.dh-scene[data-live='false'] * { animation-play-state: paused !important; }
+.dh-flowfield[data-live='false'] * { animation-play-state: paused !important; }
+
+/* ── Correntes do fundo escuro ──────────────────────────────────────────
+   O que a cena mostra (esteira e rio) segue para fora dela: nasce no verde
+   da base da imagem e atravessa a área escura até as logos. Fica sobre a
+   cena e sob o texto. Linhas com espessura fixa na tela (non-scaling). */
+.dh-flowfield {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  top: calc(var(--scene-h) * 0.6);
+  pointer-events: none;
+  /* some nas pontas de cima e de baixo, e recua no centro, onde está o texto:
+     as correntes enquadram o conteúdo em vez de passar por trás das letras */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0, #000 26%, #000 82%, transparent 100%),
+    radial-gradient(ellipse 42% 54% at 50% 44%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 60%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0, #000 26%, #000 82%, transparent 100%),
+    radial-gradient(ellipse 42% 54% at 50% 44%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 60%, #000 100%);
+  mask-composite: intersect;
+  /* textura, não elemento: baixa no todo, para o texto mandar */
+  opacity: 0.5;
+}
+.dh-flowfield svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.dh-flowfield path { fill: none; vector-effect: non-scaling-stroke; stroke-linecap: butt; stroke-linejoin: round; }
+
+/* esteira: superfície, duas bordas de neon, caixinhas e pulsos de luz */
+.ff-belt-surface { stroke: rgba(86, 37, 242, 0.12); stroke-width: 18px; }
+.ff-belt-edge { stroke: rgba(150, 120, 240, 0.4); stroke-width: 1.2px; }
+.ff-belt-boxes { stroke: rgba(190, 170, 255, 0.3); stroke-width: 5px; }
+.ff-belt-pulse { stroke: rgba(210, 195, 255, 0.7); stroke-width: 1.8px; stroke-linecap: round; }
+
+/* rio: leito largo e fios claros descendo no sentido da correnteza */
+.ff-river-bed { stroke: rgba(70, 170, 255, 0.07); stroke-width: 18px; }
+.ff-river-streak { stroke: rgba(100, 180, 240, 0.4); stroke-width: 1.6px; stroke-linecap: round; }
+.ff-river-glint { stroke: rgba(190, 225, 250, 0.55); stroke-width: 1px; stroke-linecap: round; }
+
+/* cada traço anda exatamente um período por ciclo: o loop fecha sem salto */
+.ff-dash { animation: ff-run var(--d, 6s) linear infinite; }
+@keyframes ff-run { to { stroke-dashoffset: calc(var(--p) * -1px); } }
+
 @media (max-width: 640px) {
-  .dh { padding-top: 96px; min-height: 0; }
-  .wrap.dh-inner { padding-top: 24px; }
+  /* no celular a cena é mais larga que a tela e fica centrada no Dinn */
+  .dh { --scene-w: 170vw; padding-top: calc(var(--scene-h) * 0.6); }
+  .wrap.dh-inner { padding-top: 8px; }
+  .dh-pill { font-size: 11.5px; text-align: center; line-height: 1.35; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .dh-inner > *, .dh-pill i { animation: none; }
+  .dh-fx, .dh-fx-svg { display: none; }
+  .ff-dash { animation: none; }
 }
