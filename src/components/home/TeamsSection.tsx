@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
@@ -12,6 +12,10 @@ import {
 // aba e vê a história inteira daquele time — a cena, o que o Dinn cruza, o
 // que o time faz — ao lado da tela correspondente do produto, viva.
 // Links "#time-<id>" (vindos da conversa do topo) abrem a aba certa.
+// Enquanto ninguém mexe, as abas avançam sozinhas (como no Clay): a barra sob a
+// aba ativa enche e, quando termina, passa para a próxima. Qualquer escolha do
+// visitante (clique, setas, link #time-) encerra o automático de vez; mouse em
+// cima, seção fora da tela ou aba do navegador em segundo plano só pausam.
 
 type Item = {
   id: string;
@@ -26,15 +30,40 @@ type Item = {
 };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+// tempo de cada aba no automático; o conteúdo é denso, então dá tempo de ler
+const AUTO_MS = 8000;
 
 export function TeamsSection() {
   const { t } = useTranslation();
   const items = (t('teams.items') as Item[]) ?? [];
   const visuals = (t('teams.visuals') as Record<string, any>) ?? {};
   const [active, setActive] = useState(0);
+  // false assim que o visitante escolhe uma aba: dali em diante é ele quem manda
+  const [auto, setAuto] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: '-20% 0px' });
+  const onScreen = useInView(sectionRef, { amount: 0.3 });
+
+  // Quem pediu menos movimento no sistema não tem troca automática.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setAuto(false);
+  }, []);
+
+  // Aba do navegador em segundo plano: o relógio não corre.
+  useEffect(() => {
+    const sync = () => setPageVisible(document.visibilityState === 'visible');
+    sync();
+    document.addEventListener('visibilitychange', sync);
+    return () => document.removeEventListener('visibilitychange', sync);
+  }, []);
+
+  const select = (i: number) => {
+    setAuto(false);
+    setActive(i);
+  };
 
   // Abre a aba pedida pela URL (#time-sac) e leva o visitante até ela.
   useEffect(() => {
@@ -52,6 +81,7 @@ export function TeamsSection() {
       if (!m) return false;
       const idx = items.findIndex((it) => it.id === m[1]);
       if (idx < 0) return false;
+      setAuto(false);
       setActive(idx);
       scrollToPanel('smooth');
       return true;
@@ -80,7 +110,16 @@ export function TeamsSection() {
   const item = items[active];
   if (!item) return null;
 
-  const ask = () => window.dispatchEvent(new CustomEvent('dinn:ask', { detail: item.question }));
+  // a barra existe enquanto o automático vale; roda só com a seção à vista,
+  // sem o mouse em cima e com a aba do navegador aberta
+  const running = auto && items.length > 1;
+  const paused = hovered || !onScreen || !pageVisible;
+
+  const ask = () => {
+    // abrir a conversa é escolha do visitante: a aba não pode trocar embaixo dele
+    setAuto(false);
+    window.dispatchEvent(new CustomEvent('dinn:ask', { detail: item.question }));
+  };
   const tag = t('ask.simulationTag') as string;
 
   const renderVisual = () => {
@@ -100,7 +139,15 @@ export function TeamsSection() {
 
   return (
     <MotionConfig reducedMotion="user">
-    <section id="times" ref={sectionRef} className="teams">
+    <section
+      id="times"
+      ref={sectionRef}
+      className="teams"
+      data-paused={paused ? 'true' : undefined}
+      style={{ '--teams-auto-ms': `${AUTO_MS}ms` } as CSSProperties}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
+    >
       <div className="wrap">
         <motion.div
           className="teams-head"
@@ -125,7 +172,7 @@ export function TeamsSection() {
             e.preventDefault();
             const last = items.length - 1;
             const next = e.key === 'Home' ? 0 : e.key === 'End' ? last : e.key === 'ArrowRight' ? (active + 1) % items.length : (active - 1 + items.length) % items.length;
-            setActive(next);
+            select(next);
             history.replaceState(null, '', `#time-${items[next].id}`);
             tabsRef.current?.querySelector<HTMLElement>(`[data-idx="${next}"]`)?.focus();
           }}
@@ -144,12 +191,22 @@ export function TeamsSection() {
                 aria-controls="teams-panel"
                 className={on ? 'is-active' : ''}
                 onClick={() => {
-                  setActive(i);
+                  select(i);
                   history.replaceState(null, '', `#time-${it.id}`);
                 }}
               >
                 {on && <motion.span layoutId="teams-tab-bg" className="teams-tab-bg" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}
                 <span>{it.tab}</span>
+                {on && running && (
+                  // key = aba: a barra recomeça do zero a cada troca; quando
+                  // completa, é ela que avança (barra e relógio são a mesma coisa)
+                  <span
+                    key={it.id}
+                    className="teams-tab-progress"
+                    aria-hidden="true"
+                    onAnimationEnd={() => setActive((a) => (a + 1) % items.length)}
+                  />
+                )}
               </button>
             );
           })}
