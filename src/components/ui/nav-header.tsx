@@ -23,9 +23,10 @@ interface SlideTabsProps {
 // Itens do menu principal, compartilhados entre desktop e celular. As âncoras
 // levam a barra antes do # para funcionar também fora da home (ex.: no blog).
 export const NAV_LINKS: { key: string; href: string }[] = [
-  { key: "nav.howItWorks", href: "/#como-funciona" },
-  { key: "nav.solutions", href: "/#solucoes" },
-  { key: "nav.conecta", href: "/#conecta" },
+  { key: "nav.teams", href: "/#times" },
+  { key: "nav.ask", href: "/#insights" },
+  { key: "nav.inside", href: "/#por-dentro" },
+  { key: "nav.delivery", href: "/#entrega" },
   { key: "nav.customers", href: "/#clientes" },
   { key: "nav.blog", href: "/blog" },
 ];

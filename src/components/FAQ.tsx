@@ -11,15 +11,18 @@ export default function FAQ() {
   const items = (t('faq.items') as Item[]) ?? [];
 
   return (
-    <section style={{ padding: '96px 0', background: '#ffffff' }}>
+    <section id="faq" style={{ padding: '96px 0', background: '#ffffff', scrollMarginTop: '40px' }}>
       <div className="wrap">
         <h2 style={{
-          fontSize: 'clamp(28px, 4vw, 44px)',
-          fontWeight: 700,
-          color: '#1F2328',
+          fontSize: 'clamp(26px, 3.4vw, 40px)',
+          fontWeight: 600,
+          color: '#2A2F36',
           textAlign: 'center',
-          marginBottom: '56px',
-          letterSpacing: '-0.02em',
+          maxWidth: '760px',
+          margin: '0 auto 48px',
+          lineHeight: 1.18,
+          letterSpacing: '-0.012em',
+          textWrap: 'balance',
         }}>
           {t('faq.title')}
         </h2>

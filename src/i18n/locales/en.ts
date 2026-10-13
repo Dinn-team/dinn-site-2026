@@ -1,9 +1,10 @@
 export const enUS = {
   nav: {
     home: "Home",
-    howItWorks: "How it works",
-    solutions: "Solutions",
-    conecta: "Dinn Conecta",
+    ask: "Dinn Insights",
+    teams: "For every team",
+    inside: "Inside",
+    delivery: "Where it delivers",
     customers: "Customers",
     blog: "Blog",
     cta: "Request a demo",
@@ -13,228 +14,626 @@ export const enUS = {
     langShort: "EN"
   },
   hero: {
-    pill: "The intelligence layer for the pharmacy channel",
-    title: "Turn pharmacy-market signals into *commercial action*",
-    description: "If you sell through pharmacies, you don't need another dashboard. You need to know where to act, with what confidence and with what impact.",
+    pill: "Artificial intelligence for the pharmaceutical industry",
+    title: "Dinn, the *AI for the pharma market*: from signal to commercial execution",
+    description: "The AI that reads pharmacy stock, turnover and price every day (D-1) and shows where there is a stock-out and where to act first.",
     cta: "Request a demo",
-    secondary: "See how it works",
-    card: {
-      label: "Illustrative example",
-      steps: [
-        { tag: "Signal", title: "Product A · 32% of stores out of stock", meta: "SP · 96 of 300 stores · D-1" },
-        { tag: "Where", title: "Chain A concentrates the signal", meta: "60% stock-out over 30 days" },
-        { tag: "Action", title: "6 stores to check first", meta: "With a question and expected follow-up" }
-      ],
-      stores: [
-        { name: "Store 01 · São Paulo", level: "Critical", value: "86.7%" },
-        { name: "Store 02 · Campinas", level: "High", value: "60%" },
-        { name: "Store 03 · Santos", level: "Moderate", value: "33.3%" }
-      ],
-      footnote: "Fictitious data."
+    secondary: "See use cases by team"
+  },
+  insights: {
+    eyebrow: "In every layer",
+    title: "Dinn Insights: what do you want to know about *stock-outs and sell-out*?",
+    intro: "The conversation with Dinn's AI. Ask in plain English and get the number, the scope, the date and how it was calculated.",
+    layers: [
+      { title: "On the platform", desc: "Opens next to the Dinn Manager screens, already scoped to what you are looking at." },
+      { title: "In your AI", desc: "ChatGPT, Claude and Copilot query Dinn through MCP, with read-only access." },
+      { title: "In your BI and your agents", desc: "The same data arrives standardized through Dinn Conecta." }
+    ]
+  },
+  ask: {
+    placeholder: "Ask about stock, stock-outs, sell-through, price…",
+    followPlaceholder: "Ask a follow-up question…",
+    send: "Send question",
+    reset: "New conversation",
+    disclaimer: "Simulation: the reasoning is Dinn's, the numbers are examples. No real data is shown.",
+    starters: [
+      { team: "Customer service", chip: "Where to find the product", q: "Where can consumers find my product near Campinas?" },
+      { team: "Field", chip: "Which stores to check", q: "Which stores in my São Paulo territory need a visit first?" },
+      { team: "Distribution", chip: "Is the gap at the DC?", q: "Is the gap at the distributor or in the pharmacies in Goiânia?" },
+      { team: "Launches", chip: "Has my launch arrived?", q: "Has my launch reached pharmacies in Recife?" },
+      { team: "Inventory", chip: "Stalled stock", q: "Where is stock stalled near stores that are out?" },
+      { team: "Competition", chip: "Who gained share", q: "Who gained share in Minas Gerais?" }
+    ],
+    contextLabel: "Scope understood",
+    defaultPlace: "São Paulo",
+    defaultProduct: "your product",
+    thinking: "Thinking…",
+    simulationTag: "Simulation · example values",
+    methodTitle: "How Dinn got here",
+    linksTitle: "Keep reading",
+    followTitle: "Ask next",
+    demoCta: "See it with your products",
+    actionWhy: "Why:",
+    actionHow: "How:",
+    scenarios: {
+      sac: {
+        keywords: ["where can", "where to find", "find", "consumer", "patient", "customer service", "call center", "locat", "near", "closest", "nearest", "address", "buy", "onde encontr", "onde tem", "onde acha", "onde compr", "consumidor", "paciente", "sac", "atendimento", "localiz", "perto", "próxima", "proxima", "encontrar", "endereço"],
+        steps: ["Locating the address…", "Searching pharmacies for the product…", "Calculating days of coverage…"],
+        answer: "Near {lugar}, **3 of the 5 closest pharmacies** likely have {produto} in stock. The nearest one with confirmed stock is 0.8 km away.\n\nThe same search reveals a pattern: demand keeps coming from a neighborhood where two stores have been out for a week. That's a cue for the city's replenishment and for medical reps in the area.",
+        widget: {
+          type: "table",
+          title: "Closest pharmacies · {lugar}",
+          columns: [
+            { label: "Pharmacy" },
+            { label: "Distance", kind: "num" },
+            { label: "Availability", kind: "avail" },
+            { label: "Stock", kind: "num" },
+            { label: "Sell-through", kind: "num" },
+            { label: "Price", kind: "num" }
+          ],
+          rows: [
+            ["Pharmacy 1 · Chain A", "0.8 km", "High", "12–15 units", "1.4 units/day", "R$ 89.90"],
+            ["Pharmacy 2 · Chain B", "1.2 km", "Medium", "4–6 units", "0.9 units/day", "R$ 92.50"],
+            ["Pharmacy 3 · Chain A", "1.9 km", "High", "9–11 units", "1.1 units/day", "R$ 89.90"],
+            ["Pharmacy 4 · Chain C", "2.3 km", "Out of stock", "0 units", "—", "—"],
+            ["Pharmacy 5 · Chain C", "2.6 km", "Out of stock", "0 units", "—", "—"]
+          ]
+        },
+        method: [
+          "Search radius from the given address, nearest stores first.",
+          "Stock observed at the source (D-1) or estimated from comparable stores, always with a confidence level.",
+          "Days of coverage = stock ÷ the store's average daily sell-through.",
+          "For consumers, the pick follows availability and distance, not the lowest price."
+        ],
+        links: [
+          { label: "The full customer service case", href: "#time-sac" },
+          { label: "How Dinn knows the stock", href: "#por-dentro" }
+        ],
+        followups: ["What does this change for medical reps?", "Which stores in this region need restocking?"]
+      },
+      campo: {
+        keywords: ["visit", "field", "route", "territory", "portfolio", "sales rep", "trade", "kam", "check first", "prioriti", "priority", "schedule", "visita", "visitar", "campo", "rota", "carteira", "promotor", "consultor", "gdn", "territ", "verificar", "verifico", "priorizar", "prioridade", "agenda"],
+        steps: ["Reading your territory…", "Analyzing availability…", "Building the ranking…", "Listing the stores…"],
+        answer: "Of the stores in your {lugar} territory, **6 account for 70% of the stock-out signal** for {produto} last week. The list below shows what to check at each one and what return to expect.\n\nDinn prepares the list; your team sets the schedule.",
+        widget: {
+          type: "table",
+          title: "Check queue · this week",
+          columns: [
+            { label: "Store" },
+            { label: "Level", kind: "level" },
+            { label: "Stock-out", kind: "num" },
+            { label: "What to check" }
+          ],
+          rows: [
+            ["Store 01 · Chain A", "Critical", "86.7%", "Any pending order or delivery?"],
+            ["Store 02 · Chain A", "High", "60%", "In the store but off the shelf?"],
+            ["Store 03 · Chain B", "High", "53%", "Has the store reordered since the last stock-out?"],
+            ["Store 04 · Chain C", "Moderate", "33%", "Is the gap back?"]
+          ]
+        },
+        method: [
+          "Store stock-out = days without stock ÷ days observed in the last 30 days.",
+          "Level: Critical ≥ 75% · High ≥ 50% · Moderate ≥ 25% · Low < 25%.",
+          "The ranking weights the level by the store's sell-through when it has stock.",
+          "Stores that never sold the product are left out, so they don't inflate the stock-out."
+        ],
+        links: [
+          { label: "The full field case", href: "#time-campo" },
+          { label: "Where each signal comes from", href: "#por-dentro" }
+        ],
+        followups: ["Are stock-outs getting worse or better over the last 30 days?", "Is the problem at the distributor or in the stores?"]
+      },
+      medico: {
+        keywords: ["doctor", "physician", "medical rep", "prescri", "office", "clinic", "brick", "detailing", "médic", "medic", "propagand", "receita", "consultório", "consultorio", "representante", "clínica", "clinica"],
+        steps: ["Locating the doctor's office…", "Searching pharmacies for the product…", "Comparing stock-outs across areas…"],
+        answer: "Around the office in {lugar}, **7 of 12 pharmacies** have {produto} today. The 5 without stock belong to the same chain and sit on the same side of the avenue.\n\nIn practice: the prescription will likely be filled, but it's worth alerting trade about that chain before the patient comes back empty-handed.",
+        widget: {
+          type: "kpis",
+          title: "Around the office · 1 km radius",
+          items: [
+            { label: "Pharmacies in radius", value: "12" },
+            { label: "In stock", value: "7", tone: "good" },
+            { label: "Out of stock", value: "5", tone: "bad" },
+            { label: "Gap concentrated in", value: "Chain C" }
+          ]
+        },
+        method: [
+          "Radius around the office address or the chosen brick.",
+          "D-1 stock per pharmacy, observed or estimated.",
+          "Concentration = out-of-stock stores in the same chain ÷ all out-of-stock stores.",
+          "Nothing is written to the CRM: the reading is for preparing the visit."
+        ],
+        links: [
+          { label: "The medical rep case", href: "#time-medico" }
+        ],
+        followups: ["Where can consumers find the product near Campinas?", "Which stores do we check first?"]
+      },
+      distribuicao: {
+        keywords: ["dc", "dcs", "distribution center", "distributor", "distribution", "wholesal", "supply", "replenish", "restock", "logistic", "delay", "gap", "order", "cd", "cds", "distribuidor", "distribuição", "distribuicao", "abastec", "reposição", "reposicao", "repor", "logística", "logistica", "atraso", "furo", "pedido"],
+        steps: ["Reading DC stock…", "Calculating days of coverage…", "Cross-checking stock-outs at the region's pharmacies…", "Comparing with local sell-through…"],
+        answer: "In {lugar}, the gap doesn't look like it's at the DC: **the distributor has about 24 days of stock**, yet 38% of the pharmacies it supplies are out of {produto}, and the region keeps selling wherever there's stock.\n\nThe pattern points to a **distribution or replenishment breakdown**, not a shortage at the source. Before concluding, confirm pending orders at the affected chains.",
+        widget: {
+          type: "table",
+          title: "DC × pharmacies by region",
+          columns: [
+            { label: "Region" },
+            { label: "DC stock", kind: "num" },
+            { label: "Pharmacy stock-out", kind: "num" },
+            { label: "Demand" },
+            { label: "Reading", kind: "verdict" }
+          ],
+          rows: [
+            ["{lugar}", "High · 24 days", "38%", "High", "Distribution breakdown"],
+            ["Region B", "Low · 3 days", "41%", "High", "Supply constraint"],
+            ["Region C", "Falling · 9 days", "12%", "High", "Stock-out risk"],
+            ["Region D", "High · 60 days", "4%", "Low", "Possible excess"]
+          ]
+        },
+        method: [
+          "DC coverage = DC stock ÷ estimated daily sales in the region.",
+          "Pharmacy stock-out = stores without stock ÷ stores that sell the product.",
+          "Demand = sell-through at stores with stock over the same period.",
+          "DC stock doesn't prove pharmacy stock: the reading cross-checks both ends."
+        ],
+        links: [
+          { label: "The full distribution case", href: "#time-distribuicao" }
+        ],
+        followups: ["Where is stock stalled near stores that are out?", "Are stock-outs getting worse over the last 30 days?"]
+      },
+      lancamento: {
+        keywords: ["launch", "new product", "reached", "arrived", "arrival", "rollout", "roll-out", "presence", "lançamento", "lancamento", "lançar", "lancar", "lançou", "novo produto", "produto novo", "chegou", "chegada", "presença", "presenca"],
+        steps: ["Locating the product…", "Reading weekly history…", "Comparing presence across channels…"],
+        answer: "Six weeks after launch, {produto} already shows up in **54% of monitored pharmacies** in {lugar}. The curve picked up at large chains but stays below 20% at independents.\n\nWhere it hasn't arrived yet, the next question is whether the DC has received it: that separates a sell-in problem from a replenishment problem.",
+        widget: {
+          type: "trend",
+          title: "Launch presence · % of pharmacies with the product",
+          unit: "%",
+          labels: ["W1", "W2", "W3", "W4", "W5", "W6"],
+          series: [
+            { name: "Large chains", points: [5, 14, 27, 41, 55, 68] },
+            { name: "Total", points: [3, 10, 19, 30, 42, 54], dashed: true },
+            { name: "Independents", points: [0, 2, 4, 8, 12, 17] }
+          ]
+        },
+        method: [
+          "Presence = pharmacies with the product in stock ÷ monitored pharmacies in scope.",
+          "Week 1 starts on the launch date set by your team.",
+          "The channel split follows what each source can identify."
+        ],
+        links: [
+          { label: "The full launch case", href: "#time-lancamento" }
+        ],
+        followups: ["Is the gap at the distributor or in the pharmacies?", "Who gained share in the region?"]
+      },
+      parado: {
+        keywords: ["stalled", "stuck", "idle", "no movement", "not moving", "slow-moving", "slow moving", "dead stock", "excess", "overstock", "surplus", "realloc", "parado", "parada", "sem movimento", "sem giro", "congelado", "encalhado", "excesso", "sobra", "negativ", "remanej"],
+        steps: ["Analyzing availability…", "Counting days without movement…", "Looking for nearby stores that are out…"],
+        answer: "In {lugar}, **14 stores have had {produto} sitting idle for over 30 days**, and 5 of them are less than 3 km from stores that are out of the same product.\n\nThat's the pair that matters: stalled stock on one side, a stock-out on the other. The conversation with the chain can start with reallocation, before a new order.",
+        widget: {
+          type: "bars",
+          title: "Stores by time without movement",
+          unit: "stores",
+          rows: [
+            { label: "Up to 7 days", value: 38, tone: "leve" },
+            { label: "8 to 30 days", value: 21, tone: "moderado" },
+            { label: "31 to 60 days", value: 9, tone: "alto" },
+            { label: "Over 60 days", value: 5, tone: "critico" }
+          ]
+        },
+        method: [
+          "Days stalled = consecutive days with the same balance, with no stock decrease.",
+          "Observed movement is not the same as a confirmed sale.",
+          "Stalled × stock-out pairs: same presentation, up to 3 km apart.",
+          "The data doesn't prove a loss; it shows where to look first."
+        ],
+        links: [
+          { label: "The full stalled-stock case", href: "#time-parado" }
+        ],
+        followups: ["Is the gap at the distributor or in the pharmacies?", "Which stores do we check first?"]
+      },
+      concorrencia: {
+        keywords: ["compet", "share", "rival", "brand", "gained", "losing", "lost ", "price", "pricing", "concorr", "participação", "participacao", "competi", "marca", "espaço", "espaco", "ganhou", "perdendo", "perde ", "preço", "preco"],
+        steps: ["Reading the market by state…", "Comparing with the previous window…", "Building the ranking…"],
+        answer: "In {lugar}, your company **grew 6% in the same stores**, but the comparable market grew 11%. Share fell because other products grew faster, not because your sales dropped.\n\nThe opening is in 23 stores where only the competitor shows stock. That's where the conversation with the chains can start.",
+        widget: {
+          type: "trend",
+          title: "Estimated sales · your company × competitors",
+          unit: "",
+          labels: ["W1", "W2", "W3", "W4", "W5", "W6"],
+          series: [
+            { name: "Your company", points: [100, 101, 103, 104, 105, 106] },
+            { name: "Competitors", points: [100, 103, 105, 107, 109, 111], tone: "sky" }
+          ]
+        },
+        method: [
+          "Sales estimated from stock movement, not audited sell-out.",
+          "Only comparable stores, present in both windows, are included.",
+          "Share = your volume ÷ category volume in the same panel.",
+          "Competitor data is shown aggregated."
+        ],
+        links: [
+          { label: "The full competition case", href: "#time-concorrencia" }
+        ],
+        followups: ["Where is the category growing fastest?", "Has my launch reached pharmacies yet?"]
+      },
+      demanda: {
+        keywords: ["opportunit", "grow", "growth", "expan", "market", "demand", "strateg", "invest", "potential", "plan", "category", "oportunidad", "crescer", "cresce", "expans", "mercado", "demanda", "estratégia", "estrategia", "investir", "começar", "potencial", "planej"],
+        steps: ["Reading the market by state…", "Opening the state detail…", "Reading the recommendations…"],
+        answer: "The category is growing fastest in {lugar}: **+9% estimated volume** in the same stores vs. the previous window. Two large chains sell the category well and barely carry {produto}.\n\nBelow are three fronts to start with. They're hypotheses for your team to validate, not orders.",
+        widget: {
+          type: "actions",
+          title: "Actions for this scope",
+          items: [
+            { priority: "High", title: "Open a range conversation with Chain A", why: "The chain accounts for 18% of the category in the region and carries the product in 6% of its stores.", how: "Bring the list of stores that sell the category best to the meeting." },
+            { priority: "Medium", title: "Step up replenishment in cities with persistent stock-outs", why: "Three cities make up 40% of the stores out of stock for more than 15 days.", how: "Check pending orders with the region's distributor." },
+            { priority: "Low", title: "Track the new competitor's entry", why: "It showed up in 31 stores over the last 4 weeks.", how: "Review the same scope in 30 days." }
+          ]
+        },
+        method: [
+          "Growth = estimated category volume in the same stores, recent vs. previous window.",
+          "Expansion: large chains in the category where your company has low presence.",
+          "Each action comes with the number behind it and the first step."
+        ],
+        links: [
+          { label: "The full demand case", href: "#time-demanda" }
+        ],
+        followups: ["Who gained share in the region?", "Where is stock stalled?"]
+      },
+      tendencia: {
+        keywords: ["stock-out", "stockout", "out of stock", "out-of-stock", "missing", "shortage", "worse", "better", "worsening", "improving", "trend", "evolution", "last 30", "past 30", "ruptura", "falta", "faltando", "sem estoque", "piorando", "melhorando", "piorou", "evolução", "evolucao", "tendência", "tendencia", "últimos", "ultimos"],
+        steps: ["Locating the product…", "Calculating the stock-out trend…", "Comparing stock-outs across chains…"],
+        answer: "Stock-outs of {produto} in {lugar} **rose from 24% to 32% in 30 days**, driven by one chain. Without it, the scope would be stable, around 25%.\n\nA signal like this opens an investigation, not a conclusion: next, see which stores in that chain explain the rise.",
+        widget: {
+          type: "trend",
+          title: "Stock-out trend · last 30 days",
+          unit: "%",
+          labels: ["D-30", "D-25", "D-20", "D-15", "D-10", "D-5", "D-1"],
+          series: [
+            { name: "Chain A", points: [30, 34, 38, 45, 52, 57, 60], tone: "alert" },
+            { name: "Total scope", points: [24, 25, 24, 27, 29, 31, 32], dashed: true },
+            { name: "Other chains", points: [22, 23, 22, 24, 24, 25, 25] }
+          ]
+        },
+        method: [
+          "Stock-out = pharmacies without stock ÷ monitored pharmacies that sell the product.",
+          "Daily base (D-1); each point says whether it's observed or estimated.",
+          "The cause of a stock-out needs investigating: Dinn doesn't assume it."
+        ],
+        links: [
+          { label: "How the field team uses this signal", href: "#time-campo" },
+          { label: "Inside Dinn", href: "#por-dentro" }
+        ],
+        followups: ["Which stores do we check first?", "Is the gap at the distributor or in the pharmacies?"]
+      },
+      ia: {
+        keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integrat", "connect", "system", "internal data", "crm", "erp", "data lake", "llm", "integra", "conecta", "sistema", "dados internos"],
+        steps: ["Understanding the question…"],
+        answer: "Yes. Dinn goes where your team already works: in the platform, in a file, in your BI via API, or straight into ChatGPT, Claude and Copilot via MCP, with **read-only** access.\n\nWith **Dinn Conecta**, market data, internal data and pharmacy data arrive standardized in your BI and your agents. Your data and governance stay with you.",
+        method: [],
+        links: [
+          { label: "Where Dinn delivers", href: "#entrega" },
+          { label: "FAQ", href: "#faq" }
+        ],
+        followups: ["Which stores do we check first?", "How do we start a trial?"]
+      },
+      sobre: {
+        keywords: ["what is", "who is", "who are", "how does it work", "how it works", "what do you", "what does", "o que é", "o que e", "quem é", "quem e", "como funciona", "o que voc", "o que faz", "dinn"],
+        steps: ["Understanding the question…"],
+        answer: "Dinn is the intelligence layer for the pharma channel. Every day it reads stock, sell-through and price at pharmacies, links each store to the DC that supplies it, and turns all that into named signals: persistent stock-out, stalled stock, falling sell-through.\n\nEvery team uses the same brain in its own way. Find yours below, or ask as if it were about your own products.",
+        method: [],
+        links: [
+          { label: "One use for each team", href: "#times" },
+          { label: "Inside Dinn", href: "#por-dentro" }
+        ],
+        followups: ["Where can consumers find my product?", "Is the gap at the distributor or in the pharmacies?"]
+      },
+      demo: {
+        keywords: ["how much", "pricing", "cost", "hire", "demo", "trial", "test", "get started", "start", "implement", "onboard", "timeline", "proposal", "quanto custa", "valor do dinn", "contratar", "demonstra", "testar", "teste", "começar a usar", "implanta", "prazo", "proposta"],
+        steps: ["Understanding the question…"],
+        answer: "We start with **a single goal**: for example, cutting stock-outs of one product in one region. You get 30 days under a simple agreement, with someone from our team alongside.\n\nImplementation takes up to 30 days once the agreed prerequisites are in place, and it can start with external sources only.",
+        method: [],
+        links: [
+          { label: "Request a demo", href: "demo" },
+          { label: "FAQ", href: "#faq" }
+        ],
+        followups: ["What is Dinn?", "Does it work in ChatGPT or Copilot?"]
+      },
+      fallback: {
+        steps: ["Understanding the question…"],
+        answer: "I can answer that better with your data. Here on the site, Dinn simulates the questions each team asks most about stock, stock-outs, sell-through, price, distribution and competition. Try one of these:",
+        method: [],
+        links: [
+          { label: "One use for each team", href: "#times" }
+        ],
+        followups: ["Where can consumers find my product?", "Which stores do we check first?", "Is the gap at the distributor or in the pharmacies?", "Who gained share in my region?"]
+      }
     }
   },
   logos: {
     title: "Pharmaceutical companies already using Dinn"
   },
-  antesDepois: {
-    eyebrow: "What changes",
-    title: "Dinn is not just *another dashboard*.",
-    description: "It is the intelligence layer that connects what happens in pharmacies to your commercial team's decisions.",
-    beforeLabel: "Before",
-    afterLabel: "With Dinn",
+  teams: {
+    eyebrow: "Pick your team and watch Dinn at work",
+    title: "Pharma commercial execution for *every team*",
+    askCta: "Ask Dinn this",
+    seesLabel: "Dinn cross-checks",
+    doesLabel: "The team does",
+    note: "Illustrative examples. Dinn prepares the analysis; the team decides.",
     items: [
-      { bad: "Stock-out debates without evidence", good: "Evidence by store, chain, city and SKU, with a cut-off date" },
-      { bad: "A dashboard to interpret", good: "A list of what to check first" },
-      { bad: "Data with unclear origin", good: "Observed or estimated, with source and confidence" },
-      { bad: "Databases and spreadsheets reconciled by hand", good: "One identified base, in the platform, a file, the API or your AI" }
-    ]
-  },
-  comoFunciona: {
-    eyebrow: "How it works",
-    title: "From a channel signal to your team's *next action*",
-    intro: "Dinn tracks your products' availability in pharmacies, separates what changed from noise and organizes the reading by product, chain, region and store. Always with explicit source, date and confidence.",
-    stages: [
       {
-        name: "Observe",
-        title: "Where there is stock and where product is missing",
-        description: "Agents query pharmacies' digital channels and record what each source reports, with location and time. Where there is no direct answer, Dinn estimates from comparable stores and history. Daily base (D-1) and on-demand checks where the source allows.",
-        products: "Dinn Stock"
+        id: "sac",
+        tab: "Customer service",
+        kicker: "Customer service",
+        title: "“Where can I find this medicine near home?”",
+        story: "The agent sees the closest pharmacies with the product, how many units they hold and how fast the store sells.",
+        sees: ["Stock by store", "Distance", "Sell-through", "Price"],
+        does: [
+          "Points to the pharmacy most likely to have the product",
+          "Shows trade where demand can't find product"
+        ],
+        question: "Where can consumers find my product near Campinas?",
+        visual: "locator"
       },
       {
-        name: "Understand",
-        title: "Not every variation deserves attention",
-        description: "Dinn turns the reading into named signals: persistent stock-out, stock without movement, change in sell-through, concentration in one chain. Evolution over time separates a one-off signal from a recurring problem.",
-        products: "Dinn Stock · Dinn Pulse"
+        id: "campo",
+        tab: "Field & trade",
+        kicker: "Field force & trade",
+        title: "Forty stores in the territory. *Time for eight.*",
+        story: "Instead of a dashboard, a queue: the stores with the most signal and what to check at each one.",
+        sees: ["Stock-out by store", "Persistence", "Sell-through", "Chain"],
+        does: [
+          "Starts the week with the stores that weigh most",
+          "Brings store-level evidence to the chain, with a date",
+          "Reviews the same scope after acting"
+        ],
+        question: "Which stores in my São Paulo territory need a visit first?",
+        visual: "queue"
       },
       {
-        name: "Prioritize",
-        title: "One base, three levels of decision",
-        description: "Strategic: where to focus attention. Tactical: what to discuss with each chain. Operational: which stores to check first. The output is a concrete queue, with the signal, the question and the expected follow-up.",
-        products: "Dinn Manager · Dinn Locator"
+        id: "medico",
+        tab: "Medical reps",
+        kicker: "Medical promotion",
+        title: "Will the prescription find the product *at the pharmacy next door?*",
+        story: "Before the visit, the team sees whether the pharmacies around the office carry the product. If they don't, trade gets a heads-up.",
+        sees: ["Brick pharmacies", "D-1 stock", "Chain with the gap"],
+        does: [
+          "Preps the visit knowing what the patient will find",
+          "Alerts trade when the area around the office is out of stock"
+        ],
+        question: "Do pharmacies near the doctor's office in Belo Horizonte have my product?",
+        visual: "prescriber"
       },
       {
-        name: "Bring it into the routine",
-        title: "The signal reaches where the work happens",
-        description: "Use it in the platform, export it for the chain meeting, feed your BI through the API or ask directly in your AI. Dinn prepares the analysis; your team decides what to do with each store.",
-        products: "Platform · File · API · MCP"
+        id: "distribuicao",
+        tab: "Distribution",
+        kicker: "Distribution & supply",
+        title: "Is the gap at the DC, *the pharmacy or the order?*",
+        story: "Dinn links the distributor's stock to the pharmacies it supplies and shows which side the problem is on.",
+        sees: ["DC stock", "Days of coverage", "Store stock-outs", "Regional sell-through"],
+        does: [
+          "Separates a shortage at the source from a replenishment failure",
+          "Moves the order up when coverage drops",
+          "Weighs reallocating between regions"
+        ],
+        question: "Is the gap at the distributor or in the pharmacies in Goiânia?",
+        visual: "distribution"
       },
       {
-        name: "Follow up",
-        title: "See whether the signal persisted after the action",
-        description: "Keep the same product and scope to compare the evolution without mixing bases: start the day with the deviations, arrive at the weekly meeting with a list and track what changed in the channel each month.",
-        products: "Daily, weekly and monthly routines"
+        id: "lancamento",
+        tab: "Launches",
+        kicker: "Launches",
+        title: "Week by week, *where the product has landed.*",
+        story: "The team tracks the new product's presence by chain and region and sees where it picked up or stalled.",
+        sees: ["Weekly presence", "Chain and region", "Arrival at the DC"],
+        does: [
+          "Sees where the launch hasn't arrived yet",
+          "Separates a sell-in problem from a replenishment problem"
+        ],
+        question: "Has my launch reached pharmacies in Recife?",
+        visual: "launch"
+      },
+      {
+        id: "parado",
+        tab: "Stalled stock",
+        kicker: "Inventory & sell-through",
+        title: "Stalled stock on one side. *Stock-out on the other.*",
+        story: "Dinn counts the days without movement and finds idle stores near stores that are out: that's where reallocation starts.",
+        sees: ["Days without movement", "Frozen stock", "Nearby stock-outs"],
+        does: [
+          "Finds stock that isn't moving",
+          "Proposes reallocating before a new order",
+          "Tracks 30, 60 and 90 days"
+        ],
+        question: "Where is stock stalled near stores that are out?",
+        visual: "stalled"
+      },
+      {
+        id: "concorrencia",
+        tab: "Competition",
+        kicker: "Competition & share",
+        title: "Where the competitor is *and you aren't.*",
+        story: "Compares your estimated sales with the category's, in the same stores, and shows where only the competitor has stock.",
+        sees: ["Estimated sales", "Comparable market", "Price by chain"],
+        does: [
+          "Separates a share loss from a sales loss",
+          "Lists the stores with only the competitor"
+        ],
+        question: "Who gained share in Minas Gerais?",
+        visual: "competition"
+      },
+      {
+        id: "demanda",
+        tab: "Demand & strategy",
+        kicker: "Demand, sales & strategy",
+        title: "Where to grow, *and where to start.*",
+        story: "Stock, sell-through, price and history become an opportunity map by category (such as GLP-1) and by state.",
+        sees: ["Category by state", "Share", "Candidate chains"],
+        does: [
+          "Chooses where to focus effort",
+          "Defines the chains to open talks with",
+          "Turns each signal into an action with an owner"
+        ],
+        question: "Where is my category growing fastest in Bahia?",
+        visual: "demand"
       }
     ],
     visuals: {
-      observe: {
-        observedTag: "Observed",
-        observedTitle: "Direct answer from the source",
-        observedRows: [
-          ["Product", "Product A · 2.5 mg"],
-          ["Store", "Store 01 · São Paulo"],
-          ["Origin", "Digital channel"],
-          ["Answer", "Available · 10:32"]
-        ],
-        estimatedTag: "Estimated",
-        estimatedTitle: "No direct answer",
-        estimatedRows: [
-          ["References", "Comparable stores + history"],
-          ["Availability", "8–12 units"],
-          ["Confidence", "Level B"]
-        ],
-        note: "Every record states how it was obtained: observed or estimated."
-      },
-      signals: {
-        title: "Signals in scope · SP",
-        items: [
-          { type: "Persistent stock-out", scope: "Product A · 96 of 300 stores", value: "32%" },
-          { type: "Chain concentration", scope: "Product A · Chain A · 30 days", value: "60%" },
-          { type: "Stock without movement", scope: "Store 04 · Sorocaba", value: "30 of 30 days" },
-          { type: "Sell-through drop", scope: "Product B · Chain B", value: "−18%" }
-        ],
-        note: "Fictitious data. A signal opens an investigation, not a conclusion."
-      },
-      priority: {
-        levels: [
-          { name: "Strategic", question: "Where to focus attention?" },
-          { name: "Tactical", question: "What to discuss with each chain?" },
-          { name: "Operational", question: "Which stores to check first?" }
-        ],
-        tableTitle: "Verification queue · Product A · Chain A",
-        columns: ["Store · signal", "Suggested check", "Expected follow-up"],
+      locator: {
+        app: "Find product",
+        you: "Consumer address",
         rows: [
-          ["Store 01 · 86.7%", "Is there a pending order or delivery?", "Chain status and forecast"],
-          ["Store 02 · 60%", "Is the product on the shelf?", "In-store check"],
-          ["Store 03 · 33.3%", "Has the absence come back?", "New reading of the scope"]
+          { name: "Pharmacy 1 · Chain A", dist: "0.8 km", level: "High", stock: "12–15 units" },
+          { name: "Pharmacy 2 · Chain B", dist: "1.2 km", level: "Medium", stock: "4–6 units" },
+          { name: "Pharmacy 3 · Chain A", dist: "1.9 km", level: "High", stock: "9–11 units" },
+          { name: "Pharmacy 4 · Chain C", dist: "2.3 km", level: "Out of stock", stock: "0 units" }
         ],
-        note: "Fictitious example. Your team assigns owners and deadlines."
+        insight: "Repeated searches in the area · 2 stores out for 7 days"
       },
-      deliver: {
-        input: "Prioritized signal",
-        hub: "Dinn",
-        outputs: [
-          { name: "Platform", desc: "Dinn Manager" },
-          { name: "File", desc: "Export for the meeting" },
-          { name: "API", desc: "Your BI and systems" },
-          { name: "Your AI", desc: "ChatGPT, Claude, Copilot" },
-          { name: "CRM", desc: "Context for the field" }
-        ],
-        note: "Dinn prepares the analysis. Your team decides."
+      queue: {
+        app: "This week's queue",
+        sub: "6 of 40 stores in the territory",
+        rows: [
+          { name: "Store 01 · Chain A", level: "Critical", value: "86.7%", check: "Pending order?" },
+          { name: "Store 02 · Chain A", level: "High", value: "60%", check: "Off the shelf?" },
+          { name: "Store 03 · Chain B", level: "High", value: "53%", check: "Reordered?" },
+          { name: "Store 04 · Chain C", level: "Moderate", value: "33%", check: "Gap back?" },
+          { name: "Store 05 · Chain B", level: "Low", value: "12%", check: "Monitor" }
+        ]
       },
-      follow: {
-        routines: [
-          { when: "Weekdays · 08:00", title: "Start the day with the deviations", desc: "The biggest drops since the last reading." },
-          { when: "Mondays · 09:00", title: "Arrive at the meeting with a list", desc: "Chain ranking and the ten stores with the most stock-outs." },
-          { when: "1st business day · 09:00", title: "Track what changed in the channel", desc: "90-day trend in the same scope." }
+      prescriber: {
+        app: "Around the office",
+        center: "Office",
+        withStock: "in stock",
+        without: "out of stock",
+        insight: "Gap concentrated in Chain C"
+      },
+      distribution: {
+        app: "Distribution network",
+        cd: "DC",
+        cases: [
+          { name: "Distribution breakdown", cd: 82, pdv: 38, demand: "High", read: "DC has stock, pharmacies don't. Check replenishment." },
+          { name: "Supply constraint", cd: 8, pdv: 41, demand: "High", read: "Empty DC, region still selling. The problem is upstream of the DC." },
+          { name: "Stock-out risk", cd: 30, pdv: 12, demand: "High", read: "DC coverage falling. Time to move the order up." },
+          { name: "Possible excess", cd: 90, pdv: 4, demand: "Low", read: "High stock, low sell-through. Consider reallocating." }
         ],
-        note: "Routine examples."
+        cdLabel: "DC stock",
+        pdvLabel: "Pharmacies out of stock",
+        demandLabel: "Demand",
+        formula: "Coverage = DC stock ÷ regional daily sales"
+      },
+      launch: {
+        app: "Launch presence",
+        legend: ["Large chains", "Independents"],
+        weeks: ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"],
+        regions: ["SP", "RJ", "MG", "PR", "RS", "BA", "PE", "GO", "CE", "SC", "DF", "PA"],
+        insight: "Week 6 · 54% of pharmacies"
+      },
+      stalled: {
+        app: "Stalled stock",
+        bands: [
+          { label: "Up to 7 days", value: 38 },
+          { label: "8 to 30 days", value: 21 },
+          { label: "31 to 60 days", value: 9 },
+          { label: "Over 60 days", value: 5 }
+        ],
+        from: "Store 04 · idle for 42 days",
+        to: "Store 09 · out of stock",
+        distance: "2.7 km"
+      },
+      competition: {
+        app: "Comparable market",
+        you: "Your company",
+        them: "Competitors",
+        reading: "You grew 6% in the same stores; the market grew 11%. Share fell because others grew faster.",
+        gap: "competitor-only stores"
+      },
+      demand: {
+        app: "Opportunities",
+        questions: ["Where is the category advancing?", "Where am I losing ground?", "Where should we explore expansion?"],
+        actions: [
+          { priority: "High", title: "Open range talks with Chain A" },
+          { priority: "Medium", title: "Step up replenishment in 3 cities" },
+          { priority: "Low", title: "Track the new competitor" }
+        ]
       }
     }
   },
-  naPratica: {
-    eyebrow: "In practice",
-    title: "From the signal to an *investigation list*",
-    intro: "The full path in one example, with fictitious data.",
-    steps: [
-      { question: "Which product needs attention?", answer: "Product A has the highest share of stores out of stock in SP.", data: "32% · 96 of 300 stores" },
-      { question: "Which chains should we investigate?", answer: "Chain A concentrates the signal in the same scope and period.", data: "60% over 30 days" },
-      { question: "Which stores explain the problem?", answer: "Six Chain A stores, from critical to moderate.", data: "86.7% → 23.3%" },
-      { question: "What should we check in each one?", answer: "Pending order? Product in store? Has the absence come back?", data: "Verification queue" },
-      { question: "Who owns each point?", answer: "The team assigns an owner, the agreed action and a date to review the same scope.", data: "Team decision" },
-      { question: "How do we follow up?", answer: "The weekly routine brings the updated list to the commercial meeting.", data: "Mondays · 09:00" }
-    ],
-    note: "Illustrative example. The cause of a stock-out requires investigation; Dinn does not presume it."
-  },
-  naSuaIa: {
-    eyebrow: "Dinn + AI",
-    title: "Use Dinn directly *in your AI*",
-    description: "Connect Dinn to ChatGPT, Claude or Microsoft Copilot and ask for analyses, reports and materials using authorized data.",
-    envs: ["ChatGPT", "Claude", "Microsoft Copilot"],
-    bullets: [
-      "Ask in natural language",
-      "Drill down without restarting the analysis",
-      "Turn recurring questions into routines"
-    ],
-    chat: {
-      header: "Dinn Stock · illustrative conversation",
-      user: "Compare stock-outs for Products A, B and C in SP. Which one needs attention first?",
-      aiLabel: "AI · querying Dinn",
-      answer: "Product A has the highest out-of-stock share in this scope.",
-      rows: [
-        ["Product A", "32%", "96 of 300 stores"],
-        ["Product B", "20%", "48 of 240 stores"],
-        ["Product C", "10%", "20 of 200 stores"]
-      ],
-      suggestion: "Suggestion: open Product A's chains and stores to investigate the concentration."
-    },
-    note: "Authorized, read-only access. Connection, files and scheduling depend on your AI's plan and configuration."
-  },
-  conecta: {
-    eyebrow: "Dinn Conecta",
-    title: "Pharma data. *Working together.*",
-    description: "Market, internal and pharmacy data with the context your BI, Copilot and AI projects need. Dinn connects authorized sources, standardizes product, store and region, takes care of quality and freshness, and delivers into the environment your team already uses.",
-    sourcesLabel: "Your sources",
-    sources: ["IQVIA / Close-Up", "ERP, CRM and data lake", "Pharmacies"],
-    hub: "Dinn Conecta",
-    hubDesc: "Connection, standardization and pharma context",
-    destLabel: "Your stack stays the same",
-    destinations: ["BI", "Copilot", "Agents", "API"],
-    responsibilities: [
-      { title: "With you", desc: "Data, infrastructure and governance stay under your control." },
-      { title: "With Dinn", desc: "Connection, cleansing, standardization of product, store and region, and pharma context." },
-      { title: "Result", desc: "Information ready in your BI, Copilot and internal agents." }
-    ],
-    stripLabel: "Bring pharma context to",
-    stripItems: ["Copilot", "ChatGPT", "Claude", "Gemini", "your agents"],
-    cta: "See how it connects",
-    note: "Each source depends on agreed licensing, authorization and scope."
-  },
-  solucoes: {
-    eyebrow: "Solutions",
-    title: "Pharmacy-channel problems, *already understood*",
-    intro: "You don't have to figure out from scratch which signals matter. Dinn comes with the pharmacy channel's pains already mapped.",
-    tabs: { outcome: "By outcome", team: "By team" },
-    outcomes: [
-      { title: "Reduce stock-outs", desc: "Know where product is missing by SKU, chain, city and store, and act before losing the sale.", tag: "Dinn Stock" },
-      { title: "Negotiate with evidence", desc: "Bring availability, persistence and affected stores to the chain meeting, with a cut-off date.", tag: "Dinn Stock" },
-      { title: "Prioritize the field", desc: "A list of what to check first, instead of a dashboard to interpret.", tag: "Dinn Manager" },
-      { title: "Track launches", desc: "See the new product's presence by chain and region from the first weeks.", tag: "Dinn Stock" },
-      { title: "Guide customer service", desc: "Point to the pharmacies most likely to have the product, with explicit confidence.", tag: "Dinn Locator" },
-      { title: "Understand movement", desc: "Separate a demand drop from stock-outs, assortment or execution.", tag: "Dinn Pulse" },
-      { title: "Pharma data in your BI and AI", desc: "Market, internal and pharmacy data ready for your stack.", tag: "Dinn Conecta" }
-    ],
-    teams: [
-      { title: "Commercial leadership", desc: "Where to focus attention and how things evolved over 30, 60 and 90 days." },
-      { title: "Trade marketing", desc: "Chains, regions, stores and SKUs prioritized for action in the channel." },
-      { title: "Sales force and field", desc: "A simple, reliable list by portfolio or territory." },
-      { title: "Demand and supply", desc: "Stock-out and sell-through signals, with exceptions and confidence." },
-      { title: "Market intelligence", desc: "Availability crossed with the authorized market base." },
-      { title: "Customer service and CX", desc: "Where to find the product and which alternative to suggest." },
-      { title: "Technology and data", desc: "Processed data with source, freshness and coverage, via file, API or MCP." }
+  story: {
+    lines: [
+      "Every day, every pharmacy says something about your product.",
+      "Whether it's on the **shelf. Whether it sells. At what price. Whether the DC can restock it.**",
+      "Almost nobody listens.",
+      "Dinn listens, understands and tells your team **where to act.**"
     ]
   },
+  inside: {
+    eyebrow: "Inside Dinn's AI",
+    stages: [
+      {
+        name: "Observes",
+        title: "Reads channel stock-outs, every day.",
+        desc: "Agents query pharmacies' digital channels and record stock, price and movement, with place and time. Where a source doesn't respond, Dinn estimates from comparable stores and says so.",
+        chips: ["D-1 stock", "Price", "Movement", "Observed or estimated"]
+      },
+      {
+        name: "Connects",
+        title: "Links each pharmacy to what's around it.",
+        desc: "Each store is tied to the DC that supplies it, its sell-through history, its chain and the category market.",
+        chips: ["Distributor DC", "Sell-through history", "Chain and region", "Category market"]
+      },
+      {
+        name: "Understands",
+        title: "Separates signal from noise.",
+        desc: "The reading becomes named signals, and the trend over time separates a one-off from a recurring problem.",
+        chips: ["Persistent stock-out", "Stock without movement", "Falling sell-through", "Chain concentration"]
+      },
+      {
+        name: "Delivers",
+        title: "Takes commercial execution to where the team works.",
+        desc: "In the platform, in a conversation, in your BI or in your AI. Dinn prepares the analysis; the team decides.",
+        chips: ["Dinn Manager", "Dinn Insights", "Your AI", "BI & API", "Field"]
+      }
+    ],
+    outputs: ["Platform", "Conversation", "Your AI", "BI & API", "Field"],
+    signals: ["Persistent stock-out", "Stock without movement", "Falling sell-through", "Chain concentration"]
+  },
+  delivery: {
+    eyebrow: "Where Dinn delivers",
+    title: "AI for the pharma market *where your team already works*",
+    cards: [
+      {
+        tag: "Dinn Manager",
+        title: "The platform",
+        desc: "Stock-outs, stalled stock, distribution and market in one scope, by SKU, chain, city and store."
+      },
+      {
+        tag: "Dinn Insights",
+        title: "A conversation",
+        desc: "Ask in plain English and get the number, the scope, the date and what's observed or estimated."
+      },
+      {
+        tag: "MCP",
+        title: "In your AI",
+        desc: "ChatGPT, Claude and Copilot query Dinn with authorized, read-only access."
+      },
+      {
+        tag: "Dinn Conecta",
+        title: "In your BI and your agents",
+        desc: "Market, internal and pharmacy data standardized by product, store and region. Your data and governance stay with you."
+      }
+    ],
+    sources: ["IQVIA / Close-Up", "ERP & CRM", "Pharmacies"],
+    destinations: ["BI", "Copilot", "Agents", "API"],
+    trust: [
+      "Observed or estimated, always stated",
+      "D-1 base plus on-demand checks at eligible stores",
+      "Two-factor auth via email · SSO available",
+      "Implementation in up to 30 days after prerequisites"
+    ],
+    note: "Each source depends on agreed licensing, authorization and scope. Features in your AI depend on your plan and setup."
+  },
   faq: {
-    title: "Frequently asked questions",
+    title: "Frequently asked questions about AI, stock-outs and sell-out",
     items: [
       {
         question: "We already use audits like IQVIA and Close-Up. Why would we need Dinn?",
@@ -295,9 +694,10 @@ export const enUS = {
     ]
   },
   ctaFinal: {
-    title: "Ready to turn signals into *action*?",
-    description: "See in a demo how Dinn shows where to act, and with what confidence, for your products.",
-    button: "Request a demo"
+    title: "See stock-outs and sell-out *for your own products*",
+    description: "In a demo, Dinn answers with your portfolio, your territory and your regions.",
+    button: "Request a demo",
+    secondary: "Ask again"
   },
   footer: {
     description: "The intelligence layer for the pharmacy channel. An initiative of DiWE Ventures Studio.",
@@ -475,7 +875,7 @@ export const enUS = {
     title: "Leave your Feedback"
   },
   testimonials: {
-    title: "What our clients say",
+    title: "What the pharma industry says about Dinn",
     readMore: "Read more",
     readLess: "Read less",
     items: [
@@ -506,7 +906,7 @@ export const enUS = {
     ]
   },
   blog: {
-    heroTitle: "Dinn Insights",
+    heroTitle: "Dinn Blog: AI, stock-outs and pharma commercial execution",
     searchPlaceholder: "Search content here",
     noResultsTitle: "No content found",
     noResultsDesc: "Try adjusting your search terms.",

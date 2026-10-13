@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Home v2 — base compartilhada e herói
+   Segue rules/DESIGN_SYSTEM.md: Britti Sans, #5625F2 como único roxo de marca
+   (tons por transparência), #B79EFF para destaque em fundo escuro. Cores de
+   nível (vermelho, laranja, amarelo, verde) aparecem só em dado, como no
+   Dinn Manager.
+   Seções: herói (aqui) → casos de uso (home-teams.css) → Dinn Insights
+   (home-insights.css) → manifesto, por dentro, entrega e chamada final
+   (home-story.css).
+   ========================================================================== */
+
+:root {
+  --lilac: #B79EFF;
+  --ink: #1F2328;
+  --ink-deep: #16191D;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-line: rgba(255, 255, 255, 0.11);
+  /* Texto sobre o fundo escuro (#16191D). Razões de contraste medidas:
+     0.92 → ~15:1 · 0.78 → ~10:1 · 0.62 → ~6.6:1 (mínimo para texto pequeno) */
+  --on-ink: rgba(255, 255, 255, 0.92);
+  --on-ink-body: rgba(255, 255, 255, 0.78);
+  --on-ink-muted: rgba(255, 255, 255, 0.62);
+  /* Texto secundário sobre fundo claro: #5A6170 dá 6,2:1 em branco e 5,7:1 em
+     #F5F5F7. O --color-body do design system (#777D8B) fica em 4,2:1 e não
+     passa para texto pequeno. */
+  --text-soft: #5A6170;
+  --text-main: #2A2F36;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --paper: #F5F5F7;
+
+  /* Espaçamento entre letras, escolhido por teste lado a lado na Britti Sans:
+     títulos grandes apertados demais (-0.045em) fazem "rc", "rm" encostarem. */
+  --track-display: -0.02em;  /* h1, 48px ou mais */
+  --track-title: -0.012em;   /* h2, 28–47px */
+  --track-heading: -0.006em; /* h3, 18–27px */
+  --track-body: 0.004em;     /* texto corrido, 14–18px */
+  --track-small: 0.012em;    /* 11–13px */
+  --track-caps: 0.1em;       /* legendas em maiúsculas */
+}
+
+/* Foco visível em tudo o que é clicável (WCAG 2.4.7). */
+.v2 :is(a, button, summary, textarea):focus-visible {
+  outline: 2px solid var(--lilac);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.teams :is(a, button):focus-visible,
+.ins :is(a, button, summary, textarea):focus-visible,
+.delivery :is(a, button):focus-visible { outline-color: var(--color-accent); }
+
+.skip-link {
+  position: fixed; left: 16px; top: -64px; z-index: 2000;
+  background: #fff; color: var(--ink);
+  padding: 10px 16px; border-radius: 10px;
+  font-weight: 600; text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 12px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.v2 section { margin-bottom: 0; }
+
+@keyframes v2-ping {
+  0% { box-shadow: 0 0 0 0 rgba(183, 158, 255, 0.6); }
+  80%, 100% { box-shadow: 0 0 0 9px rgba(183, 158, 255, 0); }
+}
+@keyframes v2-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-3px); opacity: 1; }
+}
+@keyframes v2-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Herói ──────────────────────────────────────────────────────────────
+   Provisório: título, uma frase e dois botões sobre a rede neural. A
+   conversa com o Dinn mudou para a seção Dinn Insights. */
+.dh {
+  position: relative;
+  min-height: min(100svh, 820px);
+  display: flex;
+  flex-direction: column;
+  background: var(--ink-deep);
+  color: #fff;
+  overflow: hidden;
+  padding-top: 112px;
+  isolation: isolate;
+}
+.dh-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.dh-vignette {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 46%, rgba(86, 37, 242, 0.22), transparent 70%),
+    radial-gradient(ellipse 120% 70% at 50% 50%, transparent 40%, rgba(10, 11, 14, 0.7) 100%),
+    linear-gradient(to bottom, transparent 75%, var(--ink-deep));
+}
+.wrap.dh-inner {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+.dh-inner > * { animation: v2-rise 0.8s var(--ease-out) both; }
+.dh-inner > :nth-child(2) { animation-delay: 0.08s; }
+.dh-inner > :nth-child(3) { animation-delay: 0.16s; }
+.dh-inner > :nth-child(4) { animation-delay: 0.24s; }
+.dh-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: var(--track-small);
+  color: var(--on-ink-body);
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-line);
+  background: rgba(255, 255, 255, 0.04);
+}
+.dh-pill i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lilac);
+  animation: v2-ping 2.4s var(--ease-out) infinite;
+}
+.dh-title {
+  /* H1 com "Dinn" e "IA para o mercado farma" */
+  font-size: clamp(34px, min(5.6vw, 9vh), 76px);
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  line-height: 1.06;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.dh-title .em-light { font-weight: 300; color: var(--lilac); padding-right: 0.04em; }
+.dh-desc {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.6;
+  letter-spacing: var(--track-body);
+  color: var(--on-ink-body);
+  max-width: 580px;
+}
+.dh-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+
+.dh-logos { position: relative; padding: 28px 24px 44px; text-align: center; }
+.dh-logos p { font-size: 11px; font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--on-ink-muted); margin-bottom: 22px; }
+.dh-logos div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(28px, 5vw, 64px); opacity: 0.7; filter: grayscale(1) brightness(1.15); }
+.dh-logos img { height: 30px; width: auto; object-fit: contain; }
+
+@media (max-width: 640px) {
+  .dh { padding-top: 96px; min-height: 0; }
+  .wrap.dh-inner { padding-top: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dh-inner > *, .dh-pill i { animation: none; }
+}

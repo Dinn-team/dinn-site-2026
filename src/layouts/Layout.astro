@@ -17,8 +17,8 @@ interface Props {
 }
 
 const {
-	title = "Dinn | Sinais do mercado farmacêutico em ação comercial",
-	description = "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança explícitas.",
+	title = "Dinn | IA para o mercado farma e execução comercial",
+	description = "A Dinn é a IA para o mercado farma: lê estoque, giro e preço das farmácias em D-1, mostra onde há ruptura de estoque e leva o time à execução comercial.",
 	image = '/og-image.png',
 	type = 'website',
 	noindex = false,
@@ -47,7 +47,7 @@ const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
 	"name": "Dinn",
-	"description": "A camada de inteligência para o canal farmacêutico",
+	"description": "IA para o mercado farma: a camada de inteligência que leva dados do canal farmacêutico à execução comercial",
 	"url": site.href,
 	"logo": new URL('/logo.png', site).href,
 	"foundingDate": "2023",
@@ -140,8 +140,9 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 		)}
 	</head>
 	<body style="background-color: #1F2328; color: #1F2328; margin: 0; padding: 0; overflow-x: clip;">
+		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 		<Header client:load />
-		<main>
+		<main id="conteudo" tabindex="-1">
 			<slot />
 		</main>
 		<Footer client:load />

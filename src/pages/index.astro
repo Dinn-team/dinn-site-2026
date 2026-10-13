@@ -1,36 +1,29 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { AnimatedHero } from '@/components/ui/animated-hero';
-import { ClientLogos } from '@/components/ui/ClientLogos';
-import { AntesEDepoisSection } from '@/components/ui/AntesEDepoisSection';
-import { ComoFuncionaSection } from '@/components/ui/ComoFuncionaSection';
-import { NaPraticaSection } from '@/components/ui/NaPraticaSection';
-import { NaSuaIaSection } from '@/components/ui/NaSuaIaSection';
-import { ConectaSection } from '@/components/ui/ConectaSection';
-import { SolucoesSection } from '@/components/ui/SolucoesSection';
+import { HeroSection } from '@/components/home/HeroSection';
+import { TeamsSection } from '@/components/home/TeamsSection';
+import { InsightsSection } from '@/components/home/InsightsSection';
+import { StorySection } from '@/components/home/StorySection';
+import { InsideSection } from '@/components/home/InsideSection';
+import { DeliverySection, FinalCta } from '@/components/home/DeliverySection';
 import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
 import FAQ from '@/components/FAQ';
-import CTASection from '@/components/CTASection';
 
-// Narrativa da home (docs/positioning/2026-09-home-roteiro.md):
-// dor → como funciona (sinal → ação) → exemplo → entrega (IA e Conecta)
-// → soluções por resultado/time → prova social → dúvidas → chamada final.
+// Narrativa da home v2 (outubro/2026): herói → um caso de uso para cada time
+// → Dinn Insights (a conversa com a IA, em todas as camadas) → o canal "fala"
+// → o cérebro por dentro → onde entrega. Prova social, dúvidas e chamada fecham.
 ---
 
 <Layout>
-  <AnimatedHero client:load />
-
-  <div style="background: var(--color-black);">
-    <ClientLogos client:visible />
-    <AntesEDepoisSection client:visible />
+  <div class="v2">
+    <HeroSection client:load />
+    <TeamsSection client:idle />
+    <InsightsSection client:idle />
+    <StorySection client:idle />
+    <InsideSection client:idle />
+    <DeliverySection client:idle />
+    <TestimonialsSection client:visible />
+    <FAQ client:visible />
+    <FinalCta client:idle />
   </div>
-
-  <ComoFuncionaSection client:visible />
-  <NaPraticaSection client:visible />
-  <NaSuaIaSection client:visible />
-  <ConectaSection client:visible />
-  <SolucoesSection client:visible />
-  <TestimonialsSection client:visible />
-  <FAQ client:visible />
-  <CTASection client:visible />
 </Layout>

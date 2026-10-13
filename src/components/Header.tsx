@@ -103,16 +103,18 @@ export default function Header() {
           </a>
 
           {/* Desktop Nav — Sliding Tabs */}
-          <nav className="hidden md:flex items-center">
+          <nav className="hidden lg:flex items-center">
             <SlideTabs scrolled={isLightBg} />
           </nav>
 
           {/* Right side: Globe + CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Language Selector */}
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={langDropdownOpen}
                 aria-label={t('nav.languageLabel')}
                 title={t('nav.languageLabel')}
                 style={{
@@ -129,7 +131,7 @@ export default function Header() {
                   gap: '6px'
                 }}
               >
-                <span style={{ fontSize: '16px' }}>{currentLangObj.flag}</span>
+                <GlobeIcon color={iconColor} />
                 <span style={{ fontSize: '13px', fontWeight: 600, color: iconColor }}>{currentLangObj.code.toUpperCase()}</span>
               </button>
               
@@ -155,7 +157,6 @@ export default function Header() {
                       onClick={() => { setLanguage(l.code); setLangDropdownOpen(false); }}
                       className="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 rounded-md text-[14px] font-medium text-gray-800 text-left"
                     >
-                      <span>{l.flag}</span>
                       <span>{l.label}</span>
                     </button>
                   ))}
@@ -170,7 +171,7 @@ export default function Header() {
 
           {/* Mobile Hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg"
+            className="lg:hidden p-2 rounded-lg"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={t('nav.openMenu')}
           >
@@ -188,7 +189,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
           <div className="wrap py-6 flex flex-col gap-4">
             {NAV_LINKS.map(({ key, href }) => (
               <a key={href} href={href} onClick={() => setMobileOpen(false)} className="text-[16px] font-semibold text-[#1F2328]">{t(key)}</a>
@@ -208,7 +209,6 @@ export default function Header() {
                     onClick={() => { setLanguage(l.code); setMobileOpen(false); }}
                     className={`flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-md ${lang === l.code ? 'bg-[#F3F4F6] text-[#1F2328]' : 'text-gray-500'}`}
                   >
-                    <span>{l.flag}</span>
                     <span>{l.code.toUpperCase()}</span>
                   </button>
                 ))}

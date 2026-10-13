@@ -5,6 +5,10 @@
 @import "./fonts.css";
 @import "./design-system.css";
 @import "./home.css";
+@import "./home-v2.css";
+@import "./home-teams.css";
+@import "./home-insights.css";
+@import "./home-story.css";
 
 @custom-variant dark (&:is(.dark *));
 

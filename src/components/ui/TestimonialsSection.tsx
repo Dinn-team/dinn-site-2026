@@ -27,11 +27,11 @@ export const TestimonialsSection = () => {
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 style={{
             fontFamily: "var(--font)",
-            fontSize: "clamp(28px, 4vw, 48px)",
-            fontWeight: 800,
-            color: "#1F2328",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1
+            fontSize: "clamp(26px, 3.4vw, 40px)",
+            fontWeight: 600,
+            color: "#2A2F36",
+            letterSpacing: "-0.012em",
+            lineHeight: 1.18
           }}>
             {t('testimonials.title')}
           </h2>

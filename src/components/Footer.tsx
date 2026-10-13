@@ -33,9 +33,10 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                [t('nav.howItWorks'), '/#como-funciona'],
-                [t('nav.solutions'), '/#solucoes'],
-                [t('nav.conecta'), '/#conecta'],
+                [t('nav.teams'), '/#times'],
+                [t('nav.ask'), '/#insights'],
+                [t('nav.inside'), '/#por-dentro'],
+                [t('nav.delivery'), '/#entrega'],
                 [t('nav.blog'), '/blog'],
               ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
