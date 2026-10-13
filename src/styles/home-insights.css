@@ -137,7 +137,11 @@
   box-shadow: 0 1px 2px rgba(31, 35, 40, 0.04), 0 28px 56px -30px rgba(31, 35, 40, 0.22);
   transition: border-color 0.2s, box-shadow 0.25s;
 }
-.ins-box.is-focused { border-color: rgba(86, 37, 242, 0.55); box-shadow: 0 0 0 4px rgba(86, 37, 242, 0.12), 0 28px 56px -30px rgba(31, 35, 40, 0.22); }
+/* foco simples: só o contorno passa de cinza claro para lilás claro, sem anel
+   nem brilho. O contorno do foco global fica de fora do campo; quem sinaliza o
+   foco é a própria caixa. */
+.ins-box.is-focused { border-color: var(--lilac); }
+.ins .ins-box textarea:focus-visible { outline: none; }
 .ins-box textarea {
   display: block; width: 100%;
   min-height: 128px; max-height: 240px;
