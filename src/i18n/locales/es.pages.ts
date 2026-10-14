@@ -27,10 +27,10 @@ export const pagesEs = {
         href: "/recursos/ausencia-ruptura-sortimento-giro"
       },
       {
-        type: "Caso demostrativo",
-        title: "Del desabasto en seis tiendas a la fila de verificación de la semana",
-        desc: "El flujo completo, de la señal al aprendizaje.",
-        href: "/recursos/casos/ruptura-seis-lojas"
+        type: "Caso de cliente",
+        title: "¿Cuántos días de producto quedan en Fortaleza?",
+        desc: "La respuesta estaba en el inventario detenido de todas las tiendas de la ciudad.",
+        href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
         type: "Blog",
@@ -425,6 +425,14 @@ export const pagesEs = {
     gallery: { open: "Leer el caso", demo: "Caso demostrativo", customer: "Caso de cliente", empty: "Los nuevos casos se agregarán aquí, uno a uno." },
     detail: {
       back: "Todos los casos",
+      problem: "El problema",
+      how: "Cómo trabajó Dinn",
+      howLead: "Tres pasos, del dato suelto a la decisión.",
+      solution: "La solución",
+      outcome: "Qué cambió",
+      userLabel: "Relato del usuario",
+      preserved: "Relato de usuario · nombres y datos preservados",
+      demoLabel: "Caso demostrativo",
       stepsTitle: "De la señal al aprendizaje",
       byline: "Equipo Dinn",
       relatedTitle: "Sigue por aquí",
@@ -445,6 +453,34 @@ export const pagesEs = {
         "Cuando hay un resultado medible, informamos período, universo y método.",
         "Cuando no lo hay, reportamos la ganancia operativa comprobada, sin convertirla en impacto financiero."
       ]
+    }
+  },
+
+  caseScenes: {
+    "frozen-stock": {
+      title: "Inventario detenido de cada tienda de Fortaleza sumado y convertido en días disponibles",
+      city: "Fortaleza", pdv: "Tienda", total: "Inventario", frozen: "Inventario detenido", sum: "Suma de la ciudad",
+      days: "Días disponibles", need: "Necesario", covered: "Ciudad cubierta"
+    },
+    "distributor-gap": {
+      title: "Cuatro hipótesis para el hueco de reposición, y la ventana de compra del distribuidor",
+      demand: "Demanda en la región", rotation: "Rotación en las tiendas", delay: "Retraso de entrega", noBuy: "Falta de pedido de la tienda",
+      exists: "Existe", ruled: "Descartado", window: "Ventana de compra del distribuidor", replenish: "Reposición comunicada"
+    },
+    "sac-locator": {
+      title: "Llamadas atendidas con el Localizador de Dinn, en menos tiempo",
+      calls: "Llamadas del día", locator: "Localizador Dinn", address: "Dirección del paciente", available: "Disponible",
+      confirmed: "Producto en la dirección", time: "Tiempo por atención", before: "Antes", after: "Con Dinn"
+    },
+    "price-gap": {
+      title: "Competidor presente en las cadenas, producto ausente, y precio alineado en la negociación",
+      competitor: "Competidor", yours: "Tu producto", chain: "Cadena", priceLabel: "Precio",
+      weighing: "El precio pesa en la decisión", negotiated: "Precio negociado con la cadena"
+    },
+    "share-opps": {
+      title: "Share de 60% a 45%, pérdidas por estado y acciones por ciudad generadas por Insights",
+      share: "Share", from: "60%", to: "45%", states: "Pérdidas por estado", opps: "Oportunidades",
+      city: "Ciudad", state: "Estado", action: "Acción", ask: "¿Dónde recupero espacio?", answer: "Acciones por ciudad y estado"
     }
   },
   resources: {

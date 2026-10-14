@@ -1,34 +1,40 @@
-import { ArrowRight, BarChart3, Headset, Quote, Rocket, ShieldCheck, Truck, Users } from 'lucide-react';
-import type { ComponentType } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, BarChart3, Check, Headset, Quote, Rocket, ShieldCheck, Truck, Users } from 'lucide-react';
+import type { ComponentType } from 'react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { areaPath, PATHS } from '@/lib/site-map';
+import { useScrollProgress } from '@/components/home/useScrollProgress';
 import data from '@/data/cases.json';
 import { PageCta, PageHero } from './PageShell';
+import { getCaseScene } from './CaseScenes';
 
-// Galeria de casos de uso e página de detalhe de cada caso, no formato de um
-// artigo do blog. Os casos moram em src/data/cases.json: para publicar um novo,
-// acrescente um item com status "published" (ver a nota no próprio arquivo).
+// Galeria de casos de uso e página de cada caso, contada como história:
+// o problema vem primeiro, o Dinn trabalha numa cena animada pela rolagem e a
+// solução fecha. Os casos moram em src/data/cases.json (ver a nota do arquivo).
 
 type Lang = 'pt' | 'en' | 'es';
-type Loc = Record<Lang, string>;
-type StepKey = 'situation' | 'signal' | 'validation' | 'decision' | 'action' | 'learning';
+type Loc = Partial<Record<Lang, string>>;
+type Step = { title: Loc; text: Loc };
 export type CaseItem = {
   slug: string;
   status: 'published' | 'draft';
   kind: 'demo' | 'customer';
   area: string;
   date: string;
-  customer: string | null;
-  quote: { text: Loc; name: string; role: string } | null;
+  visual: string;
+  role: Loc;
   title: Loc;
   summary: Loc;
-  steps: Record<StepKey, Loc>;
+  problem: { quote: Loc | null; text: Loc };
+  how: Step[];
+  solution: { title: Loc; text: Loc; quote: Loc | null };
+  outcome: Loc[];
 };
 
-const STEP_ORDER: StepKey[] = ['situation', 'signal', 'validation', 'decision', 'action', 'learning'];
 const LOCALE: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-419' };
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 const ICONS: Record<string, ComponentType<{ size?: number; 'aria-hidden'?: boolean | 'true'; strokeWidth?: number }>> = {
   'inteligencia-pricing': BarChart3,
@@ -41,9 +47,10 @@ const ICONS: Record<string, ComponentType<{ size?: number; 'aria-hidden'?: boole
 
 export const publishedCases = (data.cases as unknown as CaseItem[])
   .filter((c) => c.status === 'published')
-  .sort((a, b) => (a.date < b.date ? 1 : -1));
+  // casos de cliente primeiro; dentro de cada grupo, o mais novo na frente
+  .sort((a, b) => (a.kind === b.kind ? (a.date < b.date ? 1 : -1) : a.kind === 'customer' ? -1 : 1));
 
-const pick = (loc: Loc, l: Lang) => loc?.[l] || loc?.pt || '';
+const pick = (loc: Loc | null | undefined, l: Lang) => (loc ? loc[l] || loc.pt || '' : '');
 const useLang = () => {
   const { t, lang } = useTranslation();
   const l: Lang = (lang as Lang) in LOCALE ? (lang as Lang) : 'pt';
@@ -62,6 +69,7 @@ function CaseCover({ area, kind }: { area: string; kind: CaseItem['kind'] }) {
   );
 }
 
+// ── Galeria ────────────────────────────────────────────────────────────────
 export function CasesGallery() {
   const { t, l } = useLang();
   const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
@@ -89,13 +97,13 @@ export function CasesGallery() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.08 * i, duration: 0.6 }}
+                  transition={{ delay: 0.06 * i, duration: 0.6 }}
                 >
                   <CaseCover area={c.area} kind={c.kind} />
-                  <span className={`cs-kind is-${c.kind}`}>{t(`cases.gallery.${c.kind}`)}</span>
+                  <span className={`cs-kind is-${c.kind}`}>{c.kind === 'demo' ? t('cases.detail.demoLabel') : t('cases.gallery.customer')}</span>
                   <h2>{pick(c.title, l)}</h2>
                   <p>{pick(c.summary, l)}</p>
-                  <span className="cs-meta">{nameOf(c.area)}</span>
+                  <span className="cs-meta">{pick(c.role, l)} · {nameOf(c.area)}</span>
                   <span className="sp-area-go">{t('cases.gallery.open')}<ArrowRight size={15} aria-hidden="true" /></span>
                 </motion.a>
               ))}
@@ -108,6 +116,90 @@ export function CasesGallery() {
   );
 }
 
+// ── Palco: "Como o Dinn trabalhou", animado pela rolagem ──────────────────
+function CaseStage({ c }: { c: CaseItem }) {
+  const { t, l } = useLang();
+  const ref = useRef<HTMLElement>(null);
+  const [scroll, setScroll] = useState(0);
+  const [intro, setIntro] = useState(0);
+  useScrollProgress(ref, (v) => setScroll(Math.round(v * 200) / 200));
+
+  // O primeiro tempo se desenha sozinho ao chegar; depois a rolagem conta o resto.
+  useEffect(() => {
+    const target = 0.2;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIntro(target);
+      return;
+    }
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0 - 250) / 1600);
+      setIntro(target * (k <= 0 ? 0 : 1 - Math.pow(1 - k, 3)));
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const p = Math.max(scroll, intro);
+
+  const Scene = getCaseScene(c.visual);
+  const steps = c.how;
+  const active = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+  const isArea = c.visual.startsWith('area:');
+  const L = isArea
+    ? ((t('scenes.items') as Record<string, any>) ?? {})[c.visual.slice(5)] ?? {}
+    : ((t('caseScenes') as Record<string, any>) ?? {})[c.visual] ?? {};
+  const shared = {
+    queueRows: t('teams.visuals.queue.rows'),
+    locatorRows: t('teams.visuals.locator.rows'),
+    regions: t('teams.visuals.launch.regions'),
+    sources: t('delivery.sources'),
+    destinations: t('delivery.destinations'),
+    types: ((t('trust.signals.items') as { name: string }[]) ?? []).map((s) => s.name),
+  };
+
+  return (
+    <section ref={ref} className="as cs-stage" aria-labelledby="cs-how">
+      <div className="as-sticky">
+        <div className="as-glow" aria-hidden="true" />
+        <div className="wrap as-grid">
+          <div className="as-copy">
+            <p className="as-eyebrow">{t('cases.detail.how')}</p>
+            <h2 id="cs-how" className="as-title">{pick(c.title, l)}</h2>
+            <p className="as-lead">{t('cases.detail.howLead')}</p>
+            <ol className="as-steps">
+              {steps.map((s, i) => (
+                <li key={i} className={i === active ? 'is-on' : i < active ? 'is-past' : ''} aria-current={i === active ? 'step' : undefined}>
+                  <span className="as-step-n">{i + 1}</span>
+                  <p>
+                    <strong>{pick(s.title, l)}</strong>
+                    <span>{pick(s.text, l)}</span>
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="as-scene">
+            <div className="as-scene-frame">
+              {Scene && <Scene p={p} L={L} shared={shared} />}
+              <div className="as-progress" aria-hidden="true"><i style={{ transform: `scaleX(${p})` }} /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const reveal = (i = 0) => ({
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-8% 0px' },
+  transition: { delay: 0.08 * i, duration: 0.6, ease: EASE },
+});
+
+// ── Página de um caso ─────────────────────────────────────────────────────
 export function CaseDetail({ slug }: { slug: string }) {
   const { t, l } = useLang();
   const c = publishedCases.find((x) => x.slug === slug);
@@ -115,59 +207,85 @@ export function CaseDetail({ slug }: { slug: string }) {
   if (!c) return null;
   const area = areas.find((a) => a.slug === c.area);
   const others = publishedCases.filter((x) => x.slug !== slug).slice(0, 3);
-  const date = new Intl.DateTimeFormat(LOCALE[l], { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${c.date}T00:00:00Z`));
-  const rules = (t('cases.rules.items') as string[]) ?? [];
+  const isCustomer = c.kind === 'customer';
+  const quote = c.problem.quote ? pick(c.problem.quote, l) : '';
+  const solutionQuote = c.solution.quote ? pick(c.solution.quote, l) : '';
+  const role = pick(c.role, l);
 
   return (
     <div className="sp">
       <PageHero
-        eyebrow={t(`cases.gallery.${c.kind}`)}
+        eyebrow={isCustomer ? t('cases.gallery.customer') : t('cases.detail.demoLabel')}
         title={pick(c.title, l)}
         lead={pick(c.summary, l)}
         back={{ label: t('cases.detail.back'), href: PATHS.cases }}
       >
         <p className="sp-byline">
-          {c.customer ? `${c.customer} · ` : ''}{t('cases.detail.byline')} · <time dateTime={c.date}>{date}</time>
+          {role}
+          {isCustomer ? ` · ${t('cases.detail.preserved')}` : ''}
         </p>
       </PageHero>
 
-      <article className="sp-section">
-        <div className="wrap cs-article">
-          <h2 className="cs-steps-title">{t('cases.detail.stepsTitle')}</h2>
-          <ol className="cs-steps">
-            {STEP_ORDER.map((k, i) => (
-              <li key={k}>
-                <span className="sp-num">{i + 1}</span>
-                <div>
-                  <h3>{t(`cases.stepLabels.${k}`)}</h3>
-                  <p>{pick(c.steps[k], l)}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          {c.quote && (
-            <blockquote className="cs-quote">
-              <Quote size={22} aria-hidden="true" />
-              <p>{pick(c.quote.text, l)}</p>
-              <footer>{c.quote.name} · {c.quote.role}</footer>
-            </blockquote>
+      {/* 1. O problema vem logo de cara, na voz de quem viveu */}
+      <section className="sp-section cs-problem" aria-labelledby="cs-problem">
+        <div className={`wrap ${quote ? 'cs-problem-grid' : 'cs-problem-solo'}`}>
+          {quote && (
+            <motion.figure className="cs-userquote" {...reveal()}>
+              <Quote size={30} aria-hidden="true" strokeWidth={1.6} />
+              <blockquote>{quote}</blockquote>
+              <figcaption>
+                <span className="cs-avatar" aria-hidden="true">{role.charAt(0)}</span>
+                <span>
+                  <strong>{role}</strong>
+                  <em>{t('cases.detail.userLabel')}</em>
+                </span>
+              </figcaption>
+            </motion.figure>
           )}
-
-          <aside className="sp-related">
-            <h2>{t('cases.rules.title')}</h2>
-            <ul className="sp-checks">
-              {rules.map((r) => <li key={r}>{r}</li>)}
-            </ul>
-          </aside>
-
-          {area && (
-            <p className="sp-more">
-              {t('cases.detail.areaLabel')}: <a href={areaPath(area.slug)}>{area.name} →</a>
-            </p>
-          )}
+          <motion.div {...reveal(1)}>
+            <p className="cs-alert"><span className="cs-alert-dot" aria-hidden="true" />{t('cases.detail.problem')}</p>
+            <h2 id="cs-problem" className="visually-hidden">{t('cases.detail.problem')}</h2>
+            <p className="cs-problem-text">{pick(c.problem.text, l)}</p>
+          </motion.div>
         </div>
-      </article>
+      </section>
+
+      {/* 2. Como o Dinn trabalhou: cena animada pela rolagem */}
+      <CaseStage c={c} />
+
+      {/* 3. A solução e o que mudou */}
+      <section className="sp-section cs-solution" aria-labelledby="cs-solution">
+        <div className="wrap cs-solution-grid">
+          <motion.div {...reveal()}>
+            <p className="cs-kicker-ok"><Check size={14} aria-hidden="true" />{t('cases.detail.solution')}</p>
+            <h2 id="cs-solution" className="cs-solution-title">{pick(c.solution.title, l)}</h2>
+            <p className="cs-solution-text">{pick(c.solution.text, l)}</p>
+            {solutionQuote && (
+              <blockquote className="cs-quote">
+                <Quote size={20} aria-hidden="true" strokeWidth={1.6} />
+                <p>{solutionQuote}</p>
+                <footer>{role}</footer>
+              </blockquote>
+            )}
+          </motion.div>
+          <div>
+            <h3 className="cs-outcome-title">{t('cases.detail.outcome')}</h3>
+            <ul className="cs-outcome">
+              {c.outcome.map((o, i) => (
+                <motion.li key={i} {...reveal(i)}>
+                  <span className="cs-outcome-check" aria-hidden="true"><Check size={16} strokeWidth={2.6} /></span>
+                  {pick(o, l)}
+                </motion.li>
+              ))}
+            </ul>
+            {area && (
+              <a className="cs-area-link" href={areaPath(area.slug)}>
+                {area.name}<ArrowRight size={15} aria-hidden="true" />
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
 
       {others.length > 0 && (
         <section className="sp-section is-alt" aria-label={t('cases.detail.relatedTitle')}>
@@ -178,9 +296,13 @@ export function CaseDetail({ slug }: { slug: string }) {
                 <a key={o.slug} className="sp-card cs-card" href={`${PATHS.cases}/${o.slug}`}>
                   <CaseCover area={o.area} kind={o.kind} />
                   <h3><Rich text={pick(o.title, l)} /></h3>
+                  <span className="sp-area-go">{t('cases.gallery.open')}<ArrowRight size={15} aria-hidden="true" /></span>
                 </a>
               ))}
             </div>
+            <p className="sp-more">
+              <a href={PATHS.cases}><ArrowLeft size={14} aria-hidden="true" style={{ verticalAlign: '-2px' }} /> {t('cases.detail.back')}</a>
+            </p>
           </div>
         </section>
       )}

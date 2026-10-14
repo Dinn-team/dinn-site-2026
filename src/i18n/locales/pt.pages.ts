@@ -28,10 +28,10 @@ export const pagesPt = {
         href: "/recursos/ausencia-ruptura-sortimento-giro"
       },
       {
-        type: "Caso demonstrativo",
-        title: "Da ruptura em seis lojas à fila de verificação da semana",
-        desc: "O fluxo completo, do sinal ao aprendizado.",
-        href: "/recursos/casos/ruptura-seis-lojas"
+        type: "Caso de cliente",
+        title: "Quantos dias de produto restam em Fortaleza?",
+        desc: "A resposta estava no estoque parado de todos os PDVs da cidade.",
+        href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
         type: "Blog",
@@ -426,6 +426,14 @@ export const pagesPt = {
     gallery: { open: "Ler o caso", demo: "Caso demonstrativo", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
     detail: {
       back: "Todos os casos",
+      problem: "O problema",
+      how: "Como o Dinn trabalhou",
+      howLead: "Três passos, do dado solto à decisão.",
+      solution: "A solução",
+      outcome: "O que mudou",
+      userLabel: "Relato do usuário",
+      preserved: "Relato de usuário · nomes e dados preservados",
+      demoLabel: "Caso demonstrativo",
       stepsTitle: "Do sinal ao aprendizado",
       byline: "Equipe Dinn",
       relatedTitle: "Continue por aqui",
@@ -446,6 +454,34 @@ export const pagesPt = {
         "Quando há resultado mensurável, informamos período, universo e método.",
         "Quando não há, relatamos o ganho operacional comprovado, sem convertê-lo em impacto financeiro."
       ]
+    }
+  },
+
+  caseScenes: {
+    "frozen-stock": {
+      title: "Estoque parado de cada PDV de Fortaleza somado e convertido em dias disponíveis",
+      city: "Fortaleza", pdv: "PDV", total: "Estoque", frozen: "Estoque parado", sum: "Soma da cidade",
+      days: "Dias disponíveis", need: "Necessário", covered: "Cidade coberta"
+    },
+    "distributor-gap": {
+      title: "Quatro hipóteses para o furo de reposição, e a janela de compra do distribuidor",
+      demand: "Demanda na região", rotation: "Giro nas lojas", delay: "Atraso de entrega", noBuy: "Falta de pedido do PDV",
+      exists: "Existe", ruled: "Descartado", window: "Janela de compra do distribuidor", replenish: "Reposição comunicada"
+    },
+    "sac-locator": {
+      title: "Ligações respondidas com o Localizador do Dinn, em menos tempo",
+      calls: "Ligações do dia", locator: "Localizador Dinn", address: "Endereço do paciente", available: "Disponível",
+      confirmed: "Produto no endereço", time: "Tempo por atendimento", before: "Antes", after: "Com o Dinn"
+    },
+    "price-gap": {
+      title: "Concorrente presente nas redes, produto ausente, e o preço alinhado na negociação",
+      competitor: "Concorrente", yours: "Seu produto", chain: "Rede", priceLabel: "Preço",
+      weighing: "Preço pesando na decisão", negotiated: "Preço negociado com a rede"
+    },
+    "share-opps": {
+      title: "Share de 60% para 45%, perdas por estado e ações por cidade geradas pelo Insights",
+      share: "Share", from: "60%", to: "45%", states: "Perdas por estado", opps: "Oportunidades",
+      city: "Cidade", state: "Estado", action: "Ação", ask: "Onde recuperar espaço?", answer: "Ações por cidade e estado"
     }
   },
   resources: {

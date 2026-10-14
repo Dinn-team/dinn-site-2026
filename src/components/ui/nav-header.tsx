@@ -24,15 +24,41 @@ interface SlideTabsProps {
 // espelha as perguntas do comprador (o que é, para a minha área, quem usa,
 // posso confiar), não a árvore interna de páginas. "Soluções" abre a lista das
 // áreas; as páginas seguem em /solucoes/<area>.
-export const NAV_LINKS: { key: string; href: string; menu?: "solutions" }[] = [
+export type NavMenu = "solutions" | "resources";
+export const NAV_LINKS: { key: string; href: string; menu?: NavMenu }[] = [
   { key: "nav.platform", href: "/plataforma" },
   { key: "nav.solutions", href: "/solucoes", menu: "solutions" },
   { key: "nav.customers", href: "/#clientes" },
-  { key: "nav.resources", href: "/recursos" },
+  { key: "nav.resources", href: "/recursos", menu: "resources" },
   { key: "nav.trust", href: "/confianca" },
 ];
 
 export type NavArea = { slug: string; name: string };
+export type SubItem = { href: string; label: string };
+
+/** Itens do submenu de cada entrada (desktop e celular usam a mesma lista). */
+export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any): { items: SubItem[]; allHref: string; allLabel: string } | null {
+  if (menu === "solutions") {
+    const areas = (t("solutions.items") as NavArea[]) ?? [];
+    return {
+      items: areas.map((a) => ({ href: `/solucoes/${a.slug}`, label: a.name })),
+      allHref: "/solucoes",
+      allLabel: t("nav.solutionsAll") as string,
+    };
+  }
+  if (menu === "resources") {
+    return {
+      items: [
+        { href: "/blog", label: t("nav.blog") as string },
+        { href: "/recursos/casos", label: t("nav.cases") as string },
+        { href: "/recursos/changelog", label: t("nav.changelog") as string },
+      ],
+      allHref: "/recursos",
+      allLabel: t("nav.resourcesAll") as string,
+    };
+  }
+  return null;
+}
 
 export function SlideTabs({ scrolled }: SlideTabsProps) {
   const { t } = useTranslation();
@@ -43,8 +69,7 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
     opacity: 0,
   });
 
-  const navItems: (NavItem & { menu?: "solutions" })[] = NAV_LINKS.map(({ key, href, menu }) => ({ label: t(key), href, menu }));
-  const areas = (t("solutions.items") as NavArea[]) ?? [];
+  const navItems: (NavItem & { menu?: NavMenu })[] = NAV_LINKS.map(({ key, href, menu }) => ({ label: t(key), href, menu }));
 
   return (
     <ul
@@ -74,8 +99,7 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
           href={item.href}
           setPosition={setPosition}
           scrolled={scrolled}
-          areas={item.menu === "solutions" ? areas : undefined}
-          allLabel={item.menu === "solutions" ? t("nav.solutionsAll") : undefined}
+          sub={getSubmenu(item.menu, t)}
         >
           {item.label}
         </Tab>
@@ -90,19 +114,17 @@ const Tab = ({
   href,
   setPosition,
   scrolled,
-  areas,
-  allLabel,
+  sub,
 }: {
   children: React.ReactNode;
   href: string;
   setPosition: React.Dispatch<React.SetStateAction<Position>>;
   scrolled: boolean;
-  areas?: NavArea[];
-  allLabel?: string;
+  sub?: { items: SubItem[]; allHref: string; allLabel: string } | null;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
   const [open, setOpen] = useState(false);
-  const hasMenu = Boolean(areas && areas.length);
+  const hasMenu = Boolean(sub && sub.items.length);
 
   return (
     <li
@@ -171,24 +193,24 @@ const Tab = ({
               flexDirection: "column",
             }}
           >
-            {areas!.map((a) => (
+            {sub!.items.map((a) => (
               <a
-                key={a.slug}
+                key={a.href}
                 role="menuitem"
-                href={`/solucoes/${a.slug}`}
+                href={a.href}
                 style={{ padding: "10px 12px", borderRadius: "10px", fontSize: "14px", fontWeight: 500, color: "#1F2328", textDecoration: "none", whiteSpace: "nowrap" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(86,37,242,0.08)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
               >
-                {a.name}
+                {a.label}
               </a>
             ))}
             <a
               role="menuitem"
-              href={href}
+              href={sub!.allHref}
               style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "#5625F2", textDecoration: "none" }}
             >
-              {allLabel} →
+              {sub!.allLabel} →
             </a>
           </div>
         </div>

@@ -8,23 +8,23 @@ import { AVAIL, LEVEL } from '@/components/home/palette';
 // desenho (SVG) com dados de exemplo; nenhum ponto é uma loja real.
 
 type Labels = Record<string, any>;
-type SceneProps = { p: number; L: Labels; shared: Labels };
+export type SceneProps = { p: number; L: Labels; shared: Labels };
 
-const W = 560;
-const H = 440;
-const LILAC = '#B79EFF';
-const ACCENT = '#5625F2';
-const SKY = '#38BDF8';
-const AMBER = '#FBBF24';
+export const W = 560;
+export const H = 440;
+export const LILAC = '#B79EFF';
+export const ACCENT = '#5625F2';
+export const SKY = '#38BDF8';
+export const AMBER = '#FBBF24';
 const INK = '#16191D';
 
-const clamp = (v: number) => Math.min(1, Math.max(0, v));
+export const clamp = (v: number) => Math.min(1, Math.max(0, v));
 /** Fração (0–1) em que `p` está dentro do trecho [a, b]. */
-const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-const show = (v: number): CSSProperties => ({ opacity: v, transform: `translateY(${((1 - v) * 10).toFixed(1)}px)` });
+export const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
+export const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+export const show = (v: number): CSSProperties => ({ opacity: v, transform: `translateY(${((1 - v) * 10).toFixed(1)}px)` });
 
-function Chip({ x, y, text, tone = 'lilac', v = 1, w }: { x: number; y: number; text: string; tone?: 'lilac' | 'amber' | 'red' | 'green'; v?: number; w?: number }) {
+export function Chip({ x, y, text, tone = 'lilac', v = 1, w }: { x: number; y: number; text: string; tone?: 'lilac' | 'amber' | 'red' | 'green'; v?: number; w?: number }) {
   const width = w ?? Math.max(60, text.length * 6.6 + 26);
   const colors = {
     lilac: { bg: 'rgba(86,37,242,0.4)', line: 'rgba(183,158,255,0.7)', fg: '#fff' },
@@ -40,7 +40,7 @@ function Chip({ x, y, text, tone = 'lilac', v = 1, w }: { x: number; y: number; 
   );
 }
 
-function Svg({ title, children }: { title: string; children: ReactNode }) {
+export function Svg({ title, children }: { title: string; children: ReactNode }) {
   return (
     <svg className="as-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={title}>
       {children}

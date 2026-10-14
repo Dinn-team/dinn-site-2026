@@ -7,7 +7,7 @@
 .pf-top { background: #fff; }
 /* fundo claro de propósito: o menu fixo escolhe o logo escuro sobre ele */
 .pf-cover { background: #EAF0FF; line-height: 0; }
-.pf-cover img { display: block; width: 100%; height: clamp(240px, 36vw, 460px); object-fit: cover; object-position: center 55%; }
+.pf-cover img { display: block; width: 100%; height: clamp(240px, 36vw, 460px); object-fit: cover; object-position: center 36%; }
 .pf-top .sp-hero { padding-top: clamp(32px, 4vw, 56px); }
 
 /* ── Ciclo: anel preso à tela ───────────────────────────────────────────── */

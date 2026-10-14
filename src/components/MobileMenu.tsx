@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { NAV_LINKS } from '@/components/ui/nav-header';
+import { NAV_LINKS, getSubmenu } from '@/components/ui/nav-header';
 import { useTranslation } from '@/i18n/useTranslation';
 import { setLanguage, Language } from '@/i18n/store';
 import { DEMO_URL } from '@/lib/links';
@@ -28,7 +28,7 @@ interface MobileMenuProps {
 export default function MobileMenu({ isLightBg }: MobileMenuProps) {
   const { t, lang } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [openSub, setOpenSub] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -41,7 +41,7 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
 
   const close = (restoreFocus = true) => {
     setOpen(false);
-    setSolutionsOpen(false);
+    setOpenSub(null);
     if (restoreFocus) buttonRef.current?.focus();
   };
 
@@ -95,7 +95,6 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  const areas = ((t('solutions.items') as { slug: string; name: string }[]) ?? []);
   const barClass = `mm-bars${isLightBg ? ' mm-bars--dark' : ''}${open ? ' mm-bars--x' : ''}`;
 
   const panel = (
@@ -128,33 +127,36 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
           <ul className="mm-list">
             {NAV_LINKS.map(({ key, href, menu }, idx) => {
               const isFirst = idx === 0;
-              if (menu === 'solutions') {
+              const sub = getSubmenu(menu, t);
+              if (menu && sub) {
+                const isOpen = openSub === menu;
+                const id = `${subId}-${menu}`;
                 return (
                   <li key={href} className="mm-item">
                     <button
                       type="button"
                       className="mm-row mm-row--btn"
-                      aria-expanded={solutionsOpen}
-                      aria-controls={subId}
-                      onClick={() => setSolutionsOpen((v) => !v)}
+                      aria-expanded={isOpen}
+                      aria-controls={id}
+                      onClick={() => setOpenSub(isOpen ? null : menu)}
                       ref={isFirst ? (el) => { firstItemRef.current = el; } : undefined}
                     >
                       <span>{t(key)}</span>
-                      <Chevron className={`mm-chev ${solutionsOpen ? 'is-open' : ''}`} />
+                      <Chevron className={`mm-chev ${isOpen ? 'is-open' : ''}`} />
                     </button>
-                    <div id={subId} className={`mm-sub ${solutionsOpen ? 'is-open' : ''}`}>
+                    <div id={id} className={`mm-sub ${isOpen ? 'is-open' : ''}`}>
                       <div className="mm-sub-inner">
                         <ul className="mm-sublist">
-                          {areas.map((a) => (
-                            <li key={a.slug}>
-                              <a href={`/solucoes/${a.slug}`} className="mm-subrow" onClick={() => close(false)}>
-                                {a.name}
+                          {sub.items.map((a) => (
+                            <li key={a.href}>
+                              <a href={a.href} className="mm-subrow" onClick={() => close(false)}>
+                                {a.label}
                               </a>
                             </li>
                           ))}
                           <li>
-                            <a href="/solucoes" className="mm-subrow mm-subrow--all" onClick={() => close(false)}>
-                              {t('nav.solutionsAll')}
+                            <a href={sub.allHref} className="mm-subrow mm-subrow--all" onClick={() => close(false)}>
+                              {sub.allLabel}
                               <Chevron className="mm-chev" />
                             </a>
                           </li>
