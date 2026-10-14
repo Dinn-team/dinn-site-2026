@@ -1,3 +1,5 @@
+import { platformVizEs } from './es.platform';
+
 // Textos de las páginas internas del sitio (plataforma, soluciones por área,
 // confianza, clientes, recursos) y de las secciones nuevas de la home (áreas y
 // contenidos). Versión en español de pt.pages.ts: mismas claves, mismo orden.
@@ -5,6 +7,7 @@
 // ayuda a interpretar y qué depende de la validación del cliente.
 
 export const pagesEs = {
+  platformViz: platformVizEs,
   areas: {
     eyebrow: "Para tu área",
     title: "Empieza por el problema de *tu equipo*",
@@ -27,7 +30,7 @@ export const pagesEs = {
         type: "Caso demostrativo",
         title: "Del desabasto en seis tiendas a la fila de verificación de la semana",
         desc: "El flujo completo, de la señal al aprendizaje, con valores de ejemplo.",
-        href: "/clientes#caso"
+        href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
         type: "Blog",
@@ -408,75 +411,81 @@ export const pagesEs = {
     }
   },
 
-  customers: {
+
+
+  cases: {
     meta: {
-      title: "Clientes y casos | Dinn",
-      description: "Empresas que trabajan con Dinn, testimonios y un caso demostrativo de la señal a la acción, con origen, validación y aprendizaje."
+      title: "Casos de uso | Dinn",
+      description: "Galería de casos de uso de Dinn: historias de la señal a la acción, contadas paso a paso, con origen, validación y aprendizaje."
     },
     hero: {
-      eyebrow: "Clientes y casos",
-      title: "Quién trabaja con Dinn y *qué cambia en la práctica*",
-      lead: "Empresas, testimonios y un caso completo: de la señal observada al aprendizaje del equipo."
+      eyebrow: "Casos de uso",
+      title: "Historias de uso de Dinn, *una a una*",
+      lead: "Cada caso cuenta el recorrido completo: de la situación al aprendizaje, con lo que se observó, cómo se validó y qué decidió el equipo."
     },
-    caseBlock: {
-      tag: "Caso demostrativo · valores de ejemplo",
-      title: "Del desabasto en seis tiendas a la fila de verificación de la semana",
-      intro: "Este caso no es de producción. Muestra el flujo que Dinn sigue con los datos del cliente: cada paso existe, y los números aquí son ilustrativos.",
-      steps: [
-        { label: "Situación", text: "Un equipo de trade con 40 tiendas en la cartera y tiempo para visitar ocho por semana." },
-        { label: "Señal observada", text: "Seis tiendas concentran 70% de la señal de desabasto del producto en la última semana." },
-        { label: "Cómo se validó", text: "El desabasto de cada tienda es la proporción de días sin inventario en los últimos 30 días. Las tiendas que nunca vendieron el producto quedaron fuera, y cada punto dice si es observado o estimado." },
-        { label: "Decisión apoyada", text: "Empezar la semana por esas seis tiendas, con una pregunta por tienda: ¿hay pedido pendiente? ¿El producto está fuera del anaquel?" },
-        { label: "Acción tomada", text: "El equipo visitó las tiendas de la fila y llevó a la cadena la evidencia por tienda, con fecha." },
-        { label: "Aprendizaje", text: "El retorno de cada visita reordena la fila la semana siguiente. El caso no trae resultado financiero: muestra el flujo." }
-      ]
+    gallery: { open: "Leer el caso", demo: "Caso demostrativo · valores de ejemplo", customer: "Caso de cliente", empty: "Los nuevos casos se agregarán aquí, uno a uno." },
+    detail: {
+      back: "Todos los casos",
+      stepsTitle: "De la señal al aprendizaje",
+      byline: "Equipo Dinn",
+      demoNote: "Este caso no es de producción. Muestra el flujo que Dinn sigue con los datos del cliente: cada paso existe, y los números aquí son ilustrativos.",
+      relatedTitle: "Sigue por aquí",
+      areaLabel: "Área"
+    },
+    stepLabels: {
+      situation: "Situación",
+      signal: "Señal observada",
+      validation: "Cómo se validó",
+      decision: "Decisión apoyada",
+      action: "Acción tomada",
+      learning: "Aprendizaje"
     },
     rules: {
       title: "Cómo contamos los casos",
       items: [
-        "Un caso real y un caso demostrativo siempre se identifican como tales.",
-        "Cuando hay un resultado medible, informamos periodo, universo y método.",
+        "Los casos reales y los demostrativos siempre se identifican como tales.",
+        "Cuando hay un resultado medible, informamos período, universo y método.",
         "Cuando no lo hay, reportamos la ganancia operativa comprobada, sin convertirla en impacto financiero."
       ]
-    },
-    cta: {
-      title: "¿Quieres ver un caso con tu portafolio?",
-      desc: "La demostración parte de tus productos, tu cartera y tus zonas.",
-      button: "Solicitar demo"
     }
   },
-
   resources: {
     meta: {
       title: "Recursos | Dinn",
-      description: "Guías, casos y artículos para entender el canal farmacéutico: desabasto, surtido, rotación y cómo convertir señales en acción comercial."
+      description: "Blog, casos de clientes y el changelog de Dinn: contenido para entender el canal farmacéutico y seguir lo que sale al aire."
     },
     hero: {
       eyebrow: "Recursos",
-      title: "Para entender el canal *antes de decidir*",
-      lead: "Guías, casos y artículos escritos a partir de lo que Dinn observa en el canal farmacéutico."
+      title: "Contenido, historias y novedades *de Dinn*",
+      lead: "Elige por dónde empezar: aprender con artículos y guías, conocer historias de clientes o seguir lo que salió al aire en la plataforma."
     },
     items: [
       {
-        type: "Guía",
-        title: "Ausencia, desabasto, surtido y rotación: ¿cuál es la diferencia?",
-        desc: "Las cuatro lecturas que más se confunden en el canal, con qué verificar antes de actuar.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro",
-        updated: "Actualizado el 14 de octubre de 2026"
-      },
-      {
-        type: "Caso demostrativo",
-        title: "Del desabasto en seis tiendas a la fila de verificación de la semana",
-        desc: "El flujo completo, de la señal al aprendizaje, con valores de ejemplo.",
-        href: "/clientes#caso",
-        updated: "Actualizado el 14 de octubre de 2026"
-      },
-      {
+        id: "blog",
         type: "Blog",
-        title: "Blog de Dinn",
-        desc: "Análisis y artículos sobre desabasto de inventario, ejecución comercial e inteligencia de datos en farma.",
-        href: "/blog",
-        updated: ""
+        title: "Artículos, guías y temas del canal",
+        desc: "Análisis y explicaciones sobre desabasto, ejecución comercial y datos en farma, reunidos en el mismo lugar.",
+        chips: ["Artículos", "Guías", "Temas"],
+        cta: "Leer el blog",
+        href: "/blog"
+      },
+      {
+        id: "cases",
+        type: "Casos de uso",
+        title: "Historias de quienes usan Dinn",
+        desc: "Casos de clientes que conocemos y entrevistamos, contados de forma documentada y pública: de la situación al aprendizaje.",
+        chips: ["Entrevistas", "Contexto", "Aprendizajes"],
+        cta: "Ver los casos",
+        href: "/recursos/casos"
+      },
+      {
+        id: "changelog",
+        type: "Changelog",
+        title: "Todo lo que salió al aire",
+        desc: "La línea de tiempo de las publicaciones de Dinn, con fecha y una explicación en lenguaje simple de lo que cambió.",
+        chips: ["Novedades", "Mejoras", "Correcciones"],
+        cta: "Ver el historial",
+        href: "/recursos/changelog"
       }
     ],
     openItem: "Abrir",
@@ -712,5 +721,24 @@ export const pagesEs = {
         { label: "En uso", text: "Lectura diaria y retorno del equipo" }
       ]
     }
+  },
+
+  changelog: {
+    meta: {
+      title: "Changelog | Dinn",
+      description: "Línea de tiempo de lo que Dinn puso al aire: novedades y mejoras de la plataforma, explicadas en lenguaje simple y organizadas por fecha."
+    },
+    hero: {
+      eyebrow: "Changelog",
+      title: "Lo que salió al aire en *Dinn*",
+      lead: "Cada publicación en producción, explicada en lenguaje simple y organizada por fecha."
+    },
+    back: "Todos los recursos",
+    filters: { label: "Filtrar por área", all: "Todo", platform: "Plataforma", site: "Sitio y documentación" },
+    count: "publicaciones",
+    updated: "Actualizado el",
+    months: "Meses",
+    empty: "Aún no hay publicaciones en esta área.",
+    note: "Actualizado automáticamente todos los días. Los textos se reescriben en lenguaje simple y los detalles técnicos internos no aparecen aquí."
   }
 };

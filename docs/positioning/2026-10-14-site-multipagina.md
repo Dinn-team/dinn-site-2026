@@ -60,3 +60,22 @@ textos em `src/i18n/locales/{pt,en,es}.pages.ts`.
    idioma (`/en/`, `/es/`), como já existe nas páginas legais.
 8. **Medição.** Eventos de GA4 por página, cadeira e CTA ainda não foram
    configurados.
+
+## Atualização de 14/10/2026 (noite)
+
+- **Clientes** deixou de ser página: a faixa de logos fica no fim do herói da
+  home e o menu "Clientes" aponta para `/#clientes`. `/clientes` redireciona.
+- **Casos de uso**: galeria em `/recursos/casos` e uma página por caso em
+  `/recursos/casos/<slug>`, no formato de artigo. Os casos moram em
+  `src/data/cases.json`; para publicar um novo, acrescente um item com
+  `"status": "published"`.
+- **Changelog automático**: `.github/workflows/changelog-daily.yml` roda todo
+  dia às 06:00 (Brasília), lê o que foi para produção, reescreve em linguagem
+  simples e commita `src/data/changelog.json` na `main`. Precisa dos segredos
+  `CHANGELOG_GITHUB_TOKEN` (leitura dos repositórios de produto) e
+  `ANTHROPIC_API_KEY`. Itens que citem clientes, redes, códigos internos ou
+  termos sensíveis ficam como rascunho para revisão (trava em
+  `scripts/changelog-sync.mjs`).
+- **Logo da Lilly**: coloque o arquivo sem fundo em `public/clientes/lilly.svg`
+  (ou `.png`/`.webp`) e ele entra sozinho na faixa, com a mesma altura dos
+  demais. O arquivo não existe em nenhum repositório da Dinn.

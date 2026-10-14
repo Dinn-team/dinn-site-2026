@@ -15,7 +15,7 @@ export const TestimonialsSection = () => {
 
   return (
     <section
-      id="clientes"
+      id="depoimentos"
       style={{
         scrollMarginTop: "64px",
         background:

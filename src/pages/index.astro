@@ -10,17 +10,21 @@ import { DeliverySection, FinalCta } from '@/components/home/DeliverySection';
 import { ContentTeaser } from '@/components/home/ContentTeaser';
 import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
 import FAQ from '@/components/FAQ';
+import { getClientLogos } from '@/lib/clients';
+
+// Faixa de clientes (âncora #clientes): só entram logos com arquivo em public/clientes.
+const logos = getClientLogos();
 
 // Narrativa da home (14/10/2026, síntese de decisão do conteúdo do site):
 // promessa e prova social → o problema → como funciona, em um exemplo → caminhos
 // por área → casos de uso → Dinn Insights → plataforma e capacidades → clientes
 // → conteúdos → dúvidas → chamada final. As páginas de plataforma, soluções,
-// confiança, clientes e recursos aprofundam cada ponto.
+// confiança e recursos aprofundam cada ponto. Clientes vive só aqui (#clientes).
 ---
 
 <Layout>
   <div class="v2">
-    <HeroSection client:load />
+    <HeroSection logos={logos} client:load />
     <StorySection client:idle />
     <InsideSection client:idle />
     <AreasSection client:idle />

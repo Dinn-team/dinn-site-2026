@@ -1,3 +1,5 @@
+import { platformVizPt } from './pt.platform';
+
 // Textos das páginas internas do site (plataforma, soluções por área,
 // confiança, clientes, recursos) e das seções novas da home (áreas e
 // conteúdos). Fonte: síntese de decisão de 14/10/2026
@@ -6,6 +8,7 @@
 // interpretar e o que depende de validação do cliente.
 
 export const pagesPt = {
+  platformViz: platformVizPt,
   areas: {
     eyebrow: "Para a sua área",
     title: "Comece pelo problema do *seu time*",
@@ -28,7 +31,7 @@ export const pagesPt = {
         type: "Caso demonstrativo",
         title: "Da ruptura em seis lojas à fila de verificação da semana",
         desc: "O fluxo completo, do sinal ao aprendizado, com valores de exemplo.",
-        href: "/clientes#caso"
+        href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
         type: "Blog",
@@ -409,28 +412,34 @@ export const pagesPt = {
     }
   },
 
-  customers: {
+
+
+  cases: {
     meta: {
-      title: "Clientes e casos | Dinn",
-      description: "Empresas que trabalham com a Dinn, depoimentos e um caso demonstrativo do sinal à ação, com origem, validação e aprendizado."
+      title: "Casos de uso | Dinn",
+      description: "Galeria de casos de uso da Dinn: histórias do sinal à ação, contadas passo a passo, com origem, validação e aprendizado."
     },
     hero: {
-      eyebrow: "Clientes e casos",
-      title: "Quem trabalha com a Dinn e *o que muda na prática*",
-      lead: "Empresas, depoimentos e um caso completo: do sinal observado ao aprendizado do time."
+      eyebrow: "Casos de uso",
+      title: "Histórias de uso da Dinn, *uma a uma*",
+      lead: "Cada caso conta o caminho completo: da situação ao aprendizado, com o que foi observado, como foi validado e o que o time decidiu."
     },
-    caseBlock: {
-      tag: "Caso demonstrativo · valores de exemplo",
-      title: "Da ruptura em seis lojas à fila de verificação da semana",
-      intro: "Este caso não é de produção. Ele mostra o fluxo que a Dinn segue com os dados do cliente: cada passo existe, e os números aqui são ilustrativos.",
-      steps: [
-        { label: "Situação", text: "Um time de trade com 40 lojas na carteira e tempo para visitar oito por semana." },
-        { label: "Sinal observado", text: "Seis lojas concentram 70% do sinal de ruptura do produto na última semana." },
-        { label: "Como foi validado", text: "A ruptura de cada loja é a proporção de dias sem estoque nos últimos 30 dias. Lojas que nunca venderam o produto ficaram de fora, e cada ponto diz se é observado ou estimado." },
-        { label: "Decisão apoiada", text: "Começar a semana por essas seis lojas, com uma pergunta por loja: há pedido pendente? O produto está fora da gôndola?" },
-        { label: "Ação tomada", text: "O time visitou as lojas da fila e levou à rede a evidência por loja, com data." },
-        { label: "Aprendizado", text: "O retorno de cada visita reordena a fila na semana seguinte. O caso não traz resultado financeiro: ele mostra o fluxo." }
-      ]
+    gallery: { open: "Ler o caso", demo: "Caso demonstrativo · valores de exemplo", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
+    detail: {
+      back: "Todos os casos",
+      stepsTitle: "Do sinal ao aprendizado",
+      byline: "Equipe Dinn",
+      demoNote: "Este caso não é de produção. Ele mostra o fluxo que a Dinn segue com os dados do cliente: cada passo existe, e os números aqui são ilustrativos.",
+      relatedTitle: "Continue por aqui",
+      areaLabel: "Área"
+    },
+    stepLabels: {
+      situation: "Situação",
+      signal: "Sinal observado",
+      validation: "Como foi validado",
+      decision: "Decisão apoiada",
+      action: "Ação tomada",
+      learning: "Aprendizado"
     },
     rules: {
       title: "Como contamos os casos",
@@ -439,45 +448,45 @@ export const pagesPt = {
         "Quando há resultado mensurável, informamos período, universo e método.",
         "Quando não há, relatamos o ganho operacional comprovado, sem convertê-lo em impacto financeiro."
       ]
-    },
-    cta: {
-      title: "Quer ver um caso com o seu portfólio?",
-      desc: "A demonstração parte dos seus produtos, da sua carteira e das suas regiões.",
-      button: "Solicitar demo"
     }
   },
-
   resources: {
     meta: {
       title: "Recursos | Dinn",
-      description: "Guias, casos e artigos para entender o canal farmacêutico: ruptura, sortimento, giro e como transformar sinais em ação comercial."
+      description: "Blog, casos de clientes e o changelog da Dinn: conteúdo para entender o canal farmacêutico e acompanhar o que entra no ar."
     },
     hero: {
       eyebrow: "Recursos",
-      title: "Para entender o canal *antes de decidir*",
-      lead: "Guias, casos e artigos escritos a partir do que a Dinn observa no canal farmacêutico."
+      title: "Conteúdo, histórias e novidades *da Dinn*",
+      lead: "Escolha por onde começar: aprender com artigos e guias, conhecer histórias de clientes ou acompanhar o que entrou no ar na plataforma."
     },
     items: [
       {
-        type: "Guia",
-        title: "Ausência, ruptura, sortimento e giro: qual é a diferença?",
-        desc: "As quatro leituras que mais se confundem no canal, com o que conferir antes de agir.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro",
-        updated: "Atualizado em 14 de outubro de 2026"
-      },
-      {
-        type: "Caso demonstrativo",
-        title: "Da ruptura em seis lojas à fila de verificação da semana",
-        desc: "O fluxo completo, do sinal ao aprendizado, com valores de exemplo.",
-        href: "/clientes#caso",
-        updated: "Atualizado em 14 de outubro de 2026"
-      },
-      {
+        id: "blog",
         type: "Blog",
-        title: "Blog da Dinn",
-        desc: "Análises e artigos sobre ruptura de estoque, execução comercial e inteligência de dados em farma.",
-        href: "/blog",
-        updated: ""
+        title: "Artigos, guias e temas do canal",
+        desc: "Análises e explicações sobre ruptura, execução comercial e dados em farma, reunidas no mesmo ambiente.",
+        chips: ["Artigos", "Guias", "Temas"],
+        cta: "Ler o blog",
+        href: "/blog"
+      },
+      {
+        id: "cases",
+        type: "Casos de uso",
+        title: "Histórias de quem usa a Dinn",
+        desc: "Casos de clientes que conhecemos e entrevistamos, contados de forma documentada e pública: da situação ao aprendizado.",
+        chips: ["Entrevistas", "Contexto", "Aprendizados"],
+        cta: "Ver os casos",
+        href: "/recursos/casos"
+      },
+      {
+        id: "changelog",
+        type: "Changelog",
+        title: "Tudo o que entrou no ar",
+        desc: "A linha do tempo das publicações da Dinn, com data e uma explicação em linguagem simples do que mudou.",
+        chips: ["Novidades", "Melhorias", "Correções"],
+        cta: "Ver o histórico",
+        href: "/recursos/changelog"
       }
     ],
     openItem: "Abrir",
@@ -713,5 +722,24 @@ export const pagesPt = {
         { label: "Em uso", text: "Leitura diária e retorno do time" }
       ]
     }
+  },
+
+  changelog: {
+    meta: {
+      title: "Changelog | Dinn",
+      description: "Linha do tempo do que a Dinn colocou no ar: novidades e melhorias da plataforma, explicadas em linguagem simples e organizadas por data."
+    },
+    hero: {
+      eyebrow: "Changelog",
+      title: "O que entrou no ar na *Dinn*",
+      lead: "Cada publicação em produção, explicada em linguagem simples e organizada por data."
+    },
+    back: "Todos os recursos",
+    filters: { label: "Filtrar por área", all: "Tudo", platform: "Plataforma", site: "Site e documentação" },
+    count: "publicações",
+    updated: "Atualizado em",
+    months: "Meses",
+    empty: "Nenhuma publicação nesta área ainda.",
+    note: "Atualizado automaticamente todos os dias. Os textos são reescritos em linguagem simples e detalhes técnicos internos não aparecem aqui."
   }
 };

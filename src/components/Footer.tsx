@@ -36,7 +36,7 @@ export default function Footer() {
                 [t('nav.platform'), '/plataforma'],
                 [t('nav.solutions'), '/solucoes'],
                 [t('nav.teams'), '/#times'],
-                [t('nav.customers'), '/clientes'],
+                [t('nav.customers'), '/#clientes'],
                 [t('nav.resources'), '/recursos'],
                 [t('nav.trust'), '/confianca'],
                 [t('nav.blog'), '/blog'],

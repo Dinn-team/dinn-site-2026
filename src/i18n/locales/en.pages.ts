@@ -1,3 +1,5 @@
+import { platformVizEn } from './en.platform';
+
 // Texts for the site's inner pages (platform, solutions by area, trust,
 // customers, resources) and for the new home sections (areas and content).
 // English mirror of pt.pages.ts: same keys, same order, same structure.
@@ -5,6 +7,7 @@
 // what it helps interpret and what depends on customer validation.
 
 export const pagesEn = {
+  platformViz: platformVizEn,
   areas: {
     eyebrow: "For your area",
     title: "Start from *your team's* problem",
@@ -27,7 +30,7 @@ export const pagesEn = {
         type: "Demonstration case",
         title: "From a stock-out at six stores to the week's verification queue",
         desc: "The full flow, from signal to learning, with example values.",
-        href: "/clientes#caso"
+        href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
         type: "Blog",
@@ -408,75 +411,81 @@ export const pagesEn = {
     }
   },
 
-  customers: {
+
+
+  cases: {
     meta: {
-      title: "Customers and cases | Dinn",
-      description: "Companies that work with Dinn, testimonials and a demonstration case from signal to action, with source, validation and learning."
+      title: "Use cases | Dinn",
+      description: "Dinn use case gallery: stories from signal to action, told step by step, with source, validation and learning."
     },
     hero: {
-      eyebrow: "Customers and cases",
-      title: "Who works with Dinn and *what changes in practice*",
-      lead: "Companies, testimonials and a complete case: from the observed signal to the team's learning."
+      eyebrow: "Use cases",
+      title: "Dinn use stories, *one by one*",
+      lead: "Each case tells the whole path: from situation to learning, with what was observed, how it was validated and what the team decided."
     },
-    caseBlock: {
-      tag: "Demonstration case · example values",
-      title: "From a stock-out at six stores to the week's verification queue",
-      intro: "This case is not from production. It shows the flow Dinn follows with customer data: each step exists, and the numbers here are illustrative.",
-      steps: [
-        { label: "Situation", text: "A trade team with 40 stores in its portfolio and time to visit eight per week." },
-        { label: "Observed signal", text: "Six stores concentrate 70% of the product's stock-out signal over the last week." },
-        { label: "How it was validated", text: "Each store's stock-out is the share of days without stock over the last 30 days. Stores that never sold the product were left out, and each point says whether it is observed or estimated." },
-        { label: "Decision supported", text: "Start the week with those six stores, with one question per store: is there a pending order? Is the product off the shelf?" },
-        { label: "Action taken", text: "The team visited the stores in the queue and brought the chain store-level evidence, with dates." },
-        { label: "Learning", text: "The feedback from each visit reorders the queue the following week. The case does not report a financial result: it shows the flow." }
-      ]
+    gallery: { open: "Read the case", demo: "Demonstration case · example values", customer: "Customer case", empty: "New cases will be added here, one by one." },
+    detail: {
+      back: "All cases",
+      stepsTitle: "From signal to learning",
+      byline: "Dinn team",
+      demoNote: "This case is not from production. It shows the flow Dinn follows with the customer's data: each step exists, and the numbers here are illustrative.",
+      relatedTitle: "Keep exploring",
+      areaLabel: "Area"
+    },
+    stepLabels: {
+      situation: "Situation",
+      signal: "Observed signal",
+      validation: "How it was validated",
+      decision: "Decision supported",
+      action: "Action taken",
+      learning: "Learning"
     },
     rules: {
-      title: "How we report cases",
+      title: "How we tell cases",
       items: [
-        "A real case and a demonstration case are always identified as such.",
+        "Real cases and demonstration cases are always identified as such.",
         "When there is a measurable result, we state the period, universe and method.",
-        "When there isn't, we report the proven operational gain, without converting it into financial impact."
+        "When there is not, we report the proven operational gain, without turning it into financial impact."
       ]
-    },
-    cta: {
-      title: "Want to see a case with your portfolio?",
-      desc: "The demo starts from your products, your portfolio and your regions.",
-      button: "Request a demo"
     }
   },
-
   resources: {
     meta: {
       title: "Resources | Dinn",
-      description: "Guides, cases and articles to understand the pharmaceutical channel: stock-outs, assortment, sell-through and how to turn signals into commercial action."
+      description: "Blog, customer stories and the Dinn changelog: content to understand the pharmaceutical channel and follow what goes live."
     },
     hero: {
       eyebrow: "Resources",
-      title: "To understand the channel *before deciding*",
-      lead: "Guides, cases and articles written from what Dinn observes in the pharmaceutical channel."
+      title: "Content, stories and news *from Dinn*",
+      lead: "Choose where to start: learn from articles and guides, read customer stories or follow what went live on the platform."
     },
     items: [
       {
-        type: "Guide",
-        title: "Absence, stock-out, assortment and sell-through: what's the difference?",
-        desc: "The four readings most often confused in the channel, and what to check before acting.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro",
-        updated: "Updated on October 14, 2026"
-      },
-      {
-        type: "Demonstration case",
-        title: "From a stock-out at six stores to the week's verification queue",
-        desc: "The full flow, from signal to learning, with example values.",
-        href: "/clientes#caso",
-        updated: "Updated on October 14, 2026"
-      },
-      {
+        id: "blog",
         type: "Blog",
-        title: "Dinn Blog",
-        desc: "Analysis and articles on stock-outs, commercial execution and data intelligence in pharma.",
-        href: "/blog",
-        updated: ""
+        title: "Articles, guides and topics on the channel",
+        desc: "Analysis and explanations on stock-outs, commercial execution and data in pharma, gathered in one place.",
+        chips: ["Articles", "Guides", "Topics"],
+        cta: "Read the blog",
+        href: "/blog"
+      },
+      {
+        id: "cases",
+        type: "Use cases",
+        title: "Stories from those who use Dinn",
+        desc: "Stories from customers we know and interviewed, told in a documented and public way: from situation to learning.",
+        chips: ["Interviews", "Context", "Learnings"],
+        cta: "See the stories",
+        href: "/recursos/casos"
+      },
+      {
+        id: "changelog",
+        type: "Changelog",
+        title: "Everything that went live",
+        desc: "The timeline of Dinn releases, with dates and a plain-language explanation of what changed.",
+        chips: ["New", "Improvements", "Fixes"],
+        cta: "See the history",
+        href: "/recursos/changelog"
       }
     ],
     openItem: "Open",
@@ -712,5 +721,24 @@ export const pagesEn = {
         { label: "In use", text: "Daily reading and team feedback" }
       ]
     }
+  },
+
+  changelog: {
+    meta: {
+      title: "Changelog | Dinn",
+      description: "Timeline of what Dinn put live: platform news and improvements, explained in plain language and organized by date."
+    },
+    hero: {
+      eyebrow: "Changelog",
+      title: "What went live at *Dinn*",
+      lead: "Every release in production, explained in plain language and organized by date."
+    },
+    back: "All resources",
+    filters: { label: "Filter by area", all: "All", platform: "Platform", site: "Site and documentation" },
+    count: "releases",
+    updated: "Updated on",
+    months: "Months",
+    empty: "No releases in this area yet.",
+    note: "Updated automatically every day. Texts are rewritten in plain language and internal technical details do not appear here."
   }
 };

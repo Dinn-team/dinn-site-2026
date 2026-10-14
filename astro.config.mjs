@@ -26,6 +26,8 @@ export default defineConfig({
 
   redirects: {
     '/blog/[slug]': '/articles/[slug]',
+    // a seção de clientes vive na home (âncora #clientes)
+    '/clientes': '/#clientes',
   },
 
   vite: {

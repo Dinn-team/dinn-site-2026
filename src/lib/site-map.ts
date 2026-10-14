@@ -20,8 +20,9 @@ export const PATHS = {
   platform: '/plataforma',
   solutions: '/solucoes',
   trust: '/confianca',
-  customers: '/clientes',
   resources: '/recursos',
+  cases: '/recursos/casos',
+  changelog: '/recursos/changelog',
   blog: '/blog',
 } as const;
 

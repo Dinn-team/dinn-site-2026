@@ -87,7 +87,9 @@ function HeroScene() {
   );
 }
 
-export function HeroSection() {
+type Logo = { name: string; src: string; width?: number; height?: number };
+
+export function HeroSection({ logos = [] }: { logos?: Logo[] }) {
   const { t } = useTranslation();
 
   return (
@@ -109,15 +111,17 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="dh-logos">
+      {/* Âncora "Clientes" do menu: a faixa de logos fecha o herói */}
+      <section id="clientes" className="dh-logos" aria-label={t('logos.title') as string}>
         <p>{t('logos.title')}</p>
-        <div>
-          <img src="/clientes/2TT34cxYkS2JUU2rklS0yDIU5c.avif" alt="Eurofarma" width={512} height={92} loading="lazy" decoding="async" />
-          <img src="/clientes/YewE4auu86Zyxd9HTI5pPwyZujk.avif" alt="Libbs" width={512} height={189} loading="lazy" decoding="async" />
-          <img src="/clientes/marjanlogo-removebg-preview.png" alt="Marjan" width={392} height={129} loading="lazy" decoding="async" />
-          <img src="/clientes/q5GXskJxl7qrQpg4qttvwnhJI.avif" alt="Sanofi" width={512} height={132} loading="lazy" decoding="async" />
-        </div>
-      </div>
+        <ul>
+          {logos.map((l) => (
+            <li key={l.name}>
+              <img src={l.src} alt={l.name} width={l.width} height={l.height} loading="lazy" decoding="async" />
+            </li>
+          ))}
+        </ul>
+      </section>
     </section>
   );
 }

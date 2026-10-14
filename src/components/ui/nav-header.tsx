@@ -27,7 +27,7 @@ interface SlideTabsProps {
 export const NAV_LINKS: { key: string; href: string; menu?: "solutions" }[] = [
   { key: "nav.platform", href: "/plataforma" },
   { key: "nav.solutions", href: "/solucoes", menu: "solutions" },
-  { key: "nav.customers", href: "/clientes" },
+  { key: "nav.customers", href: "/#clientes" },
   { key: "nav.resources", href: "/recursos" },
   { key: "nav.trust", href: "/confianca" },
 ];

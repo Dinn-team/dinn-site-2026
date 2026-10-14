@@ -1,0 +1,413 @@
+{
+  "updatedAt": "2026-10-14",
+  "reviewedUntil": "2026-09-30",
+  "note": "Camada de tratamento: cada item é a reescrita editorial de uma publicação em produção (branch main). 'status' controla a exibição: published aparece no site; draft fica oculto até revisão. 'source' é interno e nunca é exibido. 'reviewedUntil' marca até quando as publicações já foram avaliadas (tratadas ou descartadas por serem internas). Atualize com: node scripts/changelog-sync.mjs --write",
+  "entries": [
+    {
+      "id": "site-8-pharma-stock-docs",
+      "date": "2026-09-30",
+      "area": "site",
+      "status": "published",
+      "title": {
+        "pt": "Documentação pública do Dinn Pharma Stock",
+        "en": "Public documentation for Dinn Pharma Stock",
+        "es": "Documentación pública de Dinn Pharma Stock"
+      },
+      "summary": {
+        "pt": "A documentação do Dinn Pharma Stock agora está disponível publicamente, em inglês, para quem conecta o Dinn ao ChatGPT.",
+        "en": "The Dinn Pharma Stock documentation is now publicly available in English for anyone connecting Dinn to ChatGPT.",
+        "es": "La documentación de Dinn Pharma Stock ya está disponible públicamente, en inglés, para quien conecta Dinn con ChatGPT."
+      },
+      "highlights": {
+        "pt": [],
+        "en": [],
+        "es": []
+      },
+      "source": {
+        "repo": "dinn-site-2026",
+        "pr": 8
+      }
+    },
+    {
+      "id": "site-7-legal-en-es",
+      "date": "2026-09-30",
+      "area": "site",
+      "status": "published",
+      "title": {
+        "pt": "Termos, privacidade e suporte em inglês e espanhol",
+        "en": "Terms, privacy and support in English and Spanish",
+        "es": "Términos, privacidad y soporte en inglés y español"
+      },
+      "summary": {
+        "pt": "Os termos de uso, a política de privacidade e a página de suporte ganharam versões em inglês e espanhol. O texto oficial continua sendo o em português.",
+        "en": "The terms of use, privacy policy and support page now have English and Spanish versions. The Portuguese text remains the official one.",
+        "es": "Los términos de uso, la política de privacidad y la página de soporte ahora tienen versiones en inglés y español. El texto oficial sigue siendo el portugués."
+      },
+      "highlights": {
+        "pt": [
+          "Seletor de idioma em cada documento",
+          "Aviso de que o texto em português prevalece"
+        ],
+        "en": [
+          "Language switcher on each document",
+          "Notice that the Portuguese text prevails"
+        ],
+        "es": [
+          "Selector de idioma en cada documento",
+          "Aviso de que prevalece el texto en portugués"
+        ]
+      },
+      "source": {
+        "repo": "dinn-site-2026",
+        "pr": 7
+      }
+    },
+    {
+      "id": "manager-148-aviso-dado",
+      "date": "2026-09-29",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Aviso de dado sob verificação, mais discreto",
+        "en": "A subtler notice for data under review",
+        "es": "Un aviso más discreto para datos en revisión"
+      },
+      "summary": {
+        "pt": "Quando um dado está sendo verificado, o aviso agora aparece só onde o impacto é direto: um ícone discreto e um ponto laranja nos gráficos de linha. Some a faixa no topo da página.",
+        "en": "When a data point is under review, the notice now appears only where the impact is direct: a subtle icon and an orange dot on line charts. The banner at the top of the page is gone.",
+        "es": "Cuando un dato está en revisión, el aviso ahora aparece solo donde el impacto es directo: un ícono discreto y un punto naranja en los gráficos de línea. Desaparece la franja en la parte superior de la página."
+      },
+      "highlights": {
+        "pt": [
+          "Aviso em Início, Distribuição, Localizar produtos e Mercado",
+          "Uma única dica por gráfico, com os períodos juntados"
+        ],
+        "en": [
+          "Notice on Home, Distribution, Product locator and Market",
+          "A single tooltip per chart, with periods combined"
+        ],
+        "es": [
+          "Aviso en Inicio, Distribución, Localizar productos y Mercado",
+          "Una única sugerencia por gráfico, con los períodos unidos"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 148
+      }
+    },
+    {
+      "id": "manager-148-legibilidade",
+      "date": "2026-09-29",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Dicas e contraste mais legíveis",
+        "en": "More legible tooltips and contrast",
+        "es": "Sugerencias y contraste más legibles"
+      },
+      "summary": {
+        "pt": "Todas as dicas da plataforma passam a usar o mesmo componente, e o contraste de selos e seletores foi revisado para facilitar a leitura.",
+        "en": "All tooltips across the platform now use the same component, and the contrast of badges and selectors was reviewed to make reading easier.",
+        "es": "Todas las sugerencias de la plataforma pasan a usar el mismo componente, y se revisó el contraste de insignias y selectores para facilitar la lectura."
+      },
+      "highlights": {
+        "pt": [
+          "Dica padronizada em toda a plataforma",
+          "Mais contraste em selos e seletores",
+          "Dicas dos gráficos de linha deixam de ser cortadas"
+        ],
+        "en": [
+          "Standardized tooltip across the platform",
+          "More contrast on badges and selectors",
+          "Line chart tooltips are no longer clipped"
+        ],
+        "es": [
+          "Sugerencia estandarizada en toda la plataforma",
+          "Más contraste en insignias y selectores",
+          "Las sugerencias de los gráficos de línea ya no se cortan"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 148
+      }
+    },
+    {
+      "id": "manager-134-estoque-parado",
+      "date": "2026-09-24",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Estoque parado na página inicial",
+        "en": "Stalled stock on the home page",
+        "es": "Inventario detenido en la página de inicio"
+      },
+      "summary": {
+        "pt": "A página inicial passa a mostrar o estoque parado, e o painel de cada loja traz o giro e os dias parados do produto.",
+        "en": "The home page now shows stalled stock, and each store panel brings the product's turnover and days without movement.",
+        "es": "La página de inicio ahora muestra el inventario detenido, y el panel de cada tienda trae la rotación y los días sin movimiento del producto."
+      },
+      "highlights": {
+        "pt": [
+          "Estoque parado em destaque no início",
+          "Giro e dias parados no painel da loja"
+        ],
+        "en": [
+          "Stalled stock highlighted on the home page",
+          "Turnover and days without movement in the store panel"
+        ],
+        "es": [
+          "Inventario detenido destacado en el inicio",
+          "Rotación y días sin movimiento en el panel de la tienda"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 134
+      }
+    },
+    {
+      "id": "manager-133-distribuicao",
+      "date": "2026-09-24",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Nova tela de Distribuição",
+        "en": "New Distribution screen",
+        "es": "Nueva pantalla de Distribución"
+      },
+      "summary": {
+        "pt": "Estoque nos centros de distribuição e mapa de CDs e lojas com raio de busca, filtros por distribuidor, rede e período, e visualizações salvas. Disponível para empresas com o recurso contratado.",
+        "en": "Stock at distribution centers and a map of DCs and stores with a search radius, filters by distributor, chain and period, and saved views. Available to companies with the feature contracted.",
+        "es": "Inventario en los centros de distribución y mapa de CEDIS y tiendas con radio de búsqueda, filtros por distribuidor, cadena y período, y vistas guardadas. Disponible para empresas con el recurso contratado."
+      },
+      "highlights": {
+        "pt": [
+          "Detalhe do CD com giro, histórico de estoque e lojas que compraram",
+          "Download da tabela e visualizações salvas"
+        ],
+        "en": [
+          "DC detail with turnover, stock history and stores that bought",
+          "Table download and saved views"
+        ],
+        "es": [
+          "Detalle del CEDIS con rotación, historial de inventario y tiendas que compraron",
+          "Descarga de la tabla y vistas guardadas"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 133
+      }
+    },
+    {
+      "id": "manager-125-analise",
+      "date": "2026-09-21",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Aviso sobre a desativação da tela Análise",
+        "en": "Notice about the Analysis screen being retired",
+        "es": "Aviso sobre la desactivación de la pantalla Análisis"
+      },
+      "summary": {
+        "pt": "Quem abre a tela Análise vê um aviso de que ela será desativada e é direcionado à página inicial, que reúne a leitura.",
+        "en": "Anyone opening the Analysis screen sees a notice that it will be retired and is directed to the home page, which brings the reading together.",
+        "es": "Quien abre la pantalla Análisis ve un aviso de que será desactivada y es dirigido a la página de inicio, que reúne la lectura."
+      },
+      "highlights": {
+        "pt": [],
+        "en": [],
+        "es": []
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 125
+      }
+    },
+    {
+      "id": "manager-122-conexoes-ia",
+      "date": "2026-09-17",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Conexão com ChatGPT e Claude: consentimento mais claro",
+        "en": "ChatGPT and Claude connection: clearer consent",
+        "es": "Conexión con ChatGPT y Claude: consentimiento más claro"
+      },
+      "summary": {
+        "pt": "A tela em que você autoriza o ChatGPT ou o Claude a consultar a Dinn foi redesenhada, com selo de verificação e os logos oficiais. As conexões podem ser acompanhadas e gerenciadas na plataforma.",
+        "en": "The screen where you authorize ChatGPT or Claude to query Dinn was redesigned, with a verified badge and the official logos. Connections can be tracked and managed in the platform.",
+        "es": "La pantalla en la que autorizas a ChatGPT o Claude a consultar Dinn fue rediseñada, con sello de verificación y los logos oficiales. Las conexiones se pueden seguir y gestionar en la plataforma."
+      },
+      "highlights": {
+        "pt": [
+          "Selo de verificação e logos oficiais",
+          "Gestão das conexões na plataforma"
+        ],
+        "en": [
+          "Verified badge and official logos",
+          "Connection management in the platform"
+        ],
+        "es": [
+          "Sello de verificación y logos oficiales",
+          "Gestión de las conexiones en la plataforma"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 122
+      }
+    },
+    {
+      "id": "manager-114-consulta-ao-vivo",
+      "date": "2026-09-17",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Consulta de estoque ao vivo em Localizar produtos",
+        "en": "Live stock check in Product locator",
+        "es": "Consulta de inventario en vivo en Localizar productos"
+      },
+      "summary": {
+        "pt": "Consulta ao vivo por loja, em lojas elegíveis, com um cartão automático das lojas mais próximas já consultadas. O painel da loja separa a consulta feita agora da estimativa de ontem e mostra a previsão de duração do estoque.",
+        "en": "A live check per store, in eligible stores, with an automatic card of the nearest stores already checked. The store panel separates the check made now from yesterday's estimate and shows the stock duration forecast.",
+        "es": "Una consulta en vivo por tienda, en tiendas elegibles, con una tarjeta automática de las tiendas más cercanas ya consultadas. El panel de la tienda separa la consulta hecha ahora de la estimación de ayer y muestra la previsión de duración del inventario."
+      },
+      "highlights": {
+        "pt": [
+          "Botão Consultar agora por loja",
+          "Consulta feita agora separada da estimativa de ontem",
+          "Guia no primeiro uso"
+        ],
+        "en": [
+          "Check now button per store",
+          "Check made now separated from yesterday's estimate",
+          "First-use guide"
+        ],
+        "es": [
+          "Botón Consultar ahora por tienda",
+          "Consulta hecha ahora separada de la estimación de ayer",
+          "Guía en el primer uso"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 114
+      }
+    },
+    {
+      "id": "manager-114-preco-por-loja",
+      "date": "2026-09-17",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Preço por loja no Localizador",
+        "en": "Price per store in the Locator",
+        "es": "Precio por tienda en el Localizador"
+      },
+      "summary": {
+        "pt": "O Localizador exibe o preço por loja e permite ordenar por preço. Quando o preço não está disponível, a tela mostra o motivo, e o valor R$ 0,00 deixou de aparecer como se fosse preço real.",
+        "en": "The Locator shows the price per store and lets you sort by price. When a price is unavailable, the screen shows why, and R$ 0.00 no longer appears as if it were a real price.",
+        "es": "El Localizador muestra el precio por tienda y permite ordenar por precio. Cuando el precio no está disponible, la pantalla muestra el motivo, y el valor R$ 0,00 dejó de aparecer como si fuera un precio real."
+      },
+      "highlights": {
+        "pt": [],
+        "en": [],
+        "es": []
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 114
+      }
+    },
+    {
+      "id": "manager-91-reportar-estoque",
+      "date": "2026-09-16",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Reportar estoque em mais telas",
+        "en": "Report stock from more screens",
+        "es": "Reportar inventario desde más pantallas"
+      },
+      "summary": {
+        "pt": "Há mais pontos de entrada para reportar o estoque de uma loja, e o fim da jornada convida a registrar o que você viu.",
+        "en": "There are more entry points to report a store's stock, and the end of the journey invites you to record what you saw.",
+        "es": "Hay más puntos de entrada para reportar el inventario de una tienda, y el final del recorrido invita a registrar lo que viste."
+      },
+      "highlights": {
+        "pt": [],
+        "en": [],
+        "es": []
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 91
+      }
+    },
+    {
+      "id": "manager-84-mercado",
+      "date": "2026-09-15",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Nova tela de Mercado",
+        "en": "New Market screen",
+        "es": "Nueva pantalla de Mercado"
+      },
+      "summary": {
+        "pt": "A tela de Mercado traz o gráfico de vendas com escolha de período e granularidade, segmento em lista, visualizações salvas e um tour guiado no primeiro uso.",
+        "en": "The Market screen brings the sales chart with period and granularity selection, a segment dropdown, saved views and a guided tour on first use.",
+        "es": "La pantalla de Mercado trae el gráfico de ventas con selección de período y granularidad, segmento en lista, vistas guardadas y un tour guiado en el primer uso."
+      },
+      "highlights": {
+        "pt": [
+          "Período e granularidade no gráfico de vendas",
+          "Visualizações salvas",
+          "Prévia bloqueada no menu para quem não tem o recurso"
+        ],
+        "en": [
+          "Period and granularity on the sales chart",
+          "Saved views",
+          "Locked preview in the menu for those without the feature"
+        ],
+        "es": [
+          "Período y granularidad en el gráfico de ventas",
+          "Vistas guardadas",
+          "Vista previa bloqueada en el menú para quien no tiene el recurso"
+        ]
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 84
+      }
+    },
+    {
+      "id": "manager-84-inicio",
+      "date": "2026-09-15",
+      "area": "platform",
+      "status": "published",
+      "title": {
+        "pt": "Página inicial renovada",
+        "en": "Refreshed home page",
+        "es": "Página de inicio renovada"
+      },
+      "summary": {
+        "pt": "A página inicial ganhou a hierarquia de rede e holding, o gráfico de disponibilidade nos pontos de venda, os dias parados e a ordenação da tabela de lojas, que se mantém entre as visitas.",
+        "en": "The home page gained the chain and holding hierarchy, the availability chart across points of sale, days without movement, and table sorting that persists between visits.",
+        "es": "La página de inicio ganó la jerarquía de cadena y holding, el gráfico de disponibilidad en los puntos de venta, los días sin movimiento y el orden de la tabla de tiendas, que se mantiene entre visitas."
+      },
+      "highlights": {
+        "pt": [],
+        "en": [],
+        "es": []
+      },
+      "source": {
+        "repo": "dinn-manager-app",
+        "pr": 84
+      }
+    }
+  ]
+}

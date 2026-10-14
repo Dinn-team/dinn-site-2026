@@ -12,6 +12,9 @@
 @import "./site-pages.css";
 @import "./site-solutions.css";
 @import "./site-trust.css";
+@import "./site-resources.css";
+@import "./site-platform.css";
+@import "./site-mobile-menu.css";
 
 @custom-variant dark (&:is(.dark *));
 

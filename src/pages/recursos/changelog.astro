@@ -1,11 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { CustomersPage } from '@/components/site/CustomersPage';
+import { ChangelogPage } from '@/components/site/ChangelogPage';
 import { pagesPt } from '@/i18n/locales/pt.pages';
 
-const { title, description } = pagesPt.customers.meta;
+const { title, description } = pagesPt.changelog.meta;
 ---
 
 <Layout title={title} description={description}>
-  <CustomersPage client:load />
+  <ChangelogPage client:load />
 </Layout>

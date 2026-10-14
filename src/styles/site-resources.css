@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Recursos (capa e menu) e Changelog (linha do tempo)
+   ========================================================================== */
+
+/* Capa humanizada: só a imagem, em largura total; o texto vem logo abaixo.
+   O fundo claro do bloco faz o menu fixo escolher o logo escuro. */
+.rc-cover { position: relative; background: #EAF0FF; height: clamp(240px, 36vw, 470px); overflow: hidden; }
+.rc-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.wrap.rc-head { padding-top: clamp(32px, 4vw, 56px); padding-bottom: clamp(8px, 2vw, 24px); }
+.rc-head .sp-title { max-width: 16em; }
+.rc-head .sp-lead { max-width: 36em; }
+
+/* Menu: três portas, cada uma com a sua ilustração */
+.rc-menu { padding-top: clamp(24px, 4vw, 56px); }
+.rc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.rc-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 28px; background: #fff; border: 1px solid #E3E5EA; text-decoration: none; color: inherit; transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.3s; }
+.rc-card:hover { transform: translateY(-4px); box-shadow: 0 36px 70px -44px rgba(86, 37, 242, 0.5); border-color: rgba(86, 37, 242, 0.4); }
+.rc-card h2 { font-size: clamp(21px, 1.9vw, 26px); font-weight: 600; letter-spacing: var(--track-heading); line-height: 1.2; color: var(--text-main); }
+.rc-card > p { font-size: 15.5px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); }
+.rc-art { border-radius: 20px; padding: 14px; margin-bottom: 4px; }
+.rc-card.is-blog .rc-art { background: linear-gradient(160deg, #F3EEFF, #E9F7F1); }
+.rc-card.is-cases .rc-art { background: linear-gradient(160deg, #EEF3FF, #F6EEFF); }
+.rc-card.is-changelog .rc-art { background: linear-gradient(160deg, #EAFBF4, #F3EEFF); }
+.rc-art-svg { display: block; width: 100%; height: auto; }
+.rc-ping { transform-box: fill-box; transform-origin: center; animation: v2-halo 2.6s var(--ease-out) infinite; }
+.rc-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.rc-chips li { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--text-soft); }
+.rc-card .sp-area-go { margin-top: auto; padding-top: 8px; }
+
+/* Changelog */
+.cl-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.cl-filters button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 1px solid #DADDE3; background: #fff; color: var(--text-soft); cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.cl-filters button:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.cl-filters button.is-on { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.cl-meta { margin-top: 14px; font-size: 13.5px; color: var(--text-soft); }
+.cl-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
+.cl-rail { position: sticky; top: 100px; }
+.cl-rail ul { list-style: none; display: flex; flex-direction: column; gap: 4px; border-left: 2px solid #ECEEF2; }
+.cl-rail a { display: block; padding: 6px 14px; margin-left: -2px; border-left: 2px solid transparent; font-size: 14.5px; font-weight: 500; color: var(--text-soft); text-decoration: none; }
+.cl-rail a:hover { color: var(--color-accent); border-left-color: var(--color-accent); }
+.cl-list { max-width: 760px; }
+.cl-month { scroll-margin-top: 110px; margin-bottom: 40px; }
+.cl-month > h2 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 600; letter-spacing: var(--track-title); margin-bottom: 18px; color: var(--text-main); }
+.cl-entries { list-style: none; position: relative; display: flex; flex-direction: column; gap: 14px; padding-left: 28px; }
+.cl-entries::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(#D9DCE4, #ECEEF2); }
+.cl-entry { position: relative; }
+.cl-dot { position: absolute; left: -28px; top: 22px; width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 0 4px #fff; }
+.cl-card { padding: 18px 20px; border-radius: 20px; background: #fff; border: 1px solid #E3E5EA; }
+.cl-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.cl-card-head time { font-size: 13px; font-weight: 600; letter-spacing: var(--track-small); color: var(--text-soft); }
+.cl-tag { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.cl-card h3 { font-size: clamp(18px, 1.7vw, 21px); font-weight: 600; letter-spacing: var(--track-heading); line-height: 1.25; color: var(--text-main); }
+.cl-card p { margin-top: 6px; font-size: 15.5px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); }
+.cl-card ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.cl-card li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.5; color: var(--text-main); }
+.cl-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(86, 37, 242, 0.35); }
+.cl-note { margin-top: 12px; font-size: 13px; color: var(--text-soft); }
+
+@media (max-width: 1000px) {
+  .rc-grid { grid-template-columns: 1fr; max-width: 560px; }
+  .cl-layout { grid-template-columns: 1fr; }
+  .cl-rail { position: static; }
+  .cl-rail ul { flex-direction: row; flex-wrap: wrap; border-left: 0; gap: 8px; }
+  .cl-rail a { border: 1px solid #DADDE3; border-radius: 999px; margin: 0; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rc-card { transition: none; }
+  .rc-card:hover { transform: none; }
+  .rc-ping { animation: none; }
+}
+
+/* Galeria de casos de uso */
+.cs-card { gap: 10px; }
+.cs-cover { position: relative; display: grid; place-items: center; height: 150px; border-radius: 18px; overflow: hidden; background: linear-gradient(150deg, #EEE9FF, #F5F0FF 60%, #E9F7F1); margin-bottom: 4px; }
+.cs-cover.is-customer { background: linear-gradient(150deg, #E9F7F1, #EEF3FF); }
+.cs-cover-icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 22px; background: #fff; color: var(--color-accent); box-shadow: 0 18px 40px -22px rgba(86, 37, 242, 0.7), 0 0 0 1px rgba(86, 37, 242, 0.08); }
+.cs-cover-dots { position: absolute; left: 16px; right: 16px; bottom: 12px; display: flex; justify-content: space-between; }
+.cs-cover-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(86, 37, 242, 0.25); }
+.cs-cover-dots i:last-child { background: #10B981; }
+.cs-kind { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #fff; border: 1px dashed #B8BCC6; color: var(--text-main); }
+.cs-kind.is-customer { border-style: solid; border-color: rgba(16, 185, 129, 0.5); background: rgba(16, 185, 129, 0.1); color: #047857; }
+.cs-meta { font-size: 13px; color: var(--text-soft); }
+
+/* Detalhe do caso, no formato de artigo */
+.wrap.cs-article { max-width: 760px; display: flex; flex-direction: column; gap: 28px; margin-left: auto; margin-right: auto; }
+.cs-demo-note { padding: 12px 16px; border-radius: 14px; background: #FEF3C7; color: #92400E; font-size: 14.5px; line-height: 1.5; }
+.cs-steps-title { font-size: clamp(22px, 2.4vw, 28px); font-weight: 600; letter-spacing: var(--track-title); color: var(--text-main); }
+.cs-steps { list-style: none; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.cs-steps li { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; padding: 18px 20px; border-radius: 18px; border: 1px solid #E3E5EA; background: #fff; }
+.cs-steps h3 { font-size: 13px; font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px; }
+.cs-steps p { font-size: 17.5px; line-height: 1.7; letter-spacing: var(--track-body); color: var(--text-main); }
+.cs-quote { padding: 22px 24px; border-radius: 20px; background: rgba(86, 37, 242, 0.06); color: var(--color-accent); }
+.cs-quote p { margin: 8px 0; font-size: 19px; line-height: 1.55; color: var(--text-main); font-style: italic; }
+.cs-quote footer { font-size: 14px; font-weight: 600; color: var(--text-soft); }

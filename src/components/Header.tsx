@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { SlideTabs, NAV_LINKS } from '@/components/ui/nav-header';
+import { SlideTabs } from '@/components/ui/nav-header';
+import MobileMenu from '@/components/MobileMenu';
 import { useTranslation } from '@/i18n/useTranslation';
 import { setLanguage, Language } from '@/i18n/store';
 import { DEMO_URL } from '@/lib/links';
@@ -25,7 +26,6 @@ function GlobeIcon({ color }: { color: string }) {
 
 export default function Header() {
   const [isLightBg, setIsLightBg] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   
   const { t, lang } = useTranslation();
@@ -169,63 +169,10 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="lg:hidden p-2 rounded-lg"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={t('nav.openMenu')}
-          >
-            <div className="flex flex-col gap-[5px]">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className={`block w-6 h-0.5 rounded-full transition-colors ${isLightBg ? 'bg-[#1F2328]' : 'bg-white'}`}
-                />
-              ))}
-            </div>
-          </button>
+          {/* Menu de tablet e celular (<1024px): botão + painel em tela cheia */}
+          <MobileMenu isLightBg={isLightBg} />
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
-          <div className="wrap py-6 flex flex-col gap-4">
-            {NAV_LINKS.map(({ key, href, menu }) => (
-              <div key={href} className="flex flex-col gap-3">
-                <a href={href} onClick={() => setMobileOpen(false)} className="text-[16px] font-semibold text-[#1F2328]">{t(key)}</a>
-                {menu === 'solutions' && (
-                  <div className="flex flex-col gap-2 pl-4 border-l border-[#E5E7EB]">
-                    {((t('solutions.items') as { slug: string; name: string }[]) ?? []).map((a) => (
-                      <a key={a.slug} href={`/solucoes/${a.slug}`} onClick={() => setMobileOpen(false)} className="text-[15px] font-medium text-[#5A6170]">{a.name}</a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
-              {t('nav.cta')}
-            </a>
-
-            <hr className="border-[#E5E7EB] my-2" />
-            
-            <div className="flex flex-col gap-3">
-              <span className="text-[12px] font-medium text-gray-400 uppercase tracking-wider">{t('nav.language')}</span>
-              <div className="flex gap-4">
-                {languages.map(l => (
-                  <button
-                    key={l.code}
-                    onClick={() => { setLanguage(l.code); setMobileOpen(false); }}
-                    className={`flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-md ${lang === l.code ? 'bg-[#F3F4F6] text-[#1F2328]' : 'text-gray-500'}`}
-                  >
-                    <span>{l.code.toUpperCase()}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
