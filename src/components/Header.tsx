@@ -191,8 +191,17 @@ export default function Header() {
       {mobileOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
           <div className="wrap py-6 flex flex-col gap-4">
-            {NAV_LINKS.map(({ key, href }) => (
-              <a key={href} href={href} onClick={() => setMobileOpen(false)} className="text-[16px] font-semibold text-[#1F2328]">{t(key)}</a>
+            {NAV_LINKS.map(({ key, href, menu }) => (
+              <div key={href} className="flex flex-col gap-3">
+                <a href={href} onClick={() => setMobileOpen(false)} className="text-[16px] font-semibold text-[#1F2328]">{t(key)}</a>
+                {menu === 'solutions' && (
+                  <div className="flex flex-col gap-2 pl-4 border-l border-[#E5E7EB]">
+                    {((t('solutions.items') as { slug: string; name: string }[]) ?? []).map((a) => (
+                      <a key={a.slug} href={`/solucoes/${a.slug}`} onClick={() => setMobileOpen(false)} className="text-[15px] font-medium text-[#5A6170]">{a.name}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
               {t('nav.cta')}

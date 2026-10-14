@@ -20,16 +20,19 @@ interface SlideTabsProps {
   scrolled: boolean;
 }
 
-// Itens do menu principal, compartilhados entre desktop e celular. As âncoras
-// levam a barra antes do # para funcionar também fora da home (ex.: no blog).
-export const NAV_LINKS: { key: string; href: string }[] = [
-  { key: "nav.teams", href: "/#times" },
-  { key: "nav.ask", href: "/#insights" },
-  { key: "nav.inside", href: "/#por-dentro" },
-  { key: "nav.delivery", href: "/#entrega" },
-  { key: "nav.customers", href: "/#clientes" },
-  { key: "nav.blog", href: "/blog" },
+// Itens do menu principal, compartilhados entre desktop e celular. O menu
+// espelha as perguntas do comprador (o que é, para a minha área, quem usa,
+// posso confiar), não a árvore interna de páginas. "Soluções" abre a lista das
+// áreas; as páginas seguem em /solucoes/<area>.
+export const NAV_LINKS: { key: string; href: string; menu?: "solutions" }[] = [
+  { key: "nav.platform", href: "/plataforma" },
+  { key: "nav.solutions", href: "/solucoes", menu: "solutions" },
+  { key: "nav.customers", href: "/clientes" },
+  { key: "nav.resources", href: "/recursos" },
+  { key: "nav.trust", href: "/confianca" },
 ];
+
+export type NavArea = { slug: string; name: string };
 
 export function SlideTabs({ scrolled }: SlideTabsProps) {
   const { t } = useTranslation();
@@ -40,7 +43,8 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
     opacity: 0,
   });
 
-  const navItems: NavItem[] = NAV_LINKS.map(({ key, href }) => ({ label: t(key), href }));
+  const navItems: (NavItem & { menu?: "solutions" })[] = NAV_LINKS.map(({ key, href, menu }) => ({ label: t(key), href, menu }));
+  const areas = (t("solutions.items") as NavArea[]) ?? [];
 
   return (
     <ul
@@ -70,6 +74,8 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
           href={item.href}
           setPosition={setPosition}
           scrolled={scrolled}
+          areas={item.menu === "solutions" ? areas : undefined}
+          allLabel={item.menu === "solutions" ? t("nav.solutionsAll") : undefined}
         >
           {item.label}
         </Tab>
@@ -84,18 +90,33 @@ const Tab = ({
   href,
   setPosition,
   scrolled,
+  areas,
+  allLabel,
 }: {
   children: React.ReactNode;
   href: string;
   setPosition: React.Dispatch<React.SetStateAction<Position>>;
   scrolled: boolean;
+  areas?: NavArea[];
+  allLabel?: string;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
+  const [open, setOpen] = useState(false);
+  const hasMenu = Boolean(areas && areas.length);
 
   return (
     <li
       ref={ref}
+      onFocus={() => hasMenu && setOpen(true)}
+      onBlur={(e) => {
+        if (hasMenu && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setOpen(false);
+      }}
+      onMouseLeave={() => setOpen(false)}
       onMouseEnter={() => {
+        if (hasMenu) setOpen(true);
         if (!ref.current) return;
         const { width } = ref.current.getBoundingClientRect();
         setPosition({
@@ -128,6 +149,50 @@ const Tab = ({
       >
         {children}
       </a>
+      {hasMenu && open && (
+        <div
+          role="menu"
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            paddingTop: "10px",
+            zIndex: 60,
+          }}
+        >
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: "14px",
+              boxShadow: "0 18px 40px -16px rgba(31,35,40,0.35), 0 0 0 1px rgba(31,35,40,0.06)",
+              padding: "8px",
+              minWidth: "270px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {areas!.map((a) => (
+              <a
+                key={a.slug}
+                role="menuitem"
+                href={`/solucoes/${a.slug}`}
+                style={{ padding: "10px 12px", borderRadius: "10px", fontSize: "14px", fontWeight: 500, color: "#1F2328", textDecoration: "none", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(86,37,242,0.08)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+              >
+                {a.name}
+              </a>
+            ))}
+            <a
+              role="menuitem"
+              href={href}
+              style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "#5625F2", textDecoration: "none" }}
+            >
+              {allLabel} →
+            </a>
+          </div>
+        </div>
+      )}
     </li>
   );
 };

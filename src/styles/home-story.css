@@ -9,6 +9,10 @@
   height: 100vh; height: 100svh;
   display: grid; place-items: center;
   overflow: hidden;
+  /* respiro fixo para o menu (72px) em cima e para a borda embaixo: o texto
+     nunca encosta no topo, em qualquer altura de tela */
+  padding: 104px 0 56px;
+  box-sizing: border-box;
 }
 .story-glow {
   position: absolute; inset: 0; pointer-events: none;
@@ -17,12 +21,16 @@
 }
 .story-text {
   position: relative;
-  max-width: 1080px;
+  max-width: 1040px;
+  margin: 0 auto;
   padding: 0 clamp(24px, 5vw, 80px);
-  font-size: clamp(28px, 4.2vw, 58px);
+  /* o corpo acompanha a largura e a altura da tela, para o manifesto inteiro
+     caber entre o menu e a borda de baixo (desktop, tablet e celular) */
+  font-size: clamp(24px, min(4.2vw, 5.2vh), 58px);
   font-weight: 400;
   letter-spacing: var(--track-title);
   line-height: 1.24;
+  text-align: center;
   text-wrap: balance;
 }
 .story-line { display: block; margin-bottom: 0.5em; }
@@ -79,6 +87,8 @@
 .inside-stage.is-on .inside-chips span { opacity: 1; transform: none; }
 .inside-stage h3 { font-size: clamp(26px, 3vw, 42px); font-weight: 600; letter-spacing: var(--track-title); line-height: 1.12; margin-bottom: 14px; text-wrap: balance; }
 .inside-stage p { font-size: clamp(16px, 1.3vw, 17.5px); line-height: 1.65; letter-spacing: var(--track-body); color: var(--on-ink-body); max-width: 46ch; }
+.inside-stage p.inside-example { margin-top: 12px; padding: 10px 14px; border-left: 2px solid var(--lilac); background: rgba(255, 255, 255, 0.05); border-radius: 0 12px 12px 0; font-size: clamp(14.5px, 1.15vw, 16px); color: var(--on-ink); }
+.inside-note { margin-top: -12px; font-size: 12.5px; letter-spacing: var(--track-small); color: var(--on-ink-muted); }
 .inside-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
 .inside-chips span { font-size: 13px; font-weight: 400; letter-spacing: var(--track-small); color: #fff; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); }
 .inside-signal, .inside-output {
@@ -116,6 +126,8 @@
   .inside-copy { left: 0; padding: 0 20px 28px; width: 100%; top: auto; bottom: 0; justify-content: flex-end; gap: 12px; background: linear-gradient(to top, var(--ink-deep) 65%, transparent); }
   .inside-stage h3 { font-size: 24px; margin-bottom: 8px; }
   .inside-stage p { font-size: 15px; }
+  .inside-stage p.inside-example { font-size: 14px; padding: 8px 12px; }
+  .inside-note { display: none; }
   .inside-chips { display: none; }
   .inside-signal { font-size: 11px; padding: 4px 8px; }
   /* o título da seção (h2) continua no HTML para leitores de tela e buscadores */

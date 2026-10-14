@@ -1,9 +1,17 @@
+import { pagesPt } from './pt.pages';
+
 export const ptBR = {
+  ...pagesPt,
   nav: {
     home: "Home",
+    platform: "Plataforma",
+    solutions: "Soluções",
+    solutionsAll: "Ver todas as soluções",
+    trust: "Confiança",
+    resources: "Recursos",
     ask: "Dinn Insights",
-    teams: "Para cada time",
-    inside: "Por dentro",
+    teams: "Casos de uso",
+    inside: "Como funciona",
     delivery: "Onde entrega",
     customers: "Clientes",
     blog: "Blog",
@@ -14,11 +22,11 @@ export const ptBR = {
     langShort: "PT"
   },
   hero: {
-    pill: "Inteligência artificial para a indústria farmacêutica",
-    title: "Dinn, a *IA para o mercado farma*: do sinal à execução comercial",
-    description: "A IA que lê estoque, giro e preço das farmácias todo dia, e mostra onde há oportunidades e onde agir primeiro.",
-    cta: "Solicitar demo",
-    secondary: "Ver casos de uso por time"
+    pill: "Inteligência comercial para o canal farmacêutico",
+    title: "Transforme sinais do canal farma em *ação comercial*.",
+    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura, mostra a origem, a data e os limites de cada informação e ajuda sua equipe a decidir onde agir primeiro.",
+    cta: "Conheça a plataforma",
+    secondary: "Explore a Dinn para a sua área"
   },
   insights: {
     eyebrow: "Em todas as camadas",
@@ -319,7 +327,7 @@ export const ptBR = {
       sobre: {
         keywords: ["o que é", "o que e", "quem é", "quem e", "como funciona", "o que voc", "o que faz", "dinn"],
         steps: ["Entendendo a pergunta…"],
-        answer: "O Dinn é a camada de inteligência do canal farmacêutico. Todos os dias ele lê estoque, giro e preço nas farmácias, liga cada loja ao CD que a abastece e transforma isso em sinais com nome: ruptura persistente, estoque parado, queda de giro.\n\nCada time usa esse mesmo cérebro de um jeito. Veja o seu logo abaixo, ou pergunte como se fosse sobre os seus produtos.",
+        answer: "O Dinn é inteligência comercial para o canal farmacêutico. Ele organiza sinais de estoque, giro e preço das farmácias, relaciona cada loja ao CD que a abastece quando a fonte permite e transforma isso em sinais com nome: ruptura persistente, estoque parado, queda de giro.\n\nCada área usa a mesma leitura de um jeito. Escolha a sua abaixo, ou pergunte como se fosse sobre os seus produtos.",
         method: [],
         links: [
           { label: "Um uso para cada time", href: "#times" },
@@ -350,11 +358,11 @@ export const ptBR = {
     }
   },
   logos: {
-    title: "Indústrias farmacêuticas que já usam a Dinn"
+    title: "Empresas que trabalham com a Dinn"
   },
   teams: {
-    eyebrow: "Escolha o seu time e veja o Dinn trabalhando",
-    title: "Execução comercial farma para *cada time*",
+    eyebrow: "Casos de uso: escolha a situação e veja o Dinn trabalhando",
+    title: "Situações concretas do canal, *uma a uma*",
     askCta: "Pergunte isso ao Dinn",
     seesLabel: "O Dinn cruza",
     doesLabel: "O time faz",
@@ -560,66 +568,85 @@ export const ptBR = {
   },
   story: {
     lines: [
-      "Todos os dias, cada farmácia diz algo sobre o seu produto.",
+      "O canal farmacêutico deixa sinais sobre o seu produto.",
       "Se ele está na **prateleira. Se gira. A que preço. Se o CD tem para repor.**",
-      "Quase ninguém escuta.",
-      "O Dinn escuta, entende e diz ao seu time **onde agir.**"
+      "Os sinais chegam **soltos**, de fontes diferentes e com graus diferentes de confiança.",
+      "O Dinn organiza, mostra de onde vêm e ajuda o seu time a decidir **onde agir primeiro.**"
     ]
   },
   inside: {
-    eyebrow: "Por dentro da IA do Dinn",
+    eyebrow: "Como a Dinn funciona, em um exemplo",
+    exampleNote: "Exemplo ilustrativo, com valores fictícios.",
     stages: [
       {
         name: "Observa",
-        title: "Lê a ruptura de estoque do canal, todos os dias.",
-        desc: "Agentes consultam os canais digitais das farmácias e registram estoque, preço e movimento, com local e horário. Onde a fonte não responde, o Dinn estima por lojas comparáveis e diz isso.",
-        chips: ["Estoque D-1", "Preço", "Movimento", "Observado ou estimado"]
+        title: "Percebe uma mudança no canal.",
+        desc: "Identifica uma mudança de disponibilidade, preço, giro ou cobertura nas fontes que acompanha.",
+        example: "A presença do produto X cai em 31 das 120 lojas monitoradas da Rede A, no Sul.",
+        chips: ["Disponibilidade", "Preço", "Giro", "Cobertura"]
       },
       {
-        name: "Conecta",
-        title: "Liga cada farmácia ao que está em volta.",
-        desc: "Cada loja passa a conversar com o CD que a abastece, com o histórico de giro, com a rede e com o mercado da categoria.",
-        chips: ["CD do distribuidor", "Histórico de giro", "Rede e região", "Mercado da categoria"]
+        name: "Valida",
+        title: "Mostra de onde veio e quanto confiar.",
+        desc: "Mostra fonte, data, escopo e nível de confiança, e cruza sinais quando aplicável.",
+        example: "24 lojas foram observadas na fonte; 7 são estimadas por lojas comparáveis, com confiança média. Ausência ainda não é ruptura.",
+        chips: ["Fonte e data", "Escopo", "Observado ou estimado", "Confiança"]
       },
       {
         name: "Entende",
-        title: "Separa o sinal do ruído.",
-        desc: "A leitura vira sinais com nome, e a evolução no tempo separa um sinal pontual de um problema recorrente.",
+        title: "Relaciona a mudança ao contexto comercial.",
+        desc: "Liga a mudança a produto, conta, território e contexto, sem presumir a causa.",
+        example: "As lojas ficam em 3 cidades da mesma rede. O CD tem saldo, o que não prova que cada loja será abastecida.",
+        chips: ["Produto", "Conta", "Território", "CD que abastece"]
+      },
+      {
+        name: "Decide",
+        title: "Ajuda a priorizar a próxima análise ou ação.",
+        desc: "Ordena a questão entre as outras e sugere a próxima análise ou ação, como hipótese para o time validar.",
+        example: "Prioridade: investigar a Rede A no Sul, começando por pedidos pendentes, antes de falar em ruptura.",
         chips: ["Ruptura persistente", "Estoque sem movimento", "Queda de giro", "Concentração em rede"]
       },
       {
-        name: "Entrega",
-        title: "Leva a execução comercial aonde o time trabalha.",
-        desc: "Na plataforma, numa conversa, no seu BI ou na sua IA. O Dinn prepara a análise; a equipe decide.",
-        chips: ["Dinn Manager", "Dinn Insights", "Sua IA", "BI e API", "Campo"]
+        name: "Age",
+        title: "Leva a informação a quem executa.",
+        desc: "Entrega a leitura à equipe ou à ferramenta responsável: na plataforma, numa conversa, no BI ou na sua IA.",
+        example: "A lista chega ao KAM da conta e ao Copilot da equipe, com fonte e data.",
+        chips: ["Dinn Manager", "Dinn Insights", "Sua IA", "BI e API"]
+      },
+      {
+        name: "Aprende",
+        title: "Registra o retorno e melhora a fila.",
+        desc: "Registra o retorno do time e melhora a priorização ao longo do uso.",
+        example: "O time marca que 5 lojas tinham pedido pendente; na semana seguinte elas descem na fila.",
+        chips: ["Retorno do time", "Mesmo recorte", "Priorização"]
       }
     ],
     outputs: ["Plataforma", "Conversa", "Sua IA", "BI e API", "Campo"],
     signals: ["Ruptura persistente", "Estoque sem movimento", "Queda de giro", "Concentração em rede"]
   },
   delivery: {
-    eyebrow: "Onde o Dinn entrega",
+    eyebrow: "Plataforma e capacidades",
     title: "IA para o mercado farma *onde o seu time já trabalha*",
     cards: [
       {
         tag: "Dinn Manager",
         title: "A plataforma",
-        desc: "Ruptura, estoque parado, distribuição e mercado no mesmo recorte, por SKU, rede, cidade e loja."
+        desc: "Leva prioridades e contexto para a gestão e a execução comercial: ruptura, estoque parado, distribuição e mercado no mesmo recorte."
       },
       {
         tag: "Dinn Insights",
         title: "Uma conversa",
-        desc: "Pergunte em português e receba o número, o recorte, a data e o que é observado ou estimado."
+        desc: "Apoia a exploração e a interpretação dos sinais: pergunte em português e receba o número, o recorte, a data e o que é observado ou estimado."
       },
       {
         tag: "MCP",
         title: "Na sua IA",
-        desc: "ChatGPT, Claude e Copilot consultam o Dinn com acesso autorizado e somente leitura."
+        desc: "Interface para que ChatGPT, Claude e Copilot autorizados consultem os dados do Dinn, com acesso somente leitura."
       },
       {
         tag: "Dinn Conecta",
         title: "No seu BI e nos seus agentes",
-        desc: "Mercado, dados internos e farmácias padronizados por produto, loja e região. Dados e governança continuam com você."
+        desc: "Prepara e entrega fluxos de dados do canal, padronizados por produto, loja e região, para o seu BI e os seus agentes. Dados e governança continuam com você."
       }
     ],
     sources: ["IQVIA / Close-Up", "ERP e CRM", "Farmácias"],
@@ -628,9 +655,9 @@ export const ptBR = {
       "Observado ou estimado, sempre dito",
       "Base D-1 e consulta pontual em lojas elegíveis",
       "Dois fatores por e-mail · SSO habilitável",
-      "Implantação em até 30 dias após os pré-requisitos"
+      "Implantação em até 30 dias após pré-requisitos e escopo acordados"
     ],
-    note: "Cada fonte depende de licença, autorização e escopo acordados. Recursos na sua IA dependem do plano e da configuração."
+    note: "Cobertura e atualização variam por fonte, produto e consulta. Cada fonte depende de licença, autorização e escopo acordados, e recursos na sua IA dependem do plano e da configuração."
   },
   faq: {
     title: "Perguntas frequentes sobre IA, ruptura de estoque e sell-out",
@@ -688,20 +715,25 @@ export const ptBR = {
         answer: "Sim. A Dinn se conecta ao seu ambiente de IA por **MCP**, com acesso autorizado e **somente leitura**. Você pergunta em linguagem natural e recebe a análise com recorte, período e limites. Recursos como agendamento e geração de arquivos dependem do plano e da configuração da sua IA."
       },
       {
+        question: "A Dinn cobre todas as farmácias e confirma a causa da ruptura?",
+        answer: "Não. **Cobertura e atualização variam por fonte, produto, rede e consulta**, e cada leitura informa o que cobre. A Dinn também não confirma causas: mostra evidências e hipóteses, e o time valida. Ausência de produto não é necessariamente ruptura, e estoque no centro de distribuição não prova abastecimento de uma loja."
+      },
+      {
         question: "Qual a diferença entre dado observado e estimado?",
-        answer: "**Observado** é o que a fonte informou diretamente, com local e horário. **Estimado** é calculado a partir de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. A base é atualizada diariamente (D-1) e, em lojas elegíveis, dá para consultar a disponibilidade no momento."
+        answer: "**Observado** é o que a fonte informou diretamente, com local e horário. **Estimado** é calculado a partir de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. **Inferido** é a leitura que o Dinn tira da combinação de sinais, apresentada como hipótese a validar. A base é atualizada em D-1 e, em lojas elegíveis, há consulta pontual de disponibilidade."
       }
     ]
   },
   ctaFinal: {
-    title: "Veja a ruptura de estoque e o sell-out *dos seus produtos*",
-    description: "Numa demonstração, o Dinn responde com o seu portfólio, a sua carteira e as suas regiões.",
+    title: "Veja como transformar os sinais do seu canal em *prioridades comerciais mais claras*",
+    description: "Numa demonstração, o Dinn mostra a leitura com o seu portfólio, a sua carteira e as suas regiões.",
     button: "Solicitar demo",
     secondary: "Voltar a perguntar"
   },
   footer: {
-    description: "A camada de inteligência para o canal farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
+    description: "Inteligência comercial para o canal farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
     sectionA: "A Dinn",
+    sectionSolutions: "Soluções",
     sectionLegal: "Legal",
     termos: "Termos",
     privacidade: "Privacidade",

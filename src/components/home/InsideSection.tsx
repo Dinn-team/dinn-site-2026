@@ -3,15 +3,16 @@ import { useScrollProgress } from './useScrollProgress';
 import { useTranslation } from '@/i18n/useTranslation';
 import { BRAZIL_ASPECT, brainPoints, brazilPoints, clamp01, ease, glowSprite, nearestEdges, prefersReducedMotion, rng, type Pt } from './neural';
 
-// "Por dentro do Dinn": seção presa à tela enquanto o visitante rola. Um único
-// canvas conta o funcionamento em quatro atos:
-//   1. Observa  — o Brasil aparece como pontos de luz (farmácias)
-//   2. Conecta  — fibras ligam cada farmácia ao CD que a abastece
-//   3. Entende  — os pontos se reorganizam num cérebro; surgem os sinais
-//   4. Entrega  — pulsos saem do cérebro para os destinos (plataforma, IA…)
+// "Como funciona": seção presa à tela enquanto o visitante rola. Um único
+// canvas conta o ciclo em quatro atos visuais, e o texto o divide em seis passos
+// (observa, valida, entende, decide, age, aprende) com um único exemplo:
+//   1. pontos de luz: o Brasil aparece (Observa, Valida)
+//   2. fibras ligam cada farmácia ao CD que a abastece (Valida, Entende)
+//   3. os pontos se reorganizam num cérebro; surgem os sinais (Decide)
+//   4. pulsos saem do cérebro para os destinos (Age, Aprende)
 // O progresso da rolagem dirige tudo; não há vídeo nem imagem pesada.
 
-type Stage = { name: string; title: string; desc: string; chips: string[] };
+type Stage = { name: string; title: string; desc: string; example?: string; chips: string[] };
 
 type Layout = {
   w: number;
@@ -75,8 +76,8 @@ function computeLayout(w: number, h: number, count: number): Layout {
   return { w, h, mobile, box, outputs, signals };
 }
 
-/** Pontos de rolagem (0–1 da seção) em que cada ato está completo. */
-const STAGE_TARGETS = [0.16, 0.42, 0.68, 0.94];
+/** Ponto de rolagem (0–1 da seção) no meio da faixa de cada passo. */
+const stageTarget = (i: number, n: number) => (i + 0.5) / Math.max(1, n);
 
 let scrollAnim = 0;
 /** Rola a janela devagar até `to`, com ease. Qualquer gesto do visitante interrompe.
@@ -370,7 +371,7 @@ export function InsideSection() {
     if (!el) return;
     const span = el.offsetHeight - window.innerHeight;
     const top = el.getBoundingClientRect().top + window.scrollY;
-    const to = top + span * (STAGE_TARGETS[i] ?? 0);
+    const to = top + span * stageTarget(i, stages.length);
     const dist = Math.abs(to - window.scrollY);
     const ms = prefersReducedMotion() ? 0 : Math.min(2800, Math.max(1200, 1100 + (dist / window.innerHeight) * 550));
     animateScrollTo(to, ms);
@@ -406,6 +407,7 @@ export function InsideSection() {
 
         <div className="inside-copy">
           <h2 className="inside-eyebrow">{t('inside.eyebrow')}</h2>
+          <p className="inside-note">{t('inside.exampleNote')}</p>
           <div className="inside-rail" role="group" aria-label={t('inside.eyebrow') as string}>
             {stages.map((s, i) => (
               <button
@@ -427,6 +429,7 @@ export function InsideSection() {
               <div key={s.name} className={`inside-stage ${i === stage ? 'is-on' : i < stage ? 'is-past' : ''}`}>
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
+                {s.example && <p className="inside-example">{s.example}</p>}
                 <div className="inside-chips">
                   {s.chips.map((c, k) => <span key={c} style={{ transitionDelay: i === stage ? `${0.15 + k * 0.06}s` : '0s' }}>{c}</span>)}
                 </div>

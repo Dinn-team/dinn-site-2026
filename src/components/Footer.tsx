@@ -33,10 +33,12 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
+                [t('nav.platform'), '/plataforma'],
+                [t('nav.solutions'), '/solucoes'],
                 [t('nav.teams'), '/#times'],
-                [t('nav.ask'), '/#insights'],
-                [t('nav.inside'), '/#por-dentro'],
-                [t('nav.delivery'), '/#entrega'],
+                [t('nav.customers'), '/clientes'],
+                [t('nav.resources'), '/recursos'],
+                [t('nav.trust'), '/confianca'],
                 [t('nav.blog'), '/blog'],
               ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
@@ -51,6 +53,24 @@ export default function Footer() {
           </div>
 
 
+
+          {/* Soluções: uma página por área, mesmo padrão da coluna "A Dinn" */}
+          <div>
+            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
+              {t('footer.sectionSolutions')}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {((t('solutions.items') as { slug: string; name: string }[]) ?? []).map((a) => (
+                <a key={a.slug} href={`/solucoes/${a.slug}`}
+                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
+                >
+                  {a.name}
+                </a>
+              ))}
+            </div>
+          </div>
 
           {/* Legal */}
           <div>
@@ -135,7 +155,7 @@ export default function Footer() {
       {/* Responsive mobile styles */}
       <style>{`
         .footer-grid {
-          grid-template-columns: 2.5fr 1fr 1.5fr 2fr;
+          grid-template-columns: 2.2fr 1fr 1.5fr 1.1fr 2fr;
         }
         @media (max-width: 1024px) {
           .footer-grid {

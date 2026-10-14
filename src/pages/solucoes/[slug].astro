@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { SolutionPage } from '@/components/site/SolutionsPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { AREA_SLUGS } from '@/lib/site-map';
+
+export function getStaticPaths() {
+  return AREA_SLUGS.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const area = pagesPt.solutions.items.find((a) => a.slug === slug)!;
+---
+
+<Layout title={`${area.name} | Dinn`} description={area.lead}>
+  <SolutionPage slug={slug} client:load />
+</Layout>

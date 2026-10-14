@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
-import { DEMO_URL } from '@/lib/links';
 import { FlowField } from './FlowField';
 import { useLive } from './useLive';
 
@@ -102,11 +101,11 @@ export function HeroSection() {
         <h1 className="dh-title"><Rich text={t('hero.title') as string} /></h1>
         <p className="dh-desc">{t('hero.description')}</p>
         <div className="dh-actions">
-          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+          <a href="/plataforma" className="btn btn-primary btn-lg">
             {t('hero.cta')}
             <ArrowRight size={18} aria-hidden="true" />
           </a>
-          <a href="#times" className="btn btn-on-dark btn-lg">{t('hero.secondary')}</a>
+          <a href="#areas" className="btn btn-on-dark btn-lg">{t('hero.secondary')}</a>
         </div>
       </div>
 

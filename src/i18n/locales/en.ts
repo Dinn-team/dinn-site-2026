@@ -1,9 +1,17 @@
+import { pagesEn } from './en.pages';
+
 export const enUS = {
+  ...pagesEn,
   nav: {
     home: "Home",
+    platform: "Platform",
+    solutions: "Solutions",
+    solutionsAll: "See all solutions",
+    trust: "Trust",
+    resources: "Resources",
     ask: "Dinn Insights",
-    teams: "For every team",
-    inside: "Inside",
+    teams: "Use cases",
+    inside: "How it works",
     delivery: "Where it delivers",
     customers: "Customers",
     blog: "Blog",
@@ -14,11 +22,11 @@ export const enUS = {
     langShort: "EN"
   },
   hero: {
-    pill: "Artificial intelligence for the pharmaceutical industry",
-    title: "Dinn, the *AI for the pharma market*: from signal to commercial execution",
-    description: "The AI that reads pharmacy stock, turnover and price every day, and shows where the opportunities are and where to act first.",
-    cta: "Request a demo",
-    secondary: "See use cases by team"
+    pill: "Commercial intelligence for the pharmaceutical channel",
+    title: "Turn pharma channel signals into *commercial action*.",
+    description: "Dinn organizes availability, sell-through, price and coverage signals, shows the source, date and limits of each piece of information, and helps your team decide where to act first.",
+    cta: "Explore the platform",
+    secondary: "Explore Dinn for your area"
   },
   insights: {
     eyebrow: "In every layer",
@@ -319,7 +327,7 @@ export const enUS = {
       sobre: {
         keywords: ["what is", "who is", "who are", "how does it work", "how it works", "what do you", "what does", "o que é", "o que e", "quem é", "quem e", "como funciona", "o que voc", "o que faz", "dinn"],
         steps: ["Understanding the question…"],
-        answer: "Dinn is the intelligence layer for the pharma channel. Every day it reads stock, sell-through and price at pharmacies, links each store to the DC that supplies it, and turns all that into named signals: persistent stock-out, stalled stock, falling sell-through.\n\nEvery team uses the same brain in its own way. Find yours below, or ask as if it were about your own products.",
+        answer: "Dinn is commercial intelligence for the pharmaceutical channel. It organizes pharmacy stock, sell-through and price signals, relates each store to the DC that supplies it when the source allows, and turns all that into named signals: persistent stock-out, stalled stock, falling sell-through.\n\nEach area uses the same reading in its own way. Pick yours below, or ask as if it were about your own products.",
         method: [],
         links: [
           { label: "One use for each team", href: "#times" },
@@ -350,11 +358,11 @@ export const enUS = {
     }
   },
   logos: {
-    title: "Pharmaceutical companies already using Dinn"
+    title: "Companies that work with Dinn"
   },
   teams: {
-    eyebrow: "Pick your team and watch Dinn at work",
-    title: "Pharma commercial execution for *every team*",
+    eyebrow: "Use cases: pick a situation and watch Dinn at work",
+    title: "Concrete channel situations, *one by one*",
     askCta: "Ask Dinn this",
     seesLabel: "Dinn cross-checks",
     doesLabel: "The team does",
@@ -560,66 +568,85 @@ export const enUS = {
   },
   story: {
     lines: [
-      "Every day, every pharmacy says something about your product.",
+      "The pharma channel leaves signals about your product.",
       "Whether it's on the **shelf. Whether it sells. At what price. Whether the DC can restock it.**",
-      "Almost nobody listens.",
-      "Dinn listens, understands and tells your team **where to act.**"
+      "The signals arrive **scattered**, from different sources and with different levels of confidence.",
+      "Dinn organizes them, shows where they come from and helps your team decide **where to act first.**"
     ]
   },
   inside: {
-    eyebrow: "Inside Dinn's AI",
+    eyebrow: "How Dinn works, in one example",
+    exampleNote: "Illustrative example, with fictional values.",
     stages: [
       {
         name: "Observes",
-        title: "Reads channel stock-outs, every day.",
-        desc: "Agents query pharmacies' digital channels and record stock, price and movement, with place and time. Where a source doesn't respond, Dinn estimates from comparable stores and says so.",
-        chips: ["D-1 stock", "Price", "Movement", "Observed or estimated"]
+        title: "Notices a change in the channel.",
+        desc: "Identifies a change in availability, price, sell-through or coverage in the sources it tracks.",
+        example: "Product X's presence drops at 31 of the 120 monitored stores of Chain A, in the South.",
+        chips: ["Availability", "Price", "Sell-through", "Coverage"]
       },
       {
-        name: "Connects",
-        title: "Links each pharmacy to what's around it.",
-        desc: "Each store is tied to the DC that supplies it, its sell-through history, its chain and the category market.",
-        chips: ["Distributor DC", "Sell-through history", "Chain and region", "Category market"]
+        name: "Validates",
+        title: "Shows where it came from and how much to trust it.",
+        desc: "Shows source, date, scope and confidence level, and cross-checks signals where applicable.",
+        example: "24 stores were observed at the source; 7 are estimated from comparable stores, with medium confidence. Absence is not yet a stock-out.",
+        chips: ["Source and date", "Scope", "Observed or estimated", "Confidence"]
       },
       {
         name: "Understands",
-        title: "Separates signal from noise.",
-        desc: "The reading becomes named signals, and the trend over time separates a one-off from a recurring problem.",
+        title: "Relates the change to the commercial context.",
+        desc: "Links the change to product, account, territory and context, without presuming the cause.",
+        example: "The stores are in 3 cities of the same chain. The DC has stock, which does not prove each store will be supplied.",
+        chips: ["Product", "Account", "Territory", "Supplying DC"]
+      },
+      {
+        name: "Decides",
+        title: "Helps prioritize the next analysis or action.",
+        desc: "Ranks the issue among others and suggests the next analysis or action, as a hypothesis for the team to validate.",
+        example: "Priority: investigate Chain A in the South, starting with pending orders, before talking about stock-outs.",
         chips: ["Persistent stock-out", "Stock without movement", "Falling sell-through", "Chain concentration"]
       },
       {
-        name: "Delivers",
-        title: "Takes commercial execution to where the team works.",
-        desc: "In the platform, in a conversation, in your BI or in your AI. Dinn prepares the analysis; the team decides.",
-        chips: ["Dinn Manager", "Dinn Insights", "Your AI", "BI & API", "Field"]
+        name: "Acts",
+        title: "Takes the information to whoever executes.",
+        desc: "Delivers the reading to the responsible team or tool: in the platform, in a conversation, in your BI or in your AI.",
+        example: "The list reaches the account's KAM and the team's Copilot, with source and date.",
+        chips: ["Dinn Manager", "Dinn Insights", "Your AI", "BI & API"]
+      },
+      {
+        name: "Learns",
+        title: "Records the feedback and improves the queue.",
+        desc: "Records the team's feedback and improves prioritization over time.",
+        example: "The team flags that 5 stores had a pending order; the following week they move down the queue.",
+        chips: ["Team feedback", "Same scope", "Prioritization"]
       }
     ],
     outputs: ["Platform", "Conversation", "Your AI", "BI & API", "Field"],
     signals: ["Persistent stock-out", "Stock without movement", "Falling sell-through", "Chain concentration"]
   },
   delivery: {
-    eyebrow: "Where Dinn delivers",
+    eyebrow: "Platform and capabilities",
     title: "AI for the pharma market *where your team already works*",
     cards: [
       {
         tag: "Dinn Manager",
         title: "The platform",
-        desc: "Stock-outs, stalled stock, distribution and market in one scope, by SKU, chain, city and store."
+        desc: "Brings priorities and context to management and commercial execution: stock-outs, stalled stock, distribution and market in one scope."
       },
       {
         tag: "Dinn Insights",
         title: "A conversation",
-        desc: "Ask in plain English and get the number, the scope, the date and what's observed or estimated."
+        desc: "Supports exploring and interpreting the signals: ask in plain English and get the number, the scope, the date and what's observed or estimated."
       },
       {
         tag: "MCP",
         title: "In your AI",
-        desc: "ChatGPT, Claude and Copilot query Dinn with authorized, read-only access."
+        desc: "An interface that lets authorized ChatGPT, Claude and Copilot query Dinn's data, with read-only access."
       },
       {
         tag: "Dinn Conecta",
         title: "In your BI and your agents",
-        desc: "Market, internal and pharmacy data standardized by product, store and region. Your data and governance stay with you."
+        desc: "Prepares and delivers channel data flows, standardized by product, store and region, to your BI and your agents. Your data and governance stay with you."
       }
     ],
     sources: ["IQVIA / Close-Up", "ERP & CRM", "Pharmacies"],
@@ -628,9 +655,9 @@ export const enUS = {
       "Observed or estimated, always stated",
       "D-1 base plus on-demand checks at eligible stores",
       "Two-factor auth via email · SSO available",
-      "Implementation in up to 30 days after prerequisites"
+      "Implementation in up to 30 days after prerequisites and scope are agreed"
     ],
-    note: "Each source depends on agreed licensing, authorization and scope. Features in your AI depend on your plan and setup."
+    note: "Coverage and refresh vary by source, product and query. Each source depends on agreed licensing, authorization and scope, and features in your AI depend on your plan and setup."
   },
   faq: {
     title: "Frequently asked questions about AI, stock-outs and sell-out",
@@ -688,20 +715,25 @@ export const enUS = {
         answer: "Yes. Dinn connects to your AI environment via **MCP**, with authorized, **read-only** access. You ask in natural language and get the analysis with scope, period and limits. Features like scheduling and file generation depend on your AI's plan and configuration."
       },
       {
+        question: "Does Dinn cover all pharmacies and confirm the cause of a stock-out?",
+        answer: "No. **Coverage and refresh vary by source, product, chain and query**, and each reading states what it covers. Dinn also does not confirm causes: it shows evidence and hypotheses, and the team validates. A product's absence is not necessarily a stock-out, and stock at the distribution center does not prove a store is being supplied."
+      },
+      {
         question: "What is the difference between observed and estimated data?",
-        answer: "**Observed** is what the source reported directly, with location and time. **Estimated** is calculated from comparable stores and history when there is no direct answer, always with a confidence level. The base is updated daily (D-1) and, in eligible stores, you can check availability on demand."
+        answer: "**Observed** is what the source reported directly, with location and time. **Estimated** is calculated from comparable stores and history when there is no direct answer, always with a confidence level. **Inferred** is the reading Dinn draws from combining signals, presented as a hypothesis to validate. The base is updated as D-1 and, in eligible stores, there is an on-demand availability check."
       }
     ]
   },
   ctaFinal: {
-    title: "See stock-outs and sell-out *for your own products*",
-    description: "In a demo, Dinn answers with your portfolio, your territory and your regions.",
+    title: "See how to turn your channel signals into *clearer commercial priorities*",
+    description: "In a demo, Dinn shows the reading with your portfolio, your territory and your regions.",
     button: "Request a demo",
     secondary: "Ask again"
   },
   footer: {
-    description: "The intelligence layer for the pharmacy channel. An initiative of DiWE Ventures Studio.",
+    description: "Commercial intelligence for the pharmaceutical channel. An initiative of DiWE Ventures Studio.",
     sectionA: "About Dinn",
+    sectionSolutions: "Solutions",
     sectionLegal: "Legal",
     termos: "Terms",
     privacidade: "Privacy",
