@@ -91,7 +91,6 @@ export function SolutionPage({ slug }: { slug: string }) {
           <div>
             <p className="sp-kicker">{t('areaVisuals.uiKicker')}</p>
             <ManagerScreen slug={area.slug} />
-            <p className="sp-note">{t('areaVisuals.uiNote')}</p>
           </div>
         </div>
       </section>
@@ -112,7 +111,6 @@ export function SolutionPage({ slug }: { slug: string }) {
                 );
               })}
             </ol>
-            <p className="sp-note">{t('solutions.page.exampleNote')}</p>
           </div>
           <div>
             <p className="sp-kicker">{t('areaVisuals.answerKicker')}</p>

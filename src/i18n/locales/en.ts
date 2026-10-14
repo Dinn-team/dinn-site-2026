@@ -43,7 +43,6 @@ export const enUS = {
     followPlaceholder: "Ask a follow-up question…",
     send: "Send question",
     reset: "New conversation",
-    disclaimer: "Simulation: the reasoning is Dinn's, the numbers are examples. No real data is shown.",
     starters: [
       { team: "Customer service", chip: "Where to find the product", q: "Where can consumers find my product near Campinas?" },
       { team: "Field", chip: "Which stores to check", q: "Which stores in my São Paulo territory need a visit first?" },
@@ -56,7 +55,6 @@ export const enUS = {
     defaultPlace: "São Paulo",
     defaultProduct: "your product",
     thinking: "Thinking…",
-    simulationTag: "Simulation · example values",
     methodTitle: "How Dinn got here",
     linksTitle: "Keep reading",
     followTitle: "Ask next",
@@ -348,7 +346,7 @@ export const enUS = {
       },
       fallback: {
         steps: ["Understanding the question…"],
-        answer: "I can answer that better with your data. Here on the site, Dinn simulates the questions each team asks most about stock, stock-outs, sell-through, price, distribution and competition. Try one of these:",
+        answer: "I can answer that better with your data. These are the questions each team asks most about stock, stock-outs, sell-through, price, distribution and competition. Try one of these:",
         method: [],
         links: [
           { label: "One use for each team", href: "#times" }
@@ -366,7 +364,6 @@ export const enUS = {
     askCta: "Ask Dinn this",
     seesLabel: "Dinn cross-checks",
     doesLabel: "The team does",
-    note: "Illustrative examples. Dinn prepares the analysis; the team decides.",
     items: [
       {
         id: "sac",
@@ -576,7 +573,6 @@ export const enUS = {
   },
   inside: {
     eyebrow: "How Dinn works, in one example",
-    exampleNote: "Illustrative example, with fictional values.",
     stages: [
       {
         name: "Observes",

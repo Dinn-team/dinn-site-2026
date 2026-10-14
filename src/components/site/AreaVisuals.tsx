@@ -32,7 +32,6 @@ export function ManagerScreen({ slug }: { slug: string }) {
   const { t } = useTranslation();
   const { ref, seen } = useOnce();
   const v = (t('teams.visuals') as Dict) ?? {};
-  const tag = t('ask.simulationTag') as string;
 
   const map: Record<string, { key: string; node: JSX.Element | null }> = {
     'inteligencia-pricing': { key: 'competition', node: v.competition ? <CompetitionVisual v={v.competition} /> : null },
@@ -47,7 +46,7 @@ export function ManagerScreen({ slug }: { slug: string }) {
   if (!entry) return null;
   return (
     <div ref={ref} className="av-slot">
-      {seen && <AppFrame app={v[entry.key]?.app ?? ''} tag={tag}>{entry.node}</AppFrame>}
+      {seen && <AppFrame app={v[entry.key]?.app ?? ''}>{entry.node}</AppFrame>}
     </div>
   );
 }
@@ -59,7 +58,7 @@ function ConnectionsScreen() {
   const rows = (c.rows as { name: string; channel: string; status: string }[]) ?? [];
   const access = (c.access as string[]) ?? [];
   return (
-    <AppFrame app={c.app ?? ''} tag={t('ask.simulationTag') as string}>
+    <AppFrame app={c.app ?? ''}>
       <div className="av-conn">
         {rows.map((r) => (
           <div key={r.name} className="tv-row">
@@ -93,7 +92,6 @@ const SCENARIO: Record<string, string> = {
 export function InsightsAnswer({ slug }: { slug: string }) {
   const { t } = useTranslation();
   const { ref, seen } = useOnce();
-  const tag = t('ask.simulationTag') as string;
   const labels = { why: t('ask.actionWhy') as string, how: t('ask.actionHow') as string };
   const place = t('ask.defaultPlace') as string;
   const product = t('ask.defaultProduct') as string;
@@ -106,7 +104,7 @@ export function InsightsAnswer({ slug }: { slug: string }) {
   const widget = fill(raw, place, product) as Widget;
   return (
     <div ref={ref} className="av-slot">
-      {seen && <ChatWidget widget={widget} tag={tag} labels={labels} />}
+      {seen && <ChatWidget widget={widget} labels={labels} />}
     </div>
   );
 }

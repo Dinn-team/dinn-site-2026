@@ -29,7 +29,7 @@ export const pagesEs = {
       {
         type: "Caso demostrativo",
         title: "Del desabasto en seis tiendas a la fila de verificación de la semana",
-        desc: "El flujo completo, de la señal al aprendizaje, con valores de ejemplo.",
+        desc: "El flujo completo, de la señal al aprendizaje.",
         href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
@@ -64,7 +64,6 @@ export const pagesEs = {
       questionLabel: "La pregunta que trae a tu área aquí",
       decisionsLabel: "Decisiones que Dinn apoya",
       exampleLabel: "Un ejemplo, paso a paso",
-      exampleNote: "Ejemplo ilustrativo, con valores ficticios.",
       limitsLabel: "Límites de la lectura",
       useCasesLabel: "Situaciones concretas de esta área",
       useCaseOpen: "Ver en la home",
@@ -423,12 +422,11 @@ export const pagesEs = {
       title: "Historias de uso de Dinn, *una a una*",
       lead: "Cada caso cuenta el recorrido completo: de la situación al aprendizaje, con lo que se observó, cómo se validó y qué decidió el equipo."
     },
-    gallery: { open: "Leer el caso", demo: "Caso demostrativo · valores de ejemplo", customer: "Caso de cliente", empty: "Los nuevos casos se agregarán aquí, uno a uno." },
+    gallery: { open: "Leer el caso", demo: "Caso demostrativo", customer: "Caso de cliente", empty: "Los nuevos casos se agregarán aquí, uno a uno." },
     detail: {
       back: "Todos los casos",
       stepsTitle: "De la señal al aprendizaje",
       byline: "Equipo Dinn",
-      demoNote: "Este caso no es de producción. Muestra el flujo que Dinn sigue con los datos del cliente: cada paso existe, y los números aquí son ilustrativos.",
       relatedTitle: "Sigue por aquí",
       areaLabel: "Área"
     },
@@ -598,7 +596,6 @@ export const pagesEs = {
 
   areaVisuals: {
     uiKicker: "Cómo se ve en Dinn",
-    uiNote: "Pantalla recreada con valores de ejemplo.",
     answerKicker: "El ejemplo, como lo responde Dinn Insights",
     provenanceTitle: "Qué dice cada dato sobre sí mismo",
     connections: {
@@ -640,7 +637,6 @@ export const pagesEs = {
         { label: "Límite", value: "La ausencia no es una causa" },
         { label: "Siguiente paso", value: "Revisar pedido pendiente" }
       ],
-      note: "Pantalla ilustrativa, con valores de ejemplo."
     },
     kinds: {
       proximity: "Cercanía con la fuente",
@@ -691,7 +687,7 @@ export const pagesEs = {
       onDemand: "Consulta puntual de disponibilidad en tiendas elegibles",
       factorsTitle: "La cobertura varía por",
       factors: ["Fuente", "Producto", "Cadena", "Consulta"],
-      factorsNote: "Cada lectura indica qué cubre. Ilustración sin valores."
+      factorsNote: "Cada lectura indica qué cubre."
     },
     security: {
       flowTitle: "Del acceso a la respuesta",

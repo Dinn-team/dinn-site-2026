@@ -87,7 +87,6 @@ export function AreaStage({ area }: { area: Area }) {
               {Scene && <Scene p={p} L={L} shared={shared} />}
               <div className="as-progress" aria-hidden="true"><i style={{ transform: `scaleX(${p})` }} /></div>
             </div>
-            <p className="as-note">{t('solutions.page.exampleNote')}</p>
           </div>
         </div>
       </div>

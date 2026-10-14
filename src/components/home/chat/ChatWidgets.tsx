@@ -192,7 +192,7 @@ function Actions({ w, labels }: { w: Extract<Widget, { type: 'actions' }>; label
 
 export type ActionLabels = { why: string; how: string };
 
-export function ChatWidget({ widget, tag, labels }: { widget: Widget; tag: string; labels: ActionLabels }) {
+export function ChatWidget({ widget, tag, labels }: { widget: Widget; tag?: string; labels: ActionLabels }) {
   return (
     <motion.div
       className="cw"
@@ -202,7 +202,7 @@ export function ChatWidget({ widget, tag, labels }: { widget: Widget; tag: strin
     >
       <div className="cw-head">
         <span>{widget.title}</span>
-        <span className="cw-tag">{tag}</span>
+        {tag && <span className="cw-tag">{tag}</span>}
       </div>
       <div className="cw-body">
         {widget.type === 'table' && <Table w={widget} />}

@@ -32,7 +32,7 @@ export function ConectaDemo() {
 
   return (
     <div ref={ref} className="pf-demo">
-      <AppFrame app={t('platformViz.conecta.app') as string} tag={t('platformViz.demo.tag') as string}>
+      <AppFrame app={t('platformViz.conecta.app') as string}>
         <div className="pf-cn">
           <div className="pf-cn-col">
             <p className="pf-cn-label">{t('platformViz.conecta.sources')}</p>
@@ -98,8 +98,6 @@ export function ConectaDemo() {
         </div>
 
         <p className="pf-demo-note">
-          <span className="tv-insight-dot" />
-          {t('platformViz.demo.illustrative')}
           <button type="button" className="pf-link" onClick={() => setTick(0)}>
             <RotateCcw size={12} aria-hidden="true" />
             {t('platformViz.conecta.replay')}

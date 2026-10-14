@@ -116,7 +116,7 @@ export function HeroSection({ logos = [] }: { logos?: Logo[] }) {
         <p>{t('logos.title')}</p>
         <ul>
           {logos.map((l) => (
-            <li key={l.name}>
+            <li key={l.name} className={`dh-logo dh-logo-${l.name.toLowerCase()}`}>
               <img src={l.src} alt={l.name} width={l.width} height={l.height} loading="lazy" decoding="async" />
             </li>
           ))}

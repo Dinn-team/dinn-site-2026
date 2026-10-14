@@ -407,7 +407,6 @@ export function InsideSection() {
 
         <div className="inside-copy">
           <h2 className="inside-eyebrow">{t('inside.eyebrow')}</h2>
-          <p className="inside-note">{t('inside.exampleNote')}</p>
           <div className="inside-rail" role="group" aria-label={t('inside.eyebrow') as string}>
             {stages.map((s, i) => (
               <button

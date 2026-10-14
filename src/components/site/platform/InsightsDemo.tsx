@@ -69,7 +69,7 @@ export function InsightsDemo() {
 
   return (
     <div ref={ref} className="pf-demo">
-      <AppFrame app={t('nav.ask') as string} tag={t('platformViz.demo.tag') as string}>
+      <AppFrame app={t('nav.ask') as string}>
         <div className="pf-ask-chips" role="tablist">
           {scenarios.map((c, i) => (
             <button

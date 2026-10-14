@@ -133,7 +133,6 @@ export function CaseDetail({ slug }: { slug: string }) {
 
       <article className="sp-section">
         <div className="wrap cs-article">
-          {c.kind === 'demo' && <p className="cs-demo-note">{t('cases.detail.demoNote')}</p>}
           <h2 className="cs-steps-title">{t('cases.detail.stepsTitle')}</h2>
           <ol className="cs-steps">
             {STEP_ORDER.map((k, i) => (

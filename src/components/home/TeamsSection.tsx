@@ -120,7 +120,6 @@ export function TeamsSection() {
     setAuto(false);
     window.dispatchEvent(new CustomEvent('dinn:ask', { detail: item.question }));
   };
-  const tag = t('ask.simulationTag') as string;
 
   const renderVisual = () => {
     const v = visuals[item.visual] ?? {};
@@ -256,13 +255,12 @@ export function TeamsSection() {
               </div>
 
               <div className="teams-visual">
-                {inView && <AppFrame app={visuals[item.visual]?.app ?? item.tab} tag={tag}>{renderVisual()}</AppFrame>}
+                {inView && <AppFrame app={visuals[item.visual]?.app ?? item.tab}>{renderVisual()}</AppFrame>}
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <p className="teams-note">{t('teams.note')}</p>
       </div>
     </section>
     </MotionConfig>

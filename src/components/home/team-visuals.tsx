@@ -11,13 +11,13 @@ import { brazilPoints, rng, prefersReducedMotion } from './neural';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function AppFrame({ app, tag, children }: { app: string; tag: string; children: ReactNode }) {
+export function AppFrame({ app, tag, children }: { app: string; tag?: string; children: ReactNode }) {
   return (
     <div className="tv-frame">
       <div className="tv-bar">
         <span className="tv-brand" aria-hidden="true" />
         <span className="tv-app">{app}</span>
-        <span className="tv-tag">{tag}</span>
+        {tag && <span className="tv-tag">{tag}</span>}
       </div>
       <div className="tv-body">{children}</div>
     </div>

@@ -36,7 +36,7 @@ export function McpDemo() {
 
   return (
     <div ref={ref} className="pf-demo">
-      <AppFrame app={t('platformViz.mcp.app') as string} tag={t('platformViz.demo.tag') as string}>
+      <AppFrame app={t('platformViz.mcp.app') as string}>
         <div className="pf-mcp">
           <ul className="pf-mcp-ai" aria-label={t('platformViz.mcp.authorized') as string}>
             {list.map((x, k) => (

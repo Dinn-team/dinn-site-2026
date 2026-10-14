@@ -6,7 +6,7 @@
 //      produção) dos repositórios listados em SOURCES.
 //   2. Ignora o que já foi tratado (src/data/changelog.json) e tudo o que foi
 //      mesclado até "reviewedUntil".
-//   3. Um modelo de IA reescreve título e resumo em linguagem simples, nos três
+//   3. O Google Gemini reescreve título e resumo em linguagem simples, nos três
 //      idiomas, separando o que é interno (não publica) do que o usuário percebe.
 //   4. Com --auto-publish, o item entra direto como "published", desde que passe
 //      na trava de segurança (nomes de clientes e de redes, códigos internos,
@@ -22,8 +22,9 @@
 //
 // Requisitos
 //   - GitHub: `gh` autenticado ou GITHUB_TOKEN com leitura nos repositórios.
-//   - Tratamento: ANTHROPIC_API_KEY (modelo em ANTHROPIC_MODEL). Sem a chave,
-//     os pendentes vão para changelog.pending.json, para tratamento manual.
+//   - Tratamento: GEMINI_API_KEY (Google Gemini; modelo em GEMINI_MODEL, padrão
+//     gemini-3.8-flash). Sem a chave, os pendentes vão para
+//     changelog.pending.json, para tratamento manual.
 //
 // Nunca é exibido no site: repositório, número de PR, nomes de pessoas ou de
 // clientes, códigos de tarefa internos.
@@ -111,23 +112,25 @@ Responda somente com JSON, sem texto fora dele:
 {"entries": [{"title": {"pt": string, "en": string, "es": string}, "summary": {"pt": string, "en": string, "es": string}, "highlights": {"pt": string[], "en": string[], "es": string[]}}]}`;
 
 async function treat(pr) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const model = process.env.GEMINI_MODEL ?? 'gemini-3.8-flash';
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
+      'x-goog-api-key': process.env.GEMINI_API_KEY,
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-5-5',
-      max_tokens: 2500,
-      system: SYSTEM,
-      messages: [{ role: 'user', content: `Título: ${pr.title}\n\nDescrição:\n${(pr.body ?? '').slice(0, 8000)}` }],
+      systemInstruction: { parts: [{ text: SYSTEM }] },
+      contents: [{ role: 'user', parts: [{ text: `Título: ${pr.title}
+
+Descrição:
+${(pr.body ?? '').slice(0, 8000)}` }] }],
+      generationConfig: { responseMimeType: 'application/json', temperature: 0.2, maxOutputTokens: 8000 },
     }),
   });
-  if (!res.ok) throw new Error(`Anthropic respondeu ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(`Gemini respondeu ${res.status}: ${await res.text()}`);
   const json = await res.json();
-  const text = json.content?.map((c) => c.text ?? '').join('') ?? '';
+  const text = json.candidates?.[0]?.content?.parts?.map((p) => p.text ?? '').join('') ?? '';
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error(`Resposta sem JSON para o PR ${pr.number}`);
   const parsed = JSON.parse(match[0]);
@@ -152,9 +155,9 @@ console.log(`Pendentes desde ${since}: ${pending.length}`);
 for (const p of pending) console.log(`  ${p.mergedAt.slice(0, 10)}  ${p.repo}#${p.number}  ${p.title}`);
 if (!WRITE || pending.length === 0) process.exit(0);
 
-if (!process.env.ANTHROPIC_API_KEY) {
+if (!process.env.GEMINI_API_KEY) {
   writeFileSync(PENDING, JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), items: pending }, null, 2) + '\n');
-  console.log(`\nSem ANTHROPIC_API_KEY: pendentes gravados em ${PENDING} para tratamento manual.`);
+  console.log(`\nSem GEMINI_API_KEY: pendentes gravados em ${PENDING} para tratamento manual.`);
   process.exit(0);
 }
 

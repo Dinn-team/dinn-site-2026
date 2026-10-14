@@ -88,7 +88,7 @@ export function ManagerDemo() {
 
   return (
     <div ref={ref} className="pf-demo">
-      <AppFrame app={t('teams.visuals.queue.app') as string} tag={t('platformViz.demo.tag') as string}>
+      <AppFrame app={t('teams.visuals.queue.app') as string}>
         <div className="pf-q-head">
           <span>{t('teams.visuals.queue.sub')}</span>
           {manual !== null && (

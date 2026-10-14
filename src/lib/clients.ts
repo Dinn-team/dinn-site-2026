@@ -15,7 +15,7 @@ const CANDIDATES: { name: string; files: string[]; width?: number; height?: numb
   { name: 'Libbs', files: ['YewE4auu86Zyxd9HTI5pPwyZujk.avif'], width: 512, height: 189 },
   { name: 'Marjan', files: ['marjanlogo-removebg-preview.png'], width: 392, height: 129 },
   { name: 'Sanofi', files: ['q5GXskJxl7qrQpg4qttvwnhJI.avif'], width: 512, height: 132 },
-  { name: 'Lilly', files: ['lilly.svg', 'lilly.png', 'lilly.webp', 'lilly.avif'] },
+  { name: 'Lilly', files: ['lilly-logo-png.png', 'lilly.svg', 'lilly.png', 'lilly.webp', 'lilly.avif'], width: 1631, height: 889 },
 ];
 
 /** Só roda no servidor (frontmatter do Astro): confere quais arquivos existem. */

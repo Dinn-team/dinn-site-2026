@@ -73,7 +73,7 @@ textos em `src/i18n/locales/{pt,en,es}.pages.ts`.
   dia às 06:00 (Brasília), lê o que foi para produção, reescreve em linguagem
   simples e commita `src/data/changelog.json` na `main`. Precisa dos segredos
   `CHANGELOG_GITHUB_TOKEN` (leitura dos repositórios de produto) e
-  `ANTHROPIC_API_KEY`. Itens que citem clientes, redes, códigos internos ou
+  `GEMINI_API_KEY`. Itens que citem clientes, redes, códigos internos ou
   termos sensíveis ficam como rascunho para revisão (trava em
   `scripts/changelog-sync.mjs`).
 - **Logo da Lilly**: coloque o arquivo sem fundo em `public/clientes/lilly.svg`

@@ -1,5 +1,5 @@
 // Textos dos infográficos da página /plataforma (en). Chaves em platformViz.*
-// All numbers are examples and are labeled as illustrative.
+// Textos dos infográficos da página /plataforma (en). Chaves em platformViz.*
 export const platformVizEn = {
   cover: {
     alt: "Illustration of the pharma channel: lab, transport, pharmacy and consumer connected by Dinn."
@@ -13,8 +13,6 @@ export const platformVizEn = {
     goTo: "Go to step"
   },
   demo: {
-    tag: "Illustrative example",
-    illustrative: "Example values, not real data.",
     tapHint: "Click to explore",
     reset: "Back to automatic"
   },

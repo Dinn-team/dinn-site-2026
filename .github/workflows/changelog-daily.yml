@@ -7,7 +7,8 @@ name: Changelog diário
 # Segredos necessários (Settings > Secrets and variables > Actions):
 #   CHANGELOG_GITHUB_TOKEN  token com leitura de pull requests nos repositórios
 #                           de produto (ex.: dinn-manager-app, privado)
-#   ANTHROPIC_API_KEY       chave para reescrever títulos e resumos
+#   GEMINI_API_KEY          chave do Google Gemini (AI Studio) para reescrever
+#                           títulos e resumos
 
 on:
   schedule:
@@ -37,7 +38,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/changelog-sync.mjs --write --auto-publish
 
       - name: Publica no site

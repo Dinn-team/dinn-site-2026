@@ -72,7 +72,6 @@ export function SignalAnatomy() {
           })}
         </ul>
       </div>
-      <figcaption>{a.note}</figcaption>
     </motion.figure>
   );
 }

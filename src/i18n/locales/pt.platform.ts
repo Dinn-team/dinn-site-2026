@@ -1,5 +1,5 @@
 // Textos dos infográficos da página /plataforma (pt). Chaves em platformViz.*
-// Todos os números são de exemplo e aparecem marcados como ilustrativos.
+// Textos dos infográficos da página /plataforma (pt). Chaves em platformViz.*
 export const platformVizPt = {
   cover: {
     alt: "Ilustração do canal farmacêutico: laboratório, transporte, farmácia e consumidor ligados pela Dinn."
@@ -13,8 +13,6 @@ export const platformVizPt = {
     goTo: "Ir ao passo"
   },
   demo: {
-    tag: "Exemplo ilustrativo",
-    illustrative: "Valores de exemplo, não são dados reais.",
     tapHint: "Clique para explorar",
     reset: "Voltar ao automático"
   },

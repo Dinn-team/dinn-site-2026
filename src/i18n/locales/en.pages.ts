@@ -29,7 +29,7 @@ export const pagesEn = {
       {
         type: "Demonstration case",
         title: "From a stock-out at six stores to the week's verification queue",
-        desc: "The full flow, from signal to learning, with example values.",
+        desc: "The full flow, from signal to learning.",
         href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
@@ -64,7 +64,6 @@ export const pagesEn = {
       questionLabel: "The question that brings your area here",
       decisionsLabel: "Decisions Dinn supports",
       exampleLabel: "An example, step by step",
-      exampleNote: "Illustrative example, with fictional values.",
       limitsLabel: "Limits of the reading",
       useCasesLabel: "Concrete situations for this area",
       useCaseOpen: "See on the home page",
@@ -423,12 +422,11 @@ export const pagesEn = {
       title: "Dinn use stories, *one by one*",
       lead: "Each case tells the whole path: from situation to learning, with what was observed, how it was validated and what the team decided."
     },
-    gallery: { open: "Read the case", demo: "Demonstration case · example values", customer: "Customer case", empty: "New cases will be added here, one by one." },
+    gallery: { open: "Read the case", demo: "Demonstration case", customer: "Customer case", empty: "New cases will be added here, one by one." },
     detail: {
       back: "All cases",
       stepsTitle: "From signal to learning",
       byline: "Dinn team",
-      demoNote: "This case is not from production. It shows the flow Dinn follows with the customer's data: each step exists, and the numbers here are illustrative.",
       relatedTitle: "Keep exploring",
       areaLabel: "Area"
     },
@@ -598,7 +596,6 @@ export const pagesEn = {
 
   areaVisuals: {
     uiKicker: "How it appears in Dinn",
-    uiNote: "Screen recreated with example values.",
     answerKicker: "The example, as Dinn Insights answers it",
     provenanceTitle: "What each data point says about itself",
     connections: {
@@ -640,7 +637,6 @@ export const pagesEn = {
         { label: "Limit", value: "Absence is not a cause" },
         { label: "Next step", value: "Check pending order" }
       ],
-      note: "Illustrative screen, with example values."
     },
     kinds: {
       proximity: "Closeness to the source",
@@ -691,7 +687,7 @@ export const pagesEn = {
       onDemand: "On-demand availability check in eligible stores",
       factorsTitle: "Coverage varies by",
       factors: ["Source", "Product", "Chain", "Query"],
-      factorsNote: "Each reading states what it covers. Illustration without values."
+      factorsNote: "Each reading states what it covers."
     },
     security: {
       flowTitle: "From access to answer",

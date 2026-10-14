@@ -30,7 +30,7 @@ export function StockDemo() {
 
   return (
     <div ref={ref} className="pf-demo">
-      <AppFrame app={t('teams.visuals.locator.app') as string} tag={t('platformViz.demo.tag') as string}>
+      <AppFrame app={t('teams.visuals.locator.app') as string}>
         <div className="pf-seg" role="tablist" aria-label={t('platformViz.stock.toggleLabel') as string}>
           <span className="pf-seg-label">{t('platformViz.stock.toggleLabel')}</span>
           {MODES.map((m, k) => (

@@ -43,7 +43,6 @@ export const ptBR = {
     followPlaceholder: "Faça uma pergunta de acompanhamento…",
     send: "Enviar pergunta",
     reset: "Nova conversa",
-    disclaimer: "Simulação: o raciocínio é o do Dinn, os números são de exemplo. Nenhum dado real é exibido.",
     starters: [
       { team: "SAC", chip: "Onde encontrar o produto", q: "Onde o consumidor encontra o meu produto perto de Campinas?" },
       { team: "Campo", chip: "Quais lojas verificar", q: "Quais lojas da minha carteira em São Paulo eu verifico primeiro?" },
@@ -56,7 +55,6 @@ export const ptBR = {
     defaultPlace: "São Paulo",
     defaultProduct: "seu produto",
     thinking: "Pensando…",
-    simulationTag: "Simulação · valores de exemplo",
     methodTitle: "Como o Dinn chegou a isso",
     linksTitle: "Continue a leitura",
     followTitle: "Pergunte também",
@@ -348,7 +346,7 @@ export const ptBR = {
       },
       fallback: {
         steps: ["Entendendo a pergunta…"],
-        answer: "Essa eu respondo melhor com os seus dados. Aqui no site, o Dinn simula as perguntas mais comuns de cada time sobre estoque, ruptura, giro, preço, distribuição e concorrência. Experimente uma destas:",
+        answer: "Essa eu respondo melhor com os seus dados. Estas são as perguntas mais comuns de cada time sobre estoque, ruptura, giro, preço, distribuição e concorrência. Experimente uma destas:",
         method: [],
         links: [
           { label: "Um uso para cada time", href: "#times" }
@@ -366,7 +364,6 @@ export const ptBR = {
     askCta: "Pergunte isso ao Dinn",
     seesLabel: "O Dinn cruza",
     doesLabel: "O time faz",
-    note: "Exemplos ilustrativos. A Dinn prepara a análise; a equipe decide.",
     items: [
       {
         id: "sac",
@@ -576,7 +573,6 @@ export const ptBR = {
   },
   inside: {
     eyebrow: "Como a Dinn funciona, em um exemplo",
-    exampleNote: "Exemplo ilustrativo, com valores fictícios.",
     stages: [
       {
         name: "Observa",

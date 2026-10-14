@@ -121,7 +121,6 @@ function StepCard({ s, i, total }: { s: Stage; i: number; total: number }) {
       <div className="pf-step-ex">
         <strong>{t('platformViz.cycle.example')}</strong>
         <p>{s.example}</p>
-        <small>{t('inside.exampleNote')}</small>
       </div>
       <ul className="pf-chips">
         {s.chips.map((c) => (

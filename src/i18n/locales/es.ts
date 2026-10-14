@@ -43,7 +43,6 @@ export const es419 = {
     followPlaceholder: "Haz una pregunta de seguimiento…",
     send: "Enviar pregunta",
     reset: "Nueva conversación",
-    disclaimer: "Simulación: el razonamiento es de Dinn; los números son de ejemplo. No se muestra ningún dato real.",
     starters: [
       { team: "Atención a clientes", chip: "Dónde encontrar el producto", q: "¿Dónde encuentra el consumidor mi producto cerca de Guadalajara?" },
       { team: "Campo", chip: "Qué tiendas revisar", q: "¿Qué farmacias de mi cartera en Monterrey reviso primero?" },
@@ -56,7 +55,6 @@ export const es419 = {
     defaultPlace: "Ciudad de México",
     defaultProduct: "tu producto",
     thinking: "Pensando…",
-    simulationTag: "Simulación · valores de ejemplo",
     methodTitle: "Cómo llegó Dinn a esto",
     linksTitle: "Sigue leyendo",
     followTitle: "Pregunta también",
@@ -348,7 +346,7 @@ export const es419 = {
       },
       fallback: {
         steps: ["Entendiendo la pregunta…"],
-        answer: "Esa la respondo mejor con tus datos. Aquí en el sitio, Dinn simula las preguntas más comunes de cada equipo sobre inventario, desabasto, rotación, precio, distribución y competencia. Prueba una de estas:",
+        answer: "Esa la respondo mejor con tus datos. Estas son las preguntas más comunes de cada equipo sobre inventario, desabasto, rotación, precio, distribución y competencia. Prueba una de estas:",
         method: [],
         links: [
           { label: "Un uso para cada equipo", href: "#times" }
@@ -366,7 +364,6 @@ export const es419 = {
     askCta: "Pregúntale esto a Dinn",
     seesLabel: "Dinn cruza",
     doesLabel: "El equipo hace",
-    note: "Ejemplos ilustrativos. Dinn prepara el análisis; el equipo decide.",
     items: [
       {
         id: "sac",
@@ -576,7 +573,6 @@ export const es419 = {
   },
   inside: {
     eyebrow: "Cómo funciona Dinn, en un ejemplo",
-    exampleNote: "Ejemplo ilustrativo, con valores ficticios.",
     stages: [
       {
         name: "Observa",

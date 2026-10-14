@@ -274,7 +274,6 @@ export function InsightsSection() {
                 </button>
               </div>
             </form>
-            <p className="ins-disclaimer">{t('ask.disclaimer')}</p>
           </div>
 
           <ul className="ins-layers">
@@ -333,7 +332,7 @@ function BotMessage({ m, t, team, defaults, onLink, onFollow }: {
           <motion.div className="ins-extras" initial="hide" animate="show" variants={{ show: { transition: { staggerChildren: 0.18 } } }}>
             {sc.widget && (
               <motion.div variants={{ hide: { opacity: 0 }, show: { opacity: 1 } }}>
-                <ChatWidget widget={sc.widget} tag={t('ask.simulationTag')} labels={{ why: t('ask.actionWhy'), how: t('ask.actionHow') }} />
+                <ChatWidget widget={sc.widget} labels={{ why: t('ask.actionWhy'), how: t('ask.actionHow') }} />
               </motion.div>
             )}
 

@@ -30,7 +30,7 @@ export const pagesPt = {
       {
         type: "Caso demonstrativo",
         title: "Da ruptura em seis lojas à fila de verificação da semana",
-        desc: "O fluxo completo, do sinal ao aprendizado, com valores de exemplo.",
+        desc: "O fluxo completo, do sinal ao aprendizado.",
         href: "/recursos/casos/ruptura-seis-lojas"
       },
       {
@@ -65,7 +65,6 @@ export const pagesPt = {
       questionLabel: "A pergunta que traz a sua área aqui",
       decisionsLabel: "Decisões que a Dinn apoia",
       exampleLabel: "Um exemplo, passo a passo",
-      exampleNote: "Exemplo ilustrativo, com valores fictícios.",
       limitsLabel: "Limites da leitura",
       useCasesLabel: "Situações concretas desta área",
       useCaseOpen: "Ver na home",
@@ -424,12 +423,11 @@ export const pagesPt = {
       title: "Histórias de uso da Dinn, *uma a uma*",
       lead: "Cada caso conta o caminho completo: da situação ao aprendizado, com o que foi observado, como foi validado e o que o time decidiu."
     },
-    gallery: { open: "Ler o caso", demo: "Caso demonstrativo · valores de exemplo", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
+    gallery: { open: "Ler o caso", demo: "Caso demonstrativo", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
     detail: {
       back: "Todos os casos",
       stepsTitle: "Do sinal ao aprendizado",
       byline: "Equipe Dinn",
-      demoNote: "Este caso não é de produção. Ele mostra o fluxo que a Dinn segue com os dados do cliente: cada passo existe, e os números aqui são ilustrativos.",
       relatedTitle: "Continue por aqui",
       areaLabel: "Área"
     },
@@ -599,7 +597,6 @@ export const pagesPt = {
 
   areaVisuals: {
     uiKicker: "Como aparece no Dinn",
-    uiNote: "Tela recriada com valores de exemplo.",
     answerKicker: "O exemplo, como o Dinn Insights responde",
     provenanceTitle: "O que cada dado diz sobre si",
     connections: {
@@ -641,7 +638,6 @@ export const pagesPt = {
         { label: "Limite", value: "Ausência não é causa" },
         { label: "Próximo passo", value: "Conferir pedido pendente" }
       ],
-      note: "Tela ilustrativa, com valores de exemplo."
     },
     kinds: {
       proximity: "Proximidade com a fonte",
@@ -692,7 +688,7 @@ export const pagesPt = {
       onDemand: "Consulta pontual de disponibilidade em lojas elegíveis",
       factorsTitle: "A cobertura varia por",
       factors: ["Fonte", "Produto", "Rede", "Consulta"],
-      factorsNote: "Cada leitura informa o que cobre. Ilustração sem valores."
+      factorsNote: "Cada leitura informa o que cobre."
     },
     security: {
       flowTitle: "Do acesso à resposta",
