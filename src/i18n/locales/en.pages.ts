@@ -616,5 +616,101 @@ export const pagesEn = {
       ],
       mode: "Read-only"
     }
+  },
+
+
+  trustVisual: {
+    anatomy: {
+      title: "A signal on screen, with everything it says about itself",
+      signal: "Persistent stock-out",
+      store: "Store 01 · Chain A",
+      callouts: [
+        { label: "Source", value: "Observed at the source" },
+        { label: "Date", value: "D-1 base" },
+        { label: "Confidence", value: "Shown on every point" },
+        { label: "Limit", value: "Absence is not a cause" },
+        { label: "Next step", value: "Check pending order" }
+      ],
+      note: "Illustrative screen, with example values."
+    },
+    kinds: {
+      proximity: "Closeness to the source",
+      items: [
+        {
+          meter: "Direct",
+          rows: [
+            { label: "Source", value: "The source itself" },
+            { label: "When", value: "Date and time of the record" },
+            { label: "How to read", value: "Direct data, with place and time" }
+          ]
+        },
+        {
+          meter: "By comparison",
+          rows: [
+            { label: "Source", value: "Comparable stores and history" },
+            { label: "When", value: "At the base update" },
+            { label: "How to read", value: "Always comes with a confidence level" }
+          ]
+        },
+        {
+          meter: "By combination",
+          rows: [
+            { label: "Source", value: "A combination of signals" },
+            { label: "When", value: "At the moment of reading" },
+            { label: "How to read", value: "A hypothesis for the team to validate" }
+          ]
+        }
+      ]
+    },
+    notProve: {
+      sees: "What shows up",
+      doesNot: "Does not prove",
+      pairs: [
+        { a: "Product absent", b: "Confirmed stock-out" },
+        { a: "Product at the DC", b: "Store supplied" },
+        { a: "Flat balance", b: "No sales" },
+        { a: "Recommendation", b: "Automated action" }
+      ]
+    },
+    coverage: {
+      timelineTitle: "How the reading reaches you",
+      steps: [
+        { label: "Previous day", text: "Dinn queries the sources" },
+        { label: "D-1 base", text: "Signals are organized, with source and date" },
+        { label: "Today", text: "Your team reads, validates and acts" }
+      ],
+      onDemand: "On-demand availability check in eligible stores",
+      factorsTitle: "Coverage varies by",
+      factors: ["Source", "Product", "Chain", "Query"],
+      factorsNote: "Each reading states what it covers. Illustration without values."
+    },
+    security: {
+      flowTitle: "From access to answer",
+      flow: [
+        { title: "Authorized person", sub: "A user at your company" },
+        { title: "Two factors", sub: "Verification by email" },
+        { title: "SSO", sub: "Available" },
+        { title: "Permissions", sub: "Access control" },
+        { title: "Dinn", sub: "Signals with source and date" },
+        { title: "Read-only", sub: "MCP, API and BI" }
+      ],
+      splitTitle: "Who takes care of what",
+      dinn: {
+        title: "Dinn",
+        items: ["Prepares and delivers the signals", "Shows source, date and confidence", "Connects via MCP, API and BI"]
+      },
+      client: {
+        title: "You keep",
+        items: ["Internal data", "Infrastructure", "Governance and access"]
+      }
+    },
+    deploy: {
+      title: "Deployment in up to 30 days",
+      steps: [
+        { label: "Agreement", text: "Prerequisites and scope defined" },
+        { label: "Deployment", text: "Up to 30 days, and it can start with external sources only" },
+        { label: "In use", text: "Daily reading and team feedback" }
+      ]
+    }
   }
 };

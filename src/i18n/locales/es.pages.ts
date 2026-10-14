@@ -616,5 +616,101 @@ export const pagesEs = {
       ],
       mode: "Solo lectura"
     }
+  },
+
+
+  trustVisual: {
+    anatomy: {
+      title: "Una señal en pantalla, con todo lo que dice sobre sí misma",
+      signal: "Desabasto persistente",
+      store: "Tienda 01 · Cadena A",
+      callouts: [
+        { label: "Origen", value: "Observado en la fuente" },
+        { label: "Fecha", value: "Base D-1" },
+        { label: "Confianza", value: "Indicada en cada punto" },
+        { label: "Límite", value: "La ausencia no es una causa" },
+        { label: "Siguiente paso", value: "Revisar pedido pendiente" }
+      ],
+      note: "Pantalla ilustrativa, con valores de ejemplo."
+    },
+    kinds: {
+      proximity: "Cercanía con la fuente",
+      items: [
+        {
+          meter: "Directa",
+          rows: [
+            { label: "Origen", value: "La propia fuente" },
+            { label: "Cuándo", value: "Fecha y hora del registro" },
+            { label: "Cómo leerlo", value: "Dato directo, con lugar y hora" }
+          ]
+        },
+        {
+          meter: "Por comparación",
+          rows: [
+            { label: "Origen", value: "Tiendas comparables e historial" },
+            { label: "Cuándo", value: "En la actualización de la base" },
+            { label: "Cómo leerlo", value: "Siempre con nivel de confianza" }
+          ]
+        },
+        {
+          meter: "Por combinación",
+          rows: [
+            { label: "Origen", value: "Combinación de señales" },
+            { label: "Cuándo", value: "En el momento de la lectura" },
+            { label: "Cómo leerlo", value: "Hipótesis que el equipo debe validar" }
+          ]
+        }
+      ]
+    },
+    notProve: {
+      sees: "Lo que aparece",
+      doesNot: "No prueba",
+      pairs: [
+        { a: "Producto ausente", b: "Desabasto confirmado" },
+        { a: "Producto en el CEDIS", b: "Tienda abastecida" },
+        { a: "Saldo constante", b: "Ninguna venta" },
+        { a: "Recomendación", b: "Acción automática" }
+      ]
+    },
+    coverage: {
+      timelineTitle: "Cómo llega la lectura hasta ti",
+      steps: [
+        { label: "Día anterior", text: "Dinn consulta las fuentes" },
+        { label: "Base D-1", text: "Las señales se organizan, con origen y fecha" },
+        { label: "Hoy", text: "Tu equipo lee, valida y actúa" }
+      ],
+      onDemand: "Consulta puntual de disponibilidad en tiendas elegibles",
+      factorsTitle: "La cobertura varía por",
+      factors: ["Fuente", "Producto", "Cadena", "Consulta"],
+      factorsNote: "Cada lectura indica qué cubre. Ilustración sin valores."
+    },
+    security: {
+      flowTitle: "Del acceso a la respuesta",
+      flow: [
+        { title: "Persona autorizada", sub: "Usuario de tu empresa" },
+        { title: "Dos factores", sub: "Verificación por correo" },
+        { title: "SSO", sub: "Habilitable" },
+        { title: "Permisos", sub: "Control de acceso" },
+        { title: "Dinn", sub: "Señales con origen y fecha" },
+        { title: "Solo lectura", sub: "MCP, API y BI" }
+      ],
+      splitTitle: "Quién se encarga de qué",
+      dinn: {
+        title: "Dinn",
+        items: ["Prepara y entrega las señales", "Muestra origen, fecha y confianza", "Conecta por MCP, API y BI"]
+      },
+      client: {
+        title: "Tú conservas",
+        items: ["Datos internos", "Infraestructura", "Gobernanza y accesos"]
+      }
+    },
+    deploy: {
+      title: "Implementación en hasta 30 días",
+      steps: [
+        { label: "Acuerdo", text: "Requisitos previos y alcance definidos" },
+        { label: "Implementación", text: "Hasta 30 días, y puede empezar solo con fuentes externas" },
+        { label: "En uso", text: "Lectura diaria y retorno del equipo" }
+      ]
+    }
   }
 };

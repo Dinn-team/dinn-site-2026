@@ -617,5 +617,101 @@ export const pagesPt = {
       ],
       mode: "Somente leitura"
     }
+  },
+
+
+  trustVisual: {
+    anatomy: {
+      title: "Um sinal na tela, com tudo o que ele diz sobre si",
+      signal: "Ruptura persistente",
+      store: "Loja 01 · Rede A",
+      callouts: [
+        { label: "Origem", value: "Observado na fonte" },
+        { label: "Data", value: "Base D-1" },
+        { label: "Confiança", value: "Informada em cada ponto" },
+        { label: "Limite", value: "Ausência não é causa" },
+        { label: "Próximo passo", value: "Conferir pedido pendente" }
+      ],
+      note: "Tela ilustrativa, com valores de exemplo."
+    },
+    kinds: {
+      proximity: "Proximidade com a fonte",
+      items: [
+        {
+          meter: "Direta",
+          rows: [
+            { label: "Origem", value: "A própria fonte" },
+            { label: "Quando", value: "Data e hora do registro" },
+            { label: "Como ler", value: "Dado direto, com local e horário" }
+          ]
+        },
+        {
+          meter: "Por comparação",
+          rows: [
+            { label: "Origem", value: "Lojas comparáveis e histórico" },
+            { label: "Quando", value: "Na atualização da base" },
+            { label: "Como ler", value: "Vem sempre com nível de confiança" }
+          ]
+        },
+        {
+          meter: "Por combinação",
+          rows: [
+            { label: "Origem", value: "Combinação de sinais" },
+            { label: "Quando", value: "No momento da leitura" },
+            { label: "Como ler", value: "Hipótese para o time validar" }
+          ]
+        }
+      ]
+    },
+    notProve: {
+      sees: "O que aparece",
+      doesNot: "Não prova",
+      pairs: [
+        { a: "Produto ausente", b: "Ruptura confirmada" },
+        { a: "Produto no CD", b: "Loja abastecida" },
+        { a: "Saldo constante", b: "Nenhuma venda" },
+        { a: "Recomendação", b: "Ação automática" }
+      ]
+    },
+    coverage: {
+      timelineTitle: "Como a leitura chega até você",
+      steps: [
+        { label: "Dia anterior", text: "A Dinn consulta as fontes" },
+        { label: "Base D-1", text: "Os sinais são organizados, com origem e data" },
+        { label: "Hoje", text: "Sua equipe lê, valida e age" }
+      ],
+      onDemand: "Consulta pontual de disponibilidade em lojas elegíveis",
+      factorsTitle: "A cobertura varia por",
+      factors: ["Fonte", "Produto", "Rede", "Consulta"],
+      factorsNote: "Cada leitura informa o que cobre. Ilustração sem valores."
+    },
+    security: {
+      flowTitle: "Do acesso à resposta",
+      flow: [
+        { title: "Pessoa autorizada", sub: "Usuário da sua empresa" },
+        { title: "Dois fatores", sub: "Verificação por e-mail" },
+        { title: "SSO", sub: "Habilitável" },
+        { title: "Permissões", sub: "Controle de acesso" },
+        { title: "Dinn", sub: "Sinais com origem e data" },
+        { title: "Somente leitura", sub: "MCP, API e BI" }
+      ],
+      splitTitle: "Quem cuida de quê",
+      dinn: {
+        title: "A Dinn",
+        items: ["Prepara e entrega os sinais", "Mostra origem, data e confiança", "Conecta por MCP, API e BI"]
+      },
+      client: {
+        title: "Você mantém",
+        items: ["Dados internos", "Infraestrutura", "Governança e acessos"]
+      }
+    },
+    deploy: {
+      title: "Implantação em até 30 dias",
+      steps: [
+        { label: "Acordo", text: "Pré-requisitos e escopo definidos" },
+        { label: "Implantação", text: "Até 30 dias, podendo começar só com fontes externas" },
+        { label: "Em uso", text: "Leitura diária e retorno do time" }
+      ]
+    }
   }
 };

@@ -1,52 +1,49 @@
 import { useTranslation } from '@/i18n/useTranslation';
-import { PageCta, PageHero, SectionHead } from './PageShell';
+import { Rich } from '@/lib/rich-text';
+import { PageCta, SectionHead } from './PageShell';
+import { CoverageViz, DeployBar, NotProveCards, SecurityFlow, SignalAnatomy, SignalKinds } from './TrustVisuals';
 
-type Signal = { name: string; def: string; example: string };
 type Info = { title: string; text: string };
 type Qa = { question: string; answer: string };
 
 export function TrustPage() {
   const { t } = useTranslation();
-  const signals = (t('trust.signals.items') as Signal[]) ?? [];
-  const notProve = (t('trust.notProve.items') as string[]) ?? [];
   const coverage = (t('trust.coverage.items') as Info[]) ?? [];
   const security = (t('trust.security.items') as Info[]) ?? [];
   const questions = (t('trust.questions.items') as Qa[]) ?? [];
 
   return (
     <div className="sp">
-      <PageHero eyebrow={t('trust.hero.eyebrow')} title={t('trust.hero.title')} lead={t('trust.hero.lead')} />
+      <header className="sp-hero tr-hero">
+        <div className="wrap tr-hero-grid">
+          <div>
+            <p className="sp-eyebrow">{t('trust.hero.eyebrow')}</p>
+            <h1 className="sp-title"><Rich text={t('trust.hero.title') as string} /></h1>
+            <p className="sp-lead">{t('trust.hero.lead')}</p>
+          </div>
+          <SignalAnatomy />
+        </div>
+      </header>
 
       <section className="sp-section" aria-labelledby="sp-signals">
         <div className="wrap">
           <SectionHead id="sp-signals" title={t('trust.signals.title')} intro={t('trust.signals.intro')} />
-          <div className="sp-grid is-three">
-            {signals.map((s) => (
-              <article key={s.name} className="sp-card">
-                <span className="sp-tag">{s.name}</span>
-                <p className="sp-def">{s.def}</p>
-                <p className="sp-not"><strong>{t('trust.signals.exampleLabel')}:</strong> {s.example}</p>
-              </article>
-            ))}
-          </div>
+          <SignalKinds />
         </div>
       </section>
 
       <section className="sp-section is-alt" aria-labelledby="sp-notprove">
-        <div className="wrap sp-split">
-          <div>
-            <SectionHead id="sp-notprove" title={t('trust.notProve.title')} intro={t('trust.notProve.intro')} />
-          </div>
-          <ul className="sp-limits">
-            {notProve.map((x) => <li key={x}>{x}</li>)}
-          </ul>
+        <div className="wrap">
+          <SectionHead id="sp-notprove" title={t('trust.notProve.title')} intro={t('trust.notProve.intro')} />
+          <NotProveCards />
         </div>
       </section>
 
       <section className="sp-section" aria-labelledby="sp-coverage">
         <div className="wrap">
           <SectionHead id="sp-coverage" title={t('trust.coverage.title')} />
-          <div className="sp-grid is-three">
+          <CoverageViz />
+          <div className="sp-grid is-three tr-below">
             {coverage.map((c) => (
               <article key={c.title} className="sp-card is-plain">
                 <h3>{c.title}</h3>
@@ -60,7 +57,8 @@ export function TrustPage() {
       <section className="sp-section is-alt" aria-labelledby="sp-security">
         <div className="wrap">
           <SectionHead id="sp-security" title={t('trust.security.title')} />
-          <div className="sp-grid is-two">
+          <SecurityFlow />
+          <div className="sp-grid is-two tr-below">
             {security.map((c) => (
               <article key={c.title} className="sp-card is-plain">
                 <h3>{c.title}</h3>
@@ -73,9 +71,9 @@ export function TrustPage() {
       </section>
 
       <section className="sp-section" aria-labelledby="sp-deploy">
-        <div className="wrap sp-split">
-          <SectionHead id="sp-deploy" title={t('trust.deploy.title')} />
-          <p className="sp-body">{t('trust.deploy.text')}</p>
+        <div className="wrap">
+          <SectionHead id="sp-deploy" title={t('trust.deploy.title')} intro={t('trust.deploy.text')} />
+          <DeployBar />
         </div>
       </section>
 
