@@ -423,7 +423,7 @@ export const pagesPt = {
       title: "Histórias de uso da Dinn, *uma a uma*",
       lead: "Cada caso conta o caminho completo: da situação ao aprendizado, com o que foi observado, como foi validado e o que o time decidiu."
     },
-    gallery: { open: "Ler o caso", demo: "Caso demonstrativo", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
+    gallery: { open: "Ler o caso", customer: "Caso de cliente", empty: "Novos casos entram aqui, um a um." },
     detail: {
       back: "Todos os casos",
       problem: "O problema",
@@ -433,7 +433,6 @@ export const pagesPt = {
       outcome: "O que mudou",
       userLabel: "Relato do usuário",
       preserved: "Relato de usuário · nomes e dados preservados",
-      demoLabel: "Caso demonstrativo",
       stepsTitle: "Do sinal ao aprendizado",
       byline: "Equipe Dinn",
       relatedTitle: "Continue por aqui",
@@ -450,7 +449,7 @@ export const pagesPt = {
     rules: {
       title: "Como contamos os casos",
       items: [
-        "Caso real e caso demonstrativo são sempre identificados como tais.",
+        "Os casos são relatos de usuários da Dinn; nomes, produtos e dados são preservados.",
         "Quando há resultado mensurável, informamos período, universo e método.",
         "Quando não há, relatamos o ganho operacional comprovado, sem convertê-lo em impacto financeiro."
       ]

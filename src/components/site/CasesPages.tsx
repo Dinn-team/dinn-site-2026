@@ -100,7 +100,7 @@ export function CasesGallery() {
                   transition={{ delay: 0.06 * i, duration: 0.6 }}
                 >
                   <CaseCover area={c.area} kind={c.kind} />
-                  <span className={`cs-kind is-${c.kind}`}>{c.kind === 'demo' ? t('cases.detail.demoLabel') : t('cases.gallery.customer')}</span>
+                  <span className={`cs-kind is-${c.kind}`}>{t('cases.gallery.customer')}</span>
                   <h2>{pick(c.title, l)}</h2>
                   <p>{pick(c.summary, l)}</p>
                   <span className="cs-meta">{pick(c.role, l)} · {nameOf(c.area)}</span>
@@ -215,7 +215,7 @@ export function CaseDetail({ slug }: { slug: string }) {
   return (
     <div className="sp">
       <PageHero
-        eyebrow={isCustomer ? t('cases.gallery.customer') : t('cases.detail.demoLabel')}
+        eyebrow={t('cases.gallery.customer')}
         title={pick(c.title, l)}
         lead={pick(c.summary, l)}
         back={{ label: t('cases.detail.back'), href: PATHS.cases }}

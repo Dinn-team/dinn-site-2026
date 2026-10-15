@@ -1,5 +1,6 @@
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
+import FAQ from '@/components/FAQ';
 import { PageCta, SectionHead } from './PageShell';
 import { CoverageViz, DeployBar, NotProveCards, SecurityFlow, SignalAnatomy, SignalKinds } from './TrustVisuals';
 
@@ -77,20 +78,13 @@ export function TrustPage() {
         </div>
       </section>
 
-      <section className="sp-section is-alt" aria-labelledby="sp-qa">
+      {/* Mesmo FAQ da home: cartões que abrem e fecham */}
+      <FAQ items={questions} title={t('trust.questions.title') as string} id="perguntas" />
+      <div className="tr-faq-more">
         <div className="wrap">
-          <SectionHead id="sp-qa" title={t('trust.questions.title')} />
-          <div className="sp-qa">
-            {questions.map((q) => (
-              <details key={q.question}>
-                <summary>{q.question}</summary>
-                <p>{q.answer}</p>
-              </details>
-            ))}
-          </div>
           <p className="sp-more"><a href="/suporte">{t('trust.questions.supportLink')} →</a></p>
         </div>
-      </section>
+      </div>
 
       <PageCta title={t('trust.cta.title')} desc={t('trust.cta.desc')} button={t('trust.cta.button')} />
     </div>

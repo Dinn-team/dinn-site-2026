@@ -1,5 +1,5 @@
 {
-  "note": "Galeria de casos de uso. Cada item vira um card em /recursos/casos e uma página em /recursos/casos/<slug>, no formato de história: o problema, como o Dinn trabalhou, a solução e o que mudou. 'kind': 'customer' (relato de usuário real, com nomes e dados preservados) ou 'demo' (caso demonstrativo). 'status': 'published' aparece no site; 'draft' fica oculto. 'visual' escolhe a animação do palco (ver src/components/site/CaseScenes.tsx; 'area:<slug>' reaproveita a cena de uma solução). Cada texto tem pt, en e es; falta de en/es cai no português.",
+  "note": "Galeria de casos de uso. Cada item vira um card em /recursos/casos e uma página em /recursos/casos/<slug>, no formato de história: o problema, como o Dinn trabalhou, a solução e o que mudou. 'kind': 'customer' (relato de usuário real, com nomes e dados preservados). 'status': 'published' aparece no site; 'draft' fica oculto. 'visual' escolhe a animação do palco (ver src/components/site/CaseScenes.tsx; 'area:<slug>' reaproveita a cena de uma solução). Cada texto tem pt, en e es; falta de en/es cai no português.",
   "cases": [
     {
       "slug": "dias-de-estoque-fortaleza",
@@ -533,105 +533,6 @@
           "pt": "Respostas na hora sobre o histórico de mercado",
           "en": "Immediate answers about market history",
           "es": "Respuestas inmediatas sobre el historial de mercado"
-        }
-      ]
-    },
-    {
-      "slug": "ruptura-seis-lojas",
-      "status": "published",
-      "kind": "demo",
-      "area": "trade-kam-campo",
-      "date": "2026-10-13",
-      "visual": "area:trade-kam-campo",
-      "role": {
-        "pt": "Time de trade",
-        "en": "Trade team",
-        "es": "Equipo de trade"
-      },
-      "title": {
-        "pt": "Da ruptura em seis lojas à fila de verificação da semana",
-        "en": "From stock-outs at six stores to the week's verification queue",
-        "es": "Del desabasto en seis tiendas a la fila de verificación de la semana"
-      },
-      "summary": {
-        "pt": "Como um time de trade com 40 lojas na carteira e tempo para visitar oito por semana descobre por onde começar, sem montar a agenda no escuro.",
-        "en": "How a trade team with 40 stores in its portfolio and time to visit eight per week figures out where to start, without building the schedule in the dark.",
-        "es": "Cómo un equipo de trade con 40 tiendas en su cartera y tiempo para visitar ocho por semana descubre por dónde empezar, sin armar la agenda a ciegas."
-      },
-      "problem": {
-        "quote": null,
-        "text": {
-          "pt": "Um time de trade com 40 lojas na carteira e tempo para visitar oito por semana. Sem prioridade, a agenda saía no escuro e a rede ouvia só impressões.",
-          "en": "A trade team with 40 stores in its portfolio and time to visit eight per week. Without priorities, the schedule went out in the dark and the chain heard only impressions.",
-          "es": "Un equipo de trade con 40 tiendas en su cartera y tiempo para visitar ocho por semana. Sin prioridad, la agenda salía a ciegas y la cadena escuchaba solo impresiones."
-        }
-      },
-      "how": [
-        {
-          "title": {
-            "pt": "O sinal: seis lojas concentram 70% da ruptura",
-            "en": "The signal: six stores concentrate 70% of the stock-outs",
-            "es": "La señal: seis tiendas concentran 70% del desabasto"
-          },
-          "text": {
-            "pt": "Seis lojas concentram 70% do sinal de ruptura do produto na última semana.",
-            "en": "Six stores concentrate 70% of the product's stock-out signal in the last week.",
-            "es": "Seis tiendas concentran 70% de la señal de desabasto del producto en la última semana."
-          }
-        },
-        {
-          "title": {
-            "pt": "Como foi validado",
-            "en": "How it was validated",
-            "es": "Cómo se validó"
-          },
-          "text": {
-            "pt": "A ruptura de cada loja é a proporção de dias sem estoque nos últimos 30 dias. Lojas que nunca venderam o produto ficaram de fora, e cada ponto diz se é observado ou estimado.",
-            "en": "Each store's stock-out rate is the share of days without stock in the last 30 days. Stores that never sold the product were left out, and each point says whether it is observed or estimated.",
-            "es": "El desabasto de cada tienda es la proporción de días sin inventario en los últimos 30 días. Las tiendas que nunca vendieron el producto quedaron fuera, y cada punto indica si es observado o estimado."
-          }
-        },
-        {
-          "title": {
-            "pt": "O que decidir primeiro",
-            "en": "What to decide first",
-            "es": "Qué decidir primero"
-          },
-          "text": {
-            "pt": "Começar a semana por essas seis lojas, com uma pergunta por loja: há pedido pendente? O produto está fora da gôndola?",
-            "en": "Start the week with these six stores, with one question per store: is there a pending order? Is the product off the shelf?",
-            "es": "Empezar la semana por esas seis tiendas, con una pregunta por tienda: ¿hay pedido pendiente? ¿El producto está fuera de la góndola?"
-          }
-        }
-      ],
-      "solution": {
-        "title": {
-          "pt": "A semana começou pela fila certa",
-          "en": "The week started with the right queue",
-          "es": "La semana empezó por la fila correcta"
-        },
-        "text": {
-          "pt": "O time visitou as lojas da fila e levou à rede a evidência por loja, com data.",
-          "en": "The team visited the stores in the queue and brought the chain the evidence by store, with dates.",
-          "es": "El equipo visitó las tiendas de la fila y llevó a la cadena la evidencia por tienda, con fecha."
-        },
-        "quote": null
-      },
-      "outcome": [
-        {
-          "pt": "O retorno de cada visita reordena a fila na semana seguinte",
-          "en": "The result of each visit reorders the queue the following week",
-          "es": "El resultado de cada visita reordena la fila de la semana siguiente"
-        },
-        {
-          "pt": "Evidência por loja, com data, levada à rede",
-          "en": "Evidence by store, with dates, taken to the chain",
-          "es": "Evidencia por tienda, con fecha, llevada a la cadena"
-        },
-        {
-          "pt": "Caso demonstrativo: mostra o fluxo, sem resultado financeiro",
-          "en": "Demo case: shows the flow, with no financial result",
-          "es": "Caso demostrativo: muestra el flujo, sin resultado financiero"
         }
       ]
     }

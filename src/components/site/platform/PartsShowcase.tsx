@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from '@/i18n/useTranslation';
 import { SectionHead } from '../PageShell';
 import { StockDemo } from './StockDemo';
@@ -13,7 +12,6 @@ import { ConectaDemo } from './ConectaDemo';
 // estreitas a demo vem logo abaixo do texto. O "o que não é" fica em cada um.
 
 type Part = { tag: string; title: string; desc: string; not: string };
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function PartsShowcase() {
   const { t } = useTranslation();
@@ -26,14 +24,7 @@ export function PartsShowcase() {
         <SectionHead id="sp-parts" title={t('platform.parts.title')} intro={t('platform.parts.intro')} />
         <div className="pf-parts">
           {parts.map((p, i) => (
-            <motion.article
-              key={p.tag}
-              className="pf-part"
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-8% 0px' }}
-              transition={{ duration: 0.7, ease: EASE }}
-            >
+            <article key={p.tag} className="pf-part" style={{ ['--i' as string]: i }}>
               <div className="pf-part-copy">
                 <span className="pf-part-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <span className="sp-tag">{p.tag}</span>
@@ -42,7 +33,7 @@ export function PartsShowcase() {
                 <p className="pf-part-not"><strong>{t('platform.parts.notLabel')}:</strong> {p.not}</p>
               </div>
               <div className="pf-part-demo">{demos[i]}</div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

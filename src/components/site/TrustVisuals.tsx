@@ -1,6 +1,7 @@
+import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Activity, AlertTriangle, Building2, Check, Clock, Eye, Gauge, KeyRound, Layers, Lightbulb, Lock, Mail,
+  Activity, AlertTriangle, Building2, Check, ChevronRight, Clock, Eye, Gauge, KeyRound, Layers, Lightbulb, Lock, Mail,
   PackageX, Server, Settings, ShieldCheck, ShoppingCart, Store, User, Warehouse,
 } from 'lucide-react';
 import type { ComponentType, ReactNode } from 'react';
@@ -279,12 +280,19 @@ export function SecurityFlow(): ReactNode {
     <div className="tr-security">
       <div className="tr-panel">
         <p className="tr-panel-title">{v.flowTitle}</p>
+        {/* Cada seta é um item próprio entre os cartões (nunca por cima deles):
+            no desktop fica centrada na altura do cartão, no celular vira uma
+            seta para baixo entre um cartão e o outro. */}
         <ol className="tr-flow-chain">
           {flow.map((n, i) => (
-            <motion.li key={n.title} {...reveal(i)}>
-              <Node icon={FLOW_ICONS[i] ?? Layers} title={n.title} sub={n.sub} tone={i === 4 ? 'main' : i === 5 ? 'lock' : undefined} />
-              {i < flow.length - 1 && <span className="tr-arrow" aria-hidden="true" />}
-            </motion.li>
+            <Fragment key={n.title}>
+              <motion.li className="tr-flow-item" {...reveal(i)}>
+                <Node icon={FLOW_ICONS[i] ?? Layers} title={n.title} sub={n.sub} tone={i === 4 ? 'main' : i === 5 ? 'lock' : undefined} />
+              </motion.li>
+              {i < flow.length - 1 && (
+                <li className="tr-link" aria-hidden="true"><ChevronRight size={20} strokeWidth={2.4} /></li>
+              )}
+            </Fragment>
           ))}
         </ol>
       </div>

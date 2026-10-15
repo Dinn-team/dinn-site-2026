@@ -71,11 +71,34 @@
 .pf-cycle.is-static .pf-step { animation: none; }
 
 /* ── Cinco partes ───────────────────────────────────────────────────────── */
-.pf-parts { display: flex; flex-direction: column; gap: 20px; }
+.pf-parts { display: flex; flex-direction: column; gap: 28px; }
 .pf-part {
+  --pf-bg: #FFFBEA; --pf-line: #F1E4B0;
+  position: relative; z-index: calc(var(--i, 0) + 1);
   display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(20px, 3.4vw, 48px); align-items: center;
-  padding: clamp(20px, 2.6vw, 34px); border-radius: 28px; background: #fff; border: 1px solid #E3E5EA;
+  padding: clamp(20px, 2.6vw, 34px); border-radius: 28px; background: var(--pf-bg); border: 1px solid var(--pf-line);
+  box-shadow: 0 -10px 30px -22px rgba(31, 35, 40, 0.35);
+}
+/* uma cor pastel, quase branca, para cada parte */
+.pf-part:nth-child(1) { --pf-bg: #FFFBEA; --pf-line: #F1E4B0; } /* amarelo */
+.pf-part:nth-child(2) { --pf-bg: #F7F3FF; --pf-line: #DFD3FA; } /* lilás */
+.pf-part:nth-child(3) { --pf-bg: #F0FAF4; --pf-line: #C9E9D5; } /* verde */
+.pf-part:nth-child(4) { --pf-bg: #EEF6FF; --pf-line: #CBE0F7; } /* azul */
+.pf-part:nth-child(5) { --pf-bg: #FCF1F4; --pf-line: #EFCAD5; } /* bordô */
+/* Telas amplas: os cartões grudam abaixo do menu e se empilham, um sobre o
+   outro. Cada camada fica 8px mais abaixo e 2px mais estreita de cada lado,
+   então as bordas de cima e as laterais dos cartões de baixo continuam
+   aparecendo. Em telas pequenas ou baixas, vira uma lista normal (cartão mais
+   alto que a tela não pode ficar preso). */
+@media (min-width: 1000px) and (min-height: 800px) {
+  .pf-part {
+    position: sticky;
+    top: calc(92px + var(--i, 0) * 8px);
+    margin-left: calc(var(--i, 0) * 2px);
+    margin-right: calc(var(--i, 0) * 2px);
+    min-height: var(--pf-card-h, 670px);
+  }
 }
 .pf-part:nth-child(even) { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
 .pf-part:nth-child(even) .pf-part-demo { order: -1; }

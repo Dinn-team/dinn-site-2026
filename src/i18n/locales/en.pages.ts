@@ -422,7 +422,7 @@ export const pagesEn = {
       title: "Dinn use stories, *one by one*",
       lead: "Each case tells the whole path: from situation to learning, with what was observed, how it was validated and what the team decided."
     },
-    gallery: { open: "Read the case", demo: "Demonstration case", customer: "Customer case", empty: "New cases will be added here, one by one." },
+    gallery: { open: "Read the case", customer: "Customer case", empty: "New cases will be added here, one by one." },
     detail: {
       back: "All cases",
       problem: "The problem",
@@ -432,7 +432,6 @@ export const pagesEn = {
       outcome: "What changed",
       userLabel: "User account",
       preserved: "User account · names and data preserved",
-      demoLabel: "Demonstration case",
       stepsTitle: "From signal to learning",
       byline: "Dinn team",
       relatedTitle: "Keep exploring",
@@ -449,7 +448,7 @@ export const pagesEn = {
     rules: {
       title: "How we tell cases",
       items: [
-        "Real cases and demonstration cases are always identified as such.",
+        "Cases are accounts from Dinn users; names, products and data are preserved.",
         "When there is a measurable result, we state the period, universe and method.",
         "When there is not, we report the proven operational gain, without turning it into financial impact."
       ]

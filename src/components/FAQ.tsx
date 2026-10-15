@@ -4,14 +4,14 @@ import { Rich } from "@/lib/rich-text";
 
 type Item = { question: string; answer: string };
 
-export default function FAQ() {
+export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: Item[]; title?: string; id?: string } = {}) {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const items = (t('faq.items') as Item[]) ?? [];
+  const items = itemsProp ?? ((t('faq.items') as Item[]) ?? []);
 
   return (
-    <section id="faq" style={{ padding: '96px 0', background: '#ffffff', scrollMarginTop: '40px' }}>
+    <section id={id} style={{ padding: '96px 0', background: '#ffffff', scrollMarginTop: '40px' }}>
       <div className="wrap">
         <h2 style={{
           fontSize: 'clamp(26px, 3.4vw, 40px)',
@@ -24,7 +24,7 @@ export default function FAQ() {
           letterSpacing: '-0.012em',
           textWrap: 'balance',
         }}>
-          {t('faq.title')}
+          {title ?? t('faq.title')}
         </h2>
 
         <div style={{ maxWidth: '760px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
