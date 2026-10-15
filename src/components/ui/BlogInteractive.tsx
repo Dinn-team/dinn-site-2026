@@ -79,10 +79,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
   return (
     <div className="blog-page">
       {/* Hero */}
-      <div 
-        className="blog-hero"
-        style={{ paddingTop: '220px', paddingBottom: '120px' }}
-      >
+      <div className="blog-hero">
         <h1>{t('blog.heroTitle', 'Conteúdos do Dinn')}</h1>
         <div className="blog-search">
           <input 

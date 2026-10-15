@@ -36,9 +36,18 @@ try {
 }
 
 /* ── Hero mínimo ── */
+/* Capa ilustrada: o centro da imagem fica livre no alto e o texto e a busca
+   descem para a faixa entre o rio e as árvores, sobre um escurecido que
+   cresce de cima para baixo. A cor de fundo segue escura para o menu saber
+   que deve usar a logo branca. */
 .blog-hero {
   background-color: #0f172a; /* mantém identidade do DINN */
-  padding: 64px 24px 56px;
+  background-image:
+    linear-gradient(to bottom, rgba(10, 18, 30, 0.62) 0, rgba(10, 18, 30, 0.2) 90px, rgba(10, 18, 30, 0) 42%, rgba(10, 18, 30, 0.5) 62%, rgba(10, 18, 30, 0.86) 100%),
+    url('/recursos/blog-capa.webp');
+  background-size: cover;
+  background-position: center top;
+  padding: clamp(340px, 36vw, 440px) 24px 72px;
   text-align: center;
 }
 
@@ -51,6 +60,7 @@ try {
   line-height: 1.18;
   letter-spacing: -0.012em;
   text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(8, 14, 26, 0.7);
 }
 
 .blog-hero p {
@@ -69,15 +79,17 @@ try {
   width: 100%;
   padding: 14px 48px 14px 24px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(15, 23, 42, 0.62);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   color: #fff;
   font-size: 15px;
   outline: none;
   transition: border-color 0.2s;
 }
 
-.blog-search input::placeholder { color: #64748b; }
+.blog-search input::placeholder { color: #94a3b8; }
 .blog-search input:focus { border-color: rgba(255,255,255,0.3); }
 
 .blog-search-icon {
@@ -291,6 +303,6 @@ try {
 
 @media (max-width: 560px) {
   .blog-grid { grid-template-columns: 1fr; }
-  .blog-hero { padding: 48px 20px 40px; }
+  .blog-hero { padding: 300px 20px 48px; }
 }
 </style>
