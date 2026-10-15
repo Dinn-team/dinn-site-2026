@@ -22,22 +22,22 @@ export const pagesPt = {
     title: "Para quem ainda não está pronto para uma demonstração",
     items: [
       {
-        type: "Guia",
-        title: "Ausência, ruptura, sortimento e giro: qual é a diferença?",
-        desc: "As quatro leituras que mais se confundem no canal, com o que conferir antes de agir.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro"
+        type: "Blog",
+        title: "Análises e artigos sobre o canal farmacêutico",
+        desc: "Ruptura de estoque, execução comercial e inteligência de dados em farma.",
+        href: "/blog"
       },
       {
-        type: "Caso de cliente",
+        type: "Caso de uso",
         title: "Quantos dias de produto restam em Fortaleza?",
         desc: "A resposta estava no estoque parado de todos os PDVs da cidade.",
         href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
-        type: "Blog",
-        title: "Análises e artigos sobre o canal farmacêutico",
-        desc: "Ruptura de estoque, execução comercial e inteligência de dados em farma.",
-        href: "/blog"
+        type: "Changelog",
+        title: "O que entrou no ar na Dinn",
+        desc: "Cada novidade da plataforma em produção, explicada em linguagem simples e organizada por data.",
+        href: "/recursos/changelog"
       }
     ]
   },

@@ -21,22 +21,22 @@ export const pagesEs = {
     title: "Para quien aún no está listo para una demostración",
     items: [
       {
-        type: "Guía",
-        title: "Ausencia, desabasto, surtido y rotación: ¿cuál es la diferencia?",
-        desc: "Las cuatro lecturas que más se confunden en el canal, con qué verificar antes de actuar.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro"
+        type: "Blog",
+        title: "Análisis y artículos sobre el canal farmacéutico",
+        desc: "Desabasto de inventario, ejecución comercial e inteligencia de datos en farma.",
+        href: "/blog"
       },
       {
-        type: "Caso de cliente",
+        type: "Caso de uso",
         title: "¿Cuántos días de producto quedan en Fortaleza?",
         desc: "La respuesta estaba en el inventario detenido de todas las tiendas de la ciudad.",
         href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
-        type: "Blog",
-        title: "Análisis y artículos sobre el canal farmacéutico",
-        desc: "Desabasto de inventario, ejecución comercial e inteligencia de datos en farma.",
-        href: "/blog"
+        type: "Changelog",
+        title: "Lo que entró en producción en Dinn",
+        desc: "Cada novedad de la plataforma en producción, explicada en lenguaje simple y organizada por fecha.",
+        href: "/recursos/changelog"
       }
     ]
   },

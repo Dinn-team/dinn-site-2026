@@ -21,22 +21,22 @@ export const pagesEn = {
     title: "For those not yet ready for a demo",
     items: [
       {
-        type: "Guide",
-        title: "Absence, stock-out, assortment and sell-through: what's the difference?",
-        desc: "The four readings most often confused in the channel, and what to check before acting.",
-        href: "/recursos/ausencia-ruptura-sortimento-giro"
+        type: "Blog",
+        title: "Analysis and articles on the pharmaceutical channel",
+        desc: "Stock-outs, commercial execution and data intelligence in pharma.",
+        href: "/blog"
       },
       {
-        type: "Customer case",
+        type: "Use case",
         title: "How many days of product are left in Fortaleza?",
         desc: "The answer was in the stalled stock of every store in the city.",
         href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
-        type: "Blog",
-        title: "Analysis and articles on the pharmaceutical channel",
-        desc: "Stock-outs, commercial execution and data intelligence in pharma.",
-        href: "/blog"
+        type: "Changelog",
+        title: "What went live at Dinn",
+        desc: "Every platform release in production, explained in plain language and organized by date.",
+        href: "/recursos/changelog"
       }
     ]
   },
