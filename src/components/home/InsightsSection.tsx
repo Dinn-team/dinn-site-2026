@@ -3,7 +3,7 @@ import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Brain, Check, MapPin, RotateCcw } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
-import { DEMO_URL } from '@/lib/links';
+import { contactUrl } from '@/lib/links';
 import { ChatWidget } from './chat/ChatWidgets';
 import { extractContext, fillScenario, pickScenario, type Context, type Scenario } from './chat/engine';
 import { prefersReducedMotion } from './neural';
@@ -336,14 +336,13 @@ function BotMessage({ m, t, team, defaults, onLink, onFollow }: {
               {sc.links.map((l) => (
                 <a
                   key={l.label}
-                  href={l.href === 'demo' ? DEMO_URL : l.href}
+                  href={l.href === 'demo' ? contactUrl('home-insights') : l.href}
                   onClick={onLink(l.href)}
-                  {...(l.href === 'demo' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   {l.label} <ArrowUpRight size={13} />
                 </a>
               ))}
-              <a className="is-demo" href={DEMO_URL} target="_blank" rel="noopener noreferrer">
+              <a className="is-demo" href={contactUrl('home-insights')}>
                 {t('ask.demoCta')} <ArrowUpRight size={13} />
               </a>
             </motion.div>

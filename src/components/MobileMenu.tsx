@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { NAV_LINKS, getSubmenu } from '@/components/ui/nav-header';
 import { useTranslation } from '@/i18n/useTranslation';
 import { setLanguage, Language } from '@/i18n/store';
-import { DEMO_URL } from '@/lib/links';
+import { contactUrl } from '@/lib/links';
 
 const LANGS: Language[] = ['pt', 'en', 'es'];
 
@@ -187,9 +187,7 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
       <div className="mm-foot">
         <div className="mm-col">
           <a
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={contactUrl('menu-celular')}
             className="mm-cta"
             onClick={() => close(false)}
           >

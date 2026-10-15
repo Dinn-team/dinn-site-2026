@@ -3,7 +3,7 @@ import { SlideTabs } from '@/components/ui/nav-header';
 import MobileMenu from '@/components/MobileMenu';
 import { useTranslation } from '@/i18n/useTranslation';
 import { setLanguage, Language } from '@/i18n/store';
-import { DEMO_URL } from '@/lib/links';
+import { contactUrl } from '@/lib/links';
 
 // Globe / translate icon (lucide-style inline SVG)
 function GlobeIcon({ color }: { color: string }) {
@@ -205,7 +205,7 @@ export default function Header() {
               )}
             </div>
 
-            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            <a href={contactUrl('menu')} className="btn btn-primary">
               {t('nav.cta')}
             </a>
           </div>

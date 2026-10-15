@@ -41,6 +41,76 @@ export const pagesEn = {
     ]
   },
 
+  contact: {
+    meta: {
+      title: "Contact | Dinn",
+      description: "Tell us which pharmaceutical-channel decision you want to improve and get a reply from someone on the Dinn team."
+    },
+    navLabel: "Contact",
+    hero: {
+      eyebrow: "Contact",
+      title: "Tell us what you want to *improve in the channel*",
+      lead: "Four fields and you're done. A person on the team reads your request and replies with the next step."
+    },
+    after: {
+      title: "What happens next",
+      steps: [
+        { title: "We receive your request", text: "It goes straight to the team, with the role and the decision you chose." },
+        { title: "A person replies", text: "A reply by email within a few business days, referring to what you asked." },
+        { title: "You set the pace", text: "If it makes sense, we book a short conversation. If not, we stop there." }
+      ]
+    },
+    form: {
+      title: "Talk to Dinn",
+      lead: "It takes less than a minute.",
+      email: "Work email",
+      emailPlaceholder: "you@yourcompany.com",
+      emailHint: "We use the domain to identify the company.",
+      company: "Company",
+      role: "Your role",
+      decision: "Decision you want to improve",
+      choose: "Select",
+      name: "Name",
+      optional: "(optional)",
+      roles: [
+        { value: "comercial_trade", label: "Sales or Trade" },
+        { value: "inteligencia_dados", label: "Intelligence or Data" },
+        { value: "marca_lancamento", label: "Brand or Launch" },
+        { value: "operacao_campo", label: "Field operations" },
+        { value: "ti_seguranca_compras", label: "IT, Security or Procurement" },
+        { value: "direcao", label: "Leadership or Executive" },
+        { value: "outro", label: "Other" }
+      ],
+      decisions: [
+        { value: "disponibilidade_execucao", label: "Availability and execution at the point of sale" },
+        { value: "confianca_dado", label: "Trust in the data" },
+        { value: "lancamento", label: "Product launch" },
+        { value: "preco", label: "Price against the market" },
+        { value: "integracao", label: "Integration with BI, CRM or agents" }
+      ],
+      consent: "I authorize Dinn to use this data to reply to this request and send communications related to it.",
+      privacy: "Privacy policy",
+      submit: "Send request",
+      sending: "Sending…",
+      fine: "We only use what you fill in here. No bulk email lists."
+    },
+    errors: {
+      required: "Fill in this field.",
+      requiredChoice: "Select an option.",
+      emailInvalid: "Enter a valid email.",
+      emailPersonal: "Use your company email. We don't accept personal addresses such as Gmail or Outlook.",
+      consent: "You need to authorize to send the request.",
+      submit: "We couldn't send it right now. Try again in a moment or",
+      submitLink: "book directly"
+    },
+    done: {
+      title: "Request received",
+      text: "Thank you. A person on the team will read your request and reply by email within a few business days.",
+      schedule: "Book a conversation",
+      home: "Back to home"
+    }
+  },
+
   pageCta: {
     title: "See how this works with your products",
     desc: "In a demo, Dinn shows the reading with your portfolio, your territory and your regions.",

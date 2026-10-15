@@ -42,6 +42,76 @@ export const pagesPt = {
     ]
   },
 
+  contact: {
+    meta: {
+      title: "Contato | Dinn",
+      description: "Conte qual decisão do canal farmacêutico você quer melhorar e receba o retorno de uma pessoa do time da Dinn."
+    },
+    navLabel: "Contato",
+    hero: {
+      eyebrow: "Contato",
+      title: "Conte o que você quer *melhorar no canal*",
+      lead: "Quatro campos e pronto. Uma pessoa do time lê o seu pedido e responde com o próximo passo."
+    },
+    after: {
+      title: "O que acontece depois",
+      steps: [
+        { title: "Recebemos o seu pedido", text: "Ele chega direto ao time, com o papel e a decisão que você indicou." },
+        { title: "Uma pessoa responde", text: "Retorno por e-mail em poucos dias úteis, referenciando o que você pediu." },
+        { title: "Você decide o ritmo", text: "Se fizer sentido, marcamos uma conversa curta. Se não, ficamos por aqui." }
+      ]
+    },
+    form: {
+      title: "Fale com a Dinn",
+      lead: "Leva menos de um minuto.",
+      email: "E-mail corporativo",
+      emailPlaceholder: "voce@suaempresa.com.br",
+      emailHint: "Usamos o domínio para identificar a empresa.",
+      company: "Empresa",
+      role: "Seu papel",
+      decision: "Decisão que quer melhorar",
+      choose: "Selecione",
+      name: "Nome",
+      optional: "(opcional)",
+      roles: [
+        { value: "comercial_trade", label: "Comercial ou Trade" },
+        { value: "inteligencia_dados", label: "Inteligência ou Dados" },
+        { value: "marca_lancamento", label: "Marca ou Lançamento" },
+        { value: "operacao_campo", label: "Operação de campo" },
+        { value: "ti_seguranca_compras", label: "TI, Segurança ou Compras" },
+        { value: "direcao", label: "Direção ou Executivo" },
+        { value: "outro", label: "Outro" }
+      ],
+      decisions: [
+        { value: "disponibilidade_execucao", label: "Disponibilidade e execução no ponto de venda" },
+        { value: "confianca_dado", label: "Confiança no dado" },
+        { value: "lancamento", label: "Lançamento de produto" },
+        { value: "preco", label: "Preço frente ao mercado" },
+        { value: "integracao", label: "Integração com BI, CRM ou agentes" }
+      ],
+      consent: "Autorizo a Dinn a usar estes dados para responder a este pedido e enviar comunicações relacionadas a ele.",
+      privacy: "Política de privacidade",
+      submit: "Enviar pedido",
+      sending: "Enviando…",
+      fine: "Só usamos o que você preencheu aqui. Sem lista de e-mails em massa."
+    },
+    errors: {
+      required: "Preencha este campo.",
+      requiredChoice: "Selecione uma opção.",
+      emailInvalid: "Informe um e-mail válido.",
+      emailPersonal: "Use o e-mail da sua empresa. Não aceitamos endereços pessoais, como Gmail ou Outlook.",
+      consent: "É preciso autorizar para enviar o pedido.",
+      submit: "Não conseguimos enviar agora. Tente de novo em instantes ou",
+      submitLink: "agende direto"
+    },
+    done: {
+      title: "Pedido recebido",
+      text: "Obrigado. Uma pessoa do time vai ler o seu pedido e responder por e-mail em poucos dias úteis.",
+      schedule: "Agendar uma conversa",
+      home: "Voltar ao início"
+    }
+  },
+
   pageCta: {
     title: "Veja como isso funciona com os seus produtos",
     desc: "Numa demonstração, a Dinn mostra a leitura com o seu portfólio, a sua carteira e as suas regiões.",

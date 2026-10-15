@@ -15,6 +15,7 @@
 @import "./site-resources.css";
 @import "./site-platform.css";
 @import "./site-mobile-menu.css";
+@import "./site-contact.css";
 
 @custom-variant dark (&:is(.dark *));
 

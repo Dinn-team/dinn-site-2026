@@ -3,7 +3,7 @@ import { Brain, Check, Lock } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { CtaScene } from './CtaScene';
-import { DEMO_URL } from '@/lib/links';
+import { contactUrl } from '@/lib/links';
 
 // Onde o Dinn entrega: plataforma, conversa, IA do cliente e Conecta.
 // Cada card tem um pequeno visual vivo em vez de um parágrafo a mais.
@@ -157,7 +157,7 @@ export function FinalCta() {
         <h2><Rich text={t('ctaFinal.title') as string} /></h2>
         <p>{t('ctaFinal.description')}</p>
         <div className="final-actions">
-          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">{t('ctaFinal.button')}</a>
+          <a href={contactUrl('home-final')} className="btn btn-primary btn-lg">{t('ctaFinal.button')}</a>
           <button type="button" className="btn btn-on-dark btn-lg" onClick={back}>{t('ctaFinal.secondary')}</button>
         </div>
       </motion.div>

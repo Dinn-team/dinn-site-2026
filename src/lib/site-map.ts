@@ -25,6 +25,7 @@ export const PATHS = {
   cases: '/recursos/casos',
   changelog: '/recursos/changelog',
   blog: '/blog',
+  contact: '/contato',
 } as const;
 
 export const areaPath = (slug: string) => `/solucoes/${slug}`;

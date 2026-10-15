@@ -1,5 +1,5 @@
 import { useTranslation } from "@/i18n/useTranslation";
-import { DEMO_URL } from "@/lib/links";
+import { contactUrl } from "@/lib/links";
 import { blogPath } from "@/i18n/routes";
 
 export default function Footer() {
@@ -41,6 +41,7 @@ export default function Footer() {
                 [t('nav.resources'), '/recursos'],
                 [t('nav.trust'), '/confianca'],
                 [t('nav.blog'), blogPath(lang)],
+                [t('contact.navLabel'), '/contato'],
               ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
@@ -110,9 +111,7 @@ export default function Footer() {
               {t('footer.ctaDesc')}
             </p>
             <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={contactUrl('rodape')}
               className="btn btn-primary"
             >
               {t('footer.ctaButton')}

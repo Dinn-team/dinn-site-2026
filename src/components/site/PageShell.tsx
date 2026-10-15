@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Rich } from '@/lib/rich-text';
-import { DEMO_URL } from '@/lib/links';
+import { contactUrl } from '@/lib/links';
 
 // Peças comuns das páginas internas: cabeçalho da página e chamada final.
 // O fundo claro do topo é de propósito: o menu fixo troca de cor conforme o
@@ -97,11 +97,14 @@ export function PageCta({
   desc,
   button,
   secondary,
+  origin,
 }: {
   title: string;
   desc: string;
   button: string;
   secondary?: { label: string; href: string };
+  /** Onde esta chamada aparece (vai como `origem` para o formulário). */
+  origin?: string;
 }) {
   return (
     <section className="sp-cta" aria-labelledby="sp-cta-title">
@@ -109,7 +112,7 @@ export function PageCta({
         <h2 id="sp-cta-title">{title}</h2>
         <p>{desc}</p>
         <div className="sp-cta-actions">
-          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+          <a href={contactUrl(origin ?? 'fechamento')} className="btn btn-primary btn-lg">
             {button}
             <ArrowRight size={18} aria-hidden="true" />
           </a>

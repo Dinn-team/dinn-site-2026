@@ -8,6 +8,7 @@ import { urlFor } from '@/sanity/lib/client';
 import { PortableText } from '@portabletext/react';
 import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
 import { articlePath, blogPath, HTML_LANG, type Lang } from '@/i18n/routes';
+import { contactUrl } from '@/lib/links';
 import {
   articleAlternates,
   blogFallbacks,
@@ -150,7 +151,7 @@ const articleSchema = {
 
         <h2 class="bp-cta-title">{labels.ctaTitle}</h2>
         <p class="bp-cta-text">{labels.ctaText}</p>
-        <a href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4" target="_blank" rel="noopener noreferrer" class="bp-cta-btn">
+        <a href={contactUrl(`artigo-${post.slug.current}`)} class="bp-cta-btn">
           {labels.ctaBtn}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
