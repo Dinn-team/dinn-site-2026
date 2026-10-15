@@ -1,182 +1,734 @@
+import { pagesPt } from './pt.pages';
+
 export const ptBR = {
+  ...pagesPt,
   nav: {
-    home: "Home",
+    home: "Início",
+    platform: "Plataforma",
     solutions: "Soluções",
-    useCases: "Casos de uso",
+    solutionsAll: "Ver todas as soluções",
+    cases: "Casos de uso",
+    changelog: "Novidades",
+    resourcesAll: "Ver todos os recursos",
+    trust: "Confiança",
+    resources: "Recursos",
+    ask: "Dinn Insights",
+    teams: "Casos de uso",
+    inside: "Como funciona",
+    delivery: "Onde entrega",
+    customers: "Clientes",
     blog: "Blog",
-    pricing: "Preços",
+    cta: "Solicitar demo",
+    openMenu: "Abrir menu",
+    languageLabel: "Idioma",
     language: "Português",
     langShort: "PT"
   },
   hero: {
-    pill: "Seu orquestrador de vendas",
-    titlePart1: "IA-Farma conectando<br/>estratégia e execução com ",
-    titlePart2: ["inteligência", "ação", "decisão", "prioridade", "impacto", "receita", "precisão"],
-    description: "O Dinn transforma dados em decisões acionáveis no campo, conectando estratégia, operação e execução em tempo real.",
-    cta: "Solicitar demo"
+    pill: "Inteligência comercial para o canal farmacêutico",
+    title: "Transforme sinais do canal farma em *ação comercial*.",
+    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura e ajuda sua equipe a decidir onde agir primeiro, com origem, atualização e limites claros.",
+    cta: "Conheça a plataforma",
+    secondary: "Explore a Dinn para a sua área"
+  },
+  insights: {
+    eyebrow: "Dinn Insights",
+    title: "O que você quer saber sobre *ruptura de estoque e sell-out*?",
+    intro: "A conversa com a IA do Dinn. Pergunte em português e receba o número, o recorte, a data e como foi calculado."
+  },
+  ask: {
+    placeholder: "Pergunte sobre estoque, ruptura, giro, preço…",
+    followPlaceholder: "Faça uma pergunta de acompanhamento…",
+    send: "Enviar pergunta",
+    reset: "Nova conversa",
+    starters: [
+      { team: "SAC", chip: "Onde encontrar o produto", q: "Onde o consumidor encontra o meu produto perto de Campinas?" },
+      { team: "Campo", chip: "Quais lojas verificar", q: "Quais lojas da minha carteira em São Paulo eu verifico primeiro?" },
+      { team: "Distribuição", chip: "O furo é no CD?", q: "O furo é no CD ou nas farmácias de Goiânia?" },
+      { team: "Lançamentos", chip: "Meu lançamento chegou?", q: "Meu lançamento já chegou às farmácias de Recife?" },
+      { team: "Estoque", chip: "Estoque parado", q: "Onde tenho estoque parado perto de lojas em ruptura?" },
+      { team: "Concorrência", chip: "Quem ganhou espaço", q: "Quem ganhou participação em Minas Gerais?" }
+    ],
+    contextLabel: "Recorte entendido",
+    defaultPlace: "São Paulo",
+    defaultProduct: "seu produto",
+    thinking: "Pensando…",
+    methodTitle: "Como o Dinn chegou a isso",
+    linksTitle: "Continue a leitura",
+    followTitle: "Pergunte também",
+    demoCta: "Ver com os seus produtos",
+    actionWhy: "Por quê:",
+    actionHow: "Como:",
+    scenarios: {
+      sac: {
+        keywords: ["onde encontr", "onde tem", "onde acha", "onde compr", "consumidor", "paciente", "sac", "atendimento", "localiz", "perto", "próxima", "proxima", "encontrar", "endereço"],
+        steps: ["Localizando o endereço…", "Procurando o produto nas farmácias…", "Calculando a cobertura em dias…"],
+        answer: "Perto de {lugar}, **3 das 5 farmácias mais próximas** têm {produto} com boa chance de estoque. A mais próxima com estoque exato fica a 0,8 km.\n\nA mesma busca mostra um padrão: a procura se repete num bairro onde duas lojas estão sem o produto há uma semana. Isso é pauta para a reposição da cidade e para a propaganda médica da região.",
+        widget: {
+          type: "table",
+          title: "Farmácias mais próximas · {lugar}",
+          columns: [
+            { label: "PDV" },
+            { label: "Distância", kind: "num" },
+            { label: "Disponibilidade", kind: "avail" },
+            { label: "Estoque", kind: "num" },
+            { label: "Giro", kind: "num" },
+            { label: "Preço", kind: "num" }
+          ],
+          rows: [
+            ["Farmácia 1 · Rede A", "0,8 km", "Alta", "12–15 un.", "1,4 un./dia", "R$ 89,90"],
+            ["Farmácia 2 · Rede B", "1,2 km", "Média", "4–6 un.", "0,9 un./dia", "R$ 92,50"],
+            ["Farmácia 3 · Rede A", "1,9 km", "Alta", "9–11 un.", "1,1 un./dia", "R$ 89,90"],
+            ["Farmácia 4 · Rede C", "2,3 km", "Sem estoque", "0 un.", "—", "—"],
+            ["Farmácia 5 · Rede C", "2,6 km", "Sem estoque", "0 un.", "—", "—"]
+          ]
+        },
+        method: [
+          "Raio de busca a partir do endereço informado, das lojas mais próximas para as mais distantes.",
+          "Estoque observado na fonte (D-1) ou estimado por lojas comparáveis, sempre com o nível de confiança.",
+          "Cobertura em dias = estoque ÷ giro médio diário da loja.",
+          "Para o consumidor, a indicação segue disponibilidade e proximidade, não o menor preço."
+        ],
+        links: [
+          { label: "O caso completo do SAC", href: "#time-sac" },
+          { label: "Como o Dinn sabe o estoque", href: "#por-dentro" }
+        ],
+        followups: ["E o que isso muda para a propaganda médica?", "Quais lojas dessa região precisam de reposição?"]
+      },
+      campo: {
+        keywords: ["visita", "visitar", "campo", "rota", "carteira", "promotor", "consultor", "trade", "gdn", "kam", "territ", "verificar", "verifico", "priorizar", "prioridade", "agenda"],
+        steps: ["Lendo a sua carteira…", "Analisando a disponibilidade…", "Montando o ranking…", "Listando os PDVs…"],
+        answer: "Das lojas da sua carteira em {lugar}, **6 concentram 70% do sinal de ruptura** de {produto} na última semana. A lista abaixo diz o que conferir em cada uma e qual retorno esperar.\n\nO Dinn prepara a lista; quem monta a agenda é o seu time.",
+        widget: {
+          type: "table",
+          title: "Fila de verificação · esta semana",
+          columns: [
+            { label: "PDV" },
+            { label: "Nível", kind: "level" },
+            { label: "Ruptura", kind: "num" },
+            { label: "O que conferir" }
+          ],
+          rows: [
+            ["Loja 01 · Rede A", "Crítico", "86,7%", "Há pedido ou entrega pendente?"],
+            ["Loja 02 · Rede A", "Alto", "60%", "O produto está na loja, fora da gôndola?"],
+            ["Loja 03 · Rede B", "Alto", "53%", "A loja voltou a pedir depois da última falta?"],
+            ["Loja 04 · Rede C", "Moderado", "33%", "A ausência voltou a ocorrer?"]
+          ]
+        },
+        method: [
+          "Ruptura do PDV = dias sem estoque ÷ dias observados nos últimos 30 dias.",
+          "Nível: Crítico ≥ 75% · Alto ≥ 50% · Moderado ≥ 25% · Leve < 25%.",
+          "A ordem pondera o nível pelo giro da loja quando ela tem estoque.",
+          "Lojas que nunca venderam o produto ficam de fora, para não inflar a ruptura."
+        ],
+        links: [
+          { label: "O caso completo do campo", href: "#time-campo" },
+          { label: "De onde vem cada sinal", href: "#por-dentro" }
+        ],
+        followups: ["A ruptura está piorando ou melhorando nos últimos 30 dias?", "O problema é do CD ou das lojas?"]
+      },
+      medico: {
+        keywords: ["médic", "medic", "propagand", "prescri", "receita", "consultório", "consultorio", "representante", "brick", "clínica", "clinica"],
+        steps: ["Localizando o consultório…", "Procurando o produto nas farmácias…", "Comparando a ruptura entre regiões…"],
+        answer: "No entorno do consultório em {lugar}, **7 de 12 farmácias** têm {produto} hoje. As 5 sem estoque são da mesma rede e ficam do mesmo lado da avenida.\n\nNa prática: a receita tem boa chance de ser atendida, mas vale avisar o trade sobre essa rede antes que o paciente volte sem o produto.",
+        widget: {
+          type: "kpis",
+          title: "Entorno do consultório · raio de 1 km",
+          items: [
+            { label: "Farmácias no raio", value: "12" },
+            { label: "Com estoque", value: "7", tone: "good" },
+            { label: "Sem estoque", value: "5", tone: "bad" },
+            { label: "Falta concentrada em", value: "Rede C" }
+          ]
+        },
+        method: [
+          "Raio ao redor do endereço do consultório ou do brick escolhido.",
+          "Estoque D-1 por farmácia, observado ou estimado.",
+          "Concentração = lojas sem estoque da mesma rede ÷ total de lojas sem estoque.",
+          "Nada é escrito no CRM: a leitura serve para preparar a visita."
+        ],
+        links: [
+          { label: "O caso da propaganda médica", href: "#time-medico" }
+        ],
+        followups: ["Onde o consumidor encontra o produto perto de Campinas?", "Quais lojas verifico primeiro?"]
+      },
+      distribuicao: {
+        keywords: ["cd", "cds", "distribuidor", "distribuição", "distribuicao", "abastec", "reposição", "reposicao", "repor", "supply", "logística", "logistica", "atraso", "furo", "pedido"],
+        steps: ["Lendo o estoque dos CDs…", "Calculando a cobertura em dias…", "Cruzando com a ruptura nas farmácias da região…", "Comparando com o giro local…"],
+        answer: "Em {lugar}, o furo não parece estar no CD: **o distribuidor tem estoque para cerca de 24 dias**, mas 38% das farmácias que compram dele estão sem {produto}, e a região segue vendendo onde há estoque.\n\nO padrão aponta para **quebra de distribuição ou de reposição**, não para falta na origem. Antes de concluir, vale confirmar pedidos pendentes nas redes afetadas.",
+        widget: {
+          type: "table",
+          title: "Leitura CD × farmácias por região",
+          columns: [
+            { label: "Região" },
+            { label: "Estoque no CD", kind: "num" },
+            { label: "Ruptura nas farmácias", kind: "num" },
+            { label: "Demanda" },
+            { label: "Leitura", kind: "verdict" }
+          ],
+          rows: [
+            ["{lugar}", "Alto · 24 dias", "38%", "Alta", "Quebra de distribuição"],
+            ["Região B", "Baixo · 3 dias", "41%", "Alta", "Restrição de abastecimento"],
+            ["Região C", "Caindo · 9 dias", "12%", "Alta", "Risco de ruptura"],
+            ["Região D", "Alto · 60 dias", "4%", "Baixa", "Possível excesso"]
+          ]
+        },
+        method: [
+          "Cobertura do CD = estoque no CD ÷ venda diária estimada da região.",
+          "Ruptura nas farmácias = lojas sem estoque ÷ lojas que vendem o produto.",
+          "Demanda = giro das lojas com estoque no mesmo período.",
+          "Estoque no CD não prova estoque na farmácia: a leitura cruza as duas pontas."
+        ],
+        links: [
+          { label: "O caso completo de distribuição", href: "#time-distribuicao" }
+        ],
+        followups: ["Onde tenho estoque parado perto de lojas em ruptura?", "A ruptura está piorando nos últimos 30 dias?"]
+      },
+      lancamento: {
+        keywords: ["lançamento", "lancamento", "lançar", "lancar", "lançou", "novo produto", "produto novo", "chegou", "chegada", "presença", "presenca"],
+        steps: ["Localizando o produto…", "Lendo o histórico semanal…", "Comparando a presença entre canais…"],
+        answer: "Seis semanas depois do lançamento, {produto} já aparece em **54% das farmácias monitoradas** em {lugar}. A curva acelerou nas grandes redes, mas segue abaixo de 20% nas independentes.\n\nOnde ainda não chegou, a próxima pergunta é se o CD já recebeu: isso separa um problema de sell-in de um problema de reposição.",
+        widget: {
+          type: "trend",
+          title: "Presença do lançamento · % das farmácias com o produto",
+          unit: "%",
+          labels: ["S1", "S2", "S3", "S4", "S5", "S6"],
+          series: [
+            { name: "Grandes redes", points: [5, 14, 27, 41, 55, 68] },
+            { name: "Total", points: [3, 10, 19, 30, 42, 54], dashed: true },
+            { name: "Independentes", points: [0, 2, 4, 8, 12, 17] }
+          ]
+        },
+        method: [
+          "Presença = farmácias com estoque do produto ÷ farmácias monitoradas no recorte.",
+          "A semana 1 começa na data de lançamento definida pelo seu time.",
+          "A separação por canal segue o que cada fonte permite identificar."
+        ],
+        links: [
+          { label: "O caso completo de lançamentos", href: "#time-lancamento" }
+        ],
+        followups: ["O furo é no CD ou nas farmácias?", "Quem ganhou participação na região?"]
+      },
+      parado: {
+        keywords: ["parado", "parada", "sem movimento", "sem giro", "congelado", "encalhado", "excesso", "sobra", "negativ", "remanej"],
+        steps: ["Analisando a disponibilidade…", "Contando os dias sem movimento…", "Procurando lojas em ruptura por perto…"],
+        answer: "Em {lugar}, **14 lojas têm {produto} sem movimento há mais de 30 dias**, e 5 delas ficam a menos de 3 km de lojas em ruptura do mesmo produto.\n\nÉ o par que interessa: estoque parado de um lado, falta do outro. A conversa com a rede pode começar pelo remanejamento, antes de um novo pedido.",
+        widget: {
+          type: "bars",
+          title: "Lojas por tempo sem movimento",
+          unit: "lojas",
+          rows: [
+            { label: "Até 7 dias", value: 38, tone: "leve" },
+            { label: "8 a 30 dias", value: 21, tone: "moderado" },
+            { label: "31 a 60 dias", value: 9, tone: "alto" },
+            { label: "Mais de 60 dias", value: 5, tone: "critico" }
+          ]
+        },
+        method: [
+          "Dias parados = dias seguidos com o mesmo saldo, sem baixa de estoque.",
+          "Movimento observado não equivale a venda confirmada.",
+          "Pares parado × ruptura: mesma apresentação, até 3 km de distância.",
+          "O dado não prova perda; ele mostra onde olhar primeiro."
+        ],
+        links: [
+          { label: "O caso completo de estoque parado", href: "#time-parado" }
+        ],
+        followups: ["O furo é no CD ou nas farmácias?", "Quais lojas verifico primeiro?"]
+      },
+      concorrencia: {
+        keywords: ["concorr", "share", "participação", "participacao", "competi", "marca", "espaço", "espaco", "ganhou", "perdendo", "perde ", "preço", "preco"],
+        steps: ["Lendo o mercado por estado…", "Comparando com a janela anterior…", "Montando o ranking…"],
+        answer: "Em {lugar}, seu laboratório **cresceu 6% nas mesmas lojas**, mas o mercado comparável cresceu 11%. A participação caiu porque outros produtos cresceram mais, não porque as suas vendas diminuíram.\n\nO espaço está em 23 lojas onde só o concorrente aparece com estoque. É por elas que a conversa com as redes pode começar.",
+        widget: {
+          type: "trend",
+          title: "Venda estimada · seu laboratório × concorrentes",
+          unit: "",
+          labels: ["S1", "S2", "S3", "S4", "S5", "S6"],
+          series: [
+            { name: "Seu laboratório", points: [100, 101, 103, 104, 105, 106] },
+            { name: "Concorrentes", points: [100, 103, 105, 107, 109, 111], tone: "sky" }
+          ]
+        },
+        method: [
+          "Venda estimada pela movimentação de estoque, não por sell-out auditado.",
+          "Só entram lojas comparáveis, presentes nas duas janelas.",
+          "Participação = seu volume ÷ volume da categoria no mesmo painel.",
+          "Dados de concorrentes aparecem agregados."
+        ],
+        links: [
+          { label: "O caso completo de concorrência", href: "#time-concorrencia" }
+        ],
+        followups: ["Onde a categoria mais cresce?", "Meu lançamento já chegou às farmácias?"]
+      },
+      demanda: {
+        keywords: ["oportunidad", "crescer", "cresce", "expans", "mercado", "demanda", "estratégia", "estrategia", "investir", "por onde começar", "potencial", "planej"],
+        steps: ["Lendo o mercado por estado…", "Abrindo o detalhe do estado…", "Lendo as recomendações…"],
+        answer: "A categoria avança mais em {lugar}: **+9% de volume estimado** nas mesmas lojas, contra a janela anterior. Duas grandes redes vendem bem a categoria e quase não têm {produto}.\n\nAbaixo, três frentes para começar. São hipóteses para o seu time validar, não ordens.",
+        widget: {
+          type: "actions",
+          title: "Ações para o recorte",
+          items: [
+            { priority: "Alta", title: "Abrir conversa com a Rede A sobre sortimento", why: "A rede responde por 18% da categoria na região e tem o produto em 6% das lojas.", how: "Levar à reunião a lista das lojas que mais vendem a categoria." },
+            { priority: "Média", title: "Reforçar a reposição nas cidades com ruptura persistente", why: "Três cidades somam 40% das lojas sem estoque há mais de 15 dias.", how: "Conferir pedidos pendentes com o distribuidor da região." },
+            { priority: "Baixa", title: "Acompanhar a entrada do novo concorrente", why: "Ele apareceu em 31 lojas nas últimas 4 semanas.", how: "Rever o mesmo recorte daqui a 30 dias." }
+          ]
+        },
+        method: [
+          "Crescimento = volume estimado da categoria nas mesmas lojas, janela recente × anterior.",
+          "Expansão: grandes redes na categoria com baixa presença do seu laboratório.",
+          "Cada ação traz o número que a sustenta e o primeiro passo."
+        ],
+        links: [
+          { label: "O caso completo de demanda", href: "#time-demanda" }
+        ],
+        followups: ["Quem ganhou participação na região?", "Onde tenho estoque parado?"]
+      },
+      tendencia: {
+        keywords: ["ruptura", "falta", "faltando", "sem estoque", "piorando", "melhorando", "piorou", "evolução", "evolucao", "tendência", "tendencia", "últimos", "ultimos"],
+        steps: ["Localizando o produto…", "Calculando a evolução da ruptura…", "Comparando a ruptura entre redes…"],
+        answer: "A ruptura de {produto} em {lugar} **subiu de 24% para 32% em 30 dias**, puxada por uma rede. Sem ela, o recorte ficaria estável, perto de 25%.\n\nUm sinal assim abre uma investigação, não uma conclusão: o próximo passo é ver quais lojas dessa rede explicam a alta.",
+        widget: {
+          type: "trend",
+          title: "Evolução da ruptura · últimos 30 dias",
+          unit: "%",
+          labels: ["D-30", "D-25", "D-20", "D-15", "D-10", "D-5", "D-1"],
+          series: [
+            { name: "Rede A", points: [30, 34, 38, 45, 52, 57, 60], tone: "alert" },
+            { name: "Recorte total", points: [24, 25, 24, 27, 29, 31, 32], dashed: true },
+            { name: "Demais redes", points: [22, 23, 22, 24, 24, 25, 25] }
+          ]
+        },
+        method: [
+          "Ruptura = farmácias sem estoque ÷ farmácias monitoradas que vendem o produto.",
+          "Base diária (D-1); cada ponto informa se é observado ou estimado.",
+          "A causa da ruptura exige investigação: o Dinn não a presume."
+        ],
+        links: [
+          { label: "Como o campo usa esse sinal", href: "#time-campo" },
+          { label: "Por dentro do Dinn", href: "#por-dentro" }
+        ],
+        followups: ["Quais lojas verifico primeiro?", "O furo é no CD ou nas farmácias?"]
+      },
+      ia: {
+        keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integra", "conecta", "sistema", "dados internos", "crm", "erp", "data lake"],
+        steps: ["Entendendo a pergunta…"],
+        answer: "Sim. O Dinn chega aonde o seu time já trabalha: na plataforma, em arquivo, no seu BI pela API ou direto no ChatGPT, no Claude e no Copilot por MCP, com acesso **somente leitura**.\n\nCom o **Dinn Conecta**, mercado, dados internos e farmácias chegam padronizados ao seu BI e aos seus agentes. Dados internos e a governança do seu ambiente continuam com você.",
+        method: [],
+        links: [
+          { label: "Onde o Dinn entrega", href: "#entrega" },
+          { label: "Perguntas frequentes", href: "#faq" }
+        ],
+        followups: ["Quais lojas verifico primeiro?", "Como começar um teste?"]
+      },
+      sobre: {
+        keywords: ["o que é", "o que e", "quem é", "quem e", "como funciona", "o que voc", "o que faz", "dinn"],
+        steps: ["Entendendo a pergunta…"],
+        answer: "O Dinn é inteligência comercial para o canal farmacêutico. Ele organiza sinais de estoque, giro e preço das farmácias, relaciona cada loja ao CD que a abastece quando a fonte permite e transforma isso em sinais com nome: ruptura persistente, estoque parado, queda de giro.\n\nCada área usa a mesma leitura de um jeito. Escolha a sua abaixo, ou pergunte como se fosse sobre os seus produtos.",
+        method: [],
+        links: [
+          { label: "Um uso para cada time", href: "#times" },
+          { label: "Por dentro do Dinn", href: "#por-dentro" }
+        ],
+        followups: ["Onde o consumidor encontra o meu produto?", "O furo é no CD ou nas farmácias?"]
+      },
+      demo: {
+        keywords: ["quanto custa", "valor do dinn", "contratar", "demo", "demonstra", "trial", "testar", "teste", "começar a usar", "começar um teste", "implanta", "prazo", "proposta"],
+        steps: ["Entendendo a pergunta…"],
+        answer: "Começamos por **um objetivo só**: por exemplo, reduzir a ruptura de um produto em uma região. Liberamos 30 dias com termo simples e alguém nosso acompanhando.\n\nA implantação acontece em até 30 dias depois que os pré-requisitos combinados estão prontos, e pode começar só com fontes externas.",
+        method: [],
+        links: [
+          { label: "Solicitar demo", href: "demo" },
+          { label: "Perguntas frequentes", href: "#faq" }
+        ],
+        followups: ["O que é o Dinn?", "Funciona no ChatGPT ou no Copilot?"]
+      },
+      fallback: {
+        steps: ["Entendendo a pergunta…"],
+        answer: "Essa eu respondo melhor com os seus dados. Estas são as perguntas mais comuns de cada time sobre estoque, ruptura, giro, preço, distribuição e concorrência. Experimente uma destas:",
+        method: [],
+        links: [
+          { label: "Um uso para cada time", href: "#times" }
+        ],
+        followups: ["Onde o consumidor encontra o meu produto?", "Quais lojas verifico primeiro?", "O furo é no CD ou nas farmácias?", "Quem ganhou participação na minha região?"]
+      }
+    }
   },
   logos: {
-    title: "Quem já está transformando o varejo"
+    title: "Empresas que trabalham com a Dinn"
   },
-  solucoes: {
-    tag: "Plataforma completa",
-    title1: "Descubra por que deixou",
-    title2: "de vender",
-    description: "Clique em cada solução para explorar como o Dinn transforma dados em decisões de alto impacto.",
-    cta: "Solicitar demo",
+  teams: {
+    eyebrow: "Casos de uso: escolha a situação e veja o Dinn trabalhando",
+    title: "Situações concretas do canal, *uma a uma*",
+    askCta: "Pergunte isso ao Dinn",
+    deepLink: "Saiba mais",
+    seesLabel: "O Dinn cruza",
+    doesLabel: "O time faz",
     items: [
       {
-        title: "Diagnóstico de Ruptura",
-        date: "Solução 1",
-        content: "O Dinn identifica rupturas, falhas de distribuição e ausência de produtos por SKU, loja e região com dados D-1. Em vez de mostrar apenas \"quanto vendeu\", ele mostra exatamente por que deixou de vender."
+        id: "sac",
+        tab: "SAC",
+        kicker: "SAC e atendimento",
+        title: "“Onde acho esse remédio perto de casa?”",
+        story: "O atendente vê as farmácias mais próximas com o produto, quantas unidades há e a estimativa de giro no recorte.",
+        sees: ["Estoque por loja", "Distância", "Giro", "Preço"],
+        does: [
+          "Indica a farmácia com maior chance de ter o produto",
+          "Mostra ao trade onde a procura não acha produto"
+        ],
+        question: "Onde o consumidor encontra o meu produto perto de Campinas?",
+        visual: "locator"
       },
       {
-        title: "Evidência para Negociação",
-        date: "Solução 2",
-        content: "Com provas reais do PDV, o Dinn mostra quando um produto não vendeu por falta de abastecimento, ausência de exposição ou baixa cobertura. Isso fortalece negociações comerciais com dados concretos."
+        id: "campo",
+        tab: "Campo e trade",
+        kicker: "Força de campo e trade",
+        title: "Quarenta lojas na carteira. *Tempo para oito.*",
+        story: "Em vez de um painel, uma fila: as lojas com mais sinal e o que conferir em cada uma.",
+        sees: ["Ruptura por loja", "Persistência", "Giro", "Rede"],
+        does: [
+          "Começa a semana pelas lojas que mais pesam",
+          "Leva à rede evidência por loja, com data",
+          "Revê o mesmo recorte depois da ação"
+        ],
+        question: "Quais lojas da minha carteira em São Paulo eu verifico primeiro?",
+        visual: "queue"
       },
       {
-        title: "Prioridade Operacional",
-        date: "Solução 3",
-        content: "O Dinn aplica inteligência operacional para destacar quais lojas concentram maior perda de venda, ruptura recorrente ou potencial de recuperação rápida, ajudando o time a resolver 80% do problema com foco."
+        id: "distribuicao",
+        tab: "Distribuição",
+        kicker: "Distribuição e supply",
+        title: "O furo é no CD, *na farmácia ou no pedido?*",
+        story: "O Dinn liga o estoque do distribuidor às farmácias que ele abastece e ajuda a investigar onde pode estar a restrição.",
+        sees: ["Estoque no CD", "Cobertura em dias", "Ruptura nas lojas", "Giro da região"],
+        does: [
+          "Separa falta na origem de falha de reposição",
+          "Antecipa o pedido quando a cobertura cai",
+          "Avalia remanejar entre regiões"
+        ],
+        question: "O furo é no CD ou nas farmácias de Goiânia?",
+        visual: "distribution"
       },
       {
-        title: "Precisão Granular",
-        date: "Solução 4",
-        content: "Enquanto relatórios tradicionais mostram médias mensais, o Dinn entrega análises micro por bairro, loja e produto, permitindo ações rápidas, regionais e extremamente precisas."
+        id: "lancamento",
+        tab: "Lançamentos",
+        kicker: "Lançamentos",
+        title: "Semana a semana, *onde o produto já chegou.*",
+        story: "O time acompanha a presença do produto novo por rede e região e vê onde acelerou ou travou.",
+        sees: ["Presença por semana", "Rede e região", "Chegada ao CD"],
+        does: [
+          "Vê onde o lançamento ainda não chegou",
+          "Separa problema de sell-in de reposição"
+        ],
+        question: "Meu lançamento já chegou às farmácias de Recife?",
+        visual: "launch"
       },
       {
-        title: "Monitoramento Competitivo",
-        date: "Solução 5",
-        content: "O Dinn compara presença, ruptura e participação no PDV entre marcas concorrentes no mesmo painel. Sua equipe identifica rapidamente onde perdeu espaço e onde existe oportunidade de reação imediata."
+        id: "parado",
+        tab: "Estoque parado",
+        kicker: "Estoque e giro",
+        title: "Estoque parado de um lado. *Falta do outro.*",
+        story: "O Dinn conta os dias sem movimento e encontra lojas paradas perto de lojas em ruptura: ali começa o remanejamento.",
+        sees: ["Dias sem movimento", "Estoque congelado", "Ruptura por perto"],
+        does: [
+          "Encontra saldo que não gira",
+          "Propõe remanejar antes de novo pedido",
+          "Acompanha 30, 60 e 90 dias"
+        ],
+        question: "Onde tenho estoque parado perto de lojas em ruptura?",
+        visual: "stalled"
+      },
+      {
+        id: "concorrencia",
+        tab: "Concorrência",
+        kicker: "Concorrência e participação",
+        title: "Onde o concorrente está *e você não.*",
+        story: "Compara a venda estimada do seu laboratório com a da categoria, nas mesmas lojas, e mostra onde só o concorrente tem estoque.",
+        sees: ["Venda estimada", "Mercado comparável", "Preço por rede"],
+        does: [
+          "Separa queda de participação de queda de venda",
+          "Lista as lojas só com concorrente"
+        ],
+        question: "Quem ganhou participação em Minas Gerais?",
+        visual: "competition"
+      },
+      {
+        id: "demanda",
+        tab: "Demanda e estratégia",
+        kicker: "Demanda, vendas e estratégia",
+        title: "Onde crescer, *e por onde começar.*",
+        story: "Estoque, giro, preço e histórico viram um mapa de oportunidades por categoria (como GLP-1) e por estado.",
+        sees: ["Categoria por estado", "Participação", "Redes candidatas"],
+        does: [
+          "Escolhe onde concentrar esforço",
+          "Define as redes para abrir conversa",
+          "Transforma cada sinal em ação com responsável"
+        ],
+        question: "Onde a minha categoria mais cresce no Nordeste?",
+        visual: "demand"
       }
+    ],
+    visuals: {
+      locator: {
+        app: "Localizar produto",
+        you: "Endereço do consumidor",
+        rows: [
+          { name: "Farmácia 1 · Rede A", dist: "0,8 km", level: "Alta", stock: "12–15 un." },
+          { name: "Farmácia 2 · Rede B", dist: "1,2 km", level: "Média", stock: "4–6 un." },
+          { name: "Farmácia 3 · Rede A", dist: "1,9 km", level: "Alta", stock: "9–11 un." },
+          { name: "Farmácia 4 · Rede C", dist: "2,3 km", level: "Sem estoque", stock: "0 un." }
+        ],
+        insight: "Procura repetida no bairro · 2 lojas sem estoque há 7 dias"
+      },
+      queue: {
+        app: "Fila da semana",
+        sub: "6 de 40 lojas da carteira",
+        rows: [
+          { name: "Loja 01 · Rede A", level: "Crítico", value: "86,7%", check: "Pedido pendente?" },
+          { name: "Loja 02 · Rede A", level: "Alto", value: "60%", check: "Fora da gôndola?" },
+          { name: "Loja 03 · Rede B", level: "Alto", value: "53%", check: "Voltou a pedir?" },
+          { name: "Loja 04 · Rede C", level: "Moderado", value: "33%", check: "Ausência voltou?" },
+          { name: "Loja 05 · Rede B", level: "Leve", value: "12%", check: "Acompanhar" }
+        ]
+      },
+      prescriber: {
+        app: "Entorno do consultório",
+        center: "Consultório",
+        withStock: "com estoque",
+        without: "sem estoque",
+        insight: "Falta concentrada na Rede C"
+      },
+      distribution: {
+        app: "Rede de distribuição",
+        cd: "CD",
+        cases: [
+          { name: "Quebra de distribuição", cd: 82, pdv: 38, demand: "Alta", read: "CD com estoque, farmácias sem. Vale conferir a reposição." },
+          { name: "Restrição de abastecimento", cd: 8, pdv: 41, demand: "Alta", read: "CD vazio e a região vendendo. O problema está antes do CD." },
+          { name: "Risco de ruptura", cd: 30, pdv: 12, demand: "Alta", read: "Cobertura do CD caindo. Dá para antecipar o pedido." },
+          { name: "Possível excesso", cd: 90, pdv: 4, demand: "Baixa", read: "Estoque alto e giro baixo. Avaliar remanejar." }
+        ],
+        cdLabel: "Estoque no CD",
+        pdvLabel: "Farmácias sem estoque",
+        demandLabel: "Demanda",
+        formula: "Cobertura = estoque no CD ÷ venda diária da região"
+      },
+      launch: {
+        app: "Presença do lançamento",
+        legend: ["Grandes redes", "Independentes"],
+        weeks: ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"],
+        regions: ["SP", "RJ", "MG", "PR", "RS", "BA", "PE", "GO", "CE", "SC", "DF", "PA"],
+        insight: "Semana 6 · 54% das farmácias"
+      },
+      stalled: {
+        app: "Estoque parado",
+        bands: [
+          { label: "Até 7 dias", value: 38 },
+          { label: "8 a 30 dias", value: 21 },
+          { label: "31 a 60 dias", value: 9 },
+          { label: "Mais de 60 dias", value: 5 }
+        ],
+        from: "Loja 04 · parado há 42 dias",
+        to: "Loja 09 · sem estoque",
+        distance: "2,7 km"
+      },
+      competition: {
+        app: "Mercado comparável",
+        you: "Seu laboratório",
+        them: "Concorrentes",
+        reading: "Você cresceu 6% nas mesmas lojas; o mercado, 11%. A participação caiu porque outros cresceram mais.",
+        gap: "lojas só com concorrente"
+      },
+      demand: {
+        app: "Oportunidades",
+        questions: ["Onde a categoria avança?", "Onde perco espaço?", "Onde investigar expansão?"],
+        actions: [
+          { priority: "Alta", title: "Abrir conversa de sortimento com a Rede A" },
+          { priority: "Média", title: "Reforçar a reposição em 3 cidades" },
+          { priority: "Baixa", title: "Acompanhar o novo concorrente" }
+        ]
+      }
+    }
+  },
+  story: {
+    lines: [
+      "O canal farmacêutico deixa sinais sobre o seu produto.",
+      "Se ele aparece **disponível no canal. Se gira. A que preço. Se o CD tem para repor.**",
+      "Os sinais chegam **soltos**, de fontes diferentes e com graus diferentes de confiança.",
+      "O Dinn organiza, mostra de onde vêm e ajuda o seu time a decidir **onde agir primeiro.**"
     ]
   },
-  casos: {
-    tag: "Casos de Uso",
-    title1: "Execução comercial com",
-    title2: "precisão cirúrgica",
-    intro: "Os casos de uso do Dinn são desenhados para resolver gargalos da execução comercial diária e se dividem entre funções específicas (personas) e cenários estratégicos focados em demanda, distribuição e vendas.",
-    topics: [
+  inside: {
+    eyebrow: "Como a Dinn funciona, em um exemplo",
+    stages: [
       {
-        title: "Trade e Customer Success (CS)",
-        description: "Foco na meta de \"Ruptura Zero\", utilizando alertas ágeis e notificações (push) de reposição de estoque por Ponto de Venda (PDV), além de funcionar como um SAC localizador de produto de rápida implementação."
+        name: "Observa",
+        title: "Percebe uma mudança no canal.",
+        desc: "Identifica uma mudança de disponibilidade, preço, giro ou cobertura nas fontes que acompanha.",
+        example: "A presença do produto X cai em 31 das 120 lojas monitoradas da Rede A, no Sul.",
+        chips: ["Disponibilidade", "Preço", "Giro", "Cobertura"]
       },
       {
-        title: "Força de Vendas (Campo)",
-        description: "O Dinn otimiza o tempo do representante em até 40% indicando a \"Próxima Melhor Ação\" (NBA). Ele sugere as lojas com maior potencial de quebra de estoque, roteirizando visitas de alto impacto financeiro."
+        name: "Valida",
+        title: "Mostra de onde veio e quanto confiar.",
+        desc: "Mostra fonte, data, escopo e nível de confiança, e cruza sinais quando aplicável.",
+        example: "24 lojas foram observadas na fonte; 7 são estimadas por lojas comparáveis, com confiança média. Ausência ainda não é ruptura.",
+        chips: ["Fonte e data", "Escopo", "Observado ou estimado", "Confiança"]
       },
       {
-        title: "Inteligência de Mercado e Marketing",
-        description: "Com o Forecast IA, antecipe tendências locais e simule impactos de campanhas de mercado cruzando dados do seu Sell-in com sinais de Sell-out e comportamento do concorrente."
+        name: "Entende",
+        title: "Relaciona a mudança ao contexto comercial.",
+        desc: "Liga a mudança a produto, conta, território e contexto, sem presumir a causa.",
+        example: "As lojas ficam em 3 cidades da mesma rede. O CD tem saldo, o que não prova que cada loja será abastecida.",
+        chips: ["Produto", "Conta", "Território", "CD que abastece"]
       },
       {
-        title: "Diagnóstico Diário (D-1) e Correção de Ruptura",
-        description: "Diferente das auditorias tradicionais que olham o retrovisor (mês fechado), o Dinn mostra a fotografia de ontem para você agir hoje, antes de perder a venda."
+        name: "Decide",
+        title: "Ajuda a priorizar a próxima análise ou ação.",
+        desc: "Ordena a questão entre as outras e sugere a próxima análise ou ação, como hipótese para o time validar.",
+        example: "Prioridade: investigar a Rede A no Sul, começando por pedidos pendentes, antes de falar em ruptura.",
+        chips: ["Ruptura persistente", "Estoque sem movimento", "Queda de giro", "Concentração em rede"]
       },
       {
-        title: "Geração de Evidências para Negociações",
-        description: "A equipe comercial ganha argumentos baseados em dados reais (giro, potencial de perda, ruptura) para levar à mesa de negociação com grandes redes e distribuidores."
+        name: "Age",
+        title: "Leva a informação a quem executa.",
+        desc: "Entrega a leitura à equipe ou à ferramenta responsável: na plataforma, numa conversa, no BI ou na sua IA.",
+        example: "A lista chega ao KAM da conta e ao Copilot da equipe, com fonte e data.",
+        chips: ["Dinn Manager", "Dinn Insights", "Sua IA", "BI e API"]
       },
       {
-        title: "Monitoramento da Concorrência Loja a Loja",
-        description: "Tenha visibilidade de preço e presença digital em e-commerces, farmácias locais e marketplaces, garantindo competitividade pontual."
+        name: "Aprende",
+        title: "Registra o que a equipe encontrou.",
+        desc: "O time registra o que encontrou e acompanha o mesmo recorte para revisar prioridades.",
+        example: "O time marca que 5 lojas tinham pedido pendente e, na semana seguinte, acompanha o mesmo recorte para rever a prioridade.",
+        chips: ["Retorno do time", "Mesmo recorte", "Priorização"]
       }
-    ]
+    ],
+    outputs: ["Plataforma", "Conversa", "Sua IA", "BI e API", "Campo"],
+    signals: ["Ruptura persistente", "Estoque sem movimento", "Queda de giro", "Concentração em rede"]
   },
-  antesDepois: {
-    subtitle: "Antes e depois do Dinn",
-    title: "O Dinn não é apenas um fornecedor de dados.",
-    description1: "Ele é um ",
-    descriptionHighlight1: "orquestrador de inteligência operacional",
-    description2: ", um ",
-    descriptionHighlight2: "filtro estratégico do ruído",
-    description3: " e um acelerador de performance no campo. Tudo em um modelo modular, escalável e integrado.",
-    items: [
+  delivery: {
+    eyebrow: "Plataforma e capacidades",
+    title: "IA para o mercado farma *onde o seu time já trabalha*",
+    more: "Saiba mais",
+    cards: [
       {
-        bad: "Falta visão em tempo real, decisões baseadas em dados atrasados",
-        good: "Acesso granular e atualizado quase em tempo real sobre o que acontece no campo"
+        tag: "Dinn Manager",
+        title: "A plataforma",
+        desc: "Leva prioridades e contexto para a gestão e a execução comercial: ruptura, estoque parado, distribuição e mercado no mesmo recorte."
       },
       {
-        bad: "Roteiros manuais, visitas mal priorizadas",
-        good: "Roteirização inteligente com foco em impacto, risco e potencial"
+        tag: "Dinn Insights",
+        title: "Uma conversa",
+        desc: "Apoia a exploração e a interpretação dos sinais: pergunte em português e receba o número, o recorte, a data e o que é observado ou estimado."
       },
       {
-        bad: "Demora para agir frente a quedas de prescrição ou ruptura",
-        good: "Alertas automáticos e ações sugeridas no app sem depender de acionamentos manuais"
+        tag: "MCP",
+        title: "Na sua IA",
+        desc: "Interface para que ChatGPT, Claude e Copilot autorizados consultem os dados do Dinn, com acesso somente leitura."
       },
       {
-        bad: "Dados soltos, retrabalho entre áreas",
-        good: "API e painel integrados com CRM, BI, ERP — tudo fluindo em um único ecossistema"
+        tag: "Dinn Conecta",
+        title: "No seu BI e nos seus agentes",
+        desc: "Prepara e entrega fluxos de dados do canal, padronizados por produto, loja e região, para o seu BI e os seus agentes. Dados e governança continuam com você."
       }
-    ]
+    ],
+    sources: ["IQVIA / Close-Up", "ERP e CRM", "Farmácias"],
+    destinations: ["BI", "Copilot", "Agentes", "API"],
+    trust: [
+      "Observado ou estimado, sempre dito",
+      "Base D-1 e consulta pontual em lojas elegíveis",
+      "Dois fatores por e-mail · SSO sob consulta",
+      "Implantação em até 30 dias após pré-requisitos e escopo acordados"
+    ],
+    note: "Cobertura e atualização variam por fonte, produto e consulta. Cada fonte depende de licença, autorização e escopo acordados, e recursos na sua IA dependem do plano e da configuração."
   },
   faq: {
-    title: "Perguntas Frequentes",
+    title: "Perguntas frequentes sobre IA, ruptura de estoque e sell-out",
     items: [
       {
-        question: "1. Nós já utilizamos ferramentas de auditoria consolidadas como IQVIA e CloseUp. Por que precisaríamos do Dinn?",
-        answer: "O Dinn **não substitui** as auditorias de mercado; ele as **complementa**. Ferramentas tradicionais como IQVIA e CloseUp entregam dados retroativos (mês fechado) excelentes para planejamento, mensuração de market share e decisões estratégicas de longo prazo. O Dinn opera no momento presente da execução diária (D-1) nível loja (PDV), detectando problemas em tempo real e orientando a equipe sobre **o que fazer hoje** para corrigir rupturas antes que a venda seja perdida e o mês feche."
+        question: "Já usamos auditorias como IQVIA e Close-Up. Por que precisaríamos da Dinn?",
+        answer: "A Dinn **não substitui** as auditorias de mercado: ela as **complementa**. As auditorias são referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade no dia a dia (D-1), loja a loja, e mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, as duas leituras podem ser cruzadas no mesmo recorte."
       },
       {
-        question: "2. O processo de adoção exige um esforço grande de TI ou integrações complexas?",
-        answer: "Não. O Dinn atua em um modelo **plug-and-play**, capaz de entregar valor prático em até 48 horas após a contratação, operando de forma independente de sistemas legados ou integrações demoradas. Inicialmente, o Dinn pode funcionar perfeitamente **sem precisar dos dados internos do cliente**, pois capta e cruza múltiplos sinais externos (e-commerces, etc.). Quando o cliente estiver pronto, a plataforma é integrada à sua arquitetura interna de TI para elevar ainda mais a precisão preditiva."
+        question: "A implantação exige um esforço grande de TI?",
+        answer: "Não precisa. A Dinn pode começar com fontes externas, sem depender dos seus sistemas internos. A implantação tem escopo delimitado e acontece em **até 30 dias** depois que os pré-requisitos combinados estão prontos. Quando fizer sentido, seus dados internos entram para enriquecer a leitura."
       },
       {
-        question: "3. O Dinn é apenas mais um dashboard de Business Intelligence (BI) para o campo?",
-        answer: "O Dinn **não é um simples \"repositório de dados\"** ou painel de leitura. Ele foi desenhado para ser uma **ferramenta de orquestração de decisões** baseada em IA. Enquanto os relatórios exigem que os gestores interpretem os dados frios, o Dinn identifica falhas e recomenda automaticamente ações priorizadas (*Next Best Action* - NBA). Ele diz exatamente em qual loja atuar para resolver 80% do problema da categoria."
+        question: "A Dinn é só mais um dashboard?",
+        answer: "Não. A mesma base responde a três níveis de decisão: **estratégico** (onde concentrar a atenção), **tático** (o que discutir com cada rede) e **operacional** (quais lojas verificar primeiro). A saída não é um gráfico para interpretar, e sim uma fila concreta: cada loja com o sinal, a pergunta a responder e o retorno esperado."
       },
       {
-        question: "4. A inteligência do Dinn vai competir com o CRM (como Salesforce, Veeva ou SalesFarma) que já utilizamos na nossa força de vendas?",
-        answer: "Não, o Dinn atua como uma camada neutra acima do CRM. Ferramentas como o SalesFarma são fundamentais como sistemas de registro para apontar visitas, tirar pedidos e rastrear amostras. O Dinn, sendo o **\"sistema nervoso\" da execução**, não substitui seu CRM, mas o potencializa enviando alertas e tarefas roteirizadas e priorizadas diretamente para a agenda do representante dentro do sistema que sua equipe já utiliza."
+        question: "A Dinn compete com o CRM (Salesforce, Veeva, SalesFarma) que já usamos?",
+        answer: "Não. O CRM continua sendo o sistema de registro de visitas, pedidos e carteira. A Dinn é uma camada de inteligência sobre o canal: quando a integração é acordada, leva ao CRM o **contexto do que está acontecendo nas farmácias**, para o time priorizar melhor dentro da ferramenta que já usa."
       },
       {
-        question: "5. E se as auditorias (como IQVIA) passarem a entregar relatórios diários granulares (D-1)?",
-        answer: "Apenas ter o dado diário não resolve o problema; informação rápida sem priorização e recomendação tática é apenas mais ruído. A IQVIA foca em medição e auditoria para o planejamento. O grande diferencial do Dinn é a **capacidade de gerar uma decisão autônoma** (lógica *agentic*) e diagnosticar *por que* algo aconteceu. Ele foca na execução prática, indicando o impacto financeiro de corrigir a exposição ou repor o produto em uma farmácia específica, funcionalidade e cultura operacional que faltam na arquitetura de auditorias tradicionais."
+        question: "E se as auditorias passarem a entregar dados diários?",
+        answer: "Dado rápido sem prioridade é só mais ruído. O diferencial da Dinn é transformar a leitura do canal em **prioridade e próximo passo**: qual produto, em quais redes, em quais lojas, com fonte e confiança explícitas. A IA prepara a análise; **a equipe decide** o que fazer."
       },
       {
-        question: "6. Em quanto tempo nós começamos a ver o retorno sobre o investimento (ROI)?",
-        answer: "O Dinn é focado em entregar resultados rápidos, revelando gargalos financeiros logo no primeiro dia de uso. Ao fechar a parceria, operamos através de **pilotos ágeis de 30 a 90 dias** estruturados por marcos, nos quais o \"primeiro valor\" (*first value*), como a redução de rupturas ou o ganho de produtividade no tempo-até-reposição no aplicativo de campo, é percebido e validado em reuniões logo no marco de 30 dias."
+        question: "Em quanto tempo vemos valor?",
+        answer: "Começamos por **um objetivo**, por exemplo reduzir a ruptura de um produto em uma região, e acompanhamos o mesmo recorte ao longo do tempo. A primeira leitura já mostra onde o problema se concentra; em 30 dias, dá para ver se o sinal persistiu ou diminuiu depois das ações do time."
       },
       {
-        question: "7. Como o Dinn consegue mapear o estoque e as rupturas diariamente sem depender das nossas bases de dados internas?",
-        answer: "O Dinn opera de forma multimodal e utiliza uma captação \"não convencional\". Em vez de comprar auditorias ou exigir o dado do cliente de imediato, a ferramenta cruza sinais digitais de diversas fontes externas (como e-commerces, *clique-e-retire*, marketplaces como iFood e vitrines digitais). Por meio de seus modelos de Inteligência Artificial, ele processa esses sinais para inferir demandas, entender as rupturas reais por Ponto de Venda (PDV) e acompanhar o que a concorrência está fazendo nas gôndolas locais."
+        question: "Como a Dinn acompanha o estoque sem depender das nossas bases?",
+        answer: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário: esse é o **dado observado**. Onde não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro diz como foi obtido."
       },
       {
-        question: "8. Receber relatórios granulares todos os dias não vai gerar excesso de informação e sobrecarregar nossa equipe de campo?",
-        answer: "Pelo contrário, o Dinn resolve exatamente o problema do excesso de dados, pois a plataforma parte do princípio de que **informação diária sem priorização tática é apenas ruído**. A ferramenta não entrega apenas um painel para o representante interpretar, mas utiliza uma lógica autônoma baseada em Inteligência Artificial para prescrever a \"Próxima Melhor Ação\" (*Next Best Action* - NBA). Isso significa que ela filtra o \"barulho\" e entrega tarefas priorizadas pelo conceito 80/20, indicando à equipe exatamente **qual loja precisa de atenção, o que corrigir e qual é o impacto financeiro dessa ação**."
+        question: "Dados diários não vão sobrecarregar o time de campo?",
+        answer: "É o contrário: a Dinn existe para reduzir o excesso de informação. Em vez de um painel para o representante interpretar, ela entrega **listas priorizadas**: quais lojas verificar primeiro, o que conferir em cada uma e qual retorno esperar."
       },
       {
-        question: "9. Nossa operação corporativa é muito segmentada. O Dinn foi feito apenas para a força de vendas e representantes de campo?",
-        answer: "Não. Embora a ação de campo seja vital, o Dinn atua como um centralizador da visão, garantindo que Marketing, Comercial, Supply e Trade olhem para a \"mesma fotografia\" de ruptura e disponibilidade de gôndola, reduzindo os conflitos internos. O sistema atende diferentes frentes com valor específico: as áreas de **Trade e Customer Success** usam alertas de reposição para buscar \"Ruptura Zero\"; o time **Comercial e Campo** recebe roteirização tática e tarefas no aplicativo; já a área de **Inteligência e Marketing** ganha o benefício de monitorar os concorrentes por farmácia e estimar os impactos de campanhas de mercado usando *Forecast IA*."
+        question: "A Dinn é só para a força de vendas?",
+        answer: "Não. A mesma leitura atende **Trade**, **Comercial e campo**, **Demanda e supply**, **Inteligência de mercado**, **SAC** e **Tecnologia e dados**. Todos olham para a mesma fotografia de disponibilidade, o que reduz conflitos entre as áreas."
       },
       {
-        question: "10. Os contratos no mercado farmacêutico envolvem validações complexas. É possível testar a eficácia da inteligência antes de um compromisso de longo prazo?",
-        answer: "Sim. O modelo comercial da plataforma é flexível e voltado para gerar Ganhos Rápidos (*Quick Wins*). A indústria não precisa contratar toda a plataforma \"no escuro\" e pode começar com estratégias direcionadas (modelo *land and expand*) com base em escopos controlados. É possível validar a inteligência utilizando desde **Trials guiados rápidos de 14 a 21 dias** (como uma prova de conceito de ruptura em lojas específicas) até **Pilotos de 30, 60 ou 90 dias** amarrados a metas operacionais claras e provas práticas de Retorno Sobre o Investimento (ROI) antes da expansão para mais marcas ou usuários."
+        question: "Dá para testar antes de fechar um contrato longo?",
+        answer: "Sim. Liberamos **30 dias com um objetivo só**, com termo simples e alguém nosso acompanhando. No fim, fica claro se vale seguir, ajustar ou parar."
       },
       {
-        question: "11. A ferramenta lida com muitos dados. Como funciona a questão do compliance e conformidade legal em grandes indústrias?",
-        answer: "O Dinn é projetado nativamente para atender aos altos requisitos de regulação das grandes farmacêuticas multinacionais. A plataforma é segura e declarada em conformidade (*compliance* ativa) com regulações de privacidade como a **LGPD e o novo AI Act** (focado no uso da IA), podendo operar com modelos baseados em dados sintéticos e simulados que facilitam testes sem risco. No caso de expansão ou integração robusta, o ambiente atende parâmetros de segurança corporativa (*Enterprise*), fornecendo suporte para Single Sign-On (SSO) e contratos de dados que prevêem rastreabilidade e pseudonimização das informações."
+        question: "Como a Dinn trata segurança e confiabilidade dos dados?",
+        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões, e o SSO corporativo está disponível sob consulta, conforme os requisitos da sua empresa. Cada dado é rastreável: fonte, data e a distinção entre observado e estimado ficam explícitas. As conexões com a IA do cliente são **somente leitura**."
+      },
+      {
+        question: "O que é o Dinn Conecta?",
+        answer: "É a camada que prepara e entrega **dados de farma no ambiente que sua equipe já usa**. A Dinn conecta fontes autorizadas (mercado, dados internos e farmácias), padroniza produto, loja e região, cuida da qualidade e da atualização e entrega no seu BI, Copilot, agentes ou API. Dados, infraestrutura e governança continuam com você."
+      },
+      {
+        question: "Posso usar a Dinn no ChatGPT, no Claude ou no Copilot?",
+        answer: "Sim. A Dinn se conecta ao seu ambiente de IA por **MCP**, com acesso autorizado e **somente leitura**. Você pergunta em linguagem natural e recebe a análise com recorte, período e limites. Recursos como agendamento e geração de arquivos dependem do plano e da configuração da sua IA."
+      },
+      {
+        question: "A Dinn cobre todas as farmácias e confirma a causa da ruptura?",
+        answer: "Não. **Cobertura e atualização variam por fonte, produto, rede e consulta**, e cada leitura informa o que cobre. A Dinn também não confirma causas: mostra evidências e hipóteses, e o time valida. Ausência de produto não é necessariamente ruptura, e estoque no centro de distribuição não prova abastecimento de uma loja."
+      },
+      {
+        question: "Qual a diferença entre dado observado e estimado?",
+        answer: "**Observado** é o que a fonte informou diretamente, com local e horário. **Estimado** é calculado a partir de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. **Inferido** é a leitura que o Dinn tira da combinação de sinais, apresentada como hipótese a validar. A base é atualizada em D-1 e, em lojas elegíveis, há consulta pontual de disponibilidade."
       }
     ]
   },
   ctaFinal: {
-    title: "Pronto para usar seus dados de uma forma mais eficiente?",
-    description: "Solicite uma demonstração gratuita e descubra como o Dinn pode revolucionar a gestão do seu negócio.",
-    button: "Solicitar demo"
+    title: "Veja como transformar os sinais do seu canal em *prioridades comerciais mais claras*",
+    description: "Numa demonstração, o Dinn mostra a leitura com o seu portfólio, a sua carteira e as suas regiões.",
+    button: "Solicitar demo",
+    secondary: "Voltar a perguntar"
   },
   footer: {
-    description: "Inteligência de dados para transformar o varejo farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
+    description: "Inteligência comercial para o canal farmacêutico, com presença em Joinville e Valência.",
     sectionA: "A Dinn",
+    sectionSolutions: "Soluções",
     sectionLegal: "Legal",
     termos: "Termos",
     privacidade: "Privacidade",
     cookies: "Cookies",
     suporte: "Suporte",
     ctaTitle: "Pronto para começar?",
-    ctaDesc: "Solicite uma demonstração gratuita.",
+    ctaDesc: "Veja a Dinn com os seus produtos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2024 DiWE Ventures Studio. Todos os direitos reservados.",
+    rights: "© 2026 Dinn Tecnologia Ltda. Todos os direitos reservados.",
+    legalName: "Dinn Tecnologia Ltda.",
+    cnpj: "57.639.944/0001-20",
+    address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
+    cities: "Joinville · Valência",
     launch: "Lançamento"
   },
   privacy: {
@@ -341,7 +893,7 @@ export const ptBR = {
     title: "Deixe seu Feedback"
   },
   testimonials: {
-    title: "O que nossos clientes dizem",
+    title: "O que a indústria farma diz do Dinn",
     readMore: "Ver mais",
     readLess: "Ver menos",
     items: [
@@ -372,7 +924,7 @@ export const ptBR = {
     ]
   },
   blog: {
-    heroTitle: "Conteúdos do Dinn",
+    heroTitle: "Blog do Dinn: IA, ruptura de estoque e execução comercial farma",
     searchPlaceholder: "Busque seu conteúdo aqui",
     noResultsTitle: "Nenhum conteúdo encontrado",
     noResultsDesc: "Tente ajustar sua busca por outros termos.",
@@ -381,7 +933,7 @@ export const ptBR = {
     minRead: "min de leitura",
     backToBlog: "Voltar para o Blog",
     ctaTitle: "Transforme dados em decisões estratégicas",
-    ctaText: "A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real.",
+    ctaText: "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança explícitas.",
     ctaBtn: "Solicitar demonstração",
     recommended: "Recomendados para você",
     writtenBy: "Por",

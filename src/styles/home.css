@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Home — base compartilhada
+   As seções da home v2 (outubro/2026) têm folhas próprias: home-v2.css
+   (conversa), home-teams.css (abas por time) e home-story.css (manifesto,
+   por dentro, entrega, chamada final). Aqui fica só o que outras páginas e
+   componentes ainda usam.
+   Regras do rules/DESIGN_SYSTEM.md: Britti Sans, #5625F2 como único roxo
+   (tons derivados só por transparência), botões sempre arredondados.
+   ========================================================================== */
+
+:root {
+  --accent-tint:   rgba(86, 37, 242, 0.08);
+  --accent-line:   rgba(86, 37, 242, 0.24);
+  --on-dark:       #FFFFFF;
+  --on-dark-body:  rgba(255, 255, 255, 0.64);
+  --on-dark-muted: rgba(255, 255, 255, 0.4);
+  --on-dark-line:  rgba(255, 255, 255, 0.1);
+  --on-dark-card:  rgba(255, 255, 255, 0.04);
+}
+
+/* Destaque em títulos (marcação *texto* nos dicionários, ver lib/rich-text) */
+.em-light { font-style: italic; font-weight: 300; }
+
+.btn-on-dark { background: transparent; color: var(--on-dark); border-color: rgba(255,255,255,0.24); }
+.btn-on-dark:hover { border-color: var(--on-dark); }
+
+/* ── FAQ ───────────────────────────────────────────────────────────────── */
+.faq-answer strong { color: var(--text-primary); font-weight: 600; }

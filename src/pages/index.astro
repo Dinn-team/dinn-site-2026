@@ -1,86 +1,41 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { AnimatedHero } from '@/components/ui/animated-hero';
-import FAQ from '@/components/FAQ';
-import CTASection from '@/components/CTASection';
-import { ClientLogos } from '@/components/ui/ClientLogos';
-import { SolucoesSection } from '@/components/ui/SolucoesSection';
-import { CasosDeUsoSection } from '@/components/ui/CasosDeUsoSection';
+import { HeroSection } from '@/components/home/HeroSection';
+import { StorySection } from '@/components/home/StorySection';
+import { InsideSection } from '@/components/home/InsideSection';
+import { AreasSection } from '@/components/home/AreasSection';
+import { RealtimeSection } from '@/components/home/RealtimeSection';
+import { TeamsSection } from '@/components/home/TeamsSection';
+import { InsightsSection } from '@/components/home/InsightsSection';
+import { DeliverySection, FinalCta } from '@/components/home/DeliverySection';
+import { ContentTeaser } from '@/components/home/ContentTeaser';
 import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
-import { AntesEDepoisSection } from '@/components/ui/AntesEDepoisSection';
+import FAQ from '@/components/FAQ';
+import { getClientLogos } from '@/lib/clients';
 
-const painPoints = [
-  "Dificuldade em controlar o estoque e evitar rupturas",
-  "Falta de visibilidade sobre a competitividade de preços",
-  "Perda de tempo procurando produtos no estoque",
-  "Decisões de compra baseadas em intuição, não em dados",
-  "Dificuldade em acompanhar tendências do mercado farmacêutico"
-];
+// Faixa de clientes (âncora #clientes): só entram logos com arquivo em public/clientes.
+const logos = getClientLogos();
 
-const features = [
-  {
-    icon: "📦",
-    title: "Gestão de Estoque",
-    description: "Controle inteligente do seu inventário com alertas de ruptura e reposição automática.",
-    href: "/estoque"
-  },
-  {
-    icon: "💰",
-    title: "Monitoramento de Preço",
-    description: "Acompanhe preços da concorrência em tempo real e mantenha-se competitivo.",
-    href: "/monitoramento-de-preco"
-  },
-  {
-    icon: "📍",
-    title: "Localização de Produtos",
-    description: "Encontre produtos rapidamente no estoque com sistema de mapeamento inteligente.",
-    href: "/localizacao-de-produtos"
-  },
-  {
-    icon: "📊",
-    title: "Estimativa de Giro",
-    description: "Previsões semanais e mensais para otimizar suas compras e reduzir perdas.",
-    href: "/estimativa-de-giro"
-  },
-  {
-    icon: "🔬",
-    title: "Estudos e Pesquisas",
-    description: "Pesquisas personalizadas sobre tendências e oportunidades do mercado farmacêutico.",
-    href: "/estudos-e-pesquisas"
-  }
-];
-
-const clients = [
-  "Farmácia Exemplo 1",
-  "Farmácia Exemplo 2",
-  "Farmácia Exemplo 3",
-  "Farmácia Exemplo 4"
-];
-
-// FAQ items are now handled internally via translations
+// Narrativa da home (14/10/2026, síntese de decisão do conteúdo do site):
+// promessa e prova social → o problema → como funciona, em um exemplo → estoque
+// em tempo real, numa cena → caminhos por área → casos de uso → Dinn Insights → plataforma e capacidades → clientes
+// → conteúdos → dúvidas → chamada final. As páginas de plataforma, soluções,
+// confiança e recursos aprofundam cada ponto. A faixa de logos fica aqui (#clientes); /clientes reúne logos, casos e depoimentos.
 ---
 
 <Layout>
-  {/* ── Hero ── */}
-  <AnimatedHero client:load />
-
-  {/* ── Social Proof / Logos & Soluções (BG Unificado) ── */}
-  <div style="display: flex; flex-direction: column; background: #1F2328; width: 100%;">
-    <ClientLogos client:visible />
-    <SolucoesSection client:visible />
-    {/* ── Antes e Depois ── */}
-    <AntesEDepoisSection client:visible />
+  <div class="v2">
+    <HeroSection logos={logos} client:load />
+    <StorySection client:idle />
+    <InsideSection client:idle />
+    <RealtimeSection client:visible />
+    <AreasSection client:idle />
+    <TeamsSection client:idle />
+    <InsightsSection client:idle />
+    <DeliverySection client:idle />
+    <TestimonialsSection client:visible />
+    <ContentTeaser client:visible />
+    <FAQ client:visible />
+    <FinalCta client:idle />
   </div>
-
-  {/* ── Casos de Uso ── */}
-  <CasosDeUsoSection client:visible />
-
-  {/* ── Testimonials ── */}
-  <TestimonialsSection client:visible />
-
-  {/* ── FAQ ── */}
-  <FAQ client:visible />
-
-  {/* ── CTA Final ── */}
-  <CTASection client:visible />
 </Layout>

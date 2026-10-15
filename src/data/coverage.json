@@ -1,0 +1,7 @@
+{
+  "note": "Registro de cobertura publicável (página /cobertura). Preencha somente com o que o produto responsável validou: nada de números, países ou redes de apresentações. Grupos: 'validated' (operação validada), 'project' (disponível sob projeto), 'study' (em estudo). Cada item: { \"name\": \"País ou rede\", \"note\": \"opcional\" }. 'reviewedAt' é a data (AAAA-MM-DD) da última revisão e aparece na página quando preenchida. Vazio = a página diz que a lista é apresentada na validação do recorte.",
+  "reviewedAt": null,
+  "validated": [],
+  "project": [],
+  "study": []
+}

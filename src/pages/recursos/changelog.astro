@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ChangelogPage } from '@/components/site/ChangelogPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.changelog.meta;
+---
+
+<Layout title={title} description={description}>
+  <ChangelogPage client:load />
+</Layout>

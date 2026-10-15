@@ -1,0 +1,55 @@
+name: Changelog diário
+
+# Todo dia às 06:00 (Brasília) o changelog do site é atualizado com o que foi
+# para produção nos repositórios listados em scripts/changelog-sync.mjs.
+# O commit em main dispara a nova publicação do site na Vercel.
+#
+# Segredos necessários (Settings > Secrets and variables > Actions):
+#   CHANGELOG_GITHUB_TOKEN  token com leitura de pull requests nos repositórios
+#                           de produto (ex.: dinn-manager-app, privado)
+#   GEMINI_API_KEY          chave do Google Gemini (AI Studio) para reescrever
+#                           títulos e resumos
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: changelog-daily
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Trata as publicações novas
+        env:
+          GH_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/changelog-sync.mjs --write --auto-publish
+
+      - name: Publica no site
+        if: always()
+        run: |
+          if git diff --quiet -- src/data/changelog.json; then
+            echo "Sem novidades hoje."
+            exit 0
+          fi
+          git config user.name "dinn-changelog-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/changelog.json
+          git commit -m "chore(changelog): atualização diária"
+          git push origin HEAD:main

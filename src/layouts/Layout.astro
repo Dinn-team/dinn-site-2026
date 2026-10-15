@@ -33,8 +33,8 @@ interface Props {
 }
 
 const {
-	title = "Dinn - Inteligência de Dados para Farmácias",
-	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais.",
+	title = "Dinn | Inteligência comercial para o canal farmacêutico",
+	description = "IA para o mercado farma: a Dinn organiza sinais de disponibilidade, giro e preço do canal, mostra origem, data e limites e ajuda o time a decidir onde agir.",
 	image = '/og-image.png',
 	type = 'website',
 	noindex = false,
@@ -75,14 +75,20 @@ const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
 	"name": "Dinn",
-	"description": "Inteligência de Dados para Farmácias",
+	"description": "Inteligência comercial para o canal farmacêutico: transforma sinais de disponibilidade, giro e preço em ação comercial, com origem, data e limites explícitos",
 	"url": site.href,
 	"logo": new URL('/logo.png', site).href,
 	"foundingDate": "2023",
-	"founders": [{
-		"@type": "Organization",
-		"name": "DiWE Ventures Studio"
-	}]
+	"legalName": "Dinn Tecnologia Ltda.",
+	"taxID": "57.639.944/0001-20",
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial",
+		"addressLocality": "Joinville",
+		"addressRegion": "SC",
+		"postalCode": "89219-600",
+		"addressCountry": "BR"
+	}
 };
 
 const schemas = [organizationSchema, ...(jsonLd ? [jsonLd].flat() : [])];
@@ -177,8 +183,9 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 		)}
 	</head>
 	<body style="background-color: #1F2328; color: #1F2328; margin: 0; padding: 0; overflow-x: clip;">
+		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 		<Header client:load />
-		<main>
+		<main id="conteudo" tabindex="-1">
 			<slot />
 		</main>
 		<Footer client:load />

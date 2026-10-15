@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ClientsPage } from '@/components/site/offer/OfferPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { getClientLogos } from '@/lib/clients';
+
+const { title, description } = pagesPt.clients.meta;
+// Só entram logos com arquivo em public/clientes (ver src/lib/clients.ts).
+const logos = getClientLogos();
+---
+
+<Layout title={title} description={description}>
+  <ClientsPage logos={logos} client:load />
+</Layout>

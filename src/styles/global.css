@@ -4,6 +4,20 @@
 @import "shadcn/tailwind.css";
 @import "./fonts.css";
 @import "./design-system.css";
+@import "./home.css";
+@import "./home-v2.css";
+@import "./home-teams.css";
+@import "./home-insights.css";
+@import "./home-story.css";
+@import "./site-pages.css";
+@import "./site-solutions.css";
+@import "./site-trust.css";
+@import "./site-resources.css";
+@import "./site-platform.css";
+@import "./site-mobile-menu.css";
+@import "./site-contact.css";
+@import "./site-offer.css";
+@import "./site-type-scale.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -193,15 +207,23 @@ html, body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+/* Recolhe ao rolar para baixo e volta ao rolar para cima (sutil, sem barra). */
+.header.is-hidden { transform: translateY(-16px); opacity: 0; pointer-events: none; }
+.header:focus-within { transform: none; opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .header { transition: none; }
 }
 
+/* Sem barra de fundo: o menu flutua sobre a página, igual ao da home. A classe
+   "scrolled" só troca as cores (versão clara ou escura, conforme o fundo que
+   está atrás), nunca desenha uma faixa. */
 .header.scrolled {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #E5E7EB;
-  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 

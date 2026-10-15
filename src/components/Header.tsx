@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { SlideTabs } from '@/components/ui/nav-header';
+import MobileMenu from '@/components/MobileMenu';
 import { useTranslation } from '@/i18n/useTranslation';
-import { blogPath } from '@/i18n/routes';
 import { setLanguage, Language } from '@/i18n/store';
+import { contactUrl } from '@/lib/links';
 
 // Globe / translate icon (lucide-style inline SVG)
 function GlobeIcon({ color }: { color: string }) {
@@ -25,8 +26,8 @@ function GlobeIcon({ color }: { color: string }) {
 
 export default function Header() {
   const [isLightBg, setIsLightBg] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   
   const { t, lang } = useTranslation();
 
@@ -76,15 +77,55 @@ export default function Header() {
         ticking = true;
       }
     };
+    // Reavalia também quando a rolagem para: em saltos longos (links, âncoras) o
+    // conteúdo ainda se ajusta depois do último evento, e o menu, que não tem
+    // faixa de fundo, ficaria com a cor errada para o fundo atrás dele.
+    let settleTimer = 0;
+    const settle = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(onScroll, 180);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', settle, { passive: true });
     setTimeout(onScroll, 100);
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.clearTimeout(settleTimer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('scroll', settle);
+    };
   }, []);
+
+  // Descer = o visitante quer ler: o menu se recolhe com um movimento curto.
+  // Subir = procura o topo ou o menu: ele volta. No topo da página, sempre visível.
+  useEffect(() => {
+    let last = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const delta = y - last;
+      if (y < 80) setHidden(false);
+      else if (delta > 6) setHidden(true);
+      else if (delta < -6) setHidden(false);
+      if (Math.abs(delta) > 6) last = y;
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  // Com a lista de idiomas aberta o menu não some.
+  const hideHeader = hidden && !langDropdownOpen;
 
   const iconColor = isLightBg ? '#6B7280' : 'rgba(255,255,255,0.7)';
 
   return (
-    <header className={`header ${isLightBg ? 'scrolled' : ''}`}>
+    <header className={`header ${isLightBg ? 'scrolled' : ''} ${hideHeader ? 'is-hidden' : ''}`}>
       <div className="wrap">
         <div className="flex items-center justify-between h-[72px]">
 
@@ -103,18 +144,20 @@ export default function Header() {
           </a>
 
           {/* Desktop Nav — Sliding Tabs */}
-          <nav className="hidden md:flex items-center">
+          <nav className="hidden lg:flex items-center">
             <SlideTabs scrolled={isLightBg} />
           </nav>
 
           {/* Right side: Globe + CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Language Selector */}
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                aria-label="Idioma"
-                title="Trocar idioma"
+                aria-haspopup="listbox"
+                aria-expanded={langDropdownOpen}
+                aria-label={t('nav.languageLabel')}
+                title={t('nav.languageLabel')}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -129,7 +172,7 @@ export default function Header() {
                   gap: '6px'
                 }}
               >
-                <span style={{ fontSize: '16px' }}>{currentLangObj.flag}</span>
+                <GlobeIcon color={iconColor} />
                 <span style={{ fontSize: '13px', fontWeight: 600, color: iconColor }}>{currentLangObj.code.toUpperCase()}</span>
               </button>
               
@@ -155,62 +198,22 @@ export default function Header() {
                       onClick={() => { setLanguage(l.code); setLangDropdownOpen(false); }}
                       className="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 rounded-md text-[14px] font-medium text-gray-800 text-left"
                     >
-                      <span>{l.flag}</span>
                       <span>{l.label}</span>
                     </button>
                   ))}
                 </div>
               )}
             </div>
+
+            <a href={contactUrl('menu')} className="btn btn-primary">
+              {t('nav.cta')}
+            </a>
           </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden p-2 rounded-lg"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Abrir menu"
-          >
-            <div className="flex flex-col gap-[5px]">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className={`block w-6 h-0.5 rounded-full transition-colors ${isLightBg ? 'bg-[#1F2328]' : 'bg-white'}`}
-                />
-              ))}
-            </div>
-          </button>
+          {/* Menu de tablet e celular (<1024px): botão + painel em tela cheia */}
+          <MobileMenu isLightBg={isLightBg} />
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
-          <div className="wrap py-6 flex flex-col gap-4">
-            <a href="/" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.home')}</a>
-            <a href="#solucoes" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.solutions')}</a>
-            <a href="#casos-de-uso" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.useCases')}</a>
-            <a href={blogPath(lang)} className="text-[16px] font-semibold text-[#1F2328]">{t('nav.blog')}</a>
-            
-            <hr className="border-[#E5E7EB] my-2" />
-            
-            <div className="flex flex-col gap-3">
-              <span className="text-[12px] font-medium text-gray-400 uppercase tracking-wider">{t('nav.language')}</span>
-              <div className="flex gap-4">
-                {languages.map(l => (
-                  <button
-                    key={l.code}
-                    onClick={() => { setLanguage(l.code); setMobileOpen(false); }}
-                    className={`flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-md ${lang === l.code ? 'bg-[#F3F4F6] text-[#1F2328]' : 'text-gray-500'}`}
-                  >
-                    <span>{l.flag}</span>
-                    <span>{l.code.toUpperCase()}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

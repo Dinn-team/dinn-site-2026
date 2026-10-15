@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Home v2 — Dinn Insights (seção 3, tema claro)
+   Referência de layout: o campo "What do you want to build?" do Clay — cartão
+   alto e branco com o texto, e logo abaixo uma bandeja cinza-quente com as
+   sugestões e o botão de enviar. Tema claro, como a home do Claude.
+   ========================================================================== */
+
+.ins {
+  --ins-line: #E3E1DB;
+  --ins-tray: #F3F2EE;
+  position: relative;
+  background: #fff;
+  color: var(--text-main);
+  padding: clamp(72px, 9vw, 128px) 0 clamp(64px, 8vw, 112px);
+  scroll-margin-top: 40px;
+  /* a conversa cresce para baixo; sem isso o navegador compensa a altura
+     nova e puxa a página */
+  overflow-anchor: none;
+}
+.ins-head { text-align: center; max-width: 780px; margin: 0 auto clamp(28px, 3.4vw, 44px); }
+.ins-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 14px;
+}
+.ins-title {
+  font-size: clamp(28px, 3.7vw, 48px);
+  font-weight: 600;
+  letter-spacing: var(--track-display);
+  line-height: 1.12;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.ins-title .em-light { color: var(--color-accent); font-weight: 300; }
+.ins-intro {
+  margin: 16px auto 0;
+  max-width: 560px;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.6;
+  letter-spacing: var(--track-body);
+  color: var(--text-soft);
+}
+
+.ins-stage { max-width: 820px; margin: 0 auto; }
+
+/* ── Conversa (acima do campo) ──────────────────────────────────────────── */
+.ins-thread {
+  display: flex; flex-direction: column; gap: 22px;
+  max-height: min(58vh, 600px);
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 4px 8px 20px 2px;
+  text-align: left;
+  scrollbar-width: thin;
+  scrollbar-color: #CFCDC5 transparent;
+}
+.ins-user {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: 11px 17px;
+  border-radius: 20px 20px 6px 20px;
+  background: #F1F0EC;
+  color: var(--ink);
+  font-size: 16px; line-height: 1.5; letter-spacing: var(--track-body);
+}
+.ins-bot { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+.ins-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--lilac), var(--color-accent));
+  box-shadow: 0 6px 16px -6px rgba(86, 37, 242, 0.55);
+}
+.ins-bot-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.ins-context {
+  align-self: flex-start;
+  display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  font-size: 12.5px; letter-spacing: var(--track-small); color: var(--text-soft);
+  padding: 4px 11px; border-radius: 999px; background: var(--ins-tray);
+}
+.ins-context em { font-style: normal; font-weight: 600; color: var(--color-accent); margin-left: 4px; }
+.ins-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.ins-steps li { display: flex; align-items: center; gap: 8px; font-size: 13.5px; letter-spacing: var(--track-small); color: var(--text-soft); }
+.ins-steps li.is-done svg { color: var(--color-accent); }
+.ins-steps li.is-run { color: var(--ink); }
+.ins-dots { display: inline-flex; gap: 3px; width: 12px; }
+.ins-dots i { width: 3px; height: 3px; border-radius: 50%; background: var(--color-accent); animation: v2-bounce 0.9s infinite ease-in-out; }
+.ins-dots i:nth-child(2) { animation-delay: 0.15s; }
+.ins-dots i:nth-child(3) { animation-delay: 0.3s; }
+.ins-answer { display: flex; flex-direction: column; gap: 10px; font-size: 16.5px; line-height: 1.65; letter-spacing: var(--track-body); color: var(--text-main); }
+.ins-answer strong { color: var(--ink); font-weight: 600; }
+.ins-extras { display: flex; flex-direction: column; gap: 14px; }
+
+.ins-method { border-left: 2px solid rgba(86, 37, 242, 0.35); padding: 2px 0 2px 14px; }
+.ins-method summary {
+  cursor: pointer; list-style: none;
+  font-size: 12px; font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase;
+  color: var(--color-accent);
+}
+.ins-method summary::-webkit-details-marker { display: none; }
+.ins-method summary::after { content: ' +'; }
+.ins-method[open] summary::after { content: ' −'; }
+.ins-method ul { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.ins-method li { font-size: 14px; line-height: 1.55; letter-spacing: var(--track-body); color: var(--text-soft); }
+
+.ins-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.ins-links a {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 13.5px; font-weight: 600; letter-spacing: var(--track-small);
+  color: var(--ink);
+  padding: 9px 14px; border-radius: 999px;
+  border: 1px solid #D5D3CB; background: #fff;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.ins-links a:hover { border-color: var(--color-accent); background: rgba(86, 37, 242, 0.05); }
+.ins-links a.is-demo { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.ins-links a.is-demo:hover { background: var(--color-accent-hov); }
+.ins-follow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ins-follow span { font-size: 12.5px; letter-spacing: var(--track-small); color: var(--text-soft); margin-right: 2px; }
+.ins-follow button {
+  font: inherit; font-size: 13.5px; letter-spacing: var(--track-small);
+  color: var(--ink); background: #FAF9F6;
+  border: 1px dashed #C8C6BD; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.ins-follow button:hover { border-color: var(--color-accent); background: rgba(86, 37, 242, 0.05); }
+
+/* ── Campo + bandeja (o componente do Clay) ─────────────────────────────── */
+.ins-box {
+  position: relative; z-index: 2;
+  background: #fff;
+  border: 1px solid var(--ins-line);
+  border-radius: 28px;
+  padding: 22px 26px 18px;
+  box-shadow: 0 1px 2px rgba(31, 35, 40, 0.04), 0 28px 56px -30px rgba(31, 35, 40, 0.22);
+  transition: border-color 0.2s, box-shadow 0.25s;
+}
+/* foco simples: só o contorno passa de cinza claro para lilás claro, sem anel
+   nem brilho. O contorno do foco global fica de fora do campo; quem sinaliza o
+   foco é a própria caixa. */
+.ins-box.is-focused { border-color: var(--lilac); }
+.ins .ins-box textarea:focus-visible { outline: none; }
+.ins-box textarea {
+  display: block; width: 100%;
+  min-height: 128px; max-height: 240px;
+  field-sizing: content;
+  resize: none; border: 0; outline: none; background: transparent;
+  color: var(--ink);
+  font: inherit; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.55; letter-spacing: var(--track-body);
+}
+.ins-box textarea::placeholder { color: #6F6F6B; }
+/* depois da primeira pergunta o campo encolhe: a conversa passa a ser o foco */
+.ins-box.is-started { padding-top: 16px; }
+.ins-box.is-started textarea { min-height: 52px; }
+.ins-tray {
+  position: relative; z-index: 1;
+  width: calc(100% - 44px);
+  margin: -22px auto 0;
+  padding: 36px 12px 12px;
+  border-radius: 0 0 26px 26px;
+  background: var(--ins-tray);
+  display: flex; align-items: flex-end; gap: 12px;
+}
+.ins-chips { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+.ins-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: inherit; font-size: 15px; letter-spacing: var(--track-body);
+  color: var(--text-soft);
+  background: #FCFBF9;
+  border: 0; border-radius: 14px;
+  padding: 11px 16px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.25s var(--ease-out);
+}
+.ins-chip:hover { color: var(--ink); background: #fff; box-shadow: 0 6px 16px -10px rgba(31, 35, 40, 0.3); transform: translateY(-1px); }
+.ins-chip.is-reset { color: var(--ink); background: #fff; }
+.ins-send {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 16px;
+  background: #1B1B1A; color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.25s var(--ease-out), background 0.2s;
+}
+.ins-send:hover:not(:disabled) { background: var(--color-accent); transform: translateY(-1px); }
+.ins-send:disabled { opacity: 0.35; cursor: default; }
+
+.cw-action p b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .ins-tray { flex-direction: column; align-items: stretch; width: calc(100% - 28px); }
+  .ins-send { width: 100%; }
+  .cw-kpis { grid-template-columns: repeat(2, 1fr); }
+  .cw-bar { grid-template-columns: 96px 1fr 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ins-dots i { animation: none; }
+}

@@ -1,0 +1,540 @@
+{
+  "note": "Galeria de casos de uso. Cada item vira um card em /recursos/casos e uma página em /recursos/casos/<slug>, no formato de história: o problema, como o Dinn trabalhou, a solução e o que mudou. 'kind': 'customer' (relato de usuário real, com nomes e dados preservados). 'status': 'published' aparece no site; 'draft' fica oculto. 'visual' escolhe a animação do palco (ver src/components/site/CaseScenes.tsx; 'area:<slug>' reaproveita a cena de uma solução). Cada texto tem pt, en e es; falta de en/es cai no português.",
+  "cases": [
+    {
+      "slug": "dias-de-estoque-fortaleza",
+      "status": "published",
+      "kind": "customer",
+      "area": "supply-distribuicao",
+      "date": "2026-10-14",
+      "visual": "frozen-stock",
+      "role": {
+        "pt": "Time de supply",
+        "en": "Supply team",
+        "es": "Equipo de supply"
+      },
+      "title": {
+        "pt": "Quantos dias de produto restam em Fortaleza? A resposta estava no estoque parado",
+        "en": "How many days of product are left in Fortaleza? The answer was in the stalled stock",
+        "es": "¿Cuántos días de producto quedan en Fortaleza? La respuesta estaba en el inventario detenido"
+      },
+      "summary": {
+        "pt": "Uma pergunta simples, com consequência direta no paciente: o produto vai durar na cidade? Em vez de estimar no escuro, o time leu a coluna de estoque parado de todos os PDVs e fechou a conta.",
+        "en": "A simple question with a direct impact on the patient: will the product last in the city? Instead of guessing, the team read the stalled stock column for every point of sale and closed the numbers.",
+        "es": "Una pregunta simple, con impacto directo en el paciente: ¿el producto va a alcanzar en la ciudad? En lugar de estimar a ciegas, el equipo leyó la columna de inventario detenido de todas las tiendas y cerró la cuenta."
+      },
+      "problem": {
+        "quote": {
+          "pt": "Eu precisava saber quantos dias de produto eu ainda teria em Fortaleza. Sem essa resposta, o risco era perder venda e deixar o paciente sem o medicamento.",
+          "en": "I needed to know how many days of product I would still have in Fortaleza. Without that answer, the risk was losing sales and leaving the patient without the medication.",
+          "es": "Necesitaba saber cuántos días de producto me quedaban en Fortaleza. Sin esa respuesta, el riesgo era perder ventas y dejar al paciente sin el medicamento."
+        },
+        "text": {
+          "pt": "A dúvida parecia simples, mas a resposta estava espalhada: cada PDV da cidade guardava um saldo, e parte dele não saía da prateleira. Somar tudo na mão, loja a loja, tomaria dias que o paciente não tinha.",
+          "en": "The question looked simple, but the answer was scattered: each store in the city held a balance, and part of it never left the shelf. Adding it all up by hand, store by store, would take days the patient did not have.",
+          "es": "La duda parecía simple, pero la respuesta estaba dispersa: cada tienda de la ciudad guardaba un saldo, y parte de él no salía del estante. Sumar todo a mano, tienda por tienda, tomaría días que el paciente no tenía."
+        }
+      },
+      "how": [
+        {
+          "title": {
+            "pt": "Colocou todos os PDVs da cidade lado a lado",
+            "en": "Put every store in the city side by side",
+            "es": "Puso todas las tiendas de la ciudad lado a lado"
+          },
+          "text": {
+            "pt": "O Dinn reuniu as farmácias de Fortaleza que vendem o produto, com o estoque de cada uma e a data da leitura.",
+            "en": "Dinn gathered the pharmacies in Fortaleza that sell the product, with each one's stock and the date of the reading.",
+            "es": "Dinn reunió las farmacias de Fortaleza que venden el producto, con el inventario de cada una y la fecha de la lectura."
+          }
+        },
+        {
+          "title": {
+            "pt": "Isolou o estoque parado",
+            "en": "Isolated the stalled stock",
+            "es": "Aisló el inventario detenido"
+          },
+          "text": {
+            "pt": "No relatório, uma coluna mostra o estoque parado em cada PDV: o saldo que está na loja, mas não está saindo.",
+            "en": "In the report, one column shows the stalled stock at each store: the balance that is in the store but is not moving.",
+            "es": "En el reporte, una columna muestra el inventario detenido en cada tienda: el saldo que está en la tienda pero no está saliendo."
+          }
+        },
+        {
+          "title": {
+            "pt": "Converteu o saldo em dias de cobertura",
+            "en": "Converted the balance into days of coverage",
+            "es": "Convirtió el saldo en días de cobertura"
+          },
+          "text": {
+            "pt": "Somado e dividido pelo giro diário estimado da cidade, o saldo virou o que o time precisava: quantos dias de produto estavam disponíveis. São dias de cobertura, não dias sem movimentação.",
+            "en": "Added up and divided by the city's estimated daily sell-through, the balance became what the team needed: how many days of product were available. These are days of coverage, not days without movement.",
+            "es": "Sumado y dividido entre la rotación diaria estimada de la ciudad, el saldo se convirtió en lo que el equipo necesitaba: cuántos días de producto había disponibles. Son días de cobertura, no días sin movimiento."
+          }
+        }
+      ],
+      "solution": {
+        "title": {
+          "pt": "A resposta em dias, antes de o produto faltar",
+          "en": "The answer in days, before the product runs out",
+          "es": "La respuesta en días, antes de que el producto falte"
+        },
+        "text": {
+          "pt": "Com o número de dias na mão, o time soube se a cidade estava coberta e pôde agir antes de a falta chegar à farmácia.",
+          "en": "With the number of days in hand, the team knew whether the city was covered and could act before the shortage reached the pharmacy.",
+          "es": "Con el número de días en mano, el equipo supo si la ciudad estaba cubierta y pudo actuar antes de que el desabasto llegara a la farmacia."
+        },
+        "quote": {
+          "pt": "Em vez de adivinhar, eu li a coluna certa e tive a resposta que precisava.",
+          "en": "Instead of guessing, I read the right column and got the answer I needed.",
+          "es": "En lugar de adivinar, leí la columna correcta y tuve la respuesta que necesitaba."
+        }
+      },
+      "outcome": [
+        {
+          "pt": "Resposta em dias de cobertura para a cidade",
+          "en": "An answer in days of coverage for the city",
+          "es": "Respuesta en días de cobertura para la ciudad"
+        },
+        {
+          "pt": "Base para agir antes de a falta chegar ao paciente",
+          "en": "A basis to act before the shortage reaches the patient",
+          "es": "Base para actuar antes de que el desabasto llegue al paciente"
+        },
+        {
+          "pt": "Decisão tomada pelo relatório, não por estimativa",
+          "en": "Decision made from the report, not from an estimate",
+          "es": "Decisión tomada con base en el reporte, no en una estimación"
+        }
+      ]
+    },
+    {
+      "slug": "furo-reposicao-distribuidor",
+      "status": "published",
+      "kind": "customer",
+      "area": "supply-distribuicao",
+      "date": "2026-10-14",
+      "visual": "distributor-gap",
+      "role": {
+        "pt": "Time de supply e distribuição",
+        "en": "Supply and distribution team",
+        "es": "Equipo de supply y distribución"
+      },
+      "title": {
+        "pt": "As lojas não eram reabastecidas: atraso, falta de pedido ou a janela de compra?",
+        "en": "Stores were not being restocked: delay, missing orders, or the buying window?",
+        "es": "Las tiendas no se reabastecían: ¿retraso, falta de pedido o la ventana de compra?"
+      },
+      "summary": {
+        "pt": "O produto sumia dos PDVs e ninguém sabia de quem era a conta. O Dinn mostrou que havia demanda e giro, e o padrão apontou para o período de compra do distribuidor com a rede.",
+        "en": "The product kept disappearing from stores and nobody knew whose problem it was. Dinn showed there was demand and sell-through, and the pattern pointed to the distributor's buying period with the chain.",
+        "es": "El producto desaparecía de las tiendas y nadie sabía de quién era la cuenta. Dinn mostró que había demanda y rotación, y el patrón apuntó al período de compra del distribuidor con la cadena."
+      },
+      "problem": {
+        "quote": {
+          "pt": "Eu precisava saber se o PDV não estava sendo reabastecido porque o distribuidor atrasou a entrega ou porque a loja não comprou do CD.",
+          "en": "I needed to know whether the store was not being restocked because the distributor was late delivering or because the store did not buy from the DC.",
+          "es": "Necesitaba saber si la tienda no se reabastecía porque el distribuidor se atrasó en la entrega o porque la tienda no le compró al CEDIS."
+        },
+        "text": {
+          "pt": "Duas explicações possíveis, duas conversas completamente diferentes. Errar a causa significaria cobrar o distribuidor pelo problema errado, ou deixar o médico sem resposta sobre onde indicar o produto.",
+          "en": "Two possible explanations, two completely different conversations. Getting the cause wrong would mean blaming the distributor for the wrong problem, or leaving the physician without an answer on where to recommend the product.",
+          "es": "Dos explicaciones posibles, dos conversaciones completamente distintas. Equivocarse de causa significaría reclamarle al distribuidor por el problema equivocado, o dejar al médico sin respuesta sobre dónde recomendar el producto."
+        }
+      },
+      "how": [
+        {
+          "title": {
+            "pt": "Confirmou que havia demanda",
+            "en": "Confirmed there was demand",
+            "es": "Confirmó que había demanda"
+          },
+          "text": {
+            "pt": "O Dinn mostrou que a região vendia onde havia estoque: a procura existia.",
+            "en": "Dinn showed that the region sold wherever there was stock: the demand existed.",
+            "es": "Dinn mostró que la región vendía donde había inventario: la demanda existía."
+          }
+        },
+        {
+          "title": {
+            "pt": "Conferiu o giro das lojas",
+            "en": "Checked store sell-through",
+            "es": "Revisó la rotación de las tiendas"
+          },
+          "text": {
+            "pt": "Nas lojas com produto, o giro era consistente: o que chegava, vendia. Não faltava demanda.",
+            "en": "In the stores that had the product, sell-through was consistent: what arrived, sold. Demand was not the issue.",
+            "es": "En las tiendas con producto, la rotación era consistente: lo que llegaba, se vendía. No faltaba demanda."
+          }
+        },
+        {
+          "title": {
+            "pt": "Levantou a hipótese no calendário",
+            "en": "Raised the hypothesis on the calendar",
+            "es": "Planteó la hipótesis en el calendario"
+          },
+          "text": {
+            "pt": "Cruzando CD e farmácias, o padrão sugeriu o período de compra do distribuidor com a rede, e não atraso de entrega nem falta de pedido do PDV. É uma hipótese para confirmar com o distribuidor.",
+            "en": "Cross-checking the DC and the pharmacies, the pattern suggested the distributor's buying period with the chain, rather than a delivery delay or a missing order from the store. It is a hypothesis to confirm with the distributor.",
+            "es": "Al cruzar el CEDIS y las farmacias, el patrón sugirió el período de compra del distribuidor con la cadena, y no un retraso de entrega ni falta de pedido de la tienda. Es una hipótesis por confirmar con el distribuidor."
+          }
+        }
+      ],
+      "solution": {
+        "title": {
+          "pt": "Uma conversa com a hipótese certa",
+          "en": "A conversation with the right hypothesis",
+          "es": "Una conversación con la hipótesis correcta"
+        },
+        "text": {
+          "pt": "Com a hipótese, o time conversou com o distribuidor, combinou a reposição e levou ao médico a resposta de que precisava: onde indicar o produto e quando ele estaria de volta.",
+          "en": "With the hypothesis, the team talked to the distributor, agreed on restocking, and gave the physician the answer they needed: where to recommend the product and when it would be back.",
+          "es": "Con la hipótesis, el equipo conversó con el distribuidor, acordó la reposición y le llevó al médico la respuesta que necesitaba: dónde recomendar el producto y cuándo volvería a estar disponible."
+        },
+        "quote": {
+          "pt": "Consegui dizer ao médico que o produto existia na região, em quais lojas indicar e em que período seria reposto.",
+          "en": "I was able to tell the physician that the product existed in the region, which stores to recommend, and when it would be restocked.",
+          "es": "Pude decirle al médico que el producto existía en la región, en qué tiendas recomendarlo y en qué período se repondría."
+        }
+      },
+      "outcome": [
+        {
+          "pt": "Hipótese de causa levada à conversa com o distribuidor",
+          "en": "A cause hypothesis brought to the conversation with the distributor",
+          "es": "Hipótesis de causa llevada a la conversación con el distribuidor"
+        },
+        {
+          "pt": "Médico com a resposta: onde indicar e quando haverá reposição",
+          "en": "Physician with the answer: where to recommend and when restocking will happen",
+          "es": "Médico con la respuesta: dónde recomendar y cuándo habrá reposición"
+        },
+        {
+          "pt": "Reposição no período que foi comunicado",
+          "en": "Restocking within the period that was communicated",
+          "es": "Reposición en el período que se comunicó"
+        }
+      ]
+    },
+    {
+      "slug": "sac-localizador-produto",
+      "status": "published",
+      "kind": "customer",
+      "area": "sac-customer-experience",
+      "date": "2026-10-14",
+      "visual": "sac-locator",
+      "role": {
+        "pt": "Time de SAC",
+        "en": "Customer service (SAC) team",
+        "es": "Equipo de servicio al cliente (SAC)"
+      },
+      "title": {
+        "pt": "Todo dia o telefone toca com a mesma pergunta: onde encontro o remédio?",
+        "en": "Every day the phone rings with the same question: where can I find the medicine?",
+        "es": "Todos los días suena el teléfono con la misma pregunta: ¿dónde encuentro el medicamento?"
+      },
+      "summary": {
+        "pt": "Um produto de nicho, receitado pelo médico e difícil de achar. O SAC passou a responder com o Localizador do Dinn e ganhou tempo, confiança e fôlego para o atendimento que realmente exige gente.",
+        "en": "A niche product, prescribed by the physician and hard to find. Customer service (SAC) started answering with Dinn's Locator and gained time, confidence, and room for the support that really needs a person.",
+        "es": "Un producto de nicho, recetado por el médico y difícil de encontrar. El SAC pasó a responder con el Localizador de Dinn y ganó tiempo, confianza y margen para la atención que realmente requiere a una persona."
+      },
+      "problem": {
+        "quote": {
+          "pt": "Vários pacientes ligam todos os dias querendo saber onde encontrar o produto. É muito específico, não se acha fácil, e foi o médico quem receitou.",
+          "en": "Several patients call every day wanting to know where to find the product. It is very specific, it is not easy to find, and the physician is the one who prescribed it.",
+          "es": "Varios pacientes llaman todos los días queriendo saber dónde encontrar el producto. Es muy específico, no se consigue fácil, y fue el médico quien lo recetó."
+        },
+        "text": {
+          "pt": "Cada ligação virava uma caça: ligar para farmácias, confirmar estoque, voltar ao paciente. O tempo da equipe ia embora na busca, e o paciente esperava.",
+          "en": "Every call turned into a hunt: phoning pharmacies, confirming stock, going back to the patient. The team's time went into searching, and the patient waited.",
+          "es": "Cada llamada se volvía una cacería: llamar a farmacias, confirmar inventario, volver con el paciente. El tiempo del equipo se iba en la búsqueda, y el paciente esperaba."
+        }
+      },
+      "how": [
+        {
+          "title": {
+            "pt": "Começa pelo endereço do paciente",
+            "en": "Starts with the patient's address",
+            "es": "Empieza por la dirección del paciente"
+          },
+          "text": {
+            "pt": "O atendente informa onde o paciente prefere retirar o produto.",
+            "en": "The agent enters where the patient prefers to pick up the product.",
+            "es": "El agente indica dónde prefiere el paciente recoger el producto."
+          }
+        },
+        {
+          "title": {
+            "pt": "O Localizador responde",
+            "en": "The Locator answers",
+            "es": "El Localizador responde"
+          },
+          "text": {
+            "pt": "O Dinn lista as farmácias ao redor, com a disponibilidade e o estoque de cada uma, sempre dizendo o que é observado (D-1), o que é estimado e, quando a loja é compatível, o que ela informou na consulta em tempo real, com o horário.",
+            "en": "Dinn lists the nearby pharmacies, with each one's availability and stock, always saying what is observed (D-1), what is estimated and, when the store is compatible, what it reported in the real-time query, with the time.",
+            "es": "Dinn lista las farmacias cercanas, con la disponibilidad y el inventario de cada una, siempre indicando qué es observado (D-1), qué es estimado y, cuando la tienda es compatible, lo que informó en la consulta en tiempo real, con el horario."
+          }
+        },
+        {
+          "title": {
+            "pt": "O atendimento fecha com mais segurança",
+            "en": "The call closes with more confidence",
+            "es": "La atención cierra con más seguridad"
+          },
+          "text": {
+            "pt": "O atendente orienta o paciente com a loja de maior chance de ter o produto e a data da informação, sem ligar para loja por loja.",
+            "en": "The agent guides the patient to the store most likely to have the product, with the date of the information, without calling store by store.",
+            "es": "El agente orienta al paciente hacia la tienda con más probabilidad de tener el producto, con la fecha de la información, sin llamar tienda por tienda."
+          }
+        }
+      ],
+      "solution": {
+        "title": {
+          "pt": "Atendimento mais ágil, com a origem do dado à vista",
+          "en": "Faster service, with the source of the data in view",
+          "es": "Atención más ágil, con el origen del dato a la vista"
+        },
+        "text": {
+          "pt": "O time usa o Localizador todos os dias. A busca deixou de consumir a rotina, e a energia passou para as frentes mais estratégicas do atendimento ao paciente.",
+          "en": "The team uses the Locator every day. The search stopped consuming the routine, and the energy shifted to the more strategic fronts of patient care.",
+          "es": "El equipo usa el Localizador todos los días. La búsqueda dejó de consumir la rutina, y la energía pasó a los frentes más estratégicos de la atención al paciente."
+        },
+        "quote": {
+          "pt": "Hoje eu respondo mais rápido e sei de onde vem a informação que passo ao paciente.",
+          "en": "Today I answer faster and I know where the information I give the patient comes from.",
+          "es": "Hoy respondo más rápido y sé de dónde viene la información que le doy al paciente."
+        }
+      },
+      "outcome": [
+        {
+          "pt": "Atendimento mais ágil, todos os dias",
+          "en": "Faster service, every day",
+          "es": "Atención más ágil, todos los días"
+        },
+        {
+          "pt": "Paciente orientado com a disponibilidade informada e a data da leitura",
+          "en": "Patient guided with the reported availability and the date of the reading",
+          "es": "Paciente orientado con la disponibilidad informada y la fecha de la lectura"
+        },
+        {
+          "pt": "Time com tempo para frentes mais estratégicas",
+          "en": "Team with time for more strategic work",
+          "es": "Equipo con tiempo para frentes más estratégicos"
+        }
+      ]
+    },
+    {
+      "slug": "preco-concorrente-redes",
+      "status": "published",
+      "kind": "customer",
+      "area": "inteligencia-pricing",
+      "date": "2026-10-14",
+      "visual": "price-gap",
+      "role": {
+        "pt": "Estratégia de abastecimento",
+        "en": "Supply strategy",
+        "es": "Estrategia de abastecimiento"
+      },
+      "title": {
+        "pt": "O concorrente vendia na rede. O produto, não. O preço era uma hipótese",
+        "en": "The competitor sold in the chain. The product did not. Price was a hypothesis",
+        "es": "El competidor vendía en la cadena. El producto, no. El precio era una hipótesis"
+      },
+      "summary": {
+        "pt": "Procurando brechas para negociar, o time cruzou os dados de mercado do Dinn e viu o que não aparecia nas reuniões: o concorrente estava nas redes, e o produto ainda não.",
+        "en": "Looking for openings to negotiate, the team cross-checked Dinn's market data and saw what did not show up in meetings: the competitor was in the chains, and the product was not yet.",
+        "es": "Buscando espacios para negociar, el equipo cruzó los datos de mercado de Dinn y vio lo que no aparecía en las reuniones: el competidor estaba en las cadenas, y el producto todavía no."
+      },
+      "problem": {
+        "quote": {
+          "pt": "Eu procurava brechas para negociar com a rede e descobri que o meu concorrente vendia lá e eu não.",
+          "en": "I was looking for openings to negotiate with the chain and found out my competitor sold there and I did not.",
+          "es": "Yo buscaba espacios para negociar con la cadena y descubrí que mi competidor vendía ahí y yo no."
+        },
+        "text": {
+          "pt": "Sem enxergar o mercado por rede, a conversa ficava no escuro: o produto não vendia, e ninguém sabia dizer se o motivo era demanda, presença ou preço.",
+          "en": "Without seeing the market by chain, the conversation stayed in the dark: the product was not selling, and nobody could say whether the reason was demand, presence, or price.",
+          "es": "Sin ver el mercado por cadena, la conversación quedaba a ciegas: el producto no vendía, y nadie sabía decir si el motivo era la demanda, la presencia o el precio."
+        }
+      },
+      "how": [
+        {
+          "title": {
+            "pt": "Mapeou o mercado por rede",
+            "en": "Mapped the market by chain",
+            "es": "Mapeó el mercado por cadena"
+          },
+          "text": {
+            "pt": "Os dados de mercado do Dinn mostraram em quais redes o concorrente vendia e onde o produto ainda não aparecia.",
+            "en": "Dinn's market data showed in which chains the competitor sold and where the product still did not appear.",
+            "es": "Los datos de mercado de Dinn mostraron en qué cadenas vendía el competidor y dónde el producto todavía no aparecía."
+          }
+        },
+        {
+          "title": {
+            "pt": "Comparou o preço entre os dois",
+            "en": "Compared the price between the two",
+            "es": "Comparó el precio entre ambos"
+          },
+          "text": {
+            "pt": "A leitura de preço sugeriu que o valor poderia estar pesando na decisão do consumidor final: uma hipótese a testar na negociação.",
+            "en": "The price reading suggested that price could be weighing on the end consumer's decision: a hypothesis to test in the negotiation.",
+            "es": "La lectura de precios sugirió que el valor podría estar pesando en la decisión del consumidor final: una hipótesis por probar en la negociación."
+          }
+        },
+        {
+          "title": {
+            "pt": "Levou a evidência para a mesa",
+            "en": "Brought the evidence to the table",
+            "es": "Llevó la evidencia a la mesa"
+          },
+          "text": {
+            "pt": "Com os números por rede, o time negociou preço e margem direto com cada uma, com argumentos claros.",
+            "en": "With the numbers by chain, the team negotiated price and margin directly with each one, with clear arguments.",
+            "es": "Con los números por cadena, el equipo negoció precio y margen directamente con cada una, con argumentos claros."
+          }
+        }
+      ],
+      "solution": {
+        "title": {
+          "pt": "Preço competitivo para atender a demanda médica",
+          "en": "A competitive price to meet medical demand",
+          "es": "Precio competitivo para atender la demanda médica"
+        },
+        "text": {
+          "pt": "Com liberdade para negociar, o time levou condições competitivas às redes, para atender a demanda médica da região.",
+          "en": "With room to negotiate, the team brought competitive terms to the chains, to meet the region's medical demand.",
+          "es": "Con libertad para negociar, el equipo llevó condiciones competitivas a las cadenas, para atender la demanda médica de la región."
+        },
+        "quote": {
+          "pt": "O preço parecia pesar na compra. Com o dado na mão, consegui negociar e atender a demanda do médico.",
+          "en": "Price seemed to weigh on the purchase. With the data in hand, I was able to negotiate and meet the physician's demand.",
+          "es": "El precio parecía pesar en la compra. Con el dato en la mano, pude negociar y atender la demanda del médico."
+        }
+      },
+      "outcome": [
+        {
+          "pt": "Produto não negativou na rede",
+          "en": "Product was not delisted by the chain",
+          "es": "El producto no fue vetado por la cadena"
+        },
+        {
+          "pt": "Venda nos dias seguintes, só com negociação de preço e margem",
+          "en": "Sales in the following days, with only a price and margin negotiation",
+          "es": "Venta en los días siguientes, solo con negociación de precio y margen"
+        },
+        {
+          "pt": "Negociação direta com as redes, baseada em dados",
+          "en": "Direct negotiation with the chains, based on data",
+          "es": "Negociación directa con las cadenas, basada en datos"
+        }
+      ]
+    },
+    {
+      "slug": "oportunidades-share-brasil",
+      "status": "published",
+      "kind": "customer",
+      "area": "inteligencia-pricing",
+      "date": "2026-10-14",
+      "visual": "share-opps",
+      "role": {
+        "pt": "Estratégia comercial",
+        "en": "Commercial strategy",
+        "es": "Estrategia comercial"
+      },
+      "title": {
+        "pt": "De 60% para 45% de share: o que a queda estava deixando na mesa",
+        "en": "From 60% to 45% share: what the drop was leaving on the table",
+        "es": "De 60% a 45% de share: lo que la caída estaba dejando sobre la mesa"
+      },
+      "summary": {
+        "pt": "A queda era visível; as oportunidades, não. Com Oportunidades e o Dinn Insights, o time passou a ver o que aconteceu, onde recuperar espaço e o que fazer em cada cidade e em cada estado.",
+        "en": "The drop was visible; the opportunities were not. With Opportunities and Dinn Insights, the team started to see what happened, where to win back space, and what to do in each city and each state.",
+        "es": "La caída era visible; las oportunidades, no. Con Oportunidades y Dinn Insights, el equipo pasó a ver qué ocurrió, dónde recuperar espacio y qué hacer en cada ciudad y en cada estado."
+      },
+      "problem": {
+        "quote": {
+          "pt": "O meu share caiu de 60% para 45% no Brasil inteiro e eu não entendia quais oportunidades os meus produtos estavam deixando na mesa.",
+          "en": "My share dropped from 60% to 45% across all of Brazil and I did not understand which opportunities my products were leaving on the table.",
+          "es": "Mi share cayó de 60% a 45% en todo Brasil y yo no entendía qué oportunidades estaban dejando mis productos sobre la mesa."
+        },
+        "text": {
+          "pt": "Quinze pontos de share perdidos, sem uma explicação por região. Faltava enxergar o presente: onde o espaço foi para a concorrência e o que fazer para voltar.",
+          "en": "Fifteen share points lost, with no explanation by region. What was missing was a view of the present: where the space went to the competition and what to do to get it back.",
+          "es": "Quince puntos de share perdidos, sin una explicación por región. Faltaba ver el presente: dónde el espacio pasó a la competencia y qué hacer para recuperarlo."
+        }
+      },
+      "how": [
+        {
+          "title": {
+            "pt": "Leu o que aconteceu",
+            "en": "Read what happened",
+            "es": "Leyó lo que pasó"
+          },
+          "text": {
+            "pt": "A tela de Oportunidades mostra, por estado e por cidade, onde o produto perdeu espaço para a concorrência.",
+            "en": "The Opportunities screen shows, by state and by city, where the product lost ground to the competition.",
+            "es": "La pantalla de Oportunidades muestra, por estado y por ciudad, dónde el producto perdió espacio frente a la competencia."
+          }
+        },
+        {
+          "title": {
+            "pt": "Perguntou ao Dinn Insights",
+            "en": "Asked Dinn Insights",
+            "es": "Le preguntó a Dinn Insights"
+          },
+          "text": {
+            "pt": "Com o Insights ligado ao histórico das análises de mercado, o time pergunta em linguagem natural e recebe a resposta na hora, com o recorte da tela.",
+            "en": "With Insights connected to the history of market analyses, the team asks in natural language and gets an immediate answer, scoped to what is on the screen.",
+            "es": "Con Insights conectado al historial de los análisis de mercado, el equipo pregunta en lenguaje natural y recibe la respuesta de inmediato, con el recorte de la pantalla."
+          }
+        },
+        {
+          "title": {
+            "pt": "Transformou oportunidade em ação",
+            "en": "Turned opportunity into action",
+            "es": "Convirtió la oportunidad en acción"
+          },
+          "text": {
+            "pt": "Para cada oportunidade, em cada cidade e estado, o Dinn gera ações específicas: o porquê, o como e quem é o responsável.",
+            "en": "For each opportunity, in each city and state, Dinn generates specific actions: the why, the how, and who is responsible.",
+            "es": "Para cada oportunidad, en cada ciudad y estado, Dinn genera acciones específicas: el porqué, el cómo y quién es el responsable."
+          }
+        }
+      ],
+      "solution": {
+        "title": {
+          "pt": "Um plano por praça, em vez de um número nacional",
+          "en": "A plan per market, instead of a national number",
+          "es": "Un plan por plaza, en lugar de un número nacional"
+        },
+        "text": {
+          "pt": "O time deixou de olhar para um percentual do Brasil inteiro e passou a agir praça a praça, com ações geradas a partir do que de fato aconteceu.",
+          "en": "The team stopped looking at a single percentage for all of Brazil and started acting market by market, with actions generated from what actually happened.",
+          "es": "El equipo dejó de mirar un porcentaje de todo Brasil y pasó a actuar plaza por plaza, con acciones generadas a partir de lo que realmente ocurrió."
+        },
+        "quote": {
+          "pt": "Agora eu pergunto e a resposta vem na hora, até com as ações para cada oportunidade.",
+          "en": "Now I ask and the answer comes right away, even with the actions for each opportunity.",
+          "es": "Ahora pregunto y la respuesta llega de inmediato, incluso con las acciones para cada oportunidad."
+        }
+      },
+      "outcome": [
+        {
+          "pt": "Visão do presente: o que mudou e onde",
+          "en": "A view of the present: what changed and where",
+          "es": "Visión del presente: qué cambió y dónde"
+        },
+        {
+          "pt": "Ações específicas por cidade e por estado",
+          "en": "Specific actions by city and by state",
+          "es": "Acciones específicas por ciudad y por estado"
+        },
+        {
+          "pt": "Respostas na hora sobre o histórico de mercado",
+          "en": "Immediate answers about market history",
+          "es": "Respuestas inmediatas sobre el historial de mercado"
+        }
+      ]
+    }
+  ]
+}

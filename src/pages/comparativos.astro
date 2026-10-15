@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ComparePage } from '@/components/site/offer/OfferPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.compare.meta;
+---
+
+<Layout title={title} description={description}>
+  <ComparePage client:load />
+</Layout>

@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { TrustPage } from '@/components/site/TrustPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.trust.meta;
+---
+
+<Layout title={title} description={description}>
+  <TrustPage client:load />
+</Layout>

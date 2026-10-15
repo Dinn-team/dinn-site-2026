@@ -1,0 +1,257 @@
+/* ================== MENU DE TABLET E CELULAR (<1024px) ==================
+   Botão na barra do topo + painel em tela cheia, opaco, em portal no <body>.
+   Roxo #5625F2, texto #1F2328, apoio #5A6170, bordas #E5E7EB. */
+
+/* ---- Botão hambúrguer / fechar (alvo de toque 48x48) ---- */
+.mm-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-right: -10px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.mm-toggle:focus-visible,
+.mm-row:focus-visible,
+.mm-subrow:focus-visible,
+.mm-cta:focus-visible,
+.mm-lang-btn:focus-visible,
+.mm-logo:focus-visible {
+  outline: 2px solid #5625F2;
+  outline-offset: 2px;
+}
+
+/* Três barras que viram X */
+.mm-bars {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 18px;
+}
+.mm-bars i {
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease, background 0.2s ease;
+}
+.mm-bars i:nth-child(1) { top: 0; }
+.mm-bars i:nth-child(2) { top: 8px; }
+.mm-bars i:nth-child(3) { top: 16px; }
+.mm-bars--dark i { background: #1F2328; }
+.mm-bars--x i:nth-child(1) { top: 8px; transform: rotate(45deg); }
+.mm-bars--x i:nth-child(2) { opacity: 0; }
+.mm-bars--x i:nth-child(3) { top: 8px; transform: rotate(-45deg); }
+
+/* Só aparece abaixo do desktop */
+@media (min-width: 1024px) {
+  .mm-toggle--bar { display: none; }
+}
+
+/* ---- Painel em tela cheia ---- */
+.mm-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #1F2328;
+  font-family: inherit;
+  overscroll-behavior: contain;
+  animation: mm-in 0.22s ease both;
+}
+@keyframes mm-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (min-width: 1024px) {
+  .mm-panel { display: none; }
+}
+
+.mm-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  flex-shrink: 0;
+  padding: 0 clamp(24px, 5vw, 80px);
+  padding-top: env(safe-area-inset-top);
+  box-sizing: content-box;
+  border-bottom: 1px solid #E5E7EB;
+}
+.mm-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  border-radius: 8px;
+}
+.mm-logo img { height: 32px; width: auto; display: block; }
+
+/* Coluna de conteúdo: tela cheia no celular, 560px centralizada no tablet */
+.mm-col {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .mm-col { max-width: 560px; }
+}
+
+.mm-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 8px clamp(24px, 5vw, 80px) 16px;
+}
+
+.mm-list,
+.mm-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mm-item { border-bottom: 1px solid #E5E7EB; }
+.mm-item:last-child { border-bottom: 0; }
+
+/* Linha principal (link ou botão do acordeão) */
+.mm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: #1F2328;
+  font: inherit;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-row:active { background: #F5F3FF; }
+.mm-chev {
+  flex-shrink: 0;
+  color: #5A6170;
+  transition: transform 0.25s ease;
+}
+.mm-chev.is-open { transform: rotate(90deg); color: #5625F2; }
+
+/* Acordeão de Soluções: animação de altura via grid 0fr -> 1fr */
+.mm-sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.28s ease, visibility 0s linear 0.28s;
+}
+.mm-sub.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.28s ease, visibility 0s;
+}
+.mm-sub-inner { overflow: hidden; min-height: 0; }
+.mm-sublist {
+  margin: 0 0 12px 8px;
+  padding-left: 12px;
+  border-left: 2px solid #5625F2;
+}
+.mm-subrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 8px;
+  color: #1F2328;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-subrow:active { background: #F5F3FF; }
+.mm-subrow--all { color: #5625F2; font-weight: 600; }
+.mm-subrow--all .mm-chev { color: #5625F2; }
+
+/* ---- Rodapé fixo: CTA + idioma ---- */
+.mm-foot {
+  flex-shrink: 0;
+  padding: 16px clamp(24px, 5vw, 80px);
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1px solid #E5E7EB;
+  box-shadow: 0 -8px 24px rgba(31, 35, 40, 0.06);
+}
+.mm-foot .mm-col { display: flex; flex-direction: column; gap: 14px; }
+
+.mm-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  border-radius: 14px;
+  background: #5625F2;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-cta:active { background: #4519C9; }
+
+.mm-lang {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  background: #F3F4F6;
+}
+.mm-lang-btn {
+  min-height: 48px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #5A6170;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mm-lang-btn.is-active {
+  background: #fff;
+  color: #5625F2;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.14), inset 0 0 0 1.5px #5625F2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-panel { animation: none; }
+  .mm-sub,
+  .mm-sub.is-open,
+  .mm-chev,
+  .mm-bars i { transition: none; }
+}
