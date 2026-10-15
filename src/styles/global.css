@@ -16,6 +16,7 @@
 @import "./site-platform.css";
 @import "./site-mobile-menu.css";
 @import "./site-contact.css";
+@import "./site-type-scale.css";
 
 @custom-variant dark (&:is(.dark *));
 

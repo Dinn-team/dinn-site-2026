@@ -27,7 +27,7 @@ export const TestimonialsSection = () => {
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 style={{
             fontFamily: "var(--font)",
-            fontSize: "clamp(26px, 3.4vw, 40px)",
+            fontSize: "var(--t-h2)",
             fontWeight: 600,
             color: "#2A2F36",
             letterSpacing: "-0.012em",

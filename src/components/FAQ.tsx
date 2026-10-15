@@ -14,7 +14,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
     <section id={id} style={{ padding: '96px 0', background: '#ffffff', scrollMarginTop: '40px' }}>
       <div className="wrap">
         <h2 style={{
-          fontSize: 'clamp(26px, 3.4vw, 40px)',
+          fontSize: 'var(--t-h2)',
           fontWeight: 600,
           color: '#2A2F36',
           textAlign: 'center',

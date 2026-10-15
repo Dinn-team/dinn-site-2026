@@ -91,8 +91,8 @@ function Ring({ p, active, all, onGo }: { p: number; active: number; all: boolea
               x={lx}
               y={ly + dy}
               textAnchor={anchor}
-              fontSize={17}
-              fontWeight={on ? 700 : 600}
+              fontSize={16}
+              fontWeight={on ? 600 : 500}
               fill={lit ? '#2A2F36' : '#8B91A0'}
               className="pf-node-label"
             >
@@ -101,10 +101,10 @@ function Ring({ p, active, all, onGo }: { p: number; active: number; all: boolea
           </g>
         );
       })}
-      <text x={C} y={C - 4} textAnchor="middle" fontSize={64} fontWeight={600} fill={ACCENT} style={{ fontVariantNumeric: 'tabular-nums' }}>
+      <text x={C} y={C - 4} textAnchor="middle" fontSize={56} fontWeight={500} fill={ACCENT} style={{ fontVariantNumeric: 'tabular-nums' }}>
         {all ? '↻' : String(active + 1).padStart(2, '0')}
       </text>
-      <text x={C} y={C + 30} textAnchor="middle" fontSize={19} fontWeight={600} fill="#2A2F36">
+      <text x={C} y={C + 30} textAnchor="middle" fontSize={18} fontWeight={600} fill="#2A2F36">
         {all ? (t('platformViz.cycle.loop') as string) : stages[active]?.name}
       </text>
     </svg>
