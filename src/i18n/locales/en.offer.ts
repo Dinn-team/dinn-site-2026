@@ -850,8 +850,7 @@ export const offerEn = {
       lead: "Pharmaceutical-sector companies and stories of use, told from signal to learning."
     },
     logos: {
-      title: "Companies that work with Dinn",
-      note: "Logos shown with authorization. Each relationship (customer, project or partnership) is handled case by case."
+      title: "Companies that work with Dinn"
     },
     cases: {
       title: "Stories of use",

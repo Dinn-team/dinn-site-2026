@@ -340,7 +340,6 @@
 .cl-hero .sp-lead { color: var(--on-ink-body); }
 .cl-logos { margin-top: clamp(32px, 5vw, 56px); padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; flex-wrap: wrap; align-items: center; gap: clamp(24px, 4vw, 56px); }
 .cl-logos img { height: 34px; width: auto; max-width: 150px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.88; }
-.cl-note { margin-top: 18px; font-size: 13px; color: var(--on-ink-muted); }
 
 /* ── Sobre a Dinn ──────────────────────────────────────────────────────── */
 .vz-cities { position: relative; margin: 0; aspect-ratio: 520 / 340; border-radius: 24px; background: #fff; border: 1px solid #E3E5EA; box-shadow: 0 30px 70px -44px rgba(31, 35, 40, 0.45); overflow: hidden; }

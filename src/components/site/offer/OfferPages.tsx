@@ -877,7 +877,6 @@ export function ClientsPage({ logos = [] }: { logos?: Logo[] }) {
               <img key={c.name} role="listitem" src={c.src} alt={c.name} width={c.width} height={c.height} loading="eager" decoding="async" />
             ))}
           </div>
-          <p className="cl-note">{t('clients.logos.note')}</p>
         </div>
       </header>
 

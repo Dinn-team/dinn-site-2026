@@ -850,8 +850,7 @@ export const offerEs = {
       lead: "Empresas del sector farmacéutico e historias de uso, contadas de la señal al aprendizaje."
     },
     logos: {
-      title: "Empresas que trabajan con Dinn",
-      note: "Logos exhibidos con autorización. Cada relación (cliente, proyecto o alianza) se trata caso por caso."
+      title: "Empresas que trabajan con Dinn"
     },
     cases: {
       title: "Historias de uso",
