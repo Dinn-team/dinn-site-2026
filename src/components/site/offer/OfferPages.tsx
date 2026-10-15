@@ -348,7 +348,7 @@ export function IntegrationsPage() {
           <HubDiagram
             center="Dinn"
             label={t('integrations.modalities.title') as string}
-            nodes={modalities.map((m, i) => ({ icon: [Code2, FileText, Database, Plug, Workflow][i] ?? Layers, label: m.name }))}
+            nodes={modalities.map((m, i) => ({ icon: [Code2, FileText, Database, Plug, Workflow][i] ?? Layers, label: m.name, sub: m.text }))}
           />
           <div className="vz-gap" />
           <div className="sp-grid is-three">

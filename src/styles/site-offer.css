@@ -294,15 +294,6 @@
 .vz-tile.is-amber { color: #B45309; background: rgba(245, 158, 11, 0.14); }
 @keyframes vz-breathe { 0%, 100% { opacity: 0; transform: scale(0.96); } 50% { opacity: 0.35; transform: scale(1.04); } }
 
-.vz-hub { position: relative; margin: 0; height: clamp(260px, 30vw, 340px); border-radius: 22px; border: 1px solid #E3E5EA; background: #fff; overflow: hidden; }
-.vz-hub::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(#D7DAE1 0.8px, transparent 0.8px); background-size: 16px 16px; opacity: 0.6; -webkit-mask-image: radial-gradient(#000, transparent 75%); mask-image: radial-gradient(#000, transparent 75%); }
-.vz-hub svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.vz-wire { fill: none; stroke: #D7DAE1; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
-.vz-signal { fill: none; stroke: var(--color-accent); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 10 90; stroke-dashoffset: 100; vector-effect: non-scaling-stroke; animation: vz-travel 3.2s ease-in-out var(--d, 0s) infinite; }
-@keyframes vz-travel { 0% { stroke-dashoffset: 100; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
-.vz-hub-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(92px, 11vw, 124px); aspect-ratio: 1; border-radius: 50%; color: #fff; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; letter-spacing: var(--track-title); background: linear-gradient(145deg, #5625F2, #3B14B8); box-shadow: 0 0 0 10px rgba(86, 37, 242, 0.1), 0 24px 50px -24px rgba(86, 37, 242, 0.8); }
-.vz-hub-node { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px; background: #fff; border: 1px solid #E3E5EA; box-shadow: 0 10px 24px -18px rgba(31, 35, 40, 0.4); color: var(--color-accent); white-space: nowrap; }
-.vz-hub-node strong { font-size: 14.5px; font-weight: 600; color: var(--text-main); }
 
 .vz-timeline { position: relative; padding-bottom: 26px; }
 .vz-hours { display: flex; justify-content: space-between; margin: 0 0 6px 0; padding-left: clamp(0px, 14vw, 190px); font-size: 11.5px; font-weight: 600; color: var(--text-soft); font-variant-numeric: tabular-nums; }
@@ -319,10 +310,6 @@
 @keyframes vz-sweep { from { transform: translateX(0); } to { transform: translateX(calc(min(100vw, 1160px) - clamp(110px, 14vw, 190px) - 150px)); } }
 
 @media (max-width: 760px) {
-  .vz-hub { height: auto; padding: 16px; display: grid; gap: 10px; }
-  .vz-hub::before, .vz-hub svg { display: none; }
-  .vz-hub-core { position: static; transform: none; width: 100%; aspect-ratio: auto; border-radius: 16px; padding: 14px; }
-  .vz-hub-node { position: static; transform: none; width: 100%; }
   .vz-lane { grid-template-columns: 1fr; gap: 8px; }
   .vz-hours, .vz-playhead { display: none; }
 }
@@ -391,4 +378,35 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .vz-arc-flow, .vz-halo, .ab-trust-chips li { animation: none; }
+}
+
+/* ── Hub das modalidades (Integrações) ─────────────────────────────────── */
+.vz-hub { position: relative; margin: 0; display: grid; grid-template-columns: 22% 28% minmax(0, 50%); align-items: stretch; min-height: calc(var(--rows, 5) * 76px + 40px); padding: 20px 0; border-radius: 22px; border: 1px solid #E3E5EA; background: #fff; overflow: hidden; }
+.vz-hub::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(#DCDFE5 0.8px, transparent 0.8px); background-size: 16px 16px; opacity: 0.55; -webkit-mask-image: linear-gradient(90deg, #000, transparent 70%); mask-image: linear-gradient(90deg, #000, transparent 70%); pointer-events: none; }
+.vz-hub-wires { position: absolute; left: 0; right: 0; top: 20px; bottom: 20px; width: 100%; height: calc(100% - 40px); pointer-events: none; }
+.vz-wire { fill: none; stroke: #D3D7DE; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+.vz-signal { fill: none; stroke: var(--color-accent); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 9 91; stroke-dashoffset: 100; vector-effect: non-scaling-stroke; animation: vz-travel 3.4s ease-in-out var(--d, 0s) infinite; }
+@keyframes vz-travel { 0% { stroke-dashoffset: 100; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+.vz-hub-core { position: relative; z-index: 1; grid-column: 1; align-self: center; justify-self: center; display: grid; place-items: center; width: clamp(88px, 9vw, 120px); aspect-ratio: 1; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #5625F2, #3B14B8); box-shadow: 0 24px 50px -24px rgba(86, 37, 242, 0.8); }
+.vz-hub-core strong { font-size: clamp(19px, 2vw, 25px); font-weight: 600; letter-spacing: var(--track-title); }
+.vz-hub-ring { position: absolute; inset: -12px; border-radius: 50%; border: 1px solid rgba(86, 37, 242, 0.25); animation: vz-ring 3.2s ease-in-out infinite; }
+@keyframes vz-ring { 0%, 100% { transform: scale(0.94); opacity: 0.9; } 50% { transform: scale(1.1); opacity: 0.2; } }
+.vz-hub-list { position: relative; z-index: 1; grid-column: 3; list-style: none; margin: 0; padding: 0 20px 0 0; display: grid; grid-template-rows: repeat(var(--rows, 5), 1fr); align-items: center; }
+.vz-hub-node { display: flex; align-items: center; gap: 12px; margin: 0; padding: 8px 14px; border-radius: 14px; background: #fff; border: 1px solid #E3E5EA; box-shadow: 0 10px 24px -20px rgba(31, 35, 40, 0.45); }
+.vz-hub-icon { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; color: var(--color-accent); background: rgba(86, 37, 242, 0.09); }
+.vz-hub-icon svg { width: 20px; height: 20px; }
+.vz-hub-text { min-width: 0; display: flex; flex-direction: column; }
+.vz-hub-text strong { font-size: 15px; font-weight: 600; color: var(--text-main); line-height: 1.25; }
+.vz-hub-text small { margin-top: 1px; font-size: 12.5px; line-height: 1.35; color: var(--text-soft); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (max-width: 760px) {
+  .vz-hub { grid-template-columns: 1fr; min-height: 0; padding: 20px; gap: 14px; }
+  .vz-hub::before, .vz-hub-wires { display: none; }
+  .vz-hub-core { grid-column: 1; width: 96px; }
+  .vz-hub-list { grid-column: 1; padding: 0; gap: 10px; grid-template-rows: none; }
+  .vz-hub-text small { -webkit-line-clamp: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vz-hub-ring, .vz-signal { animation: none; }
+  .vz-signal { opacity: 0; }
 }

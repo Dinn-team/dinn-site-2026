@@ -76,45 +76,51 @@ export function SplitPanels({
   );
 }
 
-/** Hub no centro com caminhos até cada modalidade (5 nós, 2 à esquerda e 3 à
- *  direita). Os sinais correm pelas linhas. */
-export function HubDiagram({ center, nodes, label }: { center: string; nodes: { icon: IconType; label: string }[]; label: string }) {
-  // posições em % do quadro: [x, y]
-  const POS: [number, number][] = [[14, 20], [14, 80], [86, 14], [86, 50], [86, 86]];
+/** Hub à esquerda e as modalidades em fila à direita, cada uma ligada por um
+ *  caminho. As linhas ficam numa camada própria (nunca por cima do texto) e os
+ *  sinais correm do hub até cada cartão. No celular vira uma lista simples. */
+export function HubDiagram({
+  center, nodes, label,
+}: {
+  center: string;
+  nodes: { icon: IconType; label: string; sub?: string }[];
+  label: string;
+}) {
+  const n = nodes.length;
   return (
-    <figure className="vz-hub" aria-label={label}>
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        {nodes.slice(0, 5).map((_, i) => {
-          const [x, y] = POS[i];
-          const d = `M${x} ${y} C ${x < 50 ? 34 : 66} ${y}, ${x < 50 ? 38 : 62} 50, 50 50`;
+    <figure className="vz-hub" aria-label={label} style={{ ['--rows' as string]: n }}>
+      <svg className="vz-hub-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {nodes.map((_, i) => {
+          const y = ((i + 0.5) / n) * 100;
+          const d = `M11 50 C 26 50, 36 ${y}, 50 ${y}`;
           return (
             <g key={i}>
               <path className="vz-wire" d={d} />
-              <path className="vz-signal" d={d} pathLength={100} style={{ ['--d' as string]: `${i * 0.5}s` }} />
+              <path className="vz-signal" d={d} pathLength={100} style={{ ['--d' as string]: `${i * 0.45}s` }} />
             </g>
           );
         })}
       </svg>
-      <div className="vz-hub-core">
-        <span>{center}</span>
+
+      <div className="vz-hub-core" aria-hidden="true">
+        <span className="vz-hub-ring" />
+        <strong>{center}</strong>
       </div>
-      {nodes.slice(0, 5).map((n, i) => {
-        const Icon = n.icon;
-        const [x, y] = POS[i];
-        return (
-          <motion.div
-            key={n.label}
-            className="vz-hub-node"
-            style={{ left: `${x}%`, top: `${y}%` }}
-            {...reveal(i)}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-          >
-            <Icon size={18} aria-hidden="true" strokeWidth={1.8} />
-            <strong>{n.label}</strong>
-          </motion.div>
-        );
-      })}
+
+      <ul className="vz-hub-list">
+        {nodes.map((nd, i) => {
+          const Icon = nd.icon;
+          return (
+            <motion.li key={nd.label} className="vz-hub-node" {...reveal(i)}>
+              <span className="vz-hub-icon"><Icon size={20} aria-hidden="true" strokeWidth={1.8} /></span>
+              <span className="vz-hub-text">
+                <strong>{nd.label}</strong>
+                {nd.sub && <small>{nd.sub}</small>}
+              </span>
+            </motion.li>
+          );
+        })}
+      </ul>
     </figure>
   );
 }
