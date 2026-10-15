@@ -796,7 +796,7 @@ export function AboutPage() {
       </section>
 
       <section className="sp-section" aria-labelledby="ab-company">
-        <div className="wrap" style={{ maxWidth: 980 }}>
+        <div className="wrap">
           <SectionHead id="ab-company" title={t('about.company.title')} />
           <ul className="ab-facts">
             {company.map(([label, value], i) => {
@@ -804,10 +804,8 @@ export function AboutPage() {
               return (
                 <li key={label}>
                   <IconTile icon={Icon} />
-                  <div>
-                    <span>{label}</span>
-                    <strong>{value}</strong>
-                  </div>
+                  <p className="ab-label">{label}</p>
+                  <p className="ab-value">{value}</p>
                 </li>
               );
             })}

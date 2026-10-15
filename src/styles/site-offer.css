@@ -353,10 +353,6 @@
 
 .ab-city { position: relative; overflow: hidden; }
 .ab-city::after { content: ''; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(86, 37, 242, 0.1), transparent 70%); }
-.ab-facts { list-style: none; display: grid; gap: 12px; }
-.ab-facts li { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 18px; background: #fff; border: 1px solid #E3E5EA; }
-.ab-facts span { display: block; font-size: 12.5px; font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--text-soft); }
-.ab-facts strong { display: block; margin-top: 2px; font-size: clamp(16px, 1.6vw, 19px); font-weight: 600; color: var(--text-main); line-height: 1.4; overflow-wrap: anywhere; }
 
 .ab-trust { background: var(--ink-deep); color: #fff; padding: clamp(48px, 6vw, 88px) 0; position: relative; overflow: hidden; isolation: isolate; }
 .ab-trust::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 50% 80% at 85% 50%, rgba(86, 37, 242, 0.32), transparent 70%); }
@@ -409,4 +405,17 @@
 @media (prefers-reduced-motion: reduce) {
   .vz-hub-ring, .vz-signal { animation: none; }
   .vz-signal { opacity: 0; }
+}
+
+/* Dados da empresa: um painel só, três colunas separadas por fios */
+.ab-facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.5fr); border: 1px solid #E3E5EA; border-radius: 22px; background: #fff; overflow: hidden; }
+.ab-facts li { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: clamp(18px, 2.4vw, 28px); }
+.ab-facts li + li { border-left: 1px solid #ECEEF2; }
+.ab-facts .vz-tile { width: 40px; height: 40px; margin-bottom: 8px; border-radius: 12px; }
+.ab-facts .vz-tile::after { display: none; }
+.ab-label { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--text-soft); }
+.ab-value { margin: 0; font-size: clamp(15.5px, 1.35vw, 17.5px); font-weight: 500; line-height: 1.5; color: var(--text-main); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) {
+  .ab-facts { grid-template-columns: 1fr; }
+  .ab-facts li + li { border-left: 0; border-top: 1px solid #ECEEF2; }
 }
