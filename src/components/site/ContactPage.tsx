@@ -14,7 +14,7 @@ import {
   type ContactValues,
 } from '@/lib/contact-form';
 
-type Errors = Partial<Record<'name' | 'email' | 'company' | 'consent', string>>;
+type Errors = Partial<Record<'name' | 'email' | 'company' | 'role' | 'decision' | 'interest' | 'plan' | 'features' | 'consent', string>>;
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
 const EMPTY: ContactValues = { email: '', company: '', role: '', decision: '', name: '', interest: '', plan: '', features: [], context: '' };
@@ -54,10 +54,13 @@ export function ContactPage() {
   }, []);
 
   const toggleFeature = (value: string) =>
-    setValues((v) => ({
-      ...v,
-      features: v.features.includes(value) ? v.features.filter((f) => f !== value) : [...v.features, value],
-    }));
+    {
+      setValues((v) => ({
+        ...v,
+        features: v.features.includes(value) ? v.features.filter((f) => f !== value) : [...v.features, value],
+      }));
+      if (errors.features) setErrors((er) => ({ ...er, features: undefined }));
+    }
 
   const set = (key: keyof ContactValues) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [key]: e.target.value }));
@@ -66,15 +69,23 @@ export function ContactPage() {
 
   const pick = (key: 'role' | 'decision') => (value: string) => {
     setValues((v) => ({ ...v, [key]: value }));
+    if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
   };
 
   const validate = (): Errors => {
     const er: Errors = {};
+    const choice = t('contact.errors.requiredChoice') as string;
+    // na ordem em que aparecem na tela: o primeiro erro recebe o foco
     if (!values.name.trim()) er.name = t('contact.errors.required') as string;
+    if (!values.company.trim()) er.company = t('contact.errors.required') as string;
     if (!values.email.trim()) er.email = t('contact.errors.required') as string;
     else if (!isValidEmail(values.email)) er.email = t('contact.errors.emailInvalid') as string;
     else if (isPersonalEmail(values.email)) er.email = t('contact.errors.emailPersonal') as string;
-    if (!values.company.trim()) er.company = t('contact.errors.required') as string;
+    if (!values.interest) er.interest = t('contactMore.requiredInterest') as string;
+    if (values.interest === 'plano' && !values.plan) er.plan = choice;
+    if (values.interest === 'funcionalidade' && values.features.length === 0) er.features = choice;
+    if (!values.role) er.role = choice;
+    if (!values.decision) er.decision = choice;
     if (!consent) er.consent = t('contact.errors.consent') as string;
     return er;
   };
@@ -209,8 +220,14 @@ export function ContactPage() {
                 </div>
 
                 <fieldset className="ct-interest">
-                  <legend>{t('contactMore.interest.label')} <span className="ct-optional">{t('contact.form.optional')}</span></legend>
-                  <div className="ct-chips" role="radiogroup" id="ct-interest">
+                  <legend>{t('contactMore.interest.label')}</legend>
+                  <div
+                    className={`ct-chips ${errors.interest ? 'is-invalid' : ''}`}
+                    role="radiogroup"
+                    id="ct-interest"
+                    tabIndex={-1}
+                    aria-describedby={errors.interest ? 'ct-interest-err' : undefined}
+                  >
                     {interests.map((o) => (
                       <label key={o.value} className={`ct-chip ${values.interest === o.value ? 'is-on' : ''}`} title={o.hint}>
                         <input
@@ -218,31 +235,36 @@ export function ContactPage() {
                           name="interest"
                           value={o.value}
                           checked={values.interest === o.value}
-                          onChange={() => setValues((v) => ({ ...v, interest: o.value }))}
+                          onChange={() => {
+                            setValues((v) => ({ ...v, interest: o.value }));
+                            if (errors.interest) setErrors((er) => ({ ...er, interest: undefined }));
+                          }}
                         />
                         {o.label}
                       </label>
                     ))}
                   </div>
+                  {err('interest')}
 
                   {values.interest === 'plano' && (
                     <div className="ct-sub" role="radiogroup" aria-label={t('contactMore.plan.label') as string}>
                       <p className="ct-sub-label">{t('contactMore.plan.label')}</p>
-                      <div className="ct-chips">
+                      <div className={`ct-chips ${errors.plan ? 'is-invalid' : ''}`} id="ct-plan" tabIndex={-1}>
                         {plans.map((o) => (
                           <label key={o.value} className={`ct-chip ${values.plan === o.value ? 'is-on' : ''}`}>
-                            <input type="radio" name="plan" value={o.value} checked={values.plan === o.value} onChange={() => setValues((v) => ({ ...v, plan: o.value }))} />
+                            <input type="radio" name="plan" value={o.value} checked={values.plan === o.value} onChange={() => { setValues((v) => ({ ...v, plan: o.value })); if (errors.plan) setErrors((er) => ({ ...er, plan: undefined })); }} />
                             {o.label}
                           </label>
                         ))}
                       </div>
+                      {err('plan')}
                     </div>
                   )}
 
                   {values.interest === 'funcionalidade' && (
                     <div className="ct-sub" role="group" aria-label={t('contactMore.features.label') as string}>
                       <p className="ct-sub-label">{t('contactMore.features.label')} <span className="ct-optional">{t('contactMore.features.hint')}</span></p>
-                      <div className="ct-chips">
+                      <div className={`ct-chips ${errors.features ? 'is-invalid' : ''}`} id="ct-features" tabIndex={-1}>
                         {featureOptions.map((o) => (
                           <label key={o.value} className={`ct-chip ${values.features.includes(o.value) ? 'is-on' : ''}`}>
                             <input type="checkbox" value={o.value} checked={values.features.includes(o.value)} onChange={() => toggleFeature(o.value)} />
@@ -250,38 +272,45 @@ export function ContactPage() {
                           </label>
                         ))}
                       </div>
+                      {err('features')}
                     </div>
                   )}
                 </fieldset>
 
                 <div className="ct-row">
                   <div className="ct-field">
-                    <label htmlFor="ct-role">{t('contact.form.role')} <span className="ct-optional">{t('contact.form.optional')}</span></label>
+                    <label htmlFor="ct-role">{t('contact.form.role')}</label>
                     <Select
                       id="ct-role"
                       value={values.role}
                       onChange={pick('role')}
                       options={roles}
                       placeholder={t('contact.form.choose') as string}
+                      invalid={Boolean(errors.role)}
+                      describedBy={errors.role ? 'ct-role-err' : undefined}
                     />
+                    {err('role')}
                   </div>
                   <div className="ct-field">
-                    <label htmlFor="ct-decision">{t('contact.form.decision')} <span className="ct-optional">{t('contact.form.optional')}</span></label>
+                    <label htmlFor="ct-decision">{t('contact.form.decision')}</label>
                     <Select
                       id="ct-decision"
                       value={values.decision}
                       onChange={pick('decision')}
                       options={decisions}
                       placeholder={t('contact.form.choose') as string}
+                      invalid={Boolean(errors.decision)}
+                      describedBy={errors.decision ? 'ct-decision-err' : undefined}
                       align="end"
                     />
+                    {err('decision')}
                   </div>
                 </div>
 
                 {more ? (
                   <div className="ct-field">
                     <label htmlFor="ct-context">
-                      {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
+                      {t('contactMore.context.label')}
                     </label>
                     <textarea
                       id="ct-context"
@@ -294,7 +323,7 @@ export function ContactPage() {
                   </div>
                 ) : (
                   <button type="button" className="ct-more" onClick={() => setMore(true)} aria-expanded="false">
-                    + {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
+                    + {t('contactMore.context.label')}
                   </button>
                 )}
 

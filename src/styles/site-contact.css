@@ -109,3 +109,7 @@
 .ct-more .ct-optional { font-weight: 400; }
 .ct-more:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
 .ct-field textarea { padding: 10px 14px; }
+
+/* Grupos de escolha sem seleção: bordas em vermelho */
+.ct-chips.is-invalid .ct-chip { border-color: #C2410C; }
+.ct-chips:focus { outline: none; }
