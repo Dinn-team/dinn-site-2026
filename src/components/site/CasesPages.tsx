@@ -9,7 +9,7 @@ import { useScrollProgress } from '@/components/home/useScrollProgress';
 import { scrollToStage } from '@/components/home/scroll-to';
 import { StageSteps } from './StageSteps';
 import data from '@/data/cases.json';
-import { PageCta, PageHero } from './PageShell';
+import { ImageHero, PageCta, PageHero } from './PageShell';
 import { getCaseScene } from './CaseScenes';
 
 // Galeria de casos de uso e página de cada caso, contada como história:
@@ -79,11 +79,14 @@ export function CasesGallery() {
 
   return (
     <div className="sp">
-      <PageHero
-        eyebrow={t('cases.hero.eyebrow')}
-        title={t('cases.hero.title')}
-        lead={t('cases.hero.lead')}
-        back={{ label: t('changelog.back'), href: PATHS.resources }}
+      <ImageHero
+        src="/recursos/casos-capa.webp"
+        position="50% 40%"
+        align="left"
+        eyebrow={t('cases.hero.eyebrow') as string}
+        title={t('cases.hero.title') as string}
+        lead={t('cases.hero.lead') as string}
+        back={{ label: t('changelog.back') as string, href: PATHS.resources }}
       />
       <section className="sp-section" aria-label={t('cases.hero.eyebrow')}>
         <div className="wrap">

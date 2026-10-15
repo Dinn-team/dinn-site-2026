@@ -3,16 +3,6 @@
    partes com uma demo cada. Tema claro; prefixo pf-.
    ========================================================================== */
 
-/* ── Capa: a imagem sozinha, sem texto por cima ─────────────────────────── */
-.pf-top { background: #fff; }
-/* fundo claro de propósito: o menu fixo escolhe o logo escuro sobre ele */
-/* Capa: fundo escuro (o menu usa o logo branco, como na home) e um véu escuro
-   leve no topo para o menu ler bem sobre o céu claro da imagem. */
-.pf-cover { position: relative; background: #16191D; line-height: 0; }
-.pf-cover::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(10, 18, 30, 0.62) 0, rgba(10, 18, 30, 0.3) 64px, rgba(10, 18, 30, 0) 160px); }
-.pf-cover img { display: block; width: 100%; height: clamp(240px, 36vw, 460px); object-fit: cover; object-position: center 36%; }
-.pf-top .sp-hero { padding-top: clamp(32px, 4vw, 56px); }
-
 /* ── Ciclo: anel preso à tela ───────────────────────────────────────────── */
 .pf-cycle { position: relative; height: 600vh; background: linear-gradient(180deg, #fff 0%, #F6F3FF 100%); }
 .pf-cycle-sticky {

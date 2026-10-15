@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { PATHS } from '@/lib/site-map';
-import { PageCta, PageHero } from './PageShell';
+import { ImageHero, PageCta, PageHero } from './PageShell';
 
 // ── Hub de Recursos: capa humanizada e três portas de entrada ─────────────
 // Blog (artigos, guias e temas), Casos de clientes (histórias documentadas) e
@@ -110,25 +110,16 @@ export function ResourcesHub() {
 
   return (
     <div className="sp">
-      <header>
-        {/* Capa: só a imagem, sem texto por cima. O título vem logo abaixo. */}
-        <div className="rc-cover">
-          <img
-            className="rc-cover-img"
-            src="/recursos/capa.webp"
-            width={1671}
-            height={941}
-            alt=""
-            fetchPriority="high"
-            decoding="async"
-          />
-        </div>
-        <div className="wrap rc-head">
-          <p className="sp-eyebrow">{t('resources.hero.eyebrow')}</p>
-          <h1 className="sp-title"><Rich text={t('resources.hero.title') as string} /></h1>
-          <p className="sp-lead">{t('resources.hero.lead')}</p>
-        </div>
-      </header>
+      {/* Capa: a foto do laboratório e do centro de distribuição, com o texto
+          à direita, na faixa de armazém, para não cobrir as pessoas à esquerda. */}
+      <ImageHero
+        src="/recursos/capa.webp"
+        position="50% 40%"
+        align="right"
+        eyebrow={t('resources.hero.eyebrow') as string}
+        title={t('resources.hero.title') as string}
+        lead={t('resources.hero.lead') as string}
+      />
 
       <section className="sp-section rc-menu" aria-label={t('resources.hero.eyebrow')}>
         <div className="wrap">
