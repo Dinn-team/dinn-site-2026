@@ -15,7 +15,7 @@ import { PageCta, PageHero, SectionHead } from '../PageShell';
 import { AreaCard, type Area } from '../SolutionsPages';
 import { publishedCases } from '../CasesPages';
 import { RealtimeStage } from './RealtimeScene';
-import { FlowChain, HubDiagram, IconTile, ReadingsTimeline, SplitPanels } from './FlowViz';
+import { CityLink, FlowChain, HubDiagram, IconTile, ReadingsTimeline, SplitPanels, StatStrip } from './FlowViz';
 
 // Páginas de produto e oferta da rodada de 15/10/2026. Cada uma lê os textos
 // do dicionário (offer*) e usa as peças comuns de PageShell e site-pages.css.
@@ -431,6 +431,9 @@ export function PlansPage() {
               <div key={p.name} className="of-tier">
                 <h3>{p.name}</h3>
                 <p>{p.text}</p>
+                <a className="sp-area-go" href={contactUrl(`plano-${p.name.toLowerCase()}`)}>
+                  {t('contactMore.tierCta')}<ArrowRight size={15} aria-hidden="true" />
+                </a>
               </div>
             ))}
           </div>
@@ -721,18 +724,58 @@ export function AboutPage() {
   const places = (t('about.where.items') as Place[]) ?? [];
   const company = (t('about.company.rows') as string[][]) ?? [];
   const contacts = (t('about.contact.items') as ContactItem[]) ?? [];
+  const stages = (t('inside.stages') as { name: string; title: string }[]) ?? [];
+  const stats = t('aboutMore.stats') as unknown as { title: string; items: { value: number; suffix?: string; label: string }[] };
+  const principles = t('aboutMore.principles') as unknown as { title: string; intro: string; items: Info[] };
+  const chips = (t('aboutMore.trustBand.chips') as string[]) ?? [];
+  const map = t('aboutMore.map') as unknown as { aria: string; brazil: string; spain: string; label: string };
+  const companyIcons = [Building2, FileText, MapPin];
+  const contactIcons = [Send, Headset, FileCheck2];
 
   return (
     <div className="sp">
-      <PageHero
-        eyebrow={t('about.hero.eyebrow') as string}
-        title={t('about.hero.title') as string}
-        lead={t('about.hero.lead') as string}
-      />
+      <header className="sp-hero tr-hero">
+        <div className="wrap tr-hero-grid">
+          <div>
+            <p className="sp-eyebrow">{t('about.hero.eyebrow')}</p>
+            <h1 className="sp-title"><Rich text={t('about.hero.title') as string} /></h1>
+            <p className="sp-lead">{t('about.hero.lead')}</p>
+          </div>
+          <CityLink
+            from={{ city: places[0]?.city ?? 'Joinville', country: map.brazil }}
+            to={{ city: places[1]?.city ?? 'Valência', country: map.spain }}
+            label={map.label}
+            aria={map.aria}
+          />
+        </div>
+      </header>
 
       <section className="sp-section" aria-labelledby="ab-what">
-        <div className="wrap" style={{ maxWidth: 820 }}>
+        <div className="wrap">
           <SectionHead id="ab-what" title={t('about.what.title')} intro={t('about.what.text')} />
+          <FlowChain
+            title={t('aboutMore.how.title') as string}
+            nodes={stages.map((s, i) => ({
+              icon: [Eye, FileCheck2, Search, Layers, Send, RefreshCw][i] ?? Layers,
+              title: s.name,
+              sub: s.title,
+              tone: i === 3 ? ('main' as const) : undefined,
+            }))}
+          />
+          <p className="sp-note">{t('aboutMore.how.intro')}</p>
+        </div>
+      </section>
+
+      <section className="sp-section is-alt" aria-label={stats.title}>
+        <div className="wrap">
+          <StatStrip title={stats.title} items={stats.items} />
+        </div>
+      </section>
+
+      <section className="sp-section" aria-labelledby="ab-principles">
+        <div className="wrap">
+          <SectionHead id="ab-principles" title={principles.title} intro={principles.intro} />
+          <CardGrid items={principles.items} icons={[Eye, Layers, FileCheck2, Clock]} />
         </div>
       </section>
 
@@ -740,8 +783,9 @@ export function AboutPage() {
         <div className="wrap">
           <SectionHead id="ab-where" title={t('about.where.title')} />
           <div className="sp-grid is-two">
-            {places.map((p) => (
-              <article key={p.city} className="sp-card">
+            {places.map((p, i) => (
+              <article key={p.city} className="sp-card ab-city">
+                <IconTile icon={MapPin} tone={i === 0 ? 'brand' : 'green'} />
                 <h3>{p.city}</h3>
                 <p className="sp-meta">{p.country}</p>
                 <p>{p.text}</p>
@@ -752,16 +796,22 @@ export function AboutPage() {
       </section>
 
       <section className="sp-section" aria-labelledby="ab-company">
-        <div className="wrap" style={{ maxWidth: 900 }}>
+        <div className="wrap" style={{ maxWidth: 980 }}>
           <SectionHead id="ab-company" title={t('about.company.title')} />
-          <dl className="of-company">
-            {company.map(([label, value]) => (
-              <div key={label} style={{ display: 'contents' }}>
-                <dt>{label}</dt>
-                <dd>{value}</dd>
-              </div>
-            ))}
-          </dl>
+          <ul className="ab-facts">
+            {company.map(([label, value], i) => {
+              const Icon = companyIcons[i] ?? Building2;
+              return (
+                <li key={label}>
+                  <IconTile icon={Icon} />
+                  <div>
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
@@ -769,8 +819,9 @@ export function AboutPage() {
         <div className="wrap">
           <SectionHead id="ab-contact" title={t('about.contact.title')} />
           <div className="sp-grid is-three">
-            {contacts.map((c) => (
+            {contacts.map((c, i) => (
               <a key={c.title} className="sp-card" href={c.href}>
+                <IconTile icon={contactIcons[i] ?? Send} />
                 <h3>{c.title}</h3>
                 <p>{c.text}</p>
                 <span className="sp-area-go">{c.cta}<ArrowRight size={15} aria-hidden="true" /></span>
@@ -780,12 +831,25 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="sp-section" aria-labelledby="ab-trust">
-        <div className="wrap sp-split">
-          <SectionHead id="ab-trust" title={t('about.trust.title')} intro={t('about.trust.text')} />
-          <p className="sp-more"><a href={PATHS.trust}>{t('about.trust.cta')} →</a></p>
+      <section className="ab-trust" aria-labelledby="ab-trust">
+        <div className="wrap ab-trust-inner">
+          <div>
+            <h2 id="ab-trust">{t('about.trust.title')}</h2>
+            <p>{t('about.trust.text')}</p>
+            <a className="btn btn-on-dark btn-lg" href={PATHS.trust}>{t('about.trust.cta')}<ArrowRight size={18} aria-hidden="true" /></a>
+          </div>
+          <ul className="ab-trust-chips" aria-hidden="true">
+            {chips.map((c, i) => <li key={c} style={{ ['--i' as string]: i }}>{c}</li>)}
+          </ul>
         </div>
       </section>
+
+      <PageCta
+        title={t('pageCta.title')}
+        desc={t('pageCta.desc')}
+        button={t('pageCta.button')}
+        origin="sobre"
+      />
     </div>
   );
 }

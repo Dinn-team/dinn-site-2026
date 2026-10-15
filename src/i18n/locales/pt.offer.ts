@@ -860,6 +860,86 @@ export const offerPt = {
     voices: { title: "O que dizem quem usa" }
   },
 
+  // ── Contato: perfil do pedido (o que a pessoa quer contratar) ─────────────
+  contactMore: {
+    interest: {
+      label: "O que você quer fazer?",
+      options: [
+        { value: "conhecer", label: "Conhecer a Dinn", hint: "Ver a plataforma com o meu portfólio" },
+        { value: "plano", label: "Contratar um plano", hint: "Starter, Essential ou Professional" },
+        { value: "funcionalidade", label: "Usar funcionalidades específicas", hint: "Tempo real, histórico, alertas…" },
+        { value: "integracao", label: "Levar os dados ao meu ambiente", hint: "API, arquivos, BI ou Dinn Conecta" },
+        { value: "pesquisa", label: "Encomendar uma pesquisa", hint: "Estudo ou projeto especial" }
+      ]
+    },
+    plan: {
+      label: "Qual plano parece mais próximo?",
+      options: [
+        { value: "starter", label: "Starter" },
+        { value: "essential", label: "Essential" },
+        { value: "professional", label: "Professional" },
+        { value: "nao_sei", label: "Ainda não sei" }
+      ]
+    },
+    features: {
+      label: "Quais funcionalidades interessam?",
+      hint: "Marque quantas quiser.",
+      options: [
+        { value: "tempo_real", label: "Estoque em tempo real" },
+        { value: "estimado", label: "Estoque estimado" },
+        { value: "historico", label: "Histórico e visões salvas" },
+        { value: "giro_preco", label: "Giro, preço e concorrência" },
+        { value: "distribuicao", label: "Distribuição" },
+        { value: "insights", label: "Insights" },
+        { value: "alertas", label: "Alertas e rotinas" },
+        { value: "exportacoes", label: "Exportações, API e MCP" }
+      ]
+    },
+    context: {
+      label: "Quer contar mais?",
+      optional: "(opcional)",
+      placeholder: "Produtos, redes, países ou o que já tentou."
+    },
+    requiredInterest: "Escolha uma opção.",
+    doneBy: {
+      conhecer: "Vamos preparar uma conversa curta com o seu portfólio e as suas regiões.",
+      plano: "Vamos montar a proposta a partir do recorte validado, com o comparativo do plano que você indicou.",
+      funcionalidade: "Vamos mostrar as funcionalidades que você marcou, já com o seu recorte.",
+      integracao: "Vamos entender origem, destino e frequência dos dados antes de propor o caminho de entrega.",
+      pesquisa: "Vamos avaliar a viabilidade e o escopo do estudo antes de combinar método, entrega e prazo."
+    },
+    tierCta: "Conversar sobre este plano"
+  },
+
+  // ── Sobre a Dinn: blocos gráficos ─────────────────────────────────────────
+  aboutMore: {
+    map: { aria: "Ligação entre Joinville, no Brasil, e Valência, na Espanha.", brazil: "Brasil", spain: "Espanha", label: "Duas cidades, um só time" },
+    how: {
+      title: "Como a Dinn trabalha",
+      intro: "Do sinal solto à ação registrada, sempre com origem, data e limite."
+    },
+    stats: {
+      title: "A Dinn em poucos fatos",
+      items: [
+        { value: 2, suffix: "", label: "cidades: Joinville e Valência" },
+        { value: 6, suffix: "", label: "áreas atendidas, do Trade ao SAC" },
+        { value: 3, suffix: "", label: "idiomas no site: português, inglês e espanhol" },
+        { value: 30, suffix: " dias", label: "para implantar, depois do escopo acordado" }
+      ]
+    },
+    principles: {
+      title: "Como a gente trabalha",
+      intro: "Quatro compromissos que aparecem em cada página e em cada conversa.",
+      items: [
+        { title: "Origem, data e limite", text: "Cada número diz de onde veio, quando foi observado e até onde vale." },
+        { title: "A decisão é da equipe", text: "A Dinn prepara a leitura e sugere o próximo passo. Quem decide e executa é a sua equipe." },
+        { title: "Direitos de uso respeitados", text: "Fontes de terceiros entram com licença, autorização e escopo acordados." },
+        { title: "Começar pequeno, com prazo", text: "Um objetivo, um recorte e implantação em até 30 dias depois do escopo acordado." }
+      ]
+    },
+    trustBand: { chips: ["Origem", "Data", "Limite"] }
+  },
+
   // ── Confiança: blocos novos ───────────────────────────────────────────────
   trustMore: {
     accuracy: {

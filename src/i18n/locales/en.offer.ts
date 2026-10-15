@@ -861,6 +861,86 @@ export const offerEn = {
     voices: { title: "What users say" }
   },
 
+  // ── Contact: request profile (what the person wants to hire) ──────────────
+  contactMore: {
+    interest: {
+      label: "What do you want to do?",
+      options: [
+        { value: "conhecer", label: "Get to know Dinn", hint: "See the platform with my portfolio" },
+        { value: "plano", label: "Hire a plan", hint: "Starter, Essential or Professional" },
+        { value: "funcionalidade", label: "Use specific features", hint: "Real time, history, alerts…" },
+        { value: "integracao", label: "Bring the data to my environment", hint: "API, files, BI or Dinn Conecta" },
+        { value: "pesquisa", label: "Commission a study", hint: "Study or special project" }
+      ]
+    },
+    plan: {
+      label: "Which plan feels closest?",
+      options: [
+        { value: "starter", label: "Starter" },
+        { value: "essential", label: "Essential" },
+        { value: "professional", label: "Professional" },
+        { value: "nao_sei", label: "Not sure yet" }
+      ]
+    },
+    features: {
+      label: "Which features are you interested in?",
+      hint: "Pick as many as you like.",
+      options: [
+        { value: "tempo_real", label: "Real-time stock" },
+        { value: "estimado", label: "Estimated stock" },
+        { value: "historico", label: "History and saved views" },
+        { value: "giro_preco", label: "Sell-through, price and competition" },
+        { value: "distribuicao", label: "Distribution" },
+        { value: "insights", label: "Insights" },
+        { value: "alertas", label: "Alerts and routines" },
+        { value: "exportacoes", label: "Exports, API and MCP" }
+      ]
+    },
+    context: {
+      label: "Want to tell us more?",
+      optional: "(optional)",
+      placeholder: "Products, chains, countries or what you have already tried."
+    },
+    requiredInterest: "Choose an option.",
+    doneBy: {
+      conhecer: "We will prepare a short conversation with your portfolio and your regions.",
+      plano: "We will build the proposal from the validated scope, with the comparison of the plan you indicated.",
+      funcionalidade: "We will show the features you picked, already with your scope.",
+      integracao: "We will understand the source, destination and frequency of the data before proposing the delivery path.",
+      pesquisa: "We will assess the feasibility and scope of the study before agreeing method, delivery and timeline."
+    },
+    tierCta: "Talk about this plan"
+  },
+
+  // ── About Dinn: graphic blocks ────────────────────────────────────────────
+  aboutMore: {
+    map: { aria: "Link between Joinville, in Brazil, and Valencia, in Spain.", brazil: "Brazil", spain: "Spain", label: "Two cities, one team" },
+    how: {
+      title: "How Dinn works",
+      intro: "From the loose signal to the recorded action, always with source, date and limit."
+    },
+    stats: {
+      title: "Dinn in a few facts",
+      items: [
+        { value: 2, suffix: "", label: "cities: Joinville and Valencia" },
+        { value: 6, suffix: "", label: "areas served, from Trade to customer service" },
+        { value: 3, suffix: "", label: "site languages: Portuguese, English and Spanish" },
+        { value: 30, suffix: " days", label: "to deploy, after the scope is agreed" }
+      ]
+    },
+    principles: {
+      title: "How we work",
+      intro: "Four commitments that show up on every page and in every conversation.",
+      items: [
+        { title: "Source, date and limit", text: "Every number says where it came from, when it was observed and how far it holds." },
+        { title: "The decision is the team's", text: "Dinn prepares the reading and suggests the next step. Your team decides and executes." },
+        { title: "Usage rights respected", text: "Third-party sources come in with agreed licensing, authorization and scope." },
+        { title: "Start small, with a deadline", text: "One goal, one scope and deployment within 30 days after the scope is agreed." }
+      ]
+    },
+    trustBand: { chips: ["Source", "Date", "Limit"] }
+  },
+
   // ── Trust: new blocks ─────────────────────────────────────────────────────
   trustMore: {
     accuracy: {

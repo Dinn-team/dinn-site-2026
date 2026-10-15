@@ -40,3 +40,18 @@ Menu novo: Plataforma · Soluções · Clientes · Recursos · Planos · A Dinn 
 8. **Idioma:** o espanhol do site é latino-americano (es-419). O MD pede espanhol de Espanha para Valência; decidir o público.
 9. **Clay:** o documento Clay ainda atribui execução ao Conecta; reconciliar no OS.
 10. **Materiais ricos e SEO (seção 13):** nenhum material foi anunciado; só entra quando existir.
+
+## Contato: perfil do pedido (HubSpot)
+
+O formulário `/contato` agora pergunta o que a pessoa quer fazer (conhecer, contratar plano, funcionalidades, integração, pesquisa) e, conforme a escolha, o plano de interesse, as funcionalidades e um texto livre. O link que traz a pessoa já deixa a opção marcada (`?origem=plano-essential`, `localizador`, `integracoes`, `pesquisas`…).
+
+Propriedades de contato a criar no HubSpot e incluir no formulário (nomes em `src/lib/contact-form.ts`, `FIELDS`):
+
+| Propriedade | Tipo | Valores |
+|---|---|---|
+| `dinn_tipo_contratacao` | lista | `conhecer`, `plano`, `funcionalidade`, `integracao`, `pesquisa` |
+| `dinn_plano_interesse` | lista | `starter`, `essential`, `professional`, `nao_sei` |
+| `dinn_funcionalidades_interesse` | seleção múltipla | `tempo_real`, `estimado`, `historico`, `giro_preco`, `distribuicao`, `insights`, `alertas`, `exportacoes` |
+| `dinn_contexto_pedido` | texto | até 500 caracteres |
+
+Sem essas propriedades no formulário do HubSpot, o envio pode ser recusado: criar antes de publicar.

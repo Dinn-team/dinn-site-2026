@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, CheckCircle2, MailCheck } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
@@ -6,6 +6,7 @@ import { DEMO_URL } from '@/lib/links';
 import { Select, type SelectOption } from '@/components/ui/Select';
 import {
   buildPayload,
+  interestFromSearch,
   isPersonalEmail,
   isValidEmail,
   readUtm,
@@ -13,10 +14,12 @@ import {
   type ContactValues,
 } from '@/lib/contact-form';
 
-type Errors = Partial<Record<'email' | 'company' | 'role' | 'decision' | 'consent', string>>;
+type Errors = Partial<Record<'email' | 'company' | 'role' | 'decision' | 'interest' | 'consent', string>>;
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
-const EMPTY: ContactValues = { email: '', company: '', role: '', decision: '', name: '' };
+const EMPTY: ContactValues = { email: '', company: '', role: '', decision: '', name: '', interest: '', plan: '', features: [], context: '' };
+
+type Option = { value: string; label: string; hint?: string };
 
 // Página /contato: formulário padrão que alimenta o HubSpot como primeira
 // camada do funil (estágio "Captado"). Quatro campos obrigatórios, nome
@@ -35,6 +38,25 @@ export function ContactPage() {
   const decisions = (t('contact.form.decisions') as SelectOption[]) ?? [];
   const steps = (t('contact.after.steps') as { title: string; text: string }[]) ?? [];
   const consentText = t('contact.form.consent') as string;
+  const interests = (t('contactMore.interest.options') as Option[]) ?? [];
+  const plans = (t('contactMore.plan.options') as Option[]) ?? [];
+  const featureOptions = (t('contactMore.features.options') as Option[]) ?? [];
+  const doneBy = (t('contactMore.doneBy') as unknown as Record<string, string>) ?? {};
+
+  // O link que trouxe a pessoa (plano, pesquisa, Localizador, integração…) já
+  // diz o que ela procura: a escolha chega marcada e ela só confirma.
+  useEffect(() => {
+    const hint = interestFromSearch(window.location.search);
+    if (hint) {
+      setValues((v) => ({ ...v, interest: hint.interest, plan: hint.plan ?? '', features: hint.features ?? [] }));
+    }
+  }, []);
+
+  const toggleFeature = (value: string) =>
+    setValues((v) => ({
+      ...v,
+      features: v.features.includes(value) ? v.features.filter((f) => f !== value) : [...v.features, value],
+    }));
 
   const set = (key: keyof ContactValues) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [key]: e.target.value }));
@@ -54,6 +76,7 @@ export function ContactPage() {
     if (!values.company.trim()) er.company = t('contact.errors.required') as string;
     if (!values.role) er.role = t('contact.errors.requiredChoice') as string;
     if (!values.decision) er.decision = t('contact.errors.requiredChoice') as string;
+    if (!values.interest) er.interest = t('contactMore.requiredInterest') as string;
     if (!consent) er.consent = t('contact.errors.consent') as string;
     return er;
   };
@@ -131,6 +154,7 @@ export function ContactPage() {
                 <span className="ct-done-icon"><CheckCircle2 size={30} aria-hidden="true" /></span>
                 <h2>{t('contact.done.title')}</h2>
                 <p>{t('contact.done.text')}</p>
+                {doneBy[values.interest] && <p className="ct-done-next">{doneBy[values.interest]}</p>}
                 <div className="ct-done-actions">
                   <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">
                     {t('contact.done.schedule')}
@@ -172,6 +196,59 @@ export function ContactPage() {
                   {err('company')}
                 </div>
 
+                <fieldset className="ct-interest" aria-describedby={errors.interest ? 'ct-interest-err' : undefined}>
+                  <legend>{t('contactMore.interest.label')}</legend>
+                  <div className="ct-interest-grid" role="radiogroup" id="ct-interest">
+                    {interests.map((o) => (
+                      <label key={o.value} className={`ct-opt ${values.interest === o.value ? 'is-on' : ''}`}>
+                        <input
+                          type="radio"
+                          name="interest"
+                          value={o.value}
+                          checked={values.interest === o.value}
+                          onChange={() => {
+                            setValues((v) => ({ ...v, interest: o.value }));
+                            if (errors.interest) setErrors((er) => ({ ...er, interest: undefined }));
+                          }}
+                        />
+                        <span className="ct-opt-text">
+                          <strong>{o.label}</strong>
+                          {o.hint && <small>{o.hint}</small>}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                  {err('interest')}
+
+                  {values.interest === 'plano' && (
+                    <div className="ct-sub" role="radiogroup" aria-label={t('contactMore.plan.label') as string}>
+                      <p className="ct-sub-label">{t('contactMore.plan.label')}</p>
+                      <div className="ct-chips">
+                        {plans.map((o) => (
+                          <label key={o.value} className={`ct-chip ${values.plan === o.value ? 'is-on' : ''}`}>
+                            <input type="radio" name="plan" value={o.value} checked={values.plan === o.value} onChange={() => setValues((v) => ({ ...v, plan: o.value }))} />
+                            {o.label}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {values.interest === 'funcionalidade' && (
+                    <div className="ct-sub" role="group" aria-label={t('contactMore.features.label') as string}>
+                      <p className="ct-sub-label">{t('contactMore.features.label')} <span className="ct-optional">{t('contactMore.features.hint')}</span></p>
+                      <div className="ct-chips">
+                        {featureOptions.map((o) => (
+                          <label key={o.value} className={`ct-chip ${values.features.includes(o.value) ? 'is-on' : ''}`}>
+                            <input type="checkbox" value={o.value} checked={values.features.includes(o.value)} onChange={() => toggleFeature(o.value)} />
+                            {o.label}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </fieldset>
+
                 <div className="ct-row">
                   <div className="ct-field">
                     <label htmlFor="ct-role">{t('contact.form.role')}</label>
@@ -200,6 +277,20 @@ export function ContactPage() {
                     />
                     {err('decision')}
                   </div>
+                </div>
+
+                <div className="ct-field">
+                  <label htmlFor="ct-context">
+                    {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
+                  </label>
+                  <textarea
+                    id="ct-context"
+                    rows={3}
+                    maxLength={500}
+                    placeholder={t('contactMore.context.placeholder') as string}
+                    value={values.context}
+                    onChange={(e) => setValues((v) => ({ ...v, context: e.target.value }))}
+                  />
                 </div>
 
                 <div className="ct-field">

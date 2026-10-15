@@ -861,6 +861,86 @@ export const offerEs = {
     voices: { title: "Lo que dicen quienes lo usan" }
   },
 
+  // ── Contacto: perfil del pedido (qué quiere contratar la persona) ─────────
+  contactMore: {
+    interest: {
+      label: "¿Qué quieres hacer?",
+      options: [
+        { value: "conhecer", label: "Conocer Dinn", hint: "Ver la plataforma con mi portafolio" },
+        { value: "plano", label: "Contratar un plan", hint: "Starter, Essential o Professional" },
+        { value: "funcionalidade", label: "Usar funcionalidades específicas", hint: "Tiempo real, historial, alertas…" },
+        { value: "integracao", label: "Llevar los datos a mi entorno", hint: "API, archivos, BI o Dinn Conecta" },
+        { value: "pesquisa", label: "Encargar una investigación", hint: "Estudio o proyecto especial" }
+      ]
+    },
+    plan: {
+      label: "¿Qué plan se parece más?",
+      options: [
+        { value: "starter", label: "Starter" },
+        { value: "essential", label: "Essential" },
+        { value: "professional", label: "Professional" },
+        { value: "nao_sei", label: "Todavía no sé" }
+      ]
+    },
+    features: {
+      label: "¿Qué funcionalidades te interesan?",
+      hint: "Marca las que quieras.",
+      options: [
+        { value: "tempo_real", label: "Inventario en tiempo real" },
+        { value: "estimado", label: "Inventario estimado" },
+        { value: "historico", label: "Historial y vistas guardadas" },
+        { value: "giro_preco", label: "Rotación, precio y competencia" },
+        { value: "distribuicao", label: "Distribución" },
+        { value: "insights", label: "Insights" },
+        { value: "alertas", label: "Alertas y rutinas" },
+        { value: "exportacoes", label: "Exportaciones, API y MCP" }
+      ]
+    },
+    context: {
+      label: "¿Quieres contar más?",
+      optional: "(opcional)",
+      placeholder: "Productos, cadenas, países o lo que ya intentaste."
+    },
+    requiredInterest: "Elige una opción.",
+    doneBy: {
+      conhecer: "Vamos a preparar una conversación corta con tu portafolio y tus regiones.",
+      plano: "Vamos a armar la propuesta a partir del alcance validado, con el comparativo del plan que indicaste.",
+      funcionalidade: "Vamos a mostrar las funcionalidades que marcaste, ya con tu alcance.",
+      integracao: "Vamos a entender origen, destino y frecuencia de los datos antes de proponer el camino de entrega.",
+      pesquisa: "Vamos a evaluar la viabilidad y el alcance del estudio antes de acordar método, entrega y plazo."
+    },
+    tierCta: "Hablar sobre este plan"
+  },
+
+  // ── Sobre Dinn: bloques gráficos ──────────────────────────────────────────
+  aboutMore: {
+    map: { aria: "Enlace entre Joinville, en Brasil, y Valencia, en España.", brazil: "Brasil", spain: "España", label: "Dos ciudades, un solo equipo" },
+    how: {
+      title: "Cómo trabaja Dinn",
+      intro: "De la señal suelta a la acción registrada, siempre con origen, fecha y límite."
+    },
+    stats: {
+      title: "Dinn en pocos datos",
+      items: [
+        { value: 2, suffix: "", label: "ciudades: Joinville y Valencia" },
+        { value: 6, suffix: "", label: "áreas atendidas, de Trade a atención a clientes" },
+        { value: 3, suffix: "", label: "idiomas del sitio: portugués, inglés y español" },
+        { value: 30, suffix: " días", label: "para implementar, después de acordar el alcance" }
+      ]
+    },
+    principles: {
+      title: "Cómo trabajamos",
+      intro: "Cuatro compromisos que aparecen en cada página y en cada conversación.",
+      items: [
+        { title: "Origen, fecha y límite", text: "Cada número dice de dónde vino, cuándo se observó y hasta dónde vale." },
+        { title: "La decisión es del equipo", text: "Dinn prepara la lectura y sugiere el siguiente paso. Tu equipo decide y ejecuta." },
+        { title: "Derechos de uso respetados", text: "Las fuentes de terceros entran con licencia, autorización y alcance acordados." },
+        { title: "Empezar pequeño, con plazo", text: "Un objetivo, un alcance y la implementación en hasta 30 días después de acordar el alcance." }
+      ]
+    },
+    trustBand: { chips: ["Origen", "Fecha", "Límite"] }
+  },
+
   // ── Confianza: bloques nuevos ─────────────────────────────────────────────
   trustMore: {
     accuracy: {

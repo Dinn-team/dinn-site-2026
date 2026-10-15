@@ -1,5 +1,6 @@
 import { Fragment, type ComponentType, type ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Check, ChevronRight, Lock } from 'lucide-react';
 
 // Peças gráficas das páginas de oferta: sequência de cartões com setas (mesmo
@@ -169,4 +170,74 @@ export function IconTile({ icon: Icon, tone = 'brand' }: { icon: IconType; tone?
 
 export function VizBand({ children }: { children: ReactNode }) {
   return <div className="vz-band-wrap">{children}</div>;
+}
+
+/** Duas cidades ligadas por um arco: sinais correm de uma à outra. */
+export function CityLink({ from, to, label, aria }: { from: { city: string; country: string }; to: { city: string; country: string }; label: string; aria: string }) {
+  return (
+    <figure className="vz-cities" role="img" aria-label={aria}>
+      <svg viewBox="0 0 520 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="vz-dots" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.1" fill="#CBD0D8" />
+          </pattern>
+          <radialGradient id="vz-fade" cx="50%" cy="50%" r="60%">
+            <stop offset="0" stopColor="#fff" stopOpacity="1" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          </radialGradient>
+          <mask id="vz-mask"><rect width="520" height="340" fill="url(#vz-fade)" /></mask>
+        </defs>
+        <rect width="520" height="340" fill="url(#vz-dots)" mask="url(#vz-mask)" />
+        <path id="vz-arc" d="M140 232 Q 290 20 392 104" className="vz-arc" />
+        <path d="M140 232 Q 290 20 392 104" className="vz-arc-flow" />
+        <circle r="5" className="vz-arc-dot">
+          <animateMotion dur="4.2s" repeatCount="indefinite" path="M140 232 Q 290 20 392 104" />
+        </circle>
+        <circle r="5" className="vz-arc-dot is-back">
+          <animateMotion dur="4.2s" begin="2.1s" repeatCount="indefinite" path="M392 104 Q 290 20 140 232" />
+        </circle>
+        <g className="vz-city"><circle cx="140" cy="232" r="22" className="vz-halo" /><circle cx="140" cy="232" r="9" /></g>
+        <g className="vz-city is-b"><circle cx="392" cy="104" r="22" className="vz-halo" /><circle cx="392" cy="104" r="9" /></g>
+      </svg>
+      <span className="vz-cities-chip" style={{ left: '27%', top: '74%' }}><strong>{from.city}</strong>{from.country}</span>
+      <span className="vz-cities-chip" style={{ left: '75%', top: '40%' }}><strong>{to.city}</strong>{to.country}</span>
+      <figcaption>{label}</figcaption>
+    </figure>
+  );
+}
+
+/** Faixa de fatos com contagem que sobe quando entra na tela. */
+export function StatStrip({ title, items }: { title: string; items: { value: number; suffix?: string; label: string }[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setN(1);
+      return;
+    }
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / 1400);
+      setN(1 - Math.pow(1 - k, 3));
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [inView]);
+  return (
+    <div className="tr-panel vz-stats" ref={ref}>
+      <p className="tr-panel-title">{title}</p>
+      <ul>
+        {items.map((it, i) => (
+          <motion.li key={it.label} {...reveal(i)}>
+            <strong>{n >= 1 ? it.value : Math.round(it.value * n)}<span>{it.suffix}</span></strong>
+            <span>{it.label}</span>
+          </motion.li>
+        ))}
+      </ul>
+    </div>
+  );
 }

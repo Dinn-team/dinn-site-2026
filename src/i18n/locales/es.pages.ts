@@ -52,7 +52,7 @@ export const pagesEs = {
     hero: {
       eyebrow: "Contacto",
       title: "Cuéntanos qué quieres *mejorar en el canal*",
-      lead: "Cuatro campos y listo. Una persona del equipo lee tu solicitud y responde con el siguiente paso."
+      lead: "Pocos campos y listo. Alguien del equipo lee tu pedido, sabe lo que buscas y responde con el siguiente paso."
     },
     after: {
       title: "Qué pasa después",

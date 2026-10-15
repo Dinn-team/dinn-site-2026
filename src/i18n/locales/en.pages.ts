@@ -52,7 +52,7 @@ export const pagesEn = {
     hero: {
       eyebrow: "Contact",
       title: "Tell us what you want to *improve in the channel*",
-      lead: "Four fields and you're done. A person on the team reads your request and replies with the next step."
+      lead: "A few fields and you're done. A person on the team reads your request, knows what you are looking for and replies with the next step."
     },
     after: {
       title: "What happens next",

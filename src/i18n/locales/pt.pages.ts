@@ -53,7 +53,7 @@ export const pagesPt = {
     hero: {
       eyebrow: "Contato",
       title: "Conte o que você quer *melhorar no canal*",
-      lead: "Quatro campos e pronto. Uma pessoa do time lê o seu pedido e responde com o próximo passo."
+      lead: "Poucos campos e pronto. Uma pessoa do time lê o seu pedido, sabe o que você procura e responde com o próximo passo."
     },
     after: {
       title: "O que acontece depois",
