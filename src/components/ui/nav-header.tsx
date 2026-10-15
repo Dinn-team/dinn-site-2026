@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/i18n/useTranslation";
+import { blogPath } from "@/i18n/routes";
 
 type NavItem = {
   label: string;
@@ -21,7 +22,7 @@ interface SlideTabsProps {
 }
 
 export function SlideTabs({ scrolled }: SlideTabsProps) {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   
   const [position, setPosition] = useState<Position>({
     left: 0,
@@ -33,7 +34,7 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
     { label: t("nav.home"), href: "/" },
     { label: t("nav.solutions"), href: "#solucoes" },
     { label: t("nav.useCases"), href: "#casos-de-uso" },
-    { label: t("nav.blog"), href: "/blog" },
+    { label: t("nav.blog"), href: blogPath(lang) },
   ];
 
   return (

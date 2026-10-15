@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SlideTabs } from '@/components/ui/nav-header';
 import { useTranslation } from '@/i18n/useTranslation';
+import { blogPath } from '@/i18n/routes';
 import { setLanguage, Language } from '@/i18n/store';
 
 // Globe / translate icon (lucide-style inline SVG)
@@ -188,7 +189,7 @@ export default function Header() {
             <a href="/" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.home')}</a>
             <a href="#solucoes" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.solutions')}</a>
             <a href="#casos-de-uso" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.useCases')}</a>
-            <a href="/blog" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.blog')}</a>
+            <a href={blogPath(lang)} className="text-[16px] font-semibold text-[#1F2328]">{t('nav.blog')}</a>
             
             <hr className="border-[#E5E7EB] my-2" />
             

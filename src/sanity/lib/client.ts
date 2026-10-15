@@ -8,6 +8,9 @@ export const client = createClient({
     dataset: 'production',
     apiVersion: '2024-01-01',
     useCdn: false, // Must be false for static builds (Vercel) to fetch the freshest data
+    // Rascunhos (drafts.*) nunca entram no site, mesmo que um dia o client ganhe
+    // um token. A automação grava só rascunhos; quem publica é uma pessoa.
+    perspective: 'published',
 });
 
 // Helper for generating image URLs

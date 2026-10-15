@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { LANGS } from '@/i18n/routes';
 
 type Lang = 'pt' | 'en' | 'es';
 
@@ -35,7 +36,12 @@ const languageNotice: Record<Lang, string> = {
 const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 'Español' };
 ---
 
-<Layout title={`${title} | Dinn`} description={description}>
+<Layout
+  title={`${title} | Dinn`}
+  description={description}
+  lang={lang}
+  alternates={langLinks ? LANGS.map((code) => ({ lang: code, href: langLinks[code] })) : []}
+>
   <div class="legal-page">
     <article class="legal-document wrap">
       <header class="legal-header">

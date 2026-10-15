@@ -1,0 +1,17 @@
+---
+import ArticlePage from '@/components/blog/ArticlePage.astro';
+import { getArticles } from '@/lib/blog';
+
+// Artigos em ES (prefixo /es na URL).
+export async function getStaticPaths() {
+  const posts = await getArticles('es');
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
+    props: { post, recommended: posts.filter((p) => p._id !== post._id).slice(0, 3) },
+  }));
+}
+
+const { post, recommended } = Astro.props;
+---
+
+<ArticlePage post={post} lang="es" recommended={recommended} />
