@@ -27,6 +27,7 @@ function GlobeIcon({ color }: { color: string }) {
 export default function Header() {
   const [isLightBg, setIsLightBg] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   
   const { t, lang } = useTranslation();
 
@@ -76,15 +77,55 @@ export default function Header() {
         ticking = true;
       }
     };
+    // Reavalia também quando a rolagem para: em saltos longos (links, âncoras) o
+    // conteúdo ainda se ajusta depois do último evento, e o menu, que não tem
+    // faixa de fundo, ficaria com a cor errada para o fundo atrás dele.
+    let settleTimer = 0;
+    const settle = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(onScroll, 180);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', settle, { passive: true });
     setTimeout(onScroll, 100);
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.clearTimeout(settleTimer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('scroll', settle);
+    };
   }, []);
+
+  // Descer = o visitante quer ler: o menu se recolhe com um movimento curto.
+  // Subir = procura o topo ou o menu: ele volta. No topo da página, sempre visível.
+  useEffect(() => {
+    let last = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const delta = y - last;
+      if (y < 80) setHidden(false);
+      else if (delta > 6) setHidden(true);
+      else if (delta < -6) setHidden(false);
+      if (Math.abs(delta) > 6) last = y;
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  // Com a lista de idiomas aberta o menu não some.
+  const hideHeader = hidden && !langDropdownOpen;
 
   const iconColor = isLightBg ? '#6B7280' : 'rgba(255,255,255,0.7)';
 
   return (
-    <header className={`header ${isLightBg ? 'scrolled' : ''}`}>
+    <header className={`header ${isLightBg ? 'scrolled' : ''} ${hideHeader ? 'is-hidden' : ''}`}>
       <div className="wrap">
         <div className="flex items-center justify-between h-[72px]">
 

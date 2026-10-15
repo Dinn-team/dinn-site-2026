@@ -6,7 +6,10 @@
 /* ── Capa: a imagem sozinha, sem texto por cima ─────────────────────────── */
 .pf-top { background: #fff; }
 /* fundo claro de propósito: o menu fixo escolhe o logo escuro sobre ele */
-.pf-cover { background: #EAF0FF; line-height: 0; }
+/* Capa: fundo escuro (o menu usa o logo branco, como na home) e um véu escuro
+   leve no topo para o menu ler bem sobre o céu claro da imagem. */
+.pf-cover { position: relative; background: #16191D; line-height: 0; }
+.pf-cover::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(10, 18, 30, 0.62) 0, rgba(10, 18, 30, 0.3) 64px, rgba(10, 18, 30, 0) 160px); }
 .pf-cover img { display: block; width: 100%; height: clamp(240px, 36vw, 460px); object-fit: cover; object-position: center 36%; }
 .pf-top .sp-hero { padding-top: clamp(32px, 4vw, 56px); }
 
@@ -77,7 +80,7 @@
   position: relative; z-index: calc(var(--i, 0) + 1);
   display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(20px, 3.4vw, 48px); align-items: center;
-  padding: clamp(20px, 2.6vw, 34px); border-radius: 28px; background: var(--pf-bg); border: 1px solid var(--pf-line);
+  padding: clamp(16px, 1.8vw, 24px) clamp(18px, 2.2vw, 30px); border-radius: 28px; background: var(--pf-bg); border: 1px solid var(--pf-line);
   box-shadow: 0 -10px 30px -22px rgba(31, 35, 40, 0.35);
 }
 /* uma cor pastel, quase branca, para cada parte */
@@ -86,19 +89,19 @@
 .pf-part:nth-child(3) { --pf-bg: #F0FAF4; --pf-line: #C9E9D5; } /* verde */
 .pf-part:nth-child(4) { --pf-bg: #EEF6FF; --pf-line: #CBE0F7; } /* azul */
 .pf-part:nth-child(5) { --pf-bg: #FCF1F4; --pf-line: #EFCAD5; } /* bordô */
-/* Telas amplas: os cartões grudam abaixo do menu e se empilham, um sobre o
-   outro. Cada camada fica 8px mais abaixo e 2px mais estreita de cada lado,
-   então as bordas de cima e as laterais dos cartões de baixo continuam
-   aparecendo. Em telas pequenas ou baixas, vira uma lista normal (cartão mais
-   alto que a tela não pode ficar preso). */
-@media (min-width: 1000px) and (min-height: 800px) {
-  .pf-part {
-    position: sticky;
-    top: calc(92px + var(--i, 0) * 8px);
-    margin-left: calc(var(--i, 0) * 2px);
-    margin-right: calc(var(--i, 0) * 2px);
-    min-height: var(--pf-card-h, 670px);
-  }
+/* Os cartões grudam abaixo do menu (72px) com 32px de respiro e se empilham,
+   um sobre o outro. Cada camada fica --pf-step-y mais abaixo e --pf-step-x mais
+   estreita de cada lado, então a borda de cima e as laterais dos cartões de
+   baixo seguem aparecendo. O PartsShowcase liga isso (data-stack="on") só quando
+   o cartão inteiro cabe abaixo do menu; em janelas baixas, lista normal. */
+.pf-parts { --pf-step-y: 8px; --pf-step-x: 2px; }
+.pf-parts[data-stack="on"] .pf-part {
+  position: sticky;
+  top: calc(104px + var(--i, 0) * var(--pf-step-y));
+  margin-left: calc(var(--i, 0) * var(--pf-step-x));
+  margin-right: calc(var(--i, 0) * var(--pf-step-x));
+  min-height: var(--pf-card-h, auto);
+  box-shadow: 0 -10px 28px -14px rgba(31, 35, 40, 0.28), 0 30px 60px -44px rgba(31, 35, 40, 0.4);
 }
 .pf-part:nth-child(even) { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
 .pf-part:nth-child(even) .pf-part-demo { order: -1; }
@@ -281,3 +284,6 @@
   .pf-step, .pf-cn-table td.is-filled { animation: none; }
   .pf-node, .pf-node-label, .pf-segs button { transition: none; }
 }
+.pf-node-hit { cursor: pointer; outline: none; }
+.pf-node-hit:hover .pf-node { stroke: var(--color-accent); }
+.pf-node-hit:focus-visible .pf-node { stroke: var(--color-accent); stroke-width: 4; }

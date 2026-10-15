@@ -32,14 +32,9 @@ export const enUS = {
     secondary: "Explore Dinn for your area"
   },
   insights: {
-    eyebrow: "In every layer",
-    title: "Dinn Insights: what do you want to know about *stock-outs and sell-out*?",
-    intro: "The conversation with Dinn's AI. Ask in plain English and get the number, the scope, the date and how it was calculated.",
-    layers: [
-      { title: "On the platform", desc: "Opens next to the Dinn Manager screens, already scoped to what you are looking at." },
-      { title: "In your AI", desc: "ChatGPT, Claude and Copilot query Dinn through MCP, with read-only access." },
-      { title: "In your BI and your agents", desc: "The same data arrives standardized through Dinn Conecta." }
-    ]
+    eyebrow: "Dinn Insights",
+    title: "What do you want to know about *stock-outs and sell-out*?",
+    intro: "The conversation with Dinn's AI. Ask in plain English and get the number, the scope, the date and how it was calculated."
   },
   ask: {
     placeholder: "Ask about stock, stock-outs, sell-through, price…",

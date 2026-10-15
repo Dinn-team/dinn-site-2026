@@ -17,7 +17,6 @@ import { prefersReducedMotion } from './neural';
 
 type Starter = { team: string; chip: string; q: string };
 type Team = { id: string; tab: string };
-type Layer = { title: string; desc: string };
 type UserMsg = { id: number; role: 'user'; text: string };
 type BotMsg = {
   id: number;
@@ -60,7 +59,6 @@ export function InsightsSection() {
   const starters = (t('ask.starters') as Starter[]) ?? [];
   const scenarios = (t('ask.scenarios') as Record<string, Scenario>) ?? {};
   const teams = (t('teams.items') as Team[]) ?? [];
-  const layers = (t('insights.layers') as Layer[]) ?? [];
   const defaults = { place: t('ask.defaultPlace') as string, product: t('ask.defaultProduct') as string };
 
   const [msgs, setMsgs] = useState<Msg[]>([]);
@@ -275,15 +273,6 @@ export function InsightsSection() {
               </div>
             </form>
           </div>
-
-          <ul className="ins-layers">
-            {layers.map((l) => (
-              <li key={l.title}>
-                <h3>{l.title}</h3>
-                <p>{l.desc}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </MotionConfig>

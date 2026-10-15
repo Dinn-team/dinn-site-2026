@@ -27,15 +27,19 @@
 .as-title .em-light { font-weight: 300; color: var(--lilac); }
 .as-lead { font-size: clamp(15px, 1.25vw, 17.5px); line-height: 1.6; letter-spacing: var(--track-body); color: var(--on-ink-body); max-width: 34em; }
 .as-steps { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-.as-steps li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 8px 12px 8px 8px; border-radius: 14px; border: 1px solid transparent; opacity: 0.5; transition: opacity 0.4s, background 0.4s, border-color 0.4s; }
+.as-steps li { border-radius: 14px; border: 1px solid transparent; opacity: 0.5; transition: opacity 0.4s, background 0.4s, border-color 0.4s; }
+.as-steps li:hover { opacity: 0.85; }
 .as-steps li.is-past { opacity: 0.75; }
 .as-steps li.is-on { opacity: 1; background: rgba(86, 37, 242, 0.22); border-color: rgba(183, 158, 255, 0.5); }
+.as-step-btn { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; width: 100%; padding: 8px 12px 8px 8px; border: 0; border-radius: 13px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.as-step-btn:focus-visible, .as-dots button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .as-step-n { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; background: rgba(255, 255, 255, 0.12); }
 .as-steps li.is-on .as-step-n { background: var(--color-accent); }
-.as-steps p { font-size: 14.5px; line-height: 1.5; letter-spacing: var(--track-body); color: var(--on-ink-body); }
-.as-steps strong { display: block; color: #fff; font-weight: 600; }
-.as-steps p span { display: block; max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease-out); }
-.as-steps li.is-on p span { max-height: 6em; margin-top: 2px; }
+.as-step-body { display: block; font-size: 14.5px; line-height: 1.5; letter-spacing: var(--track-body); color: var(--on-ink-body); }
+.as-step-body strong { display: block; color: #fff; font-weight: 600; }
+.as-step-text { display: block; max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease-out); }
+.as-steps li.is-on .as-step-text { max-height: 6em; margin-top: 2px; }
+.as-dots { display: none; }
 .as-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--on-ink-muted); transition: opacity 0.4s; }
 .as-hint svg { animation: v2-bounce 1.6s ease-in-out infinite; }
 
@@ -110,10 +114,14 @@
   .as-lead { font-size: 14.5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .as-steps { gap: 6px; margin-top: 2px; }
   .as-steps li { display: none; opacity: 1; }
-  .as-steps li.is-on { display: grid; }
-  .as-steps li.is-on p span { max-height: 8em; }
+  .as-steps li.is-on { display: block; }
+  .as-steps li.is-on .as-step-text { max-height: 8em; }
+  .as-dots { display: flex; gap: 8px; margin-top: 4px; }
+  .as-dots button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .as-dots button.is-past { border-color: rgba(183, 158, 255, 0.7); }
+  .as-dots button.is-on { background: var(--color-accent); border-color: var(--color-accent); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .as-g, .as-steps li, .as-steps p span { transition: none; }
+  .as-g, .as-steps li, .as-step-text { transition: none; }
   .as-pulse, .as-hint svg { animation: none; }
 }

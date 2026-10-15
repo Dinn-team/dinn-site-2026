@@ -26,7 +26,7 @@ export const platformVizEn = {
     fromSource: "Read at the source",
     notRead: "No direct reading",
     summaryObserved: "2 stores read directly at the source, with the D-1 date",
-    summaryEstimated: "2 stores estimated from comparable stores, with confidence stated"
+    summaryEstimated: "1 store estimated from comparable stores, with confidence stated"
   },
   manager: {
     rank: "This week's queue",

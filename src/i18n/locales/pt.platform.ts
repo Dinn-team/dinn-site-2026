@@ -26,7 +26,7 @@ export const platformVizPt = {
     fromSource: "Lido na fonte",
     notRead: "Sem leitura direta",
     summaryObserved: "2 lojas lidas direto na fonte, com a data de D-1",
-    summaryEstimated: "2 lojas estimadas por lojas comparáveis, com confiança dita"
+    summaryEstimated: "1 loja estimada por lojas comparáveis, com confiança dita"
   },
   manager: {
     rank: "Fila da semana",

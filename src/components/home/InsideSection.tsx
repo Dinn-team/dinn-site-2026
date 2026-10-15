@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScrollProgress } from './useScrollProgress';
+import { scrollToStage } from './scroll-to';
 import { useTranslation } from '@/i18n/useTranslation';
 import { BRAZIL_ASPECT, brainPoints, brazilPoints, clamp01, ease, glowSprite, nearestEdges, prefersReducedMotion, rng, type Pt } from './neural';
 
@@ -74,42 +75,6 @@ function computeLayout(w: number, h: number, count: number): Layout {
     { x: Math.min(xOut - 120, box.x + size * 0.86), y: box.y + size * 0.96 },
   ];
   return { w, h, mobile, box, outputs, signals };
-}
-
-/** Ponto de rolagem (0–1 da seção) no meio da faixa de cada passo. */
-const stageTarget = (i: number, n: number) => (i + 0.5) / Math.max(1, n);
-
-let scrollAnim = 0;
-/** Rola a janela devagar até `to`, com ease. Qualquer gesto do visitante interrompe.
- *  O `html { scroll-behavior: smooth }` do design system brigaria com rAF; por
- *  isso cada passo usa behavior "instant". */
-function animateScrollTo(to: number, ms: number) {
-  cancelAnimationFrame(scrollAnim);
-  const from = window.scrollY;
-  if (ms <= 0 || Math.abs(to - from) < 2) {
-    window.scrollTo({ top: to, behavior: 'instant' as ScrollBehavior });
-    return;
-  }
-  const t0 = performance.now();
-  const stop = () => {
-    cancelAnimationFrame(scrollAnim);
-    cleanup();
-  };
-  const cleanup = () => {
-    window.removeEventListener('wheel', stop);
-    window.removeEventListener('touchstart', stop);
-    window.removeEventListener('keydown', stop);
-  };
-  window.addEventListener('wheel', stop, { passive: true });
-  window.addEventListener('touchstart', stop, { passive: true });
-  window.addEventListener('keydown', stop);
-  const step = (now: number) => {
-    const k = Math.min(1, (now - t0) / ms);
-    window.scrollTo({ top: from + (to - from) * ease.inOutCubic(k), behavior: 'instant' as ScrollBehavior });
-    if (k < 1) scrollAnim = requestAnimationFrame(step);
-    else cleanup();
-  };
-  scrollAnim = requestAnimationFrame(step);
 }
 
 function BrainCanvas({ progress, outputsCount, onLayout }: { progress: { current: number }; outputsCount: number; onLayout: (l: Layout) => void }) {
@@ -366,16 +331,7 @@ export function InsideSection() {
   const s4 = clamp01((p - 0.76) / 0.12);
 
   // Clicar em 01–04 faz a mesma animação da rolagem, só que sozinha e devagar.
-  const goTo = (i: number) => {
-    const el = ref.current;
-    if (!el) return;
-    const span = el.offsetHeight - window.innerHeight;
-    const top = el.getBoundingClientRect().top + window.scrollY;
-    const to = top + span * stageTarget(i, stages.length);
-    const dist = Math.abs(to - window.scrollY);
-    const ms = prefersReducedMotion() ? 0 : Math.min(2800, Math.max(1200, 1100 + (dist / window.innerHeight) * 550));
-    animateScrollTo(to, ms);
-  };
+  const goTo = (i: number) => scrollToStage(ref.current, i, stages.length);
 
   return (
     <section id="por-dentro" ref={ref} className="inside" style={{ height: `${Math.max(1, stages.length) * 100 + 60}vh` }}>

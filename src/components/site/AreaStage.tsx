@@ -4,7 +4,9 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { PATHS } from '@/lib/site-map';
 import { useScrollProgress } from '@/components/home/useScrollProgress';
+import { scrollToStage } from '@/components/home/scroll-to';
 import { SCENES } from './AreaScenes';
+import { StageSteps } from './StageSteps';
 import type { Area } from './SolutionsPages';
 
 // Palco de abertura de cada solução: o título à esquerda e, à direita, uma
@@ -65,17 +67,15 @@ export function AreaStage({ area }: { area: Area }) {
             <h1 className="as-title"><Rich text={area.title} /></h1>
             <p className="as-lead">{area.lead}</p>
 
-            <ol className="as-steps" aria-label={t('solutions.page.exampleLabel')}>
-              {steps.map((s, i) => {
+            <StageSteps
+              steps={steps.map((s) => {
                 const [label, ...rest] = s.split(': ');
-                return (
-                  <li key={s} className={i === active ? 'is-on' : i < active ? 'is-past' : ''} aria-current={i === active ? 'step' : undefined}>
-                    <span className="as-step-n">{i + 1}</span>
-                    <p><strong>{label}</strong><span>{rest.join(': ')}</span></p>
-                  </li>
-                );
+                return { label, text: rest.join(': ') };
               })}
-            </ol>
+              active={active}
+              onGo={(i) => scrollToStage(ref.current, i, steps.length)}
+              label={t('solutions.page.exampleLabel') as string}
+            />
             <p className="as-hint" aria-hidden="true" style={{ opacity: p < 0.05 ? 1 : 0 }}>
               {t('scenes.scrollHint')}
               <ChevronDown size={15} />

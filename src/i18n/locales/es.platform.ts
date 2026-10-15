@@ -26,7 +26,7 @@ export const platformVizEs = {
     fromSource: "Leído en la fuente",
     notRead: "Sin lectura directa",
     summaryObserved: "2 tiendas leídas directo en la fuente, con la fecha de D-1",
-    summaryEstimated: "2 tiendas estimadas por tiendas comparables, con la confianza indicada"
+    summaryEstimated: "1 tienda estimada por tiendas comparables, con la confianza indicada"
   },
   manager: {
     rank: "Fila de la semana",

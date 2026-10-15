@@ -13,11 +13,11 @@ type Row = { name: string; dist: string; level: string; stock: string };
 type Mode = 'observed' | 'estimated';
 const MODES: Mode[] = ['observed', 'estimated'];
 // Quais lojas do exemplo são lidas na fonte e quais são estimadas.
-const KIND: Mode[] = ['observed', 'estimated', 'observed', 'estimated'];
+const KIND: Mode[] = ['observed', 'estimated', 'observed'];
 
 export function StockDemo() {
   const { t } = useTranslation();
-  const rows = ((t('teams.visuals.locator.rows') as Row[]) ?? []).slice(0, 4);
+  const rows = ((t('teams.visuals.locator.rows') as Row[]) ?? []).slice(0, 3);
   const { ref, inView, reduce } = useDemoActive();
   const [auto, setAuto] = useState(true);
   const [i, setI] = useStepper(inView && auto && !reduce, 3400, 2);

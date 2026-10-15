@@ -26,6 +26,7 @@ interface SlideTabsProps {
 // áreas; as páginas seguem em /solucoes/<area>.
 export type NavMenu = "solutions" | "resources";
 export const NAV_LINKS: { key: string; href: string; menu?: NavMenu }[] = [
+  { key: "nav.home", href: "/" },
   { key: "nav.platform", href: "/plataforma" },
   { key: "nav.solutions", href: "/solucoes", menu: "solutions" },
   { key: "nav.customers", href: "/#clientes" },

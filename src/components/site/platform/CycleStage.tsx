@@ -3,6 +3,7 @@ import { useReducedMotion } from 'framer-motion';
 import { Eye, GraduationCap, Network, Send, ShieldCheck, Target, type LucideIcon } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { useScrollProgress } from '@/components/home/useScrollProgress';
+import { scrollToStage } from '@/components/home/scroll-to';
 import { fill } from './hooks';
 
 // O ciclo da Dinn em seis passos, num anel preso à tela que se desenha com a
@@ -25,14 +26,14 @@ const pos = (i: number, r = R) => {
   return { x: C + r * Math.cos(a), y: C + r * Math.sin(a), a };
 };
 
-function Ring({ p, active, all }: { p: number; active: number; all: boolean }) {
+function Ring({ p, active, all, onGo }: { p: number; active: number; all: boolean; onGo?: (i: number) => void }) {
   const { t } = useTranslation();
   const stages = useStages();
   const arc = all ? 1 : p;
   const headA = ((-90 + 360 * p) * Math.PI) / 180;
   const head = { x: C + R * Math.cos(headA), y: C + R * Math.sin(headA) };
   return (
-    <svg className="pf-ring" viewBox={`0 0 ${SIZE} ${SIZE}`} role="img" aria-label={t('platformViz.cycle.ringLabel') as string}>
+    <svg className="pf-ring" viewBox={`0 0 ${SIZE} ${SIZE}`} role="group" aria-label={t('platformViz.cycle.ringLabel') as string}>
       <circle cx={C} cy={C} r={R - 46} fill="none" stroke="#E5E1F7" strokeDasharray="3 9" strokeLinecap="round" className="pf-ring-inner" />
       <circle cx={C} cy={C} r={R} fill="none" stroke="#E5E7EB" strokeWidth={6} />
       <circle
@@ -65,7 +66,16 @@ function Ring({ p, active, all }: { p: number; active: number; all: boolean }) {
         const anchor = Math.abs(Math.cos(a)) < 0.2 ? 'middle' : Math.cos(a) > 0 ? 'start' : 'end';
         const dy = Math.abs(Math.cos(a)) < 0.2 ? (Math.sin(a) < 0 ? -4 : 18) : 5;
         return (
-          <g key={s.name}>
+          <g
+            key={s.name}
+            className={onGo ? 'pf-node-hit' : undefined}
+            role={onGo ? 'button' : undefined}
+            tabIndex={onGo ? 0 : undefined}
+            aria-label={onGo ? `${t('platformViz.cycle.goTo')} ${i + 1}: ${s.name}` : undefined}
+            aria-current={onGo && on ? 'step' : undefined}
+            onClick={onGo ? () => onGo(i) : undefined}
+            onKeyDown={onGo ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onGo(i); } } : undefined}
+          >
             {on && <circle cx={x} cy={y} r={NODE + 11} fill="none" stroke={LILAC} strokeWidth={2} className="pf-node-halo" />}
             <circle
               cx={x}
@@ -142,13 +152,7 @@ export function CycleStage() {
   const total = stages.length || 6;
   const active = Math.min(total - 1, Math.floor(p * total * 0.9999));
 
-  const goTo = (i: number) => {
-    const el = ref.current;
-    if (!el) return;
-    const top = window.scrollY + el.getBoundingClientRect().top;
-    const span = el.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: top + (span * (i + 0.5)) / total, behavior: 'smooth' });
-  };
+  const goTo = (i: number) => scrollToStage(ref.current, i, total);
 
   if (reduce) {
     return (
@@ -178,7 +182,7 @@ export function CycleStage() {
         <div className="pf-cycle-sticky">
           <div className="wrap pf-cycle-grid">
             <div className="pf-cycle-ring">
-              <Ring p={p} active={active} all={false} />
+              <Ring p={p} active={active} all={false} onGo={goTo} />
             </div>
             <div className="pf-cycle-copy">
               <div className="sp-head pf-cycle-head">

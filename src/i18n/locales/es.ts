@@ -32,14 +32,9 @@ export const es419 = {
     secondary: "Explora Dinn para tu área"
   },
   insights: {
-    eyebrow: "En todas las capas",
-    title: "Dinn Insights: ¿qué quieres saber sobre *desabasto y sell-out*?",
-    intro: "La conversación con la IA de Dinn. Pregunta en español y recibe la cifra, el alcance, la fecha y cómo se calculó.",
-    layers: [
-      { title: "En la plataforma", desc: "Se abre junto a las pantallas de Dinn Manager, ya con el alcance que estás viendo." },
-      { title: "En tu IA", desc: "ChatGPT, Claude y Copilot consultan Dinn por MCP, con acceso de solo lectura." },
-      { title: "En tu BI y en tus agentes", desc: "Los mismos datos llegan estandarizados por Dinn Conecta." }
-    ]
+    eyebrow: "Dinn Insights",
+    title: "¿Qué quieres saber sobre *desabasto y sell-out*?",
+    intro: "La conversación con la IA de Dinn. Pregunta en español y recibe la cifra, el alcance, la fecha y cómo se calculó."
   },
   ask: {
     placeholder: "Pregunta sobre inventario, desabasto, rotación, precio…",

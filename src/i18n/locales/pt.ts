@@ -3,7 +3,7 @@ import { pagesPt } from './pt.pages';
 export const ptBR = {
   ...pagesPt,
   nav: {
-    home: "Home",
+    home: "Início",
     platform: "Plataforma",
     solutions: "Soluções",
     solutionsAll: "Ver todas as soluções",
@@ -32,14 +32,9 @@ export const ptBR = {
     secondary: "Explore a Dinn para a sua área"
   },
   insights: {
-    eyebrow: "Em todas as camadas",
-    title: "Dinn Insights: o que você quer saber sobre *ruptura de estoque e sell-out*?",
-    intro: "A conversa com a IA do Dinn. Pergunte em português e receba o número, o recorte, a data e como foi calculado.",
-    layers: [
-      { title: "Na plataforma", desc: "Abre ao lado das telas do Dinn Manager, já com o recorte que você está vendo." },
-      { title: "Na sua IA", desc: "ChatGPT, Claude e Copilot consultam o Dinn por MCP, com acesso somente leitura." },
-      { title: "No seu BI e nos seus agentes", desc: "Os mesmos dados chegam padronizados pelo Dinn Conecta." }
-    ]
+    eyebrow: "Dinn Insights",
+    title: "O que você quer saber sobre *ruptura de estoque e sell-out*?",
+    intro: "A conversa com a IA do Dinn. Pergunte em português e receba o número, o recorte, a data e como foi calculado."
   },
   ask: {
     placeholder: "Pergunte sobre estoque, ruptura, giro, preço…",

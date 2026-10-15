@@ -6,6 +6,8 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { areaPath, PATHS } from '@/lib/site-map';
 import { useScrollProgress } from '@/components/home/useScrollProgress';
+import { scrollToStage } from '@/components/home/scroll-to';
+import { StageSteps } from './StageSteps';
 import data from '@/data/cases.json';
 import { PageCta, PageHero } from './PageShell';
 import { getCaseScene } from './CaseScenes';
@@ -168,17 +170,12 @@ function CaseStage({ c }: { c: CaseItem }) {
             <p className="as-eyebrow">{t('cases.detail.how')}</p>
             <h2 id="cs-how" className="as-title">{pick(c.title, l)}</h2>
             <p className="as-lead">{t('cases.detail.howLead')}</p>
-            <ol className="as-steps">
-              {steps.map((s, i) => (
-                <li key={i} className={i === active ? 'is-on' : i < active ? 'is-past' : ''} aria-current={i === active ? 'step' : undefined}>
-                  <span className="as-step-n">{i + 1}</span>
-                  <p>
-                    <strong>{pick(s.title, l)}</strong>
-                    <span>{pick(s.text, l)}</span>
-                  </p>
-                </li>
-              ))}
-            </ol>
+            <StageSteps
+              steps={steps.map((s) => ({ label: pick(s.title, l), text: pick(s.text, l) }))}
+              active={active}
+              onGo={(i) => scrollToStage(ref.current, i, steps.length)}
+              label={t('cases.detail.how') as string}
+            />
           </div>
           <div className="as-scene">
             <div className="as-scene-frame">
