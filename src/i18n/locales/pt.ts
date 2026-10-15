@@ -384,6 +384,17 @@ export const ptBR = {
     ctaText: "A Dinn centraliza inteligência de mercado para indústrias farmacêuticas — monitoramento de PDV, ruptura de estoque e sell-out em tempo real.",
     ctaBtn: "Solicitar demonstração",
     recommended: "Recomendados para você",
-    writtenBy: "Por"
+    writtenBy: "Por",
+    allCategories: "Todos",
+    defaultCategory: "Artigo",
+    categories: {
+      gestao: "Gestão",
+      estoque: "Estoque",
+      precos: "Preços",
+      mercado: "Mercado",
+      tendencias: "Tendências",
+      estrategia: "Estratégia",
+      tecnologia: "Tecnologia"
+    }
   }
 };

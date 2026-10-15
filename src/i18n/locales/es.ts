@@ -384,6 +384,17 @@ export const es419 = {
     ctaText: "Dinn centraliza la inteligencia de mercado para la industria farmacéutica: monitoreo de punto de venta, quiebres de stock y sell-out en tiempo real.",
     ctaBtn: "Solicitar demostración",
     recommended: "Recomendados para ti",
-    writtenBy: "Por"
+    writtenBy: "Por",
+    allCategories: "Todos",
+    defaultCategory: "Artículo",
+    categories: {
+      gestao: "Gestión",
+      estoque: "Inventario",
+      precos: "Precios",
+      mercado: "Mercado",
+      tendencias: "Tendencias",
+      estrategia: "Estrategia",
+      tecnologia: "Tecnología"
+    }
   }
 };

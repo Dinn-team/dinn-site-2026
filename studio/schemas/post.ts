@@ -12,12 +12,49 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'contentLanguage',
+            title: 'Idioma',
+            type: 'string',
+            description:
+                'Idioma desta versão. Cada artigo tem uma versão por idioma, todas com o mesmo código de tradução.',
+            options: {
+                list: [
+                    { title: 'Português (Brasil)', value: 'pt' },
+                    { title: 'English', value: 'en' },
+                    { title: 'Español', value: 'es' },
+                ],
+                layout: 'radio',
+            },
+            initialValue: 'pt',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'translationKey',
+            title: 'Código de tradução',
+            type: 'string',
+            description:
+                'Une as versões do mesmo artigo em idiomas diferentes: use o mesmo código em PT, EN e ES. ' +
+                'Em artigos antigos fica vazio e vale o slug da versão em português.',
+        }),
+        defineField({
             name: 'slug',
             title: 'Slug',
             type: 'slug',
+            description: 'Parte final da URL. Pode (e deve) ser traduzido em cada idioma.',
             options: {
                 source: 'title',
                 maxLength: 96,
+                // O slug só precisa ser único dentro do mesmo idioma.
+                isUnique: async (slug, context) => {
+                    const { document, getClient } = context;
+                    const id = (document?._id ?? '').replace(/^drafts\./, '');
+                    const language = document?.contentLanguage ?? 'pt';
+                    const found = await getClient({ apiVersion: '2024-01-01' }).fetch(
+                        `count(*[_type == "post" && slug.current == $slug && coalesce(contentLanguage, 'pt') == $language && !(_id in [$id, "drafts." + $id])])`,
+                        { slug, language, id },
+                    );
+                    return found === 0;
+                },
             },
             validation: (Rule) => Rule.required(),
         }),
@@ -63,14 +100,16 @@ export default defineType({
             type: 'array',
             of: [{ type: 'string' }],
             options: {
+                // O valor é uma chave estável; o nome exibido no site é
+                // traduzido por idioma (blog.categories nos dicionários).
                 list: [
-                    { title: 'Gestão', value: 'Gestão' },
-                    { title: 'Estoque', value: 'Estoque' },
-                    { title: 'Preços', value: 'Preços' },
-                    { title: 'Mercado', value: 'Mercado' },
-                    { title: 'Tendências', value: 'Tendências' },
-                    { title: 'Estratégia', value: 'Estratégia' },
-                    { title: 'Tecnologia', value: 'Tecnologia' },
+                    { title: 'Gestão', value: 'gestao' },
+                    { title: 'Estoque', value: 'estoque' },
+                    { title: 'Preços', value: 'precos' },
+                    { title: 'Mercado', value: 'mercado' },
+                    { title: 'Tendências', value: 'tendencias' },
+                    { title: 'Estratégia', value: 'estrategia' },
+                    { title: 'Tecnologia', value: 'tecnologia' },
                 ],
             },
         }),
@@ -141,11 +180,13 @@ export default defineType({
             author: 'author',
             media: 'coverImage',
             publishedAt: 'publishedAt',
+            language: 'contentLanguage',
         },
         prepare(selection) {
-            const { author, publishedAt } = selection;
+            const { author, publishedAt, language } = selection;
             return {
                 ...selection,
+                title: `[${(language ?? 'pt').toUpperCase()}] ${selection.title}`,
                 subtitle: `${author} - ${new Date(publishedAt).toLocaleDateString('pt-BR')}`,
             };
         },

@@ -1,7 +1,8 @@
 import { useTranslation } from "@/i18n/useTranslation";
+import { blogPath } from "@/i18n/routes";
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   return (
     <footer style={{ background: '#ffffff', borderTop: '1px solid #E5E7EB' }}>
@@ -31,7 +32,7 @@ export default function Footer() {
               {t('footer.sectionA')}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[[t('nav.home'), '/'], [t('nav.blog'), '/blog']].map(([label, href]) => (
+              {[[t('nav.home'), '/'], [t('nav.blog'), blogPath(lang)]].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}

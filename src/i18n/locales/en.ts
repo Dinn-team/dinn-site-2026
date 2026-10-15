@@ -384,6 +384,17 @@ export const enUS = {
     ctaText: "Dinn centralizes market intelligence for the pharmaceutical industry — real-time POS monitoring, out-of-stock tracking, and sell-out data.",
     ctaBtn: "Request a demo",
     recommended: "Recommended for you",
-    writtenBy: "By"
+    writtenBy: "By",
+    allCategories: "All",
+    defaultCategory: "Article",
+    categories: {
+      gestao: "Management",
+      estoque: "Inventory",
+      precos: "Pricing",
+      mercado: "Market",
+      tendencias: "Trends",
+      estrategia: "Strategy",
+      tecnologia: "Technology"
+    }
   }
 };

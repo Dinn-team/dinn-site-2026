@@ -1,4 +1,5 @@
 import { loadDictionary, isLoaded } from './translations';
+import { pageLanguage, routeToLanguage } from './page-language';
 
 export type Language = 'pt' | 'en' | 'es';
 
@@ -23,9 +24,21 @@ function ensureDictionary(lang: Language) {
 export function initLanguage() {
   if (!isClient) return;
 
+  // Página com idioma na URL (/en/..., /es/...): a URL vence a escolha guardada
+  // e passa a ser a escolha do leitor.
+  const urlLang = pageLanguage();
+  if (urlLang !== 'pt') {
+    currentLanguage = urlLang;
+    localStorage.setItem('dinn-lang', urlLang);
+    ensureDictionary(currentLanguage);
+    return;
+  }
+
   const savedLang = localStorage.getItem('dinn-lang') as Language;
   if (savedLang && ['pt', 'en', 'es'].includes(savedLang)) {
     currentLanguage = savedLang;
+    // Página em PT com versão no idioma guardado (blog/artigos): vai para ela.
+    if (routeToLanguage(savedLang)) return;
     ensureDictionary(currentLanguage);
     return;
   }
@@ -43,6 +56,7 @@ export function initLanguage() {
   }
 
   localStorage.setItem('dinn-lang', currentLanguage);
+  if (routeToLanguage(currentLanguage)) return;
   ensureDictionary(currentLanguage);
 }
 
@@ -56,6 +70,10 @@ export function setLanguage(lang: Language) {
   if (isClient) {
     localStorage.setItem('dinn-lang', lang);
   }
+
+  // Blog e artigos têm uma URL por idioma: trocar o idioma leva à versão
+  // equivalente (ou à lista do blog no idioma, se o artigo não foi traduzido).
+  if (isClient && routeToLanguage(lang, { useFallback: true })) return;
 
   // Já em memória: troca na hora. Ainda não: o dicionário é buscado e os
   // componentes são avisados quando ele chega.
