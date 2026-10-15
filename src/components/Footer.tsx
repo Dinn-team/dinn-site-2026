@@ -1,8 +1,9 @@
 import { useTranslation } from "@/i18n/useTranslation";
 import { DEMO_URL } from "@/lib/links";
+import { blogPath } from "@/i18n/routes";
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   return (
     <footer style={{ background: '#ffffff', borderTop: '1px solid #E5E7EB' }}>
@@ -39,7 +40,7 @@ export default function Footer() {
                 [t('nav.customers'), '/#clientes'],
                 [t('nav.resources'), '/recursos'],
                 [t('nav.trust'), '/confianca'],
-                [t('nav.blog'), '/blog'],
+                [t('nav.blog'), blogPath(lang)],
               ].map(([label, href]) => (
                 <a key={`${href}-${label}`} href={href}
                   style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}

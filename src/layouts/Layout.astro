@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { HTML_LANG, OG_LOCALE, type Lang } from '@/i18n/routes';
 
 interface Props {
 	title?: string;
@@ -14,6 +15,21 @@ interface Props {
 	noindex?: boolean;
 	/** Structured data extra, anexado ao schema de Organization. */
 	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+	/** Idioma desta página. O site é PT por padrão; /en e /es declaram o seu. */
+	lang?: Lang;
+	/**
+	 * Versões da mesma página em outros idiomas (inclua a própria página).
+	 * Viram <link rel="alternate" hreflang>, que o seletor de idioma também lê
+	 * para levar o leitor à versão equivalente.
+	 */
+	alternates?: { lang: Lang; href: string }[];
+	/**
+	 * Quando true, a página acompanha o idioma escolhido no seletor: abre a
+	 * versão do idioma do leitor (se existir) e, ao trocar, navega para ela.
+	 */
+	langRoute?: boolean;
+	/** Para onde ir ao trocar de idioma quando não há versão equivalente. */
+	langFallbacks?: Partial<Record<Lang, string>>;
 }
 
 const {
@@ -23,6 +39,10 @@ const {
 	type = 'website',
 	noindex = false,
 	jsonLd,
+	lang = 'pt',
+	alternates = [],
+	langRoute = false,
+	langFallbacks = {},
 } = Astro.props;
 
 // Descrições vindas do Sanity trazem quebras de linha e tamanho livre; sem
@@ -42,6 +62,14 @@ const site = Astro.site ?? new URL('https://dinn.ai');
 const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = new URL(path, site).href;
 const imageUrl = new URL(image, site).href;
+
+// hreflang: cada versão aponta para todas as outras (e para si mesma); o
+// x-default é o português, idioma padrão do site.
+const hreflangLinks = alternates.map((alt) => ({
+	hreflang: HTML_LANG[alt.lang],
+	href: new URL(alt.href, site).href,
+}));
+const defaultAlternate = alternates.find((alt) => alt.lang === 'pt');
 
 const organizationSchema = {
 	"@context": "https://schema.org",
@@ -76,7 +104,7 @@ const enableApolloTracking = import.meta.env.PROD;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={HTML_LANG[lang]} data-page-lang={lang} data-lang-route={langRoute ? 'auto' : undefined}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -85,6 +113,15 @@ const enableApolloTracking = import.meta.env.PROD;
 		<title>{title}</title>
 		<meta name="description" content={metaDescription} />
 		<link rel="canonical" href={canonical} />
+		{hreflangLinks.map((link) => (
+			<link rel="alternate" hreflang={link.hreflang} href={link.href} />
+		))}
+		{defaultAlternate && (
+			<link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.href, site).href} />
+		)}
+		{Object.entries(langFallbacks).map(([code, href]) => (
+			<meta name={`dinn:lang-fallback:${code}`} content={href} />
+		))}
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -96,7 +133,7 @@ const enableApolloTracking = import.meta.env.PROD;
 
 		<!-- Open Graph -->
 		<meta property="og:type" content={type} />
-		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:locale" content={OG_LOCALE[lang]} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:site_name" content="Dinn" />
 		<meta property="og:title" content={title} />

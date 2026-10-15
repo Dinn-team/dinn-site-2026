@@ -944,6 +944,17 @@ export const es419 = {
     ctaText: "Dinn muestra dónde falta producto en las farmacias, qué cambió y dónde actuar primero, con fuente y confianza explícitas.",
     ctaBtn: "Solicitar demostración",
     recommended: "Recomendados para ti",
-    writtenBy: "Por"
+    writtenBy: "Por",
+    allCategories: "Todos",
+    defaultCategory: "Artículo",
+    categories: {
+      gestao: "Gestión",
+      estoque: "Inventario",
+      precos: "Precios",
+      mercado: "Mercado",
+      tendencias: "Tendencias",
+      estrategia: "Estrategia",
+      tecnologia: "Tecnología"
+    }
   }
 };

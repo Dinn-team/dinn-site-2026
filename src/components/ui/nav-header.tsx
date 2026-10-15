@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/i18n/useTranslation";
+import { blogPath, type Lang } from "@/i18n/routes";
 
 type NavItem = {
   label: string;
@@ -39,7 +40,7 @@ export type NavArea = { slug: string; name: string };
 export type SubItem = { href: string; label: string };
 
 /** Itens do submenu de cada entrada (desktop e celular usam a mesma lista). */
-export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any): { items: SubItem[]; allHref: string; allLabel: string } | null {
+export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, lang: Lang = "pt"): { items: SubItem[]; allHref: string; allLabel: string } | null {
   if (menu === "solutions") {
     const areas = (t("solutions.items") as NavArea[]) ?? [];
     return {
@@ -51,7 +52,7 @@ export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any): 
   if (menu === "resources") {
     return {
       items: [
-        { href: "/blog", label: t("nav.blog") as string },
+        { href: blogPath(lang), label: t("nav.blog") as string },
         { href: "/recursos/casos", label: t("nav.cases") as string },
         { href: "/recursos/changelog", label: t("nav.changelog") as string },
       ],
@@ -63,7 +64,7 @@ export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any): 
 }
 
 export function SlideTabs({ scrolled }: SlideTabsProps) {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const [position, setPosition] = useState<Position>({
     left: 0,
@@ -101,7 +102,7 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
           href={item.href}
           setPosition={setPosition}
           scrolled={scrolled}
-          sub={getSubmenu(item.menu, t)}
+          sub={getSubmenu(item.menu, t, lang)}
         >
           {item.label}
         </Tab>

@@ -1,0 +1,119 @@
+---
+import LegalPage from '@/layouts/LegalPage.astro';
+---
+
+<LegalPage
+  title="Dinn Pharma Stock"
+  eyebrow="Documentation"
+  updatedAt="September 30, 2026"
+  description="How to connect Dinn Pharma Stock to an AI assistant and what it can answer about stock availability in pharmacies."
+  lang="en"
+  showLanguageNotice={false}
+>
+  <section>
+    <h2>What it is</h2>
+    <p>
+      Dinn Pharma Stock is a read-only connector that lets pharmaceutical
+      industry professionals ask an AI assistant about stock availability.
+      It covers executive indicators, rupture trends, rankings by SKU or
+      retail network, the most critical points of sale, store-level detail,
+      and nearby product locations on interactive maps.
+    </p>
+    <p>
+      Every answer states its scope and freshness and separates observed
+      values from estimates. The connector never changes stock, records, or
+      operational data.
+    </p>
+  </section>
+
+  <section>
+    <h2>Requirements</h2>
+    <ul>
+      <li>An active Dinn account at a company whose contract includes Dinn Stock.</li>
+      <li>An AI assistant that supports remote MCP servers with OAuth sign-in.</li>
+    </ul>
+    <p>
+      Access always follows the signed-in account: the company, portfolio,
+      and contracted features of that user. Nothing outside that scope is
+      returned.
+    </p>
+  </section>
+
+  <section>
+    <h2>Connecting</h2>
+    <ol>
+      <li>
+        Add a custom connector in your assistant with the server URL
+        <code>https://api.dinn.ai/mcp</code>.
+      </li>
+      <li>When prompted, sign in with your Dinn credentials.</li>
+      <li>
+        On the consent screen, review what is requested and choose
+        <strong>Authorize</strong>. The permission is read-only and can be
+        revoked.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What you can ask</h2>
+    <ul>
+      <li><strong>Find a product:</strong> "Analyze Dorvalin 500 mg for me."</li>
+      <li>
+        <strong>Follow the trend:</strong> "Show the weekly rupture trend for
+        the last 90 days in SP, across all networks."
+      </li>
+      <li>
+        <strong>Rank presentations or networks:</strong> "Which presentations
+        of this product have the highest rupture?"
+      </li>
+      <li>
+        <strong>Open critical stores:</strong> "List the critical points of
+        sale in São Paulo and open the first one."
+      </li>
+      <li>
+        <strong>Locate stock nearby:</strong> "Where can I find this product
+        near Avenida Paulista, 1578, São Paulo?"
+      </li>
+    </ul>
+    <p>
+      The assistant resolves the product first and asks whether you want one
+      retail network or all of them before running an analysis.
+    </p>
+  </section>
+
+  <section>
+    <h2>Available tools</h2>
+    <ul>
+      <li><code>stock.list_products</code> — find products, presentations, SKUs, and EANs.</li>
+      <li><code>stock.get_filter_options</code> — valid networks, states, cities, and bricks.</li>
+      <li><code>stock.list_saved_views</code> — your own saved views.</li>
+      <li><code>stock.get_overview</code> — executive view: points of sale, SKUs, approximate stock, out-of-stock share, criticality.</li>
+      <li><code>stock.get_rupture_trend</code> — daily or weekly rupture over time.</li>
+      <li><code>stock.get_ranking</code> — rupture ranking by SKU or retail network.</li>
+      <li><code>stock.list_points_of_sale</code> — find and compare points of sale.</li>
+      <li><code>stock.get_point_of_sale</code> — detail of one store and its SKU ranking.</li>
+      <li><code>stock.find_product_locations</code> — nearby pharmacies with or without stock.</li>
+    </ul>
+    <p>All tools are read-only.</p>
+  </section>
+
+  <section>
+    <h2>Data and limits</h2>
+    <p>
+      Figures are observed or estimated, and each answer says which. Cutoff
+      dates are shown with the result. Store identifiers are opaque
+      references returned by earlier answers; free-form identifiers are not
+      accepted.
+    </p>
+  </section>
+
+  <section>
+    <h2>Privacy, terms, and support</h2>
+    <p>
+      Read the <a href="/en/privacy-policy">privacy policy</a> and the
+      <a href="/en/terms-of-use">terms of use</a>. For help, see
+      <a href="/en/support">support</a>.
+    </p>
+  </section>
+</LegalPage>

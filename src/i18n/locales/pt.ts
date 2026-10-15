@@ -944,6 +944,17 @@ export const ptBR = {
     ctaText: "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança explícitas.",
     ctaBtn: "Solicitar demonstração",
     recommended: "Recomendados para você",
-    writtenBy: "Por"
+    writtenBy: "Por",
+    allCategories: "Todos",
+    defaultCategory: "Artigo",
+    categories: {
+      gestao: "Gestão",
+      estoque: "Estoque",
+      precos: "Preços",
+      mercado: "Mercado",
+      tendencias: "Tendências",
+      estrategia: "Estratégia",
+      tecnologia: "Tecnologia"
+    }
   }
 };

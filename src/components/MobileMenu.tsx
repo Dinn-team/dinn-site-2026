@@ -127,7 +127,7 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
           <ul className="mm-list">
             {NAV_LINKS.map(({ key, href, menu }, idx) => {
               const isFirst = idx === 0;
-              const sub = getSubmenu(menu, t);
+              const sub = getSubmenu(menu, t, lang);
               if (menu && sub) {
                 const isOpen = openSub === menu;
                 const id = `${subId}-${menu}`;

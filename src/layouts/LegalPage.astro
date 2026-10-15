@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { LANGS } from '@/i18n/routes';
 
 type Lang = 'pt' | 'en' | 'es';
 
@@ -16,9 +17,18 @@ interface Props {
   updatedAt: string;
   lang?: Lang;
   langLinks?: LangLinks;
+  showLanguageNotice?: boolean;
 }
 
-const { title, description, eyebrow, updatedAt, lang = 'pt', langLinks } = Astro.props;
+const {
+  title,
+  description,
+  eyebrow,
+  updatedAt,
+  lang = 'pt',
+  langLinks,
+  showLanguageNotice = true,
+} = Astro.props;
 
 /**
  * Só a versão em português é o texto jurídico oficial (revisado pelo
@@ -35,7 +45,12 @@ const languageNotice: Record<Lang, string> = {
 const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 'Español' };
 ---
 
-<Layout title={`${title} | Dinn`} description={description}>
+<Layout
+  title={`${title} | Dinn`}
+  description={description}
+  lang={lang}
+  alternates={langLinks ? LANGS.map((code) => ({ lang: code, href: langLinks[code] })) : []}
+>
   <div class="legal-page">
     <article class="legal-document wrap">
       <header class="legal-header">
@@ -47,7 +62,7 @@ const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 
           {lang === 'en' && `Version in effect since ${updatedAt}.`}
           {lang === 'es' && `Versión vigente desde ${updatedAt}.`}
         </p>
-        <p class="legal-language">{languageNotice[lang]}</p>
+        {showLanguageNotice && <p class="legal-language">{languageNotice[lang]}</p>}
         {langLinks && (
           <p class="legal-lang-switch">
             {(['pt', 'en', 'es'] as Lang[]).map((code, i) => (

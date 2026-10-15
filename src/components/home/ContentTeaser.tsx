@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
+import { blogPath } from '@/i18n/routes';
 
 type Item = { type: string; title: string; desc: string; href: string };
 
@@ -7,7 +8,7 @@ type Item = { type: string; title: string; desc: string; href: string };
 // para uma demonstração (um guia, um caso e o blog).
 
 export function ContentTeaser() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const items = (t('contentTeaser.items') as Item[]) ?? [];
 
   return (
@@ -19,7 +20,7 @@ export function ContentTeaser() {
         </div>
         <div className="sp-grid is-three">
           {items.map((it) => (
-            <a key={it.href} className="sp-card sp-resource" href={it.href}>
+            <a key={it.href} className="sp-card sp-resource" href={it.href === '/blog' ? blogPath(lang) : it.href}>
               <span className="sp-tag">{it.type}</span>
               <h3>{it.title}</h3>
               <p>{it.desc}</p>

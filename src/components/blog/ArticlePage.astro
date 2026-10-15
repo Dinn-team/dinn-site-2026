@@ -1,0 +1,562 @@
+---
+// Página de artigo do blog, compartilhada pelas três rotas de idioma:
+//   /articles/<slug>   /en/articles/<slug>   /es/articles/<slug>
+// Os textos de interface são resolvidos aqui, no build, no idioma do artigo —
+// o HTML já sai no idioma certo para o leitor e para os buscadores.
+import Layout from '@/layouts/Layout.astro';
+import { urlFor } from '@/sanity/lib/client';
+import { PortableText } from '@portabletext/react';
+import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
+import { articlePath, blogPath, HTML_LANG, type Lang } from '@/i18n/routes';
+import {
+  articleAlternates,
+  blogFallbacks,
+  blogLabels,
+  calcReadTime,
+  categoryLabel,
+  formatPostDate,
+  type BlogPostData,
+} from '@/lib/blog';
+
+interface Props {
+  post: BlogPostData;
+  lang: Lang;
+  recommended: BlogPostData[];
+}
+
+const { post, lang, recommended } = Astro.props;
+const labels = blogLabels(lang);
+
+const TITLE_SUFFIX: Record<Lang, string> = { pt: 'Blog Dinn', en: 'Dinn Blog', es: 'Blog de Dinn' };
+
+const readTime = calcReadTime(post.body);
+const coverUrl = post.coverImage ? urlFor(post.coverImage).width(1400).height(700).fit('crop').url() : null;
+
+// Imagem de compartilhamento no formato que as redes esperam (1200x630).
+const shareImage = post.coverImage
+  ? urlFor(post.coverImage).width(1200).height(630).fit('crop').url()
+  : '/og-image.png';
+
+const description = post.excerpt || post.title;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": description,
+  "inLanguage": HTML_LANG[lang],
+  "datePublished": post.publishedAt,
+  "dateModified": post._updatedAt || post.publishedAt,
+  "author": { "@type": "Person", "name": post.author || "Dinn" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dinn",
+    "logo": { "@type": "ImageObject", "url": new URL('/logo.png', Astro.site).href }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href },
+  ...(post.coverImage ? { image: shareImage } : {}),
+};
+---
+
+<Layout
+  title={`${post.title} | ${TITLE_SUFFIX[lang]}`}
+  description={description}
+  image={shareImage}
+  type="article"
+  jsonLd={articleSchema}
+  lang={lang}
+  alternates={articleAlternates(post, lang)}
+  langRoute
+  langFallbacks={blogFallbacks()}
+>
+  <DynamicIslandTOC client:load selector=".bp-body h2, .bp-body h3, .bp-body h4" />
+
+  <div class="bp-page pt-24">
+
+    <!-- Hero Image -->
+    {coverUrl && (
+      <div class="bp-hero">
+        <img src={coverUrl} alt={post.title} class="bp-hero-img" />
+        <div class="bp-hero-overlay" />
+      </div>
+    )}
+
+    <!-- Reading column -->
+    <div class="bp-content">
+
+      <!-- Meta: category + read time -->
+      <div class="bp-meta">
+        {post.categories && post.categories.length > 0 && (
+          <span class="bp-category">{categoryLabel(lang, post.categories[0])}</span>
+        )}
+        <span class="bp-dot">·</span>
+        <span class="bp-readtime">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {readTime} {labels.minRead}
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="bp-title">{post.title}</h1>
+
+      <!-- Date + author -->
+      <div class="bp-byline">
+        {post.author && (
+          <span class="bp-author">
+            {labels.writtenBy} {post.author}
+          </span>
+        )}
+        {post.author && post.publishedAt && <span class="bp-dot">·</span>}
+        {post.publishedAt && (
+          <time class="bp-date" datetime={post.publishedAt}>
+            {formatPostDate(lang, post.publishedAt)}
+          </time>
+        )}
+      </div>
+
+      <!-- Excerpt / Lead -->
+      {post.excerpt && (
+        <p class="bp-excerpt">{post.excerpt}</p>
+      )}
+
+      <hr class="bp-divider" />
+
+      <!-- Article body -->
+      <div class="bp-body">
+        {post.body && (
+          <PortableText
+            value={post.body}
+            components={{
+              types: {
+                image: ({ value }: any) => {
+                  const url = urlFor(value).width(900).url();
+                  return `<figure class="bp-figure">
+                    <img src="${url}" alt="${value.alt || ''}" class="bp-img" />
+                    ${value.caption ? `<figcaption class="bp-caption">${value.caption}</figcaption>` : ''}
+                  </figure>`;
+                }
+              }
+            }}
+          />
+        )}
+      </div>
+
+      <!-- CTA Dinn -->
+      <div class="bp-cta">
+        <div class="bp-cta-blob-1"></div>
+        <div class="bp-cta-blob-2"></div>
+
+        <h2 class="bp-cta-title">{labels.ctaTitle}</h2>
+        <p class="bp-cta-text">{labels.ctaText}</p>
+        <a href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4" target="_blank" rel="noopener noreferrer" class="bp-cta-btn">
+          {labels.ctaBtn}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Recommended Articles -->
+      {recommended.length > 0 && (
+        <div class="bp-recommended">
+          <h3 class="bp-recommended-title">{labels.recommended}</h3>
+          <div class="bp-recommended-grid">
+            {recommended.map((rec) => (
+              <a href={articlePath(lang, rec.slug.current)} class="bp-rec-card">
+                {rec.coverImage && (
+                  <div class="bp-rec-img-wrap">
+                    <img src={urlFor(rec.coverImage).width(400).height(250).url()} alt={rec.title} class="bp-rec-img" />
+                  </div>
+                )}
+                <div class="bp-rec-content">
+                  <h4 class="bp-rec-title">{rec.title}</h4>
+                  <span class="bp-rec-link">{labels.readArticle} →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Back link -->
+      <a href={blogPath(lang)} class="bp-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        {labels.backToBlog}
+      </a>
+
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* ── Reset & Page ── */
+  .bp-page {
+    background-color: var(--bg-page);
+    min-height: 100vh;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+  }
+
+  /* ── Hero ── */
+  .bp-hero {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+  }
+  .bp-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .bp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg-page) 100%);
+  }
+
+  /* ── Reading column ── */
+  .bp-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 52px 24px 96px;
+  }
+
+  /* ── Meta ── */
+  .bp-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .bp-category {
+    background-color: rgba(86, 37, 242, 0.08);
+    color: var(--color-accent);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .bp-dot {
+    color: var(--color-border);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .bp-readtime {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── Title ── */
+  .bp-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin: 0 0 18px;
+    letter-spacing: -0.03em;
+  }
+
+  /* ── Byline ── */
+  .bp-byline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .bp-author {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .bp-date {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ── Excerpt / Lead ── */
+  .bp-excerpt {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 20px;
+    margin-bottom: 36px;
+    font-weight: 500;
+  }
+
+  /* ── Divider ── */
+  .bp-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 44px;
+  }
+
+  /* ── Article Body ── */
+  .bp-body {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-body);
+  }
+  .bp-body p {
+    margin-bottom: 26px;
+  }
+  .bp-body h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 60px;
+    margin-bottom: 18px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .bp-body h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 44px;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .bp-body ul,
+  .bp-body ol {
+    padding-left: 26px;
+    margin-bottom: 26px;
+  }
+  .bp-body li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .bp-body ul li::marker {
+    color: var(--color-accent);
+  }
+  .bp-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .bp-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(86, 37, 242, 0.35);
+    transition: text-decoration-color 0.2s;
+  }
+  .bp-body a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  .bp-body blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding: 10px 0 10px 24px;
+    margin: 40px 0;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    border-radius: 0 8px 8px 0;
+    font-size: 19px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* ── Figure / Image ── */
+  .bp-figure {
+    margin: 40px 0;
+  }
+  .bp-img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+    box-shadow: var(--shadow-sm);
+  }
+  .bp-caption {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  /* ── CTA Block (Home Style) ── */
+  .bp-cta {
+    background: linear-gradient(135deg, #F8F9FA 0%, #ffffff 100%);
+    border: 1px solid #E5E7EB;
+    border-radius: 24px;
+    padding: clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px);
+    margin-top: 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(86, 37, 242, 0.06);
+  }
+  .bp-cta-blob-1 {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    background: rgba(86, 37, 242, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .bp-cta-blob-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 280px;
+    height: 280px;
+    background: rgba(86, 37, 242, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .bp-cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    color: #1F2328;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    position: relative;
+  }
+  .bp-cta-text {
+    font-size: clamp(16px, 2vw, 18px);
+    color: #6B7280;
+    line-height: 1.65;
+    margin-bottom: 40px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+  .bp-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: var(--font-sans);
+    transition: all 0.18s ease;
+    border: 1.5px solid var(--color-accent);
+    position: relative;
+  }
+  .bp-cta-btn:hover {
+    background-color: var(--color-accent-hov);
+    border-color: var(--color-accent-hov);
+  }
+
+  /* ── Recommended Articles ── */
+  .bp-recommended {
+    margin-top: 80px;
+    padding-top: 56px;
+    border-top: 1px solid var(--color-border);
+  }
+  .bp-recommended-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  .bp-recommended-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+  }
+  .bp-rec-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: var(--bg-page);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .bp-rec-card:hover {
+    border-color: rgba(86, 37, 242, 0.5);
+    box-shadow: 0 10px 25px -5px rgba(86, 37, 242, 0.08);
+    transform: translateY(-4px);
+  }
+  .bp-rec-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-surface);
+    overflow: hidden;
+  }
+  .bp-rec-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bp-rec-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .bp-rec-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bp-rec-link {
+    margin-top: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* ── Back link ── */
+  .bp-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 64px;
+    transition: color 0.2s;
+  }
+  .bp-back:hover {
+    color: var(--color-accent);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .bp-hero { height: 260px; }
+    .bp-content { padding: 36px 20px 72px; }
+    .bp-title { font-size: 32px; }
+    .bp-excerpt { font-size: 18px; }
+    .bp-body { font-size: 17px; }
+    .bp-body h2 { font-size: 24px; margin-top: 48px; }
+    .bp-body h3 { font-size: 20px; margin-top: 36px; }
+    .bp-cta { padding: 32px 20px; }
+    .bp-recommended-grid { grid-template-columns: 1fr; }
+  }
+</style>
+

@@ -944,6 +944,17 @@ export const enUS = {
     ctaText: "Dinn shows where product is missing in pharmacies, what changed and where to act first, with explicit source and confidence.",
     ctaBtn: "Request a demo",
     recommended: "Recommended for you",
-    writtenBy: "By"
+    writtenBy: "By",
+    allCategories: "All",
+    defaultCategory: "Article",
+    categories: {
+      gestao: "Management",
+      estoque: "Inventory",
+      precos: "Pricing",
+      mercado: "Market",
+      tendencias: "Trends",
+      estrategia: "Strategy",
+      tecnologia: "Technology"
+    }
   }
 };

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
-import { useTranslation } from '@/i18n/useTranslation';
+import { articlePath, categoryKey, DATE_LOCALE, type Lang } from '@/i18n/routes';
 
 export interface BlogPost {
   _id: string;
@@ -14,14 +14,29 @@ export interface BlogPost {
   categories?: string[];
 }
 
+/** Textos da interface, já no idioma da página (resolvidos no build). */
+export interface BlogLabels {
+  heroTitle: string;
+  searchPlaceholder: string;
+  noResultsTitle: string;
+  noResultsDesc: string;
+  readArticle: string;
+  defaultCategory: string;
+  categories: Record<string, string>;
+}
+
 interface BlogInteractiveProps {
   posts: BlogPost[];
+  lang: Lang;
+  labels: BlogLabels;
 }
 
 const ITEMS_PER_PAGE = 7; // 1 featured + 6 in the grid
 
-export default function BlogInteractive({ posts }: BlogInteractiveProps) {
-  const { t } = useTranslation();
+export default function BlogInteractive({ posts, lang, labels }: BlogInteractiveProps) {
+  // Valor salvo no Sanity ("Estoque" ou "estoque") → nome no idioma da página.
+  const categoryName = (value?: string) =>
+    value ? labels.categories[categoryKey(value)] ?? value : labels.defaultCategory;
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,7 +78,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
   const gridPosts = currentPosts.slice(1);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString(t('locale', 'pt-BR'), {
+    return new Date(dateString).toLocaleDateString(DATE_LOCALE[lang], {
       day: 'numeric',
       month: 'short',
       year: 'numeric'
@@ -80,11 +95,11 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
     <div className="blog-page">
       {/* Hero */}
       <div className="blog-hero">
-        <h1>{t('blog.heroTitle', 'Conteúdos do Dinn')}</h1>
+        <h1>{labels.heroTitle}</h1>
         <div className="blog-search">
           <input 
             type="text" 
-            placeholder={t('blog.searchPlaceholder', 'Busque um artigo...')}
+            placeholder={labels.searchPlaceholder}
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -103,8 +118,8 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
             <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4 text-slate-400">
               <Search size={32} />
             </div>
-            <h3 className="text-xl font-medium text-slate-900 mb-2">{t('blog.noResultsTitle', 'Nenhum conteúdo encontrado')}</h3>
-            <p className="text-slate-500">{t('blog.noResultsDesc', 'Tente ajustar sua busca por outros termos ou categorias.')}</p>
+            <h3 className="text-xl font-medium text-slate-900 mb-2">{labels.noResultsTitle}</h3>
+            <p className="text-slate-500">{labels.noResultsDesc}</p>
           </div>
         ) : (
           <AnimatePresence mode="wait">
@@ -118,7 +133,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
               {/* Featured */}
               {featured && (
                 <div className="blog-featured">
-                  <a href={`/articles/${featured.slug.current}`} className="block w-full overflow-hidden rounded-xl">
+                  <a href={articlePath(lang, featured.slug.current)} className="block w-full overflow-hidden rounded-xl">
                     <motion.img
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}
@@ -128,14 +143,14 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
                     />
                   </a>
                   <div>
-                    <span className="blog-featured-tag">{featured.categories?.[0] ?? 'Destaque'}</span>
-                    <a href={`/articles/${featured.slug.current}`} className="block">
+                    <span className="blog-featured-tag">{categoryName(featured.categories?.[0])}</span>
+                    <a href={articlePath(lang, featured.slug.current)} className="block">
                       <h2 className="blog-featured-title">{featured.title}</h2>
                     </a>
                     <p className="blog-featured-excerpt">{featured.excerpt}</p>
                     <p className="blog-featured-meta">{formatDate(featured.publishedAt)}</p>
-                    <a href={`/articles/${featured.slug.current}`} className="blog-featured-link">
-                      {t('blog.readArticle', 'Ler artigo')} →
+                    <a href={articlePath(lang, featured.slug.current)} className="blog-featured-link">
+                      {labels.readArticle} →
                     </a>
                   </div>
                 </div>
@@ -145,7 +160,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
               {gridPosts.length > 0 && (
                 <div className="blog-grid">
                   {gridPosts.map(post => (
-                    <a key={post._id} href={`/articles/${post.slug.current}`} className="blog-card group">
+                    <a key={post._id} href={articlePath(lang, post.slug.current)} className="blog-card group">
                       <div 
                         className="w-full aspect-video rounded-xl overflow-hidden bg-slate-100"
                         style={{ marginBottom: '32px' }}
@@ -158,7 +173,7 @@ export default function BlogInteractive({ posts }: BlogInteractiveProps) {
                         />
                       </div>
                       <div className="blog-card-meta">
-                        <span className="blog-card-category">{post.categories?.[0] ?? 'Artigo'}</span>
+                        <span className="blog-card-category">{categoryName(post.categories?.[0])}</span>
                         <span>·</span>
                         <span>{formatDate(post.publishedAt)}</span>
                       </div>

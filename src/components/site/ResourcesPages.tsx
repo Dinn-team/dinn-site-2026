@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/i18n/useTranslation';
+import { blogPath } from '@/i18n/routes';
 import { Rich } from '@/lib/rich-text';
 import { PATHS } from '@/lib/site-map';
 import { ImageHero, PageCta, PageHero } from './PageShell';
@@ -105,7 +106,7 @@ function ChangelogArt() {
 const ARTS = { blog: <BlogArt />, cases: <CasesArt />, changelog: <ChangelogArt /> };
 
 export function ResourcesHub() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const items = (t('resources.items') as Card[]) ?? [];
 
   return (
@@ -128,7 +129,7 @@ export function ResourcesHub() {
               <motion.a
                 key={it.id}
                 className={`rc-card is-${it.id}`}
-                href={it.href}
+                href={it.href === '/blog' ? blogPath(lang) : it.href}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-8% 0px' }}
