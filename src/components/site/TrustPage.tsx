@@ -1,6 +1,7 @@
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import FAQ from '@/components/FAQ';
+import { contactUrl } from '@/lib/links';
 import { PageCta, SectionHead } from './PageShell';
 import { CoverageViz, DeployBar, NotProveCards, SecurityFlow, SignalAnatomy, SignalKinds } from './TrustVisuals';
 
@@ -12,6 +13,9 @@ export function TrustPage() {
   const coverage = (t('trust.coverage.items') as Info[]) ?? [];
   const security = (t('trust.security.items') as Info[]) ?? [];
   const questions = (t('trust.questions.items') as Qa[]) ?? [];
+  const accuracy = t('trustMore.accuracy') as unknown as { title: string; text: string; kindsTitle: string; kinds: string[]; note: string };
+  const seals = t('trustMore.seals') as unknown as { title: string; text: string; rows: { label: string; text: string }[] };
+  const docs = t('trustMore.docs') as unknown as { title: string; text: string; items: string[]; cta: string };
 
   return (
     <div className="sp">
@@ -75,6 +79,49 @@ export function TrustPage() {
         <div className="wrap">
           <SectionHead id="sp-deploy" title={t('trust.deploy.title')} intro={t('trust.deploy.text')} />
           <DeployBar />
+        </div>
+      </section>
+
+      <section className="sp-section is-alt" aria-labelledby="sp-accuracy">
+        <div className="wrap sp-split">
+          <div>
+            <SectionHead id="sp-accuracy" title={accuracy.title} intro={accuracy.text} />
+            <p className="sp-note">{accuracy.note}</p>
+          </div>
+          <div className="of-panel">
+            <p className="sp-kicker">{accuracy.kindsTitle}</p>
+            <ul className="of-chips">
+              {accuracy.kinds.map((k) => <li key={k}>{k}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section" aria-labelledby="sp-seals">
+        <div className="wrap">
+          <SectionHead id="sp-seals" title={seals.title} intro={seals.text} />
+          <div className="sp-grid is-three">
+            {seals.rows.map((r) => (
+              <article key={r.label} className="sp-card is-plain">
+                <h3>{r.label}</h3>
+                <p>{r.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section is-alt" aria-labelledby="sp-docs">
+        <div className="wrap sp-split">
+          <div>
+            <SectionHead id="sp-docs" title={docs.title} intro={docs.text} />
+            <a href={contactUrl('confianca-documentacao')} className="btn btn-primary btn-lg">{docs.cta}</a>
+          </div>
+          <div className="of-panel">
+            <ul className="sp-checks">
+              {docs.items.map((i) => <li key={i}>{i}</li>)}
+            </ul>
+          </div>
         </div>
       </section>
 

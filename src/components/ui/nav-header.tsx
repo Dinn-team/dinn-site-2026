@@ -23,41 +23,74 @@ interface SlideTabsProps {
 
 // Itens do menu principal, compartilhados entre desktop e celular. O menu
 // espelha as perguntas do comprador (o que é, para a minha área, quem usa,
-// posso confiar), não a árvore interna de páginas. "Soluções" abre a lista das
-// áreas; o próprio item leva à seção da home (#areas) e cada área
-// tem sua página em /solucoes/<area>.
-export type NavMenu = "solutions" | "resources";
+// quanto custa, posso confiar), não a árvore interna de páginas. Itens com
+// submenu abrem a lista de destinos; o próprio item leva à página-mãe. Nomes
+// diferentes podem levar à mesma página (ver /solucoes).
+export type NavMenu = "platform" | "solutions" | "resources" | "plans" | "company";
 export const NAV_LINKS: { key: string; href: string; menu?: NavMenu }[] = [
-  { key: "nav.home", href: "/" },
-  { key: "nav.platform", href: "/plataforma" },
-  { key: "nav.solutions", href: "/#areas", menu: "solutions" },
-  { key: "nav.customers", href: "/#clientes" },
+  { key: "menu.platform", href: "/plataforma", menu: "platform" },
+  { key: "nav.solutions", href: "/solucoes", menu: "solutions" },
+  { key: "nav.customers", href: "/clientes" },
   { key: "nav.resources", href: "/recursos", menu: "resources" },
-  { key: "nav.trust", href: "/confianca" },
+  { key: "menu.plans", href: "/planos", menu: "plans" },
+  { key: "menu.company", href: "/sobre", menu: "company" },
 ];
 
 export type NavArea = { slug: string; name: string };
 export type SubItem = { href: string; label: string };
+export type Submenu = { items: SubItem[]; allHref?: string; allLabel?: string };
 
 /** Itens do submenu de cada entrada (desktop e celular usam a mesma lista). */
-export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, lang: Lang = "pt"): { items: SubItem[]; allHref: string; allLabel: string } | null {
+export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, lang: Lang = "pt"): Submenu | null {
+  const L = (key: string) => t(key) as string;
+  if (menu === "platform") {
+    return {
+      items: [
+        { href: "/funcionalidades", label: L("menu.features") },
+        { href: "/produtos/localizador", label: L("menu.locator") },
+        { href: "/produtos/conecta", label: L("menu.conecta") },
+        { href: "/integracoes", label: L("menu.integrations") },
+        { href: "/cobertura", label: L("menu.coverage") },
+      ],
+      allHref: "/plataforma",
+      allLabel: L("menu.platformAll"),
+    };
+  }
   if (menu === "solutions") {
     const areas = (t("solutions.items") as NavArea[]) ?? [];
     return {
       items: areas.map((a) => ({ href: `/solucoes/${a.slug}`, label: a.name })),
-      allHref: "/#areas",
-      allLabel: t("nav.solutionsAll") as string,
+      allHref: "/solucoes",
+      allLabel: L("menu.solutionsAll"),
     };
   }
   if (menu === "resources") {
     return {
       items: [
-        { href: blogPath(lang), label: t("nav.blog") as string },
-        { href: "/recursos/casos", label: t("nav.cases") as string },
-        { href: "/recursos/changelog", label: t("nav.changelog") as string },
+        { href: blogPath(lang), label: L("nav.blog") },
+        { href: "/recursos/casos", label: L("nav.cases") },
+        { href: "/recursos/changelog", label: L("nav.changelog") },
+        { href: "/comparativos", label: L("menu.compare") },
       ],
       allHref: "/recursos",
-      allLabel: t("nav.resourcesAll") as string,
+      allLabel: L("nav.resourcesAll"),
+    };
+  }
+  if (menu === "plans") {
+    return {
+      items: [
+        { href: "/planos", label: L("menu.plansOverview") },
+        { href: "/pesquisas", label: L("menu.research") },
+      ],
+    };
+  }
+  if (menu === "company") {
+    return {
+      items: [
+        { href: "/sobre", label: L("menu.about") },
+        { href: "/confianca", label: L("menu.trust") },
+        { href: "/contato", label: L("menu.contact") },
+      ],
     };
   }
   return null;
@@ -123,7 +156,7 @@ const Tab = ({
   href: string;
   setPosition: React.Dispatch<React.SetStateAction<Position>>;
   scrolled: boolean;
-  sub?: { items: SubItem[]; allHref: string; allLabel: string } | null;
+  sub?: Submenu | null;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
   const [open, setOpen] = useState(false);
@@ -208,13 +241,15 @@ const Tab = ({
                 {a.label}
               </a>
             ))}
-            <a
-              role="menuitem"
-              href={sub!.allHref}
-              style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "#5625F2", textDecoration: "none" }}
-            >
-              {sub!.allLabel} →
-            </a>
+            {sub!.allHref && (
+              <a
+                role="menuitem"
+                href={sub!.allHref}
+                style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "#5625F2", textDecoration: "none" }}
+              >
+                {sub!.allLabel} →
+              </a>
+            )}
           </div>
         </div>
       )}

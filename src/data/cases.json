@@ -62,14 +62,14 @@
         },
         {
           "title": {
-            "pt": "Fechou a conta em dias",
-            "en": "Closed the numbers in days",
-            "es": "Cerró la cuenta en días"
+            "pt": "Converteu o saldo em dias de cobertura",
+            "en": "Converted the balance into days of coverage",
+            "es": "Convirtió el saldo en días de cobertura"
           },
           "text": {
-            "pt": "Somado e cruzado com o giro da cidade, o saldo virou o que o time precisava: quantos dias de produto estavam disponíveis.",
-            "en": "Added up and cross-checked with the city's sell-through, the balance became what the team needed: how many days of product were available.",
-            "es": "Sumado y cruzado con la rotación de la ciudad, el saldo se convirtió en lo que el equipo necesitaba: cuántos días de producto había disponibles."
+            "pt": "Somado e dividido pelo giro diário estimado da cidade, o saldo virou o que o time precisava: quantos dias de produto estavam disponíveis. São dias de cobertura, não dias sem movimentação.",
+            "en": "Added up and divided by the city's estimated daily sell-through, the balance became what the team needed: how many days of product were available. These are days of coverage, not days without movement.",
+            "es": "Sumado y dividido entre la rotación diaria estimada de la ciudad, el saldo se convirtió en lo que el equipo necesitaba: cuántos días de producto había disponibles. Son días de cobertura, no días sin movimiento."
           }
         }
       ],
@@ -80,9 +80,9 @@
           "es": "La respuesta en días, antes de que el producto falte"
         },
         "text": {
-          "pt": "Com o número de dias na mão, o time soube se a cidade estava coberta e agiu antes de a falta chegar à farmácia.",
-          "en": "With the number of days in hand, the team knew whether the city was covered and acted before the shortage reached the pharmacy.",
-          "es": "Con el número de días en mano, el equipo supo si la ciudad estaba cubierta y actuó antes de que el desabasto llegara a la farmacia."
+          "pt": "Com o número de dias na mão, o time soube se a cidade estava coberta e pôde agir antes de a falta chegar à farmácia.",
+          "en": "With the number of days in hand, the team knew whether the city was covered and could act before the shortage reached the pharmacy.",
+          "es": "Con el número de días en mano, el equipo supo si la ciudad estaba cubierta y pudo actuar antes de que el desabasto llegara a la farmacia."
         },
         "quote": {
           "pt": "Em vez de adivinhar, eu li a coluna certa e tive a resposta que precisava.",
@@ -92,14 +92,14 @@
       },
       "outcome": [
         {
-          "pt": "Perda de vendas evitada em Fortaleza",
-          "en": "Lost sales avoided in Fortaleza",
-          "es": "Pérdida de ventas evitada en Fortaleza"
+          "pt": "Resposta em dias de cobertura para a cidade",
+          "en": "An answer in days of coverage for the city",
+          "es": "Respuesta en días de cobertura para la ciudad"
         },
         {
-          "pt": "Medicamento garantido para o paciente final",
-          "en": "Medication secured for the end patient",
-          "es": "Medicamento asegurado para el paciente final"
+          "pt": "Base para agir antes de a falta chegar ao paciente",
+          "en": "A basis to act before the shortage reaches the patient",
+          "es": "Base para actuar antes de que el desabasto llegue al paciente"
         },
         {
           "pt": "Decisão tomada pelo relatório, não por estimativa",
@@ -126,9 +126,9 @@
         "es": "Las tiendas no se reabastecían: ¿retraso, falta de pedido o la ventana de compra?"
       },
       "summary": {
-        "pt": "O produto sumia dos PDVs e ninguém sabia de quem era a conta. O Dinn mostrou que havia demanda, havia giro, e o furo estava no período de compra do distribuidor com a rede.",
-        "en": "The product kept disappearing from stores and nobody knew whose problem it was. Dinn showed there was demand, there was sell-through, and the gap was in the distributor's buying period with the chain.",
-        "es": "El producto desaparecía de las tiendas y nadie sabía de quién era la cuenta. Dinn mostró que había demanda, había rotación, y el hueco estaba en el período de compra del distribuidor con la cadena."
+        "pt": "O produto sumia dos PDVs e ninguém sabia de quem era a conta. O Dinn mostrou que havia demanda e giro, e o padrão apontou para o período de compra do distribuidor com a rede.",
+        "en": "The product kept disappearing from stores and nobody knew whose problem it was. Dinn showed there was demand and sell-through, and the pattern pointed to the distributor's buying period with the chain.",
+        "es": "El producto desaparecía de las tiendas y nadie sabía de quién era la cuenta. Dinn mostró que había demanda y rotación, y el patrón apuntó al período de compra del distribuidor con la cadena."
       },
       "problem": {
         "quote": {
@@ -169,27 +169,27 @@
         },
         {
           "title": {
-            "pt": "Localizou o furo no calendário",
-            "en": "Found the gap on the calendar",
-            "es": "Ubicó el hueco en el calendario"
+            "pt": "Levantou a hipótese no calendário",
+            "en": "Raised the hypothesis on the calendar",
+            "es": "Planteó la hipótesis en el calendario"
           },
           "text": {
-            "pt": "Cruzando CD e farmácias, o padrão apontou para o período de compra do distribuidor com a rede, e não para atraso de entrega nem para falta de pedido do PDV.",
-            "en": "Cross-checking the DC and the pharmacies, the pattern pointed to the distributor's buying period with the chain, not to a delivery delay or a missing order from the store.",
-            "es": "Al cruzar el CEDIS y las farmacias, el patrón apuntó al período de compra del distribuidor con la cadena, y no a un retraso de entrega ni a falta de pedido de la tienda."
+            "pt": "Cruzando CD e farmácias, o padrão sugeriu o período de compra do distribuidor com a rede, e não atraso de entrega nem falta de pedido do PDV. É uma hipótese para confirmar com o distribuidor.",
+            "en": "Cross-checking the DC and the pharmacies, the pattern suggested the distributor's buying period with the chain, rather than a delivery delay or a missing order from the store. It is a hypothesis to confirm with the distributor.",
+            "es": "Al cruzar el CEDIS y las farmacias, el patrón sugirió el período de compra del distribuidor con la cadena, y no un retraso de entrega ni falta de pedido de la tienda. Es una hipótesis por confirmar con el distribuidor."
           }
         }
       ],
       "solution": {
         "title": {
-          "pt": "Uma conversa com a data certa",
-          "en": "A conversation with the right date",
-          "es": "Una conversación con la fecha correcta"
+          "pt": "Uma conversa com a hipótese certa",
+          "en": "A conversation with the right hypothesis",
+          "es": "Una conversación con la hipótesis correcta"
         },
         "text": {
-          "pt": "Com o diagnóstico, o time conversou com o distribuidor, garantiu a reposição e levou ao médico a resposta que ele precisava: onde indicar o produto e quando ele estaria de volta.",
-          "en": "With the diagnosis, the team talked to the distributor, secured restocking, and gave the physician the answer they needed: where to recommend the product and when it would be back.",
-          "es": "Con el diagnóstico, el equipo conversó con el distribuidor, aseguró la reposición y le llevó al médico la respuesta que necesitaba: dónde recomendar el producto y cuándo volvería a estar disponible."
+          "pt": "Com a hipótese, o time conversou com o distribuidor, combinou a reposição e levou ao médico a resposta de que precisava: onde indicar o produto e quando ele estaria de volta.",
+          "en": "With the hypothesis, the team talked to the distributor, agreed on restocking, and gave the physician the answer they needed: where to recommend the product and when it would be back.",
+          "es": "Con la hipótesis, el equipo conversó con el distribuidor, acordó la reposición y le llevó al médico la respuesta que necesitaba: dónde recomendar el producto y cuándo volvería a estar disponible."
         },
         "quote": {
           "pt": "Consegui dizer ao médico que o produto existia na região, em quais lojas indicar e em que período seria reposto.",
@@ -199,9 +199,9 @@
       },
       "outcome": [
         {
-          "pt": "Medicamento garantido para o paciente",
-          "en": "Medication secured for the patient",
-          "es": "Medicamento asegurado para el paciente"
+          "pt": "Hipótese de causa levada à conversa com o distribuidor",
+          "en": "A cause hypothesis brought to the conversation with the distributor",
+          "es": "Hipótesis de causa llevada a la conversación con el distribuidor"
         },
         {
           "pt": "Médico com a resposta: onde indicar e quando haverá reposição",
@@ -269,29 +269,29 @@
             "es": "El Localizador responde"
           },
           "text": {
-            "pt": "O Dinn lista as farmácias ao redor, com a disponibilidade e o estoque de cada uma, sempre dizendo o que é observado e o que é estimado.",
-            "en": "Dinn lists the nearby pharmacies, with each one's availability and stock, always saying what is observed and what is estimated.",
-            "es": "Dinn lista las farmacias cercanas, con la disponibilidad y el inventario de cada una, siempre indicando qué es observado y qué es estimado."
+            "pt": "O Dinn lista as farmácias ao redor, com a disponibilidade e o estoque de cada uma, sempre dizendo o que é observado (D-1), o que é estimado e, quando a loja é compatível, o que ela informou na consulta em tempo real, com o horário.",
+            "en": "Dinn lists the nearby pharmacies, with each one's availability and stock, always saying what is observed (D-1), what is estimated and, when the store is compatible, what it reported in the real-time query, with the time.",
+            "es": "Dinn lista las farmacias cercanas, con la disponibilidad y el inventario de cada una, siempre indicando qué es observado (D-1), qué es estimado y, cuando la tienda es compatible, lo que informó en la consulta en tiempo real, con el horario."
           }
         },
         {
           "title": {
-            "pt": "O atendimento fecha com confiança",
-            "en": "The call closes with confidence",
-            "es": "La atención cierra con confianza"
+            "pt": "O atendimento fecha com mais segurança",
+            "en": "The call closes with more confidence",
+            "es": "La atención cierra con más seguridad"
           },
           "text": {
-            "pt": "O atendente confirma que o produto existe no endereço escolhido, sem ligar para loja por loja.",
-            "en": "The agent confirms the product exists at the chosen address, without calling store by store.",
-            "es": "El agente confirma que el producto existe en la dirección elegida, sin llamar tienda por tienda."
+            "pt": "O atendente orienta o paciente com a loja de maior chance de ter o produto e a data da informação, sem ligar para loja por loja.",
+            "en": "The agent guides the patient to the store most likely to have the product, with the date of the information, without calling store by store.",
+            "es": "El agente orienta al paciente hacia la tienda con más probabilidad de tener el producto, con la fecha de la información, sin llamar tienda por tienda."
           }
         }
       ],
       "solution": {
         "title": {
-          "pt": "Atendimento mais ágil, com a segurança de quem viu o dado",
-          "en": "Faster service, with the certainty of having seen the data",
-          "es": "Atención más ágil, con la seguridad de haber visto el dato"
+          "pt": "Atendimento mais ágil, com a origem do dado à vista",
+          "en": "Faster service, with the source of the data in view",
+          "es": "Atención más ágil, con el origen del dato a la vista"
         },
         "text": {
           "pt": "O time usa o Localizador todos os dias. A busca deixou de consumir a rotina, e a energia passou para as frentes mais estratégicas do atendimento ao paciente.",
@@ -299,9 +299,9 @@
           "es": "El equipo usa el Localizador todos los días. La búsqueda dejó de consumir la rutina, y la energía pasó a los frentes más estratégicos de la atención al paciente."
         },
         "quote": {
-          "pt": "Hoje eu respondo mais rápido e com a certeza de que o produto está no endereço que o paciente quer.",
-          "en": "Today I answer faster and with the certainty that the product is at the address the patient wants.",
-          "es": "Hoy respondo más rápido y con la certeza de que el producto está en la dirección que quiere el paciente."
+          "pt": "Hoje eu respondo mais rápido e sei de onde vem a informação que passo ao paciente.",
+          "en": "Today I answer faster and I know where the information I give the patient comes from.",
+          "es": "Hoy respondo más rápido y sé de dónde viene la información que le doy al paciente."
         }
       },
       "outcome": [
@@ -311,9 +311,9 @@
           "es": "Atención más ágil, todos los días"
         },
         {
-          "pt": "Paciente com a confiança de que o produto existe no endereço",
-          "en": "Patient confident that the product exists at the address",
-          "es": "Paciente con la confianza de que el producto existe en la dirección"
+          "pt": "Paciente orientado com a disponibilidade informada e a data da leitura",
+          "en": "Patient guided with the reported availability and the date of the reading",
+          "es": "Paciente orientado con la disponibilidad informada y la fecha de la lectura"
         },
         {
           "pt": "Time com tempo para frentes mais estratégicas",
@@ -335,9 +335,9 @@
         "es": "Estrategia de abastecimiento"
       },
       "title": {
-        "pt": "O concorrente vendia na rede. O produto, não. O preço explicava por quê",
-        "en": "The competitor sold in the chain. The product did not. Price explained why",
-        "es": "El competidor vendía en la cadena. El producto, no. El precio explicaba por qué"
+        "pt": "O concorrente vendia na rede. O produto, não. O preço era uma hipótese",
+        "en": "The competitor sold in the chain. The product did not. Price was a hypothesis",
+        "es": "El competidor vendía en la cadena. El producto, no. El precio era una hipótesis"
       },
       "summary": {
         "pt": "Procurando brechas para negociar, o time cruzou os dados de mercado do Dinn e viu o que não aparecia nas reuniões: o concorrente estava nas redes, e o produto ainda não.",
@@ -376,9 +376,9 @@
             "es": "Comparó el precio entre ambos"
           },
           "text": {
-            "pt": "A leitura de preço indicou que o valor estava pesando na decisão do consumidor final.",
-            "en": "The price reading indicated that price was weighing on the end consumer's decision.",
-            "es": "La lectura de precios indicó que el valor estaba pesando en la decisión del consumidor final."
+            "pt": "A leitura de preço sugeriu que o valor poderia estar pesando na decisão do consumidor final: uma hipótese a testar na negociação.",
+            "en": "The price reading suggested that price could be weighing on the end consumer's decision: a hypothesis to test in the negotiation.",
+            "es": "La lectura de precios sugirió que el valor podría estar pesando en la decisión del consumidor final: una hipótesis por probar en la negociación."
           }
         },
         {
@@ -406,9 +406,9 @@
           "es": "Con libertad para negociar, el equipo llevó condiciones competitivas a las cadenas, para atender la demanda médica de la región."
         },
         "quote": {
-          "pt": "O preço estava decidindo a compra. Com o dado na mão, consegui negociar e atender a demanda do médico.",
-          "en": "Price was deciding the purchase. With the data in hand, I was able to negotiate and meet the physician's demand.",
-          "es": "El precio estaba decidiendo la compra. Con el dato en la mano, pude negociar y atender la demanda del médico."
+          "pt": "O preço parecia pesar na compra. Com o dado na mão, consegui negociar e atender a demanda do médico.",
+          "en": "Price seemed to weigh on the purchase. With the data in hand, I was able to negotiate and meet the physician's demand.",
+          "es": "El precio parecía pesar en la compra. Con el dato en la mano, pude negociar y atender la demanda del médico."
         }
       },
       "outcome": [

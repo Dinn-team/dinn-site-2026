@@ -27,7 +27,7 @@ export const ptBR = {
   hero: {
     pill: "Inteligência comercial para o canal farmacêutico",
     title: "Transforme sinais do canal farma em *ação comercial*.",
-    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura, mostra a origem, a data e os limites de cada informação e ajuda sua equipe a decidir onde agir primeiro.",
+    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura e ajuda sua equipe a decidir onde agir primeiro, com origem, atualização e limites claros.",
     cta: "Conheça a plataforma",
     secondary: "Explore a Dinn para a sua área"
   },
@@ -312,7 +312,7 @@ export const ptBR = {
       ia: {
         keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integra", "conecta", "sistema", "dados internos", "crm", "erp", "data lake"],
         steps: ["Entendendo a pergunta…"],
-        answer: "Sim. O Dinn chega aonde o seu time já trabalha: na plataforma, em arquivo, no seu BI pela API ou direto no ChatGPT, no Claude e no Copilot por MCP, com acesso **somente leitura**.\n\nCom o **Dinn Conecta**, mercado, dados internos e farmácias chegam padronizados ao seu BI e aos seus agentes. Dados e governança continuam com você.",
+        answer: "Sim. O Dinn chega aonde o seu time já trabalha: na plataforma, em arquivo, no seu BI pela API ou direto no ChatGPT, no Claude e no Copilot por MCP, com acesso **somente leitura**.\n\nCom o **Dinn Conecta**, mercado, dados internos e farmácias chegam padronizados ao seu BI e aos seus agentes. Dados internos e a governança do seu ambiente continuam com você.",
         method: [],
         links: [
           { label: "Onde o Dinn entrega", href: "#entrega" },
@@ -360,6 +360,7 @@ export const ptBR = {
     eyebrow: "Casos de uso: escolha a situação e veja o Dinn trabalhando",
     title: "Situações concretas do canal, *uma a uma*",
     askCta: "Pergunte isso ao Dinn",
+    deepLink: "Ver em detalhe nesta área",
     seesLabel: "O Dinn cruza",
     doesLabel: "O time faz",
     items: [
@@ -368,7 +369,7 @@ export const ptBR = {
         tab: "SAC",
         kicker: "SAC e atendimento",
         title: "“Onde acho esse remédio perto de casa?”",
-        story: "O atendente vê as farmácias mais próximas com o produto, quantas unidades há e quanto a loja vende.",
+        story: "O atendente vê as farmácias mais próximas com o produto, quantas unidades há e a estimativa de giro no recorte.",
         sees: ["Estoque por loja", "Distância", "Giro", "Preço"],
         does: [
           "Indica a farmácia com maior chance de ter o produto",
@@ -393,25 +394,11 @@ export const ptBR = {
         visual: "queue"
       },
       {
-        id: "medico",
-        tab: "Propaganda médica",
-        kicker: "Propaganda médica",
-        title: "A receita vai encontrar o produto *na farmácia ao lado?*",
-        story: "Antes da visita, o time vê se as farmácias do entorno do consultório têm o produto. Se não têm, avisa o trade.",
-        sees: ["Farmácias do brick", "Estoque D-1", "Rede com falta"],
-        does: [
-          "Prepara a visita sabendo o que o paciente encontra",
-          "Aciona o trade se o entorno está em ruptura"
-        ],
-        question: "As farmácias perto do consultório em Belo Horizonte têm o meu produto?",
-        visual: "prescriber"
-      },
-      {
         id: "distribuicao",
         tab: "Distribuição",
         kicker: "Distribuição e supply",
         title: "O furo é no CD, *na farmácia ou no pedido?*",
-        story: "O Dinn liga o estoque do distribuidor às farmácias que ele abastece e mostra de que lado está o problema.",
+        story: "O Dinn liga o estoque do distribuidor às farmácias que ele abastece e ajuda a investigar onde pode estar a restrição.",
         sees: ["Estoque no CD", "Cobertura em dias", "Ruptura nas lojas", "Giro da região"],
         does: [
           "Separa falta na origem de falha de reposição",
@@ -564,7 +551,7 @@ export const ptBR = {
   story: {
     lines: [
       "O canal farmacêutico deixa sinais sobre o seu produto.",
-      "Se ele está na **prateleira. Se gira. A que preço. Se o CD tem para repor.**",
+      "Se ele aparece **disponível no canal. Se gira. A que preço. Se o CD tem para repor.**",
       "Os sinais chegam **soltos**, de fontes diferentes e com graus diferentes de confiança.",
       "O Dinn organiza, mostra de onde vêm e ajuda o seu time a decidir **onde agir primeiro.**"
     ]
@@ -609,9 +596,9 @@ export const ptBR = {
       },
       {
         name: "Aprende",
-        title: "Registra o retorno e melhora a fila.",
-        desc: "Registra o retorno do time e melhora a priorização ao longo do uso.",
-        example: "O time marca que 5 lojas tinham pedido pendente; na semana seguinte elas descem na fila.",
+        title: "Registra o que a equipe encontrou.",
+        desc: "O time registra o que encontrou e acompanha o mesmo recorte para revisar prioridades.",
+        example: "O time marca que 5 lojas tinham pedido pendente e, na semana seguinte, acompanha o mesmo recorte para rever a prioridade.",
         chips: ["Retorno do time", "Mesmo recorte", "Priorização"]
       }
     ],
@@ -621,6 +608,7 @@ export const ptBR = {
   delivery: {
     eyebrow: "Plataforma e capacidades",
     title: "IA para o mercado farma *onde o seu time já trabalha*",
+    more: "Saiba mais",
     cards: [
       {
         tag: "Dinn Manager",
@@ -648,7 +636,7 @@ export const ptBR = {
     trust: [
       "Observado ou estimado, sempre dito",
       "Base D-1 e consulta pontual em lojas elegíveis",
-      "Dois fatores por e-mail · SSO habilitável",
+      "Dois fatores por e-mail · SSO sob consulta",
       "Implantação em até 30 dias após pré-requisitos e escopo acordados"
     ],
     note: "Cobertura e atualização variam por fonte, produto e consulta. Cada fonte depende de licença, autorização e escopo acordados, e recursos na sua IA dependem do plano e da configuração."
@@ -658,7 +646,7 @@ export const ptBR = {
     items: [
       {
         question: "Já usamos auditorias como IQVIA e Close-Up. Por que precisaríamos da Dinn?",
-        answer: "A Dinn **não substitui** as auditorias de mercado: ela as **complementa**. IQVIA e Close-Up são ótimas para planejamento, share e decisões de longo prazo, com dados de período fechado. A Dinn acompanha a disponibilidade no dia a dia (D-1), loja a loja, e mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, as duas leituras podem ser cruzadas no mesmo recorte."
+        answer: "A Dinn **não substitui** as auditorias de mercado: ela as **complementa**. As auditorias são referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade no dia a dia (D-1), loja a loja, e mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, as duas leituras podem ser cruzadas no mesmo recorte."
       },
       {
         question: "A implantação exige um esforço grande de TI?",
@@ -698,7 +686,7 @@ export const ptBR = {
       },
       {
         question: "Como a Dinn trata segurança e confiabilidade dos dados?",
-        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões, e a integração com a identidade corporativa (**SSO**) pode ser habilitada. Cada dado é rastreável: fonte, data e a distinção entre observado e estimado ficam explícitas. As conexões com a IA do cliente são **somente leitura**."
+        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões, e o SSO corporativo está disponível sob consulta, conforme os requisitos da sua empresa. Cada dado é rastreável: fonte, data e a distinção entre observado e estimado ficam explícitas. As conexões com a IA do cliente são **somente leitura**."
       },
       {
         question: "O que é o Dinn Conecta?",
@@ -725,7 +713,7 @@ export const ptBR = {
     secondary: "Voltar a perguntar"
   },
   footer: {
-    description: "Inteligência comercial para o canal farmacêutico. Uma iniciativa da DiWE Ventures Studio.",
+    description: "Inteligência comercial para o canal farmacêutico, com presença em Joinville e Valência.",
     sectionA: "A Dinn",
     sectionSolutions: "Soluções",
     sectionLegal: "Legal",
@@ -736,7 +724,11 @@ export const ptBR = {
     ctaTitle: "Pronto para começar?",
     ctaDesc: "Veja a Dinn com os seus produtos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2026 DiWE Ventures Studio. Todos os direitos reservados.",
+    rights: "© 2026 Dinn Tecnologia Ltda. Todos os direitos reservados.",
+    legalName: "Dinn Tecnologia Ltda.",
+    cnpj: "57.639.944/0001-20",
+    address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
+    cities: "Joinville · Valência",
     launch: "Lançamento"
   },
   privacy: {

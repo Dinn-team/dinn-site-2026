@@ -27,7 +27,7 @@ export const es419 = {
   hero: {
     pill: "Inteligencia comercial para el canal farmacéutico",
     title: "Convierte las señales del canal farma en *acción comercial*.",
-    description: "Dinn organiza señales de disponibilidad, rotación, precio y cobertura, muestra el origen, la fecha y los límites de cada dato y ayuda a tu equipo a decidir dónde actuar primero.",
+    description: "Dinn organiza señales de disponibilidad, rotación, precio y cobertura y ayuda a tu equipo a decidir dónde actuar primero, con origen, actualización y límites claros.",
     cta: "Conoce la plataforma",
     secondary: "Explora Dinn para tu área"
   },
@@ -312,7 +312,7 @@ export const es419 = {
       ia: {
         keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integra", "conecta", "sistema", "datos internos", "crm", "erp", "data lake", "dados internos"],
         steps: ["Entendiendo la pregunta…"],
-        answer: "Sí. Dinn llega a donde tu equipo ya trabaja: en la plataforma, en un archivo, en tu BI vía API o directo en ChatGPT, Claude y Copilot por MCP, con acceso de **solo lectura**.\n\nCon **Dinn Conecta**, mercado, datos internos y farmacias llegan estandarizados a tu BI y a tus agentes. Los datos y la gobernanza siguen siendo tuyos.",
+        answer: "Sí. Dinn llega a donde tu equipo ya trabaja: en la plataforma, en un archivo, en tu BI vía API o directo en ChatGPT, Claude y Copilot por MCP, con acceso de **solo lectura**.\n\nCon **Dinn Conecta**, mercado, datos internos y farmacias llegan estandarizados a tu BI y a tus agentes. Los datos internos y la gobernanza de tu entorno siguen siendo tuyos.",
         method: [],
         links: [
           { label: "Dónde entrega Dinn", href: "#entrega" },
@@ -360,6 +360,7 @@ export const es419 = {
     eyebrow: "Casos de uso: elige la situación y mira a Dinn trabajando",
     title: "Situaciones concretas del canal, *una por una*",
     askCta: "Pregúntale esto a Dinn",
+    deepLink: "Ver el detalle de esta área",
     seesLabel: "Dinn cruza",
     doesLabel: "El equipo hace",
     items: [
@@ -368,7 +369,7 @@ export const es419 = {
         tab: "Atención a clientes",
         kicker: "Atención a clientes",
         title: "“¿Dónde encuentro esta medicina cerca de casa?”",
-        story: "Quien atiende ve las farmacias más cercanas con el producto, cuántas piezas hay y cuánto vende la tienda.",
+        story: "Quien atiende ve las farmacias más cercanas con el producto, cuántas piezas hay y la estimación de rotación en el alcance.",
         sees: ["Inventario por tienda", "Distancia", "Rotación", "Precio"],
         does: [
           "Recomienda la farmacia con más probabilidad de tener el producto",
@@ -393,25 +394,11 @@ export const es419 = {
         visual: "queue"
       },
       {
-        id: "medico",
-        tab: "Visita médica",
-        kicker: "Visita médica",
-        title: "¿La receta va a encontrar el producto *en la farmacia de al lado?*",
-        story: "Antes de la visita, el equipo ve si las farmacias alrededor del consultorio tienen el producto. Si no, avisa a trade.",
-        sees: ["Farmacias del brick", "Inventario D-1", "Cadena con faltante"],
-        does: [
-          "Prepara la visita sabiendo qué va a encontrar el paciente",
-          "Avisa a trade si el entorno tiene desabasto"
-        ],
-        question: "¿Las farmacias cerca del consultorio en Guadalajara tienen mi producto?",
-        visual: "prescriber"
-      },
-      {
         id: "distribuicao",
         tab: "Distribución",
         kicker: "Distribución y supply",
         title: "¿La falla está en el CEDIS, *en la farmacia o en el pedido?*",
-        story: "Dinn conecta el inventario del distribuidor con las farmacias que surte y muestra de qué lado está el problema.",
+        story: "Dinn conecta el inventario del distribuidor con las farmacias que surte y ayuda a investigar dónde puede estar la restricción.",
         sees: ["Inventario en CEDIS", "Cobertura en días", "Desabasto en farmacias", "Rotación de la zona"],
         does: [
           "Separa el faltante de origen de la falla de resurtido",
@@ -564,7 +551,7 @@ export const es419 = {
   story: {
     lines: [
       "El canal farmacéutico deja señales sobre tu producto.",
-      "Si está en el **anaquel. Si rota. A qué precio. Si el CEDIS tiene para resurtir.**",
+      "Si aparece **disponible en el canal. Si rota. A qué precio. Si el CEDIS tiene para resurtir.**",
       "Las señales llegan **sueltas**, de fuentes distintas y con distintos grados de confianza.",
       "Dinn las organiza, muestra de dónde vienen y ayuda a tu equipo a decidir **dónde actuar primero.**"
     ]
@@ -609,9 +596,9 @@ export const es419 = {
       },
       {
         name: "Aprende",
-        title: "Registra el retorno y mejora la fila.",
-        desc: "Registra el retorno del equipo y mejora la priorización con el uso.",
-        example: "El equipo marca que 5 tiendas tenían pedido pendiente; la semana siguiente bajan en la fila.",
+        title: "Registra lo que el equipo encontró.",
+        desc: "El equipo registra lo que encontró y sigue el mismo alcance para revisar prioridades.",
+        example: "El equipo marca que 5 tiendas tenían pedido pendiente y, la semana siguiente, sigue el mismo alcance para revisar la prioridad.",
         chips: ["Retorno del equipo", "Mismo alcance", "Priorización"]
       }
     ],
@@ -621,6 +608,7 @@ export const es419 = {
   delivery: {
     eyebrow: "Plataforma y capacidades",
     title: "IA para el mercado farma *donde tu equipo ya trabaja*",
+    more: "Más información",
     cards: [
       {
         tag: "Dinn Manager",
@@ -648,7 +636,7 @@ export const es419 = {
     trust: [
       "Observado o estimado, siempre se indica",
       "Base D-1 y consulta puntual en tiendas elegibles",
-      "Doble factor por correo · SSO habilitable",
+      "Doble factor por correo · SSO bajo consulta",
       "Implementación en hasta 30 días tras los prerrequisitos y el alcance acordados"
     ],
     note: "La cobertura y la actualización varían por fuente, producto y consulta. Cada fuente depende de la licencia, la autorización y el alcance acordados, y las funciones en tu IA dependen del plan y la configuración."
@@ -658,7 +646,7 @@ export const es419 = {
     items: [
       {
         question: "Ya usamos auditorías como IQVIA y Close-Up. ¿Por qué necesitaríamos Dinn?",
-        answer: "Dinn **no reemplaza** las auditorías de mercado: las **complementa**. IQVIA y Close-Up son excelentes para planeación, participación y decisiones de largo plazo, con datos de periodo cerrado. Dinn sigue la disponibilidad en el día a día (D-1), tienda por tienda, y muestra **dónde actuar ahora**, antes de que el faltante se convierta en venta perdida. Con autorización, ambas lecturas pueden cruzarse en el mismo alcance."
+        answer: "Dinn **no reemplaza** las auditorías de mercado: las **complementa**. Las auditorías son una referencia para la planeación y las lecturas consolidadas, según el producto contratado. Dinn sigue la disponibilidad en el día a día (D-1), tienda por tienda, y muestra **dónde actuar ahora**, antes de que el faltante se convierta en venta perdida. Con autorización, ambas lecturas pueden cruzarse en el mismo alcance."
       },
       {
         question: "¿La implementación exige un gran esfuerzo de TI?",
@@ -698,7 +686,7 @@ export const es419 = {
       },
       {
         question: "¿Cómo trata Dinn la seguridad y la confiabilidad de los datos?",
-        answer: "El acceso tiene **verificación en dos pasos por correo** y control de permisos, y la integración con la identidad corporativa (**SSO**) puede habilitarse. Cada dato es rastreable: fuente, fecha y la distinción entre observado y estimado quedan explícitas. Las conexiones con la IA del cliente son de **solo lectura**."
+        answer: "El acceso tiene **verificación en dos pasos por correo** y control de permisos, y el SSO corporativo está disponible bajo consulta, según los requisitos de tu empresa. Cada dato es rastreable: fuente, fecha y la distinción entre observado y estimado quedan explícitas. Las conexiones con la IA del cliente son de **solo lectura**."
       },
       {
         question: "¿Qué es Dinn Conecta?",
@@ -725,7 +713,7 @@ export const es419 = {
     secondary: "Volver a preguntar"
   },
   footer: {
-    description: "Inteligencia comercial para el canal farmacéutico. Una iniciativa de DiWE Ventures Studio.",
+    description: "Inteligencia comercial para el canal farmacéutico, con presencia en Joinville y Valencia.",
     sectionA: "Acerca de Dinn",
     sectionSolutions: "Soluciones",
     sectionLegal: "Legal",
@@ -736,7 +724,11 @@ export const es419 = {
     ctaTitle: "¿Listo para empezar?",
     ctaDesc: "Ve Dinn con tus propios productos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2026 DiWE Ventures Studio. Todos los derechos reservados.",
+    rights: "© 2026 Dinn Tecnologia Ltda. Todos los derechos reservados.",
+    legalName: "Dinn Tecnologia Ltda.",
+    cnpj: "57.639.944/0001-20",
+    address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
+    cities: "Joinville · Valencia",
     launch: "Lanzamiento"
   },
   privacy: {

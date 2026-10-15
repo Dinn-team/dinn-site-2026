@@ -6,7 +6,10 @@ import { getDictionary, isLoaded, resolvePath } from './translations';
 export function getTranslation(lang: Language, key: string) {
   // Cai no PT enquanto o dicionário do idioma escolhido não chegou.
   const dictionary = getDictionary(lang) || getDictionary('pt');
-  const text = resolvePath(dictionary, key);
+  let text = resolvePath(dictionary, key);
+  // Chave que ainda não existe no idioma escolhido cai no português, em vez de
+  // mostrar o nome da chave na tela.
+  if (text === undefined && lang !== 'pt') text = resolvePath(getDictionary('pt'), key);
   return text !== undefined ? text : key;
 }
 

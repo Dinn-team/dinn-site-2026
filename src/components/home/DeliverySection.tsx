@@ -9,6 +9,7 @@ import { contactUrl } from '@/lib/links';
 // Cada card tem um pequeno visual vivo em vez de um parágrafo a mais.
 
 type Card = { tag: string; title: string; desc: string };
+const CARD_LINKS = ['/plataforma', '/funcionalidades#insights', '/integracoes#mcp', '/produtos/conecta'];
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 function ManagerMini() {
@@ -129,6 +130,7 @@ export function DeliverySection() {
                 <span className="delivery-tag">{c.tag}</span>
                 <h3>{c.title}</h3>
                 <p>{c.desc}</p>
+                <p className="delivery-more"><a href={CARD_LINKS[i]}>{t('delivery.more')} →</a></p>
               </div>
               {minis[i]}
             </motion.article>
@@ -138,6 +140,11 @@ export function DeliverySection() {
           {trust.map((x) => <li key={x}><Check size={15} strokeWidth={2.4} />{x}</li>)}
         </ul>
         <p className="teams-note">{t('delivery.note')}</p>
+        <p className="delivery-more delivery-links">
+          <a href="/planos">{t('menu.plansOverview')} →</a>
+          <a href="/cobertura">{t('menu.coverage')} →</a>
+          <a href="/integracoes">{t('menu.integrations')} →</a>
+        </p>
       </div>
     </section>
     </MotionConfig>

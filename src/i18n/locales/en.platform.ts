@@ -35,8 +35,8 @@ export const platformVizEn = {
     chartTitle: "Store stock-out rate · last 30 days",
     chartFrom: "30 days ago",
     chartTo: "today",
-    hint: "Click a store to mark it as checked: the queue reorders.",
-    caption: "The queue moves up and down with the team's feedback."
+    hint: "Click a store to mark it as checked.",
+    caption: "The team records what it found and follows the same scope."
   },
   insights: {
     you: "You",

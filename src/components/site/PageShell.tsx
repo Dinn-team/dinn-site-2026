@@ -126,7 +126,7 @@ export function PageCta({
 export function SectionHead({ title, intro, id }: { title: string; intro?: string; id?: string }) {
   return (
     <div className="sp-head">
-      <h2 id={id}>{title}</h2>
+      <h2 id={id}><Rich text={title} /></h2>
       {intro && <p>{intro}</p>}
     </div>
   );

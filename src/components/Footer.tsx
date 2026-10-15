@@ -35,10 +35,15 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
                 [t('nav.platform'), '/plataforma'],
-                [t('nav.solutions'), '/#areas'],
-                [t('nav.teams'), '/#times'],
-                [t('nav.customers'), '/#clientes'],
+                [t('menu.features'), '/funcionalidades'],
+                [t('menu.locator'), '/produtos/localizador'],
+                [t('menu.conecta'), '/produtos/conecta'],
+                [t('menu.integrations'), '/integracoes'],
+                [t('menu.coverage'), '/cobertura'],
+                [t('menu.plansOverview'), '/planos'],
+                [t('nav.customers'), '/clientes'],
                 [t('nav.resources'), '/recursos'],
+                [t('menu.about'), '/sobre'],
                 [t('nav.trust'), '/confianca'],
                 [t('nav.blog'), blogPath(lang)],
                 [t('contact.navLabel'), '/contato'],
@@ -129,9 +134,17 @@ export default function Footer() {
           alignItems: 'center',
           gap: '12px',
         }}>
-          <p style={{ fontSize: '13px', color: '#9CA3AF', margin: 0 }}>
-            {t('footer.rights')}
-          </p>
+          <div>
+            <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, fontWeight: 600 }}>
+              {t('footer.legalName')} · CNPJ {t('footer.cnpj')}
+            </p>
+            <p style={{ fontSize: '13px', color: '#6B7280', margin: '2px 0 0' }}>
+              {t('footer.address')} · {t('footer.cities')}
+            </p>
+            <p style={{ fontSize: '13px', color: '#6B7280', margin: '2px 0 0' }}>
+              {t('footer.rights')}
+            </p>
+          </div>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',

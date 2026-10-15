@@ -35,8 +35,8 @@ export const platformVizEs = {
     chartTitle: "Desabasto de la tienda · últimos 30 días",
     chartFrom: "hace 30 días",
     chartTo: "hoy",
-    hint: "Haz clic en una tienda para marcarla como verificada: la fila se reordena.",
-    caption: "La fila sube y baja con el retorno del equipo."
+    hint: "Haz clic en una tienda para marcarla como verificada.",
+    caption: "El equipo registra lo que encontró y sigue el mismo alcance."
   },
   insights: {
     you: "Tú",

@@ -1,3 +1,4 @@
+import { offerEs } from './es.offer';
 import { platformVizEs } from './es.platform';
 
 // Textos de las páginas internas del sitio (plataforma, soluciones por área,
@@ -8,6 +9,7 @@ import { platformVizEs } from './es.platform';
 
 export const pagesEs = {
   platformViz: platformVizEs,
+  ...offerEs,
   areas: {
     eyebrow: "Para tu área",
     title: "Empieza por el problema de *tu equipo*",
@@ -178,7 +180,7 @@ export const pagesEs = {
             "Señal: desabasto persistente en tiendas de la cartera, en la última semana.",
             "Validación: nivel calculado como días sin inventario ÷ días observados en los últimos 30 días.",
             "Fila: las tiendas en orden, con qué verificar en cada una (¿pedido pendiente? ¿fuera del anaquel?).",
-            "Retorno: lo que el equipo encontró vuelve y reordena la fila."
+            "Retorno: el equipo registra lo que encontró y sigue el mismo alcance para revisar prioridades."
           ]
         },
         limits: [
@@ -186,7 +188,7 @@ export const pagesEs = {
           "Nada se escribe en el CRM por cuenta propia: la lectura sirve para preparar la visita.",
           "Las tiendas que nunca vendieron el producto quedan fuera, para no inflar el desabasto."
         ],
-        useCases: ["campo", "medico"]
+        useCases: ["campo"]
       },
       {
         slug: "supply-distribuicao",
@@ -212,6 +214,7 @@ export const pagesEs = {
         limits: [
           "El inventario en el CEDIS no prueba inventario en la farmacia: la lectura cruza las dos puntas.",
           "El patrón es una hipótesis; la causa exige investigación.",
+          "La cobertura del CEDIS usa la venta estimada de la región: es una aproximación, no la cobertura real de ese CEDIS, y solo vale con una demanda compatible con la población que abastece.",
           "El movimiento observado no equivale a una venta confirmada."
         ],
         useCases: ["distribuicao", "parado"]
@@ -238,7 +241,7 @@ export const pagesEs = {
           ]
         },
         limits: [
-          "La actualización es D-1; en tiendas elegibles, hay consulta puntual de disponibilidad.",
+          "La lectura base es D-1; en tiendas compatibles, hay consulta en tiempo real bajo demanda, con el horario de la respuesta.",
           "Probabilidad de inventario no es garantía de inventario, y la orientación debe decirlo.",
           "La cobertura varía por cadena y por fuente."
         ],
@@ -260,7 +263,7 @@ export const pagesEs = {
           title: "Seis semanas después del lanzamiento",
           steps: [
             "Señal: el producto aparece en 54% de las farmacias monitoreadas.",
-            "Validación: presencia = farmacias con inventario ÷ farmacias monitoreadas en el alcance.",
+            "Validación: presencia = farmacias con inventario ÷ farmacias monitoreadas en el alcance, comparada con la meta y la cohorte que planeó tu equipo.",
             "Lectura: se aceleró en las grandes cadenas y sigue por debajo de 20% en las independientes.",
             "Siguiente pregunta: ¿el CEDIS ya recibió el producto en las regiones adonde no llegó?"
           ]
@@ -281,7 +284,7 @@ export const pagesEs = {
         lead: "API, BI y la IA del cliente consultan la misma base, con el alcance autorizado y el origen de cada dato preservado.",
         decisions: [
           "Elegir por dónde consumir: plataforma, archivo, API, BI o la IA del cliente.",
-          "Definir quién accede a qué, con verificación en dos pasos y SSO habilitable.",
+          "Definir quién accede a qué, con verificación en dos pasos y SSO corporativo bajo consulta.",
           "Mantener los datos internos, la infraestructura y la gobernanza bajo el control del cliente."
         ],
         example: {
@@ -318,9 +321,10 @@ export const pagesEs = {
       intro: "De la señal suelta a la acción registrada. El ejemplo completo, con un único caso, está en la home."
     },
     parts: {
-      title: "Cinco partes, cada una con su papel",
-      intro: "Trabajan juntas, pero no son lo mismo. Cada una dice también lo que no hace.",
+      title: "Cinco partes, con roles distintos",
+      intro: "Trabajan juntas, pero no son cinco productos equivalentes: hay producto, plataforma, interfaz y capa de datos. Cada una dice también lo que no hace.",
       notLabel: "Lo que no es",
+      kinds: ["Producto", "Plataforma", "Interfaz", "Interfaz técnica", "Capa de datos"],
       items: [
         {
           tag: "Dinn Stock",
@@ -431,9 +435,9 @@ export const pagesEs = {
     security: {
       title: "Acceso, seguridad y privacidad",
       items: [
-        { title: "Acceso", text: "Verificación en dos pasos por correo y control de permisos. La integración con la identidad corporativa (SSO) puede habilitarse." },
+        { title: "Acceso", text: "Verificación en dos pasos por correo y control de permisos. SSO corporativo bajo consulta: evalúa con Dinn los requisitos de autenticación de tu empresa y el alcance de la implementación." },
         { title: "IA del cliente", text: "Las conexiones por MCP son autorizadas y de acceso de solo lectura." },
-        { title: "Datos y gobernanza", text: "Los datos internos, la infraestructura y la gobernanza siguen con el cliente." },
+        { title: "Datos y gobernanza", text: "Los datos internos, la infraestructura y la gobernanza del entorno del cliente siguen con él. Dinn responde por los controles de su propia capa." },
         { title: "Privacidad", text: "El tratamiento de datos personales sigue la LGPD y está descrito en la Política de Privacidad." }
       ],
       privacyLink: "Leer la Política de Privacidad"
@@ -451,7 +455,7 @@ export const pagesEs = {
         },
         {
           question: "¿Quién controla los datos y la gobernanza?",
-          answer: "El cliente. Dinn prepara y entrega; los datos, la infraestructura y la gobernanza siguen contigo."
+          answer: "Los datos internos y la gobernanza de tu entorno siguen contigo. Dinn prepara y entrega y responde por los controles de su propia capa: acceso, permisos y registro."
         },
         {
           question: "¿Cómo accede nuestra IA a Dinn?",
@@ -511,7 +515,8 @@ export const pagesEs = {
       items: [
         "Los casos son relatos de usuarios de Dinn; se preservan nombres, productos y datos.",
         "Cuando hay un resultado medible, informamos período, universo y método.",
-        "Cuando no lo hay, reportamos la ganancia operativa comprobada, sin convertirla en impacto financiero."
+        "Cuando no lo hay, reportamos la ganancia operativa comprobada, sin convertirla en impacto financiero.",
+        "La participación y la venta son estimadas: cuando aparece un número, decimos el mercado, la ventana y el método."
       ]
     }
   },
@@ -655,7 +660,7 @@ export const pagesEs = {
         portfolio: "40 tiendas en la cartera",
         concentrated: "6 tiendas · 70% de la señal",
         queue: "Fila de la semana",
-        feedback: "El retorno del equipo reordena la fila"
+        feedback: "El retorno del equipo revisa las prioridades"
       },
       "supply-distribuicao": {
         title: "Inventario en el CEDIS cruzado con la disponibilidad en las farmacias de la región",
@@ -685,7 +690,7 @@ export const pagesEs = {
         destinations: "Destinos",
         hub: "Dinn",
         readOnly: "Solo lectura",
-        access: "Dos factores · SSO habilitable · permisos"
+        access: "Dos factores · SSO bajo consulta · permisos"
       }
     }
   },
@@ -704,7 +709,7 @@ export const pagesEs = {
         { name: "Agentes", channel: "Por Dinn Conecta", status: "Autorizado" }
       ],
       accessTitle: "Acceso",
-      access: ["Verificación en dos factores por correo", "SSO habilitable", "Control de permisos"]
+      access: ["Verificación en dos factores por correo", "SSO bajo consulta", "Control de permisos"]
     },
     aiAnswer: {
       tools: ["ChatGPT", "Claude", "Copilot"],
@@ -790,7 +795,7 @@ export const pagesEs = {
       flow: [
         { title: "Persona autorizada", sub: "Usuario de tu empresa" },
         { title: "Dos factores", sub: "Verificación por correo" },
-        { title: "SSO", sub: "Habilitable" },
+        { title: "SSO", sub: "Bajo consulta" },
         { title: "Permisos", sub: "Control de acceso" },
         { title: "Dinn", sub: "Señales con origen y fecha" },
         { title: "Solo lectura", sub: "MCP, API y BI" }
@@ -798,11 +803,11 @@ export const pagesEs = {
       splitTitle: "Quién se encarga de qué",
       dinn: {
         title: "Dinn",
-        items: ["Prepara y entrega las señales", "Muestra origen, fecha y confianza", "Conecta por MCP, API y BI"]
+        items: ["Prepara y entrega las señales", "Muestra origen, fecha y confianza", "Conecta por MCP, API y BI", "Responde por los controles de su capa"]
       },
       client: {
         title: "Tú conservas",
-        items: ["Datos internos", "Infraestructura", "Gobernanza y accesos"]
+        items: ["Datos internos", "Infraestructura de tu entorno", "Gobernanza de tu entorno"]
       }
     },
     deploy: {

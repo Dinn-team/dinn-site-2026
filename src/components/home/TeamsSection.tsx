@@ -36,6 +36,7 @@ const AUTO_MS = 8000;
 export function TeamsSection() {
   const { t } = useTranslation();
   const items = (t('teams.items') as Item[]) ?? [];
+  const areas = (t('solutions.items') as { slug: string; useCases: string[] }[]) ?? [];
   const visuals = (t('teams.visuals') as Record<string, any>) ?? {};
   const [active, setActive] = useState(0);
   // false assim que o visitante escolhe uma aba: dali em diante é ele quem manda
@@ -252,6 +253,13 @@ export function TeamsSection() {
                   <span className="teams-ask-q">“{item.question}”</span>
                   <span className="teams-ask-cta">{t('teams.askCta')} <ArrowUpRight size={15} /></span>
                 </button>
+
+                {(() => {
+                  // Cada situação é uma amostra: o aprofundamento está na página da área.
+                  const area = areas.find((a) => a.useCases?.includes(item.id));
+                  const href = item.id === 'sac' ? '/produtos/localizador' : area ? `/solucoes/${area.slug}` : null;
+                  return href ? <a className="teams-deep" href={href}>{t('teams.deepLink')} →</a> : null;
+                })()}
               </div>
 
               <div className="teams-visual">

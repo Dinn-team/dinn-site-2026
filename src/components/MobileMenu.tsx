@@ -154,12 +154,14 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
                               </a>
                             </li>
                           ))}
-                          <li>
-                            <a href={sub.allHref} className="mm-subrow mm-subrow--all" onClick={() => close(false)}>
-                              {sub.allLabel}
-                              <Chevron className="mm-chev" />
-                            </a>
-                          </li>
+                          {sub.allHref && (
+                            <li>
+                              <a href={sub.allHref} className="mm-subrow mm-subrow--all" onClick={() => close(false)}>
+                                {sub.allLabel}
+                                <Chevron className="mm-chev" />
+                              </a>
+                            </li>
+                          )}
                         </ul>
                       </div>
                     </div>

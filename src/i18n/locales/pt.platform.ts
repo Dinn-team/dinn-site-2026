@@ -35,8 +35,8 @@ export const platformVizPt = {
     chartTitle: "Ruptura da loja · últimos 30 dias",
     chartFrom: "há 30 dias",
     chartTo: "hoje",
-    hint: "Clique numa loja para marcá-la como conferida: a fila se reordena.",
-    caption: "A fila sobe e desce com o retorno do time."
+    hint: "Clique numa loja para marcá-la como conferida.",
+    caption: "O time registra o que encontrou e acompanha o mesmo recorte."
   },
   insights: {
     you: "Você",

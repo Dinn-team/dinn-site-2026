@@ -1,3 +1,4 @@
+import { offerEn } from './en.offer';
 import { platformVizEn } from './en.platform';
 
 // Texts for the site's inner pages (platform, solutions by area, trust,
@@ -8,6 +9,7 @@ import { platformVizEn } from './en.platform';
 
 export const pagesEn = {
   platformViz: platformVizEn,
+  ...offerEn,
   areas: {
     eyebrow: "For your area",
     title: "Start from *your team's* problem",
@@ -178,7 +180,7 @@ export const pagesEn = {
             "Signal: persistent stock-out at portfolio stores, over the last week.",
             "Validation: level calculated as days without stock ÷ days observed over the last 30 days.",
             "Queue: the stores in order, with what to check at each one (pending order? off the shelf?).",
-            "Feedback: what the team finds comes back and reorders the queue."
+            "Feedback: the team records what it found and follows the same scope to review priorities."
           ]
         },
         limits: [
@@ -186,7 +188,7 @@ export const pagesEn = {
           "Nothing is written to the CRM on its own: the reading is for preparing the visit.",
           "Stores that never sold the product are left out, so as not to inflate the stock-out."
         ],
-        useCases: ["campo", "medico"]
+        useCases: ["campo"]
       },
       {
         slug: "supply-distribuicao",
@@ -212,6 +214,7 @@ export const pagesEn = {
         limits: [
           "Stock at the DC does not prove stock at the pharmacy: the reading crosses both ends.",
           "The pattern is a hypothesis; the cause requires investigation.",
+          "DC coverage uses the region's estimated sales: it is an approximation, not that DC's actual coverage, and only holds when demand matches the population it supplies.",
           "Observed movement is not the same as confirmed sales."
         ],
         useCases: ["distribuicao", "parado"]
@@ -238,7 +241,7 @@ export const pagesEn = {
           ]
         },
         limits: [
-          "Refresh is D-1; at eligible stores, there is an on-demand availability check.",
+          "The base reading is D-1; at compatible stores, there is an on-demand real-time check, with the time of the response.",
           "A chance of stock is not a guarantee of stock, and the guidance should say so.",
           "Coverage varies by chain and by source."
         ],
@@ -260,7 +263,7 @@ export const pagesEn = {
           title: "Six weeks after launch",
           steps: [
             "Signal: the product appears at 54% of the monitored pharmacies.",
-            "Validation: presence = pharmacies with stock ÷ monitored pharmacies in the scope.",
+            "Validation: presence = pharmacies with stock ÷ monitored pharmacies in the scope, compared with the goal and cohort your team planned.",
             "Reading: it accelerated at large chains and remains below 20% at independents.",
             "Next question: has the DC already received the product in the regions where it hasn't arrived?"
           ]
@@ -281,7 +284,7 @@ export const pagesEn = {
         lead: "API, BI and the customer's AI query the same base, with the authorized scope and the origin of each data point preserved.",
         decisions: [
           "Choose how to consume: platform, file, API, BI or the customer's AI.",
-          "Define who accesses what, with two-factor verification and SSO available.",
+          "Define who accesses what, with two-factor verification and corporate SSO on request.",
           "Keep internal data, infrastructure and governance under the customer's control."
         ],
         example: {
@@ -318,9 +321,10 @@ export const pagesEn = {
       intro: "From a loose signal to a recorded action. The full example, with a single case, is on the home page."
     },
     parts: {
-      title: "Five parts, each with its own role",
-      intro: "They work together, but they are not the same thing. Each one also says what it does not do.",
+      title: "Five parts, with different roles",
+      intro: "They work together, but they are not five equivalent products: there is a product, a platform, interfaces and a data layer. Each one also says what it does not do.",
       notLabel: "What it is not",
+      kinds: ["Product", "Platform", "Interface", "Technical interface", "Data layer"],
       items: [
         {
           tag: "Dinn Stock",
@@ -431,9 +435,9 @@ export const pagesEn = {
     security: {
       title: "Access, security and privacy",
       items: [
-        { title: "Access", text: "Two-factor verification by email and permission controls. Integration with corporate identity (SSO) can be enabled." },
+        { title: "Access", text: "Two-factor verification by email and permission controls. Corporate SSO on request: assess your company's authentication requirements and the deployment scope with Dinn." },
         { title: "Customer's AI", text: "MCP connections are authorized and read-only." },
-        { title: "Data and governance", text: "Internal data, infrastructure and governance stay with the customer." },
+        { title: "Data and governance", text: "Internal data, infrastructure and governance of the customer's environment stay with the customer. Dinn is responsible for the controls of its own layer." },
         { title: "Privacy", text: "Personal data is handled in accordance with the LGPD and is described in the Privacy Policy." }
       ],
       privacyLink: "Read the Privacy Policy"
@@ -451,7 +455,7 @@ export const pagesEn = {
         },
         {
           question: "Who controls the data and governance?",
-          answer: "The customer. Dinn prepares and delivers; data, infrastructure and governance stay with you."
+          answer: "Internal data and your environment's governance stay with you. Dinn prepares and delivers and is responsible for the controls of its own layer: access, permissions and logging."
         },
         {
           question: "How does our AI access Dinn?",
@@ -511,7 +515,8 @@ export const pagesEn = {
       items: [
         "Cases are accounts from Dinn users; names, products and data are preserved.",
         "When there is a measurable result, we state the period, universe and method.",
-        "When there is not, we report the proven operational gain, without turning it into financial impact."
+        "When there is not, we report the proven operational gain, without turning it into financial impact.",
+        "Share and sales are estimates: when a number appears, we state the market, the window and the method."
       ]
     }
   },
@@ -655,7 +660,7 @@ export const pagesEn = {
         portfolio: "40 stores in the portfolio",
         concentrated: "6 stores · 70% of the signal",
         queue: "Weekly queue",
-        feedback: "Team feedback reorders the queue"
+        feedback: "Team feedback revises priorities"
       },
       "supply-distribuicao": {
         title: "DC stock crossed with availability at the region pharmacies",
@@ -685,7 +690,7 @@ export const pagesEn = {
         destinations: "Destinations",
         hub: "Dinn",
         readOnly: "Read-only",
-        access: "Two-factor · SSO available · permissions"
+        access: "Two-factor · SSO on request · permissions"
       }
     }
   },
@@ -704,7 +709,7 @@ export const pagesEn = {
         { name: "Agents", channel: "Via Dinn Conecta", status: "Authorized" }
       ],
       accessTitle: "Access",
-      access: ["Two-factor verification by email", "SSO available", "Permission controls"]
+      access: ["Two-factor verification by email", "SSO on request", "Permission controls"]
     },
     aiAnswer: {
       tools: ["ChatGPT", "Claude", "Copilot"],
@@ -790,7 +795,7 @@ export const pagesEn = {
       flow: [
         { title: "Authorized person", sub: "A user at your company" },
         { title: "Two factors", sub: "Verification by email" },
-        { title: "SSO", sub: "Available" },
+        { title: "SSO", sub: "On request" },
         { title: "Permissions", sub: "Access control" },
         { title: "Dinn", sub: "Signals with source and date" },
         { title: "Read-only", sub: "MCP, API and BI" }
@@ -798,11 +803,11 @@ export const pagesEn = {
       splitTitle: "Who takes care of what",
       dinn: {
         title: "Dinn",
-        items: ["Prepares and delivers the signals", "Shows source, date and confidence", "Connects via MCP, API and BI"]
+        items: ["Prepares and delivers the signals", "Shows source, date and confidence", "Connects via MCP, API and BI", "Answers for the controls of its layer"]
       },
       client: {
         title: "You keep",
-        items: ["Internal data", "Infrastructure", "Governance and access"]
+        items: ["Internal data", "Your environment's infrastructure", "Your environment's governance"]
       }
     },
     deploy: {

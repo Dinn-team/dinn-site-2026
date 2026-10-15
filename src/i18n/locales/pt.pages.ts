@@ -1,3 +1,4 @@
+import { offerPt } from './pt.offer';
 import { platformVizPt } from './pt.platform';
 
 // Textos das páginas internas do site (plataforma, soluções por área,
@@ -9,6 +10,7 @@ import { platformVizPt } from './pt.platform';
 
 export const pagesPt = {
   platformViz: platformVizPt,
+  ...offerPt,
   areas: {
     eyebrow: "Para a sua área",
     title: "Comece pelo problema do *seu time*",
@@ -179,7 +181,7 @@ export const pagesPt = {
             "Sinal: ruptura persistente em lojas da carteira, na última semana.",
             "Validação: nível calculado por dias sem estoque ÷ dias observados nos últimos 30 dias.",
             "Fila: as lojas em ordem, com o que conferir em cada uma (pedido pendente? fora da gôndola?).",
-            "Retorno: o que o time encontrou volta e reordena a fila."
+            "Retorno: o time registra o que encontrou e acompanha o mesmo recorte para revisar prioridades."
           ]
         },
         limits: [
@@ -187,7 +189,7 @@ export const pagesPt = {
           "Nada é escrito no CRM por conta própria: a leitura serve para preparar a visita.",
           "Lojas que nunca venderam o produto ficam de fora, para não inflar a ruptura."
         ],
-        useCases: ["campo", "medico"]
+        useCases: ["campo"]
       },
       {
         slug: "supply-distribuicao",
@@ -213,6 +215,7 @@ export const pagesPt = {
         limits: [
           "Estoque no CD não prova estoque na farmácia: a leitura cruza as duas pontas.",
           "O padrão é uma hipótese; a causa exige investigação.",
+          "A cobertura do CD usa a venda estimada da região: é uma aproximação, não a cobertura real daquele CD, e só vale com demanda compatível com a população que ele abastece.",
           "Movimento observado não equivale a venda confirmada."
         ],
         useCases: ["distribuicao", "parado"]
@@ -239,7 +242,7 @@ export const pagesPt = {
           ]
         },
         limits: [
-          "A atualização é D-1; em lojas elegíveis, há consulta pontual de disponibilidade.",
+          "A leitura de base é D-1; em lojas compatíveis, há consulta em tempo real sob demanda, com o horário da resposta.",
           "Chance de estoque não é garantia de estoque, e a orientação deve dizer isso.",
           "A cobertura varia por rede e por fonte."
         ],
@@ -261,7 +264,7 @@ export const pagesPt = {
           title: "Seis semanas depois do lançamento",
           steps: [
             "Sinal: o produto aparece em 54% das farmácias monitoradas.",
-            "Validação: presença = farmácias com estoque ÷ farmácias monitoradas no recorte.",
+            "Validação: presença = farmácias com estoque ÷ farmácias monitoradas no recorte, comparada com a meta e a coorte planejadas pelo seu time.",
             "Leitura: acelerou nas grandes redes e segue abaixo de 20% nas independentes.",
             "Próxima pergunta: o CD já recebeu o produto nas regiões onde ele não chegou?"
           ]
@@ -282,7 +285,7 @@ export const pagesPt = {
         lead: "API, BI e a IA do cliente consultam a mesma base, com o escopo autorizado e a origem de cada dado preservada.",
         decisions: [
           "Escolher por onde consumir: plataforma, arquivo, API, BI ou a IA do cliente.",
-          "Definir quem acessa o quê, com verificação em dois fatores e SSO habilitável.",
+          "Definir quem acessa o quê, com verificação em dois fatores e SSO corporativo sob consulta.",
           "Manter dados internos, infraestrutura e governança sob o controle do cliente."
         ],
         example: {
@@ -319,9 +322,10 @@ export const pagesPt = {
       intro: "Do sinal solto à ação registrada. O exemplo completo, com um único caso, está na home."
     },
     parts: {
-      title: "Cinco partes, cada uma com seu papel",
-      intro: "Trabalham juntas, mas não são a mesma coisa. Cada uma diz também o que não faz.",
+      title: "Cinco partes, com papéis diferentes",
+      intro: "Trabalham juntas, mas não são cinco produtos equivalentes: há produto, plataforma, interface e camada de dados. Cada uma diz também o que não faz.",
       notLabel: "O que não é",
+      kinds: ["Produto", "Plataforma", "Interface", "Interface técnica", "Camada de dados"],
       items: [
         {
           tag: "Dinn Stock",
@@ -432,9 +436,9 @@ export const pagesPt = {
     security: {
       title: "Acesso, segurança e privacidade",
       items: [
-        { title: "Acesso", text: "Verificação em dois fatores por e-mail e controle de permissões. A integração com a identidade corporativa (SSO) pode ser habilitada." },
+        { title: "Acesso", text: "Verificação em dois fatores por e-mail e controle de permissões. SSO corporativo sob consulta: avalie com a Dinn os requisitos de autenticação da sua empresa e o escopo de implantação." },
         { title: "IA do cliente", text: "As conexões por MCP são autorizadas e de acesso somente leitura." },
-        { title: "Dados e governança", text: "Dados internos, infraestrutura e governança continuam com o cliente." },
+        { title: "Dados e governança", text: "Dados internos, infraestrutura e governança do ambiente do cliente continuam com ele. A Dinn responde pelos controles da sua própria camada." },
         { title: "Privacidade", text: "O tratamento de dados pessoais segue a LGPD e está descrito na Política de Privacidade." }
       ],
       privacyLink: "Ler a Política de Privacidade"
@@ -452,7 +456,7 @@ export const pagesPt = {
         },
         {
           question: "Quem controla os dados e a governança?",
-          answer: "O cliente. A Dinn prepara e entrega; dados, infraestrutura e governança continuam com você."
+          answer: "Os dados internos e a governança do seu ambiente continuam com você. A Dinn prepara e entrega e responde pelos controles da sua própria camada: acesso, permissões e registro."
         },
         {
           question: "Como a nossa IA acessa o Dinn?",
@@ -512,7 +516,8 @@ export const pagesPt = {
       items: [
         "Os casos são relatos de usuários da Dinn; nomes, produtos e dados são preservados.",
         "Quando há resultado mensurável, informamos período, universo e método.",
-        "Quando não há, relatamos o ganho operacional comprovado, sem convertê-lo em impacto financeiro."
+        "Quando não há, relatamos o ganho operacional comprovado, sem convertê-lo em impacto financeiro.",
+        "Participação e venda são estimadas: quando um número aparece, dizemos o mercado, a janela e o método."
       ]
     }
   },
@@ -656,7 +661,7 @@ export const pagesPt = {
         portfolio: "40 lojas na carteira",
         concentrated: "6 lojas · 70% do sinal",
         queue: "Fila da semana",
-        feedback: "Retorno do time reordena a fila"
+        feedback: "Retorno do time revisa as prioridades"
       },
       "supply-distribuicao": {
         title: "Estoque no CD cruzado com a disponibilidade nas farmácias da região",
@@ -686,7 +691,7 @@ export const pagesPt = {
         destinations: "Destinos",
         hub: "Dinn",
         readOnly: "Somente leitura",
-        access: "Dois fatores · SSO habilitável · permissões"
+        access: "Dois fatores · SSO sob consulta · permissões"
       }
     }
   },
@@ -705,7 +710,7 @@ export const pagesPt = {
         { name: "Agentes", channel: "Por Dinn Conecta", status: "Autorizado" }
       ],
       accessTitle: "Acesso",
-      access: ["Verificação em dois fatores por e-mail", "SSO habilitável", "Controle de permissões"]
+      access: ["Verificação em dois fatores por e-mail", "SSO sob consulta", "Controle de permissões"]
     },
     aiAnswer: {
       tools: ["ChatGPT", "Claude", "Copilot"],
@@ -791,7 +796,7 @@ export const pagesPt = {
       flow: [
         { title: "Pessoa autorizada", sub: "Usuário da sua empresa" },
         { title: "Dois fatores", sub: "Verificação por e-mail" },
-        { title: "SSO", sub: "Habilitável" },
+        { title: "SSO", sub: "Sob consulta" },
         { title: "Permissões", sub: "Controle de acesso" },
         { title: "Dinn", sub: "Sinais com origem e data" },
         { title: "Somente leitura", sub: "MCP, API e BI" }
@@ -799,11 +804,11 @@ export const pagesPt = {
       splitTitle: "Quem cuida de quê",
       dinn: {
         title: "A Dinn",
-        items: ["Prepara e entrega os sinais", "Mostra origem, data e confiança", "Conecta por MCP, API e BI"]
+        items: ["Prepara e entrega os sinais", "Mostra origem, data e confiança", "Conecta por MCP, API e BI", "Responde pelos controles da sua camada"]
       },
       client: {
         title: "Você mantém",
-        items: ["Dados internos", "Infraestrutura", "Governança e acessos"]
+        items: ["Dados internos", "Infraestrutura do seu ambiente", "Governança do seu ambiente"]
       }
     },
     deploy: {

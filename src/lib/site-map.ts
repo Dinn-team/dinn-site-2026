@@ -18,8 +18,18 @@ export type GuideSlug = (typeof GUIDE_SLUGS)[number];
 
 export const PATHS = {
   platform: '/plataforma',
-  // as áreas vivem na home (âncora #areas); só cada área tem página própria
-  solutions: '/#areas',
+  features: '/funcionalidades',
+  locator: '/produtos/localizador',
+  conecta: '/produtos/conecta',
+  integrations: '/integracoes',
+  coverage: '/cobertura',
+  // entradas por objetivo, área e funcionalidade; cada área tem página própria
+  solutions: '/solucoes',
+  customers: '/clientes',
+  plans: '/planos',
+  research: '/pesquisas',
+  compare: '/comparativos',
+  about: '/sobre',
   trust: '/confianca',
   resources: '/recursos',
   cases: '/recursos/casos',

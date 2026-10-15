@@ -13,6 +13,9 @@ import { ConectaDemo } from './ConectaDemo';
 
 type Part = { tag: string; title: string; desc: string; not: string };
 
+// Para onde cada parte leva quem quer aprofundar.
+const PART_LINKS = ['/funcionalidades#estimado', '/funcionalidades', '/funcionalidades#insights', '/integracoes#mcp', '/produtos/conecta'];
+
 // Deixa os cinco cartões com a mesma altura (a do maior), para que, empilhados,
 // um cubra o outro por inteiro e só as bordas das camadas de baixo apareçam.
 function useEqualCardHeight(ref: React.RefObject<HTMLDivElement | null>) {
@@ -48,6 +51,7 @@ export function PartsShowcase() {
   const boxRef = useRef<HTMLDivElement>(null);
   useEqualCardHeight(boxRef);
   const parts = (t('platform.parts.items') as Part[]) ?? [];
+  const kinds = (t('platform.parts.kinds') as string[]) ?? [];
   const demos: ReactNode[] = [<StockDemo key="s" />, <ManagerDemo key="m" />, <InsightsDemo key="i" />, <McpDemo key="p" />, <ConectaDemo key="c" />];
 
   return (
@@ -59,10 +63,11 @@ export function PartsShowcase() {
             <article key={p.tag} className="pf-part" style={{ ['--i' as string]: i }}>
               <div className="pf-part-copy">
                 <span className="pf-part-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <span className="sp-tag">{p.tag}</span>
+                <span className="sp-tag">{p.tag}{kinds[i] ? ` · ${kinds[i]}` : ''}</span>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
                 <p className="pf-part-not"><strong>{t('platform.parts.notLabel')}:</strong> {p.not}</p>
+                <p className="pf-part-more"><a href={PART_LINKS[i]}>{t('delivery.more')} →</a></p>
               </div>
               <div className="pf-part-demo">{demos[i]}</div>
             </article>

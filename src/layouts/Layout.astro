@@ -79,10 +79,16 @@ const organizationSchema = {
 	"url": site.href,
 	"logo": new URL('/logo.png', site).href,
 	"foundingDate": "2023",
-	"founders": [{
-		"@type": "Organization",
-		"name": "DiWE Ventures Studio"
-	}]
+	"legalName": "Dinn Tecnologia Ltda.",
+	"taxID": "57.639.944/0001-20",
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial",
+		"addressLocality": "Joinville",
+		"addressRegion": "SC",
+		"postalCode": "89219-600",
+		"addressCountry": "BR"
+	}
 };
 
 const schemas = [organizationSchema, ...(jsonLd ? [jsonLd].flat() : [])];

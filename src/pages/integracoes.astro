@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { IntegrationsPage } from '@/components/site/offer/OfferPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.integrations.meta;
+---
+
+<Layout title={title} description={description}>
+  <IntegrationsPage client:load />
+</Layout>

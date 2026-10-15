@@ -27,7 +27,7 @@ export const enUS = {
   hero: {
     pill: "Commercial intelligence for the pharmaceutical channel",
     title: "Turn pharma channel signals into *commercial action*.",
-    description: "Dinn organizes availability, sell-through, price and coverage signals, shows the source, date and limits of each piece of information, and helps your team decide where to act first.",
+    description: "Dinn organizes availability, sell-through, price and coverage signals and helps your team decide where to act first, with clear source, refresh and limits.",
     cta: "Explore the platform",
     secondary: "Explore Dinn for your area"
   },
@@ -312,7 +312,7 @@ export const enUS = {
       ia: {
         keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integrat", "connect", "system", "internal data", "crm", "erp", "data lake", "llm", "integra", "conecta", "sistema", "dados internos"],
         steps: ["Understanding the question…"],
-        answer: "Yes. Dinn goes where your team already works: in the platform, in a file, in your BI via API, or straight into ChatGPT, Claude and Copilot via MCP, with **read-only** access.\n\nWith **Dinn Conecta**, market data, internal data and pharmacy data arrive standardized in your BI and your agents. Your data and governance stay with you.",
+        answer: "Yes. Dinn goes where your team already works: in the platform, in a file, in your BI via API, or straight into ChatGPT, Claude and Copilot via MCP, with **read-only** access.\n\nWith **Dinn Conecta**, market data, internal data and pharmacy data arrive standardized in your BI and your agents. Your internal data and your environment's governance stay with you.",
         method: [],
         links: [
           { label: "Where Dinn delivers", href: "#entrega" },
@@ -360,6 +360,7 @@ export const enUS = {
     eyebrow: "Use cases: pick a situation and watch Dinn at work",
     title: "Concrete channel situations, *one by one*",
     askCta: "Ask Dinn this",
+    deepLink: "See the detail for this area",
     seesLabel: "Dinn cross-checks",
     doesLabel: "The team does",
     items: [
@@ -368,7 +369,7 @@ export const enUS = {
         tab: "Customer service",
         kicker: "Customer service",
         title: "“Where can I find this medicine near home?”",
-        story: "The agent sees the closest pharmacies with the product, how many units they hold and how fast the store sells.",
+        story: "The agent sees the closest pharmacies with the product, how many units they hold and the estimated sell-through in the scope.",
         sees: ["Stock by store", "Distance", "Sell-through", "Price"],
         does: [
           "Points to the pharmacy most likely to have the product",
@@ -393,25 +394,11 @@ export const enUS = {
         visual: "queue"
       },
       {
-        id: "medico",
-        tab: "Medical reps",
-        kicker: "Medical promotion",
-        title: "Will the prescription find the product *at the pharmacy next door?*",
-        story: "Before the visit, the team sees whether the pharmacies around the office carry the product. If they don't, trade gets a heads-up.",
-        sees: ["Brick pharmacies", "D-1 stock", "Chain with the gap"],
-        does: [
-          "Preps the visit knowing what the patient will find",
-          "Alerts trade when the area around the office is out of stock"
-        ],
-        question: "Do pharmacies near the doctor's office in Belo Horizonte have my product?",
-        visual: "prescriber"
-      },
-      {
         id: "distribuicao",
         tab: "Distribution",
         kicker: "Distribution & supply",
         title: "Is the gap at the DC, *the pharmacy or the order?*",
-        story: "Dinn links the distributor's stock to the pharmacies it supplies and shows which side the problem is on.",
+        story: "Dinn links the distributor's stock to the pharmacies it supplies and helps investigate where the constraint may be.",
         sees: ["DC stock", "Days of coverage", "Store stock-outs", "Regional sell-through"],
         does: [
           "Separates a shortage at the source from a replenishment failure",
@@ -564,7 +551,7 @@ export const enUS = {
   story: {
     lines: [
       "The pharma channel leaves signals about your product.",
-      "Whether it's on the **shelf. Whether it sells. At what price. Whether the DC can restock it.**",
+      "Whether it shows as **available in the channel. Whether it sells. At what price. Whether the DC can restock it.**",
       "The signals arrive **scattered**, from different sources and with different levels of confidence.",
       "Dinn organizes them, shows where they come from and helps your team decide **where to act first.**"
     ]
@@ -609,9 +596,9 @@ export const enUS = {
       },
       {
         name: "Learns",
-        title: "Records the feedback and improves the queue.",
-        desc: "Records the team's feedback and improves prioritization over time.",
-        example: "The team flags that 5 stores had a pending order; the following week they move down the queue.",
+        title: "Records what the team found.",
+        desc: "The team records what it found and follows the same scope to review priorities.",
+        example: "The team flags that 5 stores had a pending order and, the following week, follows the same scope to review the priority.",
         chips: ["Team feedback", "Same scope", "Prioritization"]
       }
     ],
@@ -621,6 +608,7 @@ export const enUS = {
   delivery: {
     eyebrow: "Platform and capabilities",
     title: "AI for the pharma market *where your team already works*",
+    more: "Learn more",
     cards: [
       {
         tag: "Dinn Manager",
@@ -648,7 +636,7 @@ export const enUS = {
     trust: [
       "Observed or estimated, always stated",
       "D-1 base plus on-demand checks at eligible stores",
-      "Two-factor auth via email · SSO available",
+      "Two-factor auth via email · SSO on request",
       "Implementation in up to 30 days after prerequisites and scope are agreed"
     ],
     note: "Coverage and refresh vary by source, product and query. Each source depends on agreed licensing, authorization and scope, and features in your AI depend on your plan and setup."
@@ -658,7 +646,7 @@ export const enUS = {
     items: [
       {
         question: "We already use audits like IQVIA and Close-Up. Why would we need Dinn?",
-        answer: "Dinn **does not replace** market audits: it **complements** them. IQVIA and Close-Up are great for planning, share and long-term decisions, with closed-period data. Dinn tracks availability day to day (D-1), store by store, and shows **where to act now**, before a stock-out becomes a lost sale. When authorized, both readings can be crossed in the same scope."
+        answer: "Dinn **does not replace** market audits: it **complements** them. Audits are a reference for planning and consolidated readings, depending on the product contracted. Dinn tracks availability day to day (D-1), store by store, and shows **where to act now**, before a stock-out becomes a lost sale. When authorized, both readings can be crossed in the same scope."
       },
       {
         question: "Does implementation require a big IT effort?",
@@ -698,7 +686,7 @@ export const enUS = {
       },
       {
         question: "How does Dinn handle data security and reliability?",
-        answer: "Access uses **two-factor verification by email** and permission controls, and corporate identity integration (**SSO**) can be enabled. Every data point is traceable: source, date and the distinction between observed and estimated are explicit. Connections to the customer's AI are **read-only**."
+        answer: "Access uses **two-factor verification by email** and permission controls, and corporate SSO is available on request, according to your company's requirements. Every data point is traceable: source, date and the distinction between observed and estimated are explicit. Connections to the customer's AI are **read-only**."
       },
       {
         question: "What is Dinn Conecta?",
@@ -725,7 +713,7 @@ export const enUS = {
     secondary: "Ask again"
   },
   footer: {
-    description: "Commercial intelligence for the pharmaceutical channel. An initiative of DiWE Ventures Studio.",
+    description: "Commercial intelligence for the pharmaceutical channel, with a presence in Joinville and Valencia.",
     sectionA: "About Dinn",
     sectionSolutions: "Solutions",
     sectionLegal: "Legal",
@@ -736,7 +724,11 @@ export const enUS = {
     ctaTitle: "Ready to get started?",
     ctaDesc: "See Dinn with your own products.",
     ctaButton: "Request a demo",
-    rights: "© 2026 DiWE Ventures Studio. All rights reserved.",
+    rights: "© 2026 Dinn Tecnologia Ltda. All rights reserved.",
+    legalName: "Dinn Tecnologia Ltda.",
+    cnpj: "57.639.944/0001-20",
+    address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
+    cities: "Joinville · Valencia",
     launch: "Launch"
   },
   privacy: {
