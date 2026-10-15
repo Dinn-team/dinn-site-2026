@@ -123,12 +123,13 @@ export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri
   const fields: { name: string; value: string }[] = [
     { name: FIELDS.email, value: values.email.trim().toLowerCase() },
     { name: FIELDS.company, value: values.company.trim() },
-    { name: FIELDS.role, value: values.role },
-    { name: FIELDS.decision, value: values.decision },
+    { name: FIELDS.firstname, value: values.name.trim() },
     { name: FIELDS.origin, value: ORIGIN_VALUE },
     { name: FIELDS.language, value: ctx.lang },
   ];
-  if (values.name.trim()) fields.push({ name: FIELDS.firstname, value: values.name.trim() });
+  // papel e decisão são opcionais: só seguem quando a pessoa escolheu
+  if (values.role) fields.push({ name: FIELDS.role, value: values.role });
+  if (values.decision) fields.push({ name: FIELDS.decision, value: values.decision });
   if (values.interest) fields.push({ name: FIELDS.interest, value: values.interest });
   if (values.interest === 'plano' && values.plan) fields.push({ name: FIELDS.plan, value: values.plan });
   if (values.interest === 'funcionalidade' && values.features.length) {

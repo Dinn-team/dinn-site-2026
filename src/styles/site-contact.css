@@ -100,3 +100,12 @@
 @keyframes ct-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (max-width: 520px) { .ct-interest-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .ct-sub { animation: none; } .ct-opt-text, .ct-chip { transition: none; } }
+
+/* Formulário compacto: mais campos por linha, interesse em chips */
+.ct-field { margin-bottom: 14px; }
+.ct-interest { margin-bottom: 14px; }
+.ct-more { margin: 0 0 14px; padding: 4px 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--color-accent); cursor: pointer; text-align: left; }
+.ct-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ct-more .ct-optional { font-weight: 400; }
+.ct-more:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
+.ct-field textarea { padding: 10px 14px; }

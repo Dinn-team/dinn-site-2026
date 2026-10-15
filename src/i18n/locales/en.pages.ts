@@ -72,7 +72,7 @@ export const pagesEn = {
       role: "Your role",
       decision: "Decision you want to improve",
       choose: "Select",
-      name: "Name",
+      name: "Your name",
       optional: "(optional)",
       roles: [
         { value: "comercial_trade", label: "Sales or Trade" },

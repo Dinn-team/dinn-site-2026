@@ -14,7 +14,7 @@ import {
   type ContactValues,
 } from '@/lib/contact-form';
 
-type Errors = Partial<Record<'email' | 'company' | 'role' | 'decision' | 'interest' | 'consent', string>>;
+type Errors = Partial<Record<'name' | 'email' | 'company' | 'consent', string>>;
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
 const EMPTY: ContactValues = { email: '', company: '', role: '', decision: '', name: '', interest: '', plan: '', features: [], context: '' };
@@ -32,6 +32,7 @@ export function ContactPage() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>('idle');
   const [trap, setTrap] = useState('');
+  const [more, setMore] = useState(false);
   const openedAt = useRef(Date.now());
 
   const roles = (t('contact.form.roles') as SelectOption[]) ?? [];
@@ -65,18 +66,15 @@ export function ContactPage() {
 
   const pick = (key: 'role' | 'decision') => (value: string) => {
     setValues((v) => ({ ...v, [key]: value }));
-    if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
   };
 
   const validate = (): Errors => {
     const er: Errors = {};
+    if (!values.name.trim()) er.name = t('contact.errors.required') as string;
     if (!values.email.trim()) er.email = t('contact.errors.required') as string;
     else if (!isValidEmail(values.email)) er.email = t('contact.errors.emailInvalid') as string;
     else if (isPersonalEmail(values.email)) er.email = t('contact.errors.emailPersonal') as string;
     if (!values.company.trim()) er.company = t('contact.errors.required') as string;
-    if (!values.role) er.role = t('contact.errors.requiredChoice') as string;
-    if (!values.decision) er.decision = t('contact.errors.requiredChoice') as string;
-    if (!values.interest) er.interest = t('contactMore.requiredInterest') as string;
     if (!consent) er.consent = t('contact.errors.consent') as string;
     return er;
   };
@@ -168,6 +166,33 @@ export function ContactPage() {
                 <h2 id="ct-form-title" className="ct-form-title">{t('contact.form.title')}</h2>
                 <p className="ct-form-lead">{t('contact.form.lead')}</p>
 
+                <div className="ct-row">
+                  <div className="ct-field">
+                    <label htmlFor="ct-name">{t('contact.form.name')}</label>
+                    <input
+                      id="ct-name"
+                      type="text"
+                      autoComplete="given-name"
+                      value={values.name}
+                      onChange={set('name')}
+                      {...fieldProps('name')}
+                    />
+                    {err('name')}
+                  </div>
+                  <div className="ct-field">
+                    <label htmlFor="ct-company">{t('contact.form.company')}</label>
+                    <input
+                      id="ct-company"
+                      type="text"
+                      autoComplete="organization"
+                      value={values.company}
+                      onChange={set('company')}
+                      {...fieldProps('company')}
+                    />
+                    {err('company')}
+                  </div>
+                </div>
+
                 <div className="ct-field">
                   <label htmlFor="ct-email">{t('contact.form.email')}</label>
                   <input
@@ -183,42 +208,22 @@ export function ContactPage() {
                   {errors.email ? err('email') : <p className="ct-hint">{t('contact.form.emailHint')}</p>}
                 </div>
 
-                <div className="ct-field">
-                  <label htmlFor="ct-company">{t('contact.form.company')}</label>
-                  <input
-                    id="ct-company"
-                    type="text"
-                    autoComplete="organization"
-                    value={values.company}
-                    onChange={set('company')}
-                    {...fieldProps('company')}
-                  />
-                  {err('company')}
-                </div>
-
-                <fieldset className="ct-interest" aria-describedby={errors.interest ? 'ct-interest-err' : undefined}>
-                  <legend>{t('contactMore.interest.label')}</legend>
-                  <div className="ct-interest-grid" role="radiogroup" id="ct-interest">
+                <fieldset className="ct-interest">
+                  <legend>{t('contactMore.interest.label')} <span className="ct-optional">{t('contact.form.optional')}</span></legend>
+                  <div className="ct-chips" role="radiogroup" id="ct-interest">
                     {interests.map((o) => (
-                      <label key={o.value} className={`ct-opt ${values.interest === o.value ? 'is-on' : ''}`}>
+                      <label key={o.value} className={`ct-chip ${values.interest === o.value ? 'is-on' : ''}`} title={o.hint}>
                         <input
                           type="radio"
                           name="interest"
                           value={o.value}
                           checked={values.interest === o.value}
-                          onChange={() => {
-                            setValues((v) => ({ ...v, interest: o.value }));
-                            if (errors.interest) setErrors((er) => ({ ...er, interest: undefined }));
-                          }}
+                          onChange={() => setValues((v) => ({ ...v, interest: o.value }))}
                         />
-                        <span className="ct-opt-text">
-                          <strong>{o.label}</strong>
-                          {o.hint && <small>{o.hint}</small>}
-                        </span>
+                        {o.label}
                       </label>
                     ))}
                   </div>
-                  {err('interest')}
 
                   {values.interest === 'plano' && (
                     <div className="ct-sub" role="radiogroup" aria-label={t('contactMore.plan.label') as string}>
@@ -251,54 +256,47 @@ export function ContactPage() {
 
                 <div className="ct-row">
                   <div className="ct-field">
-                    <label htmlFor="ct-role">{t('contact.form.role')}</label>
+                    <label htmlFor="ct-role">{t('contact.form.role')} <span className="ct-optional">{t('contact.form.optional')}</span></label>
                     <Select
                       id="ct-role"
                       value={values.role}
                       onChange={pick('role')}
                       options={roles}
                       placeholder={t('contact.form.choose') as string}
-                      invalid={Boolean(errors.role)}
-                      describedBy={errors.role ? 'ct-role-err' : undefined}
                     />
-                    {err('role')}
                   </div>
                   <div className="ct-field">
-                    <label htmlFor="ct-decision">{t('contact.form.decision')}</label>
+                    <label htmlFor="ct-decision">{t('contact.form.decision')} <span className="ct-optional">{t('contact.form.optional')}</span></label>
                     <Select
                       id="ct-decision"
                       value={values.decision}
                       onChange={pick('decision')}
                       options={decisions}
                       placeholder={t('contact.form.choose') as string}
-                      invalid={Boolean(errors.decision)}
-                      describedBy={errors.decision ? 'ct-decision-err' : undefined}
                       align="end"
                     />
-                    {err('decision')}
                   </div>
                 </div>
 
-                <div className="ct-field">
-                  <label htmlFor="ct-context">
-                    {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
-                  </label>
-                  <textarea
-                    id="ct-context"
-                    rows={3}
-                    maxLength={500}
-                    placeholder={t('contactMore.context.placeholder') as string}
-                    value={values.context}
-                    onChange={(e) => setValues((v) => ({ ...v, context: e.target.value }))}
-                  />
-                </div>
-
-                <div className="ct-field">
-                  <label htmlFor="ct-name">
-                    {t('contact.form.name')} <span className="ct-optional">{t('contact.form.optional')}</span>
-                  </label>
-                  <input id="ct-name" type="text" autoComplete="name" value={values.name} onChange={set('name')} />
-                </div>
+                {more ? (
+                  <div className="ct-field">
+                    <label htmlFor="ct-context">
+                      {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
+                    </label>
+                    <textarea
+                      id="ct-context"
+                      rows={2}
+                      maxLength={500}
+                      placeholder={t('contactMore.context.placeholder') as string}
+                      value={values.context}
+                      onChange={(e) => setValues((v) => ({ ...v, context: e.target.value }))}
+                    />
+                  </div>
+                ) : (
+                  <button type="button" className="ct-more" onClick={() => setMore(true)} aria-expanded="false">
+                    + {t('contactMore.context.label')} <span className="ct-optional">{t('contactMore.context.optional')}</span>
+                  </button>
+                )}
 
                 {/* campo isca: pessoas não veem; robôs costumam preencher */}
                 <div className="ct-trap" aria-hidden="true">

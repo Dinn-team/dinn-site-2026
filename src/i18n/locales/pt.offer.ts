@@ -866,9 +866,9 @@ export const offerPt = {
       options: [
         { value: "conhecer", label: "Conhecer a Dinn", hint: "Ver a plataforma com o meu portfólio" },
         { value: "plano", label: "Contratar um plano", hint: "Starter, Essential ou Professional" },
-        { value: "funcionalidade", label: "Usar funcionalidades específicas", hint: "Tempo real, histórico, alertas…" },
-        { value: "integracao", label: "Levar os dados ao meu ambiente", hint: "API, arquivos, BI ou Dinn Conecta" },
-        { value: "pesquisa", label: "Encomendar uma pesquisa", hint: "Estudo ou projeto especial" }
+        { value: "funcionalidade", label: "Usar funcionalidades", hint: "Tempo real, histórico, alertas…" },
+        { value: "integracao", label: "Dados no meu ambiente", hint: "API, arquivos, BI ou Dinn Conecta" },
+        { value: "pesquisa", label: "Encomendar pesquisa", hint: "Estudo ou projeto especial" }
       ]
     },
     plan: {

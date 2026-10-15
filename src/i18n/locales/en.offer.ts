@@ -867,8 +867,8 @@ export const offerEn = {
       options: [
         { value: "conhecer", label: "Get to know Dinn", hint: "See the platform with my portfolio" },
         { value: "plano", label: "Hire a plan", hint: "Starter, Essential or Professional" },
-        { value: "funcionalidade", label: "Use specific features", hint: "Real time, history, alerts…" },
-        { value: "integracao", label: "Bring the data to my environment", hint: "API, files, BI or Dinn Conecta" },
+        { value: "funcionalidade", label: "Use features", hint: "Real time, history, alerts…" },
+        { value: "integracao", label: "Data in my environment", hint: "API, files, BI or Dinn Conecta" },
         { value: "pesquisa", label: "Commission a study", hint: "Study or special project" }
       ]
     },

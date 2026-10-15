@@ -72,7 +72,7 @@ export const pagesEs = {
       role: "Tu rol",
       decision: "Decisión que quieres mejorar",
       choose: "Selecciona",
-      name: "Nombre",
+      name: "Tu nombre",
       optional: "(opcional)",
       roles: [
         { value: "comercial_trade", label: "Comercial o Trade" },
