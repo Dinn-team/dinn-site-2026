@@ -89,3 +89,23 @@ strong, b { font-weight: 600; }
   .inside-stage h3 { font-size: 22px; }
 }
 
+/* ── Alvos de toque ─────────────────────────────────────────────────────── */
+/* Pontos do carrossel: o desenho continua pequeno, a área clicável chega a
+   24 × 32 px (WCAG 2.5.8) com uma camada transparente por cima. */
+.t-dot { position: relative; }
+.t-dot::after { content: ''; position: absolute; inset: -12px -8px; }
+/* Links soltos em linha própria (voltar, "ler a política →"): altura de clique
+   de pelo menos 24 px sem mudar o desenho do texto. */
+.sp-more a, .sp-back, .as-back { display: inline-flex; align-items: center; min-height: 28px; }
+.pf-link { min-height: 28px; }
+
+/* ── Foco visível em todo o site ────────────────────────────────────────── */
+/* Anel lilás com halo branco: lê bem em fundo claro e em fundo escuro (o lilás
+   sozinho não chega a 3:1 sobre o escuro). Especificidade zero: qualquer
+   componente que defina o próprio foco continua valendo. */
+:where(a, button, summary, [role="button"], [role="tab"], [role="combobox"], [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.9);
+}
+

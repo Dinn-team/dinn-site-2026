@@ -133,7 +133,7 @@ export default function BlogInteractive({ posts, lang, labels }: BlogInteractive
               {/* Featured */}
               {featured && (
                 <div className="blog-featured">
-                  <a href={articlePath(lang, featured.slug.current)} className="block w-full overflow-hidden rounded-xl">
+                  <a href={articlePath(lang, featured.slug.current)} className="block w-full overflow-hidden rounded-xl" aria-label={featured.title} tabIndex={-1}>
                     <motion.img
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}

@@ -121,7 +121,7 @@ export function ManagerDemo() {
                       <span>{isDone ? t('platformViz.manager.done') : `${t('platformViz.manager.check')}: ${r.check}`}</span>
                     </span>
                     <span className="pf-q-val" style={{ color: isDone ? '#8B91A0' : c.fg }}>{r.value}</span>
-                    <span className="tv-badge" style={{ color: isDone ? '#6B7280' : c.fg, background: isDone ? '#F3F4F6' : c.bg }}>
+                    <span className="tv-badge" style={{ color: isDone ? '#5B6270' : c.fg, background: isDone ? '#F3F4F6' : c.bg }}>
                       <i style={{ background: isDone ? '#9CA3AF' : c.dot }} />
                       {r.level}
                     </span>

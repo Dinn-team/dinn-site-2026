@@ -53,8 +53,8 @@ export function StockDemo() {
                   <span>{r.dist}</span>
                 </div>
                 <div className="pf-stock-val">
-                  <b style={{ color: focus ? c.fg : '#8B91A0' }}>{kind === 'estimated' ? `≈ ${r.stock}` : r.stock}</b>
-                  <span className="tv-badge" style={{ color: focus ? c.fg : '#6B7280', background: focus ? c.bg : '#F3F4F6' }}>
+                  <b style={{ color: focus ? c.fg : '#667085' }}>{kind === 'estimated' ? `≈ ${r.stock}` : r.stock}</b>
+                  <span className="tv-badge" style={{ color: focus ? c.fg : '#5B6270', background: focus ? c.bg : '#F3F4F6' }}>
                     <i style={{ background: focus ? c.dot : '#9CA3AF' }} />
                     {r.level}
                   </span>

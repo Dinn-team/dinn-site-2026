@@ -421,7 +421,7 @@ export const CircularTestimonials = ({
             aria-selected={index === activeIndex}
             aria-label={`Depoimento ${index + 1}`}
             onClick={() => setActiveIndex(index)}
-            className="cursor-pointer border-0 p-0 transition-all duration-300"
+            className="t-dot cursor-pointer border-0 p-0 transition-all duration-300"
             style={{
               width: index === activeIndex ? 22 : 8,
               height: 8,

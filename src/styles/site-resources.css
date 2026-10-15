@@ -101,7 +101,7 @@
 .cs-problem-text { font-size: clamp(18px, 1.7vw, 22px); line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-main); }
 
 .cs-stage .as-title { font-size: clamp(22px, min(2.5vw, 4.4vh), 34px); }
-.cs-stage .as-steps li { opacity: 0.55; }
+.cs-stage .as-steps li { opacity: 0.74; }
 .cs-stage .as-steps li.is-on { opacity: 1; }
 
 .cs-solution { background: #fff; }

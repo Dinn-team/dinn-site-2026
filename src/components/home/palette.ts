@@ -11,7 +11,7 @@ export const LEVEL: Record<string, { dot: string; bg: string; fg: string }> = {
 
 export const AVAIL: Record<string, { dot: string; bg: string; fg: string }> = {
   alta: { dot: '#10B981', bg: '#D1FAE5', fg: '#047857' },
-  media: { dot: '#5625F2', bg: '#EEE9FF', fg: '#5625F2' },
+  media: { dot: '#5625F2', bg: '#EEE9FF', fg: '#4A1FD6' },
   baixa: { dot: '#F59E0B', bg: '#FEF3C7', fg: '#B45309' },
   sem: { dot: '#EF4444', bg: '#FEE2E2', fg: '#B91C1C' },
 };
