@@ -63,7 +63,10 @@ export default defineType({
             title: 'Resumo',
             type: 'text',
             rows: 3,
-            validation: (Rule) => Rule.required().max(200),
+            validation: (Rule) => [
+                Rule.required(),
+                Rule.max(180).warning('O resumo aparece no card do blog; mantenha em até 180 caracteres.'),
+            ],
         }),
         defineField({
             name: 'coverImage',
@@ -82,10 +85,16 @@ export default defineType({
         }),
         defineField({
             name: 'author',
-            title: 'Autor',
+            title: 'Autor (texto, legado)',
             type: 'string',
-            initialValue: 'Equipe Dinn',
-            validation: (Rule) => Rule.required(),
+            description: 'Usado só quando não há autor(a) selecionado(a) abaixo.',
+        }),
+        defineField({
+            name: 'authorRef',
+            title: 'Autor(a)',
+            type: 'reference',
+            to: [{ type: 'author' }],
+            description: 'Quem assina o artigo: nome, cargo e foto vêm do cadastro do(a) autor(a).',
         }),
         defineField({
             name: 'publishedAt',

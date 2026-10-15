@@ -39,6 +39,7 @@ export interface BlogPostData {
   excerpt?: string;
   coverImage?: any;
   author?: string;
+  authorProfile?: { name?: string; role?: string; image?: any } | null;
   publishedAt: string;
   categories?: string[];
   language: Lang;
