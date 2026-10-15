@@ -3,7 +3,7 @@ import type { ComponentType } from 'react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { areaPath, PATHS } from '@/lib/site-map';
-import { PageCta, PageHero, SectionHead } from './PageShell';
+import { PageCta, SectionHead } from './PageShell';
 import { AreaStage } from './AreaStage';
 import { InsightsAnswer, ManagerScreen, ProvenanceCard } from './AreaVisuals';
 
@@ -41,26 +41,6 @@ export function AreaCard({ area, cta, questionPrefix }: { area: Area; cta: strin
       <p>{area.short}</p>
       <span className="sp-area-go">{cta}<ArrowRight size={15} aria-hidden="true" /></span>
     </a>
-  );
-}
-
-export function SolutionsIndex() {
-  const { t } = useTranslation();
-  const areas = (t('solutions.items') as Area[]) ?? [];
-  return (
-    <div className="sp">
-      <PageHero eyebrow={t('solutions.index.eyebrow')} title={t('solutions.index.title')} lead={t('solutions.index.lead')} />
-      <section className="sp-section" aria-label={t('solutions.index.eyebrow')}>
-        <div className="wrap">
-          <div className="sp-grid is-areas">
-            {areas.map((a) => (
-              <AreaCard key={a.slug} area={a} cta={t('areas.open')} questionPrefix={t('areas.questionPrefix')} />
-            ))}
-          </div>
-        </div>
-      </section>
-      <PageCta title={t('pageCta.title')} desc={t('pageCta.desc')} button={t('pageCta.button')} />
-    </div>
   );
 }
 

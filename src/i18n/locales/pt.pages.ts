@@ -50,15 +50,6 @@ export const pagesPt = {
   },
 
   solutions: {
-    meta: {
-      title: "Soluções por área | Dinn",
-      description: "A Dinn para Inteligência e Pricing, Trade e campo, Supply e distribuição, SAC, Marketing e lançamentos, e TI e governança: decisões apoiadas, exemplos e limites."
-    },
-    index: {
-      eyebrow: "Soluções",
-      title: "Uma leitura do canal, *traduzida para cada área*",
-      lead: "A base de sinais é a mesma. O que muda é a pergunta, a decisão e o que cada área precisa ver antes de agir."
-    },
     page: {
       eyebrow: "Soluções",
       back: "Todas as soluções",

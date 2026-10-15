@@ -24,7 +24,6 @@ export function AreasSection() {
             <AreaCard key={a.slug} area={a} cta={t('areas.open')} questionPrefix={t('areas.questionPrefix')} />
           ))}
         </div>
-        <p className="areas-all"><a href={PATHS.solutions}>{t('nav.solutionsAll')} →</a></p>
       </div>
     </section>
   );

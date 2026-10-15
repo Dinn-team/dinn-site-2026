@@ -28,6 +28,8 @@ export default defineConfig({
     '/blog/[slug]': '/articles/[slug]',
     // a seção de clientes vive na home (âncora #clientes)
     '/clientes': '/#clientes',
+    // idem para as áreas; cada área segue em /solucoes/<area>
+    '/solucoes': '/#areas',
   },
 
   vite: {

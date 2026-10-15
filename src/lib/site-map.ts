@@ -18,7 +18,8 @@ export type GuideSlug = (typeof GUIDE_SLUGS)[number];
 
 export const PATHS = {
   platform: '/plataforma',
-  solutions: '/solucoes',
+  // as áreas vivem na home (âncora #areas); só cada área tem página própria
+  solutions: '/#areas',
   trust: '/confianca',
   resources: '/recursos',
   cases: '/recursos/casos',
@@ -26,5 +27,5 @@ export const PATHS = {
   blog: '/blog',
 } as const;
 
-export const areaPath = (slug: string) => `${PATHS.solutions}/${slug}`;
+export const areaPath = (slug: string) => `/solucoes/${slug}`;
 export const guidePath = (slug: string) => `${PATHS.resources}/${slug}`;

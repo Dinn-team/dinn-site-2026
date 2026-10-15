@@ -34,7 +34,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
                 [t('nav.platform'), '/plataforma'],
-                [t('nav.solutions'), '/solucoes'],
+                [t('nav.solutions'), '/#areas'],
                 [t('nav.teams'), '/#times'],
                 [t('nav.customers'), '/#clientes'],
                 [t('nav.resources'), '/recursos'],

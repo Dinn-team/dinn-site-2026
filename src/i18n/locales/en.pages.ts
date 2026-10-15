@@ -49,15 +49,6 @@ export const pagesEn = {
   },
 
   solutions: {
-    meta: {
-      title: "Solutions by area | Dinn",
-      description: "Dinn for Intelligence and Pricing, Trade and field, Supply and distribution, Customer service, Marketing and launches, and IT and governance: supported decisions, examples and limits."
-    },
-    index: {
-      eyebrow: "Solutions",
-      title: "One reading of the channel, *translated for each area*",
-      lead: "The signal base is the same. What changes is the question, the decision and what each area needs to see before acting."
-    },
     page: {
       eyebrow: "Solutions",
       back: "All solutions",
