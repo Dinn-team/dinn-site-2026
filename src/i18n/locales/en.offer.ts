@@ -80,39 +80,55 @@ export const offerEn = {
   // ── Real-time stock scene (home and Locator page) ─────────────────────────
   realtime: {
     eyebrow: "Real-time stock",
-    title: "Need to check now? *Query real-time stock.*",
-    text: "In the Locator, query the availability reported at that moment by compatible stores. See the time of the query and tell this response apart from D-1 or estimated stock.",
+    title: "Need to check now? *Check stock in real time.*",
+    text: "In the Locator, check the availability reported at that moment by compatible stores. See the time of the query and tell that answer apart from D-1 or estimated stock.",
     condition: "Available depending on chain, source and contracted scope. The information may change after the query.",
     sim: "Simulation · sample values",
-    app: "Locate product",
-    address: "Consumer's address",
+    mapAria: "Locator map with pharmacies near the consumer's address, colored by stock level.",
     stepsLabel: "From search to guidance",
     steps: [
-      { title: "Locate", text: "Enter the address or the area and the radius." },
-      { title: "Choose the store", text: "Among the nearest, only compatible stores have the query." },
+      { title: "Locate", text: "Enter the address or area and the radius. Nearby pharmacies appear on the map." },
+      { title: "Pick the store", text: "Open a store. The base reading is yesterday's; only compatible stores have the query." },
       { title: "Check now", text: "Dinn asks the store's source at that moment." },
-      { title: "Response and time", text: "The response comes with the time of the query." },
-      { title: "Guide", text: "Guide knowing what was reported and when." }
+      { title: "Answer and time", text: "The answer comes with the time of the query, apart from yesterday's reading." },
+      { title: "Guide", text: "Guide knowing what was reported and when, and share the address." }
     ],
     stores: [
-      { name: "Pharmacy 1 · Chain A", dist: "0.8 km", base: "Observed · D-1", baseValue: "12–15 units", eligible: true, live: "11 units reported" },
-      { name: "Pharmacy 2 · Chain B", dist: "1.2 km", base: "Estimated · comparable stores", baseValue: "4–6 units", eligible: true, live: "No stock reported" },
-      { name: "Pharmacy 3 · Chain C", dist: "1.9 km", base: "Observed · D-1", baseValue: "9–11 units", eligible: false, live: "" }
+      { name: "Downtown Pharmacy", network: "Chain A" },
+      { name: "Garden Pharmacy", network: "Chain B" },
+      { name: "North Pharmacy", network: "Chain A" },
+      { name: "Square Pharmacy", network: "Independent" },
+      { name: "South Pharmacy", network: "Chain C" },
+      { name: "East Pharmacy", network: "Chain B" }
     ],
-    ask: "Check now",
-    asking: "Querying the store…",
-    answered: "Store response",
-    at: "at",
-    notEligible: "No real-time query on this chain; the D-1 reading applies.",
-    reset: "Redo the query",
+    popup: {
+      stockTitle: "Product stock",
+      exact: "Exact stock",
+      estimated: "Estimated stock",
+      consult: "Check now",
+      consulting: "Checking store...",
+      liveNow: "Checked just now · {time}",
+      available: "available",
+      updated: "Updated yesterday · 23:10",
+      price: "R$ 48.90",
+      perUnit: "per unit",
+      giro: "Sell-through",
+      perDay: "units/day",
+      stalled: "Stalled",
+      stalledDays: "for 9 days",
+      notEligible: "Real-time check not available at this store.",
+      share: "Share",
+      shared: "Address and link copied",
+      units: "units"
+    },
     legend: {
       d1: "D-1 reading: what the source reported yesterday.",
       est: "Estimated: calculated from comparable stores.",
-      live: "Real time: the store's response at the moment of the query."
+      live: "Real time: the store's answer at the moment of the query."
     },
-    orient: "Guidance to the consumer: “The store reported just now, and stock may change. It is worth confirming before going.”",
+    orient: "Guidance to the consumer: “The store reported just now, and stock may change. Worth confirming before going.”",
     link: "Understand the three readings",
-    hint: "Choose a compatible store and click Check now."
+    hint: "Click a store on the map, scroll the page or wait: the scene plays on its own."
   },
 
   // ── Locator page ──────────────────────────────────────────────────────────
@@ -129,7 +145,7 @@ export const offerEn = {
     scene: { title: "From search to guidance, in five steps" },
     readings: {
       title: "Three readings, three uses",
-      intro: "Dinn always tells you which one you are looking at. Each answers a different question.",
+      intro: "Three readings live side by side in the same store. Dinn always says which one you are looking at, and each one answers a different question.",
       columns: ["Reading", "What it is", "Refresh", "When to use"],
       rows: [
         ["D-1 stock (observed)", "What the source reported on the previous day, by store and with the date.", "Daily base, with the date of each reading.", "Prioritize and track a scope."],
@@ -138,19 +154,19 @@ export const offerEn = {
       ]
     },
     when: {
-      title: "When to query in real time",
+      title: "When it is worth checking now",
       items: [
-        { title: "Before guiding a consumer", text: "In customer service, confirm what the store reports now before recommending the trip." },
-        { title: "Before a visit", text: "In the field, see what the store reports today and take the day's data into the conversation." },
-        { title: "After an action", text: "In trade, query the same store again to see whether replenishment showed up." }
+        { title: "The consumer's call", text: "The patient asks where to find the medicine. Instead of calling store by store, check the nearest one and answer with what it reported just now." },
+        { title: "This afternoon's visit", text: "Before talking to the chain, see what the store reports at this moment and take today's data to the conversation, not yesterday's." },
+        { title: "After restocking", text: "Agreed a delivery with the chain? Check the same store again and see whether the product has shown up in the answer." }
       ]
     },
     conditions: {
       title: "What needs to be in place",
       items: [
-        { title: "Compatible chain and source", text: "The query depends on the store's chain and source allowing the question. The list comes from validated coverage." },
-        { title: "Contracted scope", text: "Real-time stock is an add-on to the plan. Terms and limits are in Plans." },
-        { title: "One query, one response", text: "The information may change afterward. It is not a continuous refresh of the whole base." }
+        { title: "Compatible chain and source", text: "The store has to be able to answer the question. The list of eligible chains and sources comes from the validated coverage." },
+        { title: "Contracted scope", text: "Real-time stock is a plan add-on. Conditions and limits are in Plans." },
+        { title: "One query, one answer", text: "The answer holds for that time. It is not a continuous refresh of the whole base." }
       ],
       coverageLink: "See coverage",
       plansLink: "See plans and add-ons"
@@ -192,7 +208,7 @@ export const offerEn = {
       output: "Output",
       decision: "Supported decision",
       limit: "Limit of the reading",
-      more: "See in detail"
+      more: "Learn more"
     },
     sim: "Illustrative examples, with sample values. The availability of each feature follows the contracted plan.",
     items: [
@@ -348,165 +364,118 @@ export const offerEn = {
   conecta: {
     meta: {
       title: "Dinn Conecta | Pharma data in your team's environment",
-      description: "Dinn connects market, internal data and pharmacies, prepares and updates the pharma context and delivers it to your company's BI, Copilot and projects."
+      description: "Dinn connects market, internal and pharmacy data, prepares and refreshes the pharma context and delivers it to your BI, Copilot and company projects."
     },
     hero: {
       eyebrow: "For the pharmaceutical industry",
-      title: "Pharma data. *Working together.*",
-      lead: "Market, internal data and pharmacies with the context your BI, Copilot and projects need.",
-      cta: "See how it connects",
-      cta2: "Talk about my data flow"
+      title1: "Pharma data.",
+      title2: "Working together.",
+      lead: "Market, internal and pharmacy data with the context\nyour BI, Copilot and projects need.",
+      cta: "See how it connects"
     },
-    nav: { how: "How it works", apps: "Applications", roles: "Responsibilities", faq: "Questions" },
-    flow: {
-      sourcesLabel: "Your sources",
-      sources: [
-        { name: "Market", sub: "IQVIA · Close-Up" },
-        { name: "Your company", sub: "Sales · ERP · lake" },
-        { name: "Pharmacies", sub: "Dinn context" }
-      ],
-      hubLabel: "Dinn context",
-      hub: "Conecta.",
-      hubSub: "Gathers · organizes · updates",
-      destinations: [
-        { name: "Your BI", sub: "Analyses and dashboards" },
-        { name: "Your Copilot", sub: "Team questions" },
-        { name: "Your project", sub: "Your tools" }
-      ],
-      note: "Your project stays yours. Dinn takes care of the connection. Sources and integrations depend on access, license and scope."
+    map: {
+      aria: "Market, company data and pharmacy signals go through Dinn Conecta and reach the BI, Copilot and internal projects.",
+      sources: "Your sources",
+      environment: "Your environment",
+      market: { name: "Market", sub: "IQVIA · Close-Up" },
+      company: { name: "Your company", sub: "Sales · ERP · lake" },
+      pharmacy: { name: "Pharmacies", sub: "Dinn context" },
+      core: { name: "Conecta", sub: "Gathers · organizes · refreshes" },
+      bi: { name: "Your BI", sub: "Analyses and dashboards" },
+      ai: { name: "Your Copilot", sub: "Team questions" },
+      project: { name: "Your project", sub: "Your tools" },
+      yours: "Your project stays yours.",
+      dinn: "Dinn takes care of the connection.",
+      caption: "Sources and integrations depend on access, license and scope."
     },
-    pain: {
-      eyebrow: "Less repeated work",
-      title: "Does every analysis start by *putting everything together again?*",
-      intro: "The data already exists. The work is in getting one source to talk to another.",
+    problem: {
+      label: "Less repeated work",
+      title1: "Does every analysis start",
+      title2: "by putting everything together again?",
+      text: "The data already exists. The work is making one source talk to another.",
       items: [
-        { n: "01 · Gather", title: "Scattered files.", text: "Market in one database. Sales in the ERP. Availability in another source." },
-        { n: "02 · Check", title: "Different scopes.", text: "Names of products, chains and periods that need to be matched." },
-        { n: "03 · Maintain", title: "Everything changes again.", text: "The next update arrives. And someone has to look after that path." }
+        { n: "01 / Gather", title: "Scattered files.", text: "Market in one base. Sales in the ERP. Availability in another source." },
+        { n: "02 / Check", title: "Different scopes.", text: "Product, chain and period names that need to be matched." },
+        { n: "03 / Maintain", title: "Everything changes again.", text: "The next refresh arrives. And someone has to look after that path." }
       ],
-      closing: "Dinn prepares and maintains the data. Your team uses it."
+      bottom: "Dinn prepares and maintains the data. Your team uses it."
     },
-    how: {
-      eyebrow: "How it works",
-      title: "From the source to your environment, *in three moves*",
-      steps: [
-        { title: "Gathers", text: "Connects market, internal data and pharmacies, depending on access, license and scope." },
-        { title: "Organizes", text: "Standardizes product (EAN), store (CNPJ), chain, territory and period, with pharma knowledge." },
-        { title: "Updates", text: "Maintains the quality and refresh of the path and delivers where your team works." }
-      ],
-      identities: ["Product · EAN", "Store · chain", "Territory", "Period"]
-    },
-    ai: {
-      eyebrow: "Context for AI",
-      title: "In the age of AI, *context matters.*",
+    context: {
+      label: "Context for AI",
+      title1: "In the age of AI,",
+      title2: "context matters.",
       text: "Your team is already being asked to connect internal databases and make that data available to the company's agents. That project stays yours. Dinn steps in to organize, clean and standardize the path with pharma knowledge.",
-      layers: [
-        { label: "Stays with you", text: "Your data · Your infrastructure · Your governance" },
-        { label: "Dinn layer", text: "Cleaning · Standardization · Pharma context" },
-        { label: "Ready for your environment", text: "BI · Copilot · Internal agents" }
-      ],
-      destinationsTitle: "Take pharma context to",
-      destinations: ["Copilot", "ChatGPT", "Claude", "Gemini", "Your agents"],
-      destinationsNote: "The names show where the context can be used. Access, security and delivery path depend on your environment and the agreed scope; they are not ready-made connectors for each tool."
+      stackAria: "Infrastructure and data stay with the customer. Dinn adds a layer of organization and pharmaceutical context before the data reaches the BI and the agents.",
+      owner: { label: "Stays with you", text: "Your data · Your infrastructure · Your governance" },
+      layer: { label: "Dinn layer", text: "Cleaning · Standardization · Pharma context" },
+      destination: { label: "Ready for your environment", text: "BI · Copilot · Internal agents" },
+      cta: { title: "Bring pharma context to", text: "Copilot · ChatGPT · Claude · Gemini · your agents", button: "See it in practice" }
     },
     apps: {
-      eyebrow: "In the pharma routine",
-      title: "From the connection *to your team's question.*",
-      intro: "Choose an application.",
-      fictional: "Example with fictional data. It does not represent a customer result.",
+      label: "In the pharma routine",
+      title1: "From the connection",
+      title2: "to your team's question.",
+      legend: "Choose an application",
+      caption: "Example with fictional data. It does not represent a customer result.",
       nextLabel: "Next conversation",
-      basisLabel: "Basis",
       askLabel: "A question in your Copilot",
       items: [
         {
-          id: "disponibilidade", tab: "Availability", area: "Trade and sales", kind: "table",
-          title: "Where to investigate the product shortage?",
-          text: "Cross internal sales with availability at pharmacies. Prioritize chains and regions to talk about supply.",
-          tableTitle: "Product A · last week",
-          columns: ["Region", "Internal sales", "At pharmacies"],
-          rows: [["South", "Declining", "Check shortage"], ["Southeast", "Stable", "No change"], ["Central-West", "Rising", "Monitor"]],
+          id: "disponibilidade", tab: "Availability", area: "Trade and commercial", kind: "table",
+          title: "Where to investigate the missing product?",
+          text: "Cross internal sales with availability in pharmacies. Prioritize chains and regions to talk about supply.",
+          flow: ["Internal sales", "Priority by chain"],
+          sheet: "Next meeting agenda",
+          meta: ["Product A", "Last week"],
+          columns: ["Region", "Internal sales", "In pharmacies"],
+          rows: [["South", "Falling", "Check shortage ↗"], ["Southeast", "Stable", "No change"], ["Center-West", "Rising", "Follow up"]],
           next: "Investigate supply in the South region with the chain.",
-          basis: "Internal sales + Dinn availability.",
-          caveat: ""
+          source: "Internal sales + Dinn availability."
         },
         {
-          id: "lancamentos", tab: "Launches", area: "Brand management", kind: "table",
+          id: "lancamentos", tab: "Launches", area: "Brand management", kind: "launch",
           title: "Did the launch reach the planned stores?",
-          text: "Compare the launch plan with the signals at pharmacies. Take a list of what needs to be checked to the field.",
-          tableTitle: "Launch tracking · Product A",
-          columns: ["Chain", "Launch plan", "Dinn availability"],
-          rows: [["Chain A", "Planned stores", "Signal found"], ["Chain B", "Planned stores", "Check with the field"], ["Chain C", "Planned stores", "Awaiting update"]],
-          next: "Check the Chain B stores before revisiting the plan.",
-          basis: "Launch plan + Dinn availability.",
-          caveat: "Absence of a signal does not prove lack of stock."
+          text: "Compare the launch plan with the signals in pharmacies. Take a list of what needs checking to the field.",
+          flow: ["Launch plan", "Stores to check"],
+          sheet: "Launch tracking",
+          meta: ["Product A", "Stores planned"],
+          rows: [["Chain A", "Signal found", "ok"], ["Chain B", "Check with the field", "mark"], ["Chain C", "Waiting for refresh", "wait"]],
+          next: "Check Chain B stores before revising the plan.",
+          source: "Launch plan + Dinn availability. Absence of signal does not prove a stock-out."
         },
         {
           id: "copilot", tab: "Copilot", area: "Data and AI", kind: "ask",
           title: "Can your Copilot use pharma data?",
-          text: "Take internal data, market and pharmacy context to the company's AI. With clear source, refresh and limits.",
-          inputs: ["Business data", "Context for the AI"],
+          text: "Bring internal data, market and pharmacy context to the company's AI. With clear source, refresh and limits.",
+          flow: ["Business data", "Context for the AI"],
           question: "Where is it worth investigating the drop in Product A?",
           answer: "Start with the South region. Cross internal sales with the flagged stores and check the order history.",
-          next: "",
-          basis: "",
-          caveat: "The answer helps investigate. It does not presume the cause."
+          source: "The answer helps investigate. It does not presume the cause."
         }
       ]
     },
-    roles: {
-      eyebrow: "Together with your team",
-      title: "The project is yours. *Data operations can stay with Dinn.*",
-      text: "From implementation to follow-up. Without replacing your team or your tools.",
-      yours: {
-        label: "Your team",
-        title: "Priorities, tools and access.",
-        text: "Decides what needs to be answered and how to use the data.",
-        items: ["Sets the priorities and the question to answer", "Chooses the tools and who has access", "Keeps internal data, infrastructure and governance of your environment"]
-      },
-      dinn: {
-        label: "Dinn Conecta",
-        title: "Sources, quality and refresh.",
-        text: "Prepares the data and looks after the connections within the agreed scope.",
-        items: ["Prepares the sources and standardizes product, store and region", "Looks after quality and refresh", "Operates the connections within the contracted scope"]
-      },
-      note: "Dinn is responsible for the controls of its layer: access, permissions and a record of what it delivers. Internal data, infrastructure and governance of your environment stay with you."
-    },
-    start: {
-      eyebrow: "How to start",
-      title: "One flow at a time",
-      steps: [
-        { title: "Define a decision", text: "The question your team wants to answer." },
-        { title: "Choose sources and destination", text: "Two or three sources and one destination: BI, Copilot or a project." },
-        { title: "Deploy a first flow", text: "A bounded flow, with clear scope and responsibilities." },
-        { title: "Evaluate usage and expand", text: "With the flow in use, expand sources and destinations." }
-      ],
-      note: "Implementation, recurring operation, usage capacity and additional services are contracted separately.",
-      plansLink: "See plans and services"
-    },
-    mcp: {
-      title: "Conecta and MCP: what is the difference?",
-      text: "One is for querying; the other, for preparing and operating the data.",
-      rows: [
-        { label: "MCP", text: "Interface: lets an authorized AI query Dinn data, with read-only access." },
-        { label: "Dinn Conecta", text: "Layer for connecting, preparing and operating the data that reaches your environment." }
-      ],
-      not: "Conecta is not a CRM or a task manager, and it does not trigger actions on its own: it brings context to whoever executes.",
-      link: "See integrations and API"
+    team: {
+      label: "Together with your team",
+      title1: "The project is yours.",
+      title2: "Dinn can run\nthe data operation.",
+      text: "From implementation to follow-up.\nWithout replacing your team or your tools.",
+      yours: { label: "Your team", title: "Priorities, tools and access.", text: "Decides what needs answering and how to use the data." },
+      dinn: { label: "Dinn Conecta", title: "Sources, quality and refresh.", text: "Prepares the data and takes care of the connections within the agreed scope." }
     },
     faq: {
-      title: "Before you start: a few answers",
+      label: "Before you start",
+      title: "A few answers.",
       items: [
-        { question: "Can we use our IQVIA and Close-Up licenses?", answer: "Use depends on the supplier's permissions and on access authorized by your company. Dinn does not replace the license. We validate sources and rights before defining the integration." },
-        { question: "Does it work with our BI, data lake or Copilot?", answer: "The idea is to work with the environment you already have. The delivery path is defined with your technical team, according to security, tools and feasibility." },
-        { question: "Does Dinn also implement the solution?", answer: "Yes. The offering can combine implementation and ongoing operation. We start with a flow defined with your team, with clear scope and responsibilities." },
-        { question: "Is Conecta the same thing as MCP?", answer: "No. MCP is an interface for an authorized AI to query the data. Conecta is the layer that gathers, organizes and updates that data. The two can work together." }
+        { question: "Can we use our IQVIA and Close-Up licenses?", answer: "Use depends on the supplier's permissions and on the access authorized by your company. Dinn does not replace the license. We validate sources and rights before defining the integration." },
+        { question: "Does it work with our BI, data lake or Copilot?", answer: "The proposal is to work with the environment you already have. The delivery path is defined with your technical team, according to security, tools and feasibility." },
+        { question: "Does Dinn also implement the solution?", answer: "Yes. The offer can combine implementation and ongoing operation. We start with one flow defined with your team, with clear scope and responsibilities." }
       ]
     },
-    cta: {
-      title: "Which pharma routine do you want to simplify?",
-      desc: "Tell us the source, the destination, the frequency and the decision. We start with one flow.",
-      button: "Talk about my data flow",
-      secondary: "See the applications"
+    closing: {
+      label: "One flow at a time",
+      title1: "Which pharma routine",
+      title2: "do you want to simplify?",
+      button: "Explore the applications"
     }
   },
 

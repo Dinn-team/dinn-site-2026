@@ -83,27 +83,43 @@ export const offerPt = {
     text: "No Localizador, consulte a disponibilidade informada naquele momento pelas lojas compatíveis. Veja o horário da consulta e diferencie essa resposta do estoque D-1 ou estimado.",
     condition: "Disponível conforme rede, fonte e escopo contratado. A informação pode mudar após a consulta.",
     sim: "Simulação · valores de exemplo",
-    app: "Localizar produto",
-    address: "Endereço do consumidor",
+    mapAria: "Mapa do Localizador com farmácias próximas ao endereço do consumidor, coloridas pelo nível de estoque.",
     stepsLabel: "Da busca à orientação",
     steps: [
-      { title: "Localizar", text: "Informe o endereço ou a área e o raio." },
-      { title: "Escolher a loja", text: "Entre as próximas, só as lojas compatíveis têm a consulta." },
+      { title: "Localizar", text: "Informe o endereço ou a área e o raio. As farmácias próximas aparecem no mapa." },
+      { title: "Escolher a loja", text: "Abra uma loja. A leitura de base é a de ontem; só as lojas compatíveis têm a consulta." },
       { title: "Consultar agora", text: "A Dinn pergunta à fonte da loja naquele momento." },
-      { title: "Resposta e horário", text: "A resposta vem com o horário da consulta." },
-      { title: "Orientar", text: "Oriente sabendo o que foi informado e quando." }
+      { title: "Resposta e horário", text: "A resposta vem com o horário da consulta, separada da leitura de ontem." },
+      { title: "Orientar", text: "Oriente sabendo o que foi informado e quando, e compartilhe o endereço." }
     ],
     stores: [
-      { name: "Farmácia 1 · Rede A", dist: "0,8 km", base: "Observado · D-1", baseValue: "12–15 un.", eligible: true, live: "11 un. informadas" },
-      { name: "Farmácia 2 · Rede B", dist: "1,2 km", base: "Estimado · lojas comparáveis", baseValue: "4–6 un.", eligible: true, live: "Sem estoque informado" },
-      { name: "Farmácia 3 · Rede C", dist: "1,9 km", base: "Observado · D-1", baseValue: "9–11 un.", eligible: false, live: "" }
+      { name: "Farmácia Centro", network: "Rede A" },
+      { name: "Farmácia Jardim", network: "Rede B" },
+      { name: "Farmácia Norte", network: "Rede A" },
+      { name: "Farmácia Praça", network: "Independente" },
+      { name: "Farmácia Sul", network: "Rede C" },
+      { name: "Farmácia Leste", network: "Rede B" }
     ],
-    ask: "Consultar agora",
-    asking: "Consultando a loja…",
-    answered: "Resposta da loja",
-    at: "às",
-    notEligible: "Sem consulta em tempo real nesta rede; vale a leitura D-1.",
-    reset: "Refazer a consulta",
+    popup: {
+      stockTitle: "Estoque do produto",
+      exact: "Estoque exato",
+      estimated: "Estoque estimado",
+      consult: "Consultar agora",
+      consulting: "Consultando PDV...",
+      liveNow: "Consulta feita agora · {time}",
+      available: "disponível",
+      updated: "Atualizado ontem · 23:10",
+      price: "R$ 48,90",
+      perUnit: "por unidade",
+      giro: "Giro",
+      perDay: "un./dia",
+      stalled: "Parado",
+      stalledDays: "há 9 dias",
+      notEligible: "Consulta em tempo real não disponível nesta loja.",
+      share: "Compartilhar",
+      shared: "Endereço e link copiados",
+      units: "un."
+    },
     legend: {
       d1: "Leitura D-1: o que a fonte informou ontem.",
       est: "Estimado: calculado por lojas comparáveis.",
@@ -111,7 +127,7 @@ export const offerPt = {
     },
     orient: "Orientação ao consumidor: “A loja informou agora, e o estoque pode mudar. Vale confirmar antes de ir.”",
     link: "Entender as três leituras",
-    hint: "Escolha uma loja compatível e clique em Consultar agora."
+    hint: "Clique numa loja do mapa, role a página ou espere: a cena segue sozinha."
   },
 
   // ── Página do Localizador ─────────────────────────────────────────────────
@@ -128,7 +144,7 @@ export const offerPt = {
     scene: { title: "Da busca à orientação, em cinco passos" },
     readings: {
       title: "Três leituras, três usos",
-      intro: "A Dinn diz sempre qual delas você está vendo. Cada uma responde a uma pergunta diferente.",
+      intro: "Três leituras convivem na mesma loja. A Dinn diz sempre qual delas você está vendo, e cada uma serve a uma pergunta diferente.",
       columns: ["Leitura", "O que é", "Atualização", "Quando usar"],
       rows: [
         ["Estoque D-1 (observado)", "O que a fonte informou no dia anterior, por loja e com a data.", "Base diária, com a data de cada leitura.", "Priorizar e acompanhar um recorte."],
@@ -137,19 +153,19 @@ export const offerPt = {
       ]
     },
     when: {
-      title: "Quando consultar em tempo real",
+      title: "Quando vale consultar agora",
       items: [
-        { title: "Antes de orientar um consumidor", text: "No SAC, confirme o que a loja informa agora antes de indicar o deslocamento." },
-        { title: "Antes de uma visita", text: "No campo, veja o que a loja informa hoje e leve a conversa com o dado do dia." },
-        { title: "Depois de uma ação", text: "No trade, consulte a mesma loja de novo para ver se a reposição apareceu." }
+        { title: "A ligação do consumidor", text: "O paciente pergunta onde achar o remédio. Em vez de ligar loja por loja, consulte a mais próxima e responda com o que ela informou agora." },
+        { title: "A visita desta tarde", text: "Antes de falar com a rede, veja o que a loja informa neste momento e leve a conversa com o dado do dia, não com o de ontem." },
+        { title: "Depois da reposição", text: "Combinou a entrega com a rede? Consulte a mesma loja de novo e veja se o produto já apareceu na resposta." }
       ]
     },
     conditions: {
       title: "O que precisa estar de pé",
       items: [
-        { title: "Rede e fonte compatíveis", text: "A consulta depende de a rede e a fonte da loja permitirem a pergunta. A lista vem da cobertura validada." },
+        { title: "Rede e fonte compatíveis", text: "A loja precisa responder à pergunta. A lista de redes e fontes elegíveis vem da cobertura validada." },
         { title: "Escopo contratado", text: "O estoque em tempo real é um complemento do plano. Condições e limites estão em Planos." },
-        { title: "Uma consulta, uma resposta", text: "A informação pode mudar depois. Não é uma atualização contínua de toda a base." }
+        { title: "Uma consulta, uma resposta", text: "A resposta vale para aquele horário. Não é uma atualização contínua de toda a base." }
       ],
       coverageLink: "Ver a cobertura",
       plansLink: "Ver planos e complementos"
@@ -191,7 +207,7 @@ export const offerPt = {
       output: "Saída",
       decision: "Decisão apoiada",
       limit: "Limite da leitura",
-      more: "Ver em detalhe"
+      more: "Saiba mais"
     },
     sim: "Exemplos ilustrativos, com valores de exemplo. A disponibilidade de cada funcionalidade segue o plano contratado.",
     items: [
@@ -351,161 +367,114 @@ export const offerPt = {
     },
     hero: {
       eyebrow: "Para a indústria farmacêutica",
-      title: "Dados de farma. *Trabalhando juntos.*",
-      lead: "Mercado, dados internos e farmácias com o contexto que seu BI, Copilot e projetos precisam.",
-      cta: "Veja como se conecta",
-      cta2: "Conversar sobre meu fluxo de dados"
+      title1: "Dados de farma.",
+      title2: "Trabalhando juntos.",
+      lead: "Mercado, dados internos e farmácias com o contexto\nque seu BI, Copilot e projetos precisam.",
+      cta: "Veja como se conecta"
     },
-    nav: { how: "Como funciona", apps: "Aplicações", roles: "Responsabilidades", faq: "Perguntas" },
-    flow: {
-      sourcesLabel: "Suas fontes",
-      sources: [
-        { name: "Mercado", sub: "IQVIA · Close-Up" },
-        { name: "Sua empresa", sub: "Vendas · ERP · lake" },
-        { name: "Farmácias", sub: "Contexto Dinn" }
-      ],
-      hubLabel: "Contexto Dinn",
-      hub: "Conecta.",
-      hubSub: "Reúne · organiza · atualiza",
-      destinations: [
-        { name: "Seu BI", sub: "Análises e painéis" },
-        { name: "Seu Copilot", sub: "Perguntas do time" },
-        { name: "Seu projeto", sub: "Suas ferramentas" }
-      ],
-      note: "Seu projeto continua sendo seu. A Dinn cuida da conexão. Fontes e integrações conforme acesso, licença e escopo."
+    map: {
+      aria: "Mercado, dados da empresa e sinais das farmácias passam pela Dinn Conecta e chegam ao BI, Copilot e projetos internos.",
+      sources: "Suas fontes",
+      environment: "Seu ambiente",
+      market: { name: "Mercado", sub: "IQVIA · Close-Up" },
+      company: { name: "Sua empresa", sub: "Vendas · ERP · lake" },
+      pharmacy: { name: "Farmácias", sub: "Contexto Dinn" },
+      core: { name: "Conecta", sub: "Reúne · organiza · atualiza" },
+      bi: { name: "Seu BI", sub: "Análises e painéis" },
+      ai: { name: "Seu Copilot", sub: "Perguntas do time" },
+      project: { name: "Seu projeto", sub: "Suas ferramentas" },
+      yours: "Seu projeto continua sendo seu.",
+      dinn: "A Dinn cuida da conexão.",
+      caption: "Fontes e integrações conforme acesso, licença e escopo."
     },
-    pain: {
-      eyebrow: "Menos trabalho repetido",
-      title: "Cada análise começa *juntando tudo de novo?*",
-      intro: "Os dados já existem. O trabalho está em fazer uma fonte conversar com a outra.",
+    problem: {
+      label: "Menos trabalho repetido",
+      title1: "Cada análise começa",
+      title2: "juntando tudo de novo?",
+      text: "Os dados já existem. O trabalho está em fazer uma fonte conversar com a outra.",
       items: [
-        { n: "01 · Reunir", title: "Arquivos espalhados.", text: "Mercado em uma base. Vendas no ERP. Disponibilidade em outra fonte." },
-        { n: "02 · Conferir", title: "Recortes diferentes.", text: "Nomes de produtos, redes e períodos que precisam ser combinados." },
-        { n: "03 · Manter", title: "Tudo muda de novo.", text: "A próxima atualização chega. E alguém precisa cuidar desse caminho." }
+        { n: "01 / Reunir", title: "Arquivos espalhados.", text: "Mercado em uma base. Vendas no ERP. Disponibilidade em outra fonte." },
+        { n: "02 / Conferir", title: "Recortes diferentes.", text: "Nomes de produtos, redes e períodos que precisam ser combinados." },
+        { n: "03 / Manter", title: "Tudo muda de novo.", text: "A próxima atualização chega. E alguém precisa cuidar desse caminho." }
       ],
-      closing: "A Dinn prepara e mantém os dados. Seu time usa."
+      bottom: "A Dinn prepara e mantém os dados. Seu time usa."
     },
-    how: {
-      eyebrow: "Como funciona",
-      title: "Da fonte ao seu ambiente, *em três movimentos*",
-      steps: [
-        { title: "Reúne", text: "Conecta mercado, dados internos e farmácias, conforme acesso, licença e escopo." },
-        { title: "Organiza", text: "Padroniza produto (EAN), loja (CNPJ), rede, território e período, com conhecimento de farma." },
-        { title: "Atualiza", text: "Mantém a qualidade e a atualização do caminho e entrega onde sua equipe trabalha." }
-      ],
-      identities: ["Produto · EAN", "PDV · rede", "Território", "Período"]
-    },
-    ai: {
-      eyebrow: "Contexto para IA",
-      title: "Na era da IA, *contexto importa.*",
+    context: {
+      label: "Contexto para IA",
+      title1: "Na era da IA,",
+      title2: "contexto importa.",
       text: "Seu time já está sendo cobrado para conectar bases internas e disponibilizar esses dados nos agentes da empresa. Esse projeto continua sendo seu. A Dinn entra para organizar, higienizar e padronizar o caminho com conhecimento de farma.",
-      layers: [
-        { label: "Continua com você", text: "Seus dados · Sua infraestrutura · Sua governança" },
-        { label: "Camada Dinn", text: "Higienização · Padronização · Contexto de farma" },
-        { label: "Pronto para o seu ambiente", text: "BI · Copilot · Agentes internos" }
-      ],
-      destinationsTitle: "Leve contexto de farma para",
-      destinations: ["Copilot", "ChatGPT", "Claude", "Gemini", "Seus agentes"],
-      destinationsNote: "Os nomes mostram onde o contexto pode ser usado. Acesso, segurança e caminho de entrega dependem do seu ambiente e do escopo combinado; não são conectores prontos de cada ferramenta."
+      stackAria: "A infraestrutura e os dados continuam com o cliente. A Dinn adiciona uma camada de organização e contexto farmacêutico antes dos dados chegarem ao BI e aos agentes.",
+      owner: { label: "Continua com você", text: "Seus dados · Sua infraestrutura · Sua governança" },
+      layer: { label: "Camada Dinn", text: "Higienização · Padronização · Contexto de farma" },
+      destination: { label: "Pronto para o seu ambiente", text: "BI · Copilot · Agentes internos" },
+      cta: { title: "Leve contexto de farma para", text: "Copilot · ChatGPT · Claude · Gemini · seus agentes", button: "Ver na prática" }
     },
     apps: {
-      eyebrow: "Na rotina de farma",
-      title: "Da conexão *à pergunta do seu time.*",
-      intro: "Escolha uma aplicação.",
-      fictional: "Exemplo com dados fictícios. Não representa um resultado de cliente.",
+      label: "Na rotina de farma",
+      title1: "Da conexão",
+      title2: "à pergunta do seu time.",
+      legend: "Escolha uma aplicação",
+      caption: "Exemplo com dados fictícios. Não representa um resultado de cliente.",
       nextLabel: "Próxima conversa",
-      basisLabel: "Base",
       askLabel: "Uma pergunta no seu Copilot",
       items: [
         {
           id: "disponibilidade", tab: "Disponibilidade", area: "Trade e comercial", kind: "table",
           title: "Onde investigar a falta de produto?",
           text: "Cruze a venda interna com a disponibilidade nas farmácias. Priorize redes e regiões para conversar sobre abastecimento.",
-          tableTitle: "Produto A · última semana",
+          flow: ["Venda interna", "Prioridade por rede"],
+          sheet: "Pauta da próxima reunião",
+          meta: ["Produto A", "Última semana"],
           columns: ["Região", "Venda interna", "Nas farmácias"],
-          rows: [["Sul", "Em queda", "Verificar falta"], ["Sudeste", "Estável", "Sem mudança"], ["Centro-Oeste", "Em alta", "Acompanhar"]],
+          rows: [["Sul", "Em queda", "Verificar falta ↗"], ["Sudeste", "Estável", "Sem mudança"], ["Centro-Oeste", "Em alta", "Acompanhar"]],
           next: "Investigar o abastecimento na Região Sul com a rede.",
-          basis: "Venda interna + disponibilidade Dinn.",
-          caveat: ""
+          source: "Venda interna + disponibilidade Dinn."
         },
         {
-          id: "lancamentos", tab: "Lançamentos", area: "Gestão de marcas", kind: "table",
+          id: "lancamentos", tab: "Lançamentos", area: "Gestão de marcas", kind: "launch",
           title: "O lançamento chegou às lojas previstas?",
           text: "Compare o plano de lançamento com os sinais nas farmácias. Leve ao campo uma lista do que precisa ser conferido.",
-          tableTitle: "Acompanhamento do lançamento · Produto A",
-          columns: ["Rede", "Plano de lançamento", "Disponibilidade Dinn"],
-          rows: [["Rede A", "Lojas previstas", "Sinal encontrado"], ["Rede B", "Lojas previstas", "Verificar com o campo"], ["Rede C", "Lojas previstas", "Aguardando atualização"]],
+          flow: ["Plano de lançamento", "Lojas para verificar"],
+          sheet: "Acompanhamento do lançamento",
+          meta: ["Produto A", "Lojas previstas no plano"],
+          rows: [["Rede A", "Sinal encontrado", "ok"], ["Rede B", "Verificar com o campo", "mark"], ["Rede C", "Aguardando atualização", "wait"]],
           next: "Conferir as lojas da Rede B antes de rever o plano.",
-          basis: "Plano de lançamento + disponibilidade Dinn.",
-          caveat: "Ausência de sinal não comprova falta de estoque."
+          source: "Plano de lançamento + disponibilidade Dinn. Ausência de sinal não comprova falta de estoque."
         },
         {
           id: "copilot", tab: "Copilot", area: "Dados e IA", kind: "ask",
           title: "Seu Copilot consegue usar os dados de farma?",
           text: "Leve dados internos, mercado e contexto das farmácias à IA da empresa. Com origem, atualização e limites claros.",
-          inputs: ["Dados do negócio", "Contexto para a IA"],
+          flow: ["Dados do negócio", "Contexto para a IA"],
           question: "Onde vale investigar a queda do Produto A?",
           answer: "Comece pela Região Sul. Cruze a venda interna com as lojas sinalizadas e confira o histórico de pedidos.",
-          next: "",
-          basis: "",
-          caveat: "A resposta ajuda a investigar. Não presume a causa."
+          source: "A resposta ajuda a investigar. Não presume a causa."
         }
       ]
     },
-    roles: {
-      eyebrow: "Junto com sua equipe",
-      title: "O projeto é seu. *A operação dos dados pode ficar com a Dinn.*",
-      text: "Da implementação ao acompanhamento. Sem substituir seu time ou suas ferramentas.",
-      yours: {
-        label: "Seu time",
-        title: "Prioridades, ferramentas e acessos.",
-        text: "Decide o que precisa responder e como usar os dados.",
-        items: ["Define as prioridades e a pergunta a responder", "Escolhe as ferramentas e quem acessa", "Mantém dados internos, infraestrutura e governança do seu ambiente"]
-      },
-      dinn: {
-        label: "Dinn Conecta",
-        title: "Fontes, qualidade e atualização.",
-        text: "Prepara os dados e cuida das conexões no escopo combinado.",
-        items: ["Prepara as fontes e padroniza produto, loja e região", "Cuida da qualidade e da atualização", "Opera as conexões no escopo contratado"]
-      },
-      note: "A Dinn responde pelos controles da sua camada: acesso, permissões e registro do que entrega. Os dados internos, a infraestrutura e a governança do seu ambiente continuam com você."
-    },
-    start: {
-      eyebrow: "Como começar",
-      title: "Um fluxo de cada vez",
-      steps: [
-        { title: "Defina uma decisão", text: "A pergunta que a sua equipe quer responder." },
-        { title: "Escolha fontes e destino", text: "Duas ou três fontes e um destino: BI, Copilot ou um projeto." },
-        { title: "Implante um primeiro fluxo", text: "Um fluxo delimitado, com escopo e responsabilidades claros." },
-        { title: "Avalie o uso e expanda", text: "Com o fluxo em uso, amplie fontes e destinos." }
-      ],
-      note: "Implantação, operação recorrente, capacidade de uso e serviços adicionais são contratados separadamente.",
-      plansLink: "Ver planos e serviços"
-    },
-    mcp: {
-      title: "Conecta e MCP: qual é a diferença?",
-      text: "Uma serve para consultar; a outra, para preparar e operar os dados.",
-      rows: [
-        { label: "MCP", text: "Interface: permite que uma IA autorizada consulte os dados da Dinn, em acesso somente leitura." },
-        { label: "Dinn Conecta", text: "Camada de conexão, preparação e operação dos dados que chegam ao seu ambiente." }
-      ],
-      not: "O Conecta não é um CRM nem um gestor de tarefas, e não dispara ações sozinho: leva contexto a quem executa.",
-      link: "Ver integrações e API"
+    team: {
+      label: "Junto com sua equipe",
+      title1: "O projeto é seu.",
+      title2: "A operação dos dados\npode ficar com a Dinn.",
+      text: "Da implementação ao acompanhamento.\nSem substituir seu time ou suas ferramentas.",
+      yours: { label: "Seu time", title: "Prioridades, ferramentas e acessos.", text: "Decide o que precisa responder e como usar os dados." },
+      dinn: { label: "Dinn Conecta", title: "Fontes, qualidade e atualização.", text: "Prepara os dados e cuida das conexões no escopo combinado." }
     },
     faq: {
-      title: "Antes de começar: algumas respostas",
+      label: "Antes de começar",
+      title: "Algumas respostas.",
       items: [
         { question: "Podemos usar nossas licenças de IQVIA e Close-Up?", answer: "O uso depende das permissões do fornecedor e do acesso autorizado pela sua empresa. A Dinn não substitui a licença. Validamos fontes e direitos antes de definir a integração." },
         { question: "Funciona com nosso BI, data lake ou Copilot?", answer: "A proposta é trabalhar com o ambiente que vocês já têm. O caminho de entrega é definido com sua equipe técnica, conforme segurança, ferramentas e viabilidade." },
-        { question: "A Dinn também implementa a solução?", answer: "Sim. A oferta pode combinar implementação e operação contínua. Começamos por um fluxo definido com sua equipe, com escopo e responsabilidades claros." },
-        { question: "O Conecta é a mesma coisa que o MCP?", answer: "Não. O MCP é uma interface para uma IA autorizada consultar os dados. O Conecta é a camada que reúne, organiza e atualiza esses dados. Os dois podem trabalhar juntos." }
+        { question: "A Dinn também implementa a solução?", answer: "Sim. A oferta pode combinar implementação e operação contínua. Começamos por um fluxo definido com sua equipe, com escopo e responsabilidades claros." }
       ]
     },
-    cta: {
-      title: "Qual rotina de farma você quer simplificar?",
-      desc: "Conte a origem, o destino, a frequência e a decisão. Começamos por um fluxo.",
-      button: "Conversar sobre meu fluxo de dados",
-      secondary: "Ver as aplicações"
+    closing: {
+      label: "Um fluxo de cada vez",
+      title1: "Qual rotina de farma",
+      title2: "você quer simplificar?",
+      button: "Explorar as aplicações"
     }
   },
 

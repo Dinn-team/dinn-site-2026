@@ -360,7 +360,7 @@ export const ptBR = {
     eyebrow: "Casos de uso: escolha a situação e veja o Dinn trabalhando",
     title: "Situações concretas do canal, *uma a uma*",
     askCta: "Pergunte isso ao Dinn",
-    deepLink: "Ver em detalhe nesta área",
+    deepLink: "Saiba mais",
     seesLabel: "O Dinn cruza",
     doesLabel: "O time faz",
     items: [

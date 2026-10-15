@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight, BarChart3, Briefcase, Building2, CalendarClock, CheckCircle2, Clock, Code2, Database, Eye, FileCheck2,
+  FileText, Globe2, Headset, Layers, MapPin, Network, Package, Plug, RefreshCw, Search, Send, Server, Shuffle, Store, Workflow,
+  type LucideIcon,
+} from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { contactUrl } from '@/lib/links';
@@ -10,7 +14,8 @@ import coverageData from '@/data/coverage.json';
 import { PageCta, PageHero, SectionHead } from '../PageShell';
 import { AreaCard, type Area } from '../SolutionsPages';
 import { publishedCases } from '../CasesPages';
-import { RealtimeScene } from './RealtimeScene';
+import { RealtimeStage } from './RealtimeScene';
+import { FlowChain, HubDiagram, IconTile, ReadingsTimeline, SplitPanels } from './FlowViz';
 
 // Páginas de produto e oferta da rodada de 15/10/2026. Cada uma lê os textos
 // do dicionário (offer*) e usa as peças comuns de PageShell e site-pages.css.
@@ -18,11 +23,12 @@ import { RealtimeScene } from './RealtimeScene';
 type Info = { title: string; text: string };
 type Qa = { question: string; answer: string };
 
-function CardGrid({ items, cols = 3 }: { items: Info[]; cols?: 2 | 3 }) {
+function CardGrid({ items, cols = 3, icons }: { items: Info[]; cols?: 2 | 3; icons?: LucideIcon[] }) {
   return (
     <div className={`sp-grid ${cols === 2 ? 'is-two' : 'is-three'}`}>
-      {items.map((c) => (
+      {items.map((c, i) => (
         <article key={c.title} className="sp-card is-plain">
+          {icons?.[i] && <IconTile icon={icons[i]} />}
           <h3>{c.title}</h3>
           <p>{c.text}</p>
         </article>
@@ -143,17 +149,16 @@ export function LocatorPage() {
         lead={t('locator.hero.lead') as string}
       />
 
-      <section className="sp-section is-alt" aria-labelledby="lc-scene">
-        <div className="wrap">
-          <SectionHead id="lc-scene" title={t('locator.scene.title')} />
-          <RealtimeScene />
-          <p className="rt-condition">{t('realtime.condition')}</p>
-        </div>
-      </section>
+      <RealtimeStage />
 
       <section className="sp-section" aria-labelledby="lc-readings">
         <div className="wrap">
           <SectionHead id="lc-readings" title={readings.title} intro={readings.intro} />
+          <ReadingsTimeline
+            label={readings.title}
+            lanes={readings.rows.map((r) => ({ name: r[0], note: r[2] }))}
+          />
+          <div className="vz-gap" />
           <DataTable columns={readings.columns} rows={readings.rows} label={readings.title} />
         </div>
       </section>
@@ -161,14 +166,21 @@ export function LocatorPage() {
       <section className="sp-section is-alt" aria-labelledby="lc-when">
         <div className="wrap">
           <SectionHead id="lc-when" title={t('locator.when.title')} />
-          <CardGrid items={when} />
+          <CardGrid items={when} icons={[Headset, MapPin, RefreshCw]} />
         </div>
       </section>
 
       <section className="sp-section" aria-labelledby="lc-cond">
         <div className="wrap">
           <SectionHead id="lc-cond" title={t('locator.conditions.title')} />
-          <CardGrid items={conditions} />
+          <FlowChain
+            nodes={conditions.map((c, i) => ({
+              icon: [Network, FileCheck2, Clock][i] ?? Layers,
+              title: c.title,
+              sub: c.text,
+              tone: i === 2 ? ('main' as const) : undefined,
+            }))}
+          />
           <p className="sp-more">
             <a href={PATHS.coverage}>{t('locator.conditions.coverageLink')} →</a>
             {' · '}
@@ -313,25 +325,19 @@ export function IntegrationsPage() {
       <section className="sp-section" aria-labelledby="in-flow">
         <div className="wrap">
           <SectionHead id="in-flow" title={t('integrations.flow.title')} />
-          <ol className="of-flow">
-            {steps.map((s, i) => (
-              <li key={s.title}>
-                <span className="sp-num">{i + 1}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="of-split" style={{ marginTop: 16 }}>
-            <div className="of-panel">
-              <h3>{dinn.title}</h3>
-              <Checks items={dinn.items} />
-            </div>
-            <div className="of-panel">
-              <h3>{client.title}</h3>
-              <Checks items={client.items} />
-            </div>
-          </div>
+          <FlowChain
+            nodes={steps.map((s, i) => ({
+              icon: [Database, Shuffle, Send, BarChart3][i] ?? Layers,
+              title: s.title,
+              sub: s.text,
+              tone: i === 1 ? ('main' as const) : undefined,
+            }))}
+          />
+          <div className="vz-gap" />
+          <SplitPanels
+            left={{ title: dinn.title, items: dinn.items, icon: Server }}
+            right={{ title: client.title, items: client.items, icon: Building2 }}
+          />
           <p className="sp-note">{t('integrations.flow.caution')}</p>
         </div>
       </section>
@@ -339,9 +345,16 @@ export function IntegrationsPage() {
       <section className="sp-section is-alt" aria-labelledby="in-mod">
         <div className="wrap">
           <SectionHead id="in-mod" title={t('integrations.modalities.title')} intro={t('integrations.modalities.intro')} />
+          <HubDiagram
+            center="Dinn"
+            label={t('integrations.modalities.title') as string}
+            nodes={modalities.map((m, i) => ({ icon: [Code2, FileText, Database, Plug, Workflow][i] ?? Layers, label: m.name }))}
+          />
+          <div className="vz-gap" />
           <div className="sp-grid is-three">
-            {modalities.map((m) => (
+            {modalities.map((m, i) => (
               <article key={m.id} id={m.id} className="sp-card" style={{ scrollMarginTop: 96 }}>
+                <IconTile icon={[Code2, FileText, Database, Plug, Workflow][i] ?? Layers} />
                 <h3>{m.name}</h3>
                 <p>{m.text}</p>
                 <p className="sp-kicker" style={{ marginTop: 8, marginBottom: 0 }}>{t('integrations.modalities.knowLabel')}</p>
@@ -515,6 +528,14 @@ export function CoveragePage() {
       <section className="sp-section" aria-labelledby="cv-dims">
         <div className="wrap">
           <SectionHead id="cv-dims" title={t('coverage.dims.title')} intro={t('coverage.dims.intro')} />
+          <FlowChain
+            nodes={dims.map((d, i) => ({
+              icon: [Globe2, Network, Store, Package, Eye, CalendarClock][i] ?? Layers,
+              title: d.title,
+              tone: i === 4 ? ('main' as const) : undefined,
+            }))}
+          />
+          <div className="vz-gap" />
           <CardGrid items={dims} />
         </div>
       </section>
@@ -522,6 +543,8 @@ export function CoveragePage() {
       <section className="sp-section is-alt" aria-labelledby="cv-nature">
         <div className="wrap">
           <SectionHead id="cv-nature" title={nature.title} intro={nature.intro} />
+          <ReadingsTimeline label={nature.title} lanes={nature.rows.map((r) => ({ name: r[0], note: r[2] }))} />
+          <div className="vz-gap" />
           <DataTable columns={nature.columns} rows={nature.rows} label={nature.title} />
           <p className="sp-more"><a href={PATHS.locator}>{t('coverage.links.locator')} →</a></p>
         </div>
@@ -531,10 +554,11 @@ export function CoveragePage() {
         <div className="wrap">
           <SectionHead id="cv-status" title={t('coverage.status.title')} intro={t('coverage.status.intro')} />
           <div className="sp-grid is-three">
-            {groups.map((g) => {
+            {groups.map((g, gi) => {
               const list = (data[g.key] as CoverageItem[] | undefined) ?? [];
               return (
                 <article key={g.key} className="sp-card">
+                  <IconTile icon={[CheckCircle2, Briefcase, Search][gi] ?? Layers} tone={(['green', 'brand', 'amber'] as const)[gi]} />
                   <h3>{g.title}</h3>
                   <p>{g.text}</p>
                   {list.length > 0 ? (
@@ -777,23 +801,21 @@ export function ClientsPage({ logos = [] }: { logos?: Logo[] }) {
 
   return (
     <div className="sp">
-      <PageHero
-        eyebrow={t('clients.hero.eyebrow') as string}
-        title={t('clients.hero.title') as string}
-        lead={t('clients.hero.lead') as string}
-      />
-
-      <section className="sp-section" aria-labelledby="cl-logos">
-        <div className="wrap">
-          <SectionHead id="cl-logos" title={t('clients.logos.title')} />
-          <div className="of-logos">
+      {/* Primeira dobra no gradiente escuro do site; logos em branco sobre ele. */}
+      <header className="cl-hero">
+        <div className="cl-glow" aria-hidden="true" />
+        <div className="wrap cl-inner">
+          <p className="sp-eyebrow">{t('clients.hero.eyebrow')}</p>
+          <h1 className="sp-title"><Rich text={t('clients.hero.title') as string} /></h1>
+          <p className="sp-lead">{t('clients.hero.lead')}</p>
+          <div className="cl-logos" role="list" aria-label={t('clients.logos.title') as string}>
             {logos.map((c) => (
-              <img key={c.name} src={c.src} alt={c.name} width={c.width} height={c.height} loading="lazy" decoding="async" />
+              <img key={c.name} role="listitem" src={c.src} alt={c.name} width={c.width} height={c.height} loading="eager" decoding="async" />
             ))}
           </div>
-          <p className="sp-note" style={{ textAlign: 'center' }}>{t('clients.logos.note')}</p>
+          <p className="cl-note">{t('clients.logos.note')}</p>
         </div>
-      </section>
+      </header>
 
       <section className="sp-section is-alt" aria-labelledby="cl-cases">
         <div className="wrap">

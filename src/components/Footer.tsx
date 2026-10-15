@@ -2,129 +2,110 @@ import { useTranslation } from "@/i18n/useTranslation";
 import { contactUrl } from "@/lib/links";
 import { blogPath } from "@/i18n/routes";
 
+// Rodapé com as mesmas colunas do menu do topo: Plataforma, Soluções,
+// Recursos, A Dinn (com Planos e Clientes) e Legal.
+
+type Col = { title: string; links: [string, string][] };
+
+const headingStyle = {
+  fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#9CA3AF', margin: '0 0 16px',
+};
+const linkStyle = { fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 };
+
 export default function Footer() {
   const { t, lang } = useTranslation();
+  const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
+
+  const columns: Col[] = [
+    {
+      title: t('menu.platform') as string,
+      links: [
+        [t('menu.platformOverview') as string, '/plataforma'],
+        [t('menu.features') as string, '/funcionalidades'],
+        [t('menu.locator') as string, '/produtos/localizador'],
+        [t('menu.conecta') as string, '/produtos/conecta'],
+        [t('menu.integrations') as string, '/integracoes'],
+        [t('menu.coverage') as string, '/cobertura'],
+      ],
+    },
+    {
+      title: t('footer.sectionSolutions') as string,
+      links: [
+        ...areas.map((a): [string, string] => [a.name, `/solucoes/${a.slug}`]),
+        [t('menu.solutionsAll') as string, '/solucoes'],
+      ],
+    },
+    {
+      title: t('nav.resources') as string,
+      links: [
+        [t('nav.blog') as string, blogPath(lang)],
+        [t('nav.cases') as string, '/recursos/casos'],
+        [t('nav.changelog') as string, '/recursos/changelog'],
+        [t('menu.compare') as string, '/comparativos'],
+      ],
+    },
+    {
+      title: t('footer.sectionA') as string,
+      links: [
+        [t('menu.about') as string, '/sobre'],
+        [t('menu.plansOverview') as string, '/planos'],
+        [t('nav.customers') as string, '/clientes'],
+        [t('menu.research') as string, '/pesquisas'],
+        [t('menu.trust') as string, '/confianca'],
+        [t('contact.navLabel') as string, '/contato'],
+      ],
+    },
+    {
+      title: t('footer.sectionLegal') as string,
+      links: [
+        [t('footer.termos') as string, '/termos-de-uso'],
+        [t('footer.privacidade') as string, '/politicas-de-privacidade'],
+        [t('footer.cookies') as string, '/politicas-de-privacidade#cookies'],
+        [t('footer.suporte') as string, '/suporte'],
+      ],
+    },
+  ];
 
   return (
     <footer style={{ background: '#ffffff', borderTop: '1px solid #E5E7EB' }}>
       <div className="wrap" style={{ paddingTop: '64px', paddingBottom: '48px' }}>
 
-        {/* Main grid: brand + 4 columns */}
-        <div className="footer-grid" style={{
-          display: 'grid',
-          gap: '40px',
-          marginBottom: '48px',
-          alignItems: 'start',
-        }}>
+        {/* Marca + cinco colunas */}
+        <div className="footer-grid" style={{ display: 'grid', gap: '40px', marginBottom: '48px', alignItems: 'start' }}>
 
-          {/* Brand */}
           <div>
             <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
               <img src="/Logo_Dinn_Cinza.svg" alt="Dinn Logo" width={1807} height={676} loading="lazy" decoding="async" style={{ height: '36px', width: 'auto' }} />
             </a>
-            <p style={{ fontSize: '14px', color: '#9CA3AF', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7, margin: '0 0 20px' }}>
               {t('footer.description')}
             </p>
-          </div>
-
-          {/* A Dinn */}
-          <div>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
-              {t('footer.sectionA')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[
-                [t('nav.platform'), '/plataforma'],
-                [t('menu.features'), '/funcionalidades'],
-                [t('menu.locator'), '/produtos/localizador'],
-                [t('menu.conecta'), '/produtos/conecta'],
-                [t('menu.integrations'), '/integracoes'],
-                [t('menu.coverage'), '/cobertura'],
-                [t('menu.plansOverview'), '/planos'],
-                [t('nav.customers'), '/clientes'],
-                [t('nav.resources'), '/recursos'],
-                [t('menu.about'), '/sobre'],
-                [t('nav.trust'), '/confianca'],
-                [t('nav.blog'), blogPath(lang)],
-                [t('contact.navLabel'), '/contato'],
-              ].map(([label, href]) => (
-                <a key={`${href}-${label}`} href={href}
-                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-
-
-          {/* Soluções: uma página por área, mesmo padrão da coluna "A Dinn" */}
-          <div>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
-              {t('footer.sectionSolutions')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {((t('solutions.items') as { slug: string; name: string }[]) ?? []).map((a) => (
-                <a key={a.slug} href={`/solucoes/${a.slug}`}
-                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                >
-                  {a.name}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
-              {t('footer.sectionLegal')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[
-                [t('footer.termos'), '/termos-de-uso'],
-                [t('footer.privacidade'), '/politicas-de-privacidade'],
-                [t('footer.cookies'), '/politicas-de-privacidade#cookies'],
-                [t('footer.suporte'), '/suporte'],
-              ].map(([label, href]) => (
-                <a key={`${href}-${label}`} href={href}
-                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Mini CTA */}
-          <div style={{
-            background: '#F8F9FA',
-            border: '1px solid #E5E7EB',
-            borderRadius: '14px',
-            padding: '24px',
-          }}>
-            <p style={{ fontWeight: 700, fontSize: '15px', color: '#1F2328', margin: '0 0 6px' }}>
-              {t('footer.ctaTitle')}
-            </p>
-            <p style={{ fontSize: '13px', color: '#9CA3AF', lineHeight: 1.6, margin: '0 0 18px' }}>
-              {t('footer.ctaDesc')}
-            </p>
-            <a
-              href={contactUrl('rodape')}
-              className="btn btn-primary"
-            >
+            <a href={contactUrl('rodape')} className="btn btn-primary">
               {t('footer.ctaButton')}
             </a>
           </div>
+
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <p style={headingStyle}>{col.title}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {col.links.map(([label, href]) => (
+                  <a
+                    key={`${href}-${label}`}
+                    href={href}
+                    style={linkStyle}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+          ))}
         </div>
 
-        {/* Bottom bar */}
+        {/* Barra de baixo: dados da empresa */}
         <div style={{
           borderTop: '1px solid #F3F4F6',
           paddingTop: '24px',
@@ -165,20 +146,18 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Responsive mobile styles */}
       <style>{`
         .footer-grid {
-          grid-template-columns: 2.2fr 1fr 1.5fr 1.1fr 2fr;
+          grid-template-columns: 1.5fr repeat(5, 1fr);
         }
-        @media (max-width: 1024px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr;
-          }
+        @media (max-width: 1100px) {
+          .footer-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        @media (max-width: 640px) {
-          .footer-grid {
-            grid-template-columns: 1fr;
-          }
+        @media (max-width: 720px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+          .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </footer>

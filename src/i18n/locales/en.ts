@@ -360,7 +360,7 @@ export const enUS = {
     eyebrow: "Use cases: pick a situation and watch Dinn at work",
     title: "Concrete channel situations, *one by one*",
     askCta: "Ask Dinn this",
-    deepLink: "See the detail for this area",
+    deepLink: "Learn more",
     seesLabel: "Dinn cross-checks",
     doesLabel: "The team does",
     items: [

@@ -1,297 +1,366 @@
-import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, ChevronDown, Database, FileText, Link2, MessageCircle, Store } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
-import { Rich } from '@/lib/rich-text';
-import { contactUrl } from '@/lib/links';
-import { PATHS } from '@/lib/site-map';
-import FAQ from '@/components/FAQ';
-import { PageCta, SectionHead } from '../PageShell';
+import '@/styles/conecta-page.css';
 
-// Página do produto Dinn Conecta. Parte da prévia narrativa (dinn-data-preview):
-// abertura, dor, como funciona, contexto para IA, aplicações, responsabilidades
-// e perguntas. Conecta é a camada que reúne, organiza e atualiza os dados; MCP
-// é uma interface de consulta. Os exemplos usam dados fictícios, rotulados.
+// Página do produto Dinn Conecta. Estrutura e estilo são os da prévia aprovada
+// (dinn-data-preview.vercel.app, prévia 08): abertura, mapa de conexão, dor,
+// contexto para IA, aplicações, responsabilidades, perguntas e fechamento.
+// Só o menu e o rodapé são os do site. Textos em conecta.* do dicionário.
 
 type NameSub = { name: string; sub: string };
-type Info = { title: string; text: string };
-type Pain = { n: string; title: string; text: string };
+type Layer = { label: string; text: string };
 type AppItem = {
-  id: string; tab: string; area: string; kind: 'table' | 'ask'; title: string; text: string;
-  tableTitle?: string; columns?: string[]; rows?: string[][];
-  inputs?: string[]; question?: string; answer?: string;
-  next: string; basis: string; caveat: string;
+  id: string; tab: string; area: string; kind: 'table' | 'launch' | 'ask'; title: string; text: string;
+  flow: string[]; sheet?: string; meta?: string[]; columns?: string[]; rows?: string[][];
+  next?: string; source?: string; question?: string; answer?: string;
 };
-type Role = { label: string; title: string; text: string; items: string[] };
 
-function Arrow() {
-  return <span className="cn-arrow" aria-hidden="true" />;
+/** "linha 1\nlinha 2" vira linha 1<br>linha 2 (a quebra some em telas estreitas). */
+function Lines({ text }: { text: string }) {
+  const parts = String(text ?? '').split('\n');
+  return (
+    <>
+      {parts.map((p, i) => (
+        <Fragment key={i}>
+          {i > 0 && <br className="desktop-break" />}
+          {p}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+const WIRES_DESKTOP = [
+  'M230 72 C355 72 360 180 500 180',
+  'M230 180 H500',
+  'M230 288 C355 288 360 180 500 180',
+  'M500 180 C640 180 645 72 770 72',
+  'M500 180 H770',
+  'M500 180 C640 180 645 288 770 288',
+];
+const WIRES_MOBILE = [
+  'M100 60 C100 165 300 140 300 240',
+  'M300 60 V240',
+  'M500 60 C500 165 300 140 300 240',
+  'M300 240 C300 340 100 315 100 420',
+  'M300 240 V420',
+  'M300 240 C300 340 500 315 500 420',
+];
+const DELAYS = [0, 0.15, 0.3, 1.2, 1.35, 1.5];
+
+function Wires({ paths, className, viewBox }: { paths: string[]; className: string; viewBox: string }) {
+  return (
+    <svg className={`connection-lines ${className}`} viewBox={viewBox} preserveAspectRatio="none" fill="none" aria-hidden="true">
+      {paths.map((d, i) => (
+        <g key={d}>
+          <path className="wire" d={d} />
+          <path className="signal" d={d} pathLength={1000} style={{ ['--delay' as string]: `${DELAYS[i]}s` }} />
+        </g>
+      ))}
+    </svg>
+  );
 }
 
 export function ConectaPage() {
   const { t } = useTranslation();
-  const flow = t('conecta.flow') as unknown as {
-    sourcesLabel: string; sources: NameSub[]; hubLabel: string; hub: string; hubSub: string; destinations: NameSub[]; note: string;
-  };
-  const pain = t('conecta.pain') as unknown as { eyebrow: string; title: string; intro: string; items: Pain[]; closing: string };
-  const how = t('conecta.how') as unknown as { eyebrow: string; title: string; steps: Info[]; identities: string[] };
-  const ai = t('conecta.ai') as unknown as {
-    eyebrow: string; title: string; text: string; layers: { label: string; text: string }[];
-    destinationsTitle: string; destinations: string[]; destinationsNote: string;
-  };
-  const apps = t('conecta.apps') as unknown as {
-    eyebrow: string; title: string; intro: string; fictional: string; nextLabel: string; basisLabel: string; askLabel: string; items: AppItem[];
-  };
-  const roles = t('conecta.roles') as unknown as { eyebrow: string; title: string; text: string; yours: Role; dinn: Role; note: string };
-  const start = t('conecta.start') as unknown as { eyebrow: string; title: string; steps: Info[]; note: string; plansLink: string };
-  const mcp = t('conecta.mcp') as unknown as { title: string; text: string; rows: { label: string; text: string }[]; not: string; link: string };
-  const faq = (t('conecta.faq.items') as { question: string; answer: string }[]) ?? [];
-  const nav = t('conecta.nav') as unknown as { how: string; apps: string; roles: string; faq: string };
-
+  const root = useRef<HTMLDivElement>(null);
   const [appIdx, setAppIdx] = useState(0);
-  const app = apps.items?.[appIdx];
+
+  // Cada cena (data-scene) ganha data-entered quando entra na tela: é o que
+  // dispara os sinais correndo pelas linhas do mapa.
+  useEffect(() => {
+    const scenes = Array.from(root.current?.querySelectorAll<HTMLElement>('[data-scene]') ?? []);
+    if (!('IntersectionObserver' in window)) {
+      scenes.forEach((s) => s.setAttribute('data-entered', 'true'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.setAttribute('data-entered', 'true');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+    scenes.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
+
+  const L = (key: string) => t(`conecta.${key}`) as string;
+  const node = (key: string) => t(`conecta.map.${key}`) as unknown as NameSub;
+  const apps = (t('conecta.apps.items') as AppItem[]) ?? [];
+  const app = apps[appIdx] ?? apps[0];
+  const problem = (t('conecta.problem.items') as { n: string; title: string; text: string }[]) ?? [];
+  const faq = (t('conecta.faq.items') as { question: string; answer: string }[]) ?? [];
+  const owner = t('conecta.context.owner') as unknown as Layer;
+  const layer = t('conecta.context.layer') as unknown as Layer;
+  const destination = t('conecta.context.destination') as unknown as Layer;
+  const yours = t('conecta.team.yours') as unknown as { label: string; title: string; text: string };
+  const dinn = t('conecta.team.dinn') as unknown as { label: string; title: string; text: string };
+
+  const market = node('market');
+  const company = node('company');
+  const pharmacy = node('pharmacy');
+  const bi = node('bi');
+  const ai = node('ai');
+  const project = node('project');
+  const core = node('core');
 
   return (
-    <div className="sp">
-      <header className="cn-hero">
-        <div className="wrap">
-          <p className="sp-eyebrow">{t('conecta.hero.eyebrow')}</p>
-          <h1 className="sp-title"><Rich text={t('conecta.hero.title') as string} /></h1>
-          <p className="sp-lead">{t('conecta.hero.lead')}</p>
-          <div className="cn-actions">
-            <a href="#como-funciona" className="btn btn-primary btn-lg">{t('conecta.hero.cta')}</a>
-            <a href={contactUrl('conecta')} className="btn btn-on-dark btn-lg">{t('conecta.hero.cta2')}</a>
+    <div className="cnp" ref={root}>
+      <div className="cnp-main">
+        <section className="hero wrap" id="inicio">
+          <span className="eyebrow hero-eyebrow"><span /> {L('hero.eyebrow').toUpperCase()}</span>
+          <h1>{L('hero.title1')}<br /><span>{L('hero.title2')}</span></h1>
+          <p><Lines text={L('hero.lead')} /></p>
+          <a className="primary-button" href="#como-ajuda">
+            {L('hero.cta')} <ArrowDown size={18} aria-hidden="true" />
+          </a>
+        </section>
+
+        <figure className="connection-map wrap" id="como-ajuda" data-scene="true" aria-label={L('map.aria')}>
+          <div className="connection-surface">
+            <div className="map-labels">
+              <span>{L('map.sources').toUpperCase()}</span>
+              <span>{L('map.environment').toUpperCase()}</span>
+            </div>
+            <div className="map-stage">
+              <Wires paths={WIRES_DESKTOP} className="desktop-lines" viewBox="0 0 1000 360" />
+              <Wires paths={WIRES_MOBILE} className="mobile-lines" viewBox="0 0 600 480" />
+
+              <div className="map-node node-market">
+                <BarChart3 size={24} aria-hidden="true" />
+                <div><strong>{market.name}</strong><span>{market.sub}</span></div>
+              </div>
+              <div className="map-node node-company">
+                <Database size={24} aria-hidden="true" />
+                <div><strong>{company.name}</strong><span>{company.sub}</span></div>
+              </div>
+              <div className="map-node node-pharmacy">
+                <Store size={24} aria-hidden="true" />
+                <div><strong>{pharmacy.name}</strong><span>{pharmacy.sub}</span></div>
+              </div>
+
+              <div className="map-core">
+                <div className="core-orbit" aria-hidden="true" />
+                <div className="core-content">
+                  <img src="/Logo_Dinn_Cinza.svg" alt="Dinn" width={94} height={36} loading="lazy" decoding="async" />
+                  <strong>{core.name}<span>.</span></strong>
+                  <span>{core.sub}</span>
+                </div>
+              </div>
+
+              <div className="map-node node-bi">
+                <BarChart3 size={24} aria-hidden="true" />
+                <div><strong>{bi.name}</strong><span>{bi.sub}</span></div>
+              </div>
+              <div className="map-node node-ai">
+                <MessageCircle size={24} aria-hidden="true" />
+                <div><strong>{ai.name}</strong><span>{ai.sub}</span></div>
+              </div>
+              <div className="map-node node-project">
+                <FileText size={24} aria-hidden="true" />
+                <div><strong>{project.name}</strong><span>{project.sub}</span></div>
+              </div>
+            </div>
+            <div className="map-bottom">
+              <span><Check size={14} aria-hidden="true" /> {L('map.yours')}</span>
+              <span>{L('map.dinn')}</span>
+            </div>
           </div>
-        </div>
-      </header>
+          <figcaption>{L('map.caption')}</figcaption>
+        </figure>
 
-      <nav className="cn-subnav" aria-label="Dinn Conecta">
-        <div className="wrap">
-          <ul>
-            <li><a href="#como-funciona">{nav.how}</a></li>
-            <li><a href="#aplicacoes">{nav.apps}</a></li>
-            <li><a href="#responsabilidades">{nav.roles}</a></li>
-            <li><a href="#perguntas">{nav.faq}</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <section className="sp-section" aria-label={flow.hub}>
-        <div className="wrap">
-          <div className="cn-flow">
-            <div>
-              <p className="cn-label">{flow.sourcesLabel}</p>
-              <ul className="cn-col">
-                {flow.sources.map((s) => <li key={s.name}><strong>{s.name}</strong><span>{s.sub}</span></li>)}
-              </ul>
-            </div>
-            <Arrow />
-            <div className="cn-hub">
-              <small>{flow.hubLabel}</small>
-              <strong>{flow.hub}</strong>
-              <span>{flow.hubSub}</span>
-            </div>
-            <Arrow />
-            <div>
-              <p className="cn-label">{ai.layers?.[2]?.label}</p>
-              <ul className="cn-col">
-                {flow.destinations.map((s) => <li key={s.name}><strong>{s.name}</strong><span>{s.sub}</span></li>)}
-              </ul>
-            </div>
+        <section className="problem section wrap" data-scene="true">
+          <div className="chapter-label">{L('problem.label').toUpperCase()}</div>
+          <div className="problem-heading">
+            <h2>{L('problem.title1')}<br /><span>{L('problem.title2')}</span></h2>
+            <p>{L('problem.text')}</p>
           </div>
-          <p className="cn-note">{flow.note}</p>
-        </div>
-      </section>
-
-      <section className="sp-section is-alt" aria-labelledby="cn-pain">
-        <div className="wrap">
-          <p className="sp-kicker">{pain.eyebrow}</p>
-          <SectionHead id="cn-pain" title={pain.title} intro={pain.intro} />
-          <div className="cn-pain">
-            {pain.items.map((p) => (
+          <div className="source-cards">
+            {problem.map((p) => (
               <article key={p.n}>
-                <span className="cn-n">{p.n}</span>
+                <span>{p.n.toUpperCase()}</span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </article>
             ))}
           </div>
-          <p className="cn-closing">{pain.closing}</p>
-        </div>
-      </section>
-
-      <section id="como-funciona" className="sp-section" aria-labelledby="cn-how" style={{ scrollMarginTop: 80 }}>
-        <div className="wrap">
-          <p className="sp-kicker">{how.eyebrow}</p>
-          <h2 id="cn-how" className="sp-quote" style={{ maxWidth: '20em' }}><Rich text={how.title} /></h2>
-          <ol className="of-flow" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', marginTop: 24 }}>
-            {how.steps.map((s, i) => (
-              <li key={s.title}>
-                <span className="sp-num">{i + 1}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          <ul className="of-chips" style={{ marginTop: 20 }}>
-            {how.identities.map((i) => <li key={i}>{i}</li>)}
-          </ul>
-        </div>
-      </section>
-
-      <section className="sp-section is-alt" aria-labelledby="cn-ai">
-        <div className="wrap sp-split">
-          <div>
-            <p className="sp-kicker">{ai.eyebrow}</p>
-            <h2 id="cn-ai" className="sp-quote"><Rich text={ai.title} /></h2>
-            <p className="sp-body" style={{ marginTop: 16 }}>{ai.text}</p>
+          <div className="problem-bottom">
+            <Link2 size={20} aria-hidden="true" />
+            <p>{L('problem.bottom')}</p>
           </div>
-          <div>
-            <ul className="cn-layers">
-              {ai.layers.map((l, i) => (
-                <li key={l.label} className={i === 1 ? 'is-dinn' : ''}>
-                  <strong>{l.label}</strong>
-                  <span>{l.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="sp-kicker" style={{ marginTop: 22 }}>{ai.destinationsTitle}</p>
-            <ul className="of-chips">
-              {ai.destinations.map((d) => <li key={d}>{d}</li>)}
-            </ul>
-            <p className="sp-note">{ai.destinationsNote}</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="aplicacoes" className="sp-section" aria-labelledby="cn-apps" style={{ scrollMarginTop: 80 }}>
-        <div className="wrap">
-          <p className="sp-kicker">{apps.eyebrow}</p>
-          <h2 id="cn-apps" className="sp-quote" style={{ maxWidth: '20em' }}><Rich text={apps.title} /></h2>
-          <p className="sp-body" style={{ margin: '12px 0 20px' }}>{apps.intro}</p>
-
-          <div className="cn-apps-tabs" role="tablist" aria-label={apps.eyebrow}>
-            {apps.items.map((a, i) => (
-              <button
-                key={a.id}
-                type="button"
-                role="tab"
-                id={`cn-tab-${a.id}`}
-                aria-selected={i === appIdx}
-                aria-controls="cn-app-panel"
-                onClick={() => setAppIdx(i)}
-              >
-                {a.tab}
-              </button>
-            ))}
-          </div>
-
-          {app && (
-            <div id="cn-app-panel" className="cn-app" role="tabpanel" aria-labelledby={`cn-tab-${app.id}`}>
-              <div>
-                <p className="sp-kicker">{app.area}</p>
-                <h3>{app.title}</h3>
-                <p className="cn-app-text">{app.text}</p>
+        <section className="context-section section" data-scene="true">
+          <div className="wrap context-block">
+            <div className="context-layout">
+              <div className="context-copy">
+                <div className="chapter-label">{L('context.label').toUpperCase()}</div>
+                <h2>{L('context.title1')}<br /><span>{L('context.title2')}</span></h2>
+                <p>{L('context.text')}</p>
               </div>
-              <div>
-                <div className="cn-mock">
-                  {app.kind === 'table' ? (
-                    <>
-                      <p className="cn-mock-title">{app.tableTitle}</p>
-                      <table>
-                        <thead>
-                          <tr>{app.columns?.map((c) => <th key={c} scope="col">{c}</th>)}</tr>
-                        </thead>
-                        <tbody>
-                          {app.rows?.map((r) => (
-                            <tr key={r[0]}>{r.map((c, i) => (i === 0 ? <th key={i} scope="row">{c}</th> : <td key={i}>{c}</td>))}</tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </>
-                  ) : (
-                    <div className="cn-ask">
-                      <p className="cn-mock-title">{app.inputs?.join(' · ')}</p>
-                      <p className="sp-meta">{apps.askLabel}</p>
-                      <p className="cn-ask-q">“{app.question}”</p>
-                      <p className="cn-ask-a">{app.answer}</p>
-                    </div>
-                  )}
-                  {app.next && (
-                    <p className="cn-next"><strong>{apps.nextLabel}</strong>{app.next}</p>
-                  )}
-                  {app.basis && <p className="cn-basis">{apps.basisLabel}: {app.basis}</p>}
-                  {app.caveat && <p className="cn-basis">{app.caveat}</p>}
-                </div>
-                <p className="sp-note">{apps.fictional}</p>
+              <div className="context-stack" aria-label={L('context.stackAria')}>
+                <div className="context-owner"><span>{owner.label.toUpperCase()}</span><strong>{owner.text}</strong></div>
+                <div className="context-layer"><span>{layer.label.toUpperCase()}</span><strong>{layer.text}</strong></div>
+                <div className="context-destination"><span>{destination.label.toUpperCase()}</span><strong>{destination.text}</strong></div>
               </div>
             </div>
-          )}
-        </div>
-      </section>
+            <a className="context-cta" href="#na-pratica">
+              <span className="context-cta-icons" aria-hidden="true">
+                <Store size={18} />
+                <BarChart3 size={18} />
+                <MessageCircle size={18} />
+              </span>
+              <span className="context-cta-copy">
+                <strong>{L('context.cta.title')}</strong>
+                <span>{L('context.cta.text')}</span>
+              </span>
+              <span className="context-cta-button">{L('context.cta.button')} <ArrowDown size={17} aria-hidden="true" /></span>
+            </a>
+          </div>
+        </section>
 
-      <section id="responsabilidades" className="sp-section is-alt" aria-labelledby="cn-roles" style={{ scrollMarginTop: 80 }}>
-        <div className="wrap">
-          <p className="sp-kicker">{roles.eyebrow}</p>
-          <h2 id="cn-roles" className="sp-quote" style={{ maxWidth: '22em' }}><Rich text={roles.title} /></h2>
-          <p className="sp-body" style={{ margin: '12px 0 24px' }}>{roles.text}</p>
-          <div className="cn-roles">
-            {[roles.yours, roles.dinn].map((r, i) => (
-              <article key={r.label} className={`cn-role ${i === 1 ? 'is-dinn' : ''}`}>
-                <span className="sp-tag">{r.label}</span>
-                <h3>{r.title}</h3>
-                <p>{r.text}</p>
-                <ul className="sp-checks">
-                  {r.items.map((it) => <li key={it}>{it}</li>)}
-                </ul>
+        <section className="applications section" id="na-pratica" data-scene="true">
+          <div className="wrap">
+            <div className="chapter-label">{L('apps.label').toUpperCase()}</div>
+            <h2>{L('apps.title1')}<br /><span>{L('apps.title2')}</span></h2>
+            <fieldset className="case-selector">
+              <legend className="sr-only">{L('apps.legend')}</legend>
+              {apps.map((a, i) => (
+                <button key={a.id} type="button" aria-pressed={i === appIdx} onClick={() => setAppIdx(i)}>
+                  {a.tab} <ArrowUpRight size={16} aria-hidden="true" />
+                </button>
+              ))}
+            </fieldset>
+
+            {app && (
+              <div className="application-layout" key={app.id}>
+                <div className="application-text">
+                  <span className="eyebrow">{app.area.toUpperCase()}</span>
+                  <h3>{app.title}</h3>
+                  <p>{app.text}</p>
+                  <div className="application-flow">
+                    <span>{app.flow[0]}</span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                    <strong>{app.flow[1]}</strong>
+                  </div>
+                </div>
+
+                <figure className="application-result">
+                  {app.kind === 'table' && (
+                    <div className="result-sheet">
+                      <div className="sheet-heading"><span>{app.sheet}</span><ArrowUpRight size={20} aria-hidden="true" /></div>
+                      <div className="sheet-meta"><span>{app.meta?.[0]}</span><span>{app.meta?.[1]}</span></div>
+                      <div className="table-wrap">
+                        <table>
+                          <caption className="sr-only">{app.sheet}</caption>
+                          <thead>
+                            <tr>{app.columns?.map((c) => <th key={c}>{c}</th>)}</tr>
+                          </thead>
+                          <tbody>
+                            {app.rows?.map((r, i) => (
+                              <tr key={r[0]} className={i === 0 ? 'marked' : undefined}>
+                                {r.map((c, k) => <td key={k}>{c}</td>)}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="sheet-note"><span>{L('apps.nextLabel').toUpperCase()}</span><p>{app.next}</p></div>
+                      <span className="case-source">{app.source}</span>
+                    </div>
+                  )}
+
+                  {app.kind === 'launch' && (
+                    <div className="result-sheet">
+                      <div className="sheet-heading"><span>{app.sheet}</span><ArrowUpRight size={20} aria-hidden="true" /></div>
+                      <div className="sheet-meta"><span>{app.meta?.[0]}</span><span>{app.meta?.[1]}</span></div>
+                      <div className="launch-list">
+                        {app.rows?.map((r) => (
+                          <div key={r[0]} className={r[2] === 'mark' ? 'marked' : undefined}>
+                            <span>{r[0]}</span>
+                            <strong>{r[1]}</strong>
+                            {r[2] === 'ok' && <Check size={16} aria-hidden="true" />}
+                            {r[2] === 'mark' && <ArrowUpRight size={16} aria-hidden="true" />}
+                            {r[2] === 'wait' && <span>—</span>}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="sheet-note"><span>{L('apps.nextLabel').toUpperCase()}</span><p>{app.next}</p></div>
+                      <span className="case-source">{app.source}</span>
+                    </div>
+                  )}
+
+                  {app.kind === 'ask' && (
+                    <div className="case-chat">
+                      <span className="tiny-label">{L('apps.askLabel').toUpperCase()}</span>
+                      <p className="case-question">“{app.question}”</p>
+                      <div className="case-chat-answer">
+                        <MessageCircle size={20} aria-hidden="true" />
+                        <p>{app.answer}</p>
+                      </div>
+                      <span className="case-source">{app.source}</span>
+                    </div>
+                  )}
+                  <figcaption>{L('apps.caption')}</figcaption>
+                </figure>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="team-section section wrap" data-scene="true">
+          <div className="chapter-label">{L('team.label').toUpperCase()}</div>
+          <div className="team-layout">
+            <div>
+              <h2>{L('team.title1')}<br /><span><Lines text={L('team.title2')} /></span></h2>
+              <p><Lines text={L('team.text')} /></p>
+            </div>
+            <div className="responsibilities">
+              <article>
+                <span>{yours.label.toUpperCase()}</span>
+                <h3>{yours.title}</h3>
+                <p>{yours.text}</p>
               </article>
+              <article>
+                <span>{dinn.label.toUpperCase()}</span>
+                <h3>{dinn.title}</h3>
+                <p>{dinn.text}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="questions section wrap">
+          <div>
+            <span className="eyebrow">{L('faq.label').toUpperCase()}</span>
+            <h2>{L('faq.title')}</h2>
+          </div>
+          <div className="faq-list">
+            {faq.map((f) => (
+              <details key={f.question}>
+                <summary>{f.question}<ChevronDown size={20} aria-hidden="true" /></summary>
+                <p>{f.answer}</p>
+              </details>
             ))}
           </div>
-          <p className="sp-note">{roles.note}</p>
-        </div>
-      </section>
+        </section>
 
-      <section className="sp-section" aria-labelledby="cn-start">
-        <div className="wrap">
-          <p className="sp-kicker">{start.eyebrow}</p>
-          <SectionHead id="cn-start" title={start.title} />
-          <ol className="cn-start">
-            {start.steps.map((s, i) => (
-              <li key={s.title}>
-                <span className="sp-num">{i + 1}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="sp-note">{start.note} <a href={PATHS.plans}>{start.plansLink} →</a></p>
-        </div>
-      </section>
-
-      <section className="sp-section is-alt" aria-labelledby="cn-mcp">
-        <div className="wrap">
-          <SectionHead id="cn-mcp" title={mcp.title} intro={mcp.text} />
-          <div className="cn-vs">
-            {mcp.rows.map((r) => (
-              <article key={r.label}>
-                <h3>{r.label}</h3>
-                <p>{r.text}</p>
-              </article>
-            ))}
+        <section className="closing wrap" id="validacao">
+          <div>
+            <span className="eyebrow">{L('closing.label').toUpperCase()}</span>
+            <h2>{L('closing.title1')}<br />{L('closing.title2')}</h2>
           </div>
-          <p className="sp-note">{mcp.not}</p>
-          <p className="sp-more"><a href={`${PATHS.integrations}#mcp`}>{mcp.link} →</a></p>
-        </div>
-      </section>
-
-      <FAQ items={faq} title={t('conecta.faq.title') as string} id="perguntas" />
-
-      <PageCta
-        title={t('conecta.cta.title')}
-        desc={t('conecta.cta.desc')}
-        button={t('conecta.cta.button')}
-        origin="conecta"
-        secondary={{ label: t('conecta.cta.secondary') as string, href: '#aplicacoes' }}
-      />
+          <a href="#na-pratica" className="primary-button">
+            {L('closing.button')} <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </section>
+      </div>
     </div>
   );
 }

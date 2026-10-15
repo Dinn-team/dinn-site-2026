@@ -360,7 +360,7 @@ export const es419 = {
     eyebrow: "Casos de uso: elige la situación y mira a Dinn trabajando",
     title: "Situaciones concretas del canal, *una por una*",
     askCta: "Pregúntale esto a Dinn",
-    deepLink: "Ver el detalle de esta área",
+    deepLink: "Más información",
     seesLabel: "Dinn cruza",
     doesLabel: "El equipo hace",
     items: [
