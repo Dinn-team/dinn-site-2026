@@ -8,7 +8,7 @@ export const es419 = {
     solutions: "Soluciones",
     solutionsAll: "Ver todas las soluciones",
     cases: "Casos de uso",
-    changelog: "Changelog",
+    changelog: "Novedades",
     resourcesAll: "Ver todos los recursos",
     trust: "Confianza",
     resources: "Recursos",

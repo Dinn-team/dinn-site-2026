@@ -35,7 +35,7 @@ export const pagesEs = {
         href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
-        type: "Changelog",
+        type: "Novedades",
         title: "Lo que entró en producción en Dinn",
         desc: "Cada novedad de la plataforma en producción, explicada en lenguaje simple y organizada por fecha.",
         href: "/recursos/changelog"
@@ -551,7 +551,7 @@ export const pagesEs = {
   resources: {
     meta: {
       title: "Recursos | Dinn",
-      description: "Blog, casos de clientes y el changelog de Dinn: contenido para entender el canal farmacéutico y seguir lo que sale al aire."
+      description: "Blog, casos de clientes y las novedades de Dinn: contenido para entender el canal farmacéutico y seguir lo que sale al aire."
     },
     hero: {
       eyebrow: "Recursos",
@@ -579,7 +579,7 @@ export const pagesEs = {
       },
       {
         id: "changelog",
-        type: "Changelog",
+        type: "Novedades",
         title: "Todo lo que salió al aire",
         desc: "La línea de tiempo de las publicaciones de Dinn, con fecha y una explicación en lenguaje simple de lo que cambió.",
         chips: ["Novedades", "Mejoras", "Correcciones"],
@@ -822,11 +822,11 @@ export const pagesEs = {
 
   changelog: {
     meta: {
-      title: "Changelog | Dinn",
+      title: "Novedades | Dinn",
       description: "Línea de tiempo de lo que Dinn puso al aire: novedades y mejoras de la plataforma, explicadas en lenguaje simple y organizadas por fecha."
     },
     hero: {
-      eyebrow: "Changelog",
+      eyebrow: "Novedades",
       title: "Lo que salió al aire en *Dinn*",
       lead: "Cada publicación en producción, explicada en lenguaje simple y organizada por fecha."
     },

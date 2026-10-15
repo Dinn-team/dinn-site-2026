@@ -8,7 +8,7 @@ export const ptBR = {
     solutions: "Soluções",
     solutionsAll: "Ver todas as soluções",
     cases: "Casos de uso",
-    changelog: "Changelog",
+    changelog: "Novidades",
     resourcesAll: "Ver todos os recursos",
     trust: "Confiança",
     resources: "Recursos",

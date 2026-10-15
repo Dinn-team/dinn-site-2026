@@ -8,7 +8,7 @@ export const enUS = {
     solutions: "Solutions",
     solutionsAll: "See all solutions",
     cases: "Use cases",
-    changelog: "Changelog",
+    changelog: "What's new",
     resourcesAll: "See all resources",
     trust: "Trust",
     resources: "Resources",

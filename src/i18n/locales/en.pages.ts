@@ -35,7 +35,7 @@ export const pagesEn = {
         href: "/recursos/casos/dias-de-estoque-fortaleza"
       },
       {
-        type: "Changelog",
+        type: "What's new",
         title: "What went live at Dinn",
         desc: "Every platform release in production, explained in plain language and organized by date.",
         href: "/recursos/changelog"
@@ -551,7 +551,7 @@ export const pagesEn = {
   resources: {
     meta: {
       title: "Resources | Dinn",
-      description: "Blog, customer stories and the Dinn changelog: content to understand the pharmaceutical channel and follow what goes live."
+      description: "Blog, customer stories and what's new at Dinn: content to understand the pharmaceutical channel and follow what goes live."
     },
     hero: {
       eyebrow: "Resources",
@@ -579,7 +579,7 @@ export const pagesEn = {
       },
       {
         id: "changelog",
-        type: "Changelog",
+        type: "What's new",
         title: "Everything that went live",
         desc: "The timeline of Dinn releases, with dates and a plain-language explanation of what changed.",
         chips: ["New", "Improvements", "Fixes"],
@@ -822,11 +822,11 @@ export const pagesEn = {
 
   changelog: {
     meta: {
-      title: "Changelog | Dinn",
+      title: "What's new | Dinn",
       description: "Timeline of what Dinn put live: platform news and improvements, explained in plain language and organized by date."
     },
     hero: {
-      eyebrow: "Changelog",
+      eyebrow: "What's new",
       title: "What went live at *Dinn*",
       lead: "Every release in production, explained in plain language and organized by date."
     },
