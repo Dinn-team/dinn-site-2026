@@ -5,7 +5,7 @@
 // o HTML já sai no idioma certo para o leitor e para os buscadores.
 import Layout from '@/layouts/Layout.astro';
 import { urlFor } from '@/sanity/lib/client';
-import { PortableText } from '@portabletext/react';
+import ArticleBody from '@/components/blog/ArticleBody';
 import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
 import { articlePath, blogPath, HTML_LANG, type Lang } from '@/i18n/routes';
 import {
@@ -146,20 +146,7 @@ const articleSchema = {
       <!-- Article body -->
       <div class="bp-body">
         {post.body && (
-          <PortableText
-            value={post.body}
-            components={{
-              types: {
-                image: ({ value }: any) => {
-                  const url = urlFor(value).width(900).url();
-                  return `<figure class="bp-figure">
-                    <img src="${url}" alt="${value.alt || ''}" class="bp-img" />
-                    ${value.caption ? `<figcaption class="bp-caption">${value.caption}</figcaption>` : ''}
-                  </figure>`;
-                }
-              }
-            }}
-          />
+          <ArticleBody value={post.body} />
         )}
       </div>
 
