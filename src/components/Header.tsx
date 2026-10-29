@@ -149,7 +149,7 @@ export default function Header() {
               width={394}
               height={152}
               fetchPriority="high"
-              className="h-10 w-auto"
+              className="h-7 w-auto"
             />
           </a>
 
