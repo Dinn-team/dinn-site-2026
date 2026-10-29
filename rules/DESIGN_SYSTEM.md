@@ -1,3 +1,7 @@
+> ⚠️ **SUBSTITUÍDO em 29/10/2026 por `rules/DESIGN_SYSTEM_V2.md`.**
+> Este arquivo (v1, Britti Sans) é só histórico. Para qualquer tela, hero ou seção nova, siga o v2.
+> Onde este arquivo e o v2 divergirem (fonte, cores de título, tags), vale o v2.
+
 # DESIGN SYSTEM — Referência para IA
 
 > Leia este arquivo completo antes de criar qualquer tela, componente ou trecho de código.

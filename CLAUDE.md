@@ -1,5 +1,21 @@
 # Dinn site — regras para IA
 
+## Visual: Design System v2 (obrigatório)
+
+Antes de criar ou mudar qualquer tela, hero ou seção, leia `rules/DESIGN_SYSTEM_V2.md`.
+A home nova (`src/components/home2/*`, `src/styles/home2.css`) é o modelo visual de todo o site.
+Referências de origem: `rules/REFERENCES_UI_UX.md` (Harvey e ElevenLabs).
+`rules/DESIGN_SYSTEM.md` (v1, Britti Sans) está substituído.
+
+Regras curtas:
+
+- Todo hero e seção nova usa os padrões da home. Não invente layout novo sem registrar no v2.
+- Título em uma cor só. Botão sempre com texto branco. Texto branco só sobre fundo escuro ou camada escura.
+- Sem tags de status ("Beta", "Novo", "Em breve") na interface.
+- Use tokens do tema (`--primary`, `--foreground`, `--muted`…), nunca hex solto.
+- Menu e rodapé são globais: só acrescente ou renomeie itens.
+- Páginas internas migram uma por vez para o padrão da home (lista de estado no v2, seção 9).
+
 ## Texto do site: Simplified Technical English (ASD-STE100)
 
 Todo texto de interface e de site (`src/i18n/locales/*`) segue o ASD-STE100.
