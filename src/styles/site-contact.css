@@ -65,7 +65,7 @@
 .dd-panel { position: absolute; top: calc(100% + 8px); left: 0; z-index: 40; list-style: none; margin: 0; padding: 8px; width: max-content; min-width: 100%; max-width: min(340px, 84vw); max-height: 280px; overflow-y: auto; background: #fff; border-radius: 14px; box-shadow: 0 18px 40px -16px rgba(31, 35, 40, 0.35), 0 0 0 1px rgba(31, 35, 40, 0.06); animation: dd-in 0.14s ease-out; outline: none; }
 .dd-panel.is-end { left: auto; right: 0; }
 .dd-panel.is-up { top: auto; bottom: calc(100% + 8px); animation-name: dd-in-up; }
-.dd-option { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; font-size: 14.5px; font-weight: 500; line-height: 1.35; color: #1F2328; cursor: pointer; }
+.dd-option { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; font-size: 14.5px; font-weight: 500; line-height: 1.35; color: var(--foreground); cursor: pointer; }
 .dd-option + .dd-option { margin-top: 2px; }
 .dd-option.is-active { background: rgba(86, 37, 242, 0.08); }
 .dd-option.is-selected { color: var(--color-accent); font-weight: 600; }

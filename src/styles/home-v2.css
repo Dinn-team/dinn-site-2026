@@ -1,6 +1,6 @@
 /* ==========================================================================
    Home v2 — base compartilhada e herói
-   Segue rules/DESIGN_SYSTEM.md: Britti Sans, #5625F2 como único roxo de marca
+   Segue rules/DESIGN_SYSTEM.md: Britti Sans, var(--primary) como único roxo de marca
    (tons por transparência), #B79EFF para destaque em fundo escuro. Cores de
    nível (vermelho, laranja, amarelo, verde) aparecem só em dado, como no
    Dinn Manager.
@@ -11,7 +11,7 @@
 
 :root {
   --lilac: #B79EFF;
-  --ink: #1F2328;
+  --ink: var(--foreground);
   --ink-deep: #16191D;
   --glass: rgba(255, 255, 255, 0.05);
   --glass-line: rgba(255, 255, 255, 0.11);
@@ -57,7 +57,7 @@
 }
 .skip-link:focus { top: 12px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
-.v2 { background: var(--ink-deep); } /* sem frestas de cor entre seções (o body é #1F2328) */
+.v2 { background: var(--ink-deep); } /* sem frestas de cor entre seções (o body é var(--foreground)) */
 .v2 section { margin-bottom: 0; }
 
 @keyframes v2-ping {

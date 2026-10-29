@@ -3,7 +3,7 @@
    (dinn-data-preview.vercel.app, prévia 08), escopados em .cnp para não
    colidir com o CSS do site. Só o menu e o rodapé são os do site.
    ========================================================================== */
-.cnp{--white:#fff;--paper:#f7f7f3;--surface:#f8f8fa;--ink:#1f2328;--body:#4f5660;--muted:#66707a;--line:#d7dae1;--accent:#5625f2;--accent-hover:#4118d4;--accent-soft:#5625f20f;--shadow-sm:0 1px 3px #0000000f,0 1px 2px #0000000a;--shadow-md:0 4px 16px #00000012,0 2px 6px #0000000a}
+.cnp{--white:#fff;--paper:#f7f7f3;--surface:#f8f8fa;--ink:var(--foreground);--body:#4f5660;--muted:#66707a;--line:#d7dae1;--accent:var(--primary);--accent-hover:color-mix(in oklab,var(--primary) 82%,black);--accent-soft:color-mix(in oklab,var(--primary) 6%,transparent);--shadow-sm:0 1px 3px #0000000f,0 1px 2px #0000000a;--shadow-md:0 4px 16px #00000012,0 2px 6px #0000000a}
 .cnp *{box-sizing:border-box}
 .cnp{scroll-behavior:smooth;scroll-padding-top:32px}
 .cnp{background:var(--white);color:var(--ink);font-family:var(--font-britti),sans-serif;-webkit-font-smoothing:antialiased;margin:0}
@@ -173,7 +173,7 @@
 @keyframes cnp-spin{to{transform:rotate(360deg)}}
 @keyframes cnp-pulse{50%{opacity:.5}}
 /* ── Ajustes de encaixe no site ─────────────────────────────────────────── */
-.cnp { --font-britti: 'Britti Sans', 'Helvetica Neue', sans-serif; padding-top: 72px; scroll-padding-top: 96px; }
+.cnp { --font-britti: 'Inter Variable', ui-sans-serif, system-ui, sans-serif; padding-top: 72px; scroll-padding-top: 96px; }
 .cnp section { margin-bottom: 0; }
 .cnp .hero { min-height: 0; display: block; border-bottom: 0; margin-bottom: 0; justify-content: initial; }
 .cnp .wrap { padding-left: 0; padding-right: 0; }

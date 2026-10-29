@@ -9,28 +9,30 @@
 
 :root {
   /* ─── Brand Colors ─── */
-  --c-black:   #1F2328;
-  --c-dark:    #2E343B;
-  --c-body:    #777D8B;
-  --c-border:  #D7DAE1;
+  --c-black:   var(--foreground);
+  --c-dark:    color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --c-body:    var(--muted-foreground);
+  --c-border:  var(--border);
   --c-white:   #FFFFFF;
-  --c-accent:  #5625F2;
-  --c-muted:   #767676;
+  --c-accent:  var(--primary);
+  --c-muted:   var(--muted-foreground);
 
   /* ─── Semantic ─── */
-  --bg-page:       #FFFFFF;
-  --bg-surface:    #F8F8FA;
-  --bg-dark:       #1F2328;
-  --text-primary:  #1F2328;
-  --text-body:     #2E343B;
-  --text-muted:    #777D8B;
-  --text-subtle:   #767676;
-  --border-color:  #D7DAE1;
-  --accent:        #5625F2;
-  --accent-dark:   #4118D4;
+  --bg-page:       var(--background);
+  --bg-surface:    var(--muted);
+  --bg-dark:       var(--foreground);
+  --text-primary:  var(--foreground);
+  --text-body:     color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --text-muted:    var(--muted-foreground);
+  --text-subtle:   var(--muted-foreground);
+  --border-color:  var(--border);
+  /* --brand (antes --accent) para nao colidir com o --accent do shadcn */
+  --brand:         var(--primary);
+  --brand-dark:    color-mix(in oklab, var(--primary) 82%, black);
 
   /* ─── Typography Scale ─── */
-  --font: 'Britti Sans', 'Helvetica Neue', sans-serif;
+  --font: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Roboto Variable', ui-sans-serif, system-ui, sans-serif;
   --text-xs:   11px;
   --text-sm:   13px;
   --text-base: 16px;
@@ -47,7 +49,7 @@
   --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
 
   /* ─── Radius ─── */
-  --r-sm: 4px; --r-md: 8px; --r-lg: 12px; --r-xl: 20px; --r-full: 9999px;
+  --r-sm: calc(var(--radius) * 0.6); --r-md: calc(var(--radius) * 0.8); --r-lg: var(--radius); --r-xl: calc(var(--radius) * 1.4); --r-full: 9999px;
 
   /* ─── Shadows ─── */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
@@ -109,7 +111,7 @@ body {
   transition: color 0.15s, background 0.15s;
 }
 .nav a:hover { color: var(--text-primary); background: var(--bg-surface); }
-.nav a.active { color: var(--accent); font-weight: 600; }
+.nav a.active { color: var(--brand); font-weight: 600; }
 
 /* ─── MAIN ─── */
 .main {
@@ -126,7 +128,7 @@ section { margin-bottom: var(--sp-20); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--brand);
   margin-bottom: var(--sp-3);
 }
 
@@ -171,7 +173,7 @@ section { margin-bottom: var(--sp-20); }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--brand);
   background: rgba(86,37,242,0.07);
   border: 1px solid rgba(86,37,242,0.2);
   padding: var(--sp-1) var(--sp-3);
@@ -183,7 +185,7 @@ section { margin-bottom: var(--sp-20); }
 .hero-badge::before {
   content: '';
   width: 6px; height: 6px;
-  background: var(--accent);
+  background: var(--brand);
   border-radius: 50%;
 }
 
@@ -366,7 +368,7 @@ section { margin-bottom: var(--sp-20); }
 
 .spacing-bar {
   background: rgba(86,37,242,0.15);
-  border-right: 2px solid var(--accent);
+  border-right: 2px solid var(--brand);
 }
 
 .spacing-label {
@@ -435,11 +437,11 @@ section { margin-bottom: var(--sp-20); }
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--brand);
   color: #fff;
-  border-color: var(--accent);
+  border-color: var(--brand);
 }
-.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:hover { background: var(--brand-dark); }
 
 .btn-outline {
   background: transparent;
@@ -467,7 +469,7 @@ section { margin-bottom: var(--sp-20); }
   padding: 3px 10px;
   letter-spacing: 0.04em;
 }
-.badge-accent { background: rgba(86,37,242,0.08); color: var(--accent); border: 1px solid rgba(86,37,242,0.2); }
+.badge-accent { background: rgba(86,37,242,0.08); color: var(--brand); border: 1px solid rgba(86,37,242,0.2); }
 .badge-neutral { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--border-color); }
 .badge-dark { background: var(--c-black); color: #fff; }
 
@@ -501,7 +503,7 @@ section { margin-bottom: var(--sp-20); }
   outline: none;
   transition: border-color 0.15s;
 }
-.input-demo:focus { border-color: var(--accent); }
+.input-demo:focus { border-color: var(--brand); }
 
 /* ─── NAV COMPONENT ─── */
 .demo-nav {
@@ -547,7 +549,7 @@ section { margin-bottom: var(--sp-20); }
   border: 1px solid rgba(86,37,242,0.2);
   border-radius: 3px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--accent); font-family: monospace;
+  font-size: 10px; color: var(--brand); font-family: monospace;
 }
 
 /* ─── SHADCN TOKENS ─── */
@@ -614,7 +616,7 @@ section { margin-bottom: var(--sp-20); }
   border-radius: var(--r-lg);
   display: flex; align-items: center; justify-content: center;
   font-size: var(--text-xs);
-  color: var(--accent);
+  color: var(--brand);
   font-weight: 600;
   cursor: pointer;
   text-align: center;
@@ -639,4 +641,4 @@ section { margin-bottom: var(--sp-20); }
   line-height: 1.65;
   margin-bottom: var(--sp-4);
 }
-.info-box strong { color: var(--accent); }
+.info-box strong { color: var(--brand); }

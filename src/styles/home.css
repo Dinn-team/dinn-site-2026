@@ -4,13 +4,13 @@
    (conversa), home-teams.css (abas por time) e home-story.css (manifesto,
    por dentro, entrega, chamada final). Aqui fica só o que outras páginas e
    componentes ainda usam.
-   Regras do rules/DESIGN_SYSTEM.md: Britti Sans, #5625F2 como único roxo
+   Regras do rules/DESIGN_SYSTEM.md: Britti Sans, var(--primary) como único roxo
    (tons derivados só por transparência), botões sempre arredondados.
    ========================================================================== */
 
 :root {
-  --accent-tint:   rgba(86, 37, 242, 0.08);
-  --accent-line:   rgba(86, 37, 242, 0.24);
+  --accent-tint:   color-mix(in oklab, var(--primary) 8%, transparent);
+  --accent-line:   color-mix(in oklab, var(--primary) 24%, transparent);
   --on-dark:       #FFFFFF;
   --on-dark-body:  rgba(255, 255, 255, 0.64);
   --on-dark-muted: rgba(255, 255, 255, 0.4);

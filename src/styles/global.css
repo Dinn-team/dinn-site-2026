@@ -27,30 +27,30 @@
   --font-heading: 'Roboto Variable', sans-serif;
   --font-sans: 'Inter Variable', sans-serif;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 20px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--brand);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -71,29 +71,26 @@
 
 @layer base {
   :root {
-    /* Cores do Design System */
-    --color-accent:      #5625F2;
-    --color-accent-hov:  #4118D4;
-    --color-black:       #1F2328;
-    --color-dark:        #2E343B;
-    --color-body:        #777D8B;
-    --color-border:      #D7DAE1;
-    --color-muted:       #767676;
+    /* Cores do DS derivadas do tema (preset shadcn) */
+    --color-accent:      var(--primary);
+    --color-accent-hov:  color-mix(in oklab, var(--primary) 82%, black);
+    --color-black:       var(--foreground);
+    --color-dark:        color-mix(in oklab, var(--foreground) 88%, var(--background));
+    --color-body:        var(--muted-foreground);
+    --color-border:      var(--border);
+    --color-muted:       var(--muted-foreground);
     --color-white:       #FFFFFF;
 
-    /* Texto semântico */
-    --text-primary:  var(--color-black);
+    --text-primary:  var(--foreground);
     --text-body:     var(--color-dark);
-    --text-muted:    var(--color-body);
-    --text-subtle:   var(--color-muted);
+    --text-muted:    var(--muted-foreground);
+    --text-subtle:   var(--muted-foreground);
+    --bg-page:     var(--background);
+    --bg-surface:  var(--muted);
+    --bg-dark:     var(--foreground);
 
-    /* Backgrounds */
-    --bg-page:     #FFFFFF;
-    --bg-surface:  #F8F8FA;
-    --bg-dark:     var(--color-black);
-
-    /* Tipografia */
-    --font: 'Britti Sans', 'Helvetica Neue', sans-serif;
+    --font: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Roboto Variable', ui-sans-serif, system-ui, sans-serif;
     --text-xs:   11px;
     --text-sm:   13px;
     --text-base: 16px;
@@ -104,74 +101,22 @@
     --text-3xl:  64px;
     --text-4xl:  88px;
 
-    /* Espaçamento (base 4px) */
-    --sp-1:  4px;
-    --sp-2:  8px;
-    --sp-3:  12px;
-    --sp-4:  16px;
-    --sp-5:  20px;
-    --sp-6:  24px;
-    --sp-8:  32px;
-    --sp-10: 40px;
-    --sp-12: 48px;
-    --sp-16: 64px;
-    --sp-20: 80px;
+    --sp-1:  4px;  --sp-2:  8px;  --sp-3:  12px; --sp-4:  16px;
+    --sp-5:  20px; --sp-6:  24px; --sp-8:  32px; --sp-10: 40px;
+    --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
 
-    /* Border Radius */
-    --r-sm:   4px;
-    --r-md:   8px;
-    --r-lg:   12px;
-    --r-xl:   20px;
+    --r-sm:   calc(var(--radius) * 0.6);
+    --r-md:   calc(var(--radius) * 0.8);
+    --r-lg:   var(--radius);
+    --r-xl:   calc(var(--radius) * 1.4);
     --r-full: 9999px;
 
-    /* Sombras */
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
 
-    /* Transições */
     --ease:        ease 0.2s;
     --ease-out:    ease-out 0.2s;
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
-
-    /* Shadcn Vars */
-    --background:            0 0% 100%;       /* #FFFFFF */
-    --foreground:            214 15% 15%;     /* #1F2328 */
-    --card:                  0 0% 100%;
-    --card-foreground:       214 15% 15%;
-    --popover:               0 0% 100%;
-    --popover-foreground:    214 15% 15%;
-    --primary:               257 88% 55%;     /* #5625F2 */
-    --primary-foreground:    0 0% 100%;
-    --secondary:             220 13% 95%;
-    --secondary-foreground:  214 15% 20%;
-    --muted:                 220 13% 95%;
-    --muted-foreground:      216 9% 54%;      /* #777D8B */
-    --accent:                257 88% 55%;
-    --accent-foreground:     0 0% 100%;
-    --destructive:           0 72% 51%;
-    --destructive-foreground:0 0% 100%;
-    --border:                216 14% 87%;     /* #D7DAE1 */
-    --input:                 216 14% 87%;
-    --ring:                  257 88% 55%;     /* accent */
-    --radius:                0.5rem;          /* 8px base */
-  }
-
-  .dark {
-    --background:            214 15% 15%;     /* #1F2328 */
-    --foreground:            0 0% 95%;
-    --card:                  214 13% 18%;     /* #2E343B */
-    --card-foreground:       0 0% 95%;
-    --popover:               214 13% 18%;
-    --popover-foreground:    0 0% 95%;
-    --primary:               257 88% 65%;
-    --primary-foreground:    0 0% 100%;
-    --secondary:             214 13% 22%;
-    --secondary-foreground:  0 0% 85%;
-    --muted:                 214 13% 22%;
-    --muted-foreground:      216 9% 60%;
-    --border:                214 13% 25%;
-    --input:                 214 13% 25%;
-    --ring:                  257 88% 65%;
   }
 
   *, *::before, *::after {
@@ -188,14 +133,17 @@
   }
   body {
     font-family: var(--font);
-    background-color: #ffffff;
-    color: #1F2328;
+    background-color: var(--background);
+    color: var(--foreground);
     line-height: 1.5;
     min-height: 100vh;
     @apply bg-background text-foreground;
   }
   a {
     color: inherit;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
   img, svg {
     display: block;
@@ -208,8 +156,8 @@
 
 /* Strong overrides — placed outside @layer to ensure they win */
 html, body {
-  background: #ffffff !important;
-  color: #1F2328 !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
   overflow-x: clip;
 }
 
@@ -264,8 +212,8 @@ html, body {
   gap: 8px;
 }
 
-.btn-primary  { background: #5625F2; color: #fff; border-color: #5625F2; }
-.btn-primary:hover { background: #4118D4; }
+.btn-primary  { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-primary:hover { background: var(--brand-dark); }
 
 .btn-outline  { background: transparent; color: var(--text-primary); border-color: var(--color-border); }
 .btn-outline:hover { border-color: var(--text-primary); }
@@ -329,9 +277,9 @@ html, body {
   padding: 3px 10px;
 }
 
-.badge-accent  { background: rgba(86,37,242,0.08); color: #5625F2; border: 1px solid rgba(86,37,242,0.2); }
+.badge-accent  { background: rgba(86,37,242,0.08); color: var(--primary); border: 1px solid rgba(86,37,242,0.2); }
 .badge-neutral { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--color-border); }
-.badge-dark    { background: #1F2328; color: #fff; }
+.badge-dark    { background: var(--foreground); color: #fff; }
 
 /* Motion */
 .reveal {
