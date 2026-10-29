@@ -34,7 +34,7 @@ export function ChatWidget2() {
       {open && (
         <section className="h2-chat-panel" role="dialog" aria-label={t('home2.faq.label') as string}>
           <header className="h2-chat-head">
-            <span className="h2-orb" aria-hidden="true" />
+            <img className="h2-orb" src="/logo/dinn-drop.svg" alt="" width={32} height={32} />
             <strong>{t('home2.faq.label')}</strong>
             <button type="button" className="h2-chat-x" onClick={() => setOpen(false)} aria-label={t('home2.faq.close') as string}>
               <X size={18} aria-hidden="true" />
@@ -85,7 +85,7 @@ export function ChatWidget2() {
       )}
 
       <button type="button" className="h2-chat-fab" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label={t('home2.faq.open') as string}>
-        <span className="h2-orb" aria-hidden="true" />
+        <img className="h2-orb" src="/logo/dinn-drop.svg" alt="" width={32} height={32} />
         <span>{t('home2.faq.title')}</span>
       </button>
     </div>

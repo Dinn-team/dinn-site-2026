@@ -65,7 +65,7 @@ export const home2Es = {
       menu: "Elige una pregunta",
       back: "Volver al menú",
       ask: "Hablar con el equipo",
-      label: "Guía Dinn",
+      label: "FAQ Dinn",
       open: "Abrir chat",
       close: "Cerrar chat"
     }
