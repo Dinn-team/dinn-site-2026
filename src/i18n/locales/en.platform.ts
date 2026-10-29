@@ -2,13 +2,13 @@
 // Textos dos infográficos da página /plataforma (en). Chaves em platformViz.*
 export const platformVizEn = {
   cover: {
-    alt: "Illustration of the pharma channel: lab, transport, pharmacy and consumer connected by Dinn."
+    alt: "Pharma channel: lab, transport, pharmacy and consumer connected by Dinn."
   },
   cycle: {
-    hint: "Scroll to move the cycle forward",
+    hint: "Scroll to advance the cycle",
     stepLabel: "Step {n} of {total}",
     example: "Example",
-    ringLabel: "Six-step cycle: observe, validate, understand, decide, act and learn; then back to observing.",
+    ringLabel: "Six-step cycle: observe, validate, understand, decide, act, learn. Then observe again.",
     loop: "Continuous cycle",
     goTo: "Go to step"
   },
@@ -23,10 +23,10 @@ export const platformVizEn = {
     observedChip: "Observed · D-1",
     estimatedChip: "Estimated · comparable stores",
     confidence: "Medium confidence",
-    fromSource: "Read at the source",
+    fromSource: "Read at source",
     notRead: "No direct reading",
     summaryObserved: "2 stores read directly at the source, with the D-1 date",
-    summaryEstimated: "1 store estimated from comparable stores, with confidence stated"
+    summaryEstimated: "1 store estimated from comparable stores, with confidence level"
   },
   manager: {
     rank: "This week's queue",
@@ -36,7 +36,7 @@ export const platformVizEn = {
     chartFrom: "30 days ago",
     chartTo: "today",
     hint: "Click a store to mark it as checked.",
-    caption: "The team records what it found and follows the same scope."
+    caption: "The team records its findings and keeps the same scope."
   },
   insights: {
     you: "You",
@@ -51,17 +51,17 @@ export const platformVizEn = {
         chip: "Store queue",
         q: "Which stores in my territory should I check first?",
         big: "6 of 40 stores",
-        text: "concentrate 70% of the stock-out signal for product X in the last week.",
+        text: "have 70% of the stock-out signal for product X in the last week.",
         scope: "São Paulo territory · Chains A, B and C",
         date: "D-1 base · last 30 days",
-        method: "Days out of stock ÷ days observed; Critical level from 75%",
+        method: "Days out of stock ÷ days observed. Critical level: 75% or more",
         kind: "Observed"
       },
       {
         chip: "DC or stores",
         q: "Is the gap at the distributor or in the pharmacies in Goiânia?",
         big: "82% at the DC",
-        text: "and 38% of the pharmacies in the region out of stock: worth checking replenishment.",
+        text: "and 38% of the region's pharmacies out of stock. Check replenishment.",
         scope: "Goiânia · DC that supplies the region",
         date: "D-1 base",
         method: "Coverage = DC stock ÷ regional daily sales",
@@ -71,10 +71,10 @@ export const platformVizEn = {
         chip: "Launch",
         q: "Has my launch reached pharmacies in Recife?",
         big: "54% of pharmacies",
-        text: "monitored already carry the launch, in week 6.",
+        text: "monitored have the launch, in week 6.",
         scope: "Recife · monitored pharmacies",
         date: "D-1 base · week 6",
-        method: "Observed presence; where there is no direct reading, estimated from comparable stores",
+        method: "Observed presence. Where there is no direct reading, estimate from comparable stores",
         kind: "Observed and estimated"
       }
     ]
@@ -92,17 +92,17 @@ export const platformVizEn = {
       {
         name: "ChatGPT",
         q: "Which chains lost presence of product X in the South?",
-        a: "Chain A: 31 of 120 stores with a drop. 24 observed and 7 estimated. D-1 base."
+        a: "Chain A: 31 of 120 stores with a drop. 24 observed, 7 estimated. D-1 base."
       },
       {
         name: "Claude",
         q: "Summarize the critical stores in my São Paulo territory.",
-        a: "6 stores concentrate 70% of the stock-out signal. Each one with what to check, the source and the date."
+        a: "6 stores have 70% of the stock-out signal. Each shows what to check, the source and the date."
       },
       {
         name: "Copilot",
-        q: "Build the agenda for the meeting with Chain A.",
-        a: "Three points: pending orders, product off the shelf and a gap that came back. With the source of each."
+        q: "Prepare the agenda for the meeting with Chain A.",
+        a: "Three points: pending orders, product off the shelf and a returned gap. Each has its source."
       }
     ]
   },

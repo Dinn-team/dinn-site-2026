@@ -2,13 +2,13 @@
 // Textos dos infográficos da página /plataforma (es). Chaves em platformViz.*
 export const platformVizEs = {
   cover: {
-    alt: "Ilustración del canal farmacéutico: laboratorio, transporte, farmacia y consumidor conectados por Dinn."
+    alt: "Canal farmacéutico: laboratorio, transporte, farmacia y consumidor conectados por Dinn."
   },
   cycle: {
     hint: "Desplázate para avanzar el ciclo",
     stepLabel: "Paso {n} de {total}",
     example: "Ejemplo",
-    ringLabel: "Ciclo de seis pasos: observa, valida, entiende, decide, actúa y aprende; luego vuelve a observar.",
+    ringLabel: "Ciclo de seis pasos: observa, valida, entiende, decide, actúa, aprende. Luego observa de nuevo.",
     loop: "Ciclo continuo",
     goTo: "Ir al paso"
   },
@@ -26,7 +26,7 @@ export const platformVizEs = {
     fromSource: "Leído en la fuente",
     notRead: "Sin lectura directa",
     summaryObserved: "2 tiendas leídas directo en la fuente, con la fecha de D-1",
-    summaryEstimated: "1 tienda estimada por tiendas comparables, con la confianza indicada"
+    summaryEstimated: "1 tienda estimada por tiendas comparables, con nivel de confianza"
   },
   manager: {
     rank: "Fila de la semana",
@@ -36,7 +36,7 @@ export const platformVizEs = {
     chartFrom: "hace 30 días",
     chartTo: "hoy",
     hint: "Haz clic en una tienda para marcarla como verificada.",
-    caption: "El equipo registra lo que encontró y sigue el mismo alcance."
+    caption: "El equipo registra sus hallazgos y mantiene el mismo alcance."
   },
   insights: {
     you: "Tú",
@@ -51,17 +51,17 @@ export const platformVizEs = {
         chip: "Fila de tiendas",
         q: "¿Qué tiendas de mi cartera verifico primero?",
         big: "6 de 40 tiendas",
-        text: "concentran 70% de la señal de desabasto del producto X en la última semana.",
+        text: "tienen 70% de la señal de desabasto del producto X en la última semana.",
         scope: "Cartera en Ciudad de México · Cadenas A, B y C",
         date: "Base D-1 · últimos 30 días",
-        method: "Días sin inventario ÷ días observados; nivel Crítico desde 75%",
+        method: "Días sin inventario ÷ días observados. nivel Crítico: 75% o más",
         kind: "Observado"
       },
       {
         chip: "CEDIS o tiendas",
         q: "¿La falla está en el CEDIS o en las farmacias de Guadalajara?",
         big: "82% en el CEDIS",
-        text: "y 38% de las farmacias de la región sin inventario: conviene revisar la reposición.",
+        text: "y 38% de las farmacias de la región sin inventario. Revisa la reposición.",
         scope: "Guadalajara · CEDIS que abastece la región",
         date: "Base D-1",
         method: "Cobertura = inventario en el CEDIS ÷ venta diaria de la región",
@@ -71,10 +71,10 @@ export const platformVizEs = {
         chip: "Lanzamiento",
         q: "¿Mi lanzamiento ya llegó a las farmacias de Monterrey?",
         big: "54% de las farmacias",
-        text: "monitoreadas ya tienen el lanzamiento, en la semana 6.",
+        text: "monitoreadas tienen el lanzamiento, en la semana 6.",
         scope: "Monterrey · farmacias monitoreadas",
         date: "Base D-1 · semana 6",
-        method: "Presencia observada; donde no hay lectura directa, estimada por tiendas comparables",
+        method: "Presencia observada. Donde no hay lectura directa, estima por tiendas comparables",
         kind: "Observado y estimado"
       }
     ]
@@ -92,17 +92,17 @@ export const platformVizEs = {
       {
         name: "ChatGPT",
         q: "¿Qué cadenas perdieron presencia del producto X en el Sur?",
-        a: "Cadena A: 31 de 120 tiendas con caída. 24 observadas y 7 estimadas. Base D-1."
+        a: "Cadena A: 31 de 120 tiendas con caída. 24 observadas, 7 estimadas. Base D-1."
       },
       {
         name: "Claude",
         q: "Resume las tiendas críticas de mi cartera en Ciudad de México.",
-        a: "6 tiendas concentran 70% de la señal de desabasto. Cada una con qué verificar, la fuente y la fecha."
+        a: "6 tiendas tienen 70% de la señal de desabasto. Cada una muestra qué verificar, la fuente y la fecha."
       },
       {
         name: "Copilot",
-        q: "Arma la agenda de la reunión con la Cadena A.",
-        a: "Tres puntos: pedidos pendientes, producto fuera del anaquel y una falta que volvió. Con la fuente de cada uno."
+        q: "Prepara la agenda de la reunión con la Cadena A.",
+        a: "Tres puntos: pedidos pendientes, producto fuera del anaquel y una falta que volvió. Cada uno tiene su fuente."
       }
     ]
   },

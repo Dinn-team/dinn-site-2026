@@ -13,19 +13,19 @@ export const pagesEn = {
   areas: {
     eyebrow: "For your area",
     title: "Start from *your team's* problem",
-    intro: "Each area arrives with a different question. Pick yours and see supported decisions, an example and the limits of the reading.",
+    intro: "Each area has a different question. Pick yours. See the decisions Dinn supports, an example and the limits.",
     open: "See Dinn for this area",
     questionPrefix: "The question:"
   },
 
   contentTeaser: {
     eyebrow: "Resources",
-    title: "For those not yet ready for a demo",
+    title: "Not ready for a demo?",
     items: [
       {
         type: "Blog",
-        title: "Analysis and articles on the pharmaceutical channel",
-        desc: "Stock-outs, commercial execution and data intelligence in pharma.",
+        title: "Articles on the pharmaceutical channel",
+        desc: "Stock-outs, commercial execution and data in pharma.",
         href: "/blog"
       },
       {
@@ -37,7 +37,7 @@ export const pagesEn = {
       {
         type: "What's new",
         title: "What went live at Dinn",
-        desc: "Every platform release in production, explained in plain language and organized by date.",
+        desc: "Every platform release, in plain language, by date.",
         href: "/recursos/changelog"
       }
     ]
@@ -46,20 +46,20 @@ export const pagesEn = {
   contact: {
     meta: {
       title: "Contact | Dinn",
-      description: "Tell us which pharmaceutical-channel decision you want to improve and get a reply from someone on the Dinn team."
+      description: "Tell us which pharmaceutical-channel decision you want to improve. Someone on the Dinn team replies."
     },
     navLabel: "Contact",
     hero: {
       eyebrow: "Contact",
       title: "Tell us what you want to *improve in the channel*",
-      lead: "A few fields and you're done. A person on the team reads your request, knows what you are looking for and replies with the next step."
+      lead: "Fill in a few fields. A person on the team reads your request and replies with the next step."
     },
     after: {
       title: "What happens next",
       steps: [
-        { title: "We receive your request", text: "It goes straight to the team, with the role and the decision you chose." },
-        { title: "A person replies", text: "A reply by email within a few business days, referring to what you asked." },
-        { title: "You set the pace", text: "If it makes sense, we book a short conversation. If not, we stop there." }
+        { title: "We receive your request", text: "It goes to the team with your role and decision." },
+        { title: "A person replies", text: "You get an email reply within a few business days." },
+        { title: "You set the pace", text: "If it makes sense, we book a short call. If not, we stop." }
       ]
     },
     form: {
@@ -90,7 +90,7 @@ export const pagesEn = {
         { value: "preco", label: "Price against the market" },
         { value: "integracao", label: "Integration with BI, CRM or agents" }
       ],
-      consent: "I authorize Dinn to use this data to reply to this request and send communications related to it.",
+      consent: "I authorize Dinn to use this data to reply to this request and send related communications.",
       privacy: "Privacy policy",
       submit: "Send request",
       sending: "Sending…",
@@ -100,22 +100,22 @@ export const pagesEn = {
       required: "Fill in this field.",
       requiredChoice: "Select an option.",
       emailInvalid: "Enter a valid email.",
-      emailPersonal: "Use your company email. We don't accept personal addresses such as Gmail or Outlook.",
-      consent: "You need to authorize to send the request.",
-      submit: "We couldn't send it right now. Try again in a moment or",
+      emailPersonal: "Use your company email. We do not accept personal addresses such as Gmail or Outlook.",
+      consent: "You must authorize to send the request.",
+      submit: "We could not send it. Try again or",
       submitLink: "book directly"
     },
     done: {
       title: "Request received",
-      text: "Thank you. A person on the team will read your request and reply by email within a few business days.",
-      schedule: "Book a conversation",
+      text: "Thank you. A person on the team reads your request and replies by email within a few business days.",
+      schedule: "Book a call",
       home: "Back to home"
     }
   },
 
   pageCta: {
     title: "See how this works with your products",
-    desc: "In a demo, Dinn shows the reading with your portfolio, your territory and your regions.",
+    desc: "In a demo, Dinn shows the reading with your portfolio, territory and regions.",
     button: "Request a demo",
     secondary: "See all solutions"
   },
@@ -124,11 +124,11 @@ export const pagesEn = {
     page: {
       eyebrow: "Solutions",
       back: "All solutions",
-      questionLabel: "The question that brings your area here",
+      questionLabel: "The question your area asks",
       decisionsLabel: "Decisions Dinn supports",
       exampleLabel: "An example, step by step",
       limitsLabel: "Limits of the reading",
-      useCasesLabel: "Concrete situations for this area",
+      useCasesLabel: "Situations for this area",
       useCaseOpen: "See on the home page",
       trustCta: "How we handle source, date and confidence",
       otherLabel: "Other areas"
@@ -137,99 +137,99 @@ export const pagesEn = {
       {
         slug: "inteligencia-pricing",
         name: "Intelligence & Pricing",
-        short: "Understand movements in availability, price, sell-through and competition.",
+        short: "Track availability, price, sell-through and competition.",
         question: "Where does it come from, and how far can I trust it?",
-        title: "Price, sell-through and competitor movements, *with the source in view*",
-        lead: "For those who need to explain a number before taking it further: each reading carries source, date, coverage and limit.",
+        title: "Price, sell-through and competitor changes, *with the source in view*",
+        lead: "Explain a number before you use it. Each reading shows source, date, coverage and limit.",
         decisions: [
-          "Tell a one-off change from a movement that persists over time.",
-          "Distinguish a drop in share from a drop in sales, in the same stores.",
-          "Complement consolidated market data when the decision calls for more granularity and operational context."
+          "Tell a one-off change from a lasting trend.",
+          "Tell a drop in share from a drop in sales, in the same stores.",
+          "Add granularity and operational context to consolidated market data."
         ],
         example: {
           title: "Your company grew 6% in the same stores; the category, 11%",
           steps: [
             "Signal: share falls in the region.",
-            "Validation: only comparable stores are included, present in both time windows.",
-            "Reading: the drop comes from other products growing more, not from sales shrinking.",
-            "Next step: look at the stores where only the competitor appears with stock."
+            "Validation: only comparable stores, present in both time windows.",
+            "Reading: other products grew more. Your sales did not shrink.",
+            "Next step: look at the stores where only the competitor has stock."
           ]
         },
         limits: [
-          "Sales are estimated from stock movement, not from audited sell-out.",
-          "Competitor data appears aggregated.",
-          "Dinn complements market audits; it does not replace them."
+          "Sales are estimated from stock movement. They are not audited sell-out.",
+          "Competitor data is aggregated.",
+          "Dinn complements market audits. It does not replace them."
         ],
         useCases: ["concorrencia", "demanda"]
       },
       {
         slug: "trade-kam-campo",
         name: "Trade, KAM & Field",
-        short: "Prioritize accounts, territories and conversations with the latest context.",
+        short: "Prioritize accounts and territories with the latest context.",
         question: "Who do I prioritize and what do I bring to the conversation?",
         title: "A queue of stores and accounts, *with what to check at each one*",
-        lead: "Instead of a dashboard to interpret, a prioritized list with the signal, the date and the question to answer.",
+        lead: "No dashboard to interpret. You get a prioritized list with the signal, the date and the question to answer.",
         decisions: [
-          "Start the week with the stores that weigh most in the scope's stock-outs.",
-          "Bring the chain store-level evidence, with dates, instead of a general impression.",
+          "Start the week with the stores that cause most stock-outs in your scope.",
+          "Give the chain store-level evidence, with dates.",
           "Review the same scope after the action and record the feedback."
         ],
         example: {
-          title: "6 of the portfolio's 40 stores concentrate 70% of the signal",
+          title: "6 of the portfolio's 40 stores hold 70% of the signal",
           steps: [
-            "Signal: persistent stock-out at portfolio stores, over the last week.",
-            "Validation: level calculated as days without stock ÷ days observed over the last 30 days.",
+            "Signal: persistent stock-out at portfolio stores in the last week.",
+            "Validation: level = days without stock ÷ days observed in the last 30 days.",
             "Queue: the stores in order, with what to check at each one (pending order? off the shelf?).",
-            "Feedback: the team records what it found and follows the same scope to review priorities."
+            "Feedback: the team records what it found. Dinn follows the same scope to review priorities."
           ]
         },
         limits: [
-          "Dinn prepares the list; your team sets the schedule.",
-          "Nothing is written to the CRM on its own: the reading is for preparing the visit.",
-          "Stores that never sold the product are left out, so as not to inflate the stock-out."
+          "Dinn prepares the list. Your team sets the schedule.",
+          "Dinn writes nothing to the CRM. The reading is for visit preparation.",
+          "Stores that never sold the product are excluded, so the stock-out is not inflated."
         ],
         useCases: ["campo"]
       },
       {
         slug: "supply-distribuicao",
         name: "Supply & Distribution",
-        short: "Investigate coverage, availability and possible supply constraints.",
+        short: "Investigate coverage, availability and supply constraints.",
         question: "Where might there be a coverage or supply problem?",
         title: "Is the gap at the DC, in replenishment or at the pharmacy? *See both sides.*",
-        lead: "The reading crosses the distributor's stock with availability at the region's pharmacies, always with explicit causal caveats.",
+        lead: "Dinn crosses the distributor's stock with availability at the region's pharmacies. It states causal caveats.",
         decisions: [
-          "Separate a shortage at the source from a replenishment failure.",
+          "Tell a shortage at the source from a replenishment failure.",
           "Bring the order forward when DC coverage falls.",
-          "Assess reallocation where there is stalled stock near stores that are out."
+          "Assess reallocation where stalled stock is near stores that are out."
         ],
         example: {
           title: "A DC with stock and pharmacies without the product",
           steps: [
             "Signal: 38% of the region's pharmacies are out of the product.",
             "Validation: DC coverage = DC stock ÷ the region's estimated daily sales.",
-            "Reading: the pattern points to a distribution or replenishment breakdown, not a shortage at the source.",
-            "Before concluding: confirm pending orders at the affected chains."
+            "Reading: the pattern points to a distribution or replenishment failure, not a shortage at the source.",
+            "Before you conclude: confirm pending orders at the affected chains."
           ]
         },
         limits: [
-          "Stock at the DC does not prove stock at the pharmacy: the reading crosses both ends.",
-          "The pattern is a hypothesis; the cause requires investigation.",
-          "DC coverage uses the region's estimated sales: it is an approximation, not that DC's actual coverage, and only holds when demand matches the population it supplies.",
-          "Observed movement is not the same as confirmed sales."
+          "Stock at the DC does not prove stock at the pharmacy. The reading crosses both ends.",
+          "The pattern is a hypothesis. The cause needs investigation.",
+          "DC coverage uses the region's estimated sales. It is an approximation, not the real coverage of that DC. It holds only when demand matches the population the DC supplies.",
+          "Observed movement is not confirmed sales."
         ],
         useCases: ["distribuicao", "parado"]
       },
       {
         slug: "sac-customer-experience",
         name: "Customer Service & Customer Experience",
-        short: "Guide consumers clearly on availability and proximity.",
+        short: "Guide consumers on availability and proximity.",
         question: "How do I guide someone without misleading them?",
-        title: "Where the consumer has a good chance of finding the product, *and how reliably*",
-        lead: "Availability, proximity and freshness on the same screen, with the source and date of each indication.",
+        title: "Where the consumer is likely to find the product, *and how reliable that is*",
+        lead: "Availability, proximity and freshness on one screen, with the source and date of each indication.",
         decisions: [
           "Point to the nearby pharmacy most likely to have the product.",
-          "Know whether the information is observed or estimated before guiding.",
-          "Show trade where demand is not finding product."
+          "Check if the information is observed or estimated before you guide.",
+          "Show trade where demand finds no product."
         ],
         example: {
           title: "The five pharmacies closest to the consumer",
@@ -241,9 +241,9 @@ export const pagesEn = {
           ]
         },
         limits: [
-          "The base reading is D-1; at compatible stores, there is an on-demand real-time check, with the time of the response.",
-          "A chance of stock is not a guarantee of stock, and the guidance should say so.",
-          "Coverage varies by chain and by source."
+          "The base reading is D-1. At compatible stores, an on-demand check runs in real time and shows the time of the response.",
+          "A chance of stock is not a guarantee. Tell the consumer.",
+          "Coverage varies by chain and source."
         ],
         useCases: ["sac"]
       },
@@ -252,25 +252,25 @@ export const pagesEn = {
         name: "Marketing & Launches",
         short: "Track presence, coverage growth and launch execution signals.",
         question: "Is execution progressing where it should?",
-        title: "Week by week, *where the launch has already arrived* and where it stalled",
-        lead: "Presence by chain and region over time, compared with the plan your team set.",
+        title: "Week by week, *where the launch has arrived* and where it stalled",
+        lead: "Presence by chain and region over time, compared with your team's plan.",
         decisions: [
-          "See where the launch accelerated and where it remains below expectations.",
-          "Separate a sell-in problem from a replenishment problem.",
-          "Compare progress by cohort and by channel against the defined target."
+          "See where the launch accelerated and where it is below expectations.",
+          "Tell a sell-in problem from a replenishment problem.",
+          "Compare progress by cohort and channel against the target."
         ],
         example: {
           title: "Six weeks after launch",
           steps: [
             "Signal: the product appears at 54% of the monitored pharmacies.",
-            "Validation: presence = pharmacies with stock ÷ monitored pharmacies in the scope, compared with the goal and cohort your team planned.",
-            "Reading: it accelerated at large chains and remains below 20% at independents.",
-            "Next question: has the DC already received the product in the regions where it hasn't arrived?"
+            "Validation: presence = pharmacies with stock ÷ monitored pharmacies in the scope. Compare with your team's goal and cohort.",
+            "Reading: it accelerated at large chains. It stays below 20% at independents.",
+            "Next question: did the DC receive the product in the regions where it has not arrived?"
           ]
         },
         limits: [
           "Week 1 starts on the launch date set by your team.",
-          "The split by channel follows what each source allows to be identified.",
+          "The split by channel follows what each source can identify.",
           "Presence at pharmacies is not sell-out."
         ],
         useCases: ["lancamento"]
@@ -278,10 +278,10 @@ export const pagesEn = {
       {
         slug: "ti-dados-governanca",
         name: "IT, Data & Governance",
-        short: "Integrate signals with traceability, access control and explicit limits.",
+        short: "Integrate signals with traceability, access control and clear limits.",
         question: "How does it integrate, protect and govern?",
-        title: "Signals that reach your environment, *with traceability and access control*",
-        lead: "API, BI and the customer's AI query the same base, with the authorized scope and the origin of each data point preserved.",
+        title: "Signals in your environment, *with traceability and access control*",
+        lead: "API, BI and the customer's AI query the same base. The authorized scope and the origin of each data point stay intact.",
         decisions: [
           "Choose how to consume: platform, file, API, BI or the customer's AI.",
           "Define who accesses what, with two-factor verification and corporate SSO on request.",
@@ -292,14 +292,14 @@ export const pagesEn = {
           steps: [
             "Input: the team asks in ChatGPT, Claude or Copilot.",
             "Access: the authorized AI queries Dinn through MCP, read-only.",
-            "Answer: scope, period, source and limits come with the number.",
+            "Answer: the number comes with scope, period, source and limits.",
             "Governance: usage stays within the plan and setup of the customer's environment."
           ]
         },
         limits: [
-          "MCP is a query interface; it does not replace the data infrastructure.",
+          "MCP is a query interface. It does not replace the data infrastructure.",
           "Each source depends on agreed licensing, authorization and scope.",
-          "Features such as scheduling and file generation depend on the plan and the configuration of the customer's AI."
+          "Features such as scheduling and file generation depend on the plan and the customer's AI setup."
         ],
         useCases: []
       }
@@ -309,62 +309,62 @@ export const pagesEn = {
   platform: {
     meta: {
       title: "Platform | Dinn",
-      description: "How Dinn works: it observes, validates, helps understand and decide, delivers to whoever executes and learns from the feedback. The role of Stock, Manager, Insights, MCP and Conecta."
+      description: "How Dinn works: it observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. The role of Stock, Manager, Insights, MCP and Conecta."
     },
     hero: {
       eyebrow: "Platform",
-      title: "One system to go from *signal to commercial action*",
-      lead: "Dinn observes, validates, helps understand and decide, takes the result to whoever executes and learns from the feedback. Each part has a clear role."
+      title: "One system from *signal to commercial action*",
+      lead: "Dinn observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. Each part has a clear role."
     },
     cycle: {
       title: "The cycle, in six steps",
-      intro: "From a loose signal to a recorded action. The full example, with a single case, is on the home page."
+      intro: "From a loose signal to a recorded action. The full example is on the home page."
     },
     parts: {
       title: "Five parts, with different roles",
-      intro: "They work together, but they are not five equivalent products: there is a product, a platform, interfaces and a data layer. Each one also says what it does not do.",
+      intro: "They work together, but they are not five equal products. There is a product, a platform, interfaces and a data layer. Each part also says what it does not do.",
       notLabel: "What it is not",
       kinds: ["Product", "Platform", "Interface", "Technical interface", "Data layer"],
       items: [
         {
           tag: "Dinn Stock",
           title: "The availability reading",
-          desc: "Organizes the reading of availability and related channel signals, with the source and confidence of each point.",
+          desc: "Organizes availability and related channel signals, with the source and confidence of each point.",
           not: "A product's absence is a signal to validate, not a confirmed stock-out."
         },
         {
           tag: "Dinn Manager",
           title: "Management and execution",
-          desc: "Brings priorities and context to management and commercial execution: stock-outs, stalled stock, distribution and market in one scope.",
-          not: "The decision stays with the team; the platform prepares the reading."
+          desc: "Gives priorities and context for management and execution: stock-outs, stalled stock, distribution and market in one scope.",
+          not: "The team decides. The platform prepares the reading."
         },
         {
           tag: "Dinn Insights",
           title: "The conversation with the signals",
-          desc: "Supports exploration and assisted interpretation of the available signals: ask in plain English and get the number, the scope, the date and the method.",
-          not: "Hypotheses appear as hypotheses; Dinn does not presume the cause."
+          desc: "Explore and interpret the signals. Ask in plain English and get the number, scope, date and method.",
+          not: "Hypotheses appear as hypotheses. Dinn does not assume the cause."
         },
         {
           tag: "MCP",
           title: "The interface for your AI",
-          desc: "Lets authorized tools, such as ChatGPT, Claude and Copilot, query Dinn's data and capabilities, with read-only access.",
-          not: "It is not the data infrastructure: it is a way to query."
+          desc: "Lets authorized tools, such as ChatGPT, Claude and Copilot, query Dinn's data, with read-only access.",
+          not: "It is not the data infrastructure. It is a way to query."
         },
         {
           tag: "Dinn Conecta",
           title: "The data flows",
-          desc: "Prepares and operates data flows specialized for the customer's context, standardizing product, store and region for BI and agents.",
-          not: "It does not close the execution cycle on its own: it delivers data to whoever executes."
+          desc: "Builds and runs data flows for the customer's context. It standardizes product, store and region for BI and agents.",
+          not: "It does not close the execution cycle. It delivers data to the executor."
         }
       ]
     },
     data: {
       title: "Data and integrations",
-      intro: "The same rule applies across the platform: say where it came from, when it was observed and how far coverage goes.",
+      intro: "One rule applies across the platform: say where the data came from, when it was observed and how far coverage goes.",
       items: [
         {
           title: "Where the signals come from",
-          text: "From pharmacies' digital sources, queried by agents. When authorized, also from market data (IQVIA / Close-Up) and internal data (ERP and CRM)."
+          text: "From pharmacies' digital sources, queried by agents. With authorization, also from market data (IQVIA / Close-Up) and internal data (ERP and CRM)."
         },
         {
           title: "How fresh they are",
@@ -376,7 +376,7 @@ export const pagesEn = {
         },
         {
           title: "Where to start",
-          text: "One goal and one scope. Dinn can start with external sources only, and implementation takes up to 30 days after prerequisites and scope are agreed."
+          text: "One goal and one scope. Dinn can start with external sources only. Implementation takes up to 30 days after prerequisites and scope are agreed."
         }
       ]
     }
@@ -390,11 +390,11 @@ export const pagesEn = {
     hero: {
       eyebrow: "Trust",
       title: "Source, date and limits *on every signal*",
-      lead: "IT, data, compliance and procurement will find here how Dinn handles data origin, access and implementation."
+      lead: "IT, data, compliance and procurement: see how Dinn handles data origin, access and implementation."
     },
     signals: {
       title: "Three types of signal, always identified",
-      intro: "Dinn shows, in the context of use, the nature of each piece of information before it becomes a priority.",
+      intro: "Dinn shows the nature of each piece of information before it becomes a priority.",
       exampleLabel: "Example",
       items: [
         {
@@ -404,73 +404,73 @@ export const pagesEn = {
         },
         {
           name: "Estimated",
-          def: "Calculated from comparable stores and history when the source doesn't respond, always with a confidence level.",
-          example: "With no response from the store, stock is estimated from similar stores in the same chain."
+          def: "Calculated from comparable stores and history when the source does not respond. Always has a confidence level.",
+          example: "The store does not respond. Dinn estimates its stock from similar stores in the same chain."
         },
         {
           name: "Inferred",
-          def: "The reading that comes from combining signals, presented as a hypothesis for the team to validate.",
-          example: "Several stores without the product and the DC with stock suggest a replenishment failure, not a shortage at the source."
+          def: "A reading from combined signals. Shown as a hypothesis for the team to validate.",
+          example: "Several stores without the product and a DC with stock suggest a replenishment failure, not a shortage at the source."
         }
       ]
     },
     notProve: {
       title: "What a signal does not prove",
-      intro: "Naming the limit is part of the product. It is what lets the team act without being misled.",
+      intro: "Naming the limit is part of the product. It lets the team act without being misled.",
       items: [
-        "A product's absence is not necessarily a stock-out.",
+        "A product's absence is not always a stock-out.",
         "Product at the distribution center does not prove supply to a specific store.",
-        "A constant balance does not, on its own, prove there were no sales.",
-        "A recommendation is not an automated action: the decision and the execution stay with the team."
+        "A constant balance does not prove there were no sales.",
+        "A recommendation is not an automated action. The team decides and executes."
       ]
     },
     coverage: {
       title: "Coverage and refresh",
       items: [
-        { title: "Frequency", text: "D-1 base. At eligible stores, there is an on-demand availability check." },
-        { title: "Coverage", text: "Varies by source, product, chain and query, and each reading states what it covers." },
-        { title: "Market and internal sources", text: "They come in when licensing, authorization and scope are agreed." }
+        { title: "Frequency", text: "D-1 base. At eligible stores, an on-demand availability check is possible." },
+        { title: "Coverage", text: "Varies by source, product, chain and query. Each reading states what it covers." },
+        { title: "Market and internal sources", text: "They join when licensing, authorization and scope are agreed." }
       ]
     },
     security: {
       title: "Access, security and privacy",
       items: [
-        { title: "Access", text: "Two-factor verification by email and permission controls. Corporate SSO on request: assess your company's authentication requirements and the deployment scope with Dinn." },
+        { title: "Access", text: "Two-factor verification by email and permission controls. Corporate SSO on request: check your authentication requirements and deployment scope with Dinn." },
         { title: "Customer's AI", text: "MCP connections are authorized and read-only." },
         { title: "Data and governance", text: "Internal data, infrastructure and governance of the customer's environment stay with the customer. Dinn is responsible for the controls of its own layer." },
-        { title: "Privacy", text: "Personal data is handled in accordance with the LGPD and is described in the Privacy Policy." }
+        { title: "Privacy", text: "Dinn handles personal data in accordance with the LGPD, as the Privacy Policy describes." }
       ],
       privacyLink: "Read the Privacy Policy"
     },
     deploy: {
       title: "Implementation",
-      text: "Implementation has a defined scope and takes place within 30 days after prerequisites and scope are agreed. It can start with external sources only, without depending on the customer's internal systems."
+      text: "Implementation has a defined scope. It takes up to 30 days after prerequisites and scope are agreed. It can start with external sources only, with no dependency on the customer's internal systems."
     },
     questions: {
       title: "Questions IT and procurement usually ask",
       items: [
         {
           question: "What data from my company does Dinn need?",
-          answer: "To start, none: the reading can begin from external sources. Internal data comes in when it makes sense and by agreement, to enrich the context."
+          answer: "To start, none. The reading can begin from external sources. Internal data joins by agreement, to add context."
         },
         {
           question: "Who controls the data and governance?",
-          answer: "Internal data and your environment's governance stay with you. Dinn prepares and delivers and is responsible for the controls of its own layer: access, permissions and logging."
+          answer: "You keep internal data and your environment's governance. Dinn prepares and delivers the data. Dinn is responsible for the controls of its own layer: access, permissions and logging."
         },
         {
           question: "How does our AI access Dinn?",
-          answer: "Through MCP, with authorized, read-only access. Features such as scheduling and file generation depend on the plan and the configuration of the AI."
+          answer: "Through MCP, with authorized, read-only access. Features such as scheduling and file generation depend on the plan and the AI setup."
         },
         {
           question: "Where do I find support and the incident channel?",
-          answer: "On the Support page, with guidance on logging a problem and reaching the contracted channel."
+          answer: "On the Support page. It explains how to log a problem and reach the contracted channel."
         }
       ],
       supportLink: "Open the Support page"
     },
     cta: {
-      title: "Need to get approval from IT, data or procurement?",
-      desc: "We talk through your environment's requirements before any implementation.",
+      title: "Need approval from IT, data or procurement?",
+      desc: "We discuss your environment's requirements before any implementation.",
       button: "Talk about requirements"
     }
   },
@@ -480,14 +480,14 @@ export const pagesEn = {
   cases: {
     meta: {
       title: "Use cases | Dinn",
-      description: "Dinn use case gallery: stories from signal to action, told step by step, with source, validation and learning."
+      description: "Dinn use cases: stories from signal to action, step by step, with source, validation and learning."
     },
     hero: {
       eyebrow: "Use cases",
       title: "Dinn use stories, *one by one*",
-      lead: "Each case tells the whole path: from situation to learning, with what was observed, how it was validated and what the team decided."
+      lead: "Each case tells the full path, from situation to learning: what Dinn observed, how it was validated and what the team decided."
     },
-    gallery: { open: "Read the case", customer: "Customer case", empty: "New cases will be added here, one by one." },
+    gallery: { open: "Read the case", customer: "Customer case", empty: "We add new cases here, one by one." },
     detail: {
       back: "All cases",
       problem: "The problem",
@@ -513,17 +513,17 @@ export const pagesEn = {
     rules: {
       title: "How we tell cases",
       items: [
-        "Cases are accounts from Dinn users; names, products and data are preserved.",
-        "When there is a measurable result, we state the period, universe and method.",
-        "When there is not, we report the proven operational gain, without turning it into financial impact.",
-        "Share and sales are estimates: when a number appears, we state the market, the window and the method."
+        "Cases are accounts from Dinn users. Names, products and data are preserved.",
+        "If a result is measurable, we state the period, universe and method.",
+        "If not, we report the proven operational gain. We do not convert it to financial impact.",
+        "Share and sales are estimates. With a number, we state the market, window and method."
       ]
     }
   },
 
   caseScenes: {
     "frozen-stock": {
-      title: "Stalled stock of each Fortaleza store added up and converted into days available",
+      title: "Stalled stock of each Fortaleza store, added up and converted to days available",
       city: "Fortaleza", pdv: "Store", total: "Stock", frozen: "Stalled stock", sum: "City total",
       days: "Days available", need: "Needed", covered: "City covered"
     },
@@ -538,12 +538,12 @@ export const pagesEn = {
       confirmed: "Product at the address", time: "Time per call", before: "Before", after: "With Dinn"
     },
     "price-gap": {
-      title: "Competitor present in the chains, product absent, and price aligned in the negotiation",
+      title: "Competitor in the chains, product absent, price aligned in the negotiation",
       competitor: "Competitor", yours: "Your product", chain: "Chain", priceLabel: "Price",
       weighing: "Price weighing on the decision", negotiated: "Price negotiated with the chain"
     },
     "share-opps": {
-      title: "Share from 60% to 45%, losses by state and city actions generated by Insights",
+      title: "Share from 60% to 45%, losses by state and city actions from Insights",
       share: "Share", from: "60%", to: "45%", states: "Losses by state", opps: "Opportunities",
       city: "City", state: "State", action: "Action", ask: "Where can I win space back?", answer: "Actions by city and state"
     }
@@ -551,19 +551,19 @@ export const pagesEn = {
   resources: {
     meta: {
       title: "Resources | Dinn",
-      description: "Blog, customer stories and what's new at Dinn: content to understand the pharmaceutical channel and follow what goes live."
+      description: "Blog, customer stories and what's new at Dinn: content to understand the pharmaceutical channel and follow releases."
     },
     hero: {
       eyebrow: "Resources",
       title: "Content, stories and news *from Dinn*",
-      lead: "Choose where to start: learn from articles and guides, read customer stories or follow what went live on the platform."
+      lead: "Choose where to start: read articles and guides, read customer stories or follow platform releases."
     },
     items: [
       {
         id: "blog",
         type: "Blog",
         title: "Articles, guides and topics on the channel",
-        desc: "Analysis and explanations on stock-outs, commercial execution and data in pharma, gathered in one place.",
+        desc: "Analysis on stock-outs, commercial execution and data in pharma, in one place.",
         chips: ["Articles", "Guides", "Topics"],
         cta: "Read the blog",
         href: "/blog"
@@ -572,7 +572,7 @@ export const pagesEn = {
         id: "cases",
         type: "Use cases",
         title: "Stories from those who use Dinn",
-        desc: "Stories from customers we know and interviewed, told in a documented and public way: from situation to learning.",
+        desc: "Stories from customers we know and interviewed. Documented and public, from situation to learning.",
         chips: ["Interviews", "Context", "Learnings"],
         cta: "See the stories",
         href: "/recursos/casos"
@@ -581,7 +581,7 @@ export const pagesEn = {
         id: "changelog",
         type: "What's new",
         title: "Everything that went live",
-        desc: "The timeline of Dinn releases, with dates and a plain-language explanation of what changed.",
+        desc: "A timeline of Dinn releases, with dates and a plain-language note on what changed.",
         chips: ["New", "Improvements", "Fixes"],
         cta: "See the history",
         href: "/recursos/changelog"
@@ -601,34 +601,34 @@ export const pagesEn = {
         "ausencia-ruptura-sortimento-giro": {
           meta: {
             title: "Absence, stock-out, assortment and sell-through: what's the difference? | Dinn",
-            description: "Four readings that get confused in the pharmaceutical channel and what to check before acting: absence, stock-out, assortment and sell-through."
+            description: "Four readings that people confuse in the pharmaceutical channel, and what to check before you act: absence, stock-out, assortment and sell-through."
           },
           eyebrow: "Guide",
           title: "Absence, stock-out, assortment and sell-through: what's the difference?",
-          lead: "Four words that show up in the same report and call for different actions. Telling them apart avoids sending the field team to fix the wrong problem.",
+          lead: "Four words that appear in the same report and need different actions. Tell them apart, so the field team does not fix the wrong problem.",
           sections: [
             {
               heading: "Absence",
-              body: "It means not finding the product at a store, on a date, in a source. It is a signal, not a conclusion: it may be a stock-out, a lack of assortment or simply a query with no response."
+              body: "The product is not at a store, on a date, in a source. It is a signal, not a conclusion. It can be a stock-out, a lack of assortment or a query with no response."
             },
             {
               heading: "Stock-out",
-              body: "It is absence at a store that normally sells the product. At Dinn, a store's stock-out is the share of days without stock over the days observed in the last 30 days. That is why a persistent stock-out weighs more than a single day of absence."
+              body: "Absence at a store that normally sells the product. At Dinn, a store's stock-out is the share of days without stock over the days observed in the last 30 days. A persistent stock-out weighs more than one day of absence."
             },
             {
               heading: "Assortment",
-              body: "It is whether or not the store carries that product. Stores that never sold the item are left out of the stock-out calculation, so as not to inflate the number. In that case the conversation with the chain is about assortment, not replenishment."
+              body: "Whether the store carries that product. Stores that never sold the item are excluded from the stock-out calculation, so the number is not inflated. For these stores, talk to the chain about assortment, not replenishment."
             },
             {
               heading: "Sell-through",
-              body: "It is the speed at which stock leaves, for example in units per day. With stock in the store, sell-through indicates demand; dividing stock by average daily sell-through gives coverage in days."
+              body: "The speed at which stock leaves, for example in units per day. With stock in the store, sell-through shows demand. Stock divided by average daily sell-through gives coverage in days."
             }
           ],
           tableTitle: "What to check before acting",
           table: {
             columns: ["What shows up", "What it might be", "What to check"],
             rows: [
-              ["Product absent on one day", "Stock-out, assortment or a query with no response", "Whether the absence repeats and whether the store usually sells the product"],
+              ["Product absent on one day", "Stock-out, assortment or a query with no response", "If the absence repeats and if the store usually sells the product"],
               ["Absence that persists", "Recurring stock-out", "Pending orders and the chain's replenishment"],
               ["Store that never sold the item", "An assortment issue", "The portfolio conversation with the chain"],
               ["High stock and low sell-through", "Stalled stock", "Days without movement and nearby stores that are out"]
@@ -637,8 +637,8 @@ export const pagesEn = {
           limitsTitle: "What the data does not prove",
           limits: [
             "Product at the distribution center does not prove supply to a store.",
-            "A constant balance does not, on its own, prove there were no sales.",
-            "Observed movement is not the same as confirmed sales."
+            "A constant balance does not prove there were no sales.",
+            "Observed movement is not confirmed sales."
           ]
         }
       }
@@ -663,16 +663,16 @@ export const pagesEn = {
         feedback: "Team feedback revises priorities"
       },
       "supply-distribuicao": {
-        title: "DC stock crossed with availability at the region pharmacies",
+        title: "DC stock crossed with availability at the region's pharmacies",
         cd: "DC",
         cdCoverage: "DC coverage · 24 days",
         pharmacies: "Pharmacies in the region",
         out: "38% without the product",
-        verdict: "Distribution breakdown",
+        verdict: "Distribution failure",
         verify: "Confirm pending orders"
       },
       "sac-customer-experience": {
-        title: "Pharmacies around the consumer address, with availability",
+        title: "Pharmacies near the consumer, with availability",
         you: "Consumer",
         nearest: "Nearest · 0.8 km",
         insight: "Repeated demand · 2 stores out for 7 days"
@@ -714,7 +714,7 @@ export const pagesEn = {
     aiAnswer: {
       tools: ["ChatGPT", "Claude", "Copilot"],
       question: "Which stores in my São Paulo portfolio should I check first?",
-      answer: "Six stores concentrate most of last week stock-out signal. The list shows what to check in each one.",
+      answer: "Six stores hold most of last week's stock-out signal. The list shows what to check at each one.",
       meta: [
         { label: "Scope", value: "Portfolio, São Paulo" },
         { label: "Period", value: "Last 7 days" },
@@ -755,7 +755,7 @@ export const pagesEn = {
           rows: [
             { label: "Source", value: "Comparable stores and history" },
             { label: "When", value: "At the base update" },
-            { label: "How to read", value: "Always comes with a confidence level" }
+            { label: "How to read", value: "Always has a confidence level" }
           ]
         },
         {
@@ -803,7 +803,7 @@ export const pagesEn = {
       splitTitle: "Who takes care of what",
       dinn: {
         title: "Dinn",
-        items: ["Prepares and delivers the signals", "Shows source, date and confidence", "Connects via MCP, API and BI", "Answers for the controls of its layer"]
+        items: ["Prepares and delivers the signals", "Shows source, date and confidence", "Connects via MCP, API and BI", "Is responsible for the controls of its layer"]
       },
       client: {
         title: "You keep",
@@ -814,7 +814,7 @@ export const pagesEn = {
       title: "Deployment in up to 30 days",
       steps: [
         { label: "Agreement", text: "Prerequisites and scope defined" },
-        { label: "Deployment", text: "Up to 30 days, and it can start with external sources only" },
+        { label: "Deployment", text: "Up to 30 days. It can start with external sources only" },
         { label: "In use", text: "Daily reading and team feedback" }
       ]
     }
@@ -823,12 +823,12 @@ export const pagesEn = {
   changelog: {
     meta: {
       title: "What's new | Dinn",
-      description: "Timeline of what Dinn put live: platform news and improvements, explained in plain language and organized by date."
+      description: "Timeline of what Dinn put live: platform news and improvements, in plain language, by date."
     },
     hero: {
       eyebrow: "What's new",
       title: "What went live at *Dinn*",
-      lead: "Every release in production, explained in plain language and organized by date."
+      lead: "Every release in production, in plain language, by date."
     },
     back: "All resources",
     filters: { label: "Filter by area", all: "All", platform: "Platform", site: "Site and documentation" },
@@ -836,6 +836,6 @@ export const pagesEn = {
     updated: "Updated on",
     months: "Months",
     empty: "No releases in this area yet.",
-    note: "Updated automatically every day. Texts are rewritten in plain language and internal technical details do not appear here."
+    note: "Updated every day. Texts use plain language. Internal technical details do not appear here."
   }
 };

@@ -27,19 +27,19 @@ export const ptBR = {
   hero: {
     pill: "Inteligência comercial para o canal farmacêutico",
     title: "Transforme sinais do canal farma em *ação comercial*.",
-    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura e ajuda sua equipe a decidir onde agir primeiro, com origem, atualização e limites claros.",
-    cta: "Conheça a plataforma",
-    secondary: "Explore a Dinn para a sua área"
+    description: "A Dinn organiza sinais de disponibilidade, giro, preço e cobertura e mostra à sua equipe onde agir primeiro, com origem, atualização e limites.",
+    cta: "Veja a plataforma",
+    secondary: "Veja a Dinn para a sua área"
   },
   insights: {
     eyebrow: "Dinn Insights",
     title: "O que você quer saber sobre *ruptura de estoque e sell-out*?",
-    intro: "A conversa com a IA do Dinn. Pergunte em português e receba o número, o recorte, a data e como foi calculado."
+    intro: "Converse com a IA do Dinn. Pergunte em português. Receba o número, o recorte, a data e o método."
   },
   ask: {
     placeholder: "Pergunte sobre estoque, ruptura, giro, preço…",
     followPlaceholder: "Faça uma pergunta de acompanhamento…",
-    send: "Enviar pergunta",
+    send: "Enviar",
     reset: "Nova conversa",
     starters: [
       { team: "SAC", chip: "Onde encontrar o produto", q: "Onde o consumidor encontra o meu produto perto de Campinas?" },
@@ -49,21 +49,21 @@ export const ptBR = {
       { team: "Estoque", chip: "Estoque parado", q: "Onde tenho estoque parado perto de lojas em ruptura?" },
       { team: "Concorrência", chip: "Quem ganhou espaço", q: "Quem ganhou participação em Minas Gerais?" }
     ],
-    contextLabel: "Recorte entendido",
+    contextLabel: "Recorte usado",
     defaultPlace: "São Paulo",
     defaultProduct: "seu produto",
     thinking: "Pensando…",
     methodTitle: "Como o Dinn chegou a isso",
-    linksTitle: "Continue a leitura",
+    linksTitle: "Leia mais",
     followTitle: "Pergunte também",
-    demoCta: "Ver com os seus produtos",
+    demoCta: "Teste com seus produtos",
     actionWhy: "Por quê:",
     actionHow: "Como:",
     scenarios: {
       sac: {
         keywords: ["onde encontr", "onde tem", "onde acha", "onde compr", "consumidor", "paciente", "sac", "atendimento", "localiz", "perto", "próxima", "proxima", "encontrar", "endereço"],
         steps: ["Localizando o endereço…", "Procurando o produto nas farmácias…", "Calculando a cobertura em dias…"],
-        answer: "Perto de {lugar}, **3 das 5 farmácias mais próximas** têm {produto} com boa chance de estoque. A mais próxima com estoque exato fica a 0,8 km.\n\nA mesma busca mostra um padrão: a procura se repete num bairro onde duas lojas estão sem o produto há uma semana. Isso é pauta para a reposição da cidade e para a propaganda médica da região.",
+        answer: "Perto de {lugar}, **3 das 5 farmácias mais próximas** provavelmente têm {produto} em estoque. A mais próxima com estoque confirmado fica a 0,8 km.\n\nA busca também mostra um padrão. A procura se repete num bairro onde duas lojas estão sem o produto há uma semana. Use isso na reposição da cidade e na propaganda médica da região.",
         widget: {
           type: "table",
           title: "Farmácias mais próximas · {lugar}",
@@ -84,13 +84,13 @@ export const ptBR = {
           ]
         },
         method: [
-          "Raio de busca a partir do endereço informado, das lojas mais próximas para as mais distantes.",
-          "Estoque observado na fonte (D-1) ou estimado por lojas comparáveis, sempre com o nível de confiança.",
+          "Busca a partir do endereço informado. Lojas mais próximas primeiro.",
+          "O estoque é observado na fonte (D-1) ou estimado por lojas comparáveis. Cada valor tem um nível de confiança.",
           "Cobertura em dias = estoque ÷ giro médio diário da loja.",
-          "Para o consumidor, a indicação segue disponibilidade e proximidade, não o menor preço."
+          "A ordem usa disponibilidade e proximidade, não o menor preço."
         ],
         links: [
-          { label: "O caso completo do SAC", href: "#time-sac" },
+          { label: "Caso do SAC", href: "#time-sac" },
           { label: "Como o Dinn sabe o estoque", href: "#por-dentro" }
         ],
         followups: ["E o que isso muda para a propaganda médica?", "Quais lojas dessa região precisam de reposição?"]
@@ -98,7 +98,7 @@ export const ptBR = {
       campo: {
         keywords: ["visita", "visitar", "campo", "rota", "carteira", "promotor", "consultor", "trade", "gdn", "kam", "territ", "verificar", "verifico", "priorizar", "prioridade", "agenda"],
         steps: ["Lendo a sua carteira…", "Analisando a disponibilidade…", "Montando o ranking…", "Listando os PDVs…"],
-        answer: "Das lojas da sua carteira em {lugar}, **6 concentram 70% do sinal de ruptura** de {produto} na última semana. A lista abaixo diz o que conferir em cada uma e qual retorno esperar.\n\nO Dinn prepara a lista; quem monta a agenda é o seu time.",
+        answer: "Na sua carteira em {lugar}, **6 lojas dão 70% do sinal de ruptura** de {produto} na última semana. A lista mostra o que conferir em cada loja e o que esperar.\n\nO Dinn prepara a lista. O seu time monta a agenda.",
         widget: {
           type: "table",
           title: "Fila de verificação · esta semana",
@@ -119,18 +119,18 @@ export const ptBR = {
           "Ruptura do PDV = dias sem estoque ÷ dias observados nos últimos 30 dias.",
           "Nível: Crítico ≥ 75% · Alto ≥ 50% · Moderado ≥ 25% · Leve < 25%.",
           "A ordem pondera o nível pelo giro da loja quando ela tem estoque.",
-          "Lojas que nunca venderam o produto ficam de fora, para não inflar a ruptura."
+          "Lojas que nunca venderam o produto ficam de fora. Elas aumentariam a taxa de ruptura."
         ],
         links: [
-          { label: "O caso completo do campo", href: "#time-campo" },
+          { label: "Caso do campo", href: "#time-campo" },
           { label: "De onde vem cada sinal", href: "#por-dentro" }
         ],
-        followups: ["A ruptura está piorando ou melhorando nos últimos 30 dias?", "O problema é do CD ou das lojas?"]
+        followups: ["A ruptura sobe ou cai em 30 dias?", "O problema é do CD ou das lojas?"]
       },
       medico: {
         keywords: ["médic", "medic", "propagand", "prescri", "receita", "consultório", "consultorio", "representante", "brick", "clínica", "clinica"],
         steps: ["Localizando o consultório…", "Procurando o produto nas farmácias…", "Comparando a ruptura entre regiões…"],
-        answer: "No entorno do consultório em {lugar}, **7 de 12 farmácias** têm {produto} hoje. As 5 sem estoque são da mesma rede e ficam do mesmo lado da avenida.\n\nNa prática: a receita tem boa chance de ser atendida, mas vale avisar o trade sobre essa rede antes que o paciente volte sem o produto.",
+        answer: "No entorno do consultório em {lugar}, **7 de 12 farmácias** têm {produto} hoje. As 5 sem estoque são da mesma rede, do mesmo lado da avenida.\n\nO paciente provavelmente consegue atender a receita. Avise o trade sobre essa rede antes que o paciente volte sem o produto.",
         widget: {
           type: "kpis",
           title: "Entorno do consultório · raio de 1 km",
@@ -145,7 +145,7 @@ export const ptBR = {
           "Raio ao redor do endereço do consultório ou do brick escolhido.",
           "Estoque D-1 por farmácia, observado ou estimado.",
           "Concentração = lojas sem estoque da mesma rede ÷ total de lojas sem estoque.",
-          "Nada é escrito no CRM: a leitura serve para preparar a visita."
+          "O Dinn não escreve no CRM. Use a leitura para preparar a visita."
         ],
         links: [
           { label: "O caso da propaganda médica", href: "#time-medico" }
@@ -155,7 +155,7 @@ export const ptBR = {
       distribuicao: {
         keywords: ["cd", "cds", "distribuidor", "distribuição", "distribuicao", "abastec", "reposição", "reposicao", "repor", "supply", "logística", "logistica", "atraso", "furo", "pedido"],
         steps: ["Lendo o estoque dos CDs…", "Calculando a cobertura em dias…", "Cruzando com a ruptura nas farmácias da região…", "Comparando com o giro local…"],
-        answer: "Em {lugar}, o furo não parece estar no CD: **o distribuidor tem estoque para cerca de 24 dias**, mas 38% das farmácias que compram dele estão sem {produto}, e a região segue vendendo onde há estoque.\n\nO padrão aponta para **quebra de distribuição ou de reposição**, não para falta na origem. Antes de concluir, vale confirmar pedidos pendentes nas redes afetadas.",
+        answer: "Em {lugar}, o furo provavelmente não está no CD. **O distribuidor tem estoque para cerca de 24 dias**, mas 38% das farmácias que compram dele estão sem {produto}. A região segue vendendo onde há estoque.\n\nIsso aponta para **quebra de distribuição ou de reposição**, não para falta na origem. Confirme antes os pedidos pendentes nas redes afetadas.",
         widget: {
           type: "table",
           title: "Leitura CD × farmácias por região",
@@ -177,17 +177,17 @@ export const ptBR = {
           "Cobertura do CD = estoque no CD ÷ venda diária estimada da região.",
           "Ruptura nas farmácias = lojas sem estoque ÷ lojas que vendem o produto.",
           "Demanda = giro das lojas com estoque no mesmo período.",
-          "Estoque no CD não prova estoque na farmácia: a leitura cruza as duas pontas."
+          "Estoque no CD não prova estoque na farmácia. A leitura cruza os dois."
         ],
         links: [
-          { label: "O caso completo de distribuição", href: "#time-distribuicao" }
+          { label: "Caso de distribuição", href: "#time-distribuicao" }
         ],
         followups: ["Onde tenho estoque parado perto de lojas em ruptura?", "A ruptura está piorando nos últimos 30 dias?"]
       },
       lancamento: {
         keywords: ["lançamento", "lancamento", "lançar", "lancar", "lançou", "novo produto", "produto novo", "chegou", "chegada", "presença", "presenca"],
         steps: ["Localizando o produto…", "Lendo o histórico semanal…", "Comparando a presença entre canais…"],
-        answer: "Seis semanas depois do lançamento, {produto} já aparece em **54% das farmácias monitoradas** em {lugar}. A curva acelerou nas grandes redes, mas segue abaixo de 20% nas independentes.\n\nOnde ainda não chegou, a próxima pergunta é se o CD já recebeu: isso separa um problema de sell-in de um problema de reposição.",
+        answer: "Seis semanas depois do lançamento, {produto} está em **54% das farmácias monitoradas** em {lugar}. A presença cresceu nas grandes redes, mas segue abaixo de 20% nas independentes.\n\nOnde ainda não chegou, veja se o CD já recebeu. Isso separa um problema de sell-in de um problema de reposição.",
         widget: {
           type: "trend",
           title: "Presença do lançamento · % das farmácias com o produto",
@@ -201,18 +201,18 @@ export const ptBR = {
         },
         method: [
           "Presença = farmácias com estoque do produto ÷ farmácias monitoradas no recorte.",
-          "A semana 1 começa na data de lançamento definida pelo seu time.",
+          "A semana 1 começa na data de lançamento que o seu time define.",
           "A separação por canal segue o que cada fonte permite identificar."
         ],
         links: [
-          { label: "O caso completo de lançamentos", href: "#time-lancamento" }
+          { label: "Caso de lançamentos", href: "#time-lancamento" }
         ],
         followups: ["O furo é no CD ou nas farmácias?", "Quem ganhou participação na região?"]
       },
       parado: {
         keywords: ["parado", "parada", "sem movimento", "sem giro", "congelado", "encalhado", "excesso", "sobra", "negativ", "remanej"],
         steps: ["Analisando a disponibilidade…", "Contando os dias sem movimento…", "Procurando lojas em ruptura por perto…"],
-        answer: "Em {lugar}, **14 lojas têm {produto} sem movimento há mais de 30 dias**, e 5 delas ficam a menos de 3 km de lojas em ruptura do mesmo produto.\n\nÉ o par que interessa: estoque parado de um lado, falta do outro. A conversa com a rede pode começar pelo remanejamento, antes de um novo pedido.",
+        answer: "Em {lugar}, **14 lojas têm {produto} parado há mais de 30 dias**. 5 delas ficam a menos de 3 km de lojas em ruptura do mesmo produto.\n\nEsse par importa: estoque parado numa loja, falta na outra. Comece a conversa com a rede pelo remanejamento, antes de um novo pedido.",
         widget: {
           type: "bars",
           title: "Lojas por tempo sem movimento",
@@ -225,20 +225,20 @@ export const ptBR = {
           ]
         },
         method: [
-          "Dias parados = dias seguidos com o mesmo saldo, sem baixa de estoque.",
-          "Movimento observado não equivale a venda confirmada.",
+          "Dias parados = dias seguidos com o mesmo saldo e sem baixa de estoque.",
+          "Movimento observado não é venda confirmada.",
           "Pares parado × ruptura: mesma apresentação, até 3 km de distância.",
-          "O dado não prova perda; ele mostra onde olhar primeiro."
+          "O dado não prova perda. Ele mostra onde olhar primeiro."
         ],
         links: [
-          { label: "O caso completo de estoque parado", href: "#time-parado" }
+          { label: "Caso de estoque parado", href: "#time-parado" }
         ],
         followups: ["O furo é no CD ou nas farmácias?", "Quais lojas verifico primeiro?"]
       },
       concorrencia: {
         keywords: ["concorr", "share", "participação", "participacao", "competi", "marca", "espaço", "espaco", "ganhou", "perdendo", "perde ", "preço", "preco"],
         steps: ["Lendo o mercado por estado…", "Comparando com a janela anterior…", "Montando o ranking…"],
-        answer: "Em {lugar}, seu laboratório **cresceu 6% nas mesmas lojas**, mas o mercado comparável cresceu 11%. A participação caiu porque outros produtos cresceram mais, não porque as suas vendas diminuíram.\n\nO espaço está em 23 lojas onde só o concorrente aparece com estoque. É por elas que a conversa com as redes pode começar.",
+        answer: "Em {lugar}, seu laboratório **cresceu 6% nas mesmas lojas**. O mercado comparável cresceu 11%. A participação caiu porque outros produtos cresceram mais, não porque as suas vendas diminuíram.\n\n23 lojas mostram estoque só do concorrente. Comece a conversa com as redes por elas.",
         widget: {
           type: "trend",
           title: "Venda estimada · seu laboratório × concorrentes",
@@ -250,43 +250,43 @@ export const ptBR = {
           ]
         },
         method: [
-          "Venda estimada pela movimentação de estoque, não por sell-out auditado.",
-          "Só entram lojas comparáveis, presentes nas duas janelas.",
+          "A venda é estimada pela movimentação de estoque. Não é sell-out auditado.",
+          "Só entram lojas comparáveis nas duas janelas.",
           "Participação = seu volume ÷ volume da categoria no mesmo painel.",
-          "Dados de concorrentes aparecem agregados."
+          "Dados de concorrentes são agregados."
         ],
         links: [
-          { label: "O caso completo de concorrência", href: "#time-concorrencia" }
+          { label: "Caso de concorrência", href: "#time-concorrencia" }
         ],
         followups: ["Onde a categoria mais cresce?", "Meu lançamento já chegou às farmácias?"]
       },
       demanda: {
         keywords: ["oportunidad", "crescer", "cresce", "expans", "mercado", "demanda", "estratégia", "estrategia", "investir", "por onde começar", "potencial", "planej"],
         steps: ["Lendo o mercado por estado…", "Abrindo o detalhe do estado…", "Lendo as recomendações…"],
-        answer: "A categoria avança mais em {lugar}: **+9% de volume estimado** nas mesmas lojas, contra a janela anterior. Duas grandes redes vendem bem a categoria e quase não têm {produto}.\n\nAbaixo, três frentes para começar. São hipóteses para o seu time validar, não ordens.",
+        answer: "A categoria cresce mais em {lugar}: **+9% de volume estimado** nas mesmas lojas, contra a janela anterior. Duas grandes redes vendem bem a categoria, mas têm pouco {produto}.\n\nAbaixo estão três frentes para começar. São hipóteses para o seu time validar, não ordens.",
         widget: {
           type: "actions",
           title: "Ações para o recorte",
           items: [
-            { priority: "Alta", title: "Abrir conversa com a Rede A sobre sortimento", why: "A rede responde por 18% da categoria na região e tem o produto em 6% das lojas.", how: "Levar à reunião a lista das lojas que mais vendem a categoria." },
-            { priority: "Média", title: "Reforçar a reposição nas cidades com ruptura persistente", why: "Três cidades somam 40% das lojas sem estoque há mais de 15 dias.", how: "Conferir pedidos pendentes com o distribuidor da região." },
-            { priority: "Baixa", title: "Acompanhar a entrada do novo concorrente", why: "Ele apareceu em 31 lojas nas últimas 4 semanas.", how: "Rever o mesmo recorte daqui a 30 dias." }
+            { priority: "Alta", title: "Abrir conversa de sortimento com a Rede A", why: "A rede tem 18% da categoria na região. Ela tem o produto em 6% das lojas.", how: "Levar à reunião a lista das lojas que mais vendem a categoria." },
+            { priority: "Média", title: "Acelerar a reposição nas cidades com ruptura persistente", why: "Três cidades têm 40% das lojas sem estoque há mais de 15 dias.", how: "Conferir pedidos pendentes com o distribuidor da região." },
+            { priority: "Baixa", title: "Acompanhar o novo concorrente", why: "Ele apareceu em 31 lojas nas últimas 4 semanas.", how: "Rever o mesmo recorte daqui a 30 dias." }
           ]
         },
         method: [
           "Crescimento = volume estimado da categoria nas mesmas lojas, janela recente × anterior.",
           "Expansão: grandes redes na categoria com baixa presença do seu laboratório.",
-          "Cada ação traz o número que a sustenta e o primeiro passo."
+          "Cada ação tem o seu número e o primeiro passo."
         ],
         links: [
-          { label: "O caso completo de demanda", href: "#time-demanda" }
+          { label: "Caso de demanda", href: "#time-demanda" }
         ],
         followups: ["Quem ganhou participação na região?", "Onde tenho estoque parado?"]
       },
       tendencia: {
         keywords: ["ruptura", "falta", "faltando", "sem estoque", "piorando", "melhorando", "piorou", "evolução", "evolucao", "tendência", "tendencia", "últimos", "ultimos"],
         steps: ["Localizando o produto…", "Calculando a evolução da ruptura…", "Comparando a ruptura entre redes…"],
-        answer: "A ruptura de {produto} em {lugar} **subiu de 24% para 32% em 30 dias**, puxada por uma rede. Sem ela, o recorte ficaria estável, perto de 25%.\n\nUm sinal assim abre uma investigação, não uma conclusão: o próximo passo é ver quais lojas dessa rede explicam a alta.",
+        answer: "A ruptura de {produto} em {lugar} **subiu de 24% para 32% em 30 dias**. Uma rede puxa a alta. Sem ela, o recorte fica estável, perto de 25%.\n\nEsse sinal inicia uma investigação. Não é uma conclusão. O próximo passo é ver quais lojas dessa rede explicam a alta.",
         widget: {
           type: "trend",
           title: "Evolução da ruptura · últimos 30 dias",
@@ -300,8 +300,8 @@ export const ptBR = {
         },
         method: [
           "Ruptura = farmácias sem estoque ÷ farmácias monitoradas que vendem o produto.",
-          "Base diária (D-1); cada ponto informa se é observado ou estimado.",
-          "A causa da ruptura exige investigação: o Dinn não a presume."
+          "Base diária (D-1). Cada ponto é marcado como observado ou estimado.",
+          "O Dinn não presume a causa da ruptura. Ela exige investigação."
         ],
         links: [
           { label: "Como o campo usa esse sinal", href: "#time-campo" },
@@ -312,7 +312,7 @@ export const ptBR = {
       ia: {
         keywords: ["chatgpt", "claude", "copilot", "gemini", "mcp", "api", "power bi", " bi", "integra", "conecta", "sistema", "dados internos", "crm", "erp", "data lake"],
         steps: ["Entendendo a pergunta…"],
-        answer: "Sim. O Dinn chega aonde o seu time já trabalha: na plataforma, em arquivo, no seu BI pela API ou direto no ChatGPT, no Claude e no Copilot por MCP, com acesso **somente leitura**.\n\nCom o **Dinn Conecta**, mercado, dados internos e farmácias chegam padronizados ao seu BI e aos seus agentes. Dados internos e a governança do seu ambiente continuam com você.",
+        answer: "Sim. O Dinn funciona onde o seu time trabalha: na plataforma, em arquivo, no seu BI pela API ou no ChatGPT, no Claude e no Copilot por MCP, com acesso **somente leitura**.\n\nCom o **Dinn Conecta**, dados de mercado, internos e de farmácias chegam padronizados ao seu BI e aos seus agentes. Seus dados internos e a governança continuam com você.",
         method: [],
         links: [
           { label: "Onde o Dinn entrega", href: "#entrega" },
@@ -323,7 +323,7 @@ export const ptBR = {
       sobre: {
         keywords: ["o que é", "o que e", "quem é", "quem e", "como funciona", "o que voc", "o que faz", "dinn"],
         steps: ["Entendendo a pergunta…"],
-        answer: "O Dinn é inteligência comercial para o canal farmacêutico. Ele organiza sinais de estoque, giro e preço das farmácias, relaciona cada loja ao CD que a abastece quando a fonte permite e transforma isso em sinais com nome: ruptura persistente, estoque parado, queda de giro.\n\nCada área usa a mesma leitura de um jeito. Escolha a sua abaixo, ou pergunte como se fosse sobre os seus produtos.",
+        answer: "O Dinn é inteligência comercial para o canal farmacêutico. Ele organiza sinais de estoque, giro e preço das farmácias. Quando a fonte permite, liga cada loja ao CD que a abastece. Depois dá nome aos sinais: ruptura persistente, estoque parado, queda de giro.\n\nCada área usa a mesma leitura de um jeito. Escolha a sua área abaixo, ou pergunte sobre os seus produtos.",
         method: [],
         links: [
           { label: "Um uso para cada time", href: "#times" },
@@ -334,7 +334,7 @@ export const ptBR = {
       demo: {
         keywords: ["quanto custa", "valor do dinn", "contratar", "demo", "demonstra", "trial", "testar", "teste", "começar a usar", "começar um teste", "implanta", "prazo", "proposta"],
         steps: ["Entendendo a pergunta…"],
-        answer: "Começamos por **um objetivo só**: por exemplo, reduzir a ruptura de um produto em uma região. Liberamos 30 dias com termo simples e alguém nosso acompanhando.\n\nA implantação acontece em até 30 dias depois que os pré-requisitos combinados estão prontos, e pode começar só com fontes externas.",
+        answer: "Começamos por **um objetivo só**: por exemplo, menos ruptura de um produto em uma região. Você recebe 30 dias com termo simples, com uma pessoa do time da Dinn.\n\nA implantação leva até 30 dias depois que os pré-requisitos combinados estão prontos. Ela pode começar só com fontes externas.",
         method: [],
         links: [
           { label: "Solicitar demo", href: "demo" },
@@ -344,7 +344,7 @@ export const ptBR = {
       },
       fallback: {
         steps: ["Entendendo a pergunta…"],
-        answer: "Essa eu respondo melhor com os seus dados. Estas são as perguntas mais comuns de cada time sobre estoque, ruptura, giro, preço, distribuição e concorrência. Experimente uma destas:",
+        answer: "Essa eu respondo melhor com os seus dados. Cada time faz estas perguntas com mais frequência sobre estoque, ruptura, giro, preço, distribuição e concorrência. Experimente uma:",
         method: [],
         links: [
           { label: "Um uso para cada time", href: "#times" }
@@ -357,7 +357,7 @@ export const ptBR = {
     title: "Empresas que trabalham com a Dinn"
   },
   teams: {
-    eyebrow: "Casos de uso: escolha a situação e veja o Dinn trabalhando",
+    eyebrow: "Casos de uso: escolha a situação",
     title: "Situações concretas do canal, *uma a uma*",
     askCta: "Pergunte isso ao Dinn",
     deepLink: "Saiba mais",
@@ -369,7 +369,7 @@ export const ptBR = {
         tab: "SAC",
         kicker: "SAC e atendimento",
         title: "“Onde acho esse remédio perto de casa?”",
-        story: "O atendente vê as farmácias mais próximas com o produto, quantas unidades há e a estimativa de giro no recorte.",
+        story: "O atendente vê as farmácias mais próximas com o produto, as unidades e a estimativa de giro.",
         sees: ["Estoque por loja", "Distância", "Giro", "Preço"],
         does: [
           "Indica a farmácia com maior chance de ter o produto",
@@ -383,11 +383,11 @@ export const ptBR = {
         tab: "Campo e trade",
         kicker: "Força de campo e trade",
         title: "Quarenta lojas na carteira. *Tempo para oito.*",
-        story: "Em vez de um painel, uma fila: as lojas com mais sinal e o que conferir em cada uma.",
+        story: "Uma fila, não um painel: as lojas com mais sinal e o que conferir em cada uma.",
         sees: ["Ruptura por loja", "Persistência", "Giro", "Rede"],
         does: [
-          "Começa a semana pelas lojas que mais pesam",
-          "Leva à rede evidência por loja, com data",
+          "Começa a semana pelas lojas principais",
+          "Mostra à rede evidência por loja, com data",
           "Revê o mesmo recorte depois da ação"
         ],
         question: "Quais lojas da minha carteira em São Paulo eu verifico primeiro?",
@@ -398,12 +398,12 @@ export const ptBR = {
         tab: "Distribuição",
         kicker: "Distribuição e supply",
         title: "O furo é no CD, *na farmácia ou no pedido?*",
-        story: "O Dinn liga o estoque do distribuidor às farmácias que ele abastece e ajuda a investigar onde pode estar a restrição.",
+        story: "O Dinn liga o estoque do distribuidor às farmácias que ele abastece. Ele ajuda a achar onde pode estar a restrição.",
         sees: ["Estoque no CD", "Cobertura em dias", "Ruptura nas lojas", "Giro da região"],
         does: [
           "Separa falta na origem de falha de reposição",
           "Antecipa o pedido quando a cobertura cai",
-          "Avalia remanejar entre regiões"
+          "Considera remanejar entre regiões"
         ],
         question: "O furo é no CD ou nas farmácias de Goiânia?",
         visual: "distribution"
@@ -413,7 +413,7 @@ export const ptBR = {
         tab: "Lançamentos",
         kicker: "Lançamentos",
         title: "Semana a semana, *onde o produto já chegou.*",
-        story: "O time acompanha a presença do produto novo por rede e região e vê onde acelerou ou travou.",
+        story: "O time acompanha a presença do produto novo por rede e região. Ele vê onde a presença cresceu ou travou.",
         sees: ["Presença por semana", "Rede e região", "Chegada ao CD"],
         does: [
           "Vê onde o lançamento ainda não chegou",
@@ -427,7 +427,7 @@ export const ptBR = {
         tab: "Estoque parado",
         kicker: "Estoque e giro",
         title: "Estoque parado de um lado. *Falta do outro.*",
-        story: "O Dinn conta os dias sem movimento e encontra lojas paradas perto de lojas em ruptura: ali começa o remanejamento.",
+        story: "O Dinn conta os dias sem movimento. Ele encontra lojas paradas perto de lojas em ruptura. O remanejamento começa ali.",
         sees: ["Dias sem movimento", "Estoque congelado", "Ruptura por perto"],
         does: [
           "Encontra saldo que não gira",
@@ -442,7 +442,7 @@ export const ptBR = {
         tab: "Concorrência",
         kicker: "Concorrência e participação",
         title: "Onde o concorrente está *e você não.*",
-        story: "Compara a venda estimada do seu laboratório com a da categoria, nas mesmas lojas, e mostra onde só o concorrente tem estoque.",
+        story: "Compara a venda estimada do seu laboratório com a da categoria nas mesmas lojas. Mostra onde só o concorrente tem estoque.",
         sees: ["Venda estimada", "Mercado comparável", "Preço por rede"],
         does: [
           "Separa queda de participação de queda de venda",
@@ -456,11 +456,11 @@ export const ptBR = {
         tab: "Demanda e estratégia",
         kicker: "Demanda, vendas e estratégia",
         title: "Onde crescer, *e por onde começar.*",
-        story: "Estoque, giro, preço e histórico viram um mapa de oportunidades por categoria (como GLP-1) e por estado.",
+        story: "Estoque, giro, preço e histórico formam um mapa de oportunidades por categoria (como GLP-1) e estado.",
         sees: ["Categoria por estado", "Participação", "Redes candidatas"],
         does: [
-          "Escolhe onde concentrar esforço",
-          "Define as redes para abrir conversa",
+          "Escolhe onde concentrar o foco",
+          "Escolhe as redes para abrir conversa",
           "Transforma cada sinal em ação com responsável"
         ],
         question: "Onde a minha categoria mais cresce no Nordeste?",
@@ -501,9 +501,9 @@ export const ptBR = {
         app: "Rede de distribuição",
         cd: "CD",
         cases: [
-          { name: "Quebra de distribuição", cd: 82, pdv: 38, demand: "Alta", read: "CD com estoque, farmácias sem. Vale conferir a reposição." },
+          { name: "Quebra de distribuição", cd: 82, pdv: 38, demand: "Alta", read: "CD com estoque, farmácias sem. Confira a reposição." },
           { name: "Restrição de abastecimento", cd: 8, pdv: 41, demand: "Alta", read: "CD vazio e a região vendendo. O problema está antes do CD." },
-          { name: "Risco de ruptura", cd: 30, pdv: 12, demand: "Alta", read: "Cobertura do CD caindo. Dá para antecipar o pedido." },
+          { name: "Risco de ruptura", cd: 30, pdv: 12, demand: "Alta", read: "Cobertura do CD cai. Antecipe o pedido." },
           { name: "Possível excesso", cd: 90, pdv: 4, demand: "Baixa", read: "Estoque alto e giro baixo. Avaliar remanejar." }
         ],
         cdLabel: "Estoque no CD",
@@ -534,15 +534,15 @@ export const ptBR = {
         app: "Mercado comparável",
         you: "Seu laboratório",
         them: "Concorrentes",
-        reading: "Você cresceu 6% nas mesmas lojas; o mercado, 11%. A participação caiu porque outros cresceram mais.",
+        reading: "Você cresceu 6% nas mesmas lojas. O mercado cresceu 11%. A participação caiu porque outros cresceram mais.",
         gap: "lojas só com concorrente"
       },
       demand: {
         app: "Oportunidades",
-        questions: ["Onde a categoria avança?", "Onde perco espaço?", "Onde investigar expansão?"],
+        questions: ["Onde a categoria avança?", "Onde perco espaço?", "Onde podemos expandir?"],
         actions: [
           { priority: "Alta", title: "Abrir conversa de sortimento com a Rede A" },
-          { priority: "Média", title: "Reforçar a reposição em 3 cidades" },
+          { priority: "Média", title: "Acelerar a reposição em 3 cidades" },
           { priority: "Baixa", title: "Acompanhar o novo concorrente" }
         ]
       }
@@ -551,9 +551,9 @@ export const ptBR = {
   story: {
     lines: [
       "O canal farmacêutico deixa sinais sobre o seu produto.",
-      "Se ele aparece **disponível no canal. Se gira. A que preço. Se o CD tem para repor.**",
-      "Os sinais chegam **soltos**, de fontes diferentes e com graus diferentes de confiança.",
-      "O Dinn organiza, mostra de onde vêm e ajuda o seu time a decidir **onde agir primeiro.**"
+      "Os sinais mostram **se ele está disponível, se gira, a que preço e se o CD tem para repor.**",
+      "Os sinais chegam **soltos**, de fontes diferentes, com níveis de confiança diferentes.",
+      "O Dinn organiza os sinais, mostra a origem deles e ajuda o seu time a decidir **onde agir primeiro.**"
     ]
   },
   inside: {
@@ -561,44 +561,44 @@ export const ptBR = {
     stages: [
       {
         name: "Observa",
-        title: "Percebe uma mudança no canal.",
-        desc: "Identifica uma mudança de disponibilidade, preço, giro ou cobertura nas fontes que acompanha.",
-        example: "A presença do produto X cai em 31 das 120 lojas monitoradas da Rede A, no Sul.",
+        title: "Vê uma mudança no canal.",
+        desc: "Encontra uma mudança de disponibilidade, preço, giro ou cobertura nas fontes acompanhadas.",
+        example: "A presença do produto X cai em 31 de 120 lojas monitoradas da Rede A, no Sul.",
         chips: ["Disponibilidade", "Preço", "Giro", "Cobertura"]
       },
       {
         name: "Valida",
-        title: "Mostra de onde veio e quanto confiar.",
-        desc: "Mostra fonte, data, escopo e nível de confiança, e cruza sinais quando aplicável.",
-        example: "24 lojas foram observadas na fonte; 7 são estimadas por lojas comparáveis, com confiança média. Ausência ainda não é ruptura.",
+        title: "Mostra a fonte e a confiança.",
+        desc: "Mostra fonte, data, escopo e nível de confiança. Cruza sinais quando possível.",
+        example: "24 lojas são observadas na fonte. 7 são estimadas por lojas comparáveis, com confiança média. Ausência ainda não é ruptura.",
         chips: ["Fonte e data", "Escopo", "Observado ou estimado", "Confiança"]
       },
       {
         name: "Entende",
-        title: "Relaciona a mudança ao contexto comercial.",
-        desc: "Liga a mudança a produto, conta, território e contexto, sem presumir a causa.",
-        example: "As lojas ficam em 3 cidades da mesma rede. O CD tem saldo, o que não prova que cada loja será abastecida.",
+        title: "Liga a mudança ao contexto comercial.",
+        desc: "Liga a mudança a produto, conta e território. Não presume a causa.",
+        example: "As lojas ficam em 3 cidades da mesma rede. O CD tem saldo. Isso não prova que cada loja é abastecida.",
         chips: ["Produto", "Conta", "Território", "CD que abastece"]
       },
       {
         name: "Decide",
-        title: "Ajuda a priorizar a próxima análise ou ação.",
-        desc: "Ordena a questão entre as outras e sugere a próxima análise ou ação, como hipótese para o time validar.",
-        example: "Prioridade: investigar a Rede A no Sul, começando por pedidos pendentes, antes de falar em ruptura.",
+        title: "Ajuda a definir o próximo passo.",
+        desc: "Ordena a questão e sugere a próxima análise ou ação como hipótese para o time validar.",
+        example: "Prioridade: investigar a Rede A no Sul. Comece pelos pedidos pendentes antes de falar em ruptura.",
         chips: ["Ruptura persistente", "Estoque sem movimento", "Queda de giro", "Concentração em rede"]
       },
       {
         name: "Age",
-        title: "Leva a informação a quem executa.",
-        desc: "Entrega a leitura à equipe ou à ferramenta responsável: na plataforma, numa conversa, no BI ou na sua IA.",
-        example: "A lista chega ao KAM da conta e ao Copilot da equipe, com fonte e data.",
+        title: "Envia a leitura ao time que age.",
+        desc: "Entrega a leitura à equipe ou à ferramenta responsável: plataforma, conversa, seu BI ou sua IA.",
+        example: "A lista vai ao KAM da conta e ao Copilot do time, com fonte e data.",
         chips: ["Dinn Manager", "Dinn Insights", "Sua IA", "BI e API"]
       },
       {
         name: "Aprende",
         title: "Registra o que a equipe encontrou.",
         desc: "O time registra o que encontrou e acompanha o mesmo recorte para revisar prioridades.",
-        example: "O time marca que 5 lojas tinham pedido pendente e, na semana seguinte, acompanha o mesmo recorte para rever a prioridade.",
+        example: "O time marca que 5 lojas tinham pedido pendente. Na semana seguinte, acompanha o mesmo recorte para rever a prioridade.",
         chips: ["Retorno do time", "Mesmo recorte", "Priorização"]
       }
     ],
@@ -607,28 +607,28 @@ export const ptBR = {
   },
   delivery: {
     eyebrow: "Plataforma e capacidades",
-    title: "IA para o mercado farma *onde o seu time já trabalha*",
+    title: "IA para o mercado farma *onde o seu time trabalha*",
     more: "Saiba mais",
     cards: [
       {
         tag: "Dinn Manager",
         title: "A plataforma",
-        desc: "Leva prioridades e contexto para a gestão e a execução comercial: ruptura, estoque parado, distribuição e mercado no mesmo recorte."
+        desc: "Prioridades e contexto para a gestão e a execução comercial: ruptura, estoque parado, distribuição e mercado no mesmo recorte."
       },
       {
         tag: "Dinn Insights",
         title: "Uma conversa",
-        desc: "Apoia a exploração e a interpretação dos sinais: pergunte em português e receba o número, o recorte, a data e o que é observado ou estimado."
+        desc: "Explore e interprete os sinais. Pergunte em português. Receba o número, o recorte, a data e se é observado ou estimado."
       },
       {
         tag: "MCP",
         title: "Na sua IA",
-        desc: "Interface para que ChatGPT, Claude e Copilot autorizados consultem os dados do Dinn, com acesso somente leitura."
+        desc: "Interface para ChatGPT, Claude e Copilot autorizados consultarem os dados do Dinn, somente leitura."
       },
       {
         tag: "Dinn Conecta",
         title: "No seu BI e nos seus agentes",
-        desc: "Prepara e entrega fluxos de dados do canal, padronizados por produto, loja e região, para o seu BI e os seus agentes. Dados e governança continuam com você."
+        desc: "Prepara fluxos de dados do canal, padronizados por produto, loja e região, e os entrega ao seu BI e aos seus agentes. Dados e governança continuam com você."
       }
     ],
     sources: ["IQVIA / Close-Up", "ERP e CRM", "Farmácias"],
@@ -639,81 +639,81 @@ export const ptBR = {
       "Dois fatores por e-mail · SSO sob consulta",
       "Implantação em até 30 dias após pré-requisitos e escopo acordados"
     ],
-    note: "Cobertura e atualização variam por fonte, produto e consulta. Cada fonte depende de licença, autorização e escopo acordados, e recursos na sua IA dependem do plano e da configuração."
+    note: "Cobertura e atualização variam por fonte, produto e consulta. Cada fonte exige licença, autorização e escopo acordados. Recursos na sua IA dependem do plano e da configuração."
   },
   faq: {
-    title: "Perguntas frequentes sobre IA, ruptura de estoque e sell-out",
+    title: "FAQ: IA, ruptura de estoque e sell-out",
     items: [
       {
         question: "Já usamos auditorias como IQVIA e Close-Up. Por que precisaríamos da Dinn?",
-        answer: "A Dinn **não substitui** as auditorias de mercado: ela as **complementa**. As auditorias são referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade no dia a dia (D-1), loja a loja, e mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, as duas leituras podem ser cruzadas no mesmo recorte."
+        answer: "A Dinn **não substitui** as auditorias de mercado. Ela as **complementa**. As auditorias dão referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade todo dia (D-1), loja a loja. Ela mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, você pode cruzar as duas leituras no mesmo recorte."
       },
       {
         question: "A implantação exige um esforço grande de TI?",
-        answer: "Não precisa. A Dinn pode começar com fontes externas, sem depender dos seus sistemas internos. A implantação tem escopo delimitado e acontece em **até 30 dias** depois que os pré-requisitos combinados estão prontos. Quando fizer sentido, seus dados internos entram para enriquecer a leitura."
+        answer: "Não. A Dinn pode começar com fontes externas e não precisa dos seus sistemas internos. A implantação tem escopo delimitado e leva **até 30 dias** depois que os pré-requisitos combinados estão prontos. Depois, seus dados internos podem enriquecer a leitura."
       },
       {
         question: "A Dinn é só mais um dashboard?",
-        answer: "Não. A mesma base responde a três níveis de decisão: **estratégico** (onde concentrar a atenção), **tático** (o que discutir com cada rede) e **operacional** (quais lojas verificar primeiro). A saída não é um gráfico para interpretar, e sim uma fila concreta: cada loja com o sinal, a pergunta a responder e o retorno esperado."
+        answer: "Não. A mesma base serve a três níveis de decisão: **estratégico** (onde concentrar), **tático** (o que discutir com cada rede) e **operacional** (quais lojas verificar primeiro). A saída é uma fila, não um gráfico para interpretar. Cada loja tem o sinal, a pergunta a responder e o retorno esperado."
       },
       {
         question: "A Dinn compete com o CRM (Salesforce, Veeva, SalesFarma) que já usamos?",
-        answer: "Não. O CRM continua sendo o sistema de registro de visitas, pedidos e carteira. A Dinn é uma camada de inteligência sobre o canal: quando a integração é acordada, leva ao CRM o **contexto do que está acontecendo nas farmácias**, para o time priorizar melhor dentro da ferramenta que já usa."
+        answer: "Não. O CRM continua como sistema de registro de visitas, pedidos e carteira. A Dinn é uma camada de inteligência sobre o canal. Quando você acorda a integração, ela leva ao CRM o **contexto do que acontece nas farmácias**. O time prioriza na ferramenta que já usa."
       },
       {
         question: "E se as auditorias passarem a entregar dados diários?",
-        answer: "Dado rápido sem prioridade é só mais ruído. O diferencial da Dinn é transformar a leitura do canal em **prioridade e próximo passo**: qual produto, em quais redes, em quais lojas, com fonte e confiança explícitas. A IA prepara a análise; **a equipe decide** o que fazer."
+        answer: "Dado rápido sem prioridade é mais ruído. A Dinn transforma a leitura do canal em **prioridade e próximo passo**: qual produto, quais redes, quais lojas, com fonte e confiança. A IA prepara a análise. **A equipe decide** o que fazer."
       },
       {
         question: "Em quanto tempo vemos valor?",
-        answer: "Começamos por **um objetivo**, por exemplo reduzir a ruptura de um produto em uma região, e acompanhamos o mesmo recorte ao longo do tempo. A primeira leitura já mostra onde o problema se concentra; em 30 dias, dá para ver se o sinal persistiu ou diminuiu depois das ações do time."
+        answer: "Começamos por **um objetivo**, por exemplo menos ruptura de um produto em uma região, e acompanhamos o mesmo recorte ao longo do tempo. A primeira leitura mostra onde o problema se concentra. Em 30 dias, você vê se o sinal ficou ou caiu depois das ações do time."
       },
       {
         question: "Como a Dinn acompanha o estoque sem depender das nossas bases?",
-        answer: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário: esse é o **dado observado**. Onde não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro diz como foi obtido."
+        answer: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário. Esse é o **dado observado**. Quando não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro diz como a Dinn o obteve."
       },
       {
         question: "Dados diários não vão sobrecarregar o time de campo?",
-        answer: "É o contrário: a Dinn existe para reduzir o excesso de informação. Em vez de um painel para o representante interpretar, ela entrega **listas priorizadas**: quais lojas verificar primeiro, o que conferir em cada uma e qual retorno esperar."
+        answer: "Não. A Dinn reduz o excesso de informação. Ela não entrega um painel para o representante interpretar. Ela entrega **listas priorizadas**: quais lojas verificar primeiro, o que conferir em cada loja e qual retorno esperar."
       },
       {
         question: "A Dinn é só para a força de vendas?",
-        answer: "Não. A mesma leitura atende **Trade**, **Comercial e campo**, **Demanda e supply**, **Inteligência de mercado**, **SAC** e **Tecnologia e dados**. Todos olham para a mesma fotografia de disponibilidade, o que reduz conflitos entre as áreas."
+        answer: "Não. A mesma leitura atende **Trade**, **Comercial e campo**, **Demanda e supply**, **Inteligência de mercado**, **SAC** e **Tecnologia e dados**. Todas as áreas veem a mesma fotografia de disponibilidade. Isso reduz conflitos entre as áreas."
       },
       {
         question: "Dá para testar antes de fechar um contrato longo?",
-        answer: "Sim. Liberamos **30 dias com um objetivo só**, com termo simples e alguém nosso acompanhando. No fim, fica claro se vale seguir, ajustar ou parar."
+        answer: "Sim. Liberamos **30 dias com um objetivo só**, com termo simples e uma pessoa do time da Dinn. No fim, você sabe se vale seguir, ajustar ou parar."
       },
       {
         question: "Como a Dinn trata segurança e confiabilidade dos dados?",
-        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões, e o SSO corporativo está disponível sob consulta, conforme os requisitos da sua empresa. Cada dado é rastreável: fonte, data e a distinção entre observado e estimado ficam explícitas. As conexões com a IA do cliente são **somente leitura**."
+        answer: "O acesso tem **verificação em dois fatores por e-mail** e controle de permissões. O SSO corporativo está disponível sob consulta. Cada dado é rastreável: fonte, data e status de observado ou estimado ficam explícitos. As conexões com a IA do cliente são **somente leitura**."
       },
       {
         question: "O que é o Dinn Conecta?",
-        answer: "É a camada que prepara e entrega **dados de farma no ambiente que sua equipe já usa**. A Dinn conecta fontes autorizadas (mercado, dados internos e farmácias), padroniza produto, loja e região, cuida da qualidade e da atualização e entrega no seu BI, Copilot, agentes ou API. Dados, infraestrutura e governança continuam com você."
+        answer: "É a camada que entrega **dados de farma no ambiente que sua equipe já usa**. A Dinn conecta fontes autorizadas (mercado, dados internos e farmácias). Ela padroniza produto, loja e região, cuida da qualidade e da atualização e entrega no seu BI, Copilot, agentes ou API. Dados, infraestrutura e governança continuam com você."
       },
       {
         question: "Posso usar a Dinn no ChatGPT, no Claude ou no Copilot?",
-        answer: "Sim. A Dinn se conecta ao seu ambiente de IA por **MCP**, com acesso autorizado e **somente leitura**. Você pergunta em linguagem natural e recebe a análise com recorte, período e limites. Recursos como agendamento e geração de arquivos dependem do plano e da configuração da sua IA."
+        answer: "Sim. A Dinn se conecta ao seu ambiente de IA por **MCP**, com acesso autorizado e **somente leitura**. Pergunte em linguagem natural. Receba a análise com recorte, período e limites. Recursos como agendamento e geração de arquivos dependem do plano e da configuração da sua IA."
       },
       {
         question: "A Dinn cobre todas as farmácias e confirma a causa da ruptura?",
-        answer: "Não. **Cobertura e atualização variam por fonte, produto, rede e consulta**, e cada leitura informa o que cobre. A Dinn também não confirma causas: mostra evidências e hipóteses, e o time valida. Ausência de produto não é necessariamente ruptura, e estoque no centro de distribuição não prova abastecimento de uma loja."
+        answer: "Não. **Cobertura e atualização variam por fonte, produto, rede e consulta**. Cada leitura informa o que cobre. A Dinn não confirma causas. Ela mostra evidências e hipóteses, e o time as valida. Ausência de produto nem sempre é ruptura. Estoque no centro de distribuição não prova que uma loja é abastecida."
       },
       {
         question: "Qual a diferença entre dado observado e estimado?",
-        answer: "**Observado** é o que a fonte informou diretamente, com local e horário. **Estimado** é calculado a partir de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. **Inferido** é a leitura que o Dinn tira da combinação de sinais, apresentada como hipótese a validar. A base é atualizada em D-1 e, em lojas elegíveis, há consulta pontual de disponibilidade."
+        answer: "Dado **observado** é o que a fonte informou diretamente, com local e horário. Dado **estimado** vem de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. Dado **inferido** é a leitura que o Dinn tira da combinação de sinais. É uma hipótese a validar. A base atualiza em D-1. Em lojas elegíveis, você pode fazer uma consulta pontual de disponibilidade."
       }
     ]
   },
   ctaFinal: {
-    title: "Veja como transformar os sinais do seu canal em *prioridades comerciais mais claras*",
-    description: "Numa demonstração, o Dinn mostra a leitura com o seu portfólio, a sua carteira e as suas regiões.",
+    title: "Transforme sinais do canal em *prioridades comerciais claras*",
+    description: "Numa demonstração, o Dinn mostra a leitura do seu portfólio, da sua carteira e das suas regiões.",
     button: "Solicitar demo",
     secondary: "Voltar a perguntar"
   },
   footer: {
-    description: "Inteligência comercial para o canal farmacêutico, com presença em Joinville e Valência.",
+    description: "Inteligência comercial para o canal farmacêutico. Presente em Joinville e Valência.",
     sectionA: "A Dinn",
     sectionSolutions: "Soluções",
     sectionLegal: "Legal",
@@ -927,13 +927,13 @@ export const ptBR = {
     heroTitle: "Blog do Dinn: IA, ruptura de estoque e execução comercial farma",
     searchPlaceholder: "Busque seu conteúdo aqui",
     noResultsTitle: "Nenhum conteúdo encontrado",
-    noResultsDesc: "Tente ajustar sua busca por outros termos.",
+    noResultsDesc: "Mude os termos da busca.",
     readArticle: "Ler artigo",
     viewContent: "Ver conteúdo",
     minRead: "min de leitura",
     backToBlog: "Voltar para o Blog",
-    ctaTitle: "Transforme dados em decisões estratégicas",
-    ctaText: "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança explícitas.",
+    ctaTitle: "Transforme dados em decisões",
+    ctaText: "A Dinn mostra onde falta produto nas farmácias, o que mudou e onde agir primeiro, com fonte e confiança.",
     ctaBtn: "Solicitar demonstração",
     recommended: "Recomendados para você",
     writtenBy: "Por",

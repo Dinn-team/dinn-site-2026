@@ -13,19 +13,19 @@ export const pagesEs = {
   areas: {
     eyebrow: "Para tu área",
     title: "Empieza por el problema de *tu equipo*",
-    intro: "Cada área llega con una pregunta distinta. Elige la tuya y mira las decisiones que se apoyan, un ejemplo y los límites de la lectura.",
+    intro: "Cada área tiene una pregunta distinta. Elige la tuya. Mira las decisiones que Dinn apoya, un ejemplo y los límites.",
     open: "Ver Dinn para esta área",
     questionPrefix: "La pregunta:"
   },
 
   contentTeaser: {
     eyebrow: "Recursos",
-    title: "Para quien aún no está listo para una demostración",
+    title: "¿Aún no estás listo para una demostración?",
     items: [
       {
         type: "Blog",
-        title: "Análisis y artículos sobre el canal farmacéutico",
-        desc: "Desabasto de inventario, ejecución comercial e inteligencia de datos en farma.",
+        title: "Artículos sobre el canal farmacéutico",
+        desc: "Desabasto, ejecución comercial y datos en farma.",
         href: "/blog"
       },
       {
@@ -37,7 +37,7 @@ export const pagesEs = {
       {
         type: "Novedades",
         title: "Lo que entró en producción en Dinn",
-        desc: "Cada novedad de la plataforma en producción, explicada en lenguaje simple y organizada por fecha.",
+        desc: "Cada novedad de la plataforma, en lenguaje simple, por fecha.",
         href: "/recursos/changelog"
       }
     ]
@@ -46,20 +46,20 @@ export const pagesEs = {
   contact: {
     meta: {
       title: "Contacto | Dinn",
-      description: "Cuéntanos qué decisión del canal farmacéutico quieres mejorar y recibe la respuesta de una persona del equipo de Dinn."
+      description: "Cuéntanos qué decisión del canal farmacéutico quieres mejorar. Una persona del equipo de Dinn responde."
     },
     navLabel: "Contacto",
     hero: {
       eyebrow: "Contacto",
       title: "Cuéntanos qué quieres *mejorar en el canal*",
-      lead: "Pocos campos y listo. Alguien del equipo lee tu pedido, sabe lo que buscas y responde con el siguiente paso."
+      lead: "Llena unos pocos campos. Una persona del equipo lee tu solicitud y responde con el siguiente paso."
     },
     after: {
       title: "Qué pasa después",
       steps: [
-        { title: "Recibimos tu solicitud", text: "Llega directo al equipo, con el rol y la decisión que indicaste." },
-        { title: "Una persona responde", text: "Respuesta por correo en pocos días hábiles, haciendo referencia a lo que pediste." },
-        { title: "Tú decides el ritmo", text: "Si tiene sentido, agendamos una conversación corta. Si no, lo dejamos ahí." }
+        { title: "Recibimos tu solicitud", text: "Llega al equipo con tu rol y tu decisión." },
+        { title: "Una persona responde", text: "Recibes una respuesta por correo en pocos días hábiles." },
+        { title: "Tú decides el ritmo", text: "Si tiene sentido, agendamos una llamada corta. Si no, paramos." }
       ]
     },
     form: {
@@ -90,7 +90,7 @@ export const pagesEs = {
         { value: "preco", label: "Precio frente al mercado" },
         { value: "integracao", label: "Integración con BI, CRM o agentes" }
       ],
-      consent: "Autorizo a Dinn a usar estos datos para responder a esta solicitud y enviar comunicaciones relacionadas con ella.",
+      consent: "Autorizo a Dinn a usar estos datos para responder a esta solicitud y enviar comunicaciones relacionadas.",
       privacy: "Política de privacidad",
       submit: "Enviar solicitud",
       sending: "Enviando…",
@@ -101,14 +101,14 @@ export const pagesEs = {
       requiredChoice: "Selecciona una opción.",
       emailInvalid: "Ingresa un correo válido.",
       emailPersonal: "Usa el correo de tu empresa. No aceptamos direcciones personales, como Gmail u Outlook.",
-      consent: "Es necesario autorizar para enviar la solicitud.",
-      submit: "No pudimos enviarlo ahora. Inténtalo de nuevo en un momento o",
+      consent: "Debes autorizar para enviar la solicitud.",
+      submit: "No pudimos enviarlo. Inténtalo de nuevo o",
       submitLink: "agenda directo"
     },
     done: {
       title: "Solicitud recibida",
-      text: "Gracias. Una persona del equipo leerá tu solicitud y responderá por correo en pocos días hábiles.",
-      schedule: "Agendar una conversación",
+      text: "Gracias. Una persona del equipo lee tu solicitud y responde por correo en pocos días hábiles.",
+      schedule: "Agendar llamada",
       home: "Volver al inicio"
     }
   },
@@ -124,11 +124,11 @@ export const pagesEs = {
     page: {
       eyebrow: "Soluciones",
       back: "Todas las soluciones",
-      questionLabel: "La pregunta que trae a tu área aquí",
+      questionLabel: "La pregunta de tu área",
       decisionsLabel: "Decisiones que Dinn apoya",
       exampleLabel: "Un ejemplo, paso a paso",
       limitsLabel: "Límites de la lectura",
-      useCasesLabel: "Situaciones concretas de esta área",
+      useCasesLabel: "Situaciones de esta área",
       useCaseOpen: "Ver en la home",
       trustCta: "Cómo tratamos origen, fecha y confianza",
       otherLabel: "Otras áreas"
@@ -137,55 +137,55 @@ export const pagesEs = {
       {
         slug: "inteligencia-pricing",
         name: "Inteligencia y Pricing",
-        short: "Entiende los movimientos de disponibilidad, precio, rotación y competencia.",
+        short: "Sigue disponibilidad, precio, rotación y competencia.",
         question: "¿Cuál es el origen y hasta dónde puedo confiar?",
-        title: "Movimientos de precio, rotación y competencia, *con el origen a la vista*",
-        lead: "Para quien necesita explicar una cifra antes de llevarla adelante: cada lectura trae fuente, fecha, cobertura y límite.",
+        title: "Cambios de precio, rotación y competencia, *con la fuente a la vista*",
+        lead: "Explica una cifra antes de usarla. Cada lectura muestra fuente, fecha, cobertura y límite.",
         decisions: [
-          "Separar un cambio puntual de un movimiento que persiste en el tiempo.",
-          "Distinguir la caída de participación de la caída de venta, en las mismas tiendas.",
-          "Complementar los datos consolidados de mercado cuando la decisión pide más granularidad y contexto operativo."
+          "Distinguir un cambio puntual de una tendencia duradera.",
+          "Distinguir una caída de participación de una caída de venta, en las mismas tiendas.",
+          "Añadir granularidad y contexto operativo a los datos consolidados de mercado."
         ],
         example: {
           title: "Tu laboratorio creció 6% en las mismas tiendas; la categoría, 11%",
           steps: [
             "Señal: la participación cae en la región.",
-            "Validación: solo entran tiendas comparables, presentes en las dos ventanas de tiempo.",
-            "Lectura: la caída viene de que otros productos crecieron más, no de que la venta haya disminuido.",
-            "Siguiente paso: mirar las tiendas donde solo aparece con inventario la competencia."
+            "Validación: solo tiendas comparables, presentes en las dos ventanas de tiempo.",
+            "Lectura: otros productos crecieron más. Tu venta no disminuyó.",
+            "Siguiente paso: mirar las tiendas donde solo la competencia tiene inventario."
           ]
         },
         limits: [
-          "La venta se estima por el movimiento de inventario, no por un sell-out auditado.",
-          "Los datos de competidores aparecen agregados.",
-          "Dinn complementa las auditorías de mercado; no las reemplaza."
+          "La venta se estima por el movimiento de inventario. No es un sell-out auditado.",
+          "Los datos de competidores están agregados.",
+          "Dinn complementa las auditorías de mercado. No las reemplaza."
         ],
         useCases: ["concorrencia", "demanda"]
       },
       {
         slug: "trade-kam-campo",
         name: "Trade, KAM y Campo",
-        short: "Prioriza cuentas, territorios y conversaciones con el contexto más reciente.",
+        short: "Prioriza cuentas y territorios con el contexto más reciente.",
         question: "¿A quién priorizo y qué llevo a la conversación?",
         title: "Una fila de tiendas y cuentas, *con qué verificar en cada una*",
-        lead: "En lugar de un tablero para interpretar, una lista priorizada con la señal, la fecha y la pregunta por responder.",
+        lead: "Sin tablero que interpretar. Recibes una lista priorizada con la señal, la fecha y la pregunta por responder.",
         decisions: [
-          "Empezar la semana por las tiendas que más pesan en el desabasto del alcance.",
-          "Llevar a la cadena evidencia por tienda, con fecha, en lugar de una impresión general.",
+          "Empezar la semana por las tiendas que causan más desabasto en tu alcance.",
+          "Dar a la cadena evidencia por tienda, con fecha.",
           "Revisar el mismo alcance después de la acción y registrar el retorno."
         ],
         example: {
           title: "6 de las 40 tiendas de la cartera concentran 70% de la señal",
           steps: [
-            "Señal: desabasto persistente en tiendas de la cartera, en la última semana.",
-            "Validación: nivel calculado como días sin inventario ÷ días observados en los últimos 30 días.",
+            "Señal: desabasto persistente en tiendas de la cartera en la última semana.",
+            "Validación: nivel = días sin inventario ÷ días observados en los últimos 30 días.",
             "Fila: las tiendas en orden, con qué verificar en cada una (¿pedido pendiente? ¿fuera del anaquel?).",
-            "Retorno: el equipo registra lo que encontró y sigue el mismo alcance para revisar prioridades."
+            "Retorno: el equipo registra lo que encontró. Dinn sigue el mismo alcance para revisar prioridades."
           ]
         },
         limits: [
-          "Dinn prepara la lista; quien arma la agenda es tu equipo.",
-          "Nada se escribe en el CRM por cuenta propia: la lectura sirve para preparar la visita.",
+          "Dinn prepara la lista. Tu equipo define la agenda.",
+          "Dinn no escribe nada en el CRM. La lectura sirve para preparar la visita.",
           "Las tiendas que nunca vendieron el producto quedan fuera, para no inflar el desabasto."
         ],
         useCases: ["campo"]
@@ -193,12 +193,12 @@ export const pagesEs = {
       {
         slug: "supply-distribuicao",
         name: "Supply y Distribución",
-        short: "Investiga la cobertura, la disponibilidad y las posibles restricciones de abasto.",
+        short: "Investiga cobertura, disponibilidad y restricciones de abasto.",
         question: "¿Dónde puede haber un problema de cobertura o de abasto?",
         title: "¿La falla está en el CEDIS, en la reposición o en la farmacia? *Mira los dos lados.*",
-        lead: "La lectura cruza el inventario en el distribuidor con la disponibilidad en las farmacias de la zona, siempre con salvedades causales explícitas.",
+        lead: "Dinn cruza el inventario del distribuidor con la disponibilidad en las farmacias de la zona. Indica las salvedades causales.",
         decisions: [
-          "Separar la falta en el origen de la falla de reposición.",
+          "Distinguir la falta en el origen de la falla de reposición.",
           "Anticipar el pedido cuando cae la cobertura del CEDIS.",
           "Evaluar una reubicación donde hay inventario detenido cerca de tiendas en desabasto."
         ],
@@ -208,28 +208,28 @@ export const pagesEs = {
             "Señal: 38% de las farmacias de la zona están sin el producto.",
             "Validación: cobertura del CEDIS = inventario en el CEDIS ÷ venta diaria estimada de la zona.",
             "Lectura: el patrón apunta a una falla de distribución o de reposición, no a una falta en el origen.",
-            "Antes de concluir: confirmar los pedidos pendientes en las cadenas afectadas."
+            "Antes de concluir: confirma los pedidos pendientes en las cadenas afectadas."
           ]
         },
         limits: [
-          "El inventario en el CEDIS no prueba inventario en la farmacia: la lectura cruza las dos puntas.",
-          "El patrón es una hipótesis; la causa exige investigación.",
-          "La cobertura del CEDIS usa la venta estimada de la región: es una aproximación, no la cobertura real de ese CEDIS, y solo vale con una demanda compatible con la población que abastece.",
-          "El movimiento observado no equivale a una venta confirmada."
+          "El inventario en el CEDIS no prueba inventario en la farmacia. La lectura cruza las dos puntas.",
+          "El patrón es una hipótesis. La causa requiere investigación.",
+          "La cobertura del CEDIS usa la venta estimada de la región. Es una aproximación, no la cobertura real de ese CEDIS. Solo vale si la demanda coincide con la población que abastece.",
+          "El movimiento observado no es una venta confirmada."
         ],
         useCases: ["distribuicao", "parado"]
       },
       {
         slug: "sac-customer-experience",
         name: "Atención a clientes y Customer Experience",
-        short: "Orienta a los consumidores con claridad sobre disponibilidad y cercanía.",
+        short: "Orienta a los consumidores sobre disponibilidad y cercanía.",
         question: "¿Cómo oriento a alguien sin inducirlo al error?",
-        title: "Dónde el consumidor tiene buena probabilidad de encontrar el producto, *y con qué seguridad*",
-        lead: "Disponibilidad, cercanía y actualización en la misma pantalla, con la fuente y la fecha de cada indicación.",
+        title: "Dónde el consumidor probablemente encuentra el producto, *y qué tan confiable es*",
+        lead: "Disponibilidad, cercanía y actualización en una pantalla, con la fuente y la fecha de cada indicación.",
         decisions: [
           "Indicar la farmacia cercana con mayor probabilidad de tener el producto.",
-          "Saber si la información es observada o estimada antes de orientar.",
-          "Mostrar al trade dónde la búsqueda no encuentra producto."
+          "Verificar si la información es observada o estimada antes de orientar.",
+          "Mostrar al trade dónde la demanda no encuentra producto."
         ],
         example: {
           title: "Las cinco farmacias más cercanas al consumidor",
@@ -241,8 +241,8 @@ export const pagesEs = {
           ]
         },
         limits: [
-          "La lectura base es D-1; en tiendas compatibles, hay consulta en tiempo real bajo demanda, con el horario de la respuesta.",
-          "Probabilidad de inventario no es garantía de inventario, y la orientación debe decirlo.",
+          "La lectura base es D-1. En tiendas compatibles, una consulta bajo demanda corre en tiempo real y muestra la hora de la respuesta.",
+          "Probabilidad de inventario no es garantía. Díselo al consumidor.",
           "La cobertura varía por cadena y por fuente."
         ],
         useCases: ["sac"]
@@ -252,25 +252,25 @@ export const pagesEs = {
         name: "Marketing y Lanzamientos",
         short: "Sigue la presencia, la evolución de la cobertura y las señales de ejecución del lanzamiento.",
         question: "¿La ejecución avanza donde debería?",
-        title: "Semana a semana, *dónde ya llegó el lanzamiento* y dónde se trabó",
-        lead: "Presencia por cadena y región a lo largo del tiempo, comparada con el plan que definió tu equipo.",
+        title: "Semana a semana, *dónde llegó el lanzamiento* y dónde se trabó",
+        lead: "Presencia por cadena y región en el tiempo, comparada con el plan de tu equipo.",
         decisions: [
-          "Ver dónde se aceleró el lanzamiento y dónde sigue por debajo de lo esperado.",
-          "Separar un problema de sell-in de un problema de reposición.",
-          "Comparar la evolución por cohorte y por canal con la meta definida."
+          "Ver dónde se aceleró el lanzamiento y dónde está por debajo de lo esperado.",
+          "Distinguir un problema de sell-in de un problema de reposición.",
+          "Comparar el avance por cohorte y canal con la meta."
         ],
         example: {
           title: "Seis semanas después del lanzamiento",
           steps: [
             "Señal: el producto aparece en 54% de las farmacias monitoreadas.",
-            "Validación: presencia = farmacias con inventario ÷ farmacias monitoreadas en el alcance, comparada con la meta y la cohorte que planeó tu equipo.",
-            "Lectura: se aceleró en las grandes cadenas y sigue por debajo de 20% en las independientes.",
-            "Siguiente pregunta: ¿el CEDIS ya recibió el producto en las regiones adonde no llegó?"
+            "Validación: presencia = farmacias con inventario ÷ farmacias monitoreadas en el alcance. Compara con la meta y la cohorte de tu equipo.",
+            "Lectura: se aceleró en las grandes cadenas. Sigue por debajo de 20% en las independientes.",
+            "Siguiente pregunta: ¿el CEDIS recibió el producto en las regiones adonde no llegó?"
           ]
         },
         limits: [
           "La semana 1 comienza en la fecha de lanzamiento definida por tu equipo.",
-          "La separación por canal sigue lo que cada fuente permite identificar.",
+          "La separación por canal sigue lo que cada fuente puede identificar.",
           "La presencia en las farmacias no es sell-out."
         ],
         useCases: ["lancamento"]
@@ -278,10 +278,10 @@ export const pagesEs = {
       {
         slug: "ti-dados-governanca",
         name: "TI, Datos y Gobernanza",
-        short: "Integra señales con trazabilidad, control de acceso y límites explícitos.",
+        short: "Integra señales con trazabilidad, control de acceso y límites claros.",
         question: "¿Cómo se integra, se protege y se gobierna?",
-        title: "Señales que llegan a tu entorno, *con trazabilidad y control de acceso*",
-        lead: "API, BI y la IA del cliente consultan la misma base, con el alcance autorizado y el origen de cada dato preservado.",
+        title: "Señales en tu entorno, *con trazabilidad y control de acceso*",
+        lead: "API, BI y la IA del cliente consultan la misma base. El alcance autorizado y el origen de cada dato se mantienen.",
         decisions: [
           "Elegir por dónde consumir: plataforma, archivo, API, BI o la IA del cliente.",
           "Definir quién accede a qué, con verificación en dos pasos y SSO corporativo bajo consulta.",
@@ -292,12 +292,12 @@ export const pagesEs = {
           steps: [
             "Entrada: el equipo pregunta en ChatGPT, en Claude o en Copilot.",
             "Acceso: la IA autorizada consulta Dinn por MCP, solo lectura.",
-            "Respuesta: alcance, periodo, fuente y límites acompañan la cifra.",
+            "Respuesta: la cifra viene con alcance, periodo, fuente y límites.",
             "Gobernanza: el uso queda dentro del plan y de la configuración del entorno del cliente."
           ]
         },
         limits: [
-          "El MCP es una interfaz de consulta; no reemplaza la infraestructura de datos.",
+          "El MCP es una interfaz de consulta. No reemplaza la infraestructura de datos.",
           "Cada fuente depende de la licencia, la autorización y el alcance acordados.",
           "Funciones como programación y generación de archivos dependen del plan y de la configuración de la IA del cliente."
         ],
@@ -309,62 +309,62 @@ export const pagesEs = {
   platform: {
     meta: {
       title: "Plataforma | Dinn",
-      description: "Cómo funciona Dinn: observa, valida, ayuda a entender y decidir, entrega a quien ejecuta y aprende del retorno. Papel de Stock, Manager, Insights, MCP y Conecta."
+      description: "Cómo funciona Dinn: observa, valida, ayuda a entender y decidir, entrega a quien ejecuta y aprende del retorno. El papel de Stock, Manager, Insights, MCP y Conecta."
     },
     hero: {
       eyebrow: "Plataforma",
-      title: "Un sistema para ir de la *señal a la acción comercial*",
-      lead: "Dinn observa, valida, ayuda a entender y a decidir, lleva el resultado a quien ejecuta y aprende del retorno. Cada parte tiene un papel claro."
+      title: "Un sistema de la *señal a la acción comercial*",
+      lead: "Dinn observa, valida, ayuda a entender y decidir, entrega a quien ejecuta y aprende del retorno. Cada parte tiene un papel claro."
     },
     cycle: {
       title: "El ciclo, en seis pasos",
-      intro: "De la señal suelta a la acción registrada. El ejemplo completo, con un único caso, está en la home."
+      intro: "De una señal suelta a una acción registrada. El ejemplo completo está en la página de inicio."
     },
     parts: {
       title: "Cinco partes, con roles distintos",
-      intro: "Trabajan juntas, pero no son cinco productos equivalentes: hay producto, plataforma, interfaz y capa de datos. Cada una dice también lo que no hace.",
+      intro: "Trabajan juntas, pero no son cinco productos iguales. Hay un producto, una plataforma, interfaces y una capa de datos. Cada parte también dice lo que no hace.",
       notLabel: "Lo que no es",
       kinds: ["Producto", "Plataforma", "Interfaz", "Interfaz técnica", "Capa de datos"],
       items: [
         {
           tag: "Dinn Stock",
           title: "La lectura de disponibilidad",
-          desc: "Organiza la lectura de disponibilidad y de las señales relacionadas con el canal, con el origen y la confianza de cada punto.",
+          desc: "Organiza la disponibilidad y las señales relacionadas del canal, con la fuente y la confianza de cada punto.",
           not: "La ausencia de producto es una señal por validar, no un desabasto confirmado."
         },
         {
           tag: "Dinn Manager",
           title: "La gestión y la ejecución",
-          desc: "Lleva prioridades y contexto a la gestión y a la ejecución comercial: desabasto, inventario detenido, distribución y mercado en el mismo alcance.",
-          not: "La decisión sigue con el equipo; la plataforma prepara la lectura."
+          desc: "Da prioridades y contexto a la gestión y la ejecución: desabasto, inventario detenido, distribución y mercado en un alcance.",
+          not: "El equipo decide. La plataforma prepara la lectura."
         },
         {
           tag: "Dinn Insights",
           title: "La conversación con las señales",
-          desc: "Apoya la exploración y la interpretación asistida de las señales disponibles: pregunta en español y recibe el número, el alcance, la fecha y el método.",
-          not: "Las hipótesis aparecen como hipótesis; Dinn no presume la causa."
+          desc: "Explora e interpreta las señales. Pregunta en español y recibe el número, el alcance, la fecha y el método.",
+          not: "Las hipótesis aparecen como hipótesis. Dinn no supone la causa."
         },
         {
           tag: "MCP",
           title: "La interfaz para tu IA",
-          desc: "Permite que herramientas autorizadas, como ChatGPT, Claude y Copilot, consulten los datos y las capacidades de Dinn, con acceso de solo lectura.",
-          not: "No es la infraestructura de datos: es una forma de consultar."
+          desc: "Permite que herramientas autorizadas, como ChatGPT, Claude y Copilot, consulten los datos de Dinn, con acceso de solo lectura.",
+          not: "No es la infraestructura de datos. Es una forma de consultar."
         },
         {
           tag: "Dinn Conecta",
           title: "Los flujos de datos",
-          desc: "Prepara y opera flujos de datos especializados para el contexto del cliente, estandarizando producto, tienda y zona para el BI y los agentes.",
-          not: "No cierra por sí solo el ciclo de ejecución: entrega datos a quien ejecuta."
+          desc: "Crea y opera flujos de datos para el contexto del cliente. Estandariza producto, tienda y zona para el BI y los agentes.",
+          not: "No cierra el ciclo de ejecución. Entrega datos a quien ejecuta."
         }
       ]
     },
     data: {
       title: "Datos e integraciones",
-      intro: "La misma regla vale en toda la plataforma: decir de dónde vino, cuándo se observó y hasta dónde llega la cobertura.",
+      intro: "Una regla vale en toda la plataforma: decir de dónde vino el dato, cuándo se observó y hasta dónde llega la cobertura.",
       items: [
         {
           title: "De dónde vienen las señales",
-          text: "De fuentes digitales de las farmacias, consultadas por agentes. Cuando hay autorización, también de mercado (IQVIA / Close-Up) y de datos internos (ERP y CRM)."
+          text: "De fuentes digitales de las farmacias, consultadas por agentes. Con autorización, también de datos de mercado (IQVIA / Close-Up) y datos internos (ERP y CRM)."
         },
         {
           title: "Con qué actualización",
@@ -376,7 +376,7 @@ export const pagesEs = {
         },
         {
           title: "Por dónde empezar",
-          text: "Un objetivo y un alcance. Dinn puede empezar solo con fuentes externas, y la implementación toma hasta 30 días tras los prerrequisitos y el alcance acordados."
+          text: "Un objetivo y un alcance. Dinn puede empezar solo con fuentes externas. La implementación toma hasta 30 días después de acordar los prerrequisitos y el alcance."
         }
       ]
     }
@@ -390,11 +390,11 @@ export const pagesEs = {
     hero: {
       eyebrow: "Confianza",
       title: "Origen, fecha y límites *en cada señal*",
-      lead: "TI, datos, compliance y compras encuentran aquí cómo Dinn trata el origen del dato, el acceso y la implementación."
+      lead: "TI, datos, compliance y compras: vean cómo Dinn trata el origen del dato, el acceso y la implementación."
     },
     signals: {
       title: "Tres tipos de señal, siempre identificados",
-      intro: "Dinn muestra, en el contexto de uso, cuál es la naturaleza de cada información antes de que se convierta en prioridad.",
+      intro: "Dinn muestra la naturaleza de cada información antes de que sea una prioridad.",
       exampleLabel: "Ejemplo",
       items: [
         {
@@ -404,58 +404,58 @@ export const pagesEs = {
         },
         {
           name: "Estimado",
-          def: "Calculado a partir de tiendas comparables y del historial cuando la fuente no responde, siempre con nivel de confianza.",
-          example: "Sin respuesta de la tienda, el inventario se estima por tiendas parecidas de la misma cadena."
+          def: "Se calcula con tiendas comparables y el historial cuando la fuente no responde. Siempre tiene nivel de confianza.",
+          example: "La tienda no responde. Dinn estima su inventario con tiendas parecidas de la misma cadena."
         },
         {
           name: "Inferido",
-          def: "La lectura que sale de la combinación de señales, presentada como hipótesis para que el equipo valide.",
-          example: "Varias tiendas sin producto y el CEDIS con saldo sugieren una falla de reposición, no una falta en el origen."
+          def: "Una lectura de señales combinadas. Se muestra como hipótesis para que el equipo valide.",
+          example: "Varias tiendas sin producto y un CEDIS con saldo sugieren una falla de reposición, no una falta en el origen."
         }
       ]
     },
     notProve: {
       title: "Lo que una señal no prueba",
-      intro: "Nombrar el límite es parte del producto. Es lo que permite al equipo actuar sin ser inducido al error.",
+      intro: "Nombrar el límite es parte del producto. Permite al equipo actuar sin error.",
       items: [
-        "La ausencia de producto no es necesariamente desabasto.",
+        "La ausencia de un producto no siempre es desabasto.",
         "El producto en el centro de distribución no prueba el abasto de una tienda específica.",
-        "Un saldo constante no prueba, por sí solo, que no hubo venta.",
-        "Una recomendación no es una acción automatizada: la decisión y la ejecución siguen con el equipo."
+        "Un saldo constante no prueba que no hubo venta.",
+        "Una recomendación no es una acción automatizada. El equipo decide y ejecuta."
       ]
     },
     coverage: {
       title: "Cobertura y actualización",
       items: [
-        { title: "Frecuencia", text: "Base en D-1. En tiendas elegibles, hay consulta puntual de disponibilidad." },
-        { title: "Cobertura", text: "Varía por fuente, producto, cadena y consulta, y cada lectura informa qué cubre." },
-        { title: "Fuentes de mercado e internas", text: "Entran cuando hay licencia, autorización y alcance acordados." }
+        { title: "Frecuencia", text: "Base en D-1. En tiendas elegibles, es posible una consulta puntual de disponibilidad." },
+        { title: "Cobertura", text: "Varía por fuente, producto, cadena y consulta. Cada lectura indica qué cubre." },
+        { title: "Fuentes de mercado e internas", text: "Entran cuando se acuerdan licencia, autorización y alcance." }
       ]
     },
     security: {
       title: "Acceso, seguridad y privacidad",
       items: [
-        { title: "Acceso", text: "Verificación en dos pasos por correo y control de permisos. SSO corporativo bajo consulta: evalúa con Dinn los requisitos de autenticación de tu empresa y el alcance de la implementación." },
+        { title: "Acceso", text: "Verificación en dos pasos por correo y control de permisos. SSO corporativo bajo consulta: revisa con Dinn los requisitos de autenticación y el alcance de la implementación." },
         { title: "IA del cliente", text: "Las conexiones por MCP son autorizadas y de acceso de solo lectura." },
         { title: "Datos y gobernanza", text: "Los datos internos, la infraestructura y la gobernanza del entorno del cliente siguen con él. Dinn responde por los controles de su propia capa." },
-        { title: "Privacidad", text: "El tratamiento de datos personales sigue la LGPD y está descrito en la Política de Privacidad." }
+        { title: "Privacidad", text: "Dinn trata los datos personales según la LGPD, como describe la Política de Privacidad." }
       ],
       privacyLink: "Leer la Política de Privacidad"
     },
     deploy: {
       title: "Implementación",
-      text: "La implementación tiene alcance delimitado y se realiza en hasta 30 días después de que los prerrequisitos y el alcance estén acordados. Puede empezar solo con fuentes externas, sin depender de los sistemas internos del cliente."
+      text: "La implementación tiene un alcance definido. Toma hasta 30 días después de acordar los prerrequisitos y el alcance. Puede empezar solo con fuentes externas, sin depender de los sistemas internos del cliente."
     },
     questions: {
       title: "Preguntas que TI y compras suelen hacer",
       items: [
         {
           question: "¿Qué datos de mi empresa necesita Dinn?",
-          answer: "Para empezar, ninguno: la lectura puede partir de fuentes externas. Los datos internos entran cuando tenga sentido y con acuerdo, para enriquecer el contexto."
+          answer: "Para empezar, ninguno. La lectura puede partir de fuentes externas. Los datos internos entran por acuerdo, para añadir contexto."
         },
         {
           question: "¿Quién controla los datos y la gobernanza?",
-          answer: "Los datos internos y la gobernanza de tu entorno siguen contigo. Dinn prepara y entrega y responde por los controles de su propia capa: acceso, permisos y registro."
+          answer: "Tú conservas los datos internos y la gobernanza de tu entorno. Dinn prepara y entrega los datos. Dinn responde por los controles de su propia capa: acceso, permisos y registro."
         },
         {
           question: "¿Cómo accede nuestra IA a Dinn?",
@@ -463,14 +463,14 @@ export const pagesEs = {
         },
         {
           question: "¿Dónde encuentro soporte y el canal de incidentes?",
-          answer: "En la página de Soporte, con orientaciones para registrar un problema y activar el canal contratado."
+          answer: "En la página de Soporte. Explica cómo registrar un problema y llegar al canal contratado."
         }
       ],
       supportLink: "Abrir la página de Soporte"
     },
     cta: {
-      title: "¿Necesitas homologar con TI, datos o compras?",
-      desc: "Conversamos sobre los requisitos de tu entorno antes de cualquier implementación.",
+      title: "¿Necesitas aprobación de TI, datos o compras?",
+      desc: "Hablamos de los requisitos de tu entorno antes de cualquier implementación.",
       button: "Conversar sobre requisitos"
     }
   },
@@ -480,14 +480,14 @@ export const pagesEs = {
   cases: {
     meta: {
       title: "Casos de uso | Dinn",
-      description: "Galería de casos de uso de Dinn: historias de la señal a la acción, contadas paso a paso, con origen, validación y aprendizaje."
+      description: "Casos de uso de Dinn: historias de la señal a la acción, paso a paso, con fuente, validación y aprendizaje."
     },
     hero: {
       eyebrow: "Casos de uso",
       title: "Historias de uso de Dinn, *una a una*",
-      lead: "Cada caso cuenta el recorrido completo: de la situación al aprendizaje, con lo que se observó, cómo se validó y qué decidió el equipo."
+      lead: "Cada caso cuenta el recorrido completo, de la situación al aprendizaje: qué observó Dinn, cómo se validó y qué decidió el equipo."
     },
-    gallery: { open: "Leer el caso", customer: "Caso de cliente", empty: "Los nuevos casos se agregarán aquí, uno a uno." },
+    gallery: { open: "Leer el caso", customer: "Caso de cliente", empty: "Aquí agregamos nuevos casos, uno a uno." },
     detail: {
       back: "Todos los casos",
       problem: "El problema",
@@ -513,17 +513,17 @@ export const pagesEs = {
     rules: {
       title: "Cómo contamos los casos",
       items: [
-        "Los casos son relatos de usuarios de Dinn; se preservan nombres, productos y datos.",
-        "Cuando hay un resultado medible, informamos período, universo y método.",
-        "Cuando no lo hay, reportamos la ganancia operativa comprobada, sin convertirla en impacto financiero.",
-        "La participación y la venta son estimadas: cuando aparece un número, decimos el mercado, la ventana y el método."
+        "Los casos son relatos de usuarios de Dinn. Se mantienen nombres, productos y datos.",
+        "Si un resultado es medible, indicamos periodo, universo y método.",
+        "Si no, reportamos la ganancia operativa comprobada. No la convertimos en impacto financiero.",
+        "La participación y la venta son estimadas. Con un número, indicamos el mercado, la ventana y el método."
       ]
     }
   },
 
   caseScenes: {
     "frozen-stock": {
-      title: "Inventario detenido de cada tienda de Fortaleza sumado y convertido en días disponibles",
+      title: "Inventario detenido de cada tienda de Fortaleza, sumado y convertido en días disponibles",
       city: "Fortaleza", pdv: "Tienda", total: "Inventario", frozen: "Inventario detenido", sum: "Suma de la ciudad",
       days: "Días disponibles", need: "Necesario", covered: "Ciudad cubierta"
     },
@@ -538,12 +538,12 @@ export const pagesEs = {
       confirmed: "Producto en la dirección", time: "Tiempo por atención", before: "Antes", after: "Con Dinn"
     },
     "price-gap": {
-      title: "Competidor presente en las cadenas, producto ausente, y precio alineado en la negociación",
+      title: "Competidor en las cadenas, producto ausente, precio alineado en la negociación",
       competitor: "Competidor", yours: "Tu producto", chain: "Cadena", priceLabel: "Precio",
       weighing: "El precio pesa en la decisión", negotiated: "Precio negociado con la cadena"
     },
     "share-opps": {
-      title: "Share de 60% a 45%, pérdidas por estado y acciones por ciudad generadas por Insights",
+      title: "Share de 60% a 45%, pérdidas por estado y acciones por ciudad de Insights",
       share: "Share", from: "60%", to: "45%", states: "Pérdidas por estado", opps: "Oportunidades",
       city: "Ciudad", state: "Estado", action: "Acción", ask: "¿Dónde recupero espacio?", answer: "Acciones por ciudad y estado"
     }
@@ -551,19 +551,19 @@ export const pagesEs = {
   resources: {
     meta: {
       title: "Recursos | Dinn",
-      description: "Blog, casos de clientes y las novedades de Dinn: contenido para entender el canal farmacéutico y seguir lo que sale al aire."
+      description: "Blog, casos de clientes y novedades de Dinn: contenido para entender el canal farmacéutico y seguir las novedades."
     },
     hero: {
       eyebrow: "Recursos",
       title: "Contenido, historias y novedades *de Dinn*",
-      lead: "Elige por dónde empezar: aprender con artículos y guías, conocer historias de clientes o seguir lo que salió al aire en la plataforma."
+      lead: "Elige por dónde empezar: leer artículos y guías, leer casos de clientes o seguir las novedades de la plataforma."
     },
     items: [
       {
         id: "blog",
         type: "Blog",
         title: "Artículos, guías y temas del canal",
-        desc: "Análisis y explicaciones sobre desabasto, ejecución comercial y datos en farma, reunidos en el mismo lugar.",
+        desc: "Análisis sobre desabasto, ejecución comercial y datos en farma, en un solo lugar.",
         chips: ["Artículos", "Guías", "Temas"],
         cta: "Leer el blog",
         href: "/blog"
@@ -572,7 +572,7 @@ export const pagesEs = {
         id: "cases",
         type: "Casos de uso",
         title: "Historias de quienes usan Dinn",
-        desc: "Casos de clientes que conocemos y entrevistamos, contados de forma documentada y pública: de la situación al aprendizaje.",
+        desc: "Casos de clientes que conocemos y entrevistamos. Documentados y públicos, de la situación al aprendizaje.",
         chips: ["Entrevistas", "Contexto", "Aprendizajes"],
         cta: "Ver los casos",
         href: "/recursos/casos"
@@ -581,7 +581,7 @@ export const pagesEs = {
         id: "changelog",
         type: "Novedades",
         title: "Todo lo que salió al aire",
-        desc: "La línea de tiempo de las publicaciones de Dinn, con fecha y una explicación en lenguaje simple de lo que cambió.",
+        desc: "Línea de tiempo de las novedades de Dinn, con fecha y una nota en lenguaje simple sobre lo que cambió.",
         chips: ["Novedades", "Mejoras", "Correcciones"],
         cta: "Ver el historial",
         href: "/recursos/changelog"
@@ -605,23 +605,23 @@ export const pagesEs = {
           },
           eyebrow: "Guía",
           title: "Ausencia, desabasto, surtido y rotación: ¿cuál es la diferencia?",
-          lead: "Cuatro palabras que aparecen en el mismo reporte y piden acciones distintas. Separarlas evita mandar al equipo de campo a resolver el problema equivocado.",
+          lead: "Cuatro palabras que aparecen en el mismo reporte y piden acciones distintas. Sepáralas, para que el equipo de campo no corrija el problema equivocado.",
           sections: [
             {
               heading: "Ausencia",
-              body: "Es no encontrar el producto en una tienda, en una fecha, en una fuente. Es una señal, no una conclusión: puede ser desabasto, falta de surtido o simplemente una consulta sin respuesta."
+              body: "El producto no está en una tienda, en una fecha, en una fuente. Es una señal, no una conclusión. Puede ser desabasto, falta de surtido o una consulta sin respuesta."
             },
             {
               heading: "Desabasto",
-              body: "Es la ausencia en una tienda que normalmente vende el producto. En Dinn, el desabasto de una tienda es la proporción de días sin inventario sobre los días observados en los últimos 30 días. Por eso un desabasto persistente pesa más que un día aislado de ausencia."
+              body: "Ausencia en una tienda que normalmente vende el producto. En Dinn, el desabasto de una tienda es la proporción de días sin inventario sobre los días observados en los últimos 30 días. Un desabasto persistente pesa más que un día de ausencia."
             },
             {
               heading: "Surtido",
-              body: "Es que la tienda trabaje, o no, ese producto. Las tiendas que nunca vendieron el artículo quedan fuera del cálculo de desabasto, para no inflar la cifra. En ese caso la conversación con la cadena es sobre surtido, no sobre reposición."
+              body: "Si la tienda trabaja ese producto. Las tiendas que nunca vendieron el artículo quedan fuera del cálculo de desabasto, para no inflar la cifra. Con estas tiendas, habla con la cadena de surtido, no de reposición."
             },
             {
               heading: "Rotación",
-              body: "Es la velocidad con que sale el inventario, por ejemplo en unidades por día. Con inventario en la tienda, la rotación indica demanda; al dividir el inventario entre la rotación media diaria, se obtiene la cobertura en días."
+              body: "La velocidad con que sale el inventario, por ejemplo en unidades por día. Con inventario en la tienda, la rotación muestra la demanda. Inventario dividido entre la rotación media diaria da la cobertura en días."
             }
           ],
           tableTitle: "Qué verificar antes de actuar",
@@ -637,8 +637,8 @@ export const pagesEs = {
           limitsTitle: "Lo que el dato no prueba",
           limits: [
             "El producto en el centro de distribución no prueba el abasto de una tienda.",
-            "Un saldo constante no prueba, por sí solo, que no hubo venta.",
-            "El movimiento observado no equivale a una venta confirmada."
+            "Un saldo constante no prueba que no hubo venta.",
+            "El movimiento observado no es una venta confirmada."
           ]
         }
       }
@@ -663,16 +663,16 @@ export const pagesEs = {
         feedback: "El retorno del equipo revisa las prioridades"
       },
       "supply-distribuicao": {
-        title: "Inventario en el CEDIS cruzado con la disponibilidad en las farmacias de la región",
+        title: "Inventario del CEDIS cruzado con la disponibilidad en las farmacias de la región",
         cd: "CEDIS",
         cdCoverage: "Cobertura del CEDIS · 24 días",
         pharmacies: "Farmacias de la región",
         out: "38% sin el producto",
-        verdict: "Quiebre de distribución",
+        verdict: "Falla de distribución",
         verify: "Confirmar pedidos pendientes"
       },
       "sac-customer-experience": {
-        title: "Farmacias alrededor de la dirección del consumidor, con disponibilidad",
+        title: "Farmacias cerca del consumidor, con disponibilidad",
         you: "Consumidor",
         nearest: "Más cercana · 0,8 km",
         insight: "Búsqueda repetida · 2 tiendas sin inventario hace 7 días"
@@ -714,7 +714,7 @@ export const pagesEs = {
     aiAnswer: {
       tools: ["ChatGPT", "Claude", "Copilot"],
       question: "¿Qué tiendas de mi cartera en São Paulo verifico primero?",
-      answer: "Seis tiendas concentran la mayor parte de la señal de desabasto de la última semana. La lista indica qué revisar en cada una.",
+      answer: "Seis tiendas concentran la mayor parte de la señal de desabasto de la última semana. La lista muestra qué revisar en cada una.",
       meta: [
         { label: "Alcance", value: "Cartera, São Paulo" },
         { label: "Período", value: "Últimos 7 días" },
@@ -803,7 +803,7 @@ export const pagesEs = {
       splitTitle: "Quién se encarga de qué",
       dinn: {
         title: "Dinn",
-        items: ["Prepara y entrega las señales", "Muestra origen, fecha y confianza", "Conecta por MCP, API y BI", "Responde por los controles de su capa"]
+        items: ["Prepara y entrega las señales", "Muestra fuente, fecha y confianza", "Conecta por MCP, API y BI", "Responde por los controles de su capa"]
       },
       client: {
         title: "Tú conservas",
@@ -814,7 +814,7 @@ export const pagesEs = {
       title: "Implementación en hasta 30 días",
       steps: [
         { label: "Acuerdo", text: "Requisitos previos y alcance definidos" },
-        { label: "Implementación", text: "Hasta 30 días, y puede empezar solo con fuentes externas" },
+        { label: "Implementación", text: "Hasta 30 días. Puede empezar solo con fuentes externas" },
         { label: "En uso", text: "Lectura diaria y retorno del equipo" }
       ]
     }
@@ -823,12 +823,12 @@ export const pagesEs = {
   changelog: {
     meta: {
       title: "Novedades | Dinn",
-      description: "Línea de tiempo de lo que Dinn puso al aire: novedades y mejoras de la plataforma, explicadas en lenguaje simple y organizadas por fecha."
+      description: "Línea de tiempo de lo que Dinn puso en producción: novedades y mejoras de la plataforma, en lenguaje simple, por fecha."
     },
     hero: {
       eyebrow: "Novedades",
       title: "Lo que salió al aire en *Dinn*",
-      lead: "Cada publicación en producción, explicada en lenguaje simple y organizada por fecha."
+      lead: "Cada publicación en producción, en lenguaje simple, por fecha."
     },
     back: "Todos los recursos",
     filters: { label: "Filtrar por área", all: "Todo", platform: "Plataforma", site: "Sitio y documentación" },
@@ -836,6 +836,6 @@ export const pagesEs = {
     updated: "Actualizado el",
     months: "Meses",
     empty: "Aún no hay publicaciones en esta área.",
-    note: "Actualizado automáticamente todos los días. Los textos se reescriben en lenguaje simple y los detalles técnicos internos no aparecen aquí."
+    note: "Actualizado todos los días. Los textos usan lenguaje simple. Los detalles técnicos internos no aparecen aquí."
   }
 };

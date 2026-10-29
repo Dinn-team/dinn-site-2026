@@ -2,13 +2,13 @@
 // Textos dos infográficos da página /plataforma (pt). Chaves em platformViz.*
 export const platformVizPt = {
   cover: {
-    alt: "Ilustração do canal farmacêutico: laboratório, transporte, farmácia e consumidor ligados pela Dinn."
+    alt: "Canal farmacêutico: laboratório, transporte, farmácia e consumidor ligados pela Dinn."
   },
   cycle: {
     hint: "Role para avançar o ciclo",
     stepLabel: "Passo {n} de {total}",
     example: "Exemplo",
-    ringLabel: "Ciclo em seis passos: observa, valida, entende, decide, age e aprende; depois volta a observar.",
+    ringLabel: "Ciclo em seis passos: observa, valida, entende, decide, age, aprende. Depois observa de novo.",
     loop: "Ciclo contínuo",
     goTo: "Ir ao passo"
   },
@@ -26,7 +26,7 @@ export const platformVizPt = {
     fromSource: "Lido na fonte",
     notRead: "Sem leitura direta",
     summaryObserved: "2 lojas lidas direto na fonte, com a data de D-1",
-    summaryEstimated: "1 loja estimada por lojas comparáveis, com confiança dita"
+    summaryEstimated: "1 loja estimada por lojas comparáveis, com nível de confiança"
   },
   manager: {
     rank: "Fila da semana",
@@ -36,7 +36,7 @@ export const platformVizPt = {
     chartFrom: "há 30 dias",
     chartTo: "hoje",
     hint: "Clique numa loja para marcá-la como conferida.",
-    caption: "O time registra o que encontrou e acompanha o mesmo recorte."
+    caption: "O time registra suas descobertas e mantém o mesmo recorte."
   },
   insights: {
     you: "Você",
@@ -51,17 +51,17 @@ export const platformVizPt = {
         chip: "Fila de lojas",
         q: "Quais lojas da minha carteira eu verifico primeiro?",
         big: "6 de 40 lojas",
-        text: "concentram 70% do sinal de ruptura do produto X na última semana.",
+        text: "têm 70% do sinal de ruptura do produto X na última semana.",
         scope: "Carteira em São Paulo · Redes A, B e C",
         date: "Base D-1 · últimos 30 dias",
-        method: "Dias sem estoque ÷ dias observados; nível Crítico a partir de 75%",
+        method: "Dias sem estoque ÷ dias observados. Nível Crítico: 75% ou mais",
         kind: "Observado"
       },
       {
         chip: "CD ou lojas",
         q: "O furo é no CD ou nas farmácias de Goiânia?",
         big: "82% no CD",
-        text: "e 38% das farmácias da região sem estoque: vale conferir a reposição.",
+        text: "e 38% das farmácias da região sem estoque. Confira a reposição.",
         scope: "Goiânia · CD que abastece a região",
         date: "Base D-1",
         method: "Cobertura = estoque no CD ÷ venda diária da região",
@@ -74,7 +74,7 @@ export const platformVizPt = {
         text: "monitoradas já têm o lançamento, na semana 6.",
         scope: "Recife · farmácias monitoradas",
         date: "Base D-1 · semana 6",
-        method: "Presença observada; onde não há leitura direta, estimada por lojas comparáveis",
+        method: "Presença observada. Onde não há leitura direta, estime por lojas comparáveis",
         kind: "Observado e estimado"
       }
     ]
@@ -92,17 +92,17 @@ export const platformVizPt = {
       {
         name: "ChatGPT",
         q: "Quais redes tiveram queda de presença do produto X no Sul?",
-        a: "Rede A: 31 de 120 lojas com queda. 24 observadas e 7 estimadas. Base D-1."
+        a: "Rede A: 31 de 120 lojas com queda. 24 observadas, 7 estimadas. Base D-1."
       },
       {
         name: "Claude",
         q: "Resuma as lojas críticas da minha carteira em São Paulo.",
-        a: "6 lojas concentram 70% do sinal de ruptura. Cada uma com o que conferir, a fonte e a data."
+        a: "6 lojas têm 70% do sinal de ruptura. Cada uma mostra o que conferir, a fonte e a data."
       },
       {
         name: "Copilot",
-        q: "Monte a pauta da reunião com a Rede A.",
-        a: "Três pontos: pedidos pendentes, produto fora da gôndola e ausência que voltou. Com a fonte de cada um."
+        q: "Prepare a pauta da reunião com a Rede A.",
+        a: "Três pontos: pedidos pendentes, produto fora da gôndola e ausência que voltou. Cada um tem sua fonte."
       }
     ]
   },
