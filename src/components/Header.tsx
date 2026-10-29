@@ -144,12 +144,12 @@ export default function Header() {
             {/* Logo do topo: fetchPriority alta e sem lazy — está acima da
                 dobra e é um dos primeiros elementos que o visitante vê. */}
             <img
-              src={isLightBg ? '/Logo_Dinn_Cinza.svg' : '/Logo_Dinn_Branca.svg'}
+              src={isLightBg ? '/logo/Dinn_logo_v2_Light.svg' : '/logo/Dinn_logo_v2_Dark.svg'}
               alt="Dinn"
-              width={1805}
-              height={681}
+              width={394}
+              height={152}
               fetchPriority="high"
-              className="h-8 w-auto"
+              className="h-10 w-auto"
             />
           </a>
 

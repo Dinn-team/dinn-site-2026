@@ -36,7 +36,7 @@ export function Hero2() {
               <video src={HERO_VIDEO_SRC} autoPlay controls playsInline />
             ) : (
               <>
-                <img className="h2-player-logo" src="/Logo_Dinn_Branca.svg" alt="" width={120} height={34} />
+                <img className="h2-player-logo" src="/logo/Dinn_logo_v2_Dark.svg" alt="" width={120} height={46} />
                 <button
                   type="button"
                   className="h2-play"

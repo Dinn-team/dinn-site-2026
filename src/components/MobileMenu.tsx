@@ -108,7 +108,7 @@ export default function MobileMenu({ isLightBg }: MobileMenuProps) {
     >
       <div className="mm-top">
         <a href="/" className="mm-logo" onClick={() => close(false)} aria-label="Dinn">
-          <img src="/Logo_Dinn_Cinza.svg" alt="Dinn" width={1805} height={681} />
+          <img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn" width={394} height={152} />
         </a>
         <button
           type="button"

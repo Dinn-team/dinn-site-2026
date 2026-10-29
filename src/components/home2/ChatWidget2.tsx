@@ -30,7 +30,7 @@ export function ChatWidget2() {
   };
 
   return (
-    <div className="h2-chat">
+    <div className={`h2-chat ${open ? 'is-open' : ''}`}>
       {open && (
         <section className="h2-chat-panel" role="dialog" aria-label={t('home2.faq.label') as string}>
           <header className="h2-chat-head">

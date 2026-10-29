@@ -9,6 +9,14 @@ type Area = { slug: string; useCases?: string[] };
 // e uma grade irregular com até 3 casos por aba. Imagens: genéricas por ora.
 const GRADIENTS = ['g06', 'g10', 'g02', 'g08', 'g04', 'g11', 'g07'];
 
+// Cinco posições fixas, como na ElevenLabs: o que não tem caso vira um bloco
+// vazio e sutil. a/b = coluna esquerda (topo/base), c = centro, d/e = direita.
+const SLOTS = ['a', 'b', 'c', 'd', 'e'] as const;
+const FILLS: Record<number, string[]> = {
+  3: ['b', 'c', 'd'],
+  2: ['c', 'd'],
+};
+
 export function Showcase2() {
   const { t } = useTranslation();
   const tabs = (t('home2.showcase.tabs') as Tab[]) ?? [];
@@ -17,6 +25,8 @@ export function Showcase2() {
   const [tab, setTab] = useState(0);
   const current = tabs[tab];
   const list = (current?.ids ?? []).map((id) => cases.find((c) => c.id === id)).filter(Boolean) as UseCase[];
+
+  const fill = tab === 1 && list.length === 2 ? ['b', 'c'] : (FILLS[list.length] ?? ['c']);
 
   const hrefFor = (id: string) => {
     const area = areas.find((a) => a.useCases?.includes(id));
@@ -34,19 +44,24 @@ export function Showcase2() {
             </button>
           ))}
         </div>
-        <ul className={`h2-show-grid is-${list.length}`}>
-          {list.map((c, i) => (
-            <li key={c.id} className={`h2-show-item i-${i}`}>
-              <a className="h2-show-card" href={hrefFor(c.id)} data-placeholder={c.id}>
-                <span className="h2-show-art" style={{ backgroundImage: `url(/gradients/${GRADIENTS[(tab * 3 + i) % GRADIENTS.length]}.avif)` }} aria-hidden="true" />
-                <span className="h2-show-shade" aria-hidden="true" />
-                <span className="h2-show-txt">
-                  <small>{c.kicker}</small>
-                  <strong>{c.tab}</strong>
-                </span>
-              </a>
-            </li>
-          ))}
+        <ul className="h2-show-grid" aria-label={current?.name}>
+          {SLOTS.map((slot) => {
+            const idx = fill.indexOf(slot);
+            const c = idx >= 0 ? list[idx] : undefined;
+            if (!c) return <li key={slot} className={`h2-show-item s-${slot} is-blank`} aria-hidden="true" />;
+            return (
+              <li key={slot} className={`h2-show-item s-${slot}`}>
+                <a className="h2-show-card" href={hrefFor(c.id)} data-placeholder={c.id}>
+                  <span className="h2-show-art" style={{ backgroundImage: `url(/gradients/${GRADIENTS[(tab * 3 + idx) % GRADIENTS.length]}.avif)` }} aria-hidden="true" />
+                  <span className="h2-show-shade" aria-hidden="true" />
+                  <span className="h2-show-txt">
+                    <small>{c.kicker}</small>
+                    <strong>{c.tab}</strong>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
