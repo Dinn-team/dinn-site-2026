@@ -1,41 +1,29 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { HeroSection } from '@/components/home/HeroSection';
-import { StorySection } from '@/components/home/StorySection';
-import { InsideSection } from '@/components/home/InsideSection';
-import { AreasSection } from '@/components/home/AreasSection';
-import { RealtimeSection } from '@/components/home/RealtimeSection';
-import { TeamsSection } from '@/components/home/TeamsSection';
-import { InsightsSection } from '@/components/home/InsightsSection';
-import { DeliverySection, FinalCta } from '@/components/home/DeliverySection';
-import { ContentTeaser } from '@/components/home/ContentTeaser';
-import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
-import FAQ from '@/components/FAQ';
+import { Hero2 } from '@/components/home2/Hero2';
+import { Customers2 } from '@/components/home2/Customers2';
+import { Features2 } from '@/components/home2/Features2';
+import { Areas2 } from '@/components/home2/Areas2';
+import { Showcase2 } from '@/components/home2/Showcase2';
+import { Resources2 } from '@/components/home2/Resources2';
+import { FaqBot2 } from '@/components/home2/FaqBot2';
 import { getClientLogos } from '@/lib/clients';
 
 // Faixa de clientes (âncora #clientes): só entram logos com arquivo em public/clientes.
 const logos = getClientLogos();
 
-// Narrativa da home (14/10/2026, síntese de decisão do conteúdo do site):
-// promessa e prova social → o problema → como funciona, em um exemplo → estoque
-// em tempo real, numa cena → caminhos por área → casos de uso → Dinn Insights → plataforma e capacidades → clientes
-// → conteúdos → dúvidas → chamada final. As páginas de plataforma, soluções,
-// confiança e recursos aprofundam cada ponto. A faixa de logos fica aqui (#clientes); /clientes reúne logos, casos e depoimentos.
+// Home nova (29/10/2026), no modelo da Harvey e da ElevenLabs. Ver rules/REFERENCES_UI_UX.md.
+// Hero com vídeo → clientes → como funciona → para a sua área → casos → recursos → dúvidas (bot).
 ---
 
 <Layout>
-  <div class="v2">
-    <HeroSection logos={logos} client:load />
-    <StorySection client:idle />
-    <InsideSection client:idle />
-    <RealtimeSection client:visible />
-    <AreasSection client:idle />
-    <TeamsSection client:idle />
-    <InsightsSection client:idle />
-    <DeliverySection client:idle />
-    <TestimonialsSection client:visible />
-    <ContentTeaser client:visible />
-    <FAQ client:visible />
-    <FinalCta client:idle />
+  <div class="h2">
+    <Hero2 client:load />
+    <Customers2 logos={logos} client:idle />
+    <Features2 client:idle />
+    <Areas2 client:idle />
+    <Showcase2 client:visible />
+    <Resources2 client:visible />
+    <FaqBot2 client:visible />
   </div>
 </Layout>

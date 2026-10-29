@@ -40,6 +40,14 @@ export type NavArea = { slug: string; name: string };
 export type SubItem = { href: string; label: string };
 export type Submenu = { items: SubItem[]; allHref?: string; allLabel?: string };
 
+/** Funcionalidades novas da plataforma (home nova), com o mesmo nome da home. */
+const NEW_FEATURES = ["insights", "mercado", "oportunidades", "distribuicao", "activities"];
+export function newFeatureLinks(t: (key: string) => any): SubItem[] {
+  const items = (t("home2.features.items") as { id: string; name: string }[]) ?? [];
+  return NEW_FEATURES.map((id) => items.find((i) => i.id === id)).filter(Boolean)
+    .map((i) => ({ href: `/funcionalidades#${i!.id}`, label: i!.name }));
+}
+
 /** Itens do submenu de cada entrada (desktop e celular usam a mesma lista). */
 export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, lang: Lang = "pt"): Submenu | null {
   const L = (key: string) => t(key) as string;
@@ -49,6 +57,7 @@ export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, l
         { href: "/funcionalidades", label: L("menu.features") },
         { href: "/produtos/localizador", label: L("menu.locator") },
         { href: "/produtos/conecta", label: L("menu.conecta") },
+        ...newFeatureLinks(t),
         { href: "/integracoes", label: L("menu.integrations") },
         { href: "/cobertura", label: L("menu.coverage") },
       ],

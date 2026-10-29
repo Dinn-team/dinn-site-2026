@@ -1,7 +1,9 @@
+import { home2Pt } from './pt.home2';
 import { pagesPt } from './pt.pages';
 
 export const ptBR = {
   ...pagesPt,
+  ...home2Pt,
   nav: {
     home: "Início",
     platform: "Plataforma",

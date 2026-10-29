@@ -1,7 +1,9 @@
+import { home2En } from './en.home2';
 import { pagesEn } from './en.pages';
 
 export const enUS = {
   ...pagesEn,
+  ...home2En,
   nav: {
     home: "Home",
     platform: "Platform",

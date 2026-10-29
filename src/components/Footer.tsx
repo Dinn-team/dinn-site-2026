@@ -1,6 +1,7 @@
 import { useTranslation } from "@/i18n/useTranslation";
 import { contactUrl } from "@/lib/links";
 import { blogPath } from "@/i18n/routes";
+import { newFeatureLinks } from "@/components/ui/nav-header";
 
 // Rodapé com as mesmas colunas do menu do topo: Plataforma, Soluções,
 // Recursos, A Dinn (com Planos e Clientes) e Legal.
@@ -24,6 +25,7 @@ export default function Footer() {
         [t('menu.features') as string, '/funcionalidades'],
         [t('menu.locator') as string, '/produtos/localizador'],
         [t('menu.conecta') as string, '/produtos/conecta'],
+        ...newFeatureLinks(t).map((l): [string, string] => [l.label, l.href]),
         [t('menu.integrations') as string, '/integracoes'],
         [t('menu.coverage') as string, '/cobertura'],
       ],

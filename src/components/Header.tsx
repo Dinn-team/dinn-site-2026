@@ -24,6 +24,18 @@ function GlobeIcon({ color }: { color: string }) {
   );
 }
 
+let colorCtx: CanvasRenderingContext2D | null | undefined;
+function cssColorToRgb(color: string): [number, number, number] | null {
+  if (colorCtx === undefined) colorCtx = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  if (!colorCtx) return null;
+  colorCtx.clearRect(0, 0, 1, 1);
+  colorCtx.fillStyle = '#000';
+  colorCtx.fillStyle = color;
+  colorCtx.fillRect(0, 0, 1, 1);
+  const [r, g, b, a] = colorCtx.getImageData(0, 0, 1, 1).data;
+  return a === 0 ? null : [r, g, b];
+}
+
 export default function Header() {
   const [isLightBg, setIsLightBg] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -61,12 +73,10 @@ export default function Header() {
               if (bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' && bg !== '') break;
               currentEl = currentEl.parentElement;
             }
-            const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-            if (match) {
-              const r = parseInt(match[1], 10);
-              const g = parseInt(match[2], 10);
-              const b = parseInt(match[3], 10);
-              const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            // Os fundos do tema vêm em oklch(): o canvas converte qualquer cor para rgb.
+            const rgb = cssColorToRgb(bg);
+            if (rgb) {
+              const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
               setIsLightBg(brightness >= 128);
             } else {
               setIsLightBg(window.scrollY > 20);

@@ -1,7 +1,9 @@
+import { home2Es } from './es.home2';
 import { pagesEs } from './es.pages';
 
 export const es419 = {
   ...pagesEs,
+  ...home2Es,
   nav: {
     home: "Inicio",
     platform: "Plataforma",
