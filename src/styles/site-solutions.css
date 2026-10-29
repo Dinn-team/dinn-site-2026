@@ -13,7 +13,7 @@
   /* 72px do menu + respiro: o título nunca encosta no topo */
   padding: 104px 0 40px; box-sizing: border-box;
 }
-.as-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 60% at 72% 50%, rgba(86, 37, 242, 0.3), transparent 70%); }
+.as-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 60% at 72% 50%, color-mix(in oklab, var(--primary) 30%, transparent), transparent 70%); }
 .wrap.as-grid {
   position: relative; width: 100%; max-width: 1240px; margin: 0 auto;
   display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -30,7 +30,7 @@
 .as-steps li { border-radius: 14px; border: 1px solid transparent; opacity: 0.74; transition: opacity 0.4s, background 0.4s, border-color 0.4s; }
 .as-steps li:hover { opacity: 0.92; }
 .as-steps li.is-past { opacity: 0.86; }
-.as-steps li.is-on { opacity: 1; background: rgba(86, 37, 242, 0.22); border-color: rgba(183, 158, 255, 0.5); }
+.as-steps li.is-on { opacity: 1; background: color-mix(in oklab, var(--primary) 22%, transparent); border-color: rgba(183, 158, 255, 0.5); }
 .as-step-btn { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; width: 100%; padding: 8px 12px 8px 8px; border: 0; border-radius: 13px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .as-step-btn:focus-visible, .as-dots button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .as-step-n { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 12px; font-weight: 700; background: rgba(255, 255, 255, 0.12); }
@@ -48,7 +48,7 @@
   position: relative; border-radius: 28px; padding: 12px 12px 18px;
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 40px 100px -40px rgba(86, 37, 242, 0.6);
+  box-shadow: 0 40px 100px -40px color-mix(in oklab, var(--primary) 60%, transparent);
 }
 .as-svg { display: block; width: 100%; height: auto; max-height: calc(100svh - 190px); overflow: visible; }
 .as-svg text { font-family: inherit; }
@@ -71,13 +71,13 @@
 .av-conn { display: flex; flex-direction: column; gap: 8px; }
 .av-lock { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #047857; background: #D1FAE5; padding: 3px 10px 3px 8px; border-radius: 999px; white-space: nowrap; align-self: flex-start; }
 .av-conn .tv-row { align-items: center; }
-.av-access { margin-top: 6px; padding: 12px 14px; border-radius: 14px; background: rgba(86, 37, 242, 0.06); }
+.av-access { margin-top: 6px; padding: 12px 14px; border-radius: 14px; background: color-mix(in oklab, var(--primary) 6%, transparent); }
 .av-access ul { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 6px; font-size: 13.5px; color: var(--text-main); }
 .av-access li::before { content: '•'; color: var(--color-accent); margin-right: 8px; }
 .av-ai { border-radius: 20px; background: #FCFBF9; border: 1px solid var(--ins-line); padding: 14px; display: flex; flex-direction: column; gap: 12px; }
 .av-ai-tools { display: flex; gap: 6px; }
 .av-ai-tools span { font-size: 12.5px; font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid #DADDE3; color: var(--text-soft); background: #fff; }
-.av-ai-tools span.is-on { color: var(--color-accent); border-color: rgba(86, 37, 242, 0.4); background: rgba(86, 37, 242, 0.07); }
+.av-ai-tools span.is-on { color: var(--color-accent); border-color: color-mix(in oklab, var(--primary) 40%, transparent); background: color-mix(in oklab, var(--primary) 7%, transparent); }
 .av-ai-q { align-self: flex-end; max-width: 86%; padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: #EEF0F3; font-size: 14.5px; line-height: 1.45; color: var(--text-main); }
 .av-ai-a { padding: 14px; border-radius: 16px; background: #fff; border: 1px solid #ECEAE4; display: flex; flex-direction: column; gap: 12px; }
 .av-ai-a p { font-size: 15px; line-height: 1.55; color: var(--text-main); }

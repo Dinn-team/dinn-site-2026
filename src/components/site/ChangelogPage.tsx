@@ -25,7 +25,7 @@ type Entry = {
 
 const LOCALE: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-419' };
 const AREA_COLOR: Record<Entry['area'], { fg: string; bg: string }> = {
-  platform: { fg: '#5625F2', bg: 'rgba(86,37,242,0.09)' },
+  platform: { fg: 'var(--primary)', bg: 'rgba(86,37,242,0.09)' },
   site: { fg: '#047857', bg: '#D1FAE5' },
 };
 

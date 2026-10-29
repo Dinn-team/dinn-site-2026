@@ -14,7 +14,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 function ManagerMini() {
   const bars = [86, 64, 52, 38, 24];
-  const shades = ['#5625F2', 'rgba(86,37,242,0.75)', 'rgba(86,37,242,0.55)', 'rgba(86,37,242,0.38)', 'rgba(86,37,242,0.22)'];
+  const shades = ['var(--primary)', 'rgba(86,37,242,0.75)', 'rgba(86,37,242,0.55)', 'rgba(86,37,242,0.38)', 'rgba(86,37,242,0.22)'];
   return (
     <div className="dl-mini dl-manager" aria-hidden="true">
       <div className="dl-kpis">
@@ -42,7 +42,7 @@ function InsightsMini() {
         <div>
           <i style={{ width: '90%' }} /><i style={{ width: '70%' }} />
           <div className="dl-spark">
-            <svg viewBox="0 0 120 30"><motion.path d="M0,24 L20,20 L40,22 L60,14 L80,12 L100,6 L120,4" fill="none" stroke="#5625F2" strokeWidth="2" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 1.2 }} /></svg>
+            <svg viewBox="0 0 120 30"><motion.path d="M0,24 L20,20 L40,22 L60,14 L80,12 L100,6 L120,4" fill="none" stroke="var(--primary)" strokeWidth="2" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 1.2 }} /></svg>
           </div>
         </div>
       </motion.div>
@@ -63,7 +63,7 @@ function AiMini() {
         {[15, 45, 75].map((y, i) => (
           <g key={y}>
             <path d={`M0,${y} C40,${y} 40,45 80,45`} fill="none" stroke="rgba(86,37,242,0.3)" strokeWidth="1.5" />
-            <circle r="2.5" fill="#5625F2"><animateMotion dur="1.8s" begin={`${i * 0.4}s`} repeatCount="indefinite" path={`M80,45 C40,45 40,${y} 0,${y}`} /></circle>
+            <circle r="2.5" fill="var(--primary)"><animateMotion dur="1.8s" begin={`${i * 0.4}s`} repeatCount="indefinite" path={`M80,45 C40,45 40,${y} 0,${y}`} /></circle>
           </g>
         ))}
       </svg>
@@ -81,7 +81,7 @@ function ConectaMini({ sources, destinations }: { sources: string[]; destination
           {[10, 30, 50].map((y, i) => (
             <g key={y}>
               <path d={`M0,${y} L100,30`} stroke="rgba(86,37,242,0.25)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" />
-              <circle r="2" fill="#5625F2"><animateMotion dur="1.6s" begin={`${i * 0.5}s`} repeatCount="indefinite" path={`M0,${y} L100,30`} /></circle>
+              <circle r="2" fill="var(--primary)"><animateMotion dur="1.6s" begin={`${i * 0.5}s`} repeatCount="indefinite" path={`M0,${y} L100,30`} /></circle>
             </g>
           ))}
         </svg>
@@ -90,7 +90,7 @@ function ConectaMini({ sources, destinations }: { sources: string[]; destination
           {[8, 23, 38, 53].map((y, i) => (
             <g key={y}>
               <path d={`M0,30 L100,${y}`} stroke="rgba(86,37,242,0.25)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" />
-              <circle r="2" fill="#5625F2"><animateMotion dur="1.6s" begin={`${0.3 + i * 0.35}s`} repeatCount="indefinite" path={`M0,30 L100,${y}`} /></circle>
+              <circle r="2" fill="var(--primary)"><animateMotion dur="1.6s" begin={`${0.3 + i * 0.35}s`} repeatCount="indefinite" path={`M0,30 L100,${y}`} /></circle>
             </g>
           ))}
         </svg>

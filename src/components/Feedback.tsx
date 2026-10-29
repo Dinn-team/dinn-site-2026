@@ -8,7 +8,7 @@ export default function Feedback() {
       <h1 style={{
         fontSize: 'clamp(32px, 5vw, 48px)',
         fontWeight: 800,
-        color: '#1F2328',
+        color: 'var(--foreground)',
         marginBottom: '40px',
         letterSpacing: '-0.02em',
         textAlign: 'center'

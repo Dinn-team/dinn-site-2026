@@ -1,6 +1,6 @@
 // Cores de dado, as mesmas do Dinn Manager (lib/rupture-level.ts,
 // lib/stock-level-colors.ts). Ficam só nos gráficos e selos: a marca do
-// site continua sendo o roxo #5625F2.
+// site continua sendo o roxo var(--primary).
 
 export const LEVEL: Record<string, { dot: string; bg: string; fg: string }> = {
   critico: { dot: '#EF4444', bg: '#FEE2E2', fg: '#B91C1C' },
@@ -11,12 +11,12 @@ export const LEVEL: Record<string, { dot: string; bg: string; fg: string }> = {
 
 export const AVAIL: Record<string, { dot: string; bg: string; fg: string }> = {
   alta: { dot: '#10B981', bg: '#D1FAE5', fg: '#047857' },
-  media: { dot: '#5625F2', bg: '#EEE9FF', fg: '#4A1FD6' },
+  media: { dot: 'var(--primary)', bg: '#EEE9FF', fg: '#4A1FD6' },
   baixa: { dot: '#F59E0B', bg: '#FEF3C7', fg: '#B45309' },
   sem: { dot: '#EF4444', bg: '#FEE2E2', fg: '#B91C1C' },
 };
 
-export const SERIES = ['#5625F2', '#0EA5E9', '#F59E0B', '#10B981', '#EC4899'];
+export const SERIES = ['var(--primary)', '#0EA5E9', '#F59E0B', '#10B981', '#EC4899'];
 export const TONE: Record<string, string> = {
   sky: '#0EA5E9',
   alert: '#EF4444',

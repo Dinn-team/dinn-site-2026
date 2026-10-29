@@ -152,7 +152,7 @@ function Bars({ w }: { w: Extract<Widget, { type: 'bars' }> }) {
   return (
     <div className="cw-bars">
       {w.rows.map((r, i) => {
-        const color = r.tone ? TONE[r.tone] : '#5625F2';
+        const color = r.tone ? TONE[r.tone] : 'var(--primary)';
         return (
           <div key={r.label} className="cw-bar">
             <span className="cw-bar-label"><i style={{ background: color }} />{r.label}</span>

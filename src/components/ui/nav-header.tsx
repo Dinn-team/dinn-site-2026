@@ -234,7 +234,7 @@ const Tab = ({
                 key={a.href}
                 role="menuitem"
                 href={a.href}
-                style={{ padding: "10px 12px", borderRadius: "10px", fontSize: "14px", fontWeight: 500, color: "#1F2328", textDecoration: "none", whiteSpace: "nowrap" }}
+                style={{ padding: "10px 12px", borderRadius: "10px", fontSize: "14px", fontWeight: 500, color: "var(--foreground)", textDecoration: "none", whiteSpace: "nowrap" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(86,37,242,0.08)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
               >
@@ -245,7 +245,7 @@ const Tab = ({
               <a
                 role="menuitem"
                 href={sub!.allHref}
-                style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "#5625F2", textDecoration: "none" }}
+                style={{ marginTop: "4px", padding: "10px 12px", borderTop: "1px solid #ECEEF2", fontSize: "13.5px", fontWeight: 600, color: "var(--primary)", textDecoration: "none" }}
               >
                 {sub!.allLabel} →
               </a>

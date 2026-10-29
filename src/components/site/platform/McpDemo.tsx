@@ -63,14 +63,14 @@ export function McpDemo() {
                 key={x.name}
                 d={`M0,${Y[k]} C70,${Y[k]} 90,${HUB_Y} ${W},${HUB_Y}`}
                 fill="none"
-                stroke={k === a ? '#5625F2' : 'rgba(86,37,242,0.22)'}
+                stroke={k === a ? 'var(--primary)' : 'rgba(86,37,242,0.22)'}
                 strokeWidth={k === a ? 2 : 1.4}
                 vectorEffect="non-scaling-stroke"
                 strokeDasharray={k === a ? undefined : '3 5'}
               />
             ))}
             {!reduce && phase === 0 && (
-              <circle key={`q-${i}`} r={5} fill="#5625F2">
+              <circle key={`q-${i}`} r={5} fill="var(--primary)">
                 <animateMotion dur="1.4s" fill="freeze" path={forward} />
               </circle>
             )}

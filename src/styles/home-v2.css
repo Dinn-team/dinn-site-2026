@@ -97,7 +97,7 @@
      faixa de logos e ao do manifesto (sem emenda de cor) */
   position: absolute; top: 0; left: 0; right: 0; height: var(--scene-h); z-index: -1; pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 46%, rgba(86, 37, 242, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 46%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%),
     radial-gradient(ellipse 120% 70% at 50% 50%, transparent 40%, rgba(10, 11, 14, 0.7) 100%),
     linear-gradient(to bottom, transparent 75%, var(--ink-deep));
 }
@@ -380,7 +380,7 @@
 .dh-flowfield path { fill: none; vector-effect: non-scaling-stroke; stroke-linecap: butt; stroke-linejoin: round; }
 
 /* esteira: superfície, duas bordas de neon, caixinhas e pulsos de luz */
-.ff-belt-surface { stroke: rgba(86, 37, 242, 0.12); stroke-width: 18px; }
+.ff-belt-surface { stroke: color-mix(in oklab, var(--primary) 12%, transparent); stroke-width: 18px; }
 .ff-belt-edge { stroke: rgba(150, 120, 240, 0.4); stroke-width: 1.2px; }
 .ff-belt-boxes { stroke: rgba(190, 170, 255, 0.3); stroke-width: 5px; }
 .ff-belt-pulse { stroke: rgba(210, 195, 255, 0.7); stroke-width: 1.8px; stroke-linecap: round; }

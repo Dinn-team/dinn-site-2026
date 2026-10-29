@@ -49,12 +49,12 @@ export const TestimonialsSection = () => {
             readMoreLabel={t("testimonials.readMore")}
             readLessLabel={t("testimonials.readLess")}
             colors={{
-              name: "#1F2328",
+              name: "var(--foreground)",
               designation: "#6B7280",
               testimony: "#4B5563",
               arrowBackground: "#ffffff",
-              arrowForeground: "#1F2328",
-              arrowHoverBackground: "#5625F2",
+              arrowForeground: "var(--foreground)",
+              arrowHoverBackground: "var(--primary)",
             }}
             fontSizes={{
               name: "15px",
@@ -72,7 +72,7 @@ export const TestimonialsSection = () => {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
         }
         .arrow-button:hover {
-          border-color: #5625F2 !important;
+          border-color: var(--primary) !important;
         }
         .arrow-button:hover svg {
           color: #ffffff !important;

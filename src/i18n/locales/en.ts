@@ -788,7 +788,7 @@ export const enUS = {
           "Right not to be subject to automated decisions",
           "Right to anonymization and sharing"
         ],
-        footer: "Users can request these rights by sending an email to <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: #5625F2; text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+        footer: "Users can request these rights by sending an email to <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
       },
       {
         title: "3. Duty not to provide third-party data",
@@ -842,7 +842,7 @@ export const enUS = {
         customList: [
           "<strong>Controller:</strong> DINN is responsible for processing its users' personal data.",
           "<strong>Processor:</strong> DINN may act as a processor on behalf of clients and partners.",
-          "<strong>Data Protection Officer:</strong> DINN has appointed Mr. Vinicius Fernandes Silva as the data protection officer, who can be contacted via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: #5625F2; text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+          "<strong>Data Protection Officer:</strong> DINN has appointed Mr. Vinicius Fernandes Silva as the data protection officer, who can be contacted via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
         ]
       },
       {

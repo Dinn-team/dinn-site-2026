@@ -35,7 +35,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
                 key={item.question}
                 style={{
                   background: '#fff',
-                  border: `1.5px solid ${isOpen ? '#5625F2' : '#E5E7EB'}`,
+                  border: `1.5px solid ${isOpen ? 'var(--primary)' : '#E5E7EB'}`,
                   borderRadius: '12px',
                   overflow: 'hidden',
                   boxShadow: isOpen ? '0 4px 20px rgba(86,37,242,0.08)' : 'none',
@@ -61,7 +61,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
                   <span style={{
                     fontSize: '16px',
                     fontWeight: 600,
-                    color: isOpen ? '#5625F2' : '#1F2328',
+                    color: isOpen ? 'var(--primary)' : 'var(--foreground)',
                     lineHeight: 1.4,
                     transition: 'color 0.2s',
                   }}>
@@ -82,7 +82,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
                       width="16" height="16" viewBox="0 0 24 24" fill="none"
                       style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }}
                     >
-                      <path d="M6 9l6 6 6-6" stroke={isOpen ? '#5625F2' : '#6B7280'} strokeWidth="2" strokeLinecap="round" />
+                      <path d="M6 9l6 6 6-6" stroke={isOpen ? 'var(--primary)' : '#6B7280'} strokeWidth="2" strokeLinecap="round" />
                     </svg>
                   </div>
                 </button>

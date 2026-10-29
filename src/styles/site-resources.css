@@ -6,7 +6,7 @@
 .rc-menu { padding-top: clamp(24px, 4vw, 56px); }
 .rc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .rc-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 28px; background: #fff; border: 1px solid #E3E5EA; text-decoration: none; color: inherit; transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.3s; }
-.rc-card:hover { transform: translateY(-4px); box-shadow: 0 36px 70px -44px rgba(86, 37, 242, 0.5); border-color: rgba(86, 37, 242, 0.4); }
+.rc-card:hover { transform: translateY(-4px); box-shadow: 0 36px 70px -44px color-mix(in oklab, var(--primary) 50%, transparent); border-color: color-mix(in oklab, var(--primary) 40%, transparent); }
 .rc-card h2 { font-size: clamp(21px, 1.9vw, 26px); font-weight: 600; letter-spacing: var(--track-heading); line-height: 1.2; color: var(--text-main); }
 .rc-card > p { font-size: 15.5px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); }
 .rc-art { border-radius: 20px; padding: 14px; margin-bottom: 4px; }
@@ -45,7 +45,7 @@
 .cl-card p { margin-top: 6px; font-size: 15.5px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); }
 .cl-card ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
 .cl-card li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.5; color: var(--text-main); }
-.cl-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(86, 37, 242, 0.35); }
+.cl-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: color-mix(in oklab, var(--primary) 35%, transparent); }
 .cl-note { margin-top: 12px; font-size: 13px; color: var(--text-soft); }
 
 @media (max-width: 1000px) {
@@ -65,9 +65,9 @@
 .cs-card { gap: 10px; }
 .cs-cover { position: relative; display: grid; place-items: center; height: 150px; border-radius: 18px; overflow: hidden; background: linear-gradient(150deg, #EEE9FF, #F5F0FF 60%, #E9F7F1); margin-bottom: 4px; }
 .cs-cover.is-customer { background: linear-gradient(150deg, #E9F7F1, #EEF3FF); }
-.cs-cover-icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 22px; background: #fff; color: var(--color-accent); box-shadow: 0 18px 40px -22px rgba(86, 37, 242, 0.7), 0 0 0 1px rgba(86, 37, 242, 0.08); }
+.cs-cover-icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 22px; background: #fff; color: var(--color-accent); box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--primary) 70%, transparent), 0 0 0 1px color-mix(in oklab, var(--primary) 8%, transparent); }
 .cs-cover-dots { position: absolute; left: 16px; right: 16px; bottom: 12px; display: flex; justify-content: space-between; }
-.cs-cover-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(86, 37, 242, 0.25); }
+.cs-cover-dots i { width: 8px; height: 8px; border-radius: 50%; background: color-mix(in oklab, var(--primary) 25%, transparent); }
 .cs-cover-dots i:last-child { background: #10B981; }
 .cs-kind { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #fff; border: 1px dashed #B8BCC6; color: var(--text-main); }
 .cs-kind.is-customer { border-style: solid; border-color: rgba(16, 185, 129, 0.5); background: rgba(16, 185, 129, 0.1); color: #047857; }
@@ -81,7 +81,7 @@
 .cs-steps li { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; padding: 18px 20px; border-radius: 18px; border: 1px solid #E3E5EA; background: #fff; }
 .cs-steps h3 { font-size: 13px; font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px; }
 .cs-steps p { font-size: 17.5px; line-height: 1.7; letter-spacing: var(--track-body); color: var(--text-main); }
-.cs-quote { padding: 22px 24px; border-radius: 20px; background: rgba(86, 37, 242, 0.06); color: var(--color-accent); }
+.cs-quote { padding: 22px 24px; border-radius: 20px; background: color-mix(in oklab, var(--primary) 6%, transparent); color: var(--color-accent); }
 .cs-quote p { margin: 8px 0; font-size: 19px; line-height: 1.55; color: var(--text-main); font-style: italic; }
 .cs-quote footer { font-size: 14px; font-weight: 600; color: var(--text-soft); }
 
@@ -90,7 +90,7 @@
 .cs-problem { padding-top: clamp(32px, 4vw, 56px); }
 .cs-problem-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
 .cs-problem-solo { max-width: 760px; margin-left: auto; margin-right: auto; }
-.cs-userquote { position: relative; margin: 0; padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: linear-gradient(150deg, #F5F0FF, #fff 70%); border: 1px solid rgba(86, 37, 242, 0.18); box-shadow: 0 40px 80px -52px rgba(86, 37, 242, 0.5); color: var(--color-accent); }
+.cs-userquote { position: relative; margin: 0; padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: linear-gradient(150deg, #F5F0FF, #fff 70%); border: 1px solid color-mix(in oklab, var(--primary) 18%, transparent); box-shadow: 0 40px 80px -52px color-mix(in oklab, var(--primary) 50%, transparent); color: var(--color-accent); }
 .cs-userquote blockquote { margin: 14px 0 22px; font-size: clamp(20px, 2.3vw, 28px); font-weight: 500; letter-spacing: var(--track-title); line-height: 1.32; color: var(--text-main); text-wrap: pretty; }
 .cs-userquote figcaption { display: flex; align-items: center; gap: 12px; }
 .cs-avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--lilac), var(--color-accent)); }

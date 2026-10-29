@@ -94,7 +94,7 @@ export default function Footer() {
                     key={`${href}-${label}`}
                     href={href}
                     style={linkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--primary)'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
                   >
                     {label}
@@ -141,7 +141,7 @@ export default function Footer() {
             color: '#6B7280',
           }}>
             {t('footer.launch')}
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5625F2', display: 'inline-block' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
           </div>
         </div>
       </div>

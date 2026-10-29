@@ -82,7 +82,7 @@ export function LocatorVisual({ v }: { v: { you: string; rows: LocRow[]; insight
         })}
         <g>
           <circle cx={184} cy={150} r={18} fill="rgba(86,37,242,0.18)" className="tv-pulse" />
-          <circle cx={184} cy={150} r={9} fill="#5625F2" stroke="#fff" strokeWidth={3} />
+          <circle cx={184} cy={150} r={9} fill="var(--primary)" stroke="#fff" strokeWidth={3} />
         </g>
         <foreignObject x={124} y={170} width={120} height={24}>
           <div className="tv-map-label">{v.you}</div>
@@ -180,7 +180,7 @@ export function PrescriberVisual({ v }: { v: { center: string; withStock: string
           );
         })}
         <circle cx={180} cy={150} r={22} fill="rgba(86,37,242,0.14)" className="tv-pulse" />
-        <circle cx={180} cy={150} r={16} fill="#5625F2" stroke="#fff" strokeWidth={3} />
+        <circle cx={180} cy={150} r={16} fill="var(--primary)" stroke="#fff" strokeWidth={3} />
         <Stethoscope x={171} y={141} width={18} height={18} color="#fff" strokeWidth={2} />
         <foreignObject x={130} y={172} width={100} height={24}><div className="tv-map-label">{v.center}</div></foreignObject>
       </svg>
@@ -233,7 +233,7 @@ export function DistributionVisual({ v }: { v: { cd: string; cases: DCase[]; cdL
             <g key={i}>
               <path d={d} fill="none" stroke={empty ? 'rgba(239,68,68,0.25)' : 'rgba(86,37,242,0.22)'} strokeWidth={1.4} />
               {!empty && c.cd > 15 && (
-                <circle r={2.8} fill="#5625F2">
+                <circle r={2.8} fill="var(--primary)">
                   <animateMotion dur={`${1.6 + (i % 4) * 0.35}s`} repeatCount="indefinite" path={d} begin={`${(i % 5) * 0.3}s`} />
                 </circle>
               )}
@@ -246,7 +246,7 @@ export function DistributionVisual({ v }: { v: { cd: string; cases: DCase[]; cdL
         <motion.rect x={40} width={44} rx={8} fill={cdColor} opacity={0.18}
           animate={{ y: 179 - (68 * c.cd) / 100, height: (68 * c.cd) / 100 }} transition={{ duration: 0.8, ease: EASE }} />
         <Factory x={50} y={128} width={24} height={24} color={cdColor} strokeWidth={2} />
-        <text x={62} y={205} textAnchor="middle" fontSize="11" fontWeight="700" fill="#1F2328">{v.cd}</text>
+        <text x={62} y={205} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--foreground)">{v.cd}</text>
       </svg>
       <motion.div key={c.name} className="tv-dist-read" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: EASE }}>
         <div className="tv-meters">
@@ -323,13 +323,13 @@ export function StalledVisual({ v }: { v: { bands: { label: string; value: numbe
       <svg viewBox="0 0 360 120" className="tv-pair" aria-hidden="true">
         <defs>
           <marker id="tv-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-            <path d="M0,0 L10,5 L0,10 z" fill="#5625F2" />
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--primary)" />
           </marker>
         </defs>
-        <motion.path id="tv-pair-path" d="M70,62 C140,10 220,10 290,62" fill="none" stroke="#5625F2" strokeWidth={2} strokeDasharray="5 6" markerEnd="url(#tv-arrow)"
+        <motion.path id="tv-pair-path" d="M70,62 C140,10 220,10 290,62" fill="none" stroke="var(--primary)" strokeWidth={2} strokeDasharray="5 6" markerEnd="url(#tv-arrow)"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1.1, duration: 1 }} />
         {[0, 0.5, 1].map((d) => (
-          <circle key={d} r={3.5} fill="#5625F2">
+          <circle key={d} r={3.5} fill="var(--primary)">
             <animateMotion dur="2.2s" begin={`${2 + d}s`} repeatCount="indefinite" path="M70,62 C140,10 220,10 290,62" />
           </circle>
         ))}
@@ -338,7 +338,7 @@ export function StalledVisual({ v }: { v: { bands: { label: string; value: numbe
         <circle cx={290} cy={62} r={18} fill="#FEE2E2" stroke="#EF4444" strokeWidth={2.5} />
         <Store x={281} y={53} width={18} height={18} color="#B91C1C" strokeWidth={2} />
         {/* acima do arco (o topo da curva fica em y≈23), para a linha não cortar o número */}
-        <text x={180} y={14} textAnchor="middle" fontSize="11" fontWeight="700" fill="#5625F2">{v.distance}</text>
+        <text x={180} y={14} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--primary)">{v.distance}</text>
         <text x={70} y={100} textAnchor="middle" fontSize="11" fill="#4B5563">{v.from}</text>
         <text x={290} y={100} textAnchor="middle" fontSize="11" fill="#4B5563">{v.to}</text>
       </svg>

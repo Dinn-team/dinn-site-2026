@@ -37,14 +37,14 @@ function BlogArt() {
       <g transform="rotate(6 230 100)">
         <rect x="176" y="34" width="112" height="132" rx="14" fill="#fff" stroke="#DADDE3" />
         <circle cx="198" cy="62" r="11" fill="#EEE9FF" />
-        <path d="M193,62 l4,4 l8,-9" stroke="#5625F2" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M193,62 l4,4 l8,-9" stroke="var(--primary)" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <rect x="216" y="56" width="56" height="8" rx="4" fill="#E5E7EB" />
         <rect x="190" y="84" width="84" height="6" rx="3" fill="#E5E7EB" />
         <rect x="190" y="98" width="70" height="6" rx="3" fill="#E5E7EB" />
         <rect x="190" y="112" width="78" height="6" rx="3" fill="#E5E7EB" />
       </g>
-      <rect x="100" y="20" width="124" height="152" rx="16" fill="#fff" stroke="#5625F2" strokeWidth="1.5" />
-      <rect x="116" y="38" width="64" height="10" rx="5" fill="#5625F2" />
+      <rect x="100" y="20" width="124" height="152" rx="16" fill="#fff" stroke="var(--primary)" strokeWidth="1.5" />
+      <rect x="116" y="38" width="64" height="10" rx="5" fill="var(--primary)" />
       <rect x="116" y="60" width="92" height="7" rx="3.5" fill="#CFC4FB" />
       <rect x="116" y="76" width="80" height="7" rx="3.5" fill="#E5E7EB" />
       <rect x="116" y="92" width="88" height="7" rx="3.5" fill="#E5E7EB" />
@@ -63,13 +63,13 @@ function CasesArt() {
       <path d="M52,104 a22,22 0 0 1 44,0" fill="#fff" />
       <rect x="40" y="132" width="68" height="28" rx="10" fill="#fff" stroke="#DADDE3" />
       <path d="M52,146 h44" stroke="#E5E7EB" strokeWidth="6" strokeLinecap="round" />
-      <path d="M118,52 h92 a14,14 0 0 1 14,14 v36 a14,14 0 0 1 -14,14 h-52 l-18,16 v-16 h-22 a14,14 0 0 1 -14,-14 v-36 a14,14 0 0 1 14,-14 z" fill="#fff" stroke="#5625F2" strokeWidth="1.5" />
-      <text x="140" y="96" fontSize="44" fontWeight="700" fill="#5625F2">“</text>
+      <path d="M118,52 h92 a14,14 0 0 1 14,14 v36 a14,14 0 0 1 -14,14 h-52 l-18,16 v-16 h-22 a14,14 0 0 1 -14,-14 v-36 a14,14 0 0 1 14,-14 z" fill="#fff" stroke="var(--primary)" strokeWidth="1.5" />
+      <text x="140" y="96" fontSize="44" fontWeight="700" fill="var(--primary)">“</text>
       <rect x="168" y="68" width="40" height="7" rx="3.5" fill="#CFC4FB" />
       <rect x="168" y="84" width="32" height="7" rx="3.5" fill="#E5E7EB" />
       <path d="M150,168 H282" stroke="#CBD0D8" strokeWidth="2" strokeDasharray="3 6" />
       {[150, 190, 230, 270].map((x, i) => (
-        <circle key={x} cx={x} cy="168" r={i === 3 ? 9 : 6} fill={i === 3 ? '#10B981' : '#5625F2'} />
+        <circle key={x} cx={x} cy="168" r={i === 3 ? 9 : 6} fill={i === 3 ? '#10B981' : 'var(--primary)'} />
       ))}
       <path d="M265.500,168 l3.500,3.500 l6,-7" stroke="#fff" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       <rect x="236" y="32" width="56" height="64" rx="10" fill="#fff" stroke="#DADDE3" />
@@ -88,10 +88,10 @@ function ChangelogArt() {
       <path d="M78,20 V176" stroke="#CBD0D8" strokeWidth="2" strokeDasharray="3 6" />
       {rows.map((y, i) => (
         <g key={y}>
-          <circle cx="78" cy={y + 18} r="9" fill={i === 0 ? '#10B981' : '#5625F2'} />
-          <circle className="rc-ping" cx="78" cy={y + 18} r="9" fill="none" stroke={i === 0 ? '#10B981' : '#5625F2'} style={{ animationDelay: `${i * 0.6}s` }} />
+          <circle cx="78" cy={y + 18} r="9" fill={i === 0 ? '#10B981' : 'var(--primary)'} />
+          <circle className="rc-ping" cx="78" cy={y + 18} r="9" fill="none" stroke={i === 0 ? '#10B981' : 'var(--primary)'} style={{ animationDelay: `${i * 0.6}s` }} />
           <rect x="18" y={y + 10} width="40" height="16" rx="8" fill="#EEE9FF" />
-          <rect x="26" y={y + 16} width="24" height="4" rx="2" fill="#5625F2" />
+          <rect x="26" y={y + 16} width="24" height="4" rx="2" fill="var(--primary)" />
           <rect x="104" y={y} width="190" height="36" rx="12" fill="#fff" stroke="#DADDE3" />
           <rect x="116" y={y + 9} width={i === 1 ? 104 : 128} height="7" rx="3.5" fill="#E5E7EB" />
           <rect x="116" y={y + 21} width={i === 2 ? 60 : 84} height="6" rx="3" fill="#F0F1F4" />

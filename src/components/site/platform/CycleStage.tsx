@@ -18,7 +18,7 @@ const C = SIZE / 2;
 const R = 164;
 const NODE = 29;
 const ICONS: LucideIcon[] = [Eye, ShieldCheck, Network, Target, Send, GraduationCap];
-const ACCENT = '#5625F2';
+const ACCENT = 'var(--primary)';
 const LILAC = '#B79EFF';
 
 const pos = (i: number, r = R) => {

@@ -83,12 +83,12 @@ export const CircularTestimonials = ({
   readMoreLabel = "Ver mais",
   readLessLabel = "Ver menos",
 }: CircularTestimonialsProps) => {
-  const colorName = colors.name ?? "#1F2328";
+  const colorName = colors.name ?? "var(--foreground)";
   const colorDesignation = colors.designation ?? "#6b7280";
   const colorTestimony = colors.testimony ?? "#4b5563";
   const colorArrowBg = colors.arrowBackground ?? "#ffffff";
-  const colorArrowFg = colors.arrowForeground ?? "#1F2328";
-  const colorArrowHoverBg = colors.arrowHoverBackground ?? "#5625F2";
+  const colorArrowFg = colors.arrowForeground ?? "var(--foreground)";
+  const colorArrowHoverBg = colors.arrowHoverBackground ?? "var(--primary)";
   const fontSizeName = fontSizes.name ?? "0.9375rem";
   const fontSizeDesignation = fontSizes.designation ?? "0.8125rem";
   const fontSizeQuote = fontSizes.quote ?? "1.0625rem";
@@ -237,7 +237,7 @@ export const CircularTestimonials = ({
             />
 
             <span
-              className="block font-bold leading-none text-[#1F2328]"
+              className="block font-bold leading-none text-[var(--foreground)]"
               aria-hidden
               style={{
                 fontSize: "clamp(2.25rem, 5vw, 3rem)",

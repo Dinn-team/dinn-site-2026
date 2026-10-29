@@ -54,8 +54,8 @@
 .teams-tabs button > span:not(.teams-tab-bg):not(.teams-tab-progress) { position: relative; z-index: 1; }
 .teams-tabs button:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -12px rgba(31, 35, 40, 0.35), inset 0 0 0 1px rgba(31, 35, 40, 0.1); }
 /* selecionada: lilás quase transparente; o texto escuro segue nítido */
-.teams-tabs button.is-active { box-shadow: inset 0 0 0 1px rgba(86, 37, 242, 0.3); }
-.teams-tab-bg { position: absolute; inset: 0; border-radius: 14px; background: rgba(86, 37, 242, 0.13); z-index: 0; }
+.teams-tabs button.is-active { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent); }
+.teams-tab-bg { position: absolute; inset: 0; border-radius: 14px; background: color-mix(in oklab, var(--primary) 13%, transparent); z-index: 0; }
 
 /* Troca automática: fio sob o texto da aba ativa que enche até a próxima aba.
    A duração vem do componente (--teams-auto-ms); mouse em cima, seção fora da
@@ -96,12 +96,12 @@
   font: inherit;
   padding: 16px 18px;
   border-radius: 18px;
-  border: 1px solid rgba(86, 37, 242, 0.2);
-  background: linear-gradient(135deg, rgba(86, 37, 242, 0.07), rgba(86, 37, 242, 0.02));
+  border: 1px solid color-mix(in oklab, var(--primary) 20%, transparent);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 7%, transparent), color-mix(in oklab, var(--primary) 2%, transparent));
   cursor: pointer;
   transition: border-color 0.25s, transform 0.35s var(--ease-out), box-shadow 0.3s;
 }
-.teams-ask:hover { border-color: var(--color-accent); transform: translateY(-2px); box-shadow: 0 18px 40px -24px rgba(86, 37, 242, 0.6); }
+.teams-ask:hover { border-color: var(--color-accent); transform: translateY(-2px); box-shadow: 0 18px 40px -24px color-mix(in oklab, var(--primary) 60%, transparent); }
 .teams-ask-q { font-size: 15.5px; letter-spacing: var(--track-body); color: var(--text-main); }
 .teams-ask-cta { display: inline-flex; align-items: center; gap: 4px; font-size: 13.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); }
 .teams-note { text-align: center; font-size: 12.5px; letter-spacing: var(--track-small); color: var(--text-soft); margin-top: 32px; }
@@ -116,14 +116,14 @@
 .tv-bar { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid #EEF0F3; font-size: 13px; font-weight: 600; }
 .tv-brand { width: 18px; height: 18px; border-radius: 6px; background: linear-gradient(135deg, var(--lilac), var(--color-accent)); }
 .tv-app { flex: 1; }
-.tv-tag { font-size: 11px; font-weight: 600; color: var(--color-accent); background: rgba(86, 37, 242, 0.08); padding: 3px 9px; border-radius: 999px; }
+.tv-tag { font-size: 11px; font-weight: 600; color: var(--color-accent); background: color-mix(in oklab, var(--primary) 8%, transparent); padding: 3px 9px; border-radius: 999px; }
 .tv-body { padding: 18px; }
 .tv-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 10px 3px 8px; border-radius: 999px; white-space: nowrap; }
 .tv-badge i { width: 6px; height: 6px; border-radius: 50%; }
 .tv-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid #EEF0F3; background: #fff; }
 .tv-row strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); }
 .tv-row span { font-size: 12.5px; color: var(--text-soft); }
-.tv-insight { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--color-accent); background: rgba(86, 37, 242, 0.07); padding: 9px 12px; border-radius: 12px; }
+.tv-insight { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--color-accent); background: color-mix(in oklab, var(--primary) 7%, transparent); padding: 9px 12px; border-radius: 12px; }
 .tv-insight-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; animation: v2-ping 2.2s infinite; }
 .tv-insight-dot.is-red { background: #EF4444; }
 .tv-map { width: 100%; height: auto; display: block; border-radius: 16px; }
@@ -134,7 +134,7 @@
 .tv-list { display: flex; flex-direction: column; gap: 8px; }
 
 .tv-queue-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--text-soft); margin-bottom: 12px; }
-.tv-progress { flex: 0 0 120px; height: 6px; border-radius: 99px; background: rgba(86, 37, 242, 0.1); overflow: hidden; }
+.tv-progress { flex: 0 0 120px; height: 6px; border-radius: 99px; background: color-mix(in oklab, var(--primary) 10%, transparent); overflow: hidden; }
 .tv-progress i { display: block; height: 100%; border-radius: 99px; background: var(--color-accent); }
 .tv-queue ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .tv-queue li { display: grid; grid-template-columns: 28px 1fr auto auto; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid #EEF0F3; background: #fff; }

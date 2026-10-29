@@ -788,7 +788,7 @@ export const ptBR = {
           "Direito de não ser submetido a decisões automatizadas",
           "Direito de anonimização e compartilhamento"
         ],
-        footer: "Os usuários podem solicitar esses direitos enviando um e-mail para <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: #5625F2; text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+        footer: "Os usuários podem solicitar esses direitos enviando um e-mail para <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
       },
       {
         title: "3. Dever de não fornecer dados de terceiros",
@@ -842,7 +842,7 @@ export const ptBR = {
         customList: [
           "<strong>Controlador:</strong> A DINN é responsável pelo tratamento dos dados pessoais de seus usuários.",
           "<strong>Operador:</strong> A DINN pode atuar como operadora em nome de clientes e parceiros.",
-          "<strong>Encarregado de Proteção de Dados:</strong> A DINN nomeou o Sr. Vinicius Fernandes Silva como o encarregado de dados, que pode ser contatado via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: #5625F2; text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+          "<strong>Encarregado de Proteção de Dados:</strong> A DINN nomeou o Sr. Vinicius Fernandes Silva como o encarregado de dados, que pode ser contatado via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
         ]
       },
       {

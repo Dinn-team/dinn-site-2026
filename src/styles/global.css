@@ -277,7 +277,7 @@ html, body {
   padding: 3px 10px;
 }
 
-.badge-accent  { background: rgba(86,37,242,0.08); color: var(--primary); border: 1px solid rgba(86,37,242,0.2); }
+.badge-accent  { background: color-mix(in oklab, var(--primary) 8%, transparent); color: var(--primary); border: 1px solid color-mix(in oklab, var(--primary) 20%, transparent); }
 .badge-neutral { background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--color-border); }
 .badge-dark    { background: var(--foreground); color: #fff; }
 

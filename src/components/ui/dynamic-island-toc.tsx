@@ -33,7 +33,7 @@ function CircleProgress({ percentage }: { percentage: number }) {
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="var(--color-accent, #5625F2)"
+        stroke="var(--color-accent, var(--primary))"
         strokeWidth={strokeWidth}
         strokeDasharray={circumference}
         initial={{ strokeDashoffset: circumference }}
@@ -282,7 +282,7 @@ export function DynamicIslandTOC({
                         fontSize: '15px',
                         transition: 'all 0.2s ease-out',
                         backgroundColor: isActive ? 'rgba(86, 37, 242, 0.08)' : (isHovered ? '#F3F4F6' : 'transparent'),
-                        color: isActive ? 'var(--color-accent, #5625F2)' : (isHovered ? '#1F2328' : '#6B7280'),
+                        color: isActive ? 'var(--color-accent, var(--primary))' : (isHovered ? 'var(--foreground)' : '#6B7280'),
                         fontWeight: isActive ? 600 : 500,
                       }}
                     >
@@ -294,7 +294,7 @@ export function DynamicIslandTOC({
                         initial={false}
                         animate={{ scale: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        style={{ marginLeft: '12px', width: '6px', height: '6px', flexShrink: 0, borderRadius: '50%', backgroundColor: 'var(--color-accent, #5625F2)' }}
+                        style={{ marginLeft: '12px', width: '6px', height: '6px', flexShrink: 0, borderRadius: '50%', backgroundColor: 'var(--color-accent, var(--primary))' }}
                       />
                     </button>
                   );

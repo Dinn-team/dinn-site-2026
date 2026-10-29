@@ -141,7 +141,7 @@ export function ProvenanceCard() {
   const { t } = useTranslation();
   const items = (t('trust.signals.items') as { name: string; def: string }[]) ?? [];
   const levels = [3, 2, 1];
-  const tones = ['#10B981', '#5625F2', '#F59E0B'];
+  const tones = ['#10B981', 'var(--primary)', '#F59E0B'];
   return (
     <div className="av-prov">
       <p className="av-prov-title">{t('areaVisuals.provenanceTitle')}</p>

@@ -51,17 +51,17 @@
 .sp-card p { font-size: 15.5px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); }
 .sp-card .sp-not { margin-top: auto; padding-top: 12px; border-top: 1px solid #ECEEF2; font-size: 14px; }
 .sp-card .sp-def { font-size: 16.5px; color: var(--text-main); }
-.sp-tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); background: rgba(86, 37, 242, 0.08); padding: 4px 10px; border-radius: 999px; }
+.sp-tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); background: color-mix(in oklab, var(--primary) 8%, transparent); padding: 4px 10px; border-radius: 999px; }
 .sp-meta { font-size: 13px; color: var(--text-soft); }
 a.sp-card, a.sp-area { transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s; }
-a.sp-card:hover, a.sp-area:hover { transform: translateY(-3px); box-shadow: 0 28px 56px -36px rgba(31, 35, 40, 0.45); border-color: rgba(86, 37, 242, 0.35); }
+a.sp-card:hover, a.sp-area:hover { transform: translateY(-3px); box-shadow: 0 28px 56px -36px rgba(31, 35, 40, 0.45); border-color: color-mix(in oklab, var(--primary) 35%, transparent); }
 
 /* cartão de área */
 .sp-area { display: flex; flex-direction: column; gap: 10px; padding: 26px; border-radius: 20px; background: #fff; border: 1px solid #ECEEF2; text-decoration: none; color: inherit; }
 .sp-area h3 { font-size: clamp(20px, 1.8vw, 24px); font-weight: 600; letter-spacing: var(--track-heading); line-height: 1.2; }
 .sp-area p { font-size: 15.5px; line-height: 1.55; letter-spacing: var(--track-body); color: var(--text-soft); }
 .sp-area p.sp-area-q { color: var(--text-main); font-weight: 500; }
-.sp-area-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; color: var(--color-accent); background: rgba(86, 37, 242, 0.09); }
+.sp-area-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; color: var(--color-accent); background: color-mix(in oklab, var(--primary) 9%, transparent); }
 .sp-area-go { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 6px; font-size: 14.5px; font-weight: 600; color: var(--color-accent); }
 
 /* ── Ciclo (plataforma) ────────────────────────────────────────────────── */
@@ -85,7 +85,7 @@ a.sp-card:hover, a.sp-area:hover { transform: translateY(-3px); box-shadow: 0 28
 .sp-checks, .sp-limits { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .sp-checks li { position: relative; padding-left: 30px; font-size: 17px; line-height: 1.55; letter-spacing: var(--track-body); color: var(--text-main); }
 .sp-checks li::before { content: ''; position: absolute; left: 0; top: 7px; width: 14px; height: 8px; border-left: 2.5px solid var(--color-accent); border-bottom: 2.5px solid var(--color-accent); transform: rotate(-45deg); }
-.sp-limits li { padding: 12px 16px; border-left: 3px solid rgba(86, 37, 242, 0.45); background: rgba(86, 37, 242, 0.04); border-radius: 0 12px 12px 0; font-size: 16px; line-height: 1.55; color: var(--text-main); }
+.sp-limits li { padding: 12px 16px; border-left: 3px solid color-mix(in oklab, var(--primary) 45%, transparent); background: color-mix(in oklab, var(--primary) 4%, transparent); border-radius: 0 12px 12px 0; font-size: 16px; line-height: 1.55; color: var(--text-main); }
 .sp-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .sp-links li { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 14px; border: 1px solid #ECEEF2; }
 .sp-links a { font-size: 16.5px; font-weight: 600; color: var(--color-accent); text-decoration: none; }

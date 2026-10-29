@@ -70,7 +70,7 @@
   display: grid; place-items: center;
   color: #fff;
   background: linear-gradient(135deg, var(--lilac), var(--color-accent));
-  box-shadow: 0 6px 16px -6px rgba(86, 37, 242, 0.55);
+  box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 .ins-bot-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .ins-context {
@@ -92,7 +92,7 @@
 .ins-answer strong { color: var(--ink); font-weight: 600; }
 .ins-extras { display: flex; flex-direction: column; gap: 14px; }
 
-.ins-method { border-left: 2px solid rgba(86, 37, 242, 0.35); padding: 2px 0 2px 14px; }
+.ins-method { border-left: 2px solid color-mix(in oklab, var(--primary) 35%, transparent); padding: 2px 0 2px 14px; }
 .ins-method summary {
   cursor: pointer; list-style: none;
   font-size: 12px; font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase;
@@ -114,7 +114,7 @@
   text-decoration: none;
   transition: border-color 0.2s, background 0.2s;
 }
-.ins-links a:hover { border-color: var(--color-accent); background: rgba(86, 37, 242, 0.05); }
+.ins-links a:hover { border-color: var(--color-accent); background: color-mix(in oklab, var(--primary) 5%, transparent); }
 .ins-links a.is-demo { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
 .ins-links a.is-demo:hover { background: var(--color-accent-hov); }
 .ins-follow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -125,7 +125,7 @@
   border: 1px dashed #C8C6BD; padding: 8px 14px; border-radius: 999px; cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
 }
-.ins-follow button:hover { border-color: var(--color-accent); background: rgba(86, 37, 242, 0.05); }
+.ins-follow button:hover { border-color: var(--color-accent); background: color-mix(in oklab, var(--primary) 5%, transparent); }
 
 /* ── Campo + bandeja (o componente do Clay) ─────────────────────────────── */
 .ins-box {

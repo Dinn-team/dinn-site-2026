@@ -17,7 +17,7 @@
 .story-glow {
   position: absolute; inset: 0; pointer-events: none;
   opacity: clamp(0, calc((var(--p) - 0.55) * 2.5), 1);
-  background: radial-gradient(ellipse 50% 40% at 50% 70%, rgba(86, 37, 242, 0.35), transparent 70%);
+  background: radial-gradient(ellipse 50% 40% at 50% 70%, color-mix(in oklab, var(--primary) 35%, transparent), transparent 70%);
 }
 .story-text {
   position: relative;
@@ -77,7 +77,7 @@
 .inside-rail button:hover { border-color: rgba(183, 158, 255, 0.7); color: #fff; }
 .inside-rail button span { font-size: 11px; font-weight: 600; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: #fff; }
 .inside-rail button.is-past { color: var(--on-ink); }
-.inside-rail button.is-on { color: #fff; border-color: rgba(183, 158, 255, 0.8); background: rgba(86, 37, 242, 0.32); }
+.inside-rail button.is-on { color: #fff; border-color: rgba(183, 158, 255, 0.8); background: color-mix(in oklab, var(--primary) 32%, transparent); }
 .inside-rail button.is-on span { background: var(--color-accent); }
 .inside-stages { display: grid; }
 .inside-stage { grid-area: 1 / 1; opacity: 0; transform: translateY(18px); filter: blur(6px); transition: opacity 0.5s var(--ease-out), transform 0.6s var(--ease-out), filter 0.5s; }
@@ -116,9 +116,9 @@
   color: #fff;
   padding: 9px 16px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(86, 37, 242, 0.55), rgba(86, 37, 242, 0.25));
+  background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 55%, transparent), color-mix(in oklab, var(--primary) 25%, transparent));
   border: 1px solid rgba(183, 158, 255, 0.5);
-  box-shadow: 0 0 40px rgba(86, 37, 242, 0.45);
+  box-shadow: 0 0 40px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 .inside-output.is-mobile { transform: translate(-50%, 6px); font-size: 11.5px; padding: 6px 8px; border-radius: 10px; }
 
@@ -153,7 +153,7 @@
 .delivery-card:hover { transform: translateY(-4px); box-shadow: 0 40px 80px -50px rgba(31, 35, 40, 0.5); }
 .delivery-card.is-wide { display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; }
 .delivery-card:nth-child(1) { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; }
-.delivery-tag { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); background: rgba(86, 37, 242, 0.08); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
+.delivery-tag { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); background: color-mix(in oklab, var(--primary) 8%, transparent); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
 .delivery-card h3 { font-size: clamp(22px, 2.2vw, 28px); font-weight: 600; letter-spacing: var(--track-heading); line-height: 1.18; margin-bottom: 10px; color: var(--text-main); }
 .delivery-card p { font-size: 16px; line-height: 1.6; letter-spacing: var(--track-body); color: var(--text-soft); max-width: 44ch; }
 .delivery-trust { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
@@ -163,7 +163,7 @@
 .dl-mini { border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(31, 35, 40, 0.05); padding: 16px; }
 .dl-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
 .dl-kpis span { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--text-soft); padding: 10px; border-radius: 12px; border: 1px solid #EEF0F3; }
-.dl-kpis i { width: 22px; height: 22px; border-radius: 50%; background: rgba(86, 37, 242, 0.12); }
+.dl-kpis i { width: 22px; height: 22px; border-radius: 50%; background: color-mix(in oklab, var(--primary) 12%, transparent); }
 .dl-bars { display: flex; flex-direction: column; gap: 7px; }
 .dl-bars div { height: 10px; border-radius: 99px; background: #F3F4F6; overflow: hidden; }
 .dl-bars i { display: block; height: 100%; border-radius: 99px; }
@@ -179,15 +179,15 @@
 .dl-ai-names { display: flex; flex-direction: column; gap: 14px; }
 .dl-ai-names span { font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 12px; border: 1px solid #EEF0F3; text-align: center; }
 .dl-ai-lines { width: 80px; height: 120px; }
-.dl-ai-hub { position: relative; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, var(--lilac), var(--color-accent)); box-shadow: 0 16px 40px -14px rgba(86, 37, 242, 0.7); }
+.dl-ai-hub { position: relative; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, var(--lilac), var(--color-accent)); box-shadow: 0 16px 40px -14px color-mix(in oklab, var(--primary) 70%, transparent); }
 .dl-lock { position: absolute; right: -6px; bottom: -6px; width: 22px; height: 22px; padding: 5px; border-radius: 50%; background: var(--ink); color: #fff; }
 .dl-conecta { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; }
 .dl-col { display: flex; flex-direction: column; gap: 8px; }
 .dl-col span { font-size: 12.5px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid #EEF0F3; white-space: nowrap; }
-.dl-col.is-dest span { color: var(--color-accent); border-color: rgba(86, 37, 242, 0.2); background: rgba(86, 37, 242, 0.05); }
+.dl-col.is-dest span { color: var(--color-accent); border-color: color-mix(in oklab, var(--primary) 20%, transparent); background: color-mix(in oklab, var(--primary) 5%, transparent); }
 .dl-flow { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-width: 0; }
 .dl-flow svg { width: 100%; height: 120px; }
-.dl-hub { font-size: 13px; font-weight: 700; color: #fff; padding: 14px 16px; border-radius: 16px; background: var(--ink); box-shadow: 0 0 0 6px rgba(86, 37, 242, 0.12); }
+.dl-hub { font-size: 13px; font-weight: 700; color: #fff; padding: 14px 16px; border-radius: 16px; background: var(--ink); box-shadow: 0 0 0 6px color-mix(in oklab, var(--primary) 12%, transparent); }
 
 @media (max-width: 900px) {
   .delivery-grid { grid-template-columns: 1fr; }

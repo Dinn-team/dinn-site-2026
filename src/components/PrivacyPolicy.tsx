@@ -11,11 +11,11 @@ export default function PrivacyPolicy() {
 
   return (
     <div style={{ color: '#6B7280', fontSize: '16px', lineHeight: 1.8 }}>
-      <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 800, color: '#1F2328', marginBottom: '40px', letterSpacing: '-0.02em' }}>
+      <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 800, color: 'var(--foreground)', marginBottom: '40px', letterSpacing: '-0.02em' }}>
         {title}
       </h1>
 
-      <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#1F2328', marginTop: '48px', marginBottom: '16px' }}>
+      <h2 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--foreground)', marginTop: '48px', marginBottom: '16px' }}>
         {summaryTitle}
       </h2>
       <ul style={{ listStylePosition: 'inside', paddingLeft: 0, marginBottom: '48px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
 
       {sections && sections.map((section, index) => (
         <div key={index}>
-          <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#1F2328', marginTop: '48px', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--foreground)', marginTop: '48px', marginBottom: '16px' }}>
             {section.title}
           </h2>
           
