@@ -18,22 +18,28 @@ export const home2Es = {
       title: "Cómo funciona Dinn",
       sub: "Siete herramientas. Una vista del canal.",
       more: "Más información",
-      beta: "Beta",
-      soon: "Pronto",
       items: [
         { id: "ruptura", name: "Quiebre, rotación y precio", text: "Ve dónde faltan productos, qué tan rápido se venden y a qué precio." },
         { id: "localizador", name: "Localizador de productos", text: "Encuentra las tiendas que tienen tu producto. Dato diario o en vivo." },
-        { id: "insights", name: "Dinn Insights", text: "Pregunta en lenguaje simple. Recibe número, alcance, fecha y método.", tag: "beta" },
+        { id: "insights", name: "Dinn Insights", text: "Pregunta en lenguaje simple. Recibe número, alcance, fecha y método." },
         { id: "mercado", name: "Mercado", text: "Lee competencia y cobertura por región y cadena." },
-        { id: "oportunidades", name: "Oportunidades", text: "Ve dónde actuar primero. Cada una muestra fuente y límites.", tag: "beta" },
-        { id: "distribuicao", name: "Distribución", text: "Cruza el stock del distribuidor con la disponibilidad en las tiendas.", tag: "beta" },
-        { id: "activities", name: "Dinn Activities", text: "Sigue las acciones de tu equipo a partir de cada señal.", tag: "soon" }
+        { id: "oportunidades", name: "Oportunidades", text: "Ve dónde actuar primero. Cada una muestra fuente y límites." },
+        { id: "distribuicao", name: "Distribución", text: "Cruza el stock del distribuidor con la disponibilidad en las tiendas." },
+        { id: "activities", name: "Dinn Activities", text: "Sigue las acciones de tu equipo a partir de cada señal." }
       ]
     },
     areas: {
       title: "Para tu área",
-      sub: "Elige tu equipo. Ve las preguntas que Dinn responde.",
-      open: "Abrir"
+      sub: "Ve los problemas que Dinn resuelve.",
+      open: "Abrir",
+      promises: {
+        "inteligencia-pricing": "Ve precio y rotación antes que la competencia.",
+        "trade-kam-campo": "Sabe a qué tienda ir primero.",
+        "supply-distribuicao": "Encuentra la brecha entre el CD y la tienda.",
+        "sac-customer-experience": "Indica dónde encontrar el medicamento.",
+        "marketing-lancamentos": "Sigue el lanzamiento tienda por tienda.",
+        "ti-dados-governanca": "Datos con fuente, fecha y límites claros."
+      }
     },
     showcase: {
       title: "Casos de uso para cada equipo",
@@ -59,7 +65,9 @@ export const home2Es = {
       menu: "Elige una pregunta",
       back: "Volver al menú",
       ask: "Hablar con el equipo",
-      label: "Guía Dinn"
+      label: "Guía Dinn",
+      open: "Abrir chat",
+      close: "Cerrar chat"
     }
   }
 };

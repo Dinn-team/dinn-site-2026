@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { PATHS } from '@/lib/site-map';
 
-type Item = { id: string; name: string; text: string; tag?: 'beta' | 'soon' };
+type Item = { id: string; name: string; text: string };
 
 // Lista de funcionalidades no modelo da Harvey: nomes curtos à esquerda, o item
 // ativo abre o texto, e a imagem do produto troca à direita.
@@ -31,7 +31,6 @@ export function Features2() {
               <li key={it.id} className={i === active ? 'is-active' : ''}>
                 <button type="button" className="h2-feat-name" aria-expanded={i === active} onClick={() => setActive(i)}>
                   <span>{it.name}</span>
-                  {it.tag && <span className={`h2-tag is-${it.tag}`}>{t(`home2.features.${it.tag}`)}</span>}
                 </button>
                 {i === active && (
                   <div className="h2-feat-body">

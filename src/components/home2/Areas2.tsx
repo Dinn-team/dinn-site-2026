@@ -20,6 +20,7 @@ const ICONS: Record<string, IconType> = {
 export function Areas2() {
   const { t } = useTranslation();
   const areas = (t('solutions.items') as Area[]) ?? [];
+  const promises = (t('home2.areas.promises') as Record<string, string>) ?? {};
   return (
     <section id="areas" className="h2-section h2-areas" aria-labelledby="h2-areas-title">
       <div className="h2-wrap">
@@ -34,7 +35,10 @@ export function Areas2() {
               <li key={a.slug}>
                 <a className="h2-area" href={areaPath(a.slug)}>
                   <span className="h2-area-art"><Icon size={88} strokeWidth={0.8} aria-hidden="true" /></span>
-                  <span className="h2-area-name">{a.name}</span>
+                  <span className="h2-area-txt">
+                    <span className="h2-area-name">{a.name}</span>
+                    <span className="h2-area-promise">{promises[a.slug]}</span>
+                  </span>
                   <ArrowUpRight className="h2-area-go" size={18} aria-label={t('home2.areas.open') as string} />
                 </a>
               </li>

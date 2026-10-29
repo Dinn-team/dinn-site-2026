@@ -18,22 +18,28 @@ export const home2Pt = {
       title: "Como a Dinn funciona",
       sub: "Sete ferramentas. Uma visão do canal.",
       more: "Saiba mais",
-      beta: "Beta",
-      soon: "Em breve",
       items: [
         { id: "ruptura", name: "Ruptura, giro e preço", text: "Veja onde faltam produtos, a velocidade de venda e o preço." },
         { id: "localizador", name: "Localizador de produtos", text: "Encontre as lojas que têm o seu produto. Dado diário ou ao vivo." },
-        { id: "insights", name: "Dinn Insights", text: "Pergunte em linguagem simples. Receba número, escopo, data e método.", tag: "beta" },
+        { id: "insights", name: "Dinn Insights", text: "Pergunte em linguagem simples. Receba número, escopo, data e método." },
         { id: "mercado", name: "Mercado", text: "Leia concorrência e cobertura por região e rede." },
-        { id: "oportunidades", name: "Oportunidades", text: "Veja onde agir primeiro. Cada uma mostra fonte e limites.", tag: "beta" },
-        { id: "distribuicao", name: "Distribuição", text: "Cruze o estoque do distribuidor com a disponibilidade nas lojas.", tag: "beta" },
-        { id: "activities", name: "Dinn Activities", text: "Acompanhe as ações do seu time a partir de cada sinal.", tag: "soon" }
+        { id: "oportunidades", name: "Oportunidades", text: "Veja onde agir primeiro. Cada uma mostra fonte e limites." },
+        { id: "distribuicao", name: "Distribuição", text: "Cruze o estoque do distribuidor com a disponibilidade nas lojas." },
+        { id: "activities", name: "Dinn Activities", text: "Acompanhe as ações do seu time a partir de cada sinal." }
       ]
     },
     areas: {
       title: "Para a sua área",
-      sub: "Escolha o seu time. Veja as perguntas que a Dinn responde.",
-      open: "Abrir"
+      sub: "Veja os problemas que a Dinn resolve.",
+      open: "Abrir",
+      promises: {
+        "inteligencia-pricing": "Veja preço e giro antes do concorrente.",
+        "trade-kam-campo": "Saiba em qual loja agir primeiro.",
+        "supply-distribuicao": "Ache a falta entre o CD e a loja.",
+        "sac-customer-experience": "Diga ao cliente onde achar o remédio.",
+        "marketing-lancamentos": "Acompanhe o lançamento loja a loja.",
+        "ti-dados-governanca": "Dados com fonte, data e limites claros."
+      }
     },
     showcase: {
       title: "Casos de uso para cada time",
@@ -59,7 +65,9 @@ export const home2Pt = {
       menu: "Escolha uma pergunta",
       back: "Voltar ao menu",
       ask: "Falar com o time",
-      label: "Guia Dinn"
+      label: "Guia Dinn",
+      open: "Abrir chat",
+      close: "Fechar chat"
     }
   }
 };

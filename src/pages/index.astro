@@ -6,14 +6,14 @@ import { Features2 } from '@/components/home2/Features2';
 import { Areas2 } from '@/components/home2/Areas2';
 import { Showcase2 } from '@/components/home2/Showcase2';
 import { Resources2 } from '@/components/home2/Resources2';
-import { FaqBot2 } from '@/components/home2/FaqBot2';
+import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { getClientLogos } from '@/lib/clients';
 
 // Faixa de clientes (âncora #clientes): só entram logos com arquivo em public/clientes.
 const logos = getClientLogos();
 
 // Home nova (29/10/2026), no modelo da Harvey e da ElevenLabs. Ver rules/REFERENCES_UI_UX.md.
-// Hero com vídeo → clientes → como funciona → para a sua área → casos → recursos → dúvidas (bot).
+// Hero com vídeo → clientes → como funciona → para a sua área → casos → recursos. Dúvidas: chat flutuante à direita.
 ---
 
 <Layout>
@@ -24,6 +24,6 @@ const logos = getClientLogos();
     <Areas2 client:idle />
     <Showcase2 client:visible />
     <Resources2 client:visible />
-    <FaqBot2 client:visible />
+    <ChatWidget2 client:idle />
   </div>
 </Layout>
