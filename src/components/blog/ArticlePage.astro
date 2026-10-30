@@ -5,7 +5,7 @@
 // o HTML já sai no idioma certo para o leitor e para os buscadores.
 import Layout from '@/layouts/Layout.astro';
 import { urlFor } from '@/sanity/lib/client';
-import { PortableText } from '@portabletext/react';
+import ArticleBody from '@/components/blog/ArticleBody';
 import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
 import { articlePath, blogPath, HTML_LANG, type Lang } from '@/i18n/routes';
 import { contactUrl } from '@/lib/links';
@@ -40,6 +40,17 @@ const shareImage = post.coverImage
 
 const description = post.excerpt || post.title;
 
+// Autor(a): o cadastro (authorRef) tem prioridade; o texto antigo serve de reserva.
+const profile = post.authorProfile;
+const authorName = profile?.name || post.author || '';
+const authorRole = profile?.role || '';
+const authorImage = profile?.image
+  ? urlFor(profile.image).width(256).height(256).fit('crop').url()
+  : '';
+const authorAvatar = profile?.image
+  ? urlFor(profile.image).width(96).height(96).fit('crop').url()
+  : '';
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -48,7 +59,12 @@ const articleSchema = {
   "inLanguage": HTML_LANG[lang],
   "datePublished": post.publishedAt,
   "dateModified": post._updatedAt || post.publishedAt,
-  "author": { "@type": "Person", "name": post.author || "Dinn" },
+  "author": {
+    "@type": "Person",
+    "name": authorName || "Dinn",
+    ...(authorRole ? { jobTitle: authorRole } : {}),
+    ...(authorImage ? { image: authorImage } : {}),
+  },
   "publisher": {
     "@type": "Organization",
     "name": "Dinn",
@@ -104,12 +120,16 @@ const articleSchema = {
 
       <!-- Date + author -->
       <div class="bp-byline">
-        {post.author && (
+        {authorName && (
           <span class="bp-author">
-            {labels.writtenBy} {post.author}
+            {authorAvatar && <img src={authorAvatar} alt={authorName} class="bp-author-avatar" width="40" height="40" />}
+            <span class="bp-author-text">
+              <span class="bp-author-name">{labels.writtenBy} {authorName}</span>
+              {authorRole && <span class="bp-author-role">{authorRole}</span>}
+            </span>
           </span>
         )}
-        {post.author && post.publishedAt && <span class="bp-dot">·</span>}
+        {authorName && post.publishedAt && <span class="bp-dot">·</span>}
         {post.publishedAt && (
           <time class="bp-date" datetime={post.publishedAt}>
             {formatPostDate(lang, post.publishedAt)}
@@ -127,20 +147,7 @@ const articleSchema = {
       <!-- Article body -->
       <div class="bp-body">
         {post.body && (
-          <PortableText
-            value={post.body}
-            components={{
-              types: {
-                image: ({ value }: any) => {
-                  const url = urlFor(value).width(900).url();
-                  return `<figure class="bp-figure">
-                    <img src="${url}" alt="${value.alt || ''}" class="bp-img" />
-                    ${value.caption ? `<figcaption class="bp-caption">${value.caption}</figcaption>` : ''}
-                  </figure>`;
-                }
-              }
-            }}
-          />
+          <ArticleBody value={post.body} />
         )}
       </div>
 
@@ -278,7 +285,27 @@ const articleSchema = {
     gap: 10px;
     margin-bottom: 36px;
   }
+  .bp-author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .bp-author-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .bp-author-role {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
   .bp-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-primary);

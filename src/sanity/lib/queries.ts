@@ -33,6 +33,7 @@ export const postsByLanguageQuery = `*[_type == "post" && coalesce(contentLangua
 export const articlesByLanguageQuery = `*[_type == "post" && coalesce(contentLanguage, 'pt') == $lang] | order(publishedAt desc) {${CARD_FIELDS},
   _updatedAt,
   body,
+  "authorProfile": authorRef->{ name, role, image },
   "alternates": *[_type == "post" && coalesce(translationKey, slug.current) == coalesce(^.translationKey, ^.slug.current) && _id != ^._id]{
     "language": coalesce(contentLanguage, 'pt'),
     "slug": slug.current
