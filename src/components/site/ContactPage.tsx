@@ -139,23 +139,27 @@ export function ContactPage() {
     errors[key] ? <p className="ct-error" id={`ct-${key}-err`}>{errors[key]}</p> : null;
 
   return (
-    <div className="sp">
-      <header className="sp-hero ct-hero">
-        <div className="wrap ct-grid">
-          <div className="ct-copy">
-            <p className="sp-eyebrow">{t('contact.hero.eyebrow')}</p>
-            <h1 className="sp-title"><Rich text={t('contact.hero.title') as string} /></h1>
-            <p className="sp-lead">{t('contact.hero.lead')}</p>
-
-            <ol className="ct-steps" aria-label={t('contact.after.title') as string}>
-              {steps.map((s, i) => (
-                <li key={s.title}>
-                  <span className="ct-step-n" aria-hidden="true">{i + 1}</span>
-                  <p><strong>{s.title}</strong><span>{s.text}</span></p>
-                </li>
-              ))}
-            </ol>
+    <div className="h2">
+      <section className="h2-hero ct-hero" aria-labelledby="ct-title">
+        <div className="h2-wrap">
+          <div className="h2-hero-grid">
+            <h1 id="ct-title" className="h2-hero-title"><Rich text={t('contact.hero.title') as string} /></h1>
+            <div className="h2-hero-side">
+              <p className="h2-hero-sub">{t('contact.hero.lead')}</p>
+            </div>
           </div>
+
+          <div className="ct-grid">
+            <div className="ct-copy">
+              <ol className="ct-steps" aria-label={t('contact.after.title') as string}>
+                {steps.map((s, i) => (
+                  <li key={s.title}>
+                    <span className="ct-step-n" aria-hidden="true">{i + 1}</span>
+                    <p><strong>{s.title}</strong><span>{s.text}</span></p>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
           <div className="ct-card">
             {status === 'done' ? (
@@ -368,8 +372,9 @@ export function ContactPage() {
               </form>
             )}
           </div>
+          </div>
         </div>
-      </header>
+      </section>
     </div>
   );
 }

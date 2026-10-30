@@ -102,7 +102,7 @@ Cada página interna passa a seguir este fluxo:
 4. **Fechamento:** o chat flutuante já cobre dúvidas. Termine com o rodapé global.
 5. Migrar uma página por vez, junto com o texto em STE.
 
-Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções (+6 áreas) · clientes · recursos (blog, casos, novidades, comparativos) · planos · confiança · sobre · contato · integrações · cobertura · pesquisas.
+Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções (+6 áreas) · clientes · recursos (blog, casos, novidades, comparativos) · planos · confiança · sobre · contato ✅ · integrações · cobertura · pesquisas.
 
 ## 10. Checklist antes de entregar uma tela
 
