@@ -11,7 +11,7 @@ export const es419 = {
     solutionsAll: "Ver todas las soluciones",
     cases: "Casos de uso",
     changelog: "Novedades",
-    resourcesAll: "Ver todos los recursos",
+    resourcesAll: "Ver todo",
     trust: "Confianza",
     resources: "Recursos",
     ask: "Dinn Insights",
@@ -715,8 +715,8 @@ export const es419 = {
     secondary: "Volver a preguntar"
   },
   footer: {
-    description: "Inteligencia comercial para el canal farmacéutico. Presente en Joinville y Valencia.",
-    sectionA: "Acerca de Dinn",
+    description: "Inteligencia comercial para el canal farma.",
+    sectionA: "Dinn",
     sectionSolutions: "Soluciones",
     sectionLegal: "Legal",
     termos: "Términos",
@@ -726,7 +726,7 @@ export const es419 = {
     ctaTitle: "¿Listo para empezar?",
     ctaDesc: "Ve Dinn con tus propios productos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2026 Dinn Tecnologia Ltda. Todos los derechos reservados.",
+    rights: "© 2026 Dinn. Todos los derechos reservados.",
     legalName: "Dinn Tecnologia Ltda.",
     cnpj: "57.639.944/0001-20",
     address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
@@ -790,7 +790,7 @@ export const es419 = {
           "Derecho a no ser objeto de decisiones automatizadas",
           "Derecho a la anonimización y el intercambio"
         ],
-        footer: "Los usuarios pueden solicitar estos derechos enviando un correo electrónico a <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+        footer: "Los usuarios pueden solicitar estos derechos enviando un correo electrónico a <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
       },
       {
         title: "3. Deber de no proporcionar datos de terceros",
@@ -844,7 +844,7 @@ export const es419 = {
         customList: [
           "<strong>Controlador:</strong> DINN es responsable del tratamiento de los datos personales de sus usuarios.",
           "<strong>Operador:</strong> DINN puede actuar como operador en nombre de clientes y socios.",
-          "<strong>Oficial de Protección de Datos:</strong> DINN ha designado al Sr. Vinicius Fernandes Silva como el oficial de datos, a quien se puede contactar a través de <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+          "<strong>Oficial de Protección de Datos:</strong> DINN ha designado al Sr. Vinicius Fernandes Silva como el oficial de datos, a quien se puede contactar a través de <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
         ]
       },
       {

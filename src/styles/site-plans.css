@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Planos no padrão da home (Design System v2), com a estrutura da página de
+   preços da ElevenLabs. Gradiente da página: g09 (rosa e laranja). Prefixo pl-.
+   ========================================================================== */
+.pl .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pl-hero { padding-bottom: clamp(40px, 5vw, 72px); }
+
+/* Grade de planos: colunas separadas por fio fino */
+.pl-plans { background: var(--background); padding-bottom: var(--h2-pad); }
+.pl-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pl-lead { padding: 28px 24px 28px 0; display: flex; flex-direction: column; gap: 12px; }
+.pl-lead-title { font-family: var(--font-display); font-size: clamp(28px, 2.8vw, 40px); letter-spacing: -0.02em; line-height: 1.05; color: var(--foreground); }
+.pl-lead-text { font-size: 14.5px; line-height: 1.5; color: var(--muted-foreground); max-width: 24ch; }
+.pl-col { display: flex; flex-direction: column; padding: 24px 20px; border-left: 1px solid var(--border); min-width: 0; }
+.pl-card { position: relative; display: flex; flex-direction: column; min-height: 250px; padding: 20px; border-radius: 12px; background: var(--muted); isolation: isolate; overflow: hidden; }
+.pl-card h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
+.pl-card > p { margin-top: 6px; font-size: 14.5px; line-height: 1.45; color: var(--muted-foreground); max-width: 24ch; }
+.pl-price { margin-top: auto; display: grid; gap: 2px; }
+.pl-price strong { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; color: var(--foreground); }
+.pl-price span { font-size: 13px; color: var(--muted-foreground); }
+.pl-card.is-top { background: #c2410c url(/gradients/g09.avif) center / cover; }
+.pl-card.is-top::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, 0.35); }
+.pl-card.is-top h3, .pl-card.is-top .pl-price strong { color: #fff; }
+.pl-card.is-top > p, .pl-card.is-top .pl-price span { color: rgba(255, 255, 255, 0.88); }
+.pl-cta { margin-top: 14px; width: 100%; justify-content: center; color: #fff; }
+.pl-from { margin-top: 22px; padding-bottom: 8px; font-size: 13.5px; color: var(--muted-foreground); }
+.pl-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.pl-list li { display: grid; grid-template-columns: 16px 1fr; column-gap: 10px; row-gap: 2px; padding: 10px 0; border-top: 1px dashed var(--border); font-size: 14px; line-height: 1.4; }
+.pl-list svg { grid-row: 1 / span 2; margin-top: 3px; color: var(--primary); }
+.pl-k { color: var(--muted-foreground); }
+.pl-v { color: var(--foreground); font-weight: 500; }
+.pl-min { margin-top: auto; padding-top: 22px; display: grid; gap: 2px; font-size: 13px; color: var(--muted-foreground); }
+.pl-min strong { font-size: 16px; font-weight: 500; color: var(--foreground); }
+.pl-note { margin-top: 18px; font-size: 13px; color: var(--muted-foreground); }
+
+/* Monte o escopo */
+.pl-build-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.pl-step { margin: 28px 0 16px; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--foreground); }
+.pl-step span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); font-size: 12px; color: var(--muted-foreground); }
+.pl-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pl-chips button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 9999px; border: 1px solid var(--border); background: var(--background); font: inherit; font-size: 14px; color: var(--foreground); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.pl-chips button:hover { border-color: var(--foreground); }
+.pl-chips button.is-on { background: var(--foreground); border-color: var(--foreground); color: var(--background); }
+.pl-plus { color: var(--muted-foreground); line-height: 1; }
+.pl-result { position: relative; min-height: 360px; display: flex; flex-direction: column; padding: clamp(24px, 3vw, 36px); border-radius: 16px; color: #fff; isolation: isolate; overflow: hidden; background: #c2410c url(/gradients/g09.avif) center / cover; }
+.pl-result::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, 0.38); }
+.pl-result-empty { margin: auto 0; font-size: 18px; line-height: 1.4; color: rgba(255, 255, 255, 0.92); max-width: 26ch; }
+.pl-result-kicker { font-size: 13px; color: rgba(255, 255, 255, 0.8); }
+.pl-result h3 { margin-top: 4px; font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 3.6vw, 48px); letter-spacing: -0.02em; line-height: 1.05; color: #fff; }
+.pl-result ul { list-style: none; margin: 22px 0; padding: 0; display: grid; gap: 10px; }
+.pl-result li { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; font-size: 15px; }
+.pl-result li em { font-style: normal; font-size: 13px; color: rgba(255, 255, 255, 0.8); }
+.pl-result-btn { margin-top: auto; justify-content: center; background: #fff; color: var(--foreground) !important; }
+
+/* Além da assinatura: carrossel igual ao dos clientes na home */
+.pl-arrows { align-self: flex-end; }
+.pl-bc > li { flex: 0 0 calc((100% - 64px) / 3); }
+.pl-bc-card { display: flex; flex-direction: column; gap: 8px; height: 100%; padding: 20px 20px 24px; border-radius: 16px; background: var(--muted); }
+.pl-bc-art { display: block; margin: 0 -4px 12px; }
+.pl-bc-name { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
+.pl-bc-text { font-size: 15px; line-height: 1.5; color: var(--muted-foreground); max-width: 38ch; }
+.pl-bc-card .h2-link { margin-top: auto; padding-top: 12px; }
+
+/* Como começar */
+.pl-start { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.pl-start ol { list-style: none; margin: 0; padding: 0; display: grid; }
+.pl-start li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 24px 0; border-top: 1px solid var(--border); }
+.pl-start li:last-child { border-bottom: 1px solid var(--border); }
+.pl-n { font-size: 13px; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--primary); padding-top: 4px; }
+.pl-start h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
+.pl-start p { margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--muted-foreground); max-width: 52ch; }
+
+/* Fechamento */
+.pl-closing { padding: var(--h2-pad) 0; background: var(--background); }
+.pl-closing-card { position: relative; padding: clamp(40px, 6vw, 88px) clamp(28px, 5vw, 72px); border-radius: 24px; overflow: hidden; background: #c2410c url(/gradients/g09.avif) center / cover; color: #fff; isolation: isolate; }
+.pl-closing-card::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, 0.4); }
+.pl-closing-card h2 { max-width: 20ch; font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: #fff; }
+.pl-closing-card p { margin: 16px 0 28px; max-width: 46ch; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+
+@media (max-width: 1100px) {
+  .pl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pl-lead { grid-column: 1 / -1; padding: 24px 0; }
+  .pl-lead-text { max-width: 60ch; }
+  .pl-col:nth-child(2) { border-left: 0; padding-left: 0; }
+  .pl-bc > li { flex-basis: calc((100% - 32px) / 2); }
+}
+@media (max-width: 860px) {
+  .pl-grid { grid-template-columns: 1fr; }
+  .pl-col { border-left: 0; border-top: 1px solid var(--border); padding: 24px 0; }
+  .pl-col:nth-child(2) { border-top: 0; }
+  .pl-card { min-height: 200px; }
+  .pl-build-grid, .pl-start { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .pl-bc > li { flex-basis: 82%; }
+  .pl-arrows { display: none; }
+  .pl-start li { grid-template-columns: 40px 1fr; }
+}

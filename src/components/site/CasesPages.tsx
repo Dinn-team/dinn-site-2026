@@ -9,7 +9,9 @@ import { useScrollProgress } from '@/components/home/useScrollProgress';
 import { scrollToStage } from '@/components/home/scroll-to';
 import { StageSteps } from './StageSteps';
 import data from '@/data/cases.json';
-import { ImageHero, PageCta, PageHero } from './PageShell';
+import { ChatWidget2 } from '@/components/home2/ChatWidget2';
+import { IlGovern, IlLaunch, IlPricing, IlSac, IlSupply, IlTrade } from '@/components/illustrations/areas';
+import { ClosingCard, ImageHero, PageCta, PageHero } from './PageShell';
 import { getCaseScene } from './CaseScenes';
 
 // Galeria de casos de uso e página de cada caso, contada como história:
@@ -72,51 +74,71 @@ function CaseCover({ area, kind }: { area: string; kind: CaseItem['kind'] }) {
 }
 
 // ── Galeria ────────────────────────────────────────────────────────────────
+// Cada caso usa a ilustração animada da sua área (a mesma de "Para a sua área").
+const AREA_ART: Record<string, ComponentType> = {
+  'inteligencia-pricing': IlPricing,
+  'trade-kam-campo': IlTrade,
+  'supply-distribuicao': IlSupply,
+  'sac-customer-experience': IlSac,
+  'marketing-lancamentos': IlLaunch,
+  'ti-dados-governanca': IlGovern,
+};
+
 export function CasesGallery() {
   const { t, l } = useLang();
   const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
   const nameOf = (slug: string) => areas.find((a) => a.slug === slug)?.name ?? '';
 
   return (
-    <div className="sp">
-      <ImageHero
-        src="/recursos/casos-capa.webp"
-        position="50% 40%"
-        align="left"
-        eyebrow={t('cases.hero.eyebrow') as string}
-        title={t('cases.hero.title') as string}
-        lead={t('cases.hero.lead') as string}
-        back={{ label: t('changelog.back') as string, href: PATHS.resources }}
-      />
-      <section className="sp-section" aria-label={t('cases.hero.eyebrow')}>
-        <div className="wrap">
-          {publishedCases.length === 0 ? (
-            <p className="sp-body">{t('cases.gallery.empty')}</p>
-          ) : (
-            <div className="sp-grid is-three">
-              {publishedCases.map((c, i) => (
-                <motion.a
-                  key={c.slug}
-                  className="sp-card cs-card"
-                  href={`${PATHS.cases}/${c.slug}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.06 * i, duration: 0.6 }}
-                >
-                  <CaseCover area={c.area} kind={c.kind} />
-                  <span className={`cs-kind is-${c.kind}`}>{t('cases.gallery.customer')}</span>
-                  <h2>{pick(c.title, l)}</h2>
-                  <p>{pick(c.summary, l)}</p>
-                  <span className="cs-meta">{pick(c.role, l)} · {nameOf(c.area)}</span>
-                  <span className="sp-area-go">{t('cases.gallery.open')}<ArrowRight size={15} aria-hidden="true" /></span>
-                </motion.a>
-              ))}
+    <div className="h2 cs2">
+      <header className="h2-hero">
+        <div className="h2-wrap">
+          <div className="h2-hero-grid">
+            <h1 className="h2-hero-title"><Rich text={t('cases.hero.title') as string} /></h1>
+            <div className="h2-hero-side">
+              <p className="h2-hero-sub">{t('cases.hero.lead')}</p>
+              <div className="h2-actions">
+                <a className="h2-link" href={PATHS.resources}>← {t('changelog.back')}</a>
+              </div>
             </div>
+          </div>
+        </div>
+      </header>
+
+      <section className="cs2-sec" aria-label={t('cases.hero.eyebrow') as string}>
+        <div className="h2-wrap">
+          {publishedCases.length === 0 ? (
+            <p className="cs2-empty">{t('cases.gallery.empty')}</p>
+          ) : (
+            <ul className="cs2-grid">
+              {publishedCases.map((c) => {
+                const Art = AREA_ART[c.area] ?? IlPricing;
+                return (
+                  <li key={c.slug}>
+                    <a className="pl-bc-card il-host" href={`${PATHS.cases}/${c.slug}`}>
+                      <span className="pl-bc-art"><Art /></span>
+                      <span className="cs2-kind">{t('cases.gallery.customer')} · {nameOf(c.area)}</span>
+                      <span className="pl-bc-name">{pick(c.title, l)}</span>
+                      <span className="pl-bc-text">{pick(c.summary, l)}</span>
+                      <span className="cs2-meta">{pick(c.role, l)}</span>
+                      <span className="h2-link">{t('cases.gallery.open')}<ArrowRight size={15} aria-hidden="true" /></span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           )}
         </div>
       </section>
-      <PageCta title={t('pageCta.title')} desc={t('pageCta.desc')} button={t('pageCta.button')} />
+
+      <ClosingCard
+        title={t('pageCta.title') as string}
+        desc={t('pageCta.desc') as string}
+        button={t('pageCta.button') as string}
+        origin="casos"
+        gradient="g10"
+      />
+      <ChatWidget2 />
     </div>
   );
 }

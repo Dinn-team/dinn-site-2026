@@ -8,7 +8,17 @@ import type { ClientLogo } from '@/lib/clients';
 // Os três principais aparecem; os outros ficam no carrossel (setas no desktop).
 // Os gradientes ficam em public/gradients.
 const ORDER = ['Libbs', 'Lilly', 'Eurofarma', 'Marjan', 'Sanofi'];
-const GRADIENTS = ['g00', 'g11', 'g08', 'g00', 'g11'];
+// Cada cartão usa o degradê na cor da marca do cliente: o arquivo da base e uma
+// rotação de matiz (CSS filter) que leva o roxo para o verde, o vermelho, o azul…
+// Marjan mistura verde, azul e laranja, por isso usa o degradê verde-água, mais saturado.
+const BRAND: Record<string, { g: string; filter: string }> = {
+  Libbs: { g: 'g00', filter: 'hue-rotate(190deg) saturate(1.3) brightness(1.75)' },
+  Lilly: { g: 'g00', filter: 'hue-rotate(95deg) saturate(1.5) brightness(1.4)' },
+  Eurofarma: { g: 'g00', filter: 'hue-rotate(-35deg) saturate(1.1)' },
+  Sanofi: { g: 'g08', filter: 'none' },
+  Marjan: { g: 'g06', filter: 'saturate(2.3) brightness(1) contrast(1.05)' },
+};
+const FALLBACK = { g: 'g00', filter: 'none' };
 
 export function Customers2({ logos }: { logos: ClientLogo[] }) {
   const { t } = useTranslation();
@@ -49,10 +59,13 @@ export function Customers2({ logos }: { logos: ClientLogo[] }) {
           </div>
         </div>
         <ul className="h2-cust-track" ref={track} onScroll={sync}>
-          {sorted.map((c, i) => (
+          {sorted.map((c) => (
             <li key={c.name}>
               <a className="h2-cust" href={PATHS.customers}>
-                <span className="h2-cust-art" style={{ backgroundImage: `url(/gradients/${GRADIENTS[i % GRADIENTS.length]}.avif)` }}>
+                <span
+                  className="h2-cust-art"
+                  style={{ ['--g' as string]: `url(/gradients/${(BRAND[c.name] ?? FALLBACK).g}.avif)`, ['--f' as string]: (BRAND[c.name] ?? FALLBACK).filter }}
+                >
                   <span className="h2-cust-shade" />
                   <img className="h2-cust-logo" src={c.src} alt={c.name} width={c.width} height={c.height} loading="lazy" />
                 </span>

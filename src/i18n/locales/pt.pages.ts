@@ -57,6 +57,7 @@ export const pagesPt = {
     },
     after: {
       title: "O que acontece depois",
+      mail: "Prefere e-mail? Escreva para o Edu:",
       steps: [
         { title: "Recebemos o seu pedido", text: "Ele chega ao time com o seu papel e a sua decisão." },
         { title: "Uma pessoa responde", text: "Você recebe a resposta por e-mail em poucos dias úteis." },
@@ -727,6 +728,12 @@ export const pagesPt = {
   },
 
 
+  trustLayout: {
+    nav: { aria: "Nesta página", signals: "Sinais", confidence: "Confiança nos números", security: "Segurança", deploy: "Implantação", docs: "Documentos" },
+    kind: "Tipo de sinal",
+    example: "Exemplo",
+    why: "Por quê"
+  },
   trustVisual: {
     anatomy: {
       title: "Um sinal na tela, com tudo o que ele diz sobre si",

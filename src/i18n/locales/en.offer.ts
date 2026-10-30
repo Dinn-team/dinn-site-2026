@@ -11,22 +11,22 @@
 export const offerEn = {
   menu: {
     platform: "Platform",
-    platformOverview: "Platform overview",
+    platformOverview: "Overview",
     features: "Features",
-    locator: "Locator and real-time stock",
+    locator: "Stock locator",
     conecta: "Dinn Conecta",
-    integrations: "Integrations and API",
+    integrations: "Integrations",
     coverage: "Coverage",
-    platformAll: "See the whole platform",
-    solutionsAll: "Choose by goal, area or feature",
+    platformAll: "See all",
+    solutionsAll: "See all",
     compare: "Comparisons",
     plans: "Plans",
-    plansOverview: "Plans and contracting",
+    plansOverview: "Plans",
     plansAll: "Compare the plans",
-    research: "Research and special projects",
+    research: "Research",
     company: "Dinn",
-    about: "About Dinn",
-    trust: "Trust and controls",
+    about: "About",
+    trust: "Trust",
     contact: "Contact",
     companyAll: "Get to know Dinn"
   },
@@ -600,6 +600,15 @@ export const offerEn = {
       ],
       note: "No public prices. The proposal considers products, coverage, users and integration needs."
     },
+    grid: { label: "Plans", fromPrev: "Everything in {prev}, plus", first: "Includes", price: "By proposal", priceNote: "No public price", minimum: "Minimum term" },
+    build: {
+      title: "Build the scope of your plan",
+      step: "Choose the features you need",
+      empty: "Select a feature to see the plan we suggest.",
+      recommended: "Suggested plan",
+      none: "No plan includes all items without a review. Talk to Dinn.",
+      cta: "Request a proposal"
+    },
     addons: {
       title: "Add-ons and inclusions",
       intro: "What can be part of the plan, and which plan includes it.",
@@ -727,6 +736,13 @@ export const offerEn = {
         { tag: "Custom sources", title: "Evaluate new sources for your project.", deliver: "Access and rights, feasibility, quality, cost and refresh limits." },
         { tag: "Preparation and integration", title: "Connect the scope to your team's environment.", deliver: "Sources, standardization, destination, operation and acceptance criterion, as in the Conecta proposal." }
       ]
+    },
+    build: {
+      title: "Plan your project",
+      step: "Choose the deliveries you want",
+      empty: "Select a delivery to see the project summary.",
+      summary: "Your project",
+      agree: "We agree with you"
     },
     define: {
       title: "What we agree in each project",

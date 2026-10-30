@@ -1,11 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { AboutPage } from '@/components/site/offer/OfferPages';
+import { AboutPage } from '@/components/site/AboutPage';
 import { pagesPt } from '@/i18n/locales/pt.pages';
+import { getClientLogos } from '@/lib/clients';
+import { getCityPhotos } from '@/lib/city-photos';
 
 const { title, description } = pagesPt.about.meta;
+// Só entram logos com arquivo em public/clientes (ver src/lib/clients.ts).
+const logos = getClientLogos();
+// Fotos em public/cidades (ver src/lib/city-photos.ts); sem arquivo, vale o degradê.
+const photos = getCityPhotos();
 ---
 
 <Layout title={title} description={description}>
-  <AboutPage client:load />
+  <AboutPage logos={logos} photos={photos} client:load />
 </Layout>

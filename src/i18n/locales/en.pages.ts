@@ -56,6 +56,7 @@ export const pagesEn = {
     },
     after: {
       title: "What happens next",
+      mail: "Prefer email? Write to Edu:",
       steps: [
         { title: "We receive your request", text: "It goes to the team with your role and decision." },
         { title: "A person replies", text: "You get an email reply within a few business days." },
@@ -726,6 +727,12 @@ export const pagesEn = {
   },
 
 
+  trustLayout: {
+    nav: { aria: "On this page", signals: "Signals", confidence: "Trust in the numbers", security: "Security", deploy: "Deployment", docs: "Documents" },
+    kind: "Signal type",
+    example: "Example",
+    why: "Why"
+  },
   trustVisual: {
     anatomy: {
       title: "A signal on screen, with everything it says about itself",

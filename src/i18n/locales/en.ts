@@ -11,7 +11,7 @@ export const enUS = {
     solutionsAll: "See all solutions",
     cases: "Use cases",
     changelog: "What's new",
-    resourcesAll: "See all resources",
+    resourcesAll: "See all",
     trust: "Trust",
     resources: "Resources",
     ask: "Dinn Insights",
@@ -20,7 +20,7 @@ export const enUS = {
     delivery: "Where it delivers",
     customers: "Customers",
     blog: "Blog",
-    cta: "Request a demo",
+    cta: "Request demo",
     openMenu: "Open menu",
     languageLabel: "Language",
     language: "English",
@@ -715,8 +715,8 @@ export const enUS = {
     secondary: "Ask again"
   },
   footer: {
-    description: "Commercial intelligence for the pharmaceutical channel. Present in Joinville and Valencia.",
-    sectionA: "About Dinn",
+    description: "Commercial intelligence for the pharma channel.",
+    sectionA: "Dinn",
     sectionSolutions: "Solutions",
     sectionLegal: "Legal",
     termos: "Terms",
@@ -726,7 +726,7 @@ export const enUS = {
     ctaTitle: "Ready to get started?",
     ctaDesc: "See Dinn with your own products.",
     ctaButton: "Request a demo",
-    rights: "© 2026 Dinn Tecnologia Ltda. All rights reserved.",
+    rights: "© 2026 Dinn. All rights reserved.",
     legalName: "Dinn Tecnologia Ltda.",
     cnpj: "57.639.944/0001-20",
     address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
@@ -790,7 +790,7 @@ export const enUS = {
           "Right not to be subject to automated decisions",
           "Right to anonymization and sharing"
         ],
-        footer: "Users can request these rights by sending an email to <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+        footer: "Users can request these rights by sending an email to <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
       },
       {
         title: "3. Duty not to provide third-party data",
@@ -844,7 +844,7 @@ export const enUS = {
         customList: [
           "<strong>Controller:</strong> DINN is responsible for processing its users' personal data.",
           "<strong>Processor:</strong> DINN may act as a processor on behalf of clients and partners.",
-          "<strong>Data Protection Officer:</strong> DINN has appointed Mr. Vinicius Fernandes Silva as the data protection officer, who can be contacted via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+          "<strong>Data Protection Officer:</strong> DINN has appointed Mr. Vinicius Fernandes Silva as the data protection officer, who can be contacted via <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
         ]
       },
       {

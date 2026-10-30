@@ -131,3 +131,37 @@ export function SectionHead({ title, intro, id }: { title: string; intro?: strin
     </div>
   );
 }
+
+/** Cabeçalho de seção no padrão da home (`.h2-head.is-stack`): título e apoio.
+ *  Use dentro de `.h2-wrap`, em páginas já migradas para o Design System v2. */
+export function H2Head({ title, intro, id }: { title: string; intro?: string; id?: string }) {
+  return (
+    <div className="h2-head is-stack">
+      <h2 id={id} className="h2-title"><Rich text={title} /></h2>
+      {intro && <p className="h2-sub">{intro}</p>}
+    </div>
+  );
+}
+
+/** Fechamento no padrão v2: cartão em degradê claro (texto escuro) com uma chamada e um botão. */
+export function ClosingCard({
+  title, desc, button, href, origin, secondary, gradient = 'g03',
+}: {
+  title: string; desc: string; button: string; href?: string; origin?: string;
+  secondary?: { label: string; href: string }; gradient?: string;
+}) {
+  return (
+    <section className="cc" aria-labelledby="cc-title">
+      <div className="h2-wrap">
+        <div className="cc-card" style={{ ['--cc-g' as string]: `url(/gradients/${gradient}.avif)` }}>
+          <h2 id="cc-title">{title}</h2>
+          <p>{desc}</p>
+          <div className="h2-actions">
+            <a className="btn btn-primary" href={href ?? contactUrl(origin ?? 'pagina')}>{button}</a>
+            {secondary && <a className="h2-link" href={secondary.href}>{secondary.label} →</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

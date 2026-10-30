@@ -11,7 +11,7 @@ export const ptBR = {
     solutionsAll: "Ver todas as soluções",
     cases: "Casos de uso",
     changelog: "Novidades",
-    resourcesAll: "Ver todos os recursos",
+    resourcesAll: "Ver tudo",
     trust: "Confiança",
     resources: "Recursos",
     ask: "Dinn Insights",
@@ -715,7 +715,7 @@ export const ptBR = {
     secondary: "Voltar a perguntar"
   },
   footer: {
-    description: "Inteligência comercial para o canal farmacêutico. Presente em Joinville e Valência.",
+    description: "Inteligência comercial para o canal farma.",
     sectionA: "A Dinn",
     sectionSolutions: "Soluções",
     sectionLegal: "Legal",
@@ -726,7 +726,7 @@ export const ptBR = {
     ctaTitle: "Pronto para começar?",
     ctaDesc: "Veja a Dinn com os seus produtos.",
     ctaButton: "Solicitar demo",
-    rights: "© 2026 Dinn Tecnologia Ltda. Todos os direitos reservados.",
+    rights: "© 2026 Dinn. Todos os direitos reservados.",
     legalName: "Dinn Tecnologia Ltda.",
     cnpj: "57.639.944/0001-20",
     address: "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial, Joinville, SC, CEP 89.219-600",
@@ -790,7 +790,7 @@ export const ptBR = {
           "Direito de não ser submetido a decisões automatizadas",
           "Direito de anonimização e compartilhamento"
         ],
-        footer: "Os usuários podem solicitar esses direitos enviando um e-mail para <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+        footer: "Os usuários podem solicitar esses direitos enviando um e-mail para <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
       },
       {
         title: "3. Dever de não fornecer dados de terceiros",
@@ -844,7 +844,7 @@ export const ptBR = {
         customList: [
           "<strong>Controlador:</strong> A DINN é responsável pelo tratamento dos dados pessoais de seus usuários.",
           "<strong>Operador:</strong> A DINN pode atuar como operadora em nome de clientes e parceiros.",
-          "<strong>Encarregado de Proteção de Dados:</strong> A DINN nomeou o Sr. Vinicius Fernandes Silva como o encarregado de dados, que pode ser contatado via <a href=\"mailto:vinicius.silva@diwe.com.br\" style=\"color: var(--primary); text-decoration: underline;\">vinicius.silva@diwe.com.br</a>."
+          "<strong>Encarregado de Proteção de Dados:</strong> A DINN nomeou o Sr. Vinicius Fernandes Silva como o encarregado de dados, que pode ser contatado via <a href=\"mailto:vini@dinn.ai\" style=\"color: var(--primary); text-decoration: underline;\">vini@dinn.ai</a>."
         ]
       },
       {

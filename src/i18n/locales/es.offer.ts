@@ -11,22 +11,22 @@
 export const offerEs = {
   menu: {
     platform: "Plataforma",
-    platformOverview: "Visión de la plataforma",
+    platformOverview: "Visión general",
     features: "Funcionalidades",
-    locator: "Localizador e inventario en tiempo real",
+    locator: "Localizador de inventario",
     conecta: "Dinn Conecta",
-    integrations: "Integraciones y API",
+    integrations: "Integraciones",
     coverage: "Cobertura",
-    platformAll: "Ver toda la plataforma",
-    solutionsAll: "Elegir por objetivo, área o funcionalidad",
+    platformAll: "Ver todo",
+    solutionsAll: "Ver todo",
     compare: "Comparativos",
     plans: "Planes",
-    plansOverview: "Planes y contratación",
+    plansOverview: "Planes",
     plansAll: "Comparar los planes",
-    research: "Investigaciones y proyectos especiales",
+    research: "Investigaciones",
     company: "Dinn",
     about: "Sobre Dinn",
-    trust: "Confianza y controles",
+    trust: "Confianza",
     contact: "Contacto",
     companyAll: "Conocer Dinn"
   },
@@ -600,6 +600,15 @@ export const offerEs = {
       ],
       note: "Sin precios públicos. La propuesta considera productos, cobertura, usuarios y necesidades de integración."
     },
+    grid: { label: "Planes", fromPrev: "Todo en {prev}, más", first: "Incluye", price: "Por propuesta", priceNote: "Sin precio público", minimum: "Compromiso mínimo" },
+    build: {
+      title: "Arme el alcance de su plan",
+      step: "Elija los recursos que necesita",
+      empty: "Seleccione un recurso para ver el plan sugerido.",
+      recommended: "Plan sugerido",
+      none: "Ningún plan incluye todos los elementos sin consulta. Hable con Dinn.",
+      cta: "Pedir propuesta"
+    },
     addons: {
       title: "Complementos e inclusiones",
       intro: "Lo que puede formar parte del plan, y qué plan lo incluye.",
@@ -727,6 +736,13 @@ export const offerEs = {
         { tag: "Fuentes personalizadas", title: "Evalúa nuevas fuentes para tu proyecto.", deliver: "Acceso y derechos, viabilidad, calidad, costo y límites de actualización." },
         { tag: "Preparación e integración", title: "Conecta el segmento al entorno de tu equipo.", deliver: "Fuentes, estandarización, destino, operación y criterio de aceptación, según la propuesta Conecta." }
       ]
+    },
+    build: {
+      title: "Arme su proyecto",
+      step: "Elija las entregas que quiere",
+      empty: "Seleccione una entrega para ver el resumen del proyecto.",
+      summary: "Su proyecto",
+      agree: "Acordamos con usted"
     },
     define: {
       title: "Qué acordamos en cada proyecto",

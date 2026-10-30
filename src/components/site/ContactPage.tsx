@@ -139,28 +139,27 @@ export function ContactPage() {
     errors[key] ? <p className="ct-error" id={`ct-${key}-err`}>{errors[key]}</p> : null;
 
   return (
-    <div className="h2">
-      <section className="h2-hero ct-hero" aria-labelledby="ct-title">
-        <div className="h2-wrap">
-          <div className="h2-hero-grid">
-            <h1 id="ct-title" className="h2-hero-title"><Rich text={t('contact.hero.title') as string} /></h1>
-            <div className="h2-hero-side">
-              <p className="h2-hero-sub">{t('contact.hero.lead')}</p>
-            </div>
+    <div className="h2 ct">
+      <section className="ct-split">
+        {/* Metade esquerda: fundo da marca; título e passos ficam fixos (sticky)
+            enquanto o formulário, à direita, rola normalmente. */}
+        <aside className="ct-aside">
+          <div className="ct-sticky">
+            <h1 className="ct-title"><Rich text={t('contact.hero.title') as string} /></h1>
+            <p className="ct-lead">{t('contact.hero.lead')}</p>
+            <ol className="ct-steps" aria-label={t('contact.after.title') as string}>
+              {steps.map((s, i) => (
+                <li key={s.title}>
+                  <span className="ct-step-n" aria-hidden="true">{i + 1}</span>
+                  <p><strong>{s.title}</strong><span>{s.text}</span></p>
+                </li>
+              ))}
+            </ol>
+            <p className="ct-mail">{t('contact.after.mail')} <a href="mailto:edu@dinn.ai">edu@dinn.ai</a></p>
           </div>
+        </aside>
 
-          <div className="ct-grid">
-            <div className="ct-copy">
-              <ol className="ct-steps" aria-label={t('contact.after.title') as string}>
-                {steps.map((s, i) => (
-                  <li key={s.title}>
-                    <span className="ct-step-n" aria-hidden="true">{i + 1}</span>
-                    <p><strong>{s.title}</strong><span>{s.text}</span></p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
+        <div className="ct-main">
           <div className="ct-card">
             {status === 'done' ? (
               <div className="ct-done" role="status">
@@ -371,7 +370,6 @@ export function ContactPage() {
                 <p className="ct-fine"><MailCheck size={14} aria-hidden="true" /> {t('contact.form.fine')}</p>
               </form>
             )}
-          </div>
           </div>
         </div>
       </section>

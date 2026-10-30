@@ -2,8 +2,20 @@
    Página /contato: formulário padrão que alimenta o HubSpot (primeira camada
    do funil). Prefixo ct-.
    ========================================================================== */
-.ct-hero { padding-bottom: var(--h2-pad); }
-.ct-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: start; margin-top: clamp(48px, 6vw, 80px); }
+/* Contato: metade com fundo da marca (conteúdo fixo) + metade com o formulário */
+/* A coluna do texto é um pouco mais larga: o menu escolhe a cor da logo pelo fundo
+   no centro da tela, e esse ponto precisa cair na metade clara. */
+.ct-split { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); min-height: 100vh; }
+.ct-aside { background: var(--background); color: var(--foreground); }
+.ct-sticky { position: sticky; top: 0; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--h2-gutter) 56px; }
+.ct-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4vw, 60px); line-height: 1.06; letter-spacing: -0.03em; color: var(--foreground); max-width: 14ch; }
+.ct-lead { margin-top: 20px; font-size: clamp(16px, 1.4vw, 20px); line-height: 1.45; color: var(--muted-foreground); max-width: 32ch; }
+.ct-mail { margin-top: 28px; font-size: 15px; color: var(--muted-foreground); }
+.ct-mail a { color: var(--primary); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.ct-aside .ct-steps { margin-top: clamp(32px, 5vw, 56px); max-width: 420px; }
+/* Metade direita: degradê da marca com o formulário por cima */
+.ct-main { padding: 120px var(--h2-gutter) var(--h2-pad); display: flex; justify-content: center; align-items: flex-start; background: #f5a524 url(/gradients/g07.avif) center / cover; } /* laranja e amarelo: convite à ação */
+.ct-main .ct-card { width: 100%; max-width: 560px; background: var(--background); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3); }
 .ct-steps { list-style: none; display: grid; gap: 18px; margin: 0; padding: 0; }
 .ct-steps li { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; }
 .ct-step-n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: color-mix(in oklab, var(--primary) 10%, transparent); color: var(--primary); font-size: 13px; font-weight: 700; }
@@ -41,7 +53,9 @@
 .ct-link { font-size: 14.5px; font-weight: 600; color: var(--primary); }
 
 @media (max-width: 899px) {
-  .ct-grid { grid-template-columns: 1fr; }
+  .ct-split { grid-template-columns: 1fr; min-height: 0; }
+  .ct-sticky { position: static; min-height: 0; padding-top: 112px; padding-bottom: 48px; }
+  .ct-main { padding-top: 40px; }
 }
 @media (max-width: 520px) {
   .ct-row { grid-template-columns: 1fr; gap: 0; }

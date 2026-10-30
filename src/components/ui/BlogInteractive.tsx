@@ -22,6 +22,7 @@ export interface BlogLabels {
   noResultsDesc: string;
   readArticle: string;
   defaultCategory: string;
+  allCategories?: string;
   categories: Record<string, string>;
 }
 
@@ -92,34 +93,45 @@ export default function BlogInteractive({ posts, lang, labels }: BlogInteractive
   };
 
   return (
-    <div className="blog-page">
-      {/* Hero */}
-      <div className="blog-hero">
-        <h1>{labels.heroTitle}</h1>
-        <div className="blog-search">
-          <input 
-            type="text" 
-            placeholder={labels.searchPlaceholder}
-            value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setCurrentPage(1);
-            }}
-          />
-          <span className="blog-search-icon">
-            <Search size={20} />
-          </span>
-        </div>
-      </div>
-
-      <div className="blog-container">
-        {filteredPosts.length === 0 ? (
-          <div className="w-full py-32 flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4 text-slate-400">
-              <Search size={32} />
+    <div className="h2 bg">
+      <header className="h2-hero bg-hero">
+        <div className="h2-wrap">
+          <div className="h2-hero-grid">
+            <h1 className="h2-hero-title">{labels.heroTitle}</h1>
+            <div className="h2-hero-side">
+              <label className="bg-search">
+                <Search size={18} aria-hidden="true" />
+                <input
+                  type="search"
+                  placeholder={labels.searchPlaceholder}
+                  aria-label={labels.searchPlaceholder}
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                />
+              </label>
             </div>
-            <h3 className="text-xl font-medium text-slate-900 mb-2">{labels.noResultsTitle}</h3>
-            <p className="text-slate-500">{labels.noResultsDesc}</p>
+          </div>
+          {allCategories.length > 2 && (
+            <div className="bg-cats" role="group">
+              {allCategories.map((c) => (
+                <button key={c} type="button" className={activeCategory === c ? 'is-on' : ''} aria-pressed={activeCategory === c} onClick={() => handleCategoryChange(c)}>
+                  {c === 'Todos' ? labels.allCategories ?? c : categoryName(c)}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </header>
+
+      <div className="h2-wrap bg-body">
+        {filteredPosts.length === 0 ? (
+          <div className="bg-empty">
+            <Search size={28} aria-hidden="true" />
+            <h3>{labels.noResultsTitle}</h3>
+            <p>{labels.noResultsDesc}</p>
           </div>
         ) : (
           <AnimatePresence mode="wait">
@@ -130,70 +142,55 @@ export default function BlogInteractive({ posts, lang, labels }: BlogInteractive
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Featured */}
               {featured && (
-                <div className="blog-featured">
-                  <a href={articlePath(lang, featured.slug.current)} className="block w-full overflow-hidden rounded-xl" aria-label={featured.title} tabIndex={-1}>
-                    <motion.img
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                      className="blog-featured-image"
-                      src={featured.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80"}
+                <article className="bg-featured">
+                  <a href={articlePath(lang, featured.slug.current)} className="bg-img" aria-label={featured.title} tabIndex={-1}>
+                    <img
+                      src={featured.imageUrl || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80'}
                       alt={featured.title}
                     />
                   </a>
-                  <div>
-                    <span className="blog-featured-tag">{categoryName(featured.categories?.[0])}</span>
-                    <a href={articlePath(lang, featured.slug.current)} className="block">
-                      <h2 className="blog-featured-title">{featured.title}</h2>
-                    </a>
-                    <p className="blog-featured-excerpt">{featured.excerpt}</p>
-                    <p className="blog-featured-meta">{formatDate(featured.publishedAt)}</p>
-                    <a href={articlePath(lang, featured.slug.current)} className="blog-featured-link">
-                      {labels.readArticle} →
-                    </a>
+                  <div className="bg-featured-txt">
+                    <p className="bg-meta"><span>{categoryName(featured.categories?.[0])}</span><span>{formatDate(featured.publishedAt)}</span></p>
+                    <h2><a href={articlePath(lang, featured.slug.current)}>{featured.title}</a></h2>
+                    <p className="bg-excerpt">{featured.excerpt}</p>
+                    <a href={articlePath(lang, featured.slug.current)} className="h2-link">{labels.readArticle} →</a>
                   </div>
-                </div>
+                </article>
               )}
 
-              {/* Grid */}
               {gridPosts.length > 0 && (
-                <div className="blog-grid">
-                  {gridPosts.map(post => (
-                    <a key={post._id} href={articlePath(lang, post.slug.current)} className="blog-card group">
-                      <div 
-                        className="w-full aspect-video rounded-xl overflow-hidden bg-slate-100"
-                        style={{ marginBottom: '32px' }}
-                      >
-                        <img
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          src={post.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"}
-                          alt={post.title}
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="blog-card-meta">
-                        <span className="blog-card-category">{categoryName(post.categories?.[0])}</span>
-                        <span>·</span>
-                        <span>{formatDate(post.publishedAt)}</span>
-                      </div>
-                      <h3 className="blog-card-title">{post.title}</h3>
-                      <p className="blog-card-excerpt">{post.excerpt}</p>
-                    </a>
+                <ul className="bg-grid">
+                  {gridPosts.map((post) => (
+                    <li key={post._id}>
+                      <a href={articlePath(lang, post.slug.current)} className="bg-card">
+                        <span className="bg-img">
+                          <img
+                            src={post.imageUrl || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'}
+                            alt={post.title}
+                            loading="lazy"
+                          />
+                        </span>
+                        <span className="bg-meta"><span>{categoryName(post.categories?.[0])}</span><span>{formatDate(post.publishedAt)}</span></span>
+                        <h3>{post.title}</h3>
+                        <span className="bg-excerpt">{post.excerpt}</span>
+                      </a>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </motion.div>
           </AnimatePresence>
         )}
 
-        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="blog-pagination">
+          <nav className="bg-pages" aria-label="Paginação">
             {Array.from({ length: totalPages }).map((_, i) => (
-              <button 
-                key={i} 
-                className={currentPage === i + 1 ? 'active' : ''}
+              <button
+                key={i}
+                type="button"
+                className={currentPage === i + 1 ? 'is-on' : ''}
+                aria-current={currentPage === i + 1 ? 'page' : undefined}
                 onClick={() => {
                   setCurrentPage(i + 1);
                   window.scrollTo({ top: 300, behavior: 'smooth' });
@@ -202,7 +199,7 @@ export default function BlogInteractive({ posts, lang, labels }: BlogInteractive
                 {i + 1}
               </button>
             ))}
-          </div>
+          </nav>
         )}
       </div>
     </div>

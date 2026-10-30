@@ -17,9 +17,10 @@ type Faq = { question: string; answer: string };
 // Chat flutuante à direita (substitui a seção de dúvidas). O visitante escolhe
 // uma pergunta do menu e o guia responde; "Voltar ao menu" abre a lista de novo.
 // As perguntas e respostas vêm de faq.items, o mesmo texto de antes.
-export function ChatWidget2() {
+// `questions` troca o menu padrão por perguntas da página (ex.: Confiança).
+export function ChatWidget2({ questions }: { questions?: Faq[] }) {
   const { t } = useTranslation();
-  const items = (t('faq.items') as Faq[]) ?? [];
+  const items = questions ?? (t('faq.items') as Faq[]) ?? [];
   const [open, setOpen] = useState(false);
   const [asked, setAsked] = useState<number[]>([]);
   const [menu, setMenu] = useState(true);

@@ -48,6 +48,7 @@
 .h2-cust-track > li { flex: 0 0 calc((100% - 64px) / 3); scroll-snap-align: start; min-width: 0; }
 .h2-cust { display: grid; gap: 14px; }
 .h2-cust-art { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background-size: cover; background-position: center; }
+.h2-cust-art::before { content: ''; position: absolute; inset: 0; background: var(--g) center / cover; filter: var(--f, none); }
 .h2-cust-shade { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
 .h2-cust-logo { position: relative; max-width: 46%; max-height: 38%; width: auto; height: auto; filter: brightness(0) invert(1); object-fit: contain; }
 .h2-cust-name { font-size: 20px; font-weight: 500; line-height: 1.25; color: var(--foreground); letter-spacing: -0.01em; }
@@ -56,22 +57,46 @@
 
 /* ---- Como funciona ---- */
 .h2-features { background-color: var(--muted); }
-.h2-feat-grid { display: grid; grid-template-columns: minmax(280px, 0.8fr) 1.4fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
-.h2-feat-list li { border-top: 1px solid var(--border); }
+/* Seção fixada: a rolagem percorre as funcionalidades, uma a uma (Features2.tsx). */
+.h2-pin { position: relative; height: calc(100svh + var(--n, 7) * var(--step, 70svh)); padding: 0; }
+.h2-feat-stage { position: sticky; top: 0; height: 100svh; min-height: 600px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 88px 0 32px; overflow: hidden; }
+.h2-head.is-stack.h2-feat-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(20px, 3.4vh, 40px); }
+.h2-feat-head .h2-title { font-size: clamp(28px, 3vw, 44px); }
+.h2-feat-count { font-size: 13px; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--muted-foreground); white-space: nowrap; }
+.h2-feat-count b { font-weight: 500; color: var(--foreground); }
+.h2-feat-grid { display: grid; grid-template-columns: minmax(280px, 0.8fr) 1.4fr; gap: clamp(32px, 5vw, 80px); align-items: stretch; }
+.h2-feat-list { align-self: center; }
+.h2-feat-list li { position: relative; border-top: 1px solid var(--border); }
 .h2-feat-list li:last-child { border-bottom: 1px solid var(--border); }
-.h2-feat-name { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; font-size: 20px; letter-spacing: -0.01em; color: var(--muted-foreground); transition: color .2s; }
+.h2-feat-name { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: clamp(11px, 1.9vh, 18px) 0; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; font-size: clamp(17px, 1.5vw, 20px); letter-spacing: -0.01em; color: var(--muted-foreground); transition: color .4s ease; }
 .h2-feat-list li.is-active .h2-feat-name, .h2-feat-name:hover { color: var(--foreground); }
-.h2-feat-body { padding: 0 0 24px; display: grid; gap: 14px; }
+.h2-feat-name:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+/* O texto da ativa abre (altura animada) e as outras fecham. */
+.h2-feat-body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .6s cubic-bezier(.22, 1, .36, 1), opacity .45s ease; }
+.h2-feat-body > div { overflow: hidden; display: grid; gap: 12px; padding-bottom: 0; }
+.h2-feat-list li.is-active .h2-feat-body { grid-template-rows: 1fr; opacity: 1; transition-delay: 0s, .12s; }
+.h2-feat-list li.is-active .h2-feat-body > div { padding-bottom: 20px; }
 .h2-feat-body p { font-size: 15px; line-height: 1.5; color: var(--muted-foreground); max-width: 40ch; }
-.h2-feat-shot { position: sticky; top: 96px; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: var(--background); }
-.h2-feat-shot img, .h2-shot-ph { width: 100%; height: 100%; display: block; object-fit: cover; }
-.h2-shot-ph { background-size: cover; background-position: center; transition: opacity .3s; }
+/* Linha fina: avanço da rolagem dentro da funcionalidade. */
+.h2-feat-prog { position: absolute; left: 0; bottom: -1px; height: 2px; width: calc(var(--p, 0) * 100%); background: var(--primary); border-radius: 2px; }
+/* Slides: a imagem passa na horizontal; o fundo anda um pouco mais devagar (profundidade). */
+.h2-feat-shot { position: relative; height: clamp(320px, 64svh, 620px); border-radius: 12px; overflow: hidden; background: var(--background); }
+.h2-feat-track { display: flex; height: 100%; transform: translate3d(calc(var(--i, 0) * -100%), 0, 0); transition: transform .95s cubic-bezier(.65, 0, .15, 1); will-change: transform; }
+.h2-slide { position: relative; flex: 0 0 100%; height: 100%; overflow: hidden; background: var(--muted); }
+.h2-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .35), rgba(0, 0, 0, 0) 45%); pointer-events: none; }
+.h2-slide img, .h2-slide-bg { position: absolute; top: 0; bottom: 0; left: -15%; width: 130%; height: 100%; display: block; object-fit: cover; background-size: cover; background-position: center; transform: translate3d(10%, 0, 0); opacity: .55; transition: transform .95s cubic-bezier(.65, 0, .15, 1), opacity .7s ease; }
+.h2-slide.is-active img, .h2-slide.is-active .h2-slide-bg { transform: translate3d(0, 0, 0); opacity: 1; }
+.h2-slide-tag { position: absolute; z-index: 1; left: 20px; bottom: 18px; display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: #fff; opacity: 0; transform: translateY(8px); transition: opacity .5s ease .25s, transform .6s cubic-bezier(.22, 1, .36, 1) .25s; }
+.h2-slide-tag b { font-weight: 500; font-size: 12px; letter-spacing: .08em; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .75); }
+.h2-slide.is-active .h2-slide-tag { opacity: 1; transform: none; }
+.h2-shot-ph { background-size: cover; background-position: center; }
 
 /* ---- Para a sua área ---- */
 .h2-area-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .h2-area { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; padding: 28px; border-radius: 16px; background: var(--muted); transition: background .2s; }
-.h2-area:hover { background: color-mix(in oklab, var(--muted) 82%, var(--foreground)); }
-.h2-area-art { display: grid; place-items: center; flex: 1; color: var(--foreground); opacity: 0.85; }
+.h2-area:hover { background: color-mix(in oklab, var(--muted) 94%, var(--foreground)); }
+.h2-area-art { display: grid; place-items: center; flex: 1; color: var(--foreground); }
+.h2-area-art .il { width: min(100%, 300px); }
 .h2-area-txt { display: grid; gap: 6px; }
 .h2-area-promise { font-size: 14px; line-height: 1.4; color: var(--muted-foreground); max-width: 30ch; }
 .h2-area-name { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
@@ -144,8 +169,12 @@
   .h2-area-grid { grid-template-columns: repeat(2, 1fr); }
   .h2-cust-track > li { flex-basis: calc((100% - 32px) / 2); }
   .h2-res-grid { grid-template-columns: repeat(2, 1fr); }
-  .h2-feat-grid { grid-template-columns: 1fr; }
-  .h2-feat-shot { position: static; }
+  .h2-feat-grid { grid-template-columns: 1fr; gap: 20px; }
+  .h2-feat-shot { order: -1; height: clamp(200px, 34svh, 360px); }
+  .h2-feat-list li:not(.is-active) { display: none; }
+  .h2-feat-list li.is-active { border-bottom: 1px solid var(--border); }
+  .h2-feat-list li:last-child { border-bottom: 0; }
+  .h2-feat-stage { padding-top: 84px; }
 }
 @media (max-width: 640px) {
   .h2-area-grid, .h2-res-grid { grid-template-columns: 1fr; }

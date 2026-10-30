@@ -18,6 +18,8 @@ interface Props {
   lang?: Lang;
   langLinks?: LangLinks;
   showLanguageNotice?: boolean;
+  /** 'document': índice lateral e texto corrido. 'columns': seções em duas colunas (ex.: Suporte). */
+  layout?: 'document' | 'columns';
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   lang = 'pt',
   langLinks,
   showLanguageNotice = true,
+  layout = 'document',
 } = Astro.props;
 
 /**
@@ -43,6 +46,8 @@ const languageNotice: Record<Lang, string> = {
 };
 
 const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 'Español' };
+const tocLabel: Record<Lang, string> = { pt: 'Neste documento', en: 'In this document', es: 'En este documento' };
+const updatedLabel: Record<Lang, string> = { pt: 'Versão vigente desde', en: 'Version in effect since', es: 'Versión vigente desde' };
 ---
 
 <Layout
@@ -51,186 +56,129 @@ const langLabels: Record<Lang, string> = { pt: 'Português', en: 'English', es: 
   lang={lang}
   alternates={langLinks ? LANGS.map((code) => ({ lang: code, href: langLinks[code] })) : []}
 >
-  <div class="legal-page">
-    <article class="legal-document wrap">
-      <header class="legal-header">
-        <p class="legal-eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p class="legal-lead">{description}</p>
-        <p class="legal-updated">
-          {lang === 'pt' && `Versão vigente desde ${updatedAt}.`}
-          {lang === 'en' && `Version in effect since ${updatedAt}.`}
-          {lang === 'es' && `Versión vigente desde ${updatedAt}.`}
-        </p>
-        {showLanguageNotice && <p class="legal-language">{languageNotice[lang]}</p>}
-        {langLinks && (
-          <p class="legal-lang-switch">
-            {(['pt', 'en', 'es'] as Lang[]).map((code, i) => (
-              <>
-                {i > 0 && <span aria-hidden="true"> · </span>}
-                {code === lang ? (
-                  <strong>{langLabels[code]}</strong>
-                ) : (
-                  <a href={langLinks[code]}>{langLabels[code]}</a>
-                )}
-              </>
-            ))}
-          </p>
-        )}
-      </header>
-
-      <div class="legal-content">
-        <slot />
+  <div class="h2 lg">
+    <header class="h2-hero lg-hero">
+      <div class="h2-wrap">
+        <div class="h2-hero-grid">
+          <h1 class="h2-hero-title">{title}</h1>
+          <div class="h2-hero-side">
+            <p class="h2-hero-sub">{description}</p>
+          </div>
+        </div>
+        <div class="lg-meta">
+          <p><span>{eyebrow}</span>{updatedLabel[lang]} {updatedAt}</p>
+          {showLanguageNotice && <p class="lg-notice">{languageNotice[lang]}</p>}
+          {langLinks && (
+            <p class="lg-langs">
+              {(['pt', 'en', 'es'] as Lang[]).map((code) =>
+                code === lang ? <strong>{langLabels[code]}</strong> : <a href={langLinks[code]}>{langLabels[code]}</a>
+              )}
+            </p>
+          )}
+        </div>
       </div>
-    </article>
+    </header>
+
+    <div class={`h2-wrap lg-body is-${layout}`}>
+      {layout === 'document' && <nav class="lg-toc" aria-label={tocLabel[lang]} data-label={tocLabel[lang]}></nav>}
+      <div class="legal-content lg-content"><slot /></div>
+    </div>
   </div>
 </Layout>
 
+<script>
+  // Âncora na abertura (ex.: #cookies): garante que a seção apareça mesmo depois do ajuste de layout.
+  if (location.hash.length > 1) {
+    const go = () => document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+    requestAnimationFrame(go);
+    window.addEventListener('load', go, { once: true });
+  }
+  // Índice lateral: lista os títulos (h2) das seções e marca a seção que está na tela.
+  const toc = document.querySelector<HTMLElement>('.lg-toc');
+  const heads = Array.from(document.querySelectorAll<HTMLElement>('.lg-content section h2'));
+  if (toc && heads.length > 1) {
+    const slug = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const ul = document.createElement('ul');
+    const links: HTMLAnchorElement[] = [];
+    heads.forEach((h) => {
+      const sec = h.closest('section') as HTMLElement;
+      if (!sec.id) sec.id = slug(h.textContent || '');
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${sec.id}`;
+      a.textContent = (h.textContent || '').replace(/^\d+\.\s*/, '');
+      li.appendChild(a);
+      ul.appendChild(li);
+      links.push(a);
+    });
+    const label = document.createElement('p');
+    label.className = 'lg-toc-label';
+    label.textContent = toc.dataset.label || '';
+    toc.append(label, ul);
+    const secs = heads.map((h) => h.closest('section') as HTMLElement);
+    let raf = 0;
+    const spy = () => {
+      raf = 0;
+      let cur = 0;
+      secs.forEach((sec, i) => {
+        if (sec.getBoundingClientRect().top < window.innerHeight * 0.3) cur = i;
+      });
+      links.forEach((l, k) => l.classList.toggle('is-on', k === cur));
+    };
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(spy); }, { passive: true });
+    spy();
+  } else if (toc) {
+    toc.remove();
+  }
+</script>
+
 <style>
-  .legal-page {
-    min-height: 100vh;
-    padding: 160px 0 120px;
-    background: var(--bg-page);
+  .lg-hero { padding-bottom: clamp(32px, 4vw, 56px); }
+  .lg-hero :global(.h2-hero-title) { max-width: 16ch; }
+  .lg-meta { margin-top: clamp(32px, 4vw, 56px); padding-top: 18px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); }
+  .lg-meta p { margin: 0; }
+  .lg-meta span { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--foreground); }
+  .lg-langs { display: flex; gap: 16px; align-items: flex-start; }
+  .lg-langs :global(strong) { color: var(--foreground); font-weight: 500; }
+  .lg-langs :global(a) { color: var(--muted-foreground); text-decoration: underline; text-underline-offset: 3px; }
+  .lg-langs :global(a:hover) { color: var(--primary); }
+
+  .lg-body { padding-bottom: var(--h2-pad); }
+  .lg-body.is-document { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .lg-toc { position: sticky; top: 96px; }
+  .lg-toc :global(.lg-toc-label) { margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-foreground); }
+  .lg-toc :global(ul) { list-style: none; margin: 0; padding: 0; display: grid; border-left: 1px solid var(--border); }
+  .lg-toc :global(a) { display: block; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 1px solid transparent; font-size: 13.5px; line-height: 1.35; color: var(--muted-foreground); transition: color 0.2s, border-color 0.2s; }
+  .lg-toc :global(a:hover) { color: var(--foreground); }
+  .lg-toc :global(a.is-on) { color: var(--foreground); border-left-color: var(--primary); }
+
+  .lg-content { color: color-mix(in oklab, var(--foreground) 84%, transparent); font-size: 16px; line-height: 1.7; }
+  .lg-content :global(section) { scroll-margin-top: 96px; padding: 32px 0; border-top: 1px solid var(--border); }
+  .lg-content :global(section:first-child) { border-top: 0; padding-top: 0; }
+  .lg-content :global(h2) { margin: 0 0 14px; font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: var(--foreground); }
+  .lg-content :global(h3) { margin: 24px 0 10px; font-size: 17px; font-weight: 500; color: var(--foreground); }
+  .lg-content :global(p), .lg-content :global(ul) { margin: 0 0 16px; }
+  .lg-content :global(ul) { padding-left: 20px; list-style: disc; }
+  .lg-content :global(li + li) { margin-top: 6px; }
+  .lg-content :global(a) { color: var(--primary); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+  .lg-content :global(strong) { color: var(--foreground); font-weight: 500; }
+  .lg-content :global(.legal-callout) { margin: 20px 0; padding: 18px 20px; border-radius: 12px; background: var(--muted); font-size: 15px; }
+  .lg-content :global(table) { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 14.5px; }
+  .lg-content :global(th), .lg-content :global(td) { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+
+  /* Seções em duas colunas (Suporte): linhas finas, como nas grades de Planos */
+  .lg-body.is-columns .lg-content { max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); }
+  .lg-body.is-columns .lg-content :global(section) { padding: 28px 32px 12px 0; border-top: 0; border-bottom: 1px solid var(--border); }
+  .lg-body.is-columns .lg-content :global(section:nth-child(even)) { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--border); }
+  .lg-body.is-columns .lg-content :global(section:first-child) { padding-top: 28px; }
+
+  @media (max-width: 1000px) {
+    .lg-body.is-document { grid-template-columns: 1fr; }
+    .lg-toc { display: none; }
+    .lg-meta { grid-template-columns: 1fr; gap: 14px; }
   }
-
-  .legal-document {
-    max-width: 960px;
-  }
-
-  .legal-header {
-    max-width: 800px;
-    padding-bottom: var(--sp-12);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .legal-eyebrow {
-    margin-bottom: var(--sp-4);
-    color: var(--color-accent);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    margin-bottom: var(--sp-5);
-    color: var(--text-primary);
-    font-size: clamp(40px, 6vw, 64px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-
-  .legal-lead {
-    color: var(--text-body);
-    font-size: var(--text-md);
-    line-height: 1.7;
-  }
-
-  .legal-updated {
-    margin-top: var(--sp-4);
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-  }
-
-  .legal-language {
-    margin-top: var(--sp-2);
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-  }
-
-  .legal-lang-switch {
-    margin-top: var(--sp-3);
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-  }
-
-  .legal-lang-switch :global(a) {
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-
-  .legal-lang-switch :global(strong) {
-    color: var(--text-primary);
-  }
-
-  .legal-content {
-    max-width: 800px;
-    padding-top: var(--sp-8);
-    color: var(--text-body);
-    font-size: var(--text-base);
-    line-height: 1.7;
-  }
-
-  .legal-content :global(section) {
-    scroll-margin-top: 120px;
-    padding: var(--sp-8) 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .legal-content :global(section:last-child) {
-    border-bottom: 0;
-  }
-
-  .legal-content :global(h2) {
-    margin-bottom: var(--sp-4);
-    color: var(--text-primary);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-  }
-
-  .legal-content :global(h3) {
-    margin: var(--sp-6) 0 var(--sp-3);
-    color: var(--text-primary);
-    font-size: var(--text-md);
-    font-weight: 600;
-  }
-
-  .legal-content :global(p),
-  .legal-content :global(ul) {
-    margin-bottom: var(--sp-4);
-  }
-
-  .legal-content :global(ul) {
-    padding-left: var(--sp-6);
-  }
-
-  .legal-content :global(li + li) {
-    margin-top: var(--sp-2);
-  }
-
-  .legal-content :global(a) {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-underline-offset: 3px;
-  }
-
-  .legal-content :global(strong) {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .legal-content :global(.legal-callout) {
-    margin: var(--sp-5) 0;
-    padding: var(--sp-5);
-    border: 1px solid rgba(86, 37, 242, 0.2);
-    border-radius: var(--r-lg);
-    background: rgba(86, 37, 242, 0.04);
-  }
-
-  @media (max-width: 640px) {
-    .legal-page {
-      padding: 120px 0 80px;
-    }
-
-    .legal-header {
-      padding-bottom: var(--sp-8);
-    }
-
-    .legal-content :global(section) {
-      padding: var(--sp-6) 0;
-    }
+  @media (max-width: 720px) {
+    .lg-body.is-columns .lg-content { grid-template-columns: 1fr; }
+    .lg-body.is-columns .lg-content :global(section), .lg-body.is-columns .lg-content :global(section:nth-child(even)) { padding: 24px 0 8px; border-left: 0; }
   }
 </style>

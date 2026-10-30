@@ -1,22 +1,21 @@
-import { ArrowUpRight, BarChart3, Headset, Rocket, ShieldCheck, Truck, Users } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import type { ComponentType } from 'react';
+import { IlGovern, IlLaunch, IlPricing, IlSac, IlSupply, IlTrade } from '@/components/illustrations/areas';
 import { useTranslation } from '@/i18n/useTranslation';
 import { areaPath } from '@/lib/site-map';
 
 type Area = { slug: string; name: string };
-type IconType = ComponentType<{ size?: number; strokeWidth?: number; 'aria-hidden'?: boolean | 'true' }>;
-
-const ICONS: Record<string, IconType> = {
-  'inteligencia-pricing': BarChart3,
-  'trade-kam-campo': Users,
-  'supply-distribuicao': Truck,
-  'sac-customer-experience': Headset,
-  'marketing-lancamentos': Rocket,
-  'ti-dados-governanca': ShieldCheck,
+const ART: Record<string, ComponentType> = {
+  'inteligencia-pricing': IlPricing,
+  'trade-kam-campo': IlTrade,
+  'supply-distribuicao': IlSupply,
+  'sac-customer-experience': IlSac,
+  'marketing-lancamentos': IlLaunch,
+  'ti-dados-governanca': IlGovern,
 };
 
-// "Para a sua área": pouco texto, mais imagem. Cada card tem um desenho de
-// linha fina (ícone grande) e o nome da área.
+// "Para a sua área": pouco texto, mais imagem. Cada card tem uma ilustração
+// isométrica em linha fina (src/components/illustrations), animada no hover.
 export function Areas2() {
   const { t } = useTranslation();
   const areas = (t('solutions.items') as Area[]) ?? [];
@@ -30,11 +29,11 @@ export function Areas2() {
         </div>
         <ul className="h2-area-grid">
           {areas.map((a) => {
-            const Icon = ICONS[a.slug] ?? BarChart3;
+            const Art = ART[a.slug] ?? IlPricing;
             return (
               <li key={a.slug}>
-                <a className="h2-area" href={areaPath(a.slug)}>
-                  <span className="h2-area-art"><Icon size={88} strokeWidth={0.8} aria-hidden="true" /></span>
+                <a className="h2-area il-host" href={areaPath(a.slug)}>
+                  <span className="h2-area-art"><Art /></span>
                   <span className="h2-area-txt">
                     <span className="h2-area-name">{a.name}</span>
                     <span className="h2-area-promise">{promises[a.slug]}</span>

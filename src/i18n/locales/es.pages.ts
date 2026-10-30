@@ -56,6 +56,7 @@ export const pagesEs = {
     },
     after: {
       title: "Qué pasa después",
+      mail: "¿Prefiere correo? Escriba a Edu:",
       steps: [
         { title: "Recibimos tu solicitud", text: "Llega al equipo con tu rol y tu decisión." },
         { title: "Una persona responde", text: "Recibes una respuesta por correo en pocos días hábiles." },
@@ -726,6 +727,12 @@ export const pagesEs = {
   },
 
 
+  trustLayout: {
+    nav: { aria: "En esta página", signals: "Señales", confidence: "Confianza en los números", security: "Seguridad", deploy: "Implantación", docs: "Documentos" },
+    kind: "Tipo de señal",
+    example: "Ejemplo",
+    why: "Por qué"
+  },
   trustVisual: {
     anatomy: {
       title: "Una señal en pantalla, con todo lo que dice sobre sí misma",

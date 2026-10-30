@@ -10,22 +10,22 @@
 export const offerPt = {
   menu: {
     platform: "Plataforma",
-    platformOverview: "Visão da plataforma",
+    platformOverview: "Visão geral",
     features: "Funcionalidades",
-    locator: "Localizador e estoque em tempo real",
+    locator: "Localizador de estoque",
     conecta: "Dinn Conecta",
-    integrations: "Integrações e API",
+    integrations: "Integrações",
     coverage: "Cobertura",
-    platformAll: "Ver toda a plataforma",
-    solutionsAll: "Escolher por objetivo, área ou funcionalidade",
+    platformAll: "Ver tudo",
+    solutionsAll: "Ver tudo",
     compare: "Comparativos",
     plans: "Planos",
-    plansOverview: "Planos e contratação",
+    plansOverview: "Planos",
     plansAll: "Comparar os planos",
-    research: "Pesquisas e projetos especiais",
+    research: "Pesquisas",
     company: "A Dinn",
-    about: "Sobre a Dinn",
-    trust: "Confiança e controles",
+    about: "Sobre",
+    trust: "Confiança",
     contact: "Contato",
     companyAll: "Conhecer a Dinn"
   },
@@ -599,6 +599,15 @@ export const offerPt = {
       ],
       note: "Sem preços públicos. A proposta considera produtos, cobertura, usuários e necessidades de integração."
     },
+    grid: { label: "Planos", fromPrev: "Tudo no {prev}, mais", first: "Inclui", price: "Sob proposta", priceNote: "Sem preço público", minimum: "Compromisso mínimo" },
+    build: {
+      title: "Monte o escopo do seu plano",
+      step: "Escolha os recursos que você precisa",
+      empty: "Selecione um recurso para ver o plano indicado.",
+      recommended: "Plano indicado",
+      none: "Nenhum plano inclui todos os itens sem consulta. Fale com a Dinn.",
+      cta: "Pedir proposta"
+    },
     addons: {
       title: "Complementos e inclusões",
       intro: "O que pode fazer parte do plano, e qual plano o inclui.",
@@ -726,6 +735,13 @@ export const offerPt = {
         { tag: "Fontes customizadas", title: "Avalie novas fontes para o seu projeto.", deliver: "Acesso e direitos, viabilidade, qualidade, custo e limites de atualização." },
         { tag: "Preparação e integração", title: "Conecte o recorte ao ambiente da sua equipe.", deliver: "Fontes, padronização, destino, operação e critério de aceite, como na proposta Conecta." }
       ]
+    },
+    build: {
+      title: "Monte o seu projeto",
+      step: "Escolha as entregas que você quer",
+      empty: "Selecione uma entrega para ver o resumo do projeto.",
+      summary: "Seu projeto",
+      agree: "Combinamos com você"
     },
     define: {
       title: "O que combinamos em cada projeto",
