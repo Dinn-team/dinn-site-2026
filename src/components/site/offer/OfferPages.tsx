@@ -12,7 +12,6 @@ import FAQ from '@/components/FAQ';
 import { TestimonialsSection } from '@/components/ui/TestimonialsSection';
 import coverageData from '@/data/coverage.json';
 import { PageCta, PageHero, SectionHead } from '../PageShell';
-import { AreaCard, type Area } from '../SolutionsPages';
 import { publishedCases } from '../CasesPages';
 import { RealtimeStage } from './RealtimeScene';
 import { CityLink, FlowChain, HubDiagram, IconTile, ReadingsTimeline, SplitPanels, StatStrip } from './FlowViz';
@@ -61,75 +60,6 @@ function Checks({ items }: { items: string[] }) {
     <ul className="sp-checks">
       {items.map((i) => <li key={i}>{i}</li>)}
     </ul>
-  );
-}
-
-// ── Soluções: por objetivo, área e funcionalidade ───────────────────────────
-type Goal = { label: string; text: string; href: string };
-
-export function SolutionsHub() {
-  const { t } = useTranslation();
-  const goals = (t('solutionsHub.goals.items') as Goal[]) ?? [];
-  const features = (t('solutionsHub.features.items') as Goal[]) ?? [];
-  const areas = (t('solutions.items') as Area[]) ?? [];
-
-  return (
-    <div className="sp">
-      <PageHero
-        eyebrow={t('solutionsHub.hero.eyebrow') as string}
-        title={t('solutionsHub.hero.title') as string}
-        lead={t('solutionsHub.hero.lead') as string}
-      />
-
-      <section className="sp-section" aria-labelledby="sh-goals">
-        <div className="wrap">
-          <SectionHead id="sh-goals" title={t('solutionsHub.goals.title')} intro={t('solutionsHub.goals.intro')} />
-          <div className="sp-grid is-three">
-            {goals.map((g) => (
-              <a key={g.label} className="sp-card" href={g.href}>
-                <h3>{g.label}</h3>
-                <p>{g.text}</p>
-                <span className="sp-area-go">{t('solutionsHub.goals.open')}<ArrowRight size={15} aria-hidden="true" /></span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="sp-section is-alt" aria-labelledby="sh-areas">
-        <div className="wrap">
-          <SectionHead id="sh-areas" title={t('solutionsHub.areas.title')} intro={t('solutionsHub.areas.intro')} />
-          <div className="sp-grid is-areas">
-            {areas.map((a) => (
-              <AreaCard key={a.slug} area={a} cta={t('areas.open') as string} questionPrefix={t('areas.questionPrefix') as string} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="sp-section" aria-labelledby="sh-features">
-        <div className="wrap">
-          <SectionHead id="sh-features" title={t('solutionsHub.features.title')} intro={t('solutionsHub.features.intro')} />
-          <div className="sp-grid is-three">
-            {features.map((f) => (
-              <a key={f.label} className="sp-card" href={f.href}>
-                <h3>{f.label}</h3>
-                <p>{f.text}</p>
-                <span className="sp-area-go">{t('solutionsHub.goals.open')}<ArrowRight size={15} aria-hidden="true" /></span>
-              </a>
-            ))}
-          </div>
-          <p className="sp-more">{t('solutionsHub.more')} <a href={contactUrl('solucoes')}>{t('solutionsHub.moreCta')} →</a></p>
-        </div>
-      </section>
-
-      <PageCta
-        title={t('pageCta.title')}
-        desc={t('pageCta.desc')}
-        button={t('pageCta.button')}
-        origin="solucoes-fechamento"
-      />
-    </div>
   );
 }
 

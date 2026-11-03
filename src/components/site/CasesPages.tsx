@@ -10,7 +10,8 @@ import { scrollToStage } from '@/components/home/scroll-to';
 import { StageSteps } from './StageSteps';
 import data from '@/data/cases.json';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
-import { IlGovern, IlLaunch, IlPricing, IlSac, IlSupply, IlTrade } from '@/components/illustrations/areas';
+import { IlPricing, IlSac, IlSupply, IlTrade } from '@/components/illustrations/areas';
+import { AREA_ART, AREA_DARK, AREA_LIGHT, gradUrl } from './area-theme';
 import { IlLayers } from '@/components/illustrations/resources';
 import { ClosingCard, H2Head } from './PageShell';
 import { contactUrl } from '@/lib/links';
@@ -56,34 +57,7 @@ const useLang = () => {
 
 // ── Galeria ────────────────────────────────────────────────────────────────
 // Cada caso usa a ilustração animada da sua área (a mesma de "Para a sua área").
-const AREA_ART: Record<string, ComponentType> = {
-  'inteligencia-pricing': IlPricing,
-  'trade-kam-campo': IlTrade,
-  'supply-distribuicao': IlSupply,
-  'sac-customer-experience': IlSac,
-  'marketing-lancamentos': IlLaunch,
-  'ti-dados-governanca': IlGovern,
-};
-
-// Gradientes por área. Claros atrás das ilustrações dos cartões (o traço escuro precisa
-// de fundo claro); escuros no herói e na citação (texto branco). Ver rules/DESIGN_SYSTEM_V2.md.
-const AREA_LIGHT: Record<string, string> = {
-  'inteligencia-pricing': 'web/lilas-azul',
-  'trade-kam-campo': 'g00',
-  'supply-distribuicao': 'web/laranja-bolha',
-  'sac-customer-experience': 'g10',
-  'marketing-lancamentos': 'web/pessego',
-  'ti-dados-governanca': 'web/azul-claro',
-};
-const AREA_DARK: Record<string, string> = {
-  'inteligencia-pricing': 'web/roxo-noite',
-  'trade-kam-campo': 'web/azul-noite',
-  'supply-distribuicao': 'web/verde-noite',
-  'sac-customer-experience': 'web/laranja-noite',
-  'marketing-lancamentos': 'web/vinho-noite',
-  'ti-dados-governanca': 'web/grafite',
-};
-const gradUrl = (g: string) => `url(/gradients/${g}.avif)`;
+// Ilustração e degradês por área: ver area-theme.ts.
 
 // Cada caso tem a sua capa: ilustração, degradê claro (cartão) e degradê escuro (herói
 // e citação). Casos da mesma área não repetem nada. Caso novo sem entrada aqui usa o

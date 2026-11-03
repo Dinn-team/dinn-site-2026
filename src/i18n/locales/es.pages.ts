@@ -140,7 +140,7 @@ export const pagesEs = {
         name: "Inteligencia y Pricing",
         short: "Sigue disponibilidad, precio, rotación y competencia.",
         question: "¿Cuál es el origen y hasta dónde puedo confiar?",
-        title: "Cambios de precio, rotación y competencia, *con la fuente a la vista*",
+        title: "Precio, rotación y competencia, con la fuente",
         lead: "Explica una cifra antes de usarla. Cada lectura muestra fuente, fecha, cobertura y límite.",
         decisions: [
           "Distinguir un cambio puntual de una tendencia duradera.",
@@ -168,7 +168,7 @@ export const pagesEs = {
         name: "Trade, KAM y Campo",
         short: "Prioriza cuentas y territorios con el contexto más reciente.",
         question: "¿A quién priorizo y qué llevo a la conversación?",
-        title: "Una fila de tiendas y cuentas, *con qué verificar en cada una*",
+        title: "Una fila de tiendas, con qué verificar",
         lead: "Sin tablero que interpretar. Recibes una lista priorizada con la señal, la fecha y la pregunta por responder.",
         decisions: [
           "Empezar la semana por las tiendas que causan más desabasto en tu alcance.",
@@ -196,7 +196,7 @@ export const pagesEs = {
         name: "Supply y Distribución",
         short: "Investiga cobertura, disponibilidad y restricciones de abasto.",
         question: "¿Dónde puede haber un problema de cobertura o de abasto?",
-        title: "¿La falla está en el CEDIS, en la reposición o en la farmacia? *Mira los dos lados.*",
+        title: "¿Falla en el CEDIS o en la farmacia?",
         lead: "Dinn cruza el inventario del distribuidor con la disponibilidad en las farmacias de la zona. Indica las salvedades causales.",
         decisions: [
           "Distinguir la falta en el origen de la falla de reposición.",
@@ -225,7 +225,7 @@ export const pagesEs = {
         name: "Atención a clientes y Customer Experience",
         short: "Orienta a los consumidores sobre disponibilidad y cercanía.",
         question: "¿Cómo oriento a alguien sin inducirlo al error?",
-        title: "Dónde el consumidor probablemente encuentra el producto, *y qué tan confiable es*",
+        title: "Dónde el consumidor encuentra el producto",
         lead: "Disponibilidad, cercanía y actualización en una pantalla, con la fuente y la fecha de cada indicación.",
         decisions: [
           "Indicar la farmacia cercana con mayor probabilidad de tener el producto.",
@@ -253,7 +253,7 @@ export const pagesEs = {
         name: "Marketing y Lanzamientos",
         short: "Sigue la presencia, la evolución de la cobertura y las señales de ejecución del lanzamiento.",
         question: "¿La ejecución avanza donde debería?",
-        title: "Semana a semana, *dónde llegó el lanzamiento* y dónde se trabó",
+        title: "Dónde llegó el lanzamiento y dónde se trabó",
         lead: "Presencia por cadena y región en el tiempo, comparada con el plan de tu equipo.",
         decisions: [
           "Ver dónde se aceleró el lanzamiento y dónde está por debajo de lo esperado.",
@@ -281,7 +281,7 @@ export const pagesEs = {
         name: "TI, Datos y Gobernanza",
         short: "Integra señales con trazabilidad, control de acceso y límites claros.",
         question: "¿Cómo se integra, se protege y se gobierna?",
-        title: "Señales en tu entorno, *con trazabilidad y control de acceso*",
+        title: "Señales en tu entorno, con trazabilidad",
         lead: "API, BI y la IA del cliente consultan la misma base. El alcance autorizado y el origen de cada dato se mantienen.",
         decisions: [
           "Elegir por dónde consumir: plataforma, archivo, API, BI o la IA del cliente.",

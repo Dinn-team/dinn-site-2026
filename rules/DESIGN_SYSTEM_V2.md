@@ -138,7 +138,7 @@ Cada página interna passa a seguir este fluxo:
 4. **Fechamento:** o chat flutuante já cobre dúvidas. Termine com o rodapé global.
 5. Migrar uma página por vez, junto com o texto em STE.
 
-Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções (+6 áreas) · clientes ✅ · recursos (blog, casos, novidades, comparativos) · planos ✅ · confiança ✅ · sobre ✅ · contato ✅ · integrações · cobertura · pesquisas ✅.
+Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções ✅ (+6 áreas ✅, 03/11/2026) · clientes ✅ · recursos (blog, casos, novidades, comparativos) · planos ✅ · confiança ✅ · sobre ✅ · contato ✅ · integrações · cobertura · pesquisas ✅.
 Migradas depois: termos, privacidade e cookies, suporte (`LegalPage.astro`: índice lateral ou duas colunas), recursos, novidades, comparativos, casos (galeria) e blog. Suporte refeito do zero a partir de `dinn-manager-app/docs/suporte` (`src/components/support/*`: maquetes do portal em `.pt`, demonstrações animadas em `demos.tsx`, textos em `content.ts`; flag `ZOE_LIVE` a confirmar). Casos de uso (galeria e detalhe) ✅ em 03/11/2026, pelo padrão da seção 10. Ainda no layout antigo: guias (`/recursos/[slug]`) e artigo do blog.
 
 ### Maquetes animadas do produto (Suporte)
@@ -228,3 +228,13 @@ Para texto escuro (fechamento, cartão claro) use `g10` (amarelo), `g03` ou `lil
 - **Gráficos e telas nos cases (03/11/2026).** Cada bloco de `src/data/customers/<slug>.ts` aceita `viz`: barras, rosca, linha, antes e depois, linha do tempo, ilustração isométrica e tela do produto (`CaseViz.tsx`, `site-case-viz.css`). Use só número que já está no texto do bloco. Se o gráfico cobre a tabela inteira, tire a tabela. As telas (`AppScreens.tsx`) vêm do briefing `dinn-manager-app/docs/site-reproducao`: só Início, Localizar Produto e Mercado, com dados fictícios, dado de ontem (D-1) e a legenda "Dados e nomes ilustrativos". Sem telas Beta e sem as telas de rota, visita e NBA, que estão fora do menu atual.
 - Citação só aparece com `approved: true`. Cada trecho que o documento do caso marca como "REVISAR" fica fora até a confirmação do cliente.
 - O conteúdo está em português. EN e ES mostram o texto em português; os rótulos da interface já têm tradução (`clients.page.*`).
+
+### 10.6 Soluções (/solucoes e /solucoes/<area>)
+
+- Código: `src/components/site/SolutionsV2.tsx`, estilos em `src/styles/site-solutions2.css`, tema por área em `src/components/site/area-theme.ts` (ilustração, degradê claro, escuro e de fechamento).
+- **Página principal:** hero com a tela Início do Dinn (`AppScreen`) sobre `g08`; "Por área" (cartões com ilustração e hover); "Por objetivo" (linhas com fio fino); "Por funcionalidade" (cartões); fechamento.
+- **Página de área:** hero só com a tela do Dinn animada sobre o degradê escuro da área (a ilustração isométrica fica nos cartões, não na capa); pergunta e decisões; palco de rolagem com o exemplo passo a passo na mesma tela; limites; casos de uso da área (`CaseCard`); três outras áreas; fechamento em degradê claro da área.
+- **Telas animadas (`AppDemos.tsx`, `site-app-demos.css`), revisão de 03/11/2026.** Reproduzem telas reais do briefing `dinn-manager-app/docs/site-reproducao`, só as em produção: Início (hub, Trade, Supply, Marketing), Mercado (Pricing), Localizar Produto (SAC) e Conexões (TI). No topo rodam em laço: o cursor escolhe produto, cidade ou mercado, os números contam e os gráficos se montam. No palco, cada passo do exemplo mostra um estado da tela e um anel no ponto certo. Sem ilustração abstrata, sem resposta do Insights (Beta) e sem ícone de relógio nos botões das telas. Para mudar o roteiro, edite `beats` (laço) e `steps` (palco) do `Def` da tela.
+- Título do hero em uma cor só (`plain()` tira o `*destaque*`) e com até 8 palavras (STE). Os seis títulos foram encurtados em PT, EN e ES.
+- Para uma área nova: acrescente em `AREA_SLUGS`, no dicionário `solutions.items` (3 idiomas) e em `area-theme.ts`.
+- Cuidado: `home2.css` carrega depois das outras folhas. Para sobrescrever `.h2-media`, use `.h2 .classe` (2 classes).

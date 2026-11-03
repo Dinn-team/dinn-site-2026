@@ -141,7 +141,7 @@ export const pagesPt = {
         name: "Inteligência & Pricing",
         short: "Acompanhe disponibilidade, preço, giro e concorrência.",
         question: "Qual é a origem e até onde posso confiar?",
-        title: "Mudanças de preço, giro e concorrência, *com a origem à vista*",
+        title: "Preço, giro e concorrência com a origem",
         lead: "Explique um número antes de usá-lo. Cada leitura mostra fonte, data, cobertura e limite.",
         decisions: [
           "Separar uma mudança pontual de uma tendência duradoura.",
@@ -169,7 +169,7 @@ export const pagesPt = {
         name: "Trade, KAM & Campo",
         short: "Priorize contas e territórios com o contexto mais recente.",
         question: "Quem eu priorizo e o que levo para a conversa?",
-        title: "Uma fila de lojas e contas, *com o que conferir em cada uma*",
+        title: "Uma fila de lojas, com o que conferir",
         lead: "Sem painel para interpretar. Você recebe uma lista priorizada com o sinal, a data e a pergunta a responder.",
         decisions: [
           "Começar a semana pelas lojas que mais causam ruptura no seu recorte.",
@@ -197,7 +197,7 @@ export const pagesPt = {
         name: "Supply & Distribuição",
         short: "Investigue cobertura, disponibilidade e restrições de abastecimento.",
         question: "Onde pode haver problema de cobertura ou abastecimento?",
-        title: "O furo está no CD, na reposição ou na farmácia? *Veja os dois lados.*",
+        title: "O furo está no CD ou na farmácia?",
         lead: "A Dinn cruza o estoque no distribuidor com a disponibilidade nas farmácias da região. Ela informa as ressalvas causais.",
         decisions: [
           "Separar falta na origem de falha de reposição.",
@@ -226,7 +226,7 @@ export const pagesPt = {
         name: "SAC & Customer Experience",
         short: "Oriente consumidores sobre disponibilidade e proximidade.",
         question: "Como oriento alguém sem induzir ao erro?",
-        title: "Onde o consumidor tem chance de achar o produto, *e quão segura é essa chance*",
+        title: "Onde o consumidor acha o produto?",
         lead: "Disponibilidade, proximidade e atualização em uma tela, com a fonte e a data de cada indicação.",
         decisions: [
           "Indicar a farmácia próxima com maior chance de ter o produto.",
@@ -254,7 +254,7 @@ export const pagesPt = {
         name: "Marketing & Lançamentos",
         short: "Acompanhe presença, evolução de cobertura e sinais de execução do lançamento.",
         question: "A execução está evoluindo onde deveria?",
-        title: "Semana a semana, *onde o lançamento chegou* e onde travou",
+        title: "Onde o lançamento chegou e onde travou",
         lead: "Presença por rede e região ao longo do tempo, comparada com o plano do seu time.",
         decisions: [
           "Ver onde o lançamento acelerou e onde está abaixo do esperado.",
@@ -282,7 +282,7 @@ export const pagesPt = {
         name: "TI, Dados & Governança",
         short: "Integre sinais com rastreabilidade, controle de acesso e limites claros.",
         question: "Como integra, protege e governa?",
-        title: "Sinais no seu ambiente, *com rastreabilidade e controle de acesso*",
+        title: "Sinais no seu ambiente, com rastreabilidade",
         lead: "API, BI e a IA do cliente consultam a mesma base. O escopo autorizado e a origem de cada dado ficam preservados.",
         decisions: [
           "Escolher por onde consumir: plataforma, arquivo, API, BI ou a IA do cliente.",

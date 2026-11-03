@@ -140,7 +140,7 @@ export const pagesEn = {
         name: "Intelligence & Pricing",
         short: "Track availability, price, sell-through and competition.",
         question: "Where does it come from, and how far can I trust it?",
-        title: "Price, sell-through and competitor changes, *with the source in view*",
+        title: "Price, sell-through and competitors, with the source",
         lead: "Explain a number before you use it. Each reading shows source, date, coverage and limit.",
         decisions: [
           "Tell a one-off change from a lasting trend.",
@@ -168,7 +168,7 @@ export const pagesEn = {
         name: "Trade, KAM & Field",
         short: "Prioritize accounts and territories with the latest context.",
         question: "Who do I prioritize and what do I bring to the conversation?",
-        title: "A queue of stores and accounts, *with what to check at each one*",
+        title: "A queue of stores, with what to check",
         lead: "No dashboard to interpret. You get a prioritized list with the signal, the date and the question to answer.",
         decisions: [
           "Start the week with the stores that cause most stock-outs in your scope.",
@@ -196,7 +196,7 @@ export const pagesEn = {
         name: "Supply & Distribution",
         short: "Investigate coverage, availability and supply constraints.",
         question: "Where might there be a coverage or supply problem?",
-        title: "Is the gap at the DC, in replenishment or at the pharmacy? *See both sides.*",
+        title: "Is the gap at the DC or the pharmacy?",
         lead: "Dinn crosses the distributor's stock with availability at the region's pharmacies. It states causal caveats.",
         decisions: [
           "Tell a shortage at the source from a replenishment failure.",
@@ -225,7 +225,7 @@ export const pagesEn = {
         name: "Customer Service & Customer Experience",
         short: "Guide consumers on availability and proximity.",
         question: "How do I guide someone without misleading them?",
-        title: "Where the consumer is likely to find the product, *and how reliable that is*",
+        title: "Where the consumer can find the product",
         lead: "Availability, proximity and freshness on one screen, with the source and date of each indication.",
         decisions: [
           "Point to the nearby pharmacy most likely to have the product.",
@@ -253,7 +253,7 @@ export const pagesEn = {
         name: "Marketing & Launches",
         short: "Track presence, coverage growth and launch execution signals.",
         question: "Is execution progressing where it should?",
-        title: "Week by week, *where the launch has arrived* and where it stalled",
+        title: "Where the launch arrived and where it stalled",
         lead: "Presence by chain and region over time, compared with your team's plan.",
         decisions: [
           "See where the launch accelerated and where it is below expectations.",
@@ -281,7 +281,7 @@ export const pagesEn = {
         name: "IT, Data & Governance",
         short: "Integrate signals with traceability, access control and clear limits.",
         question: "How does it integrate, protect and govern?",
-        title: "Signals in your environment, *with traceability and access control*",
+        title: "Signals in your environment, with traceability",
         lead: "API, BI and the customer's AI query the same base. The authorized scope and the origin of each data point stay intact.",
         decisions: [
           "Choose how to consume: platform, file, API, BI or the customer's AI.",

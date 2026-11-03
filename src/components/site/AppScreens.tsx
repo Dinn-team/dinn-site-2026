@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Boxes, Clock, Package, Store, TriangleAlert, Users } from 'lucide-react';
+import { Boxes, Package, Store, TriangleAlert, Users } from 'lucide-react';
 import { DonutSvg, LineSvg } from './vizPrimitives';
 
 // Telas reais do Dinn, reproduzidas a partir do briefing em
@@ -160,7 +160,7 @@ function Locator() {
             <div><em>Preço</em><b>R$ 39,90</b><small>por unidade</small></div>
             <div><em>Confiabilidade do estoque</em><b>A - Confiável</b></div>
           </div>
-          <span className="da-btn"><Clock size={13} /> Consultar agora</span>
+          <span className="da-btn">Consultar agora</span>
         </div>
       </div>
     </div>
