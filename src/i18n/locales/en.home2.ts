@@ -2,8 +2,8 @@
 export const home2En = {
   home2: {
     hero: {
-      title: "Turn pharma channel signals into *commercial action*.",
-      sub: "Dinn shows where to act first. Each signal has a source, a date and clear limits.",
+      title: "Turn signals into *commercial action*.",
+      sub: "Dinn shows where to act first in the pharma channel. Each signal has a source, a date and clear limits.",
       cta: "Request a demo",
       cta2: "Explore the platform",
       play: "Play the Dinn video",

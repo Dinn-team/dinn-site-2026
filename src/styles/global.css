@@ -20,6 +20,9 @@
 @import "./support-portal.css";
 @import "./support-page.css";
 @import "./site-resources.css";
+@import "./site-cases2.css";
+@import "./site-customers.css";
+@import "./site-case-viz.css";
 @import "./site-platform.css";
 @import "./site-mobile-menu.css";
 @import "./site-contact.css";
@@ -308,11 +311,15 @@ html, body {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.491 0.27 292.581);
+  /* Identidade: roxo manda; verde-limão e laranja são apoio (rules/DESIGN_SYSTEM_V2.md, seção 10). */
+  --brand-ink: #08090a;
+  --brand-lime: #e4f222;
+  --brand-orange: #fd673e;
   --primary-foreground: oklch(0.969 0.016 293.756);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.5 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);

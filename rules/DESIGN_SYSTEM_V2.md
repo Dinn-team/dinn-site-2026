@@ -138,8 +138,8 @@ Cada página interna passa a seguir este fluxo:
 4. **Fechamento:** o chat flutuante já cobre dúvidas. Termine com o rodapé global.
 5. Migrar uma página por vez, junto com o texto em STE.
 
-Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções (+6 áreas) · clientes · recursos (blog, casos, novidades, comparativos) · planos ✅ · confiança ✅ · sobre ✅ · contato ✅ · integrações · cobertura · pesquisas ✅.
-Migradas depois: termos, privacidade e cookies, suporte (`LegalPage.astro`: índice lateral ou duas colunas), recursos, novidades, comparativos, casos (galeria) e blog. Suporte refeito do zero a partir de `dinn-manager-app/docs/suporte` (`src/components/support/*`: maquetes do portal em `.pt`, demonstrações animadas em `demos.tsx`, textos em `content.ts`; flag `ZOE_LIVE` a confirmar). Ainda no layout antigo: guias (`/recursos/[slug]`), detalhe de caso e artigo do blog.
+Estado das páginas (atualize ao migrar): home ✅ · plataforma · funcionalidades · soluções (+6 áreas) · clientes ✅ · recursos (blog, casos, novidades, comparativos) · planos ✅ · confiança ✅ · sobre ✅ · contato ✅ · integrações · cobertura · pesquisas ✅.
+Migradas depois: termos, privacidade e cookies, suporte (`LegalPage.astro`: índice lateral ou duas colunas), recursos, novidades, comparativos, casos (galeria) e blog. Suporte refeito do zero a partir de `dinn-manager-app/docs/suporte` (`src/components/support/*`: maquetes do portal em `.pt`, demonstrações animadas em `demos.tsx`, textos em `content.ts`; flag `ZOE_LIVE` a confirmar). Casos de uso (galeria e detalhe) ✅ em 03/11/2026, pelo padrão da seção 10. Ainda no layout antigo: guias (`/recursos/[slug]`) e artigo do blog.
 
 ### Maquetes animadas do produto (Suporte)
 
@@ -164,3 +164,67 @@ Para mostrar o produto, não corte um print estático. Use uma demonstração an
 - [ ] Texto em STE nos 3 idiomas (EN, PT, ES).
 - [ ] Desktop, tablet e mobile conferidos.
 - [ ] `pnpm build` passa.
+
+
+## 10. Padrão de atualização de páginas (definido em 03/11/2026)
+
+A identidade visual da marca é a regra de design do site. Este padrão vale para toda página que ainda está na versão antiga ou que usa cor, fonte e grafia fora da identidade. Primeira página migrada por ele: **Casos de uso** (galeria e detalhe).
+
+### 10.1 Paleta da identidade
+
+| Cor | Hex | Token | Uso |
+|---|---|---|---|
+| Preto da marca | `#08090A` | `--brand-ink` | Fundo escuro de palcos, texto sobre cor clara |
+| Roxo Dinn | `#5130E9` (referência da marca) | `--primary` | Cor principal. Botão, links ativos, destaque único |
+| Verde-limão | `#E4F222` | `--brand-lime` | Apoio: marcas de confirmação, passo ativo, avatar. Texto sobre ele é `--brand-ink` |
+| Laranja | `#FD673E` | `--brand-orange` | Apoio: calor, alerta, convite à ação |
+
+- O roxo manda. Verde-limão e laranja entram como apoio, nunca no lugar do roxo no botão principal.
+- Ponto em aberto: o token `--primary` hoje vale `#7008E7`, não `#5130E9`. Trocar o token muda o site todo. Decisão do Renan.
+- Mantém valendo: título em uma cor só, botão com texto branco, sem tag de status.
+
+### 10.2 Roteiro de uma atualização
+
+1. **Varredura.** Rode `node .claude/skills/design-taste-frontend/scripts/inspect.mjs <url> --out .taste-skill/<pagina>-before` e leia as capturas. Registre as falhas.
+2. **Layout v2.** Hero no padrão da home, seções nos padrões da seção 5, wrapper `.h2`, `.h2-head`, `.h2-section`. Troque classes antigas (`sp-*`, `wrap`, `as-*`) por `.h2-*` ou por classes novas do tema `<pagina>2`/`cs3`.
+3. **Fonte e grafia.** Roboto nos títulos (peso 400), Inter no resto. Rótulos em caixa normal, sem eyebrow em caixa alta, sem numeração decorativa. Corpo a partir de 16 px.
+4. **Cor.** Neutro por padrão. Dê cor com os degradês e com verde-limão ou laranja em pontos pequenos.
+5. **Degradês.** Veja 10.3. Cada tipo de conteúdo recebe um degradê. Texto branco só sobre degradê escuro com camada de 30 a 45 %.
+6. **Ilustração com movimento no hover.** Use as ilustrações de `src/components/illustrations/` dentro de um `.il-host`. O cartão inteiro dispara a animação. Respeite `prefers-reduced-motion`.
+7. **Vínculo.** Toda página de história aponta para a página de clientes (`PATHS.customers`) e vice-versa.
+8. **Fechamento.** Reinspecione em `.taste-skill/<pagina>-after`. Alvo: nenhuma falha, exceto "roxo" (é a marca) e "título de 3 linhas" (o DS permite 3).
+
+### 10.3 Biblioteca de degradês
+
+- Originais: `public/gradients/g00…g11.avif` (2400 px, leves).
+- Novos da pasta `public/gradients/*-unsplash.avif` são pesados (até 4 MB). **Não use direto.** Use as cópias web de 1920 px em `public/gradients/web/`.
+
+| Arquivo (`web/…`) | Cor | Uso indicado |
+|---|---|---|
+| `roxo-noite` | roxo e preto | Preço, inteligência. Palco escuro |
+| `verde-noite` | verde-escuro e verde-claro | Supply, calma. Palco escuro |
+| `laranja-noite` | laranja, vinho e preto | SAC, calor. Palco escuro |
+| `azul-noite` | azul e preto | Trade, tecnologia |
+| `vinho-noite` | vermelho e preto | Marketing, lançamento |
+| `grafite` | cinza-claro e preto | TI, dados, governança |
+| `lilas-azul` | lilás e azul | Fundo claro atrás de ilustração |
+| `azul-claro` | creme e azul-claro | Fundo claro |
+| `pessego`, `laranja-bolha` | laranja e pêssego | Fundo claro quente, fechamento |
+| `rosa-fluxo`, `arco`, `rubro` | rosa, multicor, vinho | Reserva. Revise o contraste antes de usar |
+
+Para texto escuro (fechamento, cartão claro) use `g10` (amarelo), `g03` ou `lilas-azul`. Para texto branco use os `*-noite` e `grafite`.
+
+### 10.4 Casos de uso (modelo da migração)
+
+- Galeria e detalhe: `src/components/site/CasesPages.tsx`, estilos em `src/styles/site-cases2.css`.
+- O detalhe tem hero com gradiente escuro da área e a ilustração da área em um painel claro, problema com citação em gradiente, palco de rolagem (cena animada) sobre o gradiente, solução com resultados em verde-limão, casos relacionados e fechamento.
+- Os casos de cliente ficam anônimos (decisão do Renan, 03/11/2026). Não há página por cliente nem campo de cliente em `src/data/cases.json`. O vínculo é com a página geral `/clientes`.
+
+### 10.5 Clientes (/clientes e /clientes/<slug>)
+
+- Modelo: as páginas de cliente do Clay (resumo, impacto, história, números, mais clientes). Código em `src/components/site/CustomersPages.tsx`, estilos em `src/styles/site-customers.css`, conteúdo em `src/data/customers/<slug>.ts`.
+- Para criar a página de um cliente novo: acrescente uma entrada em `customers.ts` (a rota `/clientes/<slug>` nasce sozinha) e confirme o logo em `src/lib/clients.ts` e a cor em `src/lib/client-brand.ts`.
+- O carrossel da home (`Customers2.tsx`) leva ao `/clientes/<slug>`. Cliente sem página leva a `/clientes`. Hoje todos os cinco têm página. Na página de um cliente, o mesmo carrossel mostra os demais.
+- **Gráficos e telas nos cases (03/11/2026).** Cada bloco de `src/data/customers/<slug>.ts` aceita `viz`: barras, rosca, linha, antes e depois, linha do tempo, ilustração isométrica e tela do produto (`CaseViz.tsx`, `site-case-viz.css`). Use só número que já está no texto do bloco. Se o gráfico cobre a tabela inteira, tire a tabela. As telas (`AppScreens.tsx`) vêm do briefing `dinn-manager-app/docs/site-reproducao`: só Início, Localizar Produto e Mercado, com dados fictícios, dado de ontem (D-1) e a legenda "Dados e nomes ilustrativos". Sem telas Beta e sem as telas de rota, visita e NBA, que estão fora do menu atual.
+- Citação só aparece com `approved: true`. Cada trecho que o documento do caso marca como "REVISAR" fica fora até a confirmação do cliente.
+- O conteúdo está em português. EN e ES mostram o texto em português; os rótulos da interface já têm tradução (`clients.page.*`).

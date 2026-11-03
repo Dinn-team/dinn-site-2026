@@ -37,7 +37,7 @@
 .pl-build-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .pl-step { margin: 28px 0 16px; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--foreground); }
 .pl-step span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); font-size: 12px; color: var(--muted-foreground); }
-.pl-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pl-chips { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .pl-chips button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 9999px; border: 1px solid var(--border); background: var(--background); font: inherit; font-size: 14px; color: var(--foreground); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
 .pl-chips button:hover { border-color: var(--foreground); }
 .pl-chips button.is-on { background: var(--foreground); border-color: var(--foreground); color: var(--background); }

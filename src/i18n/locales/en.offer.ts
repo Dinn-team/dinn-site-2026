@@ -873,7 +873,31 @@ export const offerEn = {
       intro: "Each case shows the situation, signal, validation, decision and learning.",
       all: "See all cases"
     },
-    voices: { title: "What users say" }
+    voices: { title: "What users say" },
+    page: {
+      hero_title: "Who uses *Dinn* every day",
+      hero_lead: "See how pharma teams use Dinn to decide and act at the point of sale.",
+      list_title: "Customer stories",
+      list_intro: "Each page shows the problem, what changed and the numbers.",
+      read: "Read the story",
+      cases_title: "Use case stories",
+      cases_intro: "Short cases, from signal to action. Names are kept private.",
+      back: "All customers",
+      glance: "At a glance",
+      company: "Company",
+      sector: "Industry",
+      hq: "Headquarters",
+      usecase: "Use case",
+      impact: "Impact summary",
+      problem: "The problem",
+      solution: "The solution",
+      story: "How it worked",
+      results: "The numbers",
+      more: "See more customers",
+      voice: "What users say",
+      cta: "Talk to the Dinn team",
+      illustrative: "Illustrative data and names."
+    }
   },
 
   // ── Contact: request profile (what the person wants to hire) ──────────────

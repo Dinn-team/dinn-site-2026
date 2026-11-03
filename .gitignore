@@ -58,3 +58,11 @@ Thumbs.db
 
 # Astro (tipos gerados)
 /.astro
+
+# capturas de teste da skill de front e atalho local da skill (caminho absoluto)
+.taste-skill/
+.claude/skills/
+
+# capturas de teste da skill de front e atalho local da skill (caminho absoluto)
+.taste-skill/
+.claude/skills/

@@ -36,17 +36,12 @@ export function Hero2() {
               <video src={HERO_VIDEO_SRC} autoPlay controls playsInline />
             ) : (
               <>
-                <img className="h2-player-logo" src="/logo/Dinn_logo_v2_Dark.svg" alt="" width={120} height={46} />
-                <button
-                  type="button"
-                  className="h2-play"
-                  onClick={() => hasVideo && setPlaying(true)}
-                  disabled={!hasVideo}
-                  aria-label={t(hasVideo ? 'home2.hero.play' : 'home2.hero.soon') as string}
-                >
-                  <Play size={26} fill="currentColor" aria-hidden="true" />
-                </button>
-                {!hasVideo && <span className="h2-player-note">{t('home2.hero.soon')}</span>}
+                <img className={hasVideo ? 'h2-player-logo' : 'h2-player-logo is-center'} src="/logo/Dinn_logo_v2_Dark.svg" alt="" width={120} height={46} />
+                {hasVideo && (
+                  <button type="button" className="h2-play" onClick={() => setPlaying(true)} aria-label={t('home2.hero.play') as string}>
+                    <Play size={26} fill="currentColor" aria-hidden="true" />
+                  </button>
+                )}
               </>
             )}
           </div>

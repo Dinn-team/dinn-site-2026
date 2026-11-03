@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { ClientsPage } from '@/components/site/offer/OfferPages';
+import { CustomersIndex } from '@/components/site/CustomersPages';
 import { pagesPt } from '@/i18n/locales/pt.pages';
 import { getClientLogos } from '@/lib/clients';
 
@@ -10,5 +10,5 @@ const logos = getClientLogos();
 ---
 
 <Layout title={title} description={description}>
-  <ClientsPage logos={logos} client:load />
+  <CustomersIndex logos={logos} client:load />
 </Layout>

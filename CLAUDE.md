@@ -16,6 +16,24 @@ Regras curtas:
 - Menu e rodapé são globais: só acrescente ou renomeie itens.
 - Páginas internas migram uma por vez para o padrão da home (lista de estado no v2, seção 9).
 
+## Atualização de páginas (padrão de 03/11/2026)
+
+Para atualizar qualquer página, siga `rules/DESIGN_SYSTEM_V2.md`, seção 10.
+A paleta da marca é a regra: roxo (`--primary`) manda; verde-limão (`--brand-lime`) e laranja (`--brand-orange`) são apoio.
+Use os degradês de `public/gradients/web/` (nunca os `*-unsplash.avif` pesados). Use ilustração com movimento no hover (`.il-host`).
+Rode a skill de front na varredura antes e depois. Páginas de história (casos) apontam para `/clientes`.
+
+## Skill de design: design-taste-frontend (use em toda edição visual)
+
+Instalada em `.agents/skills/design-taste-frontend` (ligada em `.claude/skills/`).
+Origem: `npx skills add Leonxlnx/taste-skill --skill design-taste-frontend` (tasteskill.dev).
+Detalhes em `docs/design-taste-skill.md`.
+
+- Antes de criar ou mudar página, hero ou seção, chame a skill `design-taste-frontend`.
+- Ela ajuda no espaçamento, na hierarquia, na tipografia e na revisão com captura de tela.
+- O Design System v2 manda. Se a skill sugerir direção, cor ou fonte diferente do v2, siga o v2.
+- Não rode `assets.mjs` sem avisar o Renan. O script baixa imagens de sites públicos.
+
 ## Texto do site: Simplified Technical English (ASD-STE100)
 
 Todo texto de interface e de site (`src/i18n/locales/*`) segue o ASD-STE100.

@@ -123,18 +123,9 @@ export function SlideTabs({ scrolled }: SlideTabsProps) {
         position: "relative",
         display: "flex",
         alignItems: "center",
-        borderRadius: "9999px",
         padding: "4px",
         listStyle: "none",
         margin: 0,
-        border: scrolled
-          ? "1.5px solid rgba(86,37,242,0.15)"
-          : "1.5px solid rgba(255,255,255,0.15)",
-        background: scrolled
-          ? "rgba(255,255,255,0.9)"
-          : "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
         gap: "2px",
       }}
     >

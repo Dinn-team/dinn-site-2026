@@ -1,262 +1,243 @@
+import type { CSSProperties, ReactNode } from 'react';
 import { rng } from '@/components/home/neural';
-import { ACCENT, AMBER, Chip, LILAC, SKY, Svg, easeOut, seg, show, SCENES, type SceneProps } from './AreaScenes';
+import { Box, Line3, Poly3, pt, pts, type V3 } from '@/components/illustrations/iso';
+import { easeOut, seg, SCENES, type SceneProps } from './AreaScenes';
 
-// Cenas dos casos de uso: uma animação por história, guiada pela rolagem em
-// quatro tempos (o problema aparece, o Dinn lê, o padrão se revela, a solução
-// fecha). Os PDVs, redes e cidades são genéricos: preservam a indústria e os
-// dados; só os números dados pelo próprio usuário (ex.: 60% e 45%) aparecem.
+// Cenas dos casos de uso: uma por história, guiadas pela rolagem em quatro
+// tempos. Mesma linguagem das ilustrações em linha do site (src/components/
+// illustrations): desenho isométrico, traço de 1 px, faces na cor do fundo e um
+// único detalhe em roxo. Cor de apoio da marca: laranja para o problema e
+// verde-limão para o que se resolveu. Os PDVs, redes e cidades são genéricos:
+// preservam a indústria e os dados; só os números do próprio usuário (60% e
+// 45%) aparecem.
 
-const RED = '#EF4444';
-const GREEN = '#10B981';
-const GREY = 'rgba(255,255,255,0.14)';
+function Iso({ title, vb, children }: { title: string; vb: string; children: ReactNode }) {
+  return (
+    <svg className="il cs-iso" viewBox={vb} role="img" aria-label={title}>
+      <g transform="translate(0 14)">{children}</g>
+    </svg>
+  );
+}
+
+/** Peça que desce ao entrar: opacidade e deslocamento vêm do progresso. */
+const drop = (v: number, dy = -14): CSSProperties => ({ opacity: v, translate: `0px ${((1 - v) * dy).toFixed(1)}px` });
+
+const Plate = ({ x, y, w, d }: { x: number; y: number; w: number; d: number }) => <Box x={x} y={y} w={w} d={d} h={4} />;
 
 // ── 1. Dias de estoque em Fortaleza ────────────────────────────────────────
 function FrozenStockScene({ p, L }: SceneProps) {
-  const totals = [250, 200, 280, 150, 230, 180];
-  const frozen = [0.55, 0.4, 0.6, 0.7, 0.35, 0.5];
-  const y0 = 92;
-  const rowH = 44;
-  const sum = easeOut(seg(p, 0.5, 0.72));
-  const gauge = easeOut(seg(p, 0.76, 0.95));
+  const spots = [
+    { x: -118, y: -52, h: 30, f: 0.55 }, { x: -76, y: -52, h: 44, f: 0.4 }, { x: -34, y: -52, h: 36, f: 0.6 },
+    { x: -118, y: -8, h: 40, f: 0.7 }, { x: -76, y: -8, h: 26, f: 0.35 }, { x: -34, y: -8, h: 38, f: 0.5 },
+  ];
+  const order = spots.map((s, i) => ({ ...s, i })).sort((a, b) => a.x + a.y - (b.x + b.y));
+  const gaugeH = 74;
+  const fill = easeOut(seg(p, 0.5, 0.72)) * gaugeH * 0.62;
+  const flow = seg(p, 0.46, 0.58);
+  const days = 8;
   return (
-    <Svg title={L.title}>
-      <Chip x={24} y={20} text={L.city} tone="lilac" v={seg(p, 0, 0.08)} />
-      <g style={{ opacity: seg(p, 0.04, 0.14) }} className="as-g">
-        <rect x={140} y={34} width={10} height={10} rx={3} fill={LILAC} />
-        <text x={156} y={43} fontSize={11.5} fill="rgba(255,255,255,0.7)">{L.total}</text>
-        <rect x={226} y={34} width={10} height={10} rx={3} fill={AMBER} />
-        <text x={242} y={43} fontSize={11.5} fill="rgba(255,255,255,0.7)">{L.frozen}</text>
-      </g>
-      {totals.map((w, i) => {
-        const y = y0 + i * rowH;
-        const v = easeOut(seg(p, i * 0.025, 0.12 + i * 0.025));
-        const f = easeOut(seg(p, 0.26 + i * 0.02, 0.46 + i * 0.02));
+    <Iso title={L.title} vb="-206 -119 330 220">
+      <Plate x={-130} y={-62} w={118} d={104} />
+      {order.map(({ x, y, h, f, i }) => {
+        const v = easeOut(seg(p, i * 0.035, 0.14 + i * 0.035));
+        const hot = seg(p, 0.26 + i * 0.03, 0.34 + i * 0.03) > 0.5;
+        const hf = Math.round(h * f);
         return (
-          <g key={i} style={{ opacity: v }} className="as-g">
-            <text x={24} y={y + 14} fontSize={12.5} fontWeight={600} fill="rgba(255,255,255,0.8)">{L.pdv} {String(i + 1).padStart(2, '0')}</text>
-            <rect x={96} y={y} width={w} height={20} rx={10} fill={LILAC} opacity={0.45} />
-            <rect x={96} y={y} width={w * frozen[i] * f} height={20} rx={10} fill={AMBER} />
+          <g key={i} style={drop(v)}>
+            <Box x={x} y={y} z={4} w={34} d={34} h={hf} cls={hot ? 'il-warn-face' : ''} />
+            <Box x={x} y={y} z={4 + hf} w={34} d={34} h={h - hf} />
           </g>
         );
       })}
-      {/* soma da cidade */}
-      <g style={{ opacity: seg(p, 0.48, 0.6) }} className="as-g">
-        <rect x={452} y={92} width={64} height={264} rx={16} fill={GREY} />
-        <rect x={452} y={92 + 264 * (1 - 0.62 * sum)} width={64} height={264 * 0.62 * sum} rx={16} fill={AMBER} />
-        <text x={484} y={376} textAnchor="middle" fontSize={12} fontWeight={600} fill="#fff">{L.sum}</text>
+      {/* a soma: guias levam o parado até a coluna, que enche */}
+      <g style={{ opacity: flow }}>
+        {spots.map((s, i) => (
+          <Poly3 key={i} list={[[s.x + 17, s.y + 17, 4 + s.h + 6], [14, s.y + 17, 4 + s.h + 6], [14, -8, 4 + gaugeH + 6], [38, -8, 4 + gaugeH + 6]]} className="il-guide il-flow" />
+        ))}
       </g>
-      {/* dias disponíveis × necessário */}
-      <g style={{ opacity: seg(p, 0.74, 0.84) }} className="as-g">
-        <text x={24} y={392} fontSize={12.5} fontWeight={600} fill="#fff">{L.days}</text>
-        <rect x={150} y={378} width={290} height={18} rx={9} fill={GREY} />
-        <rect x={150} y={378} width={290 * 0.78 * gauge} height={18} rx={9} fill={GREEN} />
-        <line x1={150 + 290 * 0.55} x2={150 + 290 * 0.55} y1={370} y2={404} stroke="#fff" strokeWidth={2} strokeDasharray="3 3" />
-        <text x={150 + 290 * 0.55} y={420} textAnchor="middle" fontSize={11} fill="rgba(255,255,255,0.75)">{L.need}</text>
+      <g style={{ opacity: seg(p, 0.46, 0.56) }}>
+        <Plate x={24} y={-26} w={52} d={52} />
+        <Box x={36} y={-14} z={4} w={28} d={28} h={gaugeH} cls="il-glass" />
+        <Box x={36} y={-14} z={4} w={28} d={28} h={Math.max(0.1, fill)} cls="il-warn-face" />
       </g>
-      <Chip x={400} y={20} text={L.covered} tone="green" v={seg(p, 0.86, 0.96)} />
-    </Svg>
+      {/* dias de cobertura: a fila de peças acende até passar do necessário */}
+      {Array.from({ length: days }, (_, i) => {
+        const v = easeOut(seg(p, 0.76 + i * 0.012, 0.86 + i * 0.012));
+        const covered = i < 6 && seg(p, 0.84, 0.95) * 8 > i;
+        return (
+          <g key={i} style={drop(v, -8)}>
+            <Box x={-118 + i * 26} y={58} z={0} w={20} d={20} h={8} cls={covered ? 'il-ok-face' : ''} topClass={covered ? '' : ''} />
+          </g>
+        );
+      })}
+      <g style={{ opacity: seg(p, 0.8, 0.9) }}>
+        <Line3 a={[-118 + 4.5 * 26 + 10, 58, 12]} b={[-118 + 4.5 * 26 + 10, 58, 40]} className="il-accent" />
+        <polygon className="il-accent il-accent-face" points={pts([[-118 + 4.5 * 26 + 10, 52, 40], [-118 + 4.5 * 26 + 16, 58, 40], [-118 + 4.5 * 26 + 10, 64, 40], [-118 + 4.5 * 26 + 4, 58, 40]])} />
+      </g>
+    </Iso>
   );
 }
 
 // ── 2. O furo do reabastecimento: atraso, falta de pedido ou janela de compra
 function DistributorGapScene({ p, L }: SceneProps) {
-  const tests = [
-    { label: L.demand, ok: true, tag: L.exists, at: 0.0 },
-    { label: L.rotation, ok: true, tag: L.exists, at: 0.1 },
-    { label: L.delay, ok: false, tag: L.ruled, at: 0.26 },
-    { label: L.noBuy, ok: false, tag: L.ruled, at: 0.36 },
-  ];
+  const tests = [{ ok: true, at: 0.0, flip: 0.12 }, { ok: true, at: 0.1, flip: 0.22 }, { ok: false, at: 0.2, flip: 0.32 }, { ok: false, at: 0.3, flip: 0.42 }];
   const win = easeOut(seg(p, 0.5, 0.7));
-  const date = easeOut(seg(p, 0.74, 0.88));
+  const move = easeOut(seg(p, 0.76, 0.94));
+  const slots = 8;
+  const crateX = -130 + move * 236;
   return (
-    <Svg title={L.title}>
+    <Iso title={L.title} vb="-198 -127 381 254">
       {tests.map((t, i) => {
         const v = easeOut(seg(p, t.at, t.at + 0.14));
-        const y = 30 + i * 62;
+        const done = seg(p, t.flip, t.flip + 0.06) > 0.5;
+        const cls = done ? (t.ok ? 'il-ok-face' : 'il-dashed') : '';
         return (
-          <g key={i} style={show(v)} className="as-g">
-            <rect x={24} y={y} width={310} height={50} rx={14} fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" />
-            <circle cx={50} cy={y + 25} r={12} fill={t.ok ? GREEN : 'rgba(255,255,255,0.14)'} />
-            {t.ok ? (
-              <path d={`M${44},${y + 25} l4,4 l8,-9`} stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            ) : (
-              <path d={`M${45},${y + 20} l10,10 M${55},${y + 20} l-10,10`} stroke="rgba(255,255,255,0.7)" strokeWidth={2.2} strokeLinecap="round" />
-            )}
-            <text x={74} y={y + 30} fontSize={13.5} fontWeight={600} fill={t.ok ? '#fff' : 'rgba(255,255,255,0.55)'} textDecoration={t.ok ? undefined : 'line-through'}>{t.label}</text>
-            <text x={322} y={y + 30} textAnchor="end" fontSize={11.5} fontWeight={700} fill={t.ok ? '#A7F3D0' : 'rgba(255,255,255,0.5)'}>{t.tag}</text>
+          <g key={i} style={drop(v)}>
+            <Box x={-112 + i * 56} y={-70} z={0} w={36} d={36} h={t.ok || !done ? 22 : 14} cls={cls} />
           </g>
         );
       })}
-      {/* PDVs aguardando reposição */}
-      {Array.from({ length: 12 }, (_, i) => {
-        const cx = 388 + (i % 3) * 52;
-        const cy = 60 + Math.floor(i / 3) * 56;
-        const on = seg(p, 0.8 + (i % 4) * 0.025, 0.92 + (i % 4) * 0.025) > 0.5;
-        return (
-          <g key={i} style={{ opacity: seg(p, 0, 0.1) }} className="as-g">
-            <circle cx={cx} cy={cy} r={16} fill={on ? GREEN : 'rgba(239,68,68,0.18)'} stroke={on ? GREEN : RED} strokeWidth={1.6} style={{ transition: 'fill 0.4s, stroke 0.4s' }} />
-            {on && <path d={`M${cx - 6},${cy} l4,4 l8,-9`} stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />}
-          </g>
-        );
+      {/* calendário de compra do distribuidor */}
+      <Plate x={-134} y={10} w={240} d={36} />
+      {Array.from({ length: slots }, (_, i) => {
+        const inWin = i >= 2 && i <= 5;
+        const lit = inWin && win > (i - 2) / 4 - 0.01;
+        return <Box key={i} x={-128 + i * 29} y={16} z={4} w={25} d={24} h={lit ? 6 : 2} cls={lit ? 'il-accent-face' : ''} />;
       })}
-      {/* calendário de compra */}
-      <line x1={24} x2={536} y1={344} y2={344} stroke="rgba(255,255,255,0.25)" strokeWidth={2} />
-      {Array.from({ length: 9 }, (_, i) => <line key={i} x1={24 + i * 64} x2={24 + i * 64} y1={338} y2={350} stroke="rgba(255,255,255,0.25)" />)}
-      <rect x={120} y={330} width={280 * win} height={28} rx={8} fill="rgba(251,191,36,0.28)" stroke={AMBER} strokeDasharray="4 4" />
-      <text x={260} y={324} textAnchor="middle" fontSize={12} fontWeight={700} fill={AMBER} style={{ opacity: win }} className="as-g">{L.window}</text>
-      <g style={{ opacity: date }} className="as-g">
-        <path d="M470,326 l10,18 l-10,18 l-10,-18 z" fill={GREEN} />
-        <text x={470} y={392} textAnchor="middle" fontSize={12} fontWeight={700} fill="#A7F3D0">{L.replenish}</text>
+      <g style={{ opacity: win }}>
+        <Line3 a={[-128 + 2 * 29, 16, 24]} b={[-128 + 6 * 29 - 4, 16, 24]} className="il-accent" />
       </g>
-    </Svg>
+      {/* a reposição sai do CD e chega à loja depois da janela */}
+      <g style={{ opacity: seg(p, 0.74, 0.8) }}>
+        <Poly3 list={[[-134, 28, 14], [112, 28, 14]]} className="il-guide il-flow" />
+      </g>
+      <g style={{ translate: `${(pt(crateX, 0, 0)[0]).toFixed(1)}px ${(pt(crateX, 0, 0)[1]).toFixed(1)}px`, opacity: seg(p, 0.74, 0.8) }}>
+        <Box x={0} y={22} z={10} w={14} d={14} h={14} cls="il-accent-face" />
+      </g>
+      <Box x={116} y={14} z={0} w={34} d={34} h={20} cls={move > 0.95 ? 'il-ok-face' : ''} />
+    </Iso>
   );
 }
 
-// ── 3. SAC: do telefone tocando ao endereço confirmado ────────────────────
-function SacLocatorScene({ p, L, shared }: SceneProps) {
-  const rows = ((shared.locatorRows as { name: string; dist: string }[]) ?? []).slice(0, 3);
-  const card = easeOut(seg(p, 0.18, 0.38));
-  const before = easeOut(seg(p, 0.7, 0.84));
-  const after = easeOut(seg(p, 0.8, 0.94));
+// ── 3. SAC: do endereço do paciente à loja com produto ─────────────────────
+function SacLocatorScene({ p, L }: SceneProps) {
+  const stores = [
+    { x: -84, y: -48, ok: false }, { x: 6, y: -62, ok: true }, { x: 66, y: -10, ok: true },
+    { x: -66, y: 10, ok: false }, { x: -6, y: 30, ok: true },
+  ];
+  const pin = easeOut(seg(p, 0.0, 0.2));
+  const route = seg(p, 0.62, 0.78);
+  const before = easeOut(seg(p, 0.8, 0.9));
+  const after = easeOut(seg(p, 0.86, 0.96));
+  const best = stores[4];
   return (
-    <Svg title={L.title}>
-      <text x={24} y={34} fontSize={12.5} fontWeight={700} fill="rgba(255,255,255,0.75)" style={{ opacity: seg(p, 0, 0.1) }} className="as-g">{L.calls}</text>
-      {[0, 1, 2, 3, 4].map((i) => {
-        const v = easeOut(seg(p, i * 0.04, 0.12 + i * 0.04));
-        const y = 48 + i * 52;
+    <Iso title={L.title} vb="-224 -99 385 243">
+      <Plate x={-110} y={-80} w={200} d={140} />
+      {/* a pessoa informa o endereço: o pino pousa no mapa */}
+      <g style={drop(pin, -34)}>
+        <Line3 a={[-30, -20, 4]} b={[-30, -20, 36]} className="il-accent" />
+        <polygon className="il-accent il-accent-face" points={pts([[-30, -26, 36], [-24, -20, 36], [-30, -14, 36], [-36, -20, 36]])} />
+      </g>
+      {[...stores].map((s, i) => ({ ...s, i })).sort((a, b) => a.x + a.y - (b.x + b.y)).map(({ x, y, ok, i }) => {
+        const v = easeOut(seg(p, 0.24 + i * 0.05, 0.38 + i * 0.05));
+        const mark = seg(p, 0.4 + i * 0.04, 0.5 + i * 0.04) > 0.5;
+        const chosen = i === 4 && route > 0.9;
         return (
-          <g key={i} style={show(v)} className="as-g">
-            <rect x={24} y={y} width={118} height={40} rx={20} fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" />
-            <circle cx={46} cy={y + 20} r={9} fill={AMBER} />
-            {i === 0 && p < 0.5 && <circle className="as-pulse" cx={46} cy={y + 20} r={9} fill="none" stroke={AMBER} />}
-            <rect x={64} y={y + 15} width={58} height={10} rx={5} fill="rgba(255,255,255,0.22)" />
+          <g key={i} style={drop(v)}>
+            <Box x={x} y={y} z={4} w={26} d={26} h={chosen ? 22 : 14} cls={chosen ? 'il-accent-face' : mark ? (ok ? 'il-ok-face' : 'il-dashed') : ''} />
           </g>
         );
       })}
-      <path d="M150,150 H184" stroke="rgba(183,158,255,0.7)" strokeWidth={2} strokeDasharray="3 5" style={{ opacity: card }} className="as-g" />
-      <g style={show(card)} className="as-g">
-        <rect x={192} y={40} width={344} height={240} rx={20} fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" />
-        <circle cx={214} cy={64} r={7} fill={ACCENT} />
-        <text x={230} y={69} fontSize={13} fontWeight={700} fill="#fff">{L.locator}</text>
-        <rect x={208} y={86} width={312} height={30} rx={15} fill="rgba(255,255,255,0.08)" />
-        <text x={224} y={106} fontSize={12.5} fill="rgba(255,255,255,0.85)">{L.address}</text>
+      <g style={{ opacity: route }}>
+        <Poly3 list={[[-30, -20, 6], [-30, best.y + 13, 6], [best.x + 13, best.y + 13, 6]]} className="il-guide il-flow" />
       </g>
-      {rows.map((r, i) => {
-        const v = easeOut(seg(p, 0.4 + i * 0.07, 0.56 + i * 0.07));
-        const y = 130 + i * 46;
-        return (
-          <g key={r.name} style={show(v)} className="as-g">
-            <rect x={208} y={y} width={312} height={38} rx={12} fill="rgba(22,25,29,0.8)" stroke="rgba(255,255,255,0.12)" />
-            <circle cx={228} cy={y + 19} r={6} fill={GREEN} />
-            <text x={244} y={y + 23} fontSize={12.5} fontWeight={600} fill="#fff">{r.name}</text>
-            <text x={504} y={y + 23} textAnchor="end" fontSize={11.5} fontWeight={700} fill="#A7F3D0">{L.available}</text>
-          </g>
-        );
-      })}
-      <Chip x={208} y={290} text={L.confirmed} tone="green" v={seg(p, 0.64, 0.76)} />
-      <g style={{ opacity: seg(p, 0.68, 0.78) }} className="as-g">
-        <text x={24} y={336} fontSize={12.5} fontWeight={700} fill="rgba(255,255,255,0.8)">{L.time}</text>
-        <text x={24} y={366} fontSize={12} fill="rgba(255,255,255,0.65)">{L.before}</text>
-        <rect x={110} y={352} width={400 * before} height={18} rx={9} fill="rgba(255,255,255,0.28)" />
-        <text x={24} y={402} fontSize={12} fill="rgba(255,255,255,0.65)">{L.after}</text>
-        <rect x={110} y={388} width={400 * 0.28 * after} height={18} rx={9} fill={GREEN} />
-      </g>
-    </Svg>
+      {/* tempo por atendimento: antes e com o Dinn */}
+      <Plate x={-130} y={74} w={250} d={38} />
+      <g style={drop(before, -6)}><Box x={-122} y={79} z={4} w={190 * before} d={12} h={5} /></g>
+      <g style={drop(after, -6)}><Box x={-122} y={95} z={4} w={190 * 0.28 * after + 0.1} d={12} h={5} cls="il-ok-face" /></g>
+    </Iso>
   );
 }
 
 // ── 4. O concorrente está na rede, o produto não: o preço pesa ────────────
 function PriceGapScene({ p, L }: SceneProps) {
-  const chains = ['A', 'B', 'C', 'D'];
   const flip = easeOut(seg(p, 0.76, 0.92));
+  const solid = flip > 0.5;
   return (
-    <Svg title={L.title}>
-      <text x={150} y={52} textAnchor="middle" fontSize={12} fontWeight={700} fill={SKY} style={{ opacity: seg(p, 0, 0.1) }} className="as-g">{L.competitor}</text>
-      <text x={262} y={52} textAnchor="middle" fontSize={12} fontWeight={700} fill={LILAC} style={{ opacity: seg(p, 0.24, 0.34) }} className="as-g">{L.yours}</text>
-      <text x={456} y={52} textAnchor="middle" fontSize={12} fontWeight={700} fill="rgba(255,255,255,0.7)" style={{ opacity: seg(p, 0.44, 0.54) }} className="as-g">{L.priceLabel}</text>
-      {chains.map((c, i) => {
-        const y = 92 + i * 62;
-        const comp = easeOut(seg(p, i * 0.04, 0.14 + i * 0.04));
-        const you = easeOut(seg(p, 0.26 + i * 0.03, 0.4 + i * 0.03));
-        const bars = easeOut(seg(p, 0.46 + i * 0.03, 0.62 + i * 0.03));
-        const aligned = flip > 0.5;
+    <Iso title={L.title} vb="-196 -130 380 255">
+      <Plate x={-136} y={-76} w={256} d={150} />
+      {[0, 1, 2, 3].map((i) => {
+        const y = -66 + i * 36;
+        const comp = easeOut(seg(p, i * 0.05, 0.14 + i * 0.05));
+        const you = easeOut(seg(p, 0.26 + i * 0.04, 0.4 + i * 0.04));
+        const bars = easeOut(seg(p, 0.46 + i * 0.04, 0.62 + i * 0.04));
         return (
-          <g key={c}>
-            <text x={24} y={y + 5} fontSize={13} fontWeight={600} fill="rgba(255,255,255,0.8)">{L.chain} {c}</text>
-            <g style={{ opacity: comp }} className="as-g">
-              <circle cx={150} cy={y} r={15} fill="rgba(56,189,248,0.25)" stroke={SKY} strokeWidth={1.6} />
-              <path d={`M${143},${y} l5,5 l9,-10`} stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </g>
-            <g style={{ opacity: you }} className="as-g">
-              <circle cx={262} cy={y} r={15} fill={aligned ? 'rgba(16,185,129,0.3)' : 'none'} stroke={aligned ? GREEN : 'rgba(255,255,255,0.4)'} strokeWidth={1.6} strokeDasharray={aligned ? undefined : '4 4'} style={{ transition: 'fill 0.4s, stroke 0.4s' }} />
-              {aligned && <path d={`M${255},${y} l5,5 l9,-10`} stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />}
-            </g>
-            <g style={{ opacity: bars }} className="as-g">
-              <rect x={368} y={y - 16} width={74 * bars} height={9} rx={4.5} fill={SKY} />
-              <rect x={368} y={y - 2} width={(110 - 36 * flip) * bars} height={9} rx={4.5} fill={aligned ? GREEN : AMBER} style={{ transition: 'fill 0.4s' }} />
+          <g key={i}>
+            <g style={drop(comp)}><Box x={-122} y={y} z={4} w={24} d={24} h={18} /></g>
+            <g style={drop(you)}><Box x={-64} y={y} z={4} w={24} d={24} h={solid ? 18 : 6} cls={solid ? 'il-ok-face' : 'il-dashed'} /></g>
+            <g style={{ opacity: bars }}>
+              <Box x={-16} y={y} z={4} w={64 * bars + 0.1} d={9} h={5} />
+              <Box x={-16} y={y + 13} z={4} w={(96 - 32 * flip) * bars + 0.1} d={9} h={5} cls={solid ? 'il-ok-face' : 'il-warn-face'} />
             </g>
           </g>
         );
       })}
-      <Chip x={24} y={350} text={L.weighing} tone="amber" v={seg(p, 0.56, 0.7)} w={290} />
-      <Chip x={24} y={388} text={L.negotiated} tone="green" v={seg(p, 0.8, 0.94)} w={290} />
-    </Svg>
+      {/* o preço pesando: o destaque em roxo fica na linha da negociação */}
+      <g style={{ opacity: seg(p, 0.56, 0.7) }}>
+        <Line3 a={[48, -72, 14]} b={[48, 66, 14]} className="il-accent il-flow" />
+      </g>
+    </Iso>
   );
 }
 
 // ── 5. Share de 60% para 45%: oportunidades e ações por praça ─────────────
 function ShareOppsScene({ p, L }: SceneProps) {
-  const pts = [60, 58, 55, 52, 48, 45];
-  const X = (i: number) => 52 + i * 52;
-  const Y = (v: number) => 200 - ((v - 42) / 20) * 130;
-  const d = pts.map((v, i) => `${i ? 'L' : 'M'}${X(i)},${Y(v)}`).join(' ');
+  const shares = [60, 58, 55, 52, 48, 45];
   const r = rng(11);
   const tiles = Array.from({ length: 24 }, () => r());
-  const chatQ = easeOut(seg(p, 0.7, 0.82));
-  const chatA = easeOut(seg(p, 0.8, 0.94));
+  const hot = tiles.map((v, i) => ({ v, i })).sort((a, b) => b.v - a.v).slice(0, 3).map((t) => t.i);
   return (
-    <Svg title={L.title}>
-      <text x={24} y={34} fontSize={12.5} fontWeight={700} fill="#fff" style={{ opacity: seg(p, 0, 0.08) }} className="as-g">{L.share}</text>
-      {[60, 50].map((g) => <line key={g} x1={40} x2={320} y1={Y(g)} y2={Y(g)} stroke="rgba(255,255,255,0.1)" strokeDasharray="3 5" />)}
-      <path d={d} pathLength={1} fill="none" stroke={LILAC} strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={1} strokeDashoffset={1 - easeOut(seg(p, 0.02, 0.28))} />
-      <g style={{ opacity: seg(p, 0.04, 0.14) }} className="as-g">
-        <circle cx={X(0)} cy={Y(60)} r={5} fill="#fff" />
-        <text x={X(0)} y={Y(60) - 12} textAnchor="middle" fontSize={14} fontWeight={700} fill="#fff">{L.from}</text>
-      </g>
-      <g style={{ opacity: seg(p, 0.22, 0.32) }} className="as-g">
-        <circle cx={X(5)} cy={Y(45)} r={5.5} fill={RED} />
-        <text x={X(5)} y={Y(45) + 24} textAnchor="middle" fontSize={14} fontWeight={700} fill="#FCA5A5">{L.to}</text>
-      </g>
-      <g style={{ opacity: seg(p, 0.26, 0.4) }} className="as-g">
-        <text x={352} y={34} fontSize={12.5} fontWeight={700} fill="#fff">{L.states}</text>
-        {tiles.map((v, i) => (
-          <rect key={i} x={352 + (i % 6) * 30} y={46 + Math.floor(i / 6) * 30} width={24} height={24} rx={6} fill={v > 0.55 ? `rgba(239,68,68,${0.35 + v * 0.5})` : v > 0.3 ? 'rgba(251,191,36,0.45)' : 'rgba(255,255,255,0.1)'} />
-        ))}
-      </g>
-      <text x={24} y={256} fontSize={12.5} fontWeight={700} fill="#fff" style={{ opacity: seg(p, 0.46, 0.56) }} className="as-g">{L.opps}</text>
-      {[0, 1, 2].map((i) => {
-        const v = easeOut(seg(p, 0.48 + i * 0.06, 0.62 + i * 0.06));
-        const y = 266 + i * 34;
+    <Iso title={L.title} vb="-142 -148 364 310">
+      <Plate x={-134} y={-32} w={150} d={46} />
+      {shares.map((v, i) => {
+        const e = easeOut(seg(p, i * 0.04, 0.16 + i * 0.04));
+        const h = (v - 32) * 2;
+        const last = i === shares.length - 1;
         return (
-          <g key={i} style={show(v)} className="as-g">
-            <rect x={24} y={y} width={512} height={28} rx={14} fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" />
-            <circle cx={44} cy={y + 14} r={5} fill={i === 0 ? RED : AMBER} />
-            <text x={60} y={y + 18} fontSize={12.5} fontWeight={600} fill="#fff">{L.city} {String.fromCharCode(65 + i)} · {L.state} {String.fromCharCode(88 + i)}</text>
-            <rect x={452} y={y + 5} width={72} height={18} rx={9} fill="rgba(86,37,242,0.55)" />
-            <text x={488} y={y + 18} textAnchor="middle" fontSize={11} fontWeight={700} fill="#fff">{L.action}</text>
+          <g key={i} style={drop(e)}>
+            <Box x={-128 + i * 24} y={-26} z={4} w={20} d={20} h={h * e + 0.1} cls={last ? 'il-warn-face' : ''} />
           </g>
         );
       })}
-      <g style={show(chatQ)} className="as-g">
-        <rect x={290} y={372} width={246} height={26} rx={13} fill="rgba(255,255,255,0.12)" />
-        <text x={413} y={389} textAnchor="middle" fontSize={12} fill="#fff">{L.ask}</text>
+      <g style={{ opacity: seg(p, 0.04, 0.14) }}>
+        <text className="cs-num" x={pt(-118, -16, 4 + 28 * 2 + 8)[0]} y={pt(-118, -16, 4 + 28 * 2 + 8)[1]} textAnchor="middle">60%</text>
       </g>
-      <g style={show(chatA)} className="as-g">
-        <circle cx={34} cy={414} r={9} fill={ACCENT} />
-        <rect x={50} y={402} width={260} height={26} rx={13} fill="rgba(86,37,242,0.45)" stroke="rgba(183,158,255,0.6)" />
-        <text x={180} y={419} textAnchor="middle" fontSize={12} fontWeight={600} fill="#fff">{L.answer}</text>
+      <g style={{ opacity: seg(p, 0.2, 0.3) }}>
+        <text className="cs-num" x={pt(-8, -16, 4 + 13 * 2 + 8)[0]} y={pt(-8, -16, 4 + 13 * 2 + 8)[1]} textAnchor="middle">45%</text>
       </g>
-    </Svg>
+      {/* as perdas por estado: um tabuleiro de peças, as maiores em laranja */}
+      <Plate x={30} y={-34} w={176} d={96} />
+      {tiles.map((v, i) => {
+        const cx = i % 6;
+        const cy = Math.floor(i / 6);
+        const e = easeOut(seg(p, 0.26 + (cx + cy) * 0.02, 0.4 + (cx + cy) * 0.02));
+        const isHot = v > 0.55;
+        const act = hot.includes(i);
+        const up = act ? easeOut(seg(p, 0.7 + hot.indexOf(i) * 0.06, 0.86 + hot.indexOf(i) * 0.06)) : 0;
+        const pos: V3 = [38 + cx * 28, -26 + cy * 22, 4];
+        return (
+          <g key={i} style={drop(e, -8)}>
+            <Box x={pos[0]} y={pos[1]} z={4} w={22} d={16} h={isHot ? 8 : 3} cls={isHot ? 'il-warn-face' : ''} />
+            {act && (
+              <g style={{ translate: `0px ${(-up * 12).toFixed(1)}px`, opacity: up }}>
+                <Line3 a={[pos[0] + 11, pos[1] + 8, 14]} b={[pos[0] + 11, pos[1] + 8, 30]} className="il-accent" />
+                <polygon className="il-accent il-accent-face" points={pts([[pos[0] + 11, pos[1] + 2, 30], [pos[0] + 17, pos[1] + 8, 30], [pos[0] + 11, pos[1] + 14, 30], [pos[0] + 5, pos[1] + 8, 30]])} />
+              </g>
+            )}
+          </g>
+        );
+      })}
+    </Iso>
   );
 }
 

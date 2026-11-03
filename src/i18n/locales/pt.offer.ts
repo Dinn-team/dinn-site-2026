@@ -872,7 +872,31 @@ export const offerPt = {
       intro: "Cada caso mostra a situação, o sinal, a validação, a decisão e o aprendizado.",
       all: "Ver todos os casos"
     },
-    voices: { title: "O que dizem quem usa" }
+    voices: { title: "O que dizem quem usa" },
+    page: {
+      hero_title: "Quem usa a *Dinn* no dia a dia",
+      hero_lead: "Veja como times de farma usam a Dinn para decidir e agir no ponto de venda.",
+      list_title: "Histórias de clientes",
+      list_intro: "Cada página mostra o problema, o que mudou e os números.",
+      read: "Ler a história",
+      cases_title: "Histórias de uso",
+      cases_intro: "Casos curtos, do sinal à ação. Os nomes são preservados.",
+      back: "Todos os clientes",
+      glance: "Em resumo",
+      company: "Empresa",
+      sector: "Setor",
+      hq: "Sede",
+      usecase: "Caso de uso",
+      impact: "Resumo do impacto",
+      problem: "O problema",
+      solution: "A solução",
+      story: "Como foi na prática",
+      results: "Os números",
+      more: "Veja outros clientes",
+      voice: "O que diz quem usa",
+      cta: "Falar com o time Dinn",
+      illustrative: "Dados e nomes ilustrativos."
+    }
   },
 
   // ── Contato: perfil do pedido (o que a pessoa quer contratar) ─────────────

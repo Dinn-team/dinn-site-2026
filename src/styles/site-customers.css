@@ -1,0 +1,83 @@
+/* Clientes (/clientes) e página de cada cliente (/clientes/<slug>), no Design System v2.
+   O cartão de cliente é o mesmo da home (home2.css, .h2-cust). */
+
+/* Movimento no hover dos cartões de cliente (home, lista e carrossel) */
+.h2-cust-art::before { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.h2-cust:hover .h2-cust-art::before { transform: scale(1.07); }
+.h2-cust-logo { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.h2-cust:hover .h2-cust-logo { transform: scale(1.04); }
+
+/* ---- Lista: carrossel da home, com o resumo do case embaixo da logo ---- */
+.h2-cust-desc { max-width: 38ch; font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+.cu3-cases { background-color: var(--muted); }
+
+/* ---- Página de um cliente ---- */
+.h2 .cu3-title { font-size: clamp(30px, 3.6vw, 54px); line-height: 1.08; max-width: none; }
+.cu3-media { aspect-ratio: 16 / 7; display: grid; place-items: center; padding: 0; background: #08090a; }
+.cu3-media-bg { position: absolute; inset: 0; background: var(--g) center / cover; filter: var(--f, none); }
+.cu3-media .h2-cust-shade { position: absolute; inset: 0; background: rgba(8, 9, 10, 0.4); }
+.cu3-media-logo { position: relative; max-width: min(36%, 340px); max-height: 38%; width: auto; height: auto; object-fit: contain; filter: brightness(0) invert(1); }
+
+.cu3-glance-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+.cu3-facts { margin: 32px 0 0; display: grid; gap: 20px; }
+.cu3-facts > div { display: grid; gap: 4px; }
+.cu3-facts dt { font-size: 14px; color: var(--muted-foreground); }
+.cu3-facts dd { margin: 0; font-size: 16px; line-height: 1.5; color: var(--foreground); }
+.cu3-intro p { margin: 0 0 20px; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; color: var(--foreground); max-width: 62ch; }
+.cu3-impact-title { margin: 64px 0 24px; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+.cu3-metrics { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.cu3-metrics li { display: grid; align-content: start; gap: 12px; padding: 28px 24px; border-radius: 20px; background: var(--muted); }
+.cu3-metrics strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3vw, 44px); line-height: 1.05; letter-spacing: -0.02em; color: var(--foreground); }
+.cu3-metrics span { font-size: 15px; line-height: 1.45; color: var(--muted-foreground); }
+
+
+.cu3-quote { position: relative; overflow: hidden; margin: 40px 0 0; display: grid; gap: 24px; padding: clamp(28px, 3vw, 48px); border-radius: 24px; background: var(--muted); color: var(--foreground); }
+.cu3-quote > * { position: relative; z-index: 1; }
+.cu3-quote blockquote { margin: 0; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.4; max-width: 64ch; }
+.cu3-quote figcaption { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.cu3-quote figcaption > span:last-child { display: grid; gap: 2px; }
+.cu3-quote strong { font-weight: 500; }
+.cu3-quote em { font-style: normal; color: var(--muted-foreground); }
+.cu3-quote.is-brand { background: #08090a; color: #fff; }
+.cu3-quote.is-brand::before { content: ''; position: absolute; z-index: 0; inset: 0; background: var(--g) center / cover; filter: var(--f, none); }
+.cu3-quote.is-brand::after { content: ''; position: absolute; z-index: 0; inset: 0; background: rgba(8, 9, 10, 0.4); }
+.cu3-quote.is-brand em { color: rgba(255, 255, 255, 0.75); }
+.cu3-avatar { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--brand-lime); color: var(--brand-ink); font-weight: 600; }
+
+.cu3-sec.is-alt { background-color: var(--muted); }
+.cu3-sec-grid { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+.cu3-sec-grid > * { min-width: 0; }
+.cu3-sec-title { position: sticky; top: 120px; font-size: clamp(28px, 3vw, 40px); }
+.cu3-block + .cu3-block { margin-top: 64px; }
+.cu3-block h3 { margin: 0 0 16px; font-size: clamp(20px, 1.8vw, 26px); font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; }
+.cu3-block h3:empty { display: none; }
+.cu3-block p { margin: 0 0 16px; max-width: 68ch; font-size: 17px; line-height: 1.6; color: var(--foreground); }
+.cu3-bullets { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 12px; max-width: 68ch; }
+.cu3-bullets li { position: relative; padding-left: 24px; font-size: 17px; line-height: 1.55; }
+.cu3-bullets li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
+
+.cu3-table-wrap { margin: 24px 0; overflow-x: auto; }
+.cu3-table-title { margin: 0 0 8px !important; font-weight: 500; }
+.cu3-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; font-size: 15px; line-height: 1.45; }
+.cu3-table th, .cu3-table td { padding: 12px 16px; text-align: left; vertical-align: top; background: var(--background); }
+.cu3-sec:not(.is-alt) .cu3-table th, .cu3-sec:not(.is-alt) .cu3-table td { background: var(--muted); }
+.cu3-table thead th { background: transparent !important; font-size: 14px; font-weight: 500; color: var(--muted-foreground); padding-bottom: 6px; }
+.cu3-table tbody th { font-weight: 500; }
+.cu3-table tbody tr > :first-child { border-radius: 12px 0 0 12px; }
+.cu3-table tbody tr > :last-child { border-radius: 0 12px 12px 0; }
+.cu3-note { margin: 20px 0 0 !important; padding: 16px 20px; border-radius: 16px; background: color-mix(in oklab, var(--brand-lime) 28%, var(--background)); font-size: 16px !important; line-height: 1.5; }
+
+@media (max-width: 1024px) {
+  .cu3-glance-grid, .cu3-sec-grid { grid-template-columns: 1fr; }
+  .cu3-sec-title { position: static; }
+  .cu3-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .cu3-media { aspect-ratio: 4 / 3; }
+  .cu3-metrics { grid-template-columns: 1fr; }
+  .cu3-table { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h2-cust-art::before, .h2-cust-logo { transition: none; }
+  .h2-cust:hover .h2-cust-art::before, .h2-cust:hover .h2-cust-logo { transform: none; }
+}

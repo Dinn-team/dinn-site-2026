@@ -2,8 +2,8 @@
 export const home2Es = {
   home2: {
     hero: {
-      title: "Convierte las señales del canal farma en *acción comercial*.",
-      sub: "Dinn muestra dónde actuar primero. Cada señal tiene fuente, fecha y límites claros.",
+      title: "Convierte señales en *acción comercial*.",
+      sub: "Dinn muestra dónde actuar primero en el canal farma. Cada señal tiene fuente, fecha y límites claros.",
       cta: "Solicitar demo",
       cta2: "Conoce la plataforma",
       play: "Ver el video de Dinn",

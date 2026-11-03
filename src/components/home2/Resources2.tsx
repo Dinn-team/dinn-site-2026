@@ -15,7 +15,9 @@ export function Resources2() {
   return (
     <section id="recursos" className="h2-section h2-resources" aria-labelledby="h2-res-title">
       <div className="h2-wrap">
-        <h2 id="h2-res-title" className="h2-title">{t('home2.resources.title')}</h2>
+        <div className="h2-head is-stack">
+          <h2 id="h2-res-title" className="h2-title">{t('home2.resources.title')}</h2>
+        </div>
         <ul className="h2-res-grid">
           {items.map((r) => (
             <li key={r.id}>

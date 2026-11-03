@@ -15,7 +15,7 @@ const SHOTS: Record<string, string> = {};
 const GRADIENTS = ['g00', 'g03', 'g05', 'g07', 'g11', 'g09', 'g04'];
 
 // Distância de rolagem por funcionalidade, em vh.
-const STEP_VH = 70;
+const STEP_VH = 40;
 
 export function Features2() {
   const { t } = useTranslation();
@@ -66,7 +66,6 @@ export function Features2() {
   };
 
   const style = { ['--n' as string]: n || 7, ['--step' as string]: `${STEP_VH}svh`, ['--i' as string]: active } as CSSProperties;
-  const pad = (v: number) => String(v).padStart(2, '0');
 
   return (
     <section id="como-funciona" ref={root} className="h2-features h2-pin" aria-labelledby="h2-features-title" style={style}>
@@ -77,7 +76,6 @@ export function Features2() {
               <h2 id="h2-features-title" className="h2-title">{t('home2.features.title')}</h2>
               <p className="h2-sub">{t('home2.features.sub')}</p>
             </div>
-            <p className="h2-feat-count" aria-hidden="true"><b>{pad(active + 1)}</b> / {pad(n)}</p>
           </div>
           <div className="h2-feat-grid">
             <ul className="h2-feat-list">
@@ -105,7 +103,7 @@ export function Features2() {
                     ) : (
                       <span className="h2-slide-bg" style={{ backgroundImage: `url(/gradients/${GRADIENTS[i % GRADIENTS.length]}.avif)` }} aria-hidden="true" />
                     )}
-                    <span className="h2-slide-tag"><b>{pad(i + 1)}</b>{it.name}</span>
+                    <span className="h2-slide-tag">{it.name}</span>
                   </div>
                 ))}
               </div>

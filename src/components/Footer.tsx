@@ -8,11 +8,6 @@ import { newFeatureLinks } from "@/components/ui/nav-header";
 
 type Col = { title: string; links: [string, string][] };
 
-const headingStyle = {
-  fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#9CA3AF', margin: '0 0 16px',
-};
-const linkStyle = { fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 };
-
 export default function Footer() {
   const { t, lang } = useTranslation();
   const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
@@ -69,97 +64,72 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ background: '#ffffff', borderTop: '1px solid #E5E7EB' }}>
-      <div className="wrap" style={{ paddingTop: '64px', paddingBottom: '48px' }}>
+    <footer style={{ background: 'var(--muted)' }}>
+      <div className="wrap ftr" style={{ paddingTop: '72px', paddingBottom: '64px' }}>
 
         {/* Marca + cinco colunas */}
-        <div className="footer-grid" style={{ display: 'grid', gap: '40px', marginBottom: '48px', alignItems: 'start' }}>
+        <div className="footer-grid">
 
           <div>
-            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
+            <a href="/" className="ftr-logo">
               <img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn Logo" width={394} height={152} loading="lazy" decoding="async" style={{ height: '30px', width: 'auto' }} />
             </a>
-            <p style={{ fontSize: '14px', color: '#6B7280', lineHeight: 1.7, margin: '0 0 20px' }}>
+            <p className="ftr-desc">
               {t('footer.description')}
             </p>
             <a href={contactUrl('rodape')} className="btn btn-primary">
               {t('footer.ctaButton')}
             </a>
+            <address className="ftr-company">
+              <strong>{t('footer.legalName')}</strong>
+              <span>CNPJ {t('footer.cnpj')}</span>
+              <span>{t('footer.address')}</span>
+            </address>
           </div>
 
           {columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <p style={headingStyle}>{col.title}</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <p className="ftr-title">{col.title}</p>
+              <ul className="ftr-links">
                 {col.links.map(([label, href]) => (
-                  <a
-                    key={`${href}-${label}`}
-                    href={href}
-                    style={linkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--primary)'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                  >
-                    {label}
-                  </a>
+                  <li key={`${href}-${label}`}><a href={href}>{label}</a></li>
                 ))}
-              </div>
+              </ul>
             </nav>
           ))}
         </div>
 
-        {/* Barra de baixo: dados da empresa */}
-        <div style={{
-          borderTop: '1px solid #F3F4F6',
-          paddingTop: '24px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '12px',
-        }}>
-          <div>
-            <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, fontWeight: 600 }}>
-              {t('footer.legalName')} · CNPJ {t('footer.cnpj')}
-            </p>
-            <p style={{ fontSize: '13px', color: '#6B7280', margin: '2px 0 0' }}>
-              {t('footer.address')} · {t('footer.cities')}
-            </p>
-            <p style={{ fontSize: '13px', color: '#6B7280', margin: '2px 0 0' }}>
-              {t('footer.rights')}
-            </p>
-          </div>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: '#F3F4F6',
-            border: '1px solid #E5E7EB',
-            padding: '4px 12px',
-            borderRadius: '999px',
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            color: '#6B7280',
-          }}>
-            {t('footer.launch')}
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
-          </div>
+      </div>
+
+      <div className="ftr-bar">
+        <div className="wrap ftr-bar-in">
+          <p>{t('footer.rights')}</p>
+          <p>{t('footer.cities')}</p>
         </div>
       </div>
 
       <style>{`
-        .footer-grid {
-          grid-template-columns: 1.5fr repeat(5, 1fr);
-        }
+        .ftr .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(5, 1fr); gap: 48px 40px; align-items: start; }
+        .ftr-logo { display: inline-flex; margin-bottom: 20px; }
+        .ftr-desc { font-size: 15px; line-height: 1.6; color: var(--muted-foreground); max-width: 30ch; margin: 0 0 24px; }
+        .ftr-title { font-size: 16px; font-weight: 600; line-height: 1.3; color: var(--foreground); margin: 0 0 20px; }
+        .ftr-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+        .ftr-links a { font-size: 15px; font-weight: 400; line-height: 1.4; color: var(--muted-foreground); text-decoration: none; transition: color .2s; }
+        .ftr-links a:hover { color: var(--primary); }
+        .ftr-company { display: grid; gap: 4px; margin-top: 40px; font-style: normal; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 30ch; }
+        .ftr-company strong { font-weight: 500; color: var(--foreground); }
+        .ftr-bar { background: color-mix(in oklab, var(--muted) 94%, var(--foreground)); }
+        .ftr-bar-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 20px; padding-bottom: 20px; }
+        .ftr-bar-in p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); }
         @media (max-width: 1100px) {
-          .footer-grid { grid-template-columns: repeat(3, 1fr); }
+          .ftr .footer-grid { grid-template-columns: repeat(3, 1fr); }
+          .ftr .footer-grid > div:first-child { grid-column: 1 / -1; }
         }
         @media (max-width: 720px) {
-          .footer-grid { grid-template-columns: 1fr 1fr; }
+          .ftr .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
-          .footer-grid { grid-template-columns: 1fr; }
+          .ftr .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </footer>
