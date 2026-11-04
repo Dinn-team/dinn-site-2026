@@ -1,0 +1,172 @@
+/* Funcionalidades e Plataforma no Design System v2 (FeaturesV2.tsx,
+   PlatformV2.tsx) e as telas novas do Dinn (FeatureDemos.tsx, prefixo fd-).
+   Base das telas: site-app-demos.css e site-case-viz.css. */
+
+/* ---- Telas novas (dentro de .dnn-app) ---- */
+.dd-app .da-tag.fd-tag-est { background: #fef3c7; color: #92400e; }
+.fd-kv { display: grid; gap: 4px; padding: 10px 12px; border-radius: 14px; background: var(--a-muted); font-size: 12.5px; }
+.fd-kv em { font-style: normal; color: var(--a-mfg); }
+.fd-kv b { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.fd-ghost { font-weight: 500; color: var(--a-brand); }
+.dd-app .fd-save { margin-left: 0; }
+.fd-views { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.fd-views li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; border-radius: 16px; background: var(--a-muted); }
+.fd-views b { display: block; font-size: 13.5px; }
+.fd-views small { display: block; font-size: 11.5px; color: var(--a-mfg); }
+.fd-views i { font-style: normal; flex: none; height: 30px; padding: 0 14px; font-size: 12.5px; }
+.fd-filter { gap: 6px; font-weight: 500; color: var(--a-brand); }
+.fd-th-tip { position: relative; }
+.fd-th-tip .dd-tip { left: -60px; right: auto; width: 230px; }
+
+/* Distribuição */
+.fd-dist { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 14px; min-height: 0; }
+.fd-map { position: relative; }
+.fd-svgbox { position: relative; }
+.fd-svgbox svg { display: block; width: 100%; height: auto; max-width: none; }
+.dd-pin-hit.fd-hit { transform: translate(-50%, -50%); }
+.fd-map .dd-map-msg { top: 56px; }
+.fd-static { animation: none; max-width: 80%; text-align: center; }
+.fd-side { display: flex; flex-direction: column; gap: 12px; }
+.fd-levels { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.fd-levels li { display: grid; grid-template-columns: 70px 1fr 28px; gap: 8px; align-items: center; font-size: 12.5px; }
+.fd-levels li > span:first-child { display: flex; align-items: center; gap: 6px; }
+.fd-levels li > span:first-child i { width: 8px; height: 8px; border-radius: 50%; }
+.fd-levels b { text-align: right; font-variant-numeric: tabular-nums; }
+.fd-cd { width: 430px; top: 52%; }
+.fd-cd-head { display: flex; justify-content: space-between; align-items: center; }
+.fd-cd-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.fd-cd-kpis.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fd-cd-kpis > div { display: grid; gap: 2px; padding: 10px; border-radius: 14px; background: var(--a-muted); }
+.fd-cd-kpis em { font-style: normal; font-size: 11.5px; color: var(--a-mfg); }
+.fd-cd-kpis b { font-size: 15px; }
+.fd-read { display: flex; gap: 8px; align-items: flex-start; padding: 12px; border-radius: 14px; background: color-mix(in oklab, var(--a-brand) 8%, white); color: var(--a-fg); font-size: 13px; line-height: 1.45; }
+.fd-read svg { flex: none; margin-top: 2px; color: var(--a-brand); }
+.fd-read em { display: block; font-style: normal; font-weight: 600; }
+
+/* Oportunidades */
+.fd-ask { margin: 0; font-size: 14px; font-weight: 600; }
+.fd-qs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fd-q { padding: 12px 14px; border-radius: 16px; border: 1px solid var(--a-border); background: #fff; font-size: 13px; font-weight: 500; transition: border-color .3s, background .3s; }
+.fd-q.on { border-color: var(--a-brand); background: color-mix(in oklab, var(--a-brand) 5%, white); }
+.fd-omap { position: relative; flex: 0 0 300px; }
+.fd-pin-card { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); width: 240px; display: grid; gap: 2px; padding: 10px 12px; border-radius: 14px; background: #0a0a0a; color: #fff; font-size: 12px; line-height: 1.4; }
+.fd-pin-card small { color: #c4c4cc; }
+.fd-pp svg { color: #f59e0b; vertical-align: -1px; }
+.fd-neg { color: #b91c1c; }
+.fd-pos { color: #047857; }
+.dd-drawer.fd-wide { width: 360px; }
+
+/* Dinn Insights */
+.fd-chat { position: relative; height: 100%; display: flex; flex-direction: column; gap: 12px; padding: 8px 40px 0; }
+.fd-chat-hello { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.fd-chat-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: color-mix(in oklab, var(--a-brand) 10%, white); color: var(--a-brand); font-size: 12.5px; font-weight: 600; }
+.fd-chat-hello h3 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+.fd-suggest { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fd-suggest li { padding: 14px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.08); font-size: 13px; line-height: 1.45; }
+.fd-chat-log { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; overflow: hidden; }
+.fd-msg-user { align-self: flex-end; max-width: 70%; margin: 0; padding: 10px 14px; border-radius: 18px 18px 4px 18px; background: #ececf0; font-size: 13.5px; }
+.fd-msg-bot { display: grid; gap: 10px; max-width: 92%; font-size: 13.5px; line-height: 1.5; }
+.fd-msg-bot p { margin: 0; }
+.fd-thinking { display: inline-flex; align-items: center; gap: 4px; margin: 0; font-size: 12.5px; color: var(--a-mfg); }
+.fd-thinking i { width: 6px; height: 6px; border-radius: 50%; background: var(--a-brand); animation: fd-dot 1s ease-in-out infinite; }
+.fd-thinking i:nth-child(2) { animation-delay: .15s; }
+.fd-thinking i:nth-child(3) { animation-delay: .3s; margin-right: 6px; }
+@keyframes fd-dot { 50% { transform: translateY(-4px); opacity: .5; } }
+.fd-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.fd-opts span { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--a-border); background: #fff; font-size: 12.5px; font-weight: 500; }
+.fd-opts span.on { border-color: var(--a-brand); color: var(--a-brand); }
+.fd-opts.is-past { opacity: .5; }
+.fd-widget { display: grid; gap: 10px; padding: 14px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.08); }
+.fd-scope { display: flex; flex-wrap: wrap; gap: 6px; }
+.fd-scope span { padding: 3px 10px; border-radius: 999px; background: var(--a-muted); font-size: 11.5px; color: var(--a-mfg); }
+.fd-open { justify-self: start; }
+.fd-composer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 18px; border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.1); font-size: 13.5px; }
+.fd-composer i { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--a-brand); color: #fff; }
+.fd-chat-note { margin: 0 0 12px; text-align: center; font-size: 11.5px; color: #5f5f66; }
+
+/* Reportar estoque */
+.fd-diff { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; border-radius: 14px; background: color-mix(in oklab, var(--a-brand) 7%, white); }
+.fd-diff b { display: block; font-size: 13.5px; }
+.fd-diff small { font-size: 12px; color: var(--a-mfg); }
+.fd-diff .da-btn { height: 32px; padding: 0 14px; }
+.fd-veil { position: absolute; inset: 0; z-index: 6; background: rgba(10, 10, 10, 0.32); animation: dd-in .25s ease both; }
+.fd-report { width: 440px; top: 50%; }
+.fd-report p { margin: 0; font-size: 13.5px; font-weight: 500; }
+.fd-report > .dd-in { display: grid; gap: 8px; }
+.fd-qty { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; }
+.fd-qty span { display: grid; place-items: center; height: 34px; border-radius: 10px; border: 1px solid var(--a-border); font-size: 13px; font-weight: 500; }
+.fd-qty span.on { background: var(--a-brand); border-color: var(--a-brand); color: #fff; }
+.fd-thanks { display: grid; justify-items: center; gap: 8px; padding: 18px 0; text-align: center; }
+.fd-thanks svg { color: #10b981; }
+.fd-thanks b { font-size: 17px; }
+
+/* Exportações e Conexões */
+.fd-dl { gap: 6px; height: 30px; }
+.dd-menu.fd-menu-r { left: auto; right: 0; min-width: 170px; }
+.dd-menu.fd-menu-r svg { color: var(--a-mfg); }
+.fd-ico-b { background: #10a37f; }
+.fd-scope-note { display: flex; gap: 8px; align-items: flex-start; margin: 0; padding: 12px 14px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.08); font-size: 12.5px; color: var(--a-mfg); line-height: 1.45; }
+.fd-scope-note svg { flex: none; margin-top: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fd-thinking i, .fd-veil { animation: none; }
+}
+
+/* ---- Páginas ---- */
+.ft2-caption { margin: 14px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 14px; color: var(--muted-foreground); }
+.ft2-picker { display: flex; flex-wrap: wrap; gap: 8px; margin: clamp(32px, 4vw, 56px) 0 20px; }
+.ft2-picker button { height: 38px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--muted); color: var(--foreground); font: inherit; font-size: 14px; cursor: pointer; transition: background .2s, color .2s; }
+.ft2-picker button:hover { background: color-mix(in oklab, var(--primary) 10%, var(--muted)); }
+.ft2-picker button.on { background: var(--brand-ink, #08090a); color: #fff; }
+.ft2-picker button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.ft2-kind { font-size: 14px; color: var(--muted-foreground); }
+.ft2-tile .sl2-feat-text { max-width: 40ch; }
+
+.ft2-where { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.ft2-where-cell { display: grid; align-content: start; gap: 4px; padding: 28px; border-radius: 16px; background: var(--background); }
+.ft2-where-cell .sl2-label { margin-bottom: 8px; }
+.ft2-big { margin: 0; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.3; letter-spacing: -0.01em; }
+.ft2-note { margin: 4px 0 0; font-size: 15px; color: var(--muted-foreground); }
+.ft2-teams { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.ft2-teams a { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.35; color: var(--foreground); transition: color .2s; }
+.ft2-teams a svg { color: var(--muted-foreground); transition: transform .3s cubic-bezier(.22, 1, .36, 1), color .2s; }
+.ft2-teams a:hover { color: var(--primary); }
+.ft2-teams a:hover svg { transform: translate(2px, -2px); color: var(--primary); }
+.ft2-sim { margin: 20px 0 16px; font-size: 14px; color: var(--muted-foreground); }
+
+/* Plataforma */
+.pf2-feats { background-color: var(--background); }
+.pf2-feats > .h2-wrap > .h2-head { align-items: flex-end; }
+.pf2-feats .h2-head .h2-head { margin: 0; }
+.pf2-data { background-color: var(--muted); }
+.pf2-cols { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.pf2-cols li { padding-top: 20px; border-top: 1px solid var(--border); }
+.pf2-cols h3 { margin: 0 0 10px; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; }
+.pf2-cols p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted-foreground); }
+.pf2-trust { margin-top: 32px; }
+
+@media (max-width: 1024px) {
+  .ft2-where { grid-template-columns: minmax(0, 1fr); }
+  .pf2-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pf2-cols { grid-template-columns: minmax(0, 1fr); }
+  .ft2-picker { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
+  .ft2-picker button { flex: none; }
+}
+
+/* ---- Palcos de rolagem: tudo cabe na altura da janela ---- */
+.sl2 .as-scene { width: 100%; max-width: calc((100svh - 150px) * 1.4); justify-self: center; }
+.pf2-cycle .wrap.as-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+.pf2-cycle .as-title { font-size: clamp(26px, min(3.2vw, 5.2vh), 48px); }
+.pf2-cycle .as-copy { gap: 10px; }
+.pf2-cycle .as-steps { gap: 2px; margin-top: 0; }
+.pf2-cycle .as-step-btn { padding: 6px 12px 6px 8px; }
+@media (max-height: 820px) {
+  .pf2-cycle .as-lead { display: none; }
+  .pf2-cycle .as-sticky { padding-top: 88px; padding-bottom: 20px; }
+  .pf2-cycle .as-step-body { font-size: 15px; }
+}
+@media (max-width: 1024px) { .pf2-cycle .wrap.as-grid { grid-template-columns: 1fr; } }
+
+.ft2-all { margin-top: 10px; }

@@ -1,6 +1,9 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, ChevronDown, Database, FileText, Link2, MessageCircle, Store } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, ChevronDown, Link2, MessageCircle, Store } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
+import { contactUrl } from '@/lib/links';
+import { IlConnect } from '@/components/illustrations';
+import { ConnectionSurface } from './ConnectionMap';
 import '@/styles/conecta-page.css';
 
 // Página do produto Dinn Conecta. Estrutura e estilo são os da prévia aprovada
@@ -8,7 +11,6 @@ import '@/styles/conecta-page.css';
 // contexto para IA, aplicações, responsabilidades, perguntas e fechamento.
 // Só o menu e o rodapé são os do site. Textos em conecta.* do dicionário.
 
-type NameSub = { name: string; sub: string };
 type Layer = { label: string; text: string };
 type AppItem = {
   id: string; tab: string; area: string; kind: 'table' | 'launch' | 'ask'; title: string; text: string;
@@ -28,37 +30,6 @@ function Lines({ text }: { text: string }) {
         </Fragment>
       ))}
     </>
-  );
-}
-
-const WIRES_DESKTOP = [
-  'M230 72 C355 72 360 180 500 180',
-  'M230 180 H500',
-  'M230 288 C355 288 360 180 500 180',
-  'M500 180 C640 180 645 72 770 72',
-  'M500 180 H770',
-  'M500 180 C640 180 645 288 770 288',
-];
-const WIRES_MOBILE = [
-  'M100 60 C100 165 300 140 300 240',
-  'M300 60 V240',
-  'M500 60 C500 165 300 140 300 240',
-  'M300 240 C300 340 100 315 100 420',
-  'M300 240 V420',
-  'M300 240 C300 340 500 315 500 420',
-];
-const DELAYS = [0, 0.15, 0.3, 1.2, 1.35, 1.5];
-
-function Wires({ paths, className, viewBox }: { paths: string[]; className: string; viewBox: string }) {
-  return (
-    <svg className={`connection-lines ${className}`} viewBox={viewBox} preserveAspectRatio="none" fill="none" aria-hidden="true">
-      {paths.map((d, i) => (
-        <g key={d}>
-          <path className="wire" d={d} />
-          <path className="signal" d={d} pathLength={1000} style={{ ['--delay' as string]: `${DELAYS[i]}s` }} />
-        </g>
-      ))}
-    </svg>
   );
 }
 
@@ -91,7 +62,6 @@ export function ConectaPage() {
   }, []);
 
   const L = (key: string) => t(`conecta.${key}`) as string;
-  const node = (key: string) => t(`conecta.map.${key}`) as unknown as NameSub;
   const apps = (t('conecta.apps.items') as AppItem[]) ?? [];
   const app = apps[appIdx] ?? apps[0];
   const problem = (t('conecta.problem.items') as { n: string; title: string; text: string }[]) ?? [];
@@ -102,76 +72,34 @@ export function ConectaPage() {
   const yours = t('conecta.team.yours') as unknown as { label: string; title: string; text: string };
   const dinn = t('conecta.team.dinn') as unknown as { label: string; title: string; text: string };
 
-  const market = node('market');
-  const company = node('company');
-  const pharmacy = node('pharmacy');
-  const bi = node('bi');
-  const ai = node('ai');
-  const project = node('project');
-  const core = node('core');
 
   return (
     <div className="cnp" ref={root}>
-      <div className="cnp-main">
-        <section className="hero wrap" id="inicio">
-          <span className="eyebrow hero-eyebrow"><span /> {L('hero.eyebrow').toUpperCase()}</span>
-          <h1>{L('hero.title1')}<br /><span>{L('hero.title2')}</span></h1>
-          <p><Lines text={L('hero.lead')} /></p>
-          <a className="primary-button" href="#como-ajuda">
-            {L('hero.cta')} <ArrowDown size={18} aria-hidden="true" />
-          </a>
-        </section>
-
-        <figure className="connection-map wrap" id="como-ajuda" data-scene="true" aria-label={L('map.aria')}>
-          <div className="connection-surface">
-            <div className="map-labels">
-              <span>{L('map.sources').toUpperCase()}</span>
-              <span>{L('map.environment').toUpperCase()}</span>
-            </div>
-            <div className="map-stage">
-              <Wires paths={WIRES_DESKTOP} className="desktop-lines" viewBox="0 0 1000 360" />
-              <Wires paths={WIRES_MOBILE} className="mobile-lines" viewBox="0 0 600 480" />
-
-              <div className="map-node node-market">
-                <BarChart3 size={24} aria-hidden="true" />
-                <div><strong>{market.name}</strong><span>{market.sub}</span></div>
-              </div>
-              <div className="map-node node-company">
-                <Database size={24} aria-hidden="true" />
-                <div><strong>{company.name}</strong><span>{company.sub}</span></div>
-              </div>
-              <div className="map-node node-pharmacy">
-                <Store size={24} aria-hidden="true" />
-                <div><strong>{pharmacy.name}</strong><span>{pharmacy.sub}</span></div>
-              </div>
-
-              <div className="map-core">
-                <div className="core-orbit" aria-hidden="true" />
-                <div className="core-content">
-                  <img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn" width={94} height={36} loading="lazy" decoding="async" />
-                  <strong>{core.name}<span>.</span></strong>
-                  <span>{core.sub}</span>
+      {/* Cabeçalho no padrão das demais páginas: título à esquerda, apoio à direita e a ilustração com movimento no hover. */}
+      <div className="h2 cnp-h2" id="inicio">
+        <header className="h2-hero">
+          <div className="h2-wrap">
+            <div className="h2-hero-grid">
+              <h1 className="h2-hero-title">{L('hero.title1')} {L('hero.title2')}</h1>
+              <div className="h2-hero-side">
+                <p className="h2-hero-sub">{L('hero.lead').replace(/\s*\n\s*/g, ' ')}</p>
+                <div className="h2-actions">
+                  <a className="btn btn-primary" href={contactUrl('conecta')}>{t('pageCta.button')}</a>
+                  <a className="h2-link" href="#como-ajuda">{L('hero.cta')} <ArrowDown size={15} aria-hidden="true" /></a>
                 </div>
               </div>
-
-              <div className="map-node node-bi">
-                <BarChart3 size={24} aria-hidden="true" />
-                <div><strong>{bi.name}</strong><span>{bi.sub}</span></div>
-              </div>
-              <div className="map-node node-ai">
-                <MessageCircle size={24} aria-hidden="true" />
-                <div><strong>{ai.name}</strong><span>{ai.sub}</span></div>
-              </div>
-              <div className="map-node node-project">
-                <FileText size={24} aria-hidden="true" />
-                <div><strong>{project.name}</strong><span>{project.sub}</span></div>
-              </div>
             </div>
-            <div className="map-bottom">
-              <span><Check size={14} aria-hidden="true" /> {L('map.yours')}</span>
-              <span>{L('map.dinn')}</span>
+            <div className="h2-media cs3-media il-host" style={{ backgroundImage: 'url(/gradients/web/azul-noite.avif)' }}>
+              <div className="cs3-panel"><IlConnect label={L('map.aria')} /></div>
             </div>
           </div>
+        </header>
+      </div>
+
+      <div className="cnp-main">
+
+        <figure className="connection-map wrap" id="como-ajuda" data-scene="true" aria-label={L('map.aria')}>
+          <ConnectionSurface />
           <figcaption>{L('map.caption')}</figcaption>
         </figure>
 

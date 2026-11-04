@@ -9,7 +9,7 @@ import { contactUrl } from '@/lib/links';
 // Cada card tem um pequeno visual vivo em vez de um parágrafo a mais.
 
 type Card = { tag: string; title: string; desc: string };
-const CARD_LINKS = ['/plataforma', '/funcionalidades#insights', '/integracoes#mcp', '/produtos/conecta'];
+const CARD_LINKS = ['/plataforma', '/funcionalidades/jean', '/integracoes#mcp', '/produtos/conecta'];
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 function ManagerMini() {

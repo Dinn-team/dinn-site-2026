@@ -185,3 +185,8 @@ a.sp-card:hover, a.sp-area:hover { transform: translateY(-3px); box-shadow: 0 28
   .ih--right .ih-copy { margin-left: 0; max-width: none; }
   .ih--left .ih-copy { max-width: none; }
 }
+
+/* Títulos alinhados à esquerda em todas as páginas (decisão do Renan, 03/11/2026). */
+.sp-cta-inner, .areas-head, .ih--center .ih-copy { text-align: left; }
+.sp-cta-inner { align-items: flex-start; margin-left: 0; }
+.areas-head { margin-left: 0; }

@@ -157,23 +157,6 @@
 .sp-section.is-dark .sp-head p { color: var(--on-ink-body); }
 
 /* ── Funcionalidades ───────────────────────────────────────────────────── */
-.ft { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: clamp(20px, 3vw, 44px); align-items: start; }
-.ft-list { list-style: none; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 96px; }
-.ft-tab { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 10px 16px; border-radius: 14px; border: 1px solid #E3E5EA; background: #fff; font: inherit; font-size: 15.5px; font-weight: 500; text-align: left; color: var(--text-main); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
-.ft-tab:hover { border-color: color-mix(in oklab, var(--primary) 40%, transparent); }
-.ft-tab[aria-selected='true'] { border-color: var(--color-accent); background: color-mix(in oklab, var(--primary) 6%, transparent); font-weight: 600; }
-.ft-tab:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
-.ft-kind { flex: none; font-size: 11.5px; font-weight: 600; letter-spacing: var(--track-small); color: var(--color-accent); background: color-mix(in oklab, var(--primary) 8%, transparent); padding: 3px 9px; border-radius: 999px; }
-.ft-panel { padding: clamp(22px, 3vw, 36px); border-radius: 22px; background: #fff; border: 1px solid #E3E5EA; scroll-margin-top: 96px; }
-.ft-panel h2 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: var(--track-title); line-height: 1.2; margin: 10px 0 18px; }
-.ft-flow { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
-.ft-flow li { display: grid; grid-template-columns: 9.5em 1fr; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid #ECEEF2; }
-.ft-flow li:last-child { border-bottom: 0; padding-bottom: 0; }
-.ft-flow dt, .ft-flow span.ft-label { font-size: 12.5px; font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--color-accent); padding-top: 3px; }
-.ft-flow p { font-size: 16.5px; line-height: 1.55; color: var(--text-main); }
-.ft-flow li.is-limit p { color: var(--text-soft); }
-.ft-sim { margin-top: 18px; font-size: 13px; color: var(--text-soft); }
-.ft-kinds { margin-bottom: 20px; font-size: 14.5px; color: var(--text-soft); max-width: 52em; }
 
 /* ── Dinn Conecta ──────────────────────────────────────────────────────── */
 .cn-hero { padding: clamp(120px, 14vw, 168px) 0 clamp(48px, 6vw, 80px); background: var(--ink-deep); color: #fff; }
@@ -247,8 +230,6 @@
 
 @media (max-width: 1000px) {
   .rt, .ft, .cn-app { grid-template-columns: 1fr; }
-  .ft-list { position: static; flex-direction: row; flex-wrap: wrap; }
-  .ft-tab { width: auto; }
   .of-flow, .of-q, .cn-start { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .of-flow li + li::before { display: none; }
   .of-tiers { grid-template-columns: 1fr; }
@@ -258,7 +239,6 @@
 }
 @media (max-width: 640px) {
   .of-split, .of-flow, .of-q, .cn-roles, .cn-start, .cn-vs { grid-template-columns: 1fr; }
-  .ft-flow li { grid-template-columns: 1fr; gap: 4px; }
   .of-company { grid-template-columns: 1fr; }
   .of-company dt { border-bottom: 0; padding-bottom: 4px; }
 }

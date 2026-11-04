@@ -82,3 +82,19 @@
   .abt-datacard dl > div { grid-template-columns: 1fr; gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .abt-contact { transition: none; } }
+
+/* Time da Dinn: retrato vertical (4:5) sobre degradê; sem foto, as iniciais. */
+.abt-team { background-color: var(--background); }
+.abt-team-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px); }
+.abt-member { display: grid; align-content: start; gap: 6px; }
+.abt-member-photo { position: relative; aspect-ratio: 4 / 5; margin-bottom: 14px; border-radius: 16px; overflow: hidden; background-size: cover; background-position: center; display: grid; place-items: center; }
+/* Camada preta de baixo para cima: deixa as três fotos (fundos laranja, roxo e claro) com a mesma identidade. */
+.abt-member-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8, 9, 10, 0.72) 0%, rgba(8, 9, 10, 0.32) 38%, rgba(8, 9, 10, 0.06) 72%, rgba(8, 9, 10, 0) 100%); pointer-events: none; }
+.abt-member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.16, 1, .3, 1); }
+.abt-member:hover .abt-member-photo img { transform: scale(1.03); }
+.abt-member-initials { position: relative; z-index: 1; font-family: var(--font-display); font-weight: 400; font-size: clamp(56px, 7vw, 104px); letter-spacing: -0.04em; color: #fff; }
+.abt-member h3 { margin: 0; font-size: clamp(20px, 1.7vw, 24px); font-weight: 500; letter-spacing: -0.01em; }
+.abt-member-role { margin: 0; font-size: 15px; color: var(--primary); }
+.abt-member-text { margin: 6px 0 0; font-size: 16px; line-height: 1.55; color: var(--muted-foreground); max-width: 38ch; }
+@media (max-width: 1024px) { .abt-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .abt-team-grid { grid-template-columns: minmax(0, 1fr); } .abt-member-photo { aspect-ratio: 4 / 4.2; } }

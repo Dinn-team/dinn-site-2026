@@ -141,7 +141,7 @@
 .da-loc-count b { font-size: 16px; }
 .da-loc-count small { font-size: 12px; color: var(--a-brand); }
 .da-store { display: grid; gap: 6px; padding: 12px 14px; border-radius: 16px; border: 1px solid var(--a-border); background: #fff; }
-.da-store:first-of-type { border-color: var(--a-brand); background: color-mix(in oklab, var(--a-brand) 5%, white); }
+
 .da-store-top { display: flex; justify-content: space-between; font-size: 14px; }
 .da-store-top i { font-style: normal; color: var(--a-mfg); font-size: 13px; }
 .da-store small { font-size: 12px; color: var(--a-mfg); }

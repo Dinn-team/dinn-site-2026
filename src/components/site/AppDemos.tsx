@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState, type ReactElement, type ReactNode, type RefObject } from 'react';
-import { useInView } from 'framer-motion';
+import { createContext, useContext, useEffect, useRef, useState, type ReactElement, type ReactNode, type RefObject } from 'react';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   Boxes, ChartPie, Check, ChevronDown, House, LifeBuoy, Lock, Map as MapIcon, MapPin, Package, Search,
-  ShieldCheck, Sparkles, Store, TriangleAlert, Truck, Users, X,
+  ShieldCheck, Store, TriangleAlert, Truck, Users, X,
 } from 'lucide-react';
+import { JeanOrbIcon } from './JeanOrb';
 
 // Telas do Dinn animadas, para as páginas de solução. Base: o briefing em
 // dinn-manager-app/docs/site-reproducao (screens/*.json). Só telas em produção:
@@ -18,22 +19,54 @@ import {
 //   tela com um anel. A rolagem do palco troca o passo.
 // Com "reduzir movimento", o laço mostra só o estado final, sem cursor.
 
-const BRAND = '#5625f2';
-const GREY = '#a3a3b2';
-const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fmt = (v: number, d = 0) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+export const BRAND = '#5625f2';
+export const GREY = '#a3a3b2';
+export const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+export const fmt = (v: number, d = 0) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
 
 // ── Motor: roteiro, cursor e passos ─────────────────────────────────────────
-type Beat = { to?: string; click?: boolean; phase?: number; type?: [string, string]; wait: number };
-type Def = { beats: Beat[]; steps: { phase: number; to?: string }[]; final: number };
+/**
+ * Câmera do passo (só quando `FrameCamera` está ligada, na home):
+ * - padrão: com `to`, a câmera aproxima do alvo junto com o cursor; sem `to`, abre para a tela inteira;
+ * - 'out': depois da ação, abre para a tela inteira (para mostrar o resultado);
+ * - 'wide': não aproxima neste passo;
+ * - 'hold': não mexe na câmera;
+ * - { at, z }: depois da ação, aproxima de outro elemento (z multiplica o zoom).
+ */
+export type Cam = 'out' | 'wide' | 'hold' | { at: string; z?: number };
+export type Beat = { to?: string; click?: boolean; phase?: number; type?: [string, string]; wait: number; cam?: Cam };
+type Cur = { x: number; y: number; n: number; show: boolean; cam: number; fx: number; fy: number; fw: number; fh: number; zf: number };
+/** `start`: fase em que o laço recomeça (padrão 0). */
+export type Def = { beats: Beat[]; steps: { phase: number; to?: string }[]; final: number; start?: number };
+export type DemoProps = { step?: number; def?: Def };
 
-function useDemo(def: Def, step?: number) {
+export function useDemo(def: Def, step?: number) {
   const app = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState(step === undefined ? 0 : def.steps[step]?.phase ?? 0);
   const [typed, setTyped] = useState<Record<string, string>>({});
-  const [cur, setCur] = useState({ x: 760, y: 560, n: 0, show: false });
+  const [cur, setCur] = useState<Cur>({ x: 760, y: 560, n: 0, show: false, cam: 0, fx: 470, fy: 300, fw: 940, fh: 600, zf: 1 });
   const [ring, setRing] = useState<string | null>(null);
   const seen = useInView(app, { margin: '-10% 0px' });
+  const camOn = useContext(FrameCamera);
+
+  // Retângulo de um alvo em coordenadas da tela (sem escala nem câmera).
+  const rectOf = (key: string) => {
+    const w = app.current;
+    const el = w?.querySelector(`[data-t="${key}"]`) as HTMLElement | null;
+    if (!w || !el) return null;
+    const a = w.getBoundingClientRect();
+    const b = el.getBoundingClientRect();
+    const s = a.width / w.offsetWidth || 1;
+    return { x: (b.left - a.left) / s, y: (b.top - a.top) / s, w: b.width / s, h: b.height / s };
+  };
+  const camTo = (key: string, zf = 1) => {
+    if (!camOn) return;
+    const r = rectOf(key);
+    if (r) setCur((c) => ({ ...c, cam: 1, fx: r.x + r.w / 2, fy: r.y + r.h / 2, fw: r.w, fh: r.h, zf }));
+  };
+  const camOut = () => {
+    if (camOn) setCur((c) => ({ ...c, cam: 0 }));
+  };
 
   const spot = (key: string) => {
     const w = app.current;
@@ -73,15 +106,17 @@ function useDemo(def: Def, step?: number) {
     const sleep = (ms: number) => new Promise<void>((r) => setTimeout(() => on && r(), ms));
     (async () => {
       while (on) {
-        setPhase(0);
+        setPhase(def.start ?? 0);
         setTyped({});
-        setCur((c) => ({ ...c, x: 760, y: 560, show: false }));
-        await sleep(900);
+        setCur((c) => ({ ...c, x: 760, y: 560, show: false, cam: 0 }));
+        await sleep(camOn ? 1300 : 900);
         for (const b of def.beats) {
           if (b.to) {
             const p = spot(b.to);
-            if (p) setCur((c) => ({ ...c, ...p, show: true }));
-            await sleep(850);
+            // A câmera viaja junto com o cursor e mira a ponta dele (fw/fh 0 = sem ajuste ao tamanho do alvo).
+            if (p) setCur((c) => ({ ...c, ...p, show: true, ...(camOn && b.cam !== 'wide' && b.cam !== 'hold' ? { cam: 1, fx: p.x, fy: p.y, fw: 0, fh: 0, zf: 1 } : {}) }));
+            if (b.cam === 'wide') camOut();
+            await sleep(camOn ? 1050 : 850);
           }
           if (b.click && b.to) {
             const q = spot(b.to);
@@ -91,6 +126,8 @@ function useDemo(def: Def, step?: number) {
             await sleep(180);
           }
           if (b.type) {
+            // Digitação: enquadra o campo inteiro, para o texto que cresce não sair do quadro.
+            if (b.to && b.cam !== 'wide' && b.cam !== 'hold') camTo(b.to);
             const [key, text] = b.type;
             for (let i = 1; i <= text.length; i++) {
               setTyped((t) => ({ ...t, [key]: text.slice(0, i) }));
@@ -98,10 +135,21 @@ function useDemo(def: Def, step?: number) {
             }
           }
           if (b.phase !== undefined) setPhase(b.phase);
+          if (camOn) {
+            const cam = b.cam;
+            if (cam === 'out') {
+              await sleep(160);
+              camOut();
+            } else if (cam && typeof cam === 'object') {
+              await sleep(160); // o elemento novo precisa estar na tela para ser medido
+              camTo(cam.at, cam.z ?? 1);
+            } else if (!b.to && cam !== 'hold') camOut();
+          }
           await sleep(b.wait);
         }
+        camOut();
         setCur((c) => ({ ...c, show: false }));
-        await sleep(600);
+        await sleep(camOn ? 1200 : 600);
       }
     })();
     return () => {
@@ -118,53 +166,103 @@ function useDemo(def: Def, step?: number) {
 // ── Moldura: escala, menu lateral e cursor ─────────────────────────────────
 const NAV = [
   { k: 'home', icon: House, label: 'Início' },
-  { k: 'insights', icon: Sparkles, label: 'Dinn Insights' },
+  { k: 'insights', icon: JeanOrbIcon, label: 'Jean' },
   { k: 'market', icon: ChartPie, label: 'Mercado' },
   { k: 'opps', icon: MapIcon, label: 'Oportunidades' },
   { k: 'locator', icon: MapPin, label: 'Localizar Produtos' },
   { k: 'dist', icon: Truck, label: 'Distribuição' },
 ];
 
-function Frame({
-  app, w = 940, h, nav, label, cur, children,
+/** Escala máxima da tela. Padrão 1 (nunca maior que o tamanho natural). */
+export const FrameMaxScale = createContext(1);
+
+/**
+ * Câmera da tela (home, "Como a Dinn funciona"). Ligada, a tela aparece inteira
+ * e a câmera aproxima e afasta com física de mola, seguindo o roteiro (ver `Cam`).
+ * O enquadramento é sempre limitado às bordas da tela: nunca mostra área vazia.
+ */
+export const FrameCamera = createContext(false);
+// Mola amortecida (sem rebote): sai e chega devagar, como uma curva de câmera do After Effects.
+const CAM_SPRING = { stiffness: 64, damping: 20, mass: 1 };
+
+export function Frame({
+  app, w = 940, h, nav, label, cur, children, bare = false,
 }: {
-  app: RefObject<HTMLDivElement | null>; w?: number; h: number; nav: string; label: string;
-  cur: { x: number; y: number; n: number; show: boolean }; children: ReactNode;
+  app: RefObject<HTMLDivElement | null>; w?: number; h: number; nav: string; label: string; bare?: boolean;
+  cur: { x: number; y: number; n: number; show: boolean; cam?: number; fx?: number; fy?: number; fw?: number; fh?: number; zf?: number }; children: ReactNode;
 }) {
   const wrap = useRef<HTMLDivElement>(null);
+  const max = useContext(FrameMaxScale);
+  const camOn = useContext(FrameCamera);
   const [s, setS] = useState(0.6);
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
-    const f = () => setS(Math.min(1, el.clientWidth / w));
+    const f = () => setS(Math.min(max, el.clientWidth / w));
     f();
     const ro = new ResizeObserver(f);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [w]);
+  }, [w, max]);
+
+  // Câmera: zoom e ponto de foco seguem molas; o enquadramento é recalculado a
+  // cada quadro e preso às bordas da tela, então nunca aparece área vazia.
+  const sMV = useMotionValue(s);
+  const zS = useSpring(1, CAM_SPRING);
+  const fxS = useSpring(w / 2, CAM_SPRING);
+  const fyS = useSpring(h / 2, CAM_SPRING);
+  useEffect(() => { sMV.set(s); }, [s, sMV]);
+  useEffect(() => {
+    if (!camOn) return;
+    if (!cur.cam) {
+      zS.set(1);
+      return;
+    }
+    // Zoom alvo por dispositivo: quanto menor a janela, mais perto (até 2,6x).
+    const zDev = Math.min(2.6, Math.max(1.5, 1.25 / Math.max(s, 0.01)));
+    const fw = cur.fw ?? 0;
+    const fh = cur.fh ?? 0;
+    // Painel (fw > 0): o zoom cede para ele caber na largura. Ponto do cursor (fw = 0): zoom cheio.
+    const z = Math.max(1, Math.min(zDev * (cur.zf ?? 1), fw > 0 ? w / (fw * 1.2) : Infinity));
+    // Painel mais alto que a área visível: enquadra o topo dele, não o meio.
+    const visH = h / z;
+    const fy = fh > visH * 0.9 ? (cur.fy ?? h / 2) - fh / 2 + visH / 2 - 16 / z : cur.fy ?? h / 2;
+    zS.set(z);
+    fxS.set(cur.fx ?? w / 2);
+    fyS.set(fy);
+  }, [camOn, cur.cam, cur.fx, cur.fy, cur.fw, cur.fh, cur.zf, s, w, h, zS, fxS, fyS]);
+  const camTransform = useTransform([sMV, zS, fxS, fyS], ([s0, z, fx, fy]: number[]) => {
+    const S = s0 * z;
+    const W = w * s0;
+    const H = h * s0;
+    const tx = Math.min(0, Math.max(W - w * S, W / 2 - fx * S));
+    const ty = Math.min(0, Math.max(H - h * S, H / 2 - fy * S));
+    return `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) scale(${S.toFixed(4)})`;
+  });
+
   return (
-    <div ref={wrap} className="da-stage dd-stage" style={{ height: h * s }} role="img" aria-label={label}>
-      <div ref={app} className="dnn-app dd-app" style={{ width: w, height: h, transform: `scale(${s})` }}>
-        <nav className="dd-side" aria-hidden="true">
+    <div ref={wrap} className={`da-stage dd-stage${camOn ? ' dd-cam' : ''}`} style={{ height: h * s }} role="img" aria-label={label} data-ui="">
+      <motion.div ref={app} className={`dnn-app dd-app ${bare ? 'dd-bare' : ''}`} style={{ width: w, height: h, transform: camOn ? camTransform : `scale(${s})` }}>
+        {!bare && <nav className="dd-side" aria-hidden="true">
           <img src="/logo/Dinn_logo_v2_Light.svg" alt="" width={34} height={14} />
           {NAV.map(({ k, icon: I }) => (
             <span key={k} className={k === nav ? 'on' : ''}><I size={18} /></span>
           ))}
           <span className="dd-side-sep" />
           <span><LifeBuoy size={18} /></span>
-        </nav>
+        </nav>}
         <div className="dd-main">{children}</div>
         <div className="demo-cursor" style={{ transform: `translate(${cur.x}px, ${cur.y}px)`, opacity: cur.show ? 1 : 0 }} aria-hidden="true">
           {cur.n > 0 && <span key={cur.n} className="demo-ripple" />}
           <svg width="44" height="44" viewBox="0 0 24 24"><path d="M4 2 L4 19 L8.5 14.8 L11.8 22 L14.6 20.8 L11.4 13.8 L17.5 13.6 Z" fill="#111" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" /></svg>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 // ── Peças da interface ─────────────────────────────────────────────────────
-function Num({ v, on, d = 0, suffix = '' }: { v: number; on: boolean; d?: number; suffix?: string }) {
+export function Num({ v, on, d = 0, suffix = '' }: { v: number; on: boolean; d?: number; suffix?: string }) {
   const [x, setX] = useState(on ? v : 0);
   useEffect(() => {
     if (!on) return setX(0);
@@ -182,11 +280,11 @@ function Num({ v, on, d = 0, suffix = '' }: { v: number; on: boolean; d?: number
   return on ? <>{fmt(x, d)}{suffix}</> : <span className="dd-sk" />;
 }
 
-const Bar = ({ title, sub }: { title: string; sub?: string }) => (
+export const Bar = ({ title, sub }: { title: string; sub?: string }) => (
   <div className="da-bar"><b>{title}</b>{sub && <span>{sub}</span>}</div>
 );
 
-function Chip({ label, value, empty, open, items, picked, tg, k }: {
+export function Chip({ label, value, empty, open, items, picked, tg, k }: {
   label: string; value?: string; empty?: string; open?: boolean; items?: string[]; picked?: number;
   tg: (k: string) => object; k: string;
 }) {
@@ -208,7 +306,7 @@ function Chip({ label, value, empty, open, items, picked, tg, k }: {
   );
 }
 
-function Metric({ icon, label, children, tg, k }: { icon: ReactNode; label: string; children: ReactNode; tg?: (k: string) => object; k?: string }) {
+export function Metric({ icon, label, children, tg, k }: { icon: ReactNode; label: string; children: ReactNode; tg?: (k: string) => object; k?: string }) {
   return (
     <div className="da-metric" {...(tg && k ? tg(k) : {})}>
       <span className="da-metric-icon">{icon}</span>
@@ -217,18 +315,18 @@ function Metric({ icon, label, children, tg, k }: { icon: ReactNode; label: stri
   );
 }
 
-const Panel = ({ title, aside, children, className = '', t }: { title: string; aside?: ReactNode; children: ReactNode; className?: string; t?: object }) => (
+export const Panel = ({ title, aside, children, className = '', t }: { title: string; aside?: ReactNode; children: ReactNode; className?: string; t?: object }) => (
   <section className={`da-card ${className}`} {...t}>
     <header><h4>{title}</h4>{aside}</header>
     {children}
   </section>
 );
 
-const Seg = ({ items, on = 0 }: { items: string[]; on?: number }) => (
+export const Seg = ({ items, on = 0 }: { items: string[]; on?: number }) => (
   <span className="da-seg">{items.map((x, i) => <i key={x} className={i === on ? 'on' : ''}>{x}</i>)}</span>
 );
 
-function Line({ labels, series, min, max, on, h = 170, unit = '', d = 1 }: {
+export function Line({ labels, series, min, max, on, h = 170, unit = '', d = 1 }: {
   labels: string[]; series: { values: number[]; color: string }[]; min: number; max: number; on: boolean; h?: number; unit?: string; d?: number;
 }) {
   const W = 520;
@@ -265,7 +363,7 @@ function Line({ labels, series, min, max, on, h = 170, unit = '', d = 1 }: {
   );
 }
 
-function Donut({ items, colors, on }: { items: { label: string; value: number }[]; colors: string[]; on: boolean }) {
+export function Donut({ items, colors, on }: { items: { label: string; value: number }[]; colors: string[]; on: boolean }) {
   const r = 48;
   const C = 2 * Math.PI * r;
   let acc = 0;
@@ -287,9 +385,9 @@ function Donut({ items, colors, on }: { items: { label: string; value: number }[
   );
 }
 
-const LEVEL: Record<string, string> = { Crítico: 'crit', Alto: 'high', Moderado: 'mod', Leve: 'low' };
+export const LEVEL: Record<string, string> = { Crítico: 'crit', Alto: 'high', Moderado: 'mod', Leve: 'low' };
 
-function Levels({ on, rows, t }: { on: boolean; rows: [string, number, number][]; t?: object }) {
+export function Levels({ on, rows, t }: { on: boolean; rows: [string, number, number][]; t?: object }) {
   return (
     <Panel className="side" title="Classificação de Ruptura" t={t}>
       <table className="da-table">
@@ -308,7 +406,7 @@ function Levels({ on, rows, t }: { on: boolean; rows: [string, number, number][]
   );
 }
 
-function Rank({ title, rows, on, t, tg, className = '' }: { title: string; rows: [string, string, number][]; on: boolean; t?: object; tg?: (k: string) => object; className?: string }) {
+export function Rank({ title, rows, on, t, tg, className = '' }: { title: string; rows: [string, string, number][]; on: boolean; t?: object; tg?: (k: string) => object; className?: string }) {
   const lv = (v: number) => (v >= 40 ? 'Alto' : v >= 30 ? 'Moderado' : '');
   return (
     <Panel title={title} t={t} className={className}>
@@ -325,10 +423,10 @@ function Rank({ title, rows, on, t, tg, className = '' }: { title: string; rows:
   );
 }
 
-const Tip = ({ children }: { children: ReactNode }) => <span className="dd-tip">{children}</span>;
+export const Tip = ({ children }: { children: ReactNode }) => <span className="dd-tip">{children}</span>;
 
 // ── Início (hub): produto escolhido, números e gráficos ────────────────────
-const PRODUCTS = ['Produto A 20 mg 30 cp', 'Produto A 40 mg 30 cp', 'Produto B 5 mg/mL 1 fr'];
+export const PRODUCTS = ['Produto A 20 mg 30 cp', 'Produto A 40 mg 30 cp', 'Produto B 5 mg/mL 1 fr'];
 const HOME_DEF: Def = {
   beats: [
     { to: 'prod', click: true, phase: 1, wait: 500 },
@@ -340,8 +438,8 @@ const HOME_DEF: Def = {
   final: 3,
 };
 
-export function HomeDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(HOME_DEF, step);
+export function HomeDemo({ step, def = HOME_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 3;
   return (
     <Frame app={app} h={700} nav="home" cur={cur} label="Tela Início do Dinn: o cursor escolhe um produto e os números de ruptura e estoque carregam.">
@@ -390,8 +488,8 @@ const MARKET_DEF: Def = {
   final: 4,
 };
 
-export function MarketDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(MARKET_DEF, step);
+export function MarketDemo({ step, def = MARKET_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 3;
   return (
     <Frame app={app} h={450} nav="market" cur={cur} label="Tela Mercado do Dinn: o cursor escolhe o mercado e a participação e as vendas estimadas carregam.">
@@ -451,8 +549,8 @@ const QUEUE_DEF: Def = {
   final: 3,
 };
 
-export function QueueDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(QUEUE_DEF, step);
+export function QueueDemo({ step, def = QUEUE_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 1;
   const rows = phase >= 2 ? PDVS : ORDER_RAW.map((i) => PDVS[i]);
   return (
@@ -526,8 +624,8 @@ const SUPPLY_DEF: Def = {
   final: 3,
 };
 
-export function SupplyDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(SUPPLY_DEF, step);
+export function SupplyDemo({ step, def = SUPPLY_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   const city = phase >= 2;
   const on = phase >= 3;
   return (
@@ -590,8 +688,8 @@ const LOC_DEF: Def = {
   final: 7,
 };
 
-export function LocatorDemo({ step }: { step?: number }) {
-  const { app, phase, typed, cur, tg } = useDemo(LOC_DEF, step);
+export function LocatorDemo({ step, def = LOC_DEF }: DemoProps) {
+  const { app, phase, typed, cur, tg } = useDemo(def, step);
   const prod = typed.prod ?? (phase >= 1 ? 'Produto A 20 mg 30 cp' : '');
   const addr = typed.addr ?? (phase >= 2 ? 'Rua Exemplo, 100' : '');
   const found = phase >= 4;
@@ -641,7 +739,7 @@ export function LocatorDemo({ step }: { step?: number }) {
           {found && <span className="dd-pin-hit" style={{ left: 205 - 14, top: 150 - 14 }} {...tg('pin')} />}
           {phase === 3 && <span className="dd-map-msg">Carregando estoque dos PDVs da região...</span>}
           {phase >= 5 && (
-            <div className="da-popup dd-in" style={{ left: 250, top: 40 }}>
+            <div className="da-popup dd-in" style={{ left: 250, top: 40 }} {...tg('popup')}>
               <div className="da-popup-head"><b>Farmácia Centro 014</b><span className="da-tag">Estoque exato</span></div>
               <small>Rede Alfa · Aberto · Fecha às 22:00</small>
               <div className="da-popup-stock" {...tg('stock')}>
@@ -676,8 +774,8 @@ const LAUNCH_DEF: Def = {
   final: 5,
 };
 
-export function LaunchDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(LAUNCH_DEF, step);
+export function LaunchDemo({ step, def = LAUNCH_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 3;
   const exact = phase >= 5;
   return (
@@ -719,8 +817,8 @@ const CONN_DEF: Def = {
   final: 3,
 };
 
-export function ConnectionsDemo({ step }: { step?: number }) {
-  const { app, phase, cur, tg } = useDemo(CONN_DEF, step);
+export function ConnectionsDemo({ step, def = CONN_DEF }: DemoProps) {
+  const { app, phase, cur, tg } = useDemo(def, step);
   return (
     <Frame app={app} h={480} nav="none" cur={cur} label="Telas do Dinn: um aplicativo de IA pede acesso somente leitura, a pessoa autoriza e depois revoga uma conexão em Conexões.">
       {phase < 3 ? (
@@ -771,7 +869,7 @@ export function ConnectionsDemo({ step }: { step?: number }) {
 }
 
 // ── Qual tela cada área mostra ─────────────────────────────────────────────
-export const AREA_DEMO: Record<string, (p: { step?: number }) => ReactElement> = {
+export const AREA_DEMO: Record<string, (p: DemoProps) => ReactElement> = {
   'inteligencia-pricing': MarketDemo,
   'trade-kam-campo': QueueDemo,
   'supply-distribuicao': SupplyDemo,

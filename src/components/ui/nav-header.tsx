@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useTranslation } from "@/i18n/useTranslation";
 import { blogPath, type Lang } from "@/i18n/routes";
+import { featurePath } from "@/lib/site-map";
 
 type NavItem = {
   label: string;
@@ -40,12 +41,10 @@ export type NavArea = { slug: string; name: string };
 export type SubItem = { href: string; label: string };
 export type Submenu = { items: SubItem[]; allHref?: string; allLabel?: string };
 
-/** Funcionalidades novas da plataforma (home nova), com o mesmo nome da home. */
-const NEW_FEATURES = ["insights", "mercado", "oportunidades", "distribuicao", "activities"];
+/** As nove funcionalidades do Dinn, com o mesmo nome e a mesma ordem da home. */
 export function newFeatureLinks(t: (key: string) => any): SubItem[] {
   const items = (t("home2.features.items") as { id: string; name: string }[]) ?? [];
-  return NEW_FEATURES.map((id) => items.find((i) => i.id === id)).filter(Boolean)
-    .map((i) => ({ href: `/funcionalidades#${i!.id}`, label: i!.name }));
+  return items.map((i) => ({ href: featurePath(i.id), label: i.name }));
 }
 
 /** Itens do submenu de cada entrada (desktop e celular usam a mesma lista). */
@@ -53,14 +52,7 @@ export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, l
   const L = (key: string) => t(key) as string;
   if (menu === "platform") {
     return {
-      items: [
-        { href: "/funcionalidades", label: L("menu.features") },
-        { href: "/produtos/localizador", label: L("menu.locator") },
-        { href: "/produtos/conecta", label: L("menu.conecta") },
-        ...newFeatureLinks(t),
-        { href: "/integracoes", label: L("menu.integrations") },
-        { href: "/cobertura", label: L("menu.coverage") },
-      ],
+      items: newFeatureLinks(t),
       allHref: "/plataforma",
       allLabel: L("menu.platformAll"),
     };
@@ -272,9 +264,7 @@ const Cursor = ({
         zIndex: 0,
         height: "32px",
         borderRadius: "9999px",
-        background: scrolled
-          ? "rgba(86,37,242,0.1)"
-          : "rgba(255,255,255,0.15)",
+        background: "rgba(8,9,10,0.06)",
         listStyle: "none",
         pointerEvents: "none",
       }}

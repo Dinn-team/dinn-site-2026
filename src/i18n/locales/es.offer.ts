@@ -65,12 +65,15 @@ export const offerEs = {
       title: "Por funcionalidad",
       intro: "Úsalo cuando sabes lo que necesitas.",
       items: [
-        { label: "Inventario en tiempo real", text: "Consulta bajo demanda, con la hora de la respuesta.", href: "/produtos/localizador" },
-        { label: "Inventario estimado", text: "Lo que Dinn infiere cuando no hay lectura directa, y su confianza.", href: "/funcionalidades#estimado" },
-        { label: "Historial y vistas guardadas", text: "El mismo segmento, comparable a lo largo del tiempo.", href: "/funcionalidades#historico" },
-        { label: "Insights", text: "Pregunta en español. Recibe el número con segmento, fuente y método.", href: "/funcionalidades#insights" },
-        { label: "API, archivos y MCP", text: "La misma información fuera de la plataforma.", href: "/integracoes" },
-        { label: "Alertas y rutinas", text: "Aviso cuando la señal cambia, en los canales habilitados en el alcance.", href: "/funcionalidades#alertas" }
+        { label: "Quiebre", text: "Ve dónde falta producto y qué tiendas verificar primero.", href: "/funcionalidades/ruptura" },
+        { label: "Rotación", text: "Ve qué tan rápido se vende y dónde el inventario no se mueve.", href: "/funcionalidades/giro" },
+        { label: "Precio", text: "Ve el precio observado en cada tienda y cadena.", href: "/funcionalidades/preco" },
+        { label: "Localizador de Productos", text: "Encuentra las tiendas que tienen tu producto. Dato diario o en vivo.", href: "/funcionalidades/localizador" },
+        { label: "Mercado", text: "Lee competencia y cobertura por región y cadena.", href: "/funcionalidades/mercado" },
+        { label: "Oportunidades", text: "Ve dónde actuar primero. Cada una muestra fuente y límites.", href: "/funcionalidades/oportunidades" },
+        { label: "Distribución", text: "Cruza el stock del distribuidor con la disponibilidad en las tiendas.", href: "/funcionalidades/distribuicao" },
+        { label: "Jean", text: "Delega seguimientos. Jean prepara el trabajo y te llama cuando necesitas decidir.", href: "/funcionalidades/jean" },
+        { label: "Dinn Conecta", text: "Lleva los datos de Dinn a tu BI, a tu IA y a tus integraciones.", href: "/produtos/conecta" }
       ]
     },
     more: "¿No encontraste tu caso?",
@@ -188,6 +191,142 @@ export const offerEs = {
   },
 
   // ── Funcionalidades ───────────────────────────────────────────────────────
+  jean: {
+    meta: {
+      title: "Jean | Dinn",
+      description: "Jean es la asistente de Dinn. Sigue tu trabajo, prepara el próximo paso y te llama cuando necesitas decidir."
+    },
+    hero: {
+      title: "Jean, la asistente de tu trabajo",
+      lead: "Dile a Jean lo que quieres seguir. Usa los datos de Dinn y las herramientas que autorices. Prepara el trabajo y te llama cuando necesitas decidir."
+    },
+    ask: {
+      title: "Delega como le pedirías a alguien del equipo",
+      quote: "Jean, sigue la disponibilidad de estos productos en las cadenas que gestiono. Antes de mis reuniones, prepara los puntos importantes y llámame por WhatsApp cuando necesite decidir algo.",
+      note: "Jean confirma el objetivo, el segmento y los permisos antes de empezar. Solo pregunta lo que falta."
+    },
+    ways: {
+      title: "Tres formas de delegar",
+      items: [
+        {
+          name: "Un pedido puntual",
+          example: "“Prepara mi reunión con esta cadena mañana.”"
+        },
+        {
+          name: "Una rutina",
+          example: "“Cada lunes, revisa la disponibilidad de estos productos y prepara un resumen.”"
+        },
+        {
+          name: "Una responsabilidad continua",
+          example: "“Sigue esta pendiente y búscame si llega una respuesta o si el plazo está cerca.”"
+        }
+      ]
+    },
+    how: {
+      title: "Cómo trabaja Jean",
+      lead: "Desplázate por la página. Cada paso muestra la pantalla en el punto correcto.",
+      steps: [
+        {
+          label: "Conecta y explica",
+          text: "Conecta correo, calendario y Dinn. Di lo que quieres seguir."
+        },
+        {
+          label: "Confirma el acuerdo",
+          text: "Jean confirma objetivo, productos, cadenas, fuentes, canal y acciones autorizadas."
+        },
+        {
+          label: "Jean sigue",
+          text: "Lee los datos, los mensajes y las reuniones que autorizaste."
+        },
+        {
+          label: "Jean prepara el próximo paso",
+          text: "Ve lo que cambió y prepara un resumen, un borrador o un análisis."
+        },
+        {
+          label: "Jean te llama",
+          text: "Cuando necesita una decisión, te llama en el portal o por WhatsApp, con el contexto."
+        },
+        {
+          label: "Jean registra y sigue",
+          text: "Registra el resultado y sigue el seguimiento. No repite lo que ya hizo."
+        }
+      ]
+    },
+    activities: {
+      title: "Actividades: el trabajo de Jean en un lugar",
+      lead: "Cada ítem muestra el objetivo, lo que hizo Jean, las fuentes, el resultado y el próximo paso.",
+      items: [
+        "¿Qué necesita de mí?",
+        "¿Qué está siguiendo Jean?",
+        "¿Qué ya se entregó?"
+      ]
+    },
+    settings: {
+      title: "Controlas a Jean en la configuración",
+      lead: "Conecta las herramientas, elige los canales y define hasta dónde puede actuar Jean. Puedes revocar un acceso en cualquier momento.",
+      items: [
+        {
+          title: "Conexiones",
+          text: "Gmail, Outlook, Google Calendar, calendario Microsoft y Dinn. Ves la cuenta conectada y los accesos concedidos."
+        },
+        {
+          title: "Canales",
+          text: "Conversa en el portal o por WhatsApp, con el número de Jean. Jean no lee tus otras conversaciones."
+        },
+        {
+          title: "Autonomía",
+          text: "Para cada tipo de acción, define lo que Jean hace sola y lo que te pide aprobar."
+        },
+        {
+          title: "Atención",
+          text: "Elige horario, canal y frecuencia. Di “avísame solo si empeora” y Jean ajusta el seguimiento."
+        }
+      ]
+    },
+    whatsapp: {
+      title: "Sigue por WhatsApp",
+      lead: "Jean envía el trabajo listo y espera tu respuesta. La misma tarea sigue en el portal, con el mismo historial.",
+      note: "Un “sí” por WhatsApp aprueba solo el pedido de ese mensaje."
+    },
+    autonomy: {
+      title: "Hasta dónde puede ir Jean",
+      cols: [
+        "Acción",
+        "Lo que hace Jean"
+      ],
+      rows: [
+        [
+          "Consultar fuentes autorizadas y analizar",
+          "Trabaja dentro del objetivo acordado."
+        ],
+        [
+          "Preparar resumen, informe, borrador o sugerencia",
+          "Deja el trabajo listo para que lo revises."
+        ],
+        [
+          "Enviar correo o crear y cambiar una reunión",
+          "Pide aprobación, salvo con autorización previa para esa rutina y acción."
+        ],
+        [
+          "Asumir un compromiso comercial o actuar fuera del acuerdo",
+          "Te envía la decisión."
+        ]
+      ]
+    },
+    limits: {
+      title: "Límites de Jean",
+      items: [
+        "Jean muestra la fecha de los datos. Una base D-1 no es monitoreo en tiempo real.",
+        "Jean separa hecho de hipótesis y dice cuando falta información.",
+        "Sin dato no significa que el problema se resolvió.",
+        "Jean usa solo las métricas de tu plan. Si falta una funcionalidad, dice cuál.",
+        "Conectar el correo no libera indicadores fuera del plan. Contratar Dinn no libera tu bandeja de entrada.",
+        "Las instrucciones dentro de correos o documentos no cambian los permisos de Jean.",
+        "El contenido personal conectado no es visible para otros usuarios del laboratorio."
+      ]
+    }
+  },
+
   features: {
     meta: {
       title: "Funcionalidades | Dinn",
@@ -211,65 +350,93 @@ export const offerEs = {
       more: "Más información"
     },
     sim: "Ejemplos ilustrativos, con valores de ejemplo. La disponibilidad de funcionalidades sigue el plan contratado.",
+    hub: {
+      screensTitle: "Cada funcionalidad, en la pantalla de Dinn",
+      screensIntro: "Abre una funcionalidad. Ve la pantalla, los pasos y el límite de la lectura.",
+      open: "Ver la funcionalidad"
+    },
+    page: {
+      back: "Todas las funcionalidades",
+      whereTitle: "Dónde actúa",
+      screenLabel: "Pantalla en Dinn",
+      teamsLabel: "Equipos que la usan",
+      allTeams: "Todos los equipos",
+      allTeamsLink: "Ver los equipos",
+      howTitle: "Cómo funciona",
+      howLead: "Desplázate por la página. Cada paso muestra la pantalla en el punto correcto.",
+      otherTitle: "Otras funcionalidades",
+      caption: "Datos y nombres ilustrativos.",
+      screens: {
+        ruptura: "Inicio",
+        giro: "Inicio",
+        preco: "Inicio",
+        localizador: "Localizar Productos",
+        mercado: "Mercado",
+        oportunidades: "Oportunidades",
+        distribuicao: "Distribución",
+        jean: "Jean y Actividades",
+        conecta: "Exportaciones y Conexiones"
+      }
+    },
     items: [
       {
-        id: "disponibilidade", name: "Disponibilidad y desabasto", kind: "produto",
-        problem: "¿Qué producto está faltando y por dónde empiezo a verificar?",
+        id: "ruptura", name: "Quiebre", kind: "produto",
+        problem: "¿Qué producto falta, y por dónde empiezo a verificar?",
         input: "SKU, cadena y región.",
-        action: "Seleccionas el segmento. Dinn muestra el período y denominador de la lectura y abre las tiendas.",
-        output: "Tiendas ordenadas por proporción de días sin inventario sobre días observados.",
+        action: "Selecciona el segmento. Dinn muestra el período y el denominador de la lectura y abre las tiendas.",
+        output: "Tiendas ordenadas por la proporción de días sin inventario sobre días observados.",
         decision: "Qué tiendas verificar primero.",
-        limit: "Ausencia no es desabasto confirmado. Las tiendas que nunca vendieron el artículo no están en el cálculo.",
+        limit: "La ausencia no es un quiebre confirmado. Las tiendas que nunca vendieron el ítem no entran en el cálculo. El inventario estimado aparece con etiqueta y nivel de confianza.",
         href: "/solucoes/trade-kam-campo"
       },
       {
-        id: "localizador", name: "Localizador", kind: "produto",
-        problem: "¿Dónde encuentra el consumidor el producto cerca?",
-        input: "Dirección o área, radio y cadena.",
-        action: "Busca y compara tiendas por distancia, con la fuente y la actualización de cada lectura.",
-        output: "Tiendas cercanas con disponibilidad, distancia y la fecha de la información.",
-        decision: "Qué tienda indicar, y con qué confianza.",
-        limit: "Probabilidad de inventario no es garantía. La cobertura varía por cadena y fuente.",
-        href: "/produtos/localizador"
-      },
-      {
-        id: "tempo-real", name: "Inventario en tiempo real", kind: "produto",
-        problem: "Debo confirmar ahora, antes de orientar a alguien.",
-        input: "Una tienda compatible, elegida en el Localizador.",
-        action: "Haz clic en “Consultar ahora”. Dinn le pregunta a la fuente de la tienda en ese momento.",
-        output: "La respuesta de la fuente y la hora de la consulta, aparte de la lectura D-1.",
-        decision: "Indicar la tienda, o revisar otra.",
-        limit: "Disponible según cadena, fuente y alcance contratado. La información puede cambiar después de la consulta.",
-        href: "/produtos/localizador"
-      },
-      {
-        id: "estimado", name: "Inventario estimado", kind: "produto",
-        problem: "La fuente no respondió. ¿Qué puedo inferir?",
-        input: "Historial de la tienda y tiendas comparables.",
-        action: "Dinn estima donde no hay lectura directa. Muestra la referencia usada y la confianza.",
-        output: "Una estimación rotulada como tal, con nivel de confianza.",
-        decision: "Dónde confirmar antes de actuar.",
-        limit: "Es estimación, no lectura de la tienda. Confirma cuando la decisión sea sensible.",
-        href: "/cobertura"
-      },
-      {
-        id: "historico", name: "Historial, filtros y vistas guardadas", kind: "interface",
-        problem: "¿Cómo comparo el mismo segmento a lo largo del tiempo?",
-        input: "Período, filtros y el segmento que necesita el equipo.",
-        action: "Aplicas los filtros, guardas la vista y la abres en la próxima rutina.",
-        output: "La misma lectura, comparable semana a semana.",
-        decision: "¿La señal persistió, disminuyó o cambió de lugar?",
-        limit: "El historial disponible y el número de tableros dependen del plan contratado.",
-        href: "/planos"
-      },
-      {
-        id: "giro-preco", name: "Rotación, precio e inventario sin movimiento", kind: "produto",
-        problem: "¿El producto sale? ¿A qué precio? ¿Dónde el saldo no se mueve?",
+        id: "giro", name: "Rotación", kind: "produto",
+        problem: "¿El producto se vende? ¿Dónde no se mueve el inventario?",
         input: "Producto, cadena y ventana de tiempo.",
-        action: "Eliges la ventana. Dinn muestra el cálculo y compara solo lo que es comparable.",
-        output: "Estimación de rotación en el segmento, precio observado y días sin movimiento.",
-        decision: "Dónde investigar una caída de rotación o reubicar saldo.",
-        limit: "Movimiento no es venta confirmada. La rotación es una estimación.",
+        action: "Elige la ventana. Dinn muestra la rotación y las tiendas con inventario parado hace 7, 30, 60 o 90 días.",
+        output: "Rotación estimada en el segmento y días sin movimiento por tienda.",
+        decision: "Dónde investigar una caída de rotación o mover inventario.",
+        limit: "El movimiento no es una venta confirmada. La rotación es una estimación. El inventario parado es una alerta para investigar.",
+        href: "/solucoes/supply-distribuicao"
+      },
+      {
+        id: "preco", name: "Precio", kind: "produto",
+        problem: "¿A qué precio está mi producto en las tiendas?",
+        input: "Producto, cadena y región.",
+        action: "Elige el producto. Dinn muestra el precio observado en cada tienda y ordena la lista por precio.",
+        output: "Precio por tienda y por cadena, con la fecha de la lectura.",
+        decision: "En qué cadena o tienda el precio sale del rango.",
+        limit: "Es el precio observado en el canal digital de la tienda. Compara solo lo que es comparable.",
+        href: "/solucoes/inteligencia-pricing"
+      },
+      {
+        id: "localizador", name: "Localizador de Productos", kind: "produto",
+        problem: "¿Dónde encuentra el consumidor el producto cerca?",
+        input: "Producto y dirección.",
+        action: "Busca las tiendas por distancia. En una tienda compatible, haz clic en “Consultar ahora” para confirmar el inventario.",
+        output: "Tiendas cercanas con disponibilidad, distancia y la fecha de la información. En la consulta, la hora de la respuesta.",
+        decision: "Qué tienda indicar, y con qué confianza.",
+        limit: "La probabilidad de inventario no es garantía. La consulta depende de la cadena, la fuente y el alcance contratado.",
+        href: "/produtos/localizador"
+      },
+      {
+        id: "mercado", name: "Mercado", kind: "produto",
+        problem: "¿Perdí participación o perdí venta?",
+        input: "Canasta de productos, universo de tiendas y ventana.",
+        action: "Define la canasta y las tiendas comparables. Compara tu producto con la categoría.",
+        output: "Tendencia de tu producto y de la categoría en las mismas tiendas, y dónde solo el competidor tiene inventario.",
+        decision: "Dónde recuperar espacio.",
+        limit: "La venta es estimada. Los datos de competidores están agregados y respetan los derechos de uso.",
+        href: "/solucoes/inteligencia-pricing"
+      },
+      {
+        id: "oportunidades", name: "Oportunidades", kind: "produto",
+        problem: "¿En qué territorio crece la categoría mientras pierdo participación?",
+        input: "Pregunta, mercado, estado, ciudad o Brick, y período.",
+        action: "Elige la pregunta. Dinn colorea el mapa y ordena los territorios por la señal.",
+        output: "Territorios con participación, variación de la categoría y tiendas comparables.",
+        decision: "Dónde investigar primero, y con qué equipo.",
+        limit: "La venta es estimada por el movimiento de inventario. La variación de participación tiene un margen de más o menos 1,3 p.p.",
         href: "/solucoes/inteligencia-pricing"
       },
       {
@@ -283,74 +450,24 @@ export const offerEs = {
         href: "/solucoes/supply-distribuicao"
       },
       {
-        id: "mercado", name: "Mercado y competencia", kind: "produto",
-        problem: "¿Perdí participación o perdí venta?",
-        input: "Canasta de productos, universo de tiendas y ventana.",
-        action: "Define la canasta y las tiendas comparables. Compara tu producto con la categoría.",
-        output: "Tendencia de tu producto y de la categoría en las mismas tiendas, y dónde solo el competidor tiene inventario.",
-        decision: "Dónde recuperar espacio.",
-        limit: "La venta es estimada. Los datos de competidores están agregados y respetan los derechos de uso.",
-        href: "/solucoes/inteligencia-pricing"
-      },
-      {
-        id: "insights", name: "Insights", kind: "interface",
-        problem: "Quiero la respuesta sin un tablero.",
-        input: "Una pregunta en español.",
-        action: "Pregunta a Dinn Insights. La respuesta muestra el segmento, la fuente y el método.",
-        output: "Un número con segmento, fecha, método y tipo (observado o estimado).",
-        decision: "Qué análisis abrir a continuación.",
-        limit: "Responde dentro del segmento y las capacidades del plan. Las hipótesis se muestran como hipótesis.",
-        href: "/plataforma"
-      },
-      {
-        id: "priorizacao", name: "Priorización y retorno", kind: "produto",
-        problem: "Con tantas señales, ¿por dónde empieza el equipo?",
-        input: "Señales del segmento y la cartera del equipo.",
-        action: "Ordena la lista por señal, asigna al responsable y registra lo que el equipo encontró.",
-        output: "Una lista con señal, fecha, responsable y el registro del retorno.",
-        decision: "Quién verifica qué, y qué seguir.",
-        limit: "Dinn prepara la lista. El equipo define la agenda y la decisión.",
-        href: "/solucoes/trade-kam-campo"
-      },
-      {
-        id: "exportacoes", name: "Exportaciones, API y MCP", kind: "integracao",
-        problem: "Necesito la misma información fuera de la plataforma.",
-        input: "El segmento y el destino autorizado.",
-        action: "Elige el modo: archivo, consumo técnico o IA autorizada.",
-        output: "La misma lectura en archivo, en la API o en la IA de la empresa, con origen y fecha.",
-        decision: "Dónde empieza tu equipo a usar el dato.",
-        limit: "Cada modo depende del plan, la autorización y el alcance. El MCP es para consultas, solo lectura.",
-        href: "/integracoes"
-      },
-      {
-        id: "alertas", name: "Alertas y rutinas", kind: "interface",
-        problem: "Quiero un aviso cuando algo cambie. No quiero abrir la plataforma.",
-        input: "La regla, el canal y la frecuencia.",
-        action: "Define la regla de seguimiento y el canal del aviso.",
-        output: "Un aviso con la señal, el segmento y la fecha.",
-        decision: "Cuándo actuar o revisar el segmento.",
-        limit: "Siguen los disparadores y canales del alcance. Tú configuras las automatizaciones en tu IA.",
+        id: "jean", name: "Jean", kind: "interface",
+        problem: "Quiero delegar el seguimiento de mi trabajo.",
+        input: "Un pedido en español y las herramientas que conectaste.",
+        action: "Pide a Jean. Confirma el acuerdo, sigue los datos y prepara el próximo paso.",
+        output: "Resúmenes, borradores y análisis listos para revisar, en el portal o por WhatsApp.",
+        decision: "Qué aprobar, ajustar o seguir.",
+        limit: "Jean actúa solo dentro del acuerdo y de los permisos. Las acciones externas piden aprobación, salvo con autorización previa.",
         href: "/plataforma"
       },
       {
         id: "conecta", name: "Dinn Conecta", kind: "integracao",
-        problem: "Cada análisis empieza juntando todo de nuevo.",
-        input: "Fuentes autorizadas: mercado, datos internos y farmacias.",
-        action: "Dinn reúne los datos, estandariza producto, tienda y región, y mantiene el camino al día.",
-        output: "Datos de farma preparados en tu BI, Copilot o proyecto.",
-        decision: "La pregunta que tu equipo quiere responder, sin rehacer la base.",
-        limit: "Fuentes e integraciones dependen del acceso, la licencia y el alcance. No sustituye licencias ni actúa por sí solo.",
+        problem: "Necesito los datos de Dinn en mi BI, en mi IA o en un archivo.",
+        input: "Fuentes autorizadas y el destino: archivo, API, BI o la IA de la empresa por MCP.",
+        action: "Dinn reúne los datos, estandariza producto, tienda y región y los entrega en el destino elegido.",
+        output: "La misma lectura en archivo, API, BI o IA, con origen y fecha.",
+        decision: "Dónde tu equipo empieza a usar el dato.",
+        limit: "Las fuentes y las integraciones dependen de acceso, licencia y alcance. El MCP es de solo lectura.",
         href: "/produtos/conecta"
-      },
-      {
-        id: "projetos", name: "Investigaciones y proyectos especiales", kind: "servico",
-        problem: "Mi pregunta necesita un segmento propio.",
-        input: "La pregunta, el universo y las fuentes disponibles.",
-        action: "Evaluamos contigo la viabilidad y el alcance.",
-        output: "Informe, base tratada o flujo hacia el BI, según lo acordado.",
-        decision: "La decisión que motivó el proyecto.",
-        limit: "Sujeto a evaluación de viabilidad y alcance. Los derechos de las fuentes siguen protegidos.",
-        href: "/pesquisas"
       }
     ],
     cta: {
@@ -965,6 +1082,15 @@ export const offerEs = {
         { value: 6, suffix: "", label: "áreas atendidas, de Trade a atención a clientes" },
         { value: 3, suffix: "", label: "idiomas del sitio: portugués, inglés y español" },
         { value: 30, suffix: " días", label: "para implementar, después de acordar el alcance" }
+      ]
+    },
+    team: {
+      title: "Quién hace Dinn",
+      intro: "Tres personas lideran la estrategia, el producto y la tecnología de Dinn.",
+      items: [
+        { id: "edu", name: "Edu Fonseca", role: "CEO · Estrategia y comercial", text: "Define la visión y las prioridades de Dinn. Conduce la estrategia comercial, las ofertas y el crecimiento." },
+        { id: "renan", name: "Renan Cavalheiro", role: "Producto y diseño", text: "Conduce el discovery y convierte problemas en decisiones de producto. Responde por la experiencia y el diseño de las interfaces." },
+        { id: "vini", name: "Vini Silva", role: "Tecnología y datos", text: "Responde por ingeniería, arquitectura e integraciones. Cuida la calidad y la confiabilidad de los datos." }
       ]
     },
     principles: {

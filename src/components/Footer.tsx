@@ -18,10 +18,7 @@ export default function Footer() {
       links: [
         [t('menu.platformOverview') as string, '/plataforma'],
         [t('menu.features') as string, '/funcionalidades'],
-        [t('menu.locator') as string, '/produtos/localizador'],
-        [t('menu.conecta') as string, '/produtos/conecta'],
         ...newFeatureLinks(t).map((l): [string, string] => [l.label, l.href]),
-        [t('menu.integrations') as string, '/integracoes'],
         [t('menu.coverage') as string, '/cobertura'],
       ],
     },

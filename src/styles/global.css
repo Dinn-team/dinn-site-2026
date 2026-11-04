@@ -24,8 +24,9 @@
 @import "./site-customers.css";
 @import "./site-solutions2.css";
 @import "./site-app-demos.css";
+@import "./site-features2.css";
+@import "./site-jean.css";
 @import "./site-case-viz.css";
-@import "./site-platform.css";
 @import "./site-mobile-menu.css";
 @import "./site-contact.css";
 @import "./site-offer.css";
@@ -200,13 +201,23 @@ html, body {
   .header { transition: none; }
 }
 
-/* Sem barra de fundo: o menu flutua sobre a página, igual ao da home. A classe
-   "scrolled" só troca as cores (versão clara ou escura, conforme o fundo que
-   está atrás), nunca desenha uma faixa. */
+/* Barra simples, no estilo da ElevenLabs: largura inteira, fundo claro quase
+   opaco e um fio fino embaixo. O desfoque leve só ajuda quando o menu volta a
+   aparecer sobre uma tela ou um degradê. Os submenus continuam os mesmos. */
+.header,
 .header.scrolled {
-  background: transparent;
-  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid rgba(8, 9, 10, 0.08);
   box-shadow: none;
+}
+.header-bar { height: 72px; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header, .header.scrolled { background: #fff; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .header, .header.scrolled { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* Botão */
@@ -377,3 +388,6 @@ html, body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+/* Título em uma cor só (decisão do Renan, 03/11/2026): o destaque *assim* dos
+   dicionários não muda mais cor, peso nem estilo em nenhum título do site. */
+.em-light { color: inherit !important; font-weight: inherit !important; font-style: normal !important; }

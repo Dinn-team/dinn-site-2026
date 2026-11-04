@@ -1,11 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { PlatformPage } from '@/components/site/PlatformPage';
+import { PlatformPageV2 } from '@/components/site/PlatformV2';
 import { pagesPt } from '@/i18n/locales/pt.pages';
 
 const { title, description } = pagesPt.platform.meta;
 ---
 
 <Layout title={title} description={description}>
-  <PlatformPage client:load />
+  <PlatformPageV2 client:load />
 </Layout>

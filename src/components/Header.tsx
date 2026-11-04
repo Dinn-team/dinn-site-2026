@@ -24,20 +24,10 @@ function GlobeIcon({ color }: { color: string }) {
   );
 }
 
-let colorCtx: CanvasRenderingContext2D | null | undefined;
-function cssColorToRgb(color: string): [number, number, number] | null {
-  if (colorCtx === undefined) colorCtx = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
-  if (!colorCtx) return null;
-  colorCtx.clearRect(0, 0, 1, 1);
-  colorCtx.fillStyle = '#000';
-  colorCtx.fillStyle = color;
-  colorCtx.fillRect(0, 0, 1, 1);
-  const [r, g, b, a] = colorCtx.getImageData(0, 0, 1, 1).data;
-  return a === 0 ? null : [r, g, b];
-}
-
 export default function Header() {
-  const [isLightBg, setIsLightBg] = useState(false);
+  // O menu fica sempre sobre a barra de vidro clara: versão escura do logo e do texto.
+  // Antes ele detectava a cor do fundo e nascia branco, e piscava ao carregar.
+  const isLightBg = true;
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   
@@ -50,60 +40,6 @@ export default function Header() {
   ];
 
   const currentLangObj = languages.find(l => l.code === lang) || languages[0];
-
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const header = document.querySelector('header');
-          const originalPointerEvents = header ? header.style.pointerEvents : '';
-          if (header) header.style.pointerEvents = 'none';
-
-          const el = document.elementFromPoint(window.innerWidth / 2, 36);
-          
-          if (header) header.style.pointerEvents = originalPointerEvents;
-
-          if (el) {
-            let currentEl = el as HTMLElement | null;
-            let bg = 'rgba(0, 0, 0, 0)';
-            while (currentEl && currentEl !== document.documentElement) {
-              const style = window.getComputedStyle(currentEl);
-              bg = style.backgroundColor;
-              if (bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' && bg !== '') break;
-              currentEl = currentEl.parentElement;
-            }
-            // Os fundos do tema vêm em oklch(): o canvas converte qualquer cor para rgb.
-            const rgb = cssColorToRgb(bg);
-            if (rgb) {
-              const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-              setIsLightBg(brightness >= 128);
-            } else {
-              setIsLightBg(window.scrollY > 20);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    // Reavalia também quando a rolagem para: em saltos longos (links, âncoras) o
-    // conteúdo ainda se ajusta depois do último evento, e o menu, que não tem
-    // faixa de fundo, ficaria com a cor errada para o fundo atrás dele.
-    let settleTimer = 0;
-    const settle = () => {
-      window.clearTimeout(settleTimer);
-      settleTimer = window.setTimeout(onScroll, 180);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('scroll', settle, { passive: true });
-    setTimeout(onScroll, 100);
-    return () => {
-      window.clearTimeout(settleTimer);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('scroll', settle);
-    };
-  }, []);
 
   // Descer = o visitante quer ler: o menu se recolhe com um movimento curto.
   // Subir = procura o topo ou o menu: ele volta. No topo da página, sempre visível.
@@ -132,12 +68,12 @@ export default function Header() {
   // Com a lista de idiomas aberta o menu não some.
   const hideHeader = hidden && !langDropdownOpen;
 
-  const iconColor = isLightBg ? '#6B7280' : 'rgba(255,255,255,0.7)';
+  const iconColor = '#374151';
 
   return (
-    <header className={`header ${isLightBg ? 'scrolled' : ''} ${hideHeader ? 'is-hidden' : ''}`}>
+    <header className={`header scrolled ${hideHeader ? 'is-hidden' : ''}`}>
       <div className="wrap">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="header-bar flex items-center justify-between">
 
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 shrink-0">
@@ -175,8 +111,8 @@ export default function Header() {
                   padding: '0 12px',
                   height: '36px',
                   borderRadius: '9999px',
-                  background: isLightBg ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.1)',
-                  border: isLightBg ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.15)',
+                  background: '#fff',
+                  border: '1px solid rgba(8,9,10,0.14)',
                   cursor: 'pointer',
                   transition: 'background 0.2s',
                   gap: '6px'

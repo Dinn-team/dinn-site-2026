@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { FeaturePage } from '@/components/site/FeaturesV2';
+import { JeanPage } from '@/components/site/JeanPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { FEATURE_SLUGS } from '@/lib/site-map';
+
+export function getStaticPaths() {
+  return FEATURE_SLUGS.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const feature = pagesPt.features.items.find((f) => f.id === slug)!;
+// A Jean tem página própria (JeanPage); as outras usam o molde de funcionalidade.
+const meta = slug === 'jean' ? pagesPt.jean.meta : { title: `${feature.name} | Dinn`, description: feature.problem };
+---
+
+<Layout title={meta.title} description={meta.description}>
+  {slug === 'jean' ? <JeanPage client:load /> : <FeaturePage slug={slug} client:load />}
+</Layout>

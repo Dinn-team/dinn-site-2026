@@ -310,7 +310,7 @@ export const pagesEn = {
   platform: {
     meta: {
       title: "Platform | Dinn",
-      description: "How Dinn works: it observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. The role of Stock, Manager, Insights, MCP and Conecta."
+      description: "How Dinn works: it observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. See the nine features on the Dinn screen."
     },
     hero: {
       eyebrow: "Platform",
@@ -320,44 +320,6 @@ export const pagesEn = {
     cycle: {
       title: "The cycle, in six steps",
       intro: "From a loose signal to a recorded action. The full example is on the home page."
-    },
-    parts: {
-      title: "Five parts, with different roles",
-      intro: "They work together, but they are not five equal products. There is a product, a platform, interfaces and a data layer. Each part also says what it does not do.",
-      notLabel: "What it is not",
-      kinds: ["Product", "Platform", "Interface", "Technical interface", "Data layer"],
-      items: [
-        {
-          tag: "Dinn Stock",
-          title: "The availability reading",
-          desc: "Organizes availability and related channel signals, with the source and confidence of each point.",
-          not: "A product's absence is a signal to validate, not a confirmed stock-out."
-        },
-        {
-          tag: "Dinn Manager",
-          title: "Management and execution",
-          desc: "Gives priorities and context for management and execution: stock-outs, stalled stock, distribution and market in one scope.",
-          not: "The team decides. The platform prepares the reading."
-        },
-        {
-          tag: "Dinn Insights",
-          title: "The conversation with the signals",
-          desc: "Explore and interpret the signals. Ask in plain English and get the number, scope, date and method.",
-          not: "Hypotheses appear as hypotheses. Dinn does not assume the cause."
-        },
-        {
-          tag: "MCP",
-          title: "The interface for your AI",
-          desc: "Lets authorized tools, such as ChatGPT, Claude and Copilot, query Dinn's data, with read-only access.",
-          not: "It is not the data infrastructure. It is a way to query."
-        },
-        {
-          tag: "Dinn Conecta",
-          title: "The data flows",
-          desc: "Builds and runs data flows for the customer's context. It standardizes product, store and region for BI and agents.",
-          not: "It does not close the execution cycle. It delivers data to the executor."
-        }
-      ]
     },
     data: {
       title: "Data and integrations",

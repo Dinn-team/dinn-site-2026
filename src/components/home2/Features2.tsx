@@ -1,18 +1,32 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
-import { PATHS } from '@/lib/site-map';
+import { featurePath } from '@/lib/site-map';
+import { FEATURE_DEMO } from '@/components/site/FeatureDemos';
+import { FrameCamera } from '@/components/site/AppDemos';
 
 type Item = { id: string; name: string; text: string };
 
 // "Como a Dinn funciona": a seção fica fixada na tela e a rolagem percorre as
-// funcionalidades, uma a uma. O texto da ativa abre na lista, a imagem passa
-// como um slide horizontal e uma linha fina mostra o avanço dentro de cada item.
+// funcionalidades, uma a uma. O texto da ativa abre na lista, a tela troca com
+// um fade e uma leve subida, e uma linha fina mostra o avanço dentro de cada item.
 // O visitante só sai da seção depois de ver todas.
-// Imagens: ainda genéricas. Quando houver print ou loop do Dinn Manager
-// (dados mock), coloque o arquivo em public/features/<id>.* e informe em SHOTS.
+// Cada slide mostra a tela do Dinn da funcionalidade (FEATURE_DEMO), sobre um
+// degradê escuro. Para trocar por imagem, informe o arquivo em SHOTS.
 const SHOTS: Record<string, string> = {};
-const GRADIENTS = ['g00', 'g03', 'g05', 'g07', 'g11', 'g09', 'g04'];
+const GRADIENTS = ['web/roxo-noite', 'web/verde-noite', 'web/laranja-noite', 'web/azul-noite', 'web/vinho-noite', 'web/grafite', 'web/roxo-noite', 'web/azul-noite', 'web/grafite'];
+
+// Cada tela aparece inteira numa janela com o formato exato dela (nada cortado),
+// colada embaixo e à direita sobre o degradê. Dentro, uma câmera acompanha o
+// cursor: aproxima onde ele clica e abre para a tela inteira quando o resultado
+// aparece (FrameCamera em AppDemos.tsx; o roteiro de cada tela está nos beats, campo cam).
+// DA = proporção da maquete: 940 ÷ altura (h) da Frame da tela.
+const DA: Record<string, number> = {
+  ruptura: 940 / 620, giro: 940 / 520, preco: 940 / 540, localizador: 940 / 600, mercado: 940 / 450,
+  oportunidades: 940 / 580, distribuicao: 940 / 640, jean: 940 / 600, conecta: 940 / 520,
+};
+// Tempo da troca entre telas: a que sai some enquanto a nova entra.
+const SWAP_MS = 750;
 
 // Distância de rolagem por funcionalidade, em vh.
 const STEP_VH = 40;
@@ -24,6 +38,16 @@ export function Features2() {
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
+  // A tela anterior fica montada durante a troca, para sair com fade em vez de sumir.
+  const [prev, setPrev] = useState(-1);
+  const lastRef = useRef(0);
+  useEffect(() => {
+    if (active === lastRef.current) return;
+    setPrev(lastRef.current);
+    lastRef.current = active;
+    const id = window.setTimeout(() => setPrev(-1), SWAP_MS);
+    return () => window.clearTimeout(id);
+  }, [active]);
 
   // Progresso da rolagem dentro da seção: índice ativo e avanço (0 a 1) no item.
   useEffect(() => {
@@ -87,7 +111,7 @@ export function Features2() {
                   <div className="h2-feat-body" aria-hidden={i !== active}>
                     <div>
                       <p>{it.text}</p>
-                      <a className="h2-link" href={PATHS.features} tabIndex={i === active ? 0 : -1}>{t('home2.features.more')} <ArrowRight size={14} aria-hidden="true" /></a>
+                      <a className="h2-link" href={featurePath(it.id)} tabIndex={i === active ? 0 : -1}>{t('home2.features.more')} <ArrowRight size={14} aria-hidden="true" /></a>
                     </div>
                   </div>
                   {i === active && <span className="h2-feat-prog" aria-hidden="true" />}
@@ -96,16 +120,26 @@ export function Features2() {
             </ul>
             <div className="h2-feat-shot">
               <div className="h2-feat-track">
-                {items.map((it, i) => (
-                  <div key={it.id} className={`h2-slide ${i === active ? 'is-active' : ''}`} data-placeholder={SHOTS[it.id] ? undefined : it.id} aria-hidden={i !== active}>
-                    {SHOTS[it.id] ? (
-                      <img src={SHOTS[it.id]} alt={it.name} loading="lazy" />
-                    ) : (
-                      <span className="h2-slide-bg" style={{ backgroundImage: `url(/gradients/${GRADIENTS[i % GRADIENTS.length]}.avif)` }} aria-hidden="true" />
-                    )}
-                    <span className="h2-slide-tag">{it.name}</span>
-                  </div>
-                ))}
+                {items.map((it, i) => {
+                  const Demo = it.id in FEATURE_DEMO ? FEATURE_DEMO[it.id] : null;
+                  return (
+                    <div key={it.id} className={`h2-slide ${i === active ? 'is-active' : ''}`} data-placeholder={SHOTS[it.id] || Demo ? undefined : it.id} aria-hidden={i !== active}>
+                      {SHOTS[it.id] ? (
+                        <img src={SHOTS[it.id]} alt={it.name} loading="lazy" />
+                      ) : (
+                        <span className="h2-slide-bg" style={{ backgroundImage: `url(/gradients/${GRADIENTS[i % GRADIENTS.length]}.avif)` }} aria-hidden="true" />
+                      )}
+                      {/* A tela do Dinn roda só no slide ativo (e na que está saindo): uma animação por vez. */}
+                      {Demo && (i === active || i === prev) && (
+                        <div className="h2-slide-screen">
+                          <div className="h2-window" style={{ ['--da' as string]: DA[it.id] ?? 1.6 } as CSSProperties}>
+                            <FrameCamera.Provider value={i === active}><Demo /></FrameCamera.Provider>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   ArrowLeft, Check, CheckCheck, ChevronDown, ChevronRight, CircleCheck, CircleX, Home, ImagePlus, LifeBuoy,
-  Lock, MapPin, Plus, Search, Send, Sparkles, Store, TrendingUp, TriangleAlert, Truck, UsersRound, X,
+  Lock, MapPin, Plus, Send, Store, Target, TrendingUp, TriangleAlert, Truck, UsersRound, X,
 } from 'lucide-react';
 import { goodRequest, zoeKey } from './content';
+import { JeanOrb } from '@/components/site/JeanOrb';
 
 // Maquetes do portal (Suporte), reproduzindo as réplicas de
 // docs/suporte/reference. Dados fictícios. O CSS está em support-portal.css (.pt).
@@ -40,9 +41,9 @@ const NAV = [
   { label: 'Início', Icon: Home },
   { label: 'Localizar Produtos', Icon: MapPin },
   { label: 'Mercado', Icon: TrendingUp },
-  { label: 'Oportunidades', Icon: Sparkles },
+  { label: 'Oportunidades', Icon: Target },
   { label: 'Distribuição', Icon: Truck },
-  { label: 'Dinn Insights', Icon: Search },
+  { label: 'Jean', Icon: ({ className }: { className?: string }) => <JeanOrb size={18} className={className} /> },
 ];
 
 function Sidebar({ active }: { active?: boolean }) {

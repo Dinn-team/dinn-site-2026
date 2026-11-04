@@ -20,6 +20,14 @@ const COORDS = ['26°18′ S · 48°51′ O', '39°28′ N · 0°22′ O'];
 const CITY_GRADIENTS = ['g11', 'g09'];
 const CONTACT_ART = [IlContact, IlSupport, IlPrivacy];
 
+// Time da Dinn. Cargos e responsabilidades vêm de dinn-os/people/profiles.
+// Fotos em public/sobre/time/<id>.webp (quadradas, rosto no centro; o cartão
+// recorta em 4:5). Sem foto, o cartão mostra as iniciais sobre o degradê.
+type Member = { id: string; name: string; role: string; text: string };
+const TEAM_PHOTOS: Record<string, string> = { edu: '/sobre/time/edu.webp', renan: '/sobre/time/renan.webp', vini: '/sobre/time/vini.webp' };
+const TEAM_GRADIENTS: Record<string, string> = { edu: 'web/roxo-noite', renan: 'web/azul-noite', vini: 'web/verde-noite' };
+const initials = (name: string) => name.split(' ').map((w) => w[0]).slice(0, 2).join('');
+
 // Sobre a Dinn no padrão da home (Design System v2). Tom sério, mas com
 // imagem: fotos das cidades e degradês
 // nos cartões para dar contraste com o fundo branco.
@@ -32,6 +40,7 @@ export function AboutPage({ logos = [], photos = {} }: { logos?: ClientLogo[]; p
   const stats = t('aboutMore.stats') as unknown as { title: string; items: { value: number; suffix?: string; label: string }[] };
   const principles = t('aboutMore.principles') as unknown as { title: string; intro: string; items: Info[] };
   const map = t('aboutMore.map') as unknown as { aria: string; label: string };
+  const team = t('aboutMore.team') as unknown as { title: string; intro: string; items: Member[] };
   const photoOf = [photos.joinville, photos.valencia];
 
   return (
@@ -81,6 +90,28 @@ export function AboutPage({ logos = [], photos = {} }: { logos?: ClientLogo[]; p
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="h2-section abt-team" aria-labelledby="abt-team">
+        <div className="h2-wrap">
+          <H2Head id="abt-team" title={team.title} intro={team.intro} />
+          <ul className="abt-team-grid">
+            {team.items.map((m) => (
+              <li key={m.id} className="abt-member">
+                <div className="abt-member-photo" style={{ backgroundImage: `url(/gradients/${TEAM_GRADIENTS[m.id] ?? 'web/roxo-noite'}.avif)` }}>
+                  {TEAM_PHOTOS[m.id] ? (
+                    <img src={TEAM_PHOTOS[m.id]} alt={m.name} loading="lazy" width={800} height={800} />
+                  ) : (
+                    <span className="abt-member-initials" aria-hidden="true">{initials(m.name)}</span>
+                  )}
+                </div>
+                <h3>{m.name}</h3>
+                <p className="abt-member-role">{m.role}</p>
+                <p className="abt-member-text">{m.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

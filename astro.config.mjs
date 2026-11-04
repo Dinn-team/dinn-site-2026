@@ -26,6 +26,15 @@ export default defineConfig({
 
   redirects: {
     '/blog/[slug]': '/articles/[slug]',
+    // Funcionalidades que viraram parte das nove (03/11/2026)
+    '/funcionalidades/disponibilidade': '/funcionalidades/ruptura',
+    '/funcionalidades/estimado': '/funcionalidades/ruptura',
+    '/funcionalidades/historico': '/funcionalidades/ruptura',
+    '/funcionalidades/giro-preco': '/funcionalidades/giro',
+    '/funcionalidades/tempo-real': '/funcionalidades/localizador',
+    '/funcionalidades/insights': '/funcionalidades/jean',
+    '/funcionalidades/priorizacao': '/funcionalidades/jean',
+    '/funcionalidades/exportacoes': '/produtos/conecta',
   },
 
   vite: {

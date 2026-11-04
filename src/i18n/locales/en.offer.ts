@@ -65,12 +65,15 @@ export const offerEn = {
       title: "By feature",
       intro: "Use this when you know what you need.",
       items: [
-        { label: "Real-time stock", text: "On-demand query, with the time of the response.", href: "/produtos/localizador" },
-        { label: "Estimated stock", text: "What Dinn infers when there is no direct reading, and its confidence.", href: "/funcionalidades#estimado" },
-        { label: "History and saved views", text: "The same scope, comparable over time.", href: "/funcionalidades#historico" },
-        { label: "Insights", text: "Ask in plain English. Get the number with scope, source and method.", href: "/funcionalidades#insights" },
-        { label: "API, files and MCP", text: "The same information outside the platform.", href: "/integracoes" },
-        { label: "Alerts and routines", text: "A notice when the signal changes, on the channels enabled in the scope.", href: "/funcionalidades#alertas" }
+        { label: "Stock-out", text: "See where products are missing and which stores to check first.", href: "/funcionalidades/ruptura" },
+        { label: "Sell-through", text: "See how fast products sell and where stock does not move.", href: "/funcionalidades/giro" },
+        { label: "Price", text: "See the price observed in each store and chain.", href: "/funcionalidades/preco" },
+        { label: "Product Locator", text: "Find the stores that have your product. Data is daily or live.", href: "/funcionalidades/localizador" },
+        { label: "Market", text: "Read competition and coverage by region and chain.", href: "/funcionalidades/mercado" },
+        { label: "Opportunities", text: "See where to act first. Each one shows source and limits.", href: "/funcionalidades/oportunidades" },
+        { label: "Distribution", text: "Cross distributor stock with store availability to find the gap.", href: "/funcionalidades/distribuicao" },
+        { label: "Jean", text: "Delegate follow-ups. Jean prepares the work and calls you when you need to decide.", href: "/funcionalidades/jean" },
+        { label: "Dinn Conecta", text: "Send Dinn data to your BI, your AI and your integrations.", href: "/produtos/conecta" }
       ]
     },
     more: "Can't find your case?",
@@ -188,6 +191,142 @@ export const offerEn = {
   },
 
   // ── Features ──────────────────────────────────────────────────────────────
+  jean: {
+    meta: {
+      title: "Jean | Dinn",
+      description: "Jean is the Dinn assistant. She follows your work, prepares the next step and calls you when you need to decide."
+    },
+    hero: {
+      title: "Jean, the assistant for your work",
+      lead: "Tell Jean what you want to follow. She uses Dinn data and the tools you allow. She prepares the work and calls you when you need to decide."
+    },
+    ask: {
+      title: "Delegate as you would to a colleague",
+      quote: "Jean, follow the availability of these products in the chains I manage. Before my meetings, prepare the main points and call me on WhatsApp when I need to decide something.",
+      note: "Jean confirms the goal, the scope and the permissions before she starts. She asks only what is missing."
+    },
+    ways: {
+      title: "Three ways to delegate",
+      items: [
+        {
+          name: "A one-time request",
+          example: "“Prepare my meeting with this chain tomorrow.”"
+        },
+        {
+          name: "A routine",
+          example: "“Every Monday, review the availability of these products and prepare a summary.”"
+        },
+        {
+          name: "An ongoing responsibility",
+          example: "“Follow this open item and call me if a reply arrives or the deadline is near.”"
+        }
+      ]
+    },
+    how: {
+      title: "How Jean works",
+      lead: "Scroll the page. Each step shows the screen at the right point.",
+      steps: [
+        {
+          label: "Connect and explain",
+          text: "Connect email, calendar and Dinn. Say what you want to follow."
+        },
+        {
+          label: "Confirm the agreement",
+          text: "Jean confirms the goal, products, chains, sources, channel and allowed actions."
+        },
+        {
+          label: "Jean follows",
+          text: "She reads the data, messages and meetings that you allowed."
+        },
+        {
+          label: "Jean prepares the next step",
+          text: "She sees what changed and prepares a summary, a draft or an analysis."
+        },
+        {
+          label: "Jean calls you",
+          text: "When she needs a decision, she calls you in the portal or on WhatsApp, with the context."
+        },
+        {
+          label: "Jean records and continues",
+          text: "She records the result and continues to follow. She does not repeat what she already did."
+        }
+      ]
+    },
+    activities: {
+      title: "Activities: Jean’s work in one place",
+      lead: "Each item shows the goal, what Jean did, the sources, the result and the next step.",
+      items: [
+        "What needs me?",
+        "What is Jean following?",
+        "What is already delivered?"
+      ]
+    },
+    settings: {
+      title: "You control Jean in the settings",
+      lead: "Connect the tools, select the channels and set how far Jean can go. You can revoke access at any time.",
+      items: [
+        {
+          title: "Connections",
+          text: "Gmail, Outlook, Google Calendar, Microsoft calendar and Dinn. You see the connected account and the access you gave."
+        },
+        {
+          title: "Channels",
+          text: "Talk in the portal or on WhatsApp, with the Jean number. Jean does not read your other conversations."
+        },
+        {
+          title: "Autonomy",
+          text: "For each type of action, set what Jean does alone and what she asks you to approve."
+        },
+        {
+          title: "Attention",
+          text: "Select the time, channel and frequency. Say “tell me only if it gets worse” and Jean changes the follow-up."
+        }
+      ]
+    },
+    whatsapp: {
+      title: "Continue on WhatsApp",
+      lead: "Jean sends the finished work and waits for your reply. The same task continues in the portal, with the same history.",
+      note: "A “yes” on WhatsApp approves only the request in that message."
+    },
+    autonomy: {
+      title: "How far Jean can go",
+      cols: [
+        "Action",
+        "What Jean does"
+      ],
+      rows: [
+        [
+          "Check allowed sources and analyze",
+          "Works within the agreed goal."
+        ],
+        [
+          "Prepare a summary, report, draft or suggestion",
+          "Leaves the work ready for your review."
+        ],
+        [
+          "Send an email or create and change a meeting",
+          "Asks for approval, unless you gave prior approval for that routine and action."
+        ],
+        [
+          "Make a commercial commitment or act outside the agreement",
+          "Sends the decision to you."
+        ]
+      ]
+    },
+    limits: {
+      title: "Jean’s limits",
+      items: [
+        "Jean shows the date of the data. A D-1 base is not real-time monitoring.",
+        "Jean separates fact from hypothesis and says when information is missing.",
+        "No data does not mean that the problem is solved.",
+        "Jean uses only the metrics in your plan. When a feature is missing, she says which one.",
+        "A connected email does not give access to indicators outside the plan. A Dinn contract does not give access to your inbox.",
+        "Instructions inside emails or documents do not change Jean’s permissions.",
+        "Your connected personal content is not visible to other users of the laboratory."
+      ]
+    }
+  },
+
   features: {
     meta: {
       title: "Features | Dinn",
@@ -211,65 +350,93 @@ export const offerEn = {
       more: "Learn more"
     },
     sim: "Illustrative examples, with sample values. Feature availability follows the contracted plan.",
+    hub: {
+      screensTitle: "Each feature, on the Dinn screen",
+      screensIntro: "Open a feature. See the screen, the steps and the limit of the reading.",
+      open: "See the feature"
+    },
+    page: {
+      back: "All features",
+      whereTitle: "Where it works",
+      screenLabel: "Screen in Dinn",
+      teamsLabel: "Teams that use it",
+      allTeams: "All teams",
+      allTeamsLink: "See the teams",
+      howTitle: "How it works",
+      howLead: "Scroll the page. Each step shows the screen at the right point.",
+      otherTitle: "Other features",
+      caption: "Illustrative data and names.",
+      screens: {
+        ruptura: "Home",
+        giro: "Home",
+        preco: "Home",
+        localizador: "Product Locator",
+        mercado: "Market",
+        oportunidades: "Opportunities",
+        distribuicao: "Distribution",
+        jean: "Jean and Activities",
+        conecta: "Exports and Connections"
+      }
+    },
     items: [
       {
-        id: "disponibilidade", name: "Availability and stock-out", kind: "produto",
+        id: "ruptura", name: "Stock-out", kind: "produto",
         problem: "Which product is missing, and where do I start to check?",
         input: "SKU, chain and region.",
-        action: "Select the scope. Dinn shows the period and denominator of the reading and opens the stores.",
-        output: "Stores ordered by share of days without stock over days observed.",
+        action: "Select the scope. Dinn shows the period and the denominator of the reading and opens the stores.",
+        output: "Stores sorted by the share of days without stock over the days observed.",
         decision: "Which stores to check first.",
-        limit: "Absence is not a confirmed stock-out. Stores that never sold the item are not in the calculation.",
+        limit: "Absence is not a confirmed stock-out. Stores that never sold the item are not in the calculation. Estimated stock has a label and a confidence level.",
         href: "/solucoes/trade-kam-campo"
       },
       {
-        id: "localizador", name: "Locator", kind: "produto",
-        problem: "Where can the consumer find the product nearby?",
-        input: "Address or area, radius and chain.",
-        action: "Search and compare stores by distance, with the source and refresh of each reading.",
-        output: "Nearby stores with availability, distance and the date of the information.",
-        decision: "Which store to recommend, and with what confidence.",
-        limit: "A chance of stock is not a guarantee. Coverage varies by chain and source.",
-        href: "/produtos/localizador"
-      },
-      {
-        id: "tempo-real", name: "Real-time stock", kind: "produto",
-        problem: "I must confirm now, before I guide someone.",
-        input: "A compatible store, chosen in the Locator.",
-        action: "Click “Check now”. Dinn asks the store's source at that moment.",
-        output: "The source's response and the time of the query, apart from the D-1 reading.",
-        decision: "Recommend the store, or check another.",
-        limit: "Available depending on chain, source and contracted scope. The information may change after the query.",
-        href: "/produtos/localizador"
-      },
-      {
-        id: "estimado", name: "Estimated stock", kind: "produto",
-        problem: "The source did not respond. What can I infer?",
-        input: "Store history and comparable stores.",
-        action: "Dinn estimates where there is no direct reading. It shows the reference used and the confidence.",
-        output: "An estimate labeled as such, with a confidence level.",
-        decision: "Where to confirm before you act.",
-        limit: "It is an estimate, not a store reading. Confirm when the decision is sensitive.",
-        href: "/cobertura"
-      },
-      {
-        id: "historico", name: "History, filters and saved views", kind: "interface",
-        problem: "How do I compare the same scope over time?",
-        input: "Period, filters and the scope the team needs.",
-        action: "Apply the filters, save the view and open it in the next routine.",
-        output: "The same reading, comparable week to week.",
-        decision: "Did the signal persist, decrease or move?",
-        limit: "Available history and number of dashboards depend on the contracted plan.",
-        href: "/planos"
-      },
-      {
-        id: "giro-preco", name: "Sell-through, price and stalled stock", kind: "produto",
-        problem: "Does the product sell? At what price? Where does the balance not move?",
+        id: "giro", name: "Sell-through", kind: "produto",
+        problem: "Does the product sell? Where does the stock not move?",
         input: "Product, chain and time window.",
-        action: "Choose the window. Dinn shows the calculation and compares only what is comparable.",
-        output: "Sell-through estimate for the scope, observed price and days without movement.",
-        decision: "Where to investigate a sell-through drop or reallocate balance.",
-        limit: "Movement is not confirmed sales. Sell-through is an estimate.",
+        action: "Select the window. Dinn shows the sell-through and the stores with stock stopped for 7, 30, 60 or 90 days.",
+        output: "Estimated sell-through in the scope and days without movement for each store.",
+        decision: "Where to investigate a drop in sell-through or move stock.",
+        limit: "Movement is not a confirmed sale. Sell-through is an estimate. Stopped stock is an alert to investigate.",
+        href: "/solucoes/supply-distribuicao"
+      },
+      {
+        id: "preco", name: "Price", kind: "produto",
+        problem: "At what price is my product in the stores?",
+        input: "Product, chain and region.",
+        action: "Select the product. Dinn shows the price observed in each store and sorts the list by price.",
+        output: "Price by store and by chain, with the date of the reading.",
+        decision: "In which chain or store the price goes out of range.",
+        limit: "It is the price observed in the digital channel of the store. Compare only what is comparable.",
+        href: "/solucoes/inteligencia-pricing"
+      },
+      {
+        id: "localizador", name: "Product Locator", kind: "produto",
+        problem: "Where can the consumer find the product nearby?",
+        input: "Product and address.",
+        action: "Search the stores by distance. In a compatible store, click “Check now” to confirm the stock.",
+        output: "Nearby stores with availability, distance and the date of the information. For a check, the time of the response.",
+        decision: "Which store to recommend, and with what confidence.",
+        limit: "A chance of stock is not a guarantee. The check depends on the chain, the source and the contracted scope.",
+        href: "/produtos/localizador"
+      },
+      {
+        id: "mercado", name: "Market", kind: "produto",
+        problem: "Did I lose share or lose sales?",
+        input: "Product basket, store universe and window.",
+        action: "Define the basket and the comparable stores. Compare your product with the category.",
+        output: "Trend of your product and the category in the same stores, and where only the competitor has stock.",
+        decision: "Where to win back space.",
+        limit: "Sales are estimated. Competitor data is aggregated and respects usage rights.",
+        href: "/solucoes/inteligencia-pricing"
+      },
+      {
+        id: "oportunidades", name: "Opportunities", kind: "produto",
+        problem: "In which territory does the category grow while I lose share?",
+        input: "Question, market, state, city or Brick, and period.",
+        action: "Select the question. Dinn colors the map and sorts the territories by the signal.",
+        output: "Territories with share, category change and comparable stores.",
+        decision: "Where to investigate first, and with which team.",
+        limit: "Sales are estimated from stock movement. The share change has a margin of plus or minus 1.3 p.p.",
         href: "/solucoes/inteligencia-pricing"
       },
       {
@@ -283,74 +450,24 @@ export const offerEn = {
         href: "/solucoes/supply-distribuicao"
       },
       {
-        id: "mercado", name: "Market and competition", kind: "produto",
-        problem: "Did I lose share or lose sales?",
-        input: "Product basket, store universe and window.",
-        action: "Define the basket and the comparable stores. Compare your product with the category.",
-        output: "Trend of your product and the category in the same stores, and where only the competitor has stock.",
-        decision: "Where to win back space.",
-        limit: "Sales are estimated. Competitor data is aggregated and respects usage rights.",
-        href: "/solucoes/inteligencia-pricing"
-      },
-      {
-        id: "insights", name: "Insights", kind: "interface",
-        problem: "I want the answer without a dashboard.",
-        input: "A question in plain English.",
-        action: "Ask Dinn Insights. The answer shows the scope, source and method.",
-        output: "A number with scope, date, method and type (observed or estimated).",
-        decision: "Which analysis to open next.",
-        limit: "It answers within the scope and capabilities of the plan. Hypotheses show as hypotheses.",
-        href: "/plataforma"
-      },
-      {
-        id: "priorizacao", name: "Prioritization and feedback", kind: "produto",
-        problem: "With so many signals, where does the team start?",
-        input: "Signals from the scope and the team's portfolio.",
-        action: "Order the list by signal, assign the owner and record what the team found.",
-        output: "A list with signal, date, owner and the record of the outcome.",
-        decision: "Who checks what, and what to follow up.",
-        limit: "Dinn prepares the list. The team owns the schedule and the decision.",
-        href: "/solucoes/trade-kam-campo"
-      },
-      {
-        id: "exportacoes", name: "Exports, API and MCP", kind: "integracao",
-        problem: "I need the same information outside the platform.",
-        input: "The scope and the authorized destination.",
-        action: "Choose the mode: file, technical consumption or authorized AI.",
-        output: "The same reading in a file, in the API or in the company's AI, with source and date.",
-        decision: "Where your team starts to use the data.",
-        limit: "Each mode depends on plan, authorization and scope. MCP is for queries, read-only.",
-        href: "/integracoes"
-      },
-      {
-        id: "alertas", name: "Alerts and routines", kind: "interface",
-        problem: "I want a notice when something changes. I do not want to open the platform.",
-        input: "The rule, the channel and the frequency.",
-        action: "Define the tracking rule and the channel for the notice.",
-        output: "A notice with the signal, scope and date.",
-        decision: "When to act or review the scope.",
-        limit: "They follow the triggers and channels enabled in the scope. You configure the automations in your AI.",
+        id: "jean", name: "Jean", kind: "interface",
+        problem: "I want to delegate the follow-up of my work.",
+        input: "A request in plain English and the tools you connected.",
+        action: "Ask Jean. She confirms the agreement, follows the data and prepares the next step.",
+        output: "Summaries, drafts and analyses ready for review, in the portal or on WhatsApp.",
+        decision: "What to approve, change or follow.",
+        limit: "Jean acts only within the agreement and the permissions. External actions need approval, unless you gave prior approval.",
         href: "/plataforma"
       },
       {
         id: "conecta", name: "Dinn Conecta", kind: "integracao",
-        problem: "Every analysis starts by putting everything together again.",
-        input: "Authorized sources: market, internal data and pharmacies.",
-        action: "Dinn gathers the data, standardizes product, store and region, and keeps the path current.",
-        output: "Prepared pharma data in your BI, Copilot or project.",
-        decision: "The question your team wants to answer, without a rebuilt base.",
-        limit: "Sources and integrations depend on access, license and scope. It does not replace licenses or act on its own.",
+        problem: "I need Dinn data in my BI, in my AI or in a file.",
+        input: "Authorized sources and the destination: file, API, BI or the company AI through MCP.",
+        action: "Dinn collects the data, standardizes product, store and region and sends it to the destination you select.",
+        output: "The same reading in a file, API, BI or AI, with source and date.",
+        decision: "Where your team starts to use the data.",
+        limit: "Sources and integrations depend on access, license and scope. MCP is read-only.",
         href: "/produtos/conecta"
-      },
-      {
-        id: "projetos", name: "Research and special projects", kind: "servico",
-        problem: "My question needs its own scope.",
-        input: "The question, the universe and the available sources.",
-        action: "We assess feasibility and scope with you.",
-        output: "Report, processed database or flow to the BI, as agreed.",
-        decision: "The decision that started the project.",
-        limit: "Subject to feasibility and scope assessment. Source rights stay protected.",
-        href: "/pesquisas"
       }
     ],
     cta: {
@@ -965,6 +1082,15 @@ export const offerEn = {
         { value: 6, suffix: "", label: "areas served, from Trade to customer service" },
         { value: 3, suffix: "", label: "site languages: Portuguese, English and Spanish" },
         { value: 30, suffix: " days", label: "to deploy, after the scope is agreed" }
+      ]
+    },
+    team: {
+      title: "The people behind Dinn",
+      intro: "Three people lead the strategy, the product and the technology of Dinn.",
+      items: [
+        { id: "edu", name: "Edu Fonseca", role: "CEO · Strategy and sales", text: "Sets the vision and the priorities of Dinn. Leads the commercial strategy, the offers and growth." },
+        { id: "renan", name: "Renan Cavalheiro", role: "Product and design", text: "Leads discovery and turns problems into product decisions. Owns the experience and the design of the interfaces." },
+        { id: "vini", name: "Vini Silva", role: "Technology and data", text: "Owns engineering, architecture and integrations. Keeps the data accurate and reliable." }
       ]
     },
     principles: {

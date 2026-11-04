@@ -16,16 +16,18 @@ export const home2Pt = {
     },
     features: {
       title: "Como a Dinn funciona",
-      sub: "Sete ferramentas. Uma visão do canal.",
+      sub: "Nove funcionalidades. Uma visão do canal.",
       more: "Saiba mais",
       items: [
-        { id: "ruptura", name: "Ruptura, giro e preço", text: "Veja onde faltam produtos, a velocidade de venda e o preço." },
-        { id: "localizador", name: "Localizador de produtos", text: "Encontre as lojas que têm o seu produto. Dado diário ou ao vivo." },
-        { id: "insights", name: "Dinn Insights", text: "Pergunte em linguagem simples. Receba número, escopo, data e método." },
+        { id: "ruptura", name: "Ruptura", text: "Veja onde falta produto e quais lojas verificar primeiro." },
+        { id: "giro", name: "Giro", text: "Veja a velocidade de venda e onde o estoque não se mexe." },
+        { id: "preco", name: "Preço", text: "Veja o preço observado em cada loja e rede." },
+        { id: "localizador", name: "Localizador de Produtos", text: "Encontre as lojas que têm o seu produto. Dado diário ou ao vivo." },
         { id: "mercado", name: "Mercado", text: "Leia concorrência e cobertura por região e rede." },
         { id: "oportunidades", name: "Oportunidades", text: "Veja onde agir primeiro. Cada uma mostra fonte e limites." },
         { id: "distribuicao", name: "Distribuição", text: "Cruze o estoque do distribuidor com a disponibilidade nas lojas." },
-        { id: "activities", name: "Dinn Activities", text: "Acompanhe as ações do seu time a partir de cada sinal." }
+        { id: "jean", name: "Jean", text: "Delegue acompanhamentos. A Jean prepara o trabalho e chama você quando precisa decidir." },
+        { id: "conecta", name: "Dinn Conecta", text: "Leve os dados da Dinn ao seu BI, à sua IA e às suas integrações." }
       ]
     },
     areas: {

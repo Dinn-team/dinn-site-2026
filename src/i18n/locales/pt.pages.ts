@@ -311,7 +311,7 @@ export const pagesPt = {
   platform: {
     meta: {
       title: "Plataforma | Dinn",
-      description: "Como a Dinn funciona: observa, valida, ajuda você a entender e decidir, entrega a quem executa e aprende com o retorno. Papel de Stock, Manager, Insights, MCP e Conecta."
+      description: "Como a Dinn funciona: observa, valida, ajuda você a entender e decidir, entrega a quem executa e aprende com o retorno. Veja as nove funcionalidades na tela do Dinn."
     },
     hero: {
       eyebrow: "Plataforma",
@@ -321,44 +321,6 @@ export const pagesPt = {
     cycle: {
       title: "O ciclo, em seis passos",
       intro: "Do sinal solto à ação registrada. O exemplo completo está na home."
-    },
-    parts: {
-      title: "Cinco partes, com papéis diferentes",
-      intro: "Trabalham juntas, mas não são cinco produtos iguais. Há produto, plataforma, interface e camada de dados. Cada uma diz também o que não faz.",
-      notLabel: "O que não é",
-      kinds: ["Produto", "Plataforma", "Interface", "Interface técnica", "Camada de dados"],
-      items: [
-        {
-          tag: "Dinn Stock",
-          title: "A leitura de disponibilidade",
-          desc: "Organiza a disponibilidade e os sinais relacionados ao canal, com a origem e a confiança de cada ponto.",
-          not: "Ausência de produto é um sinal a validar, não uma ruptura confirmada."
-        },
-        {
-          tag: "Dinn Manager",
-          title: "A gestão e a execução",
-          desc: "Dá prioridades e contexto para a gestão e a execução: ruptura, estoque parado, distribuição e mercado no mesmo recorte.",
-          not: "O time decide. A plataforma prepara a leitura."
-        },
-        {
-          tag: "Dinn Insights",
-          title: "A conversa com os sinais",
-          desc: "Explore e interprete os sinais. Pergunte em português e receba o número, o recorte, a data e o método.",
-          not: "Hipóteses aparecem como hipóteses. A Dinn não presume a causa."
-        },
-        {
-          tag: "MCP",
-          title: "A interface para a sua IA",
-          desc: "Permite que ferramentas autorizadas, como ChatGPT, Claude e Copilot, consultem os dados da Dinn, em acesso somente leitura.",
-          not: "Não é a infraestrutura de dados. É uma forma de consultar."
-        },
-        {
-          tag: "Dinn Conecta",
-          title: "Os fluxos de dados",
-          desc: "Monta e opera fluxos de dados para o contexto do cliente. Padroniza produto, loja e região para o BI e os agentes.",
-          not: "Não fecha o ciclo de execução. Entrega dados a quem executa."
-        }
-      ]
     },
     data: {
       title: "Dados e integrações",

@@ -16,16 +16,18 @@ export const home2En = {
     },
     features: {
       title: "How Dinn works",
-      sub: "Seven tools. One view of the channel.",
+      sub: "Nine features. One view of the channel.",
       more: "Learn more",
       items: [
-        { id: "ruptura", name: "Stock-out, turnover and price", text: "See where products are missing, how fast they sell and at what price." },
-        { id: "localizador", name: "Product locator", text: "Find the stores that have your product. Data is daily or live." },
-        { id: "insights", name: "Dinn Insights", text: "Ask in plain language. Get the number, scope, date and method." },
+        { id: "ruptura", name: "Stock-out", text: "See where products are missing and which stores to check first." },
+        { id: "giro", name: "Sell-through", text: "See how fast products sell and where stock does not move." },
+        { id: "preco", name: "Price", text: "See the price observed in each store and chain." },
+        { id: "localizador", name: "Product Locator", text: "Find the stores that have your product. Data is daily or live." },
         { id: "mercado", name: "Market", text: "Read competition and coverage by region and chain." },
         { id: "oportunidades", name: "Opportunities", text: "See where to act first. Each one shows source and limits." },
         { id: "distribuicao", name: "Distribution", text: "Cross distributor stock with store availability to find the gap." },
-        { id: "activities", name: "Dinn Activities", text: "Track the actions your team takes from each signal." }
+        { id: "jean", name: "Jean", text: "Delegate follow-ups. Jean prepares the work and calls you when you need to decide." },
+        { id: "conecta", name: "Dinn Conecta", text: "Send Dinn data to your BI, your AI and your integrations." }
       ]
     },
     areas: {

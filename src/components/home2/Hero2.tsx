@@ -4,17 +4,20 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { contactUrl } from '@/lib/links';
 import { PATHS } from '@/lib/site-map';
+import { HomeDemo } from '@/components/site/AppDemos';
+import { gradUrl } from '@/components/site/area-theme';
 
-// Vídeo institucional da Dinn. Ainda não existe: quando estiver pronto, coloque
-// o caminho do arquivo aqui (ex.: '/video/dinn-institucional.mp4').
-export const HERO_VIDEO_SRC = '';
+// Vídeo institucional "Um dia com o Dinn" (render de 03/11/2026, 2 min 54 s).
+// O arquivo em public/video é uma versão leve (1600 px, H.264) do render em
+// wt-davinci-video. Para trocar o vídeo, gere de novo com ffmpeg:
+//   ffmpeg -i render.mp4 -vf scale=1600:-2 -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k public/video/dinn-institucional.mp4
+export const HERO_VIDEO_SRC = '/video/dinn-institucional.mp4';
 
-// Herói no modelo da Harvey: título à esquerda, subtítulo e ação à direita,
-// e uma mídia larga com textura de fundo e o player do vídeo da Dinn.
+// Herói: título à esquerda, subtítulo e ação à direita, e a tela Início do
+// Dinn inteira e parada sobre o degradê. O botão de play troca a tela pelo vídeo.
 export function Hero2() {
   const { t } = useTranslation();
   const [playing, setPlaying] = useState(false);
-  const hasVideo = HERO_VIDEO_SRC !== '';
 
   return (
     <section className="h2-hero" aria-labelledby="h2-hero-title">
@@ -30,22 +33,19 @@ export function Hero2() {
           </div>
         </div>
 
-        <div className="h2-media" data-texture>
-          <div className="h2-player">
-            {playing && hasVideo ? (
-              <video src={HERO_VIDEO_SRC} autoPlay controls playsInline />
-            ) : (
-              <>
-                <img className={hasVideo ? 'h2-player-logo' : 'h2-player-logo is-center'} src="/logo/Dinn_logo_v2_Dark.svg" alt="" width={120} height={46} />
-                {hasVideo && (
-                  <button type="button" className="h2-play" onClick={() => setPlaying(true)} aria-label={t('home2.hero.play') as string}>
-                    <Play size={26} fill="currentColor" aria-hidden="true" />
-                  </button>
-                )}
-              </>
-            )}
-          </div>
+        <div className={`h2-media sl2-media hv${playing ? ' is-playing' : ''}`} style={{ backgroundImage: gradUrl('g08') }}>
+          {playing ? (
+            <video className="hv-video" src={HERO_VIDEO_SRC} autoPlay controls playsInline preload="auto" aria-label={t('home2.hero.play') as string} />
+          ) : (
+            <>
+              <div className="sl2-screen hv-screen"><HomeDemo step={0} /></div>
+              <button type="button" className="hv-play" onClick={() => setPlaying(true)} aria-label={t('home2.hero.play') as string}>
+                <Play size={28} fill="currentColor" aria-hidden="true" />
+              </button>
+            </>
+          )}
         </div>
+        {!playing && <p className="ft2-caption">{t('features.page.caption')}</p>}
       </div>
     </section>
   );
