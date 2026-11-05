@@ -4,8 +4,11 @@ import { useTranslation } from '@/i18n/useTranslation';
 import type { Viz } from '@/data/customers';
 import { IlGovern, IlLaunch, IlPricing, IlSac, IlSupply, IlTrade } from '@/components/illustrations/areas';
 import { IlLayers } from '@/components/illustrations/resources';
-import { AppScreen } from './AppScreens';
-import { DonutSvg, fmt, LineSvg, useInView } from './vizPrimitives';
+import { ProductScreen } from './ProductScreen';
+import { LocatorDemo2, MarketDemo2 } from './RealMapDemos';
+import { RuptureDemo } from './RealHomeDemos';
+import { useInView } from './vizPrimitives';
+import { Columns, DonutChart, HexMap, KpiCards, LineChart, Lollipops, PillBars, Rings } from './ChartKit';
 
 // Gráficos, telas do produto e ilustrações dos cases de cliente. Os dados vêm de
 // `viz` em src/data/customers.ts. Tudo é SVG ou CSS, sem biblioteca, e anima ao
@@ -21,21 +24,16 @@ const ART: Record<string, ComponentType<{ label?: string }>> = {
   layers: IlLayers,
 };
 
+// Tela animada do Dinn de cada case (padrão em docs/padrao-telas-animadas.md).
+const SCREENS = { home: RuptureDemo, locator: LocatorDemo2, market: MarketDemo2 };
+
 const LOCALES: Record<string, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
 const LocaleCtx = createContext('pt-BR');
 
-const DONUT_COLORS = [
-  'var(--primary)',
-  'var(--brand-orange)',
-  'var(--brand-lime)',
-  'color-mix(in oklab, var(--primary) 38%, white)',
-  'color-mix(in oklab, var(--foreground) 16%, white)',
-];
-
-function Card({ title, sub, note, children }: { title: string; sub?: string; note?: string; children: ReactNode }) {
+function Card({ title, sub, note, wide, children }: { title: string; sub?: string; note?: string; wide?: boolean; children: ReactNode }) {
   const [ref, on] = useInView<HTMLElement>();
   return (
-    <figure ref={ref} className={`cv-card ${on ? 'is-in' : ''}`}>
+    <figure ref={ref} className={`cv-card ${on ? 'is-in' : ''} ${wide ? 'is-wide' : ''}`}>
       <figcaption className="cv-head"><strong>{title}</strong>{sub && <span>{sub}</span>}</figcaption>
       {children}
       {note && <p className="cv-note">{note}</p>}
@@ -43,20 +41,15 @@ function Card({ title, sub, note, children }: { title: string; sub?: string; not
   );
 }
 
+const BARS = { pills: PillBars, columns: Columns, rings: Rings, kpis: KpiCards, lollipop: Lollipops, hexmap: HexMap };
+
 function Bars({ v }: { v: Extract<Viz, { kind: 'bars' }> }) {
   const locale = useContext(LocaleCtx);
-  const max = v.max ?? Math.max(...v.items.map((i) => i.value));
+  const [ref, on] = useInView<HTMLDivElement>();
+  const Chart = BARS[v.as ?? 'pills'];
   return (
     <Card title={v.title} sub={v.sub} note={v.note}>
-      <ul className="cv-bars">
-        {v.items.map((it, i) => (
-          <li key={it.label} className={it.hot ? 'is-hot' : ''} style={{ ['--w' as string]: `${(it.value / max) * 100}%`, ['--d' as string]: `${i * 90}ms` }}>
-            <span className="cv-bar-label">{it.label}</span>
-            <span className="cv-bar-track"><span className="cv-bar-fill" /></span>
-            <span className="cv-bar-val">{it.display ?? `${fmt(it.value, v.digits ?? (Number.isInteger(it.value) ? 0 : 1), locale)}${v.unit ?? ''}`}</span>
-          </li>
-        ))}
-      </ul>
+      <div ref={ref}><Chart items={v.items} max={v.max} unit={v.unit} digits={v.digits} locale={locale} on={on} /></div>
     </Card>
   );
 }
@@ -64,21 +57,9 @@ function Bars({ v }: { v: Extract<Viz, { kind: 'bars' }> }) {
 function Donut({ v }: { v: Extract<Viz, { kind: 'donut' }> }) {
   const locale = useContext(LocaleCtx);
   const [ref, on] = useInView<HTMLDivElement>();
-  const total = v.items.reduce((s, i) => s + i.value, 0) || 1;
   return (
     <Card title={v.title} sub={v.sub} note={v.note}>
-      <div ref={ref} className="cv-donut-wrap">
-        <DonutSvg items={v.items} colors={DONUT_COLORS} center={v.center} on={on} />
-        <ul className="cv-legend">
-          {v.items.map((it, i) => (
-            <li key={it.label}>
-              <i style={{ background: DONUT_COLORS[i % DONUT_COLORS.length] }} />
-              <span>{it.label}</span>
-              <b>{fmt((it.value / total) * 100, 1, locale)}%</b>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div ref={ref}><DonutChart items={v.items} center={v.center} locale={locale} on={on} /></div>
     </Card>
   );
 }
@@ -86,19 +67,10 @@ function Donut({ v }: { v: Extract<Viz, { kind: 'donut' }> }) {
 function Line({ v }: { v: Extract<Viz, { kind: 'line' }> }) {
   const locale = useContext(LocaleCtx);
   const [ref, on] = useInView<HTMLDivElement>();
-  const colors = ['var(--primary)', 'var(--brand-orange)'];
   return (
     <Card title={v.title} sub={v.sub} note={v.note}>
       <div ref={ref}>
-        <LineSvg
-          labels={v.labels}
-          series={v.series.map((s, i) => ({ ...s, color: colors[i % colors.length] }))}
-          on={on}
-          unit={v.unit}
-          digits={v.digits}
-          locale={locale}
-          area
-        />
+        <LineChart title={v.title} labels={v.labels} series={v.series} unit={v.unit} digits={v.digits} locale={locale} on={on} />
       </div>
     </Card>
   );
@@ -135,7 +107,7 @@ function Screen({ v }: { v: Extract<Viz, { kind: 'screen' }> }) {
   const { t } = useTranslation();
   return (
     <figure className="cv-screen">
-      <div className="cv-screen-frame"><AppScreen kind={v.screen} /></div>
+      <div className="cv-screen-frame"><ProductScreen demo={SCREENS[v.screen]} /></div>
       <figcaption>{v.caption} <em>{t('clients.page.illustrative')}</em></figcaption>
     </figure>
   );

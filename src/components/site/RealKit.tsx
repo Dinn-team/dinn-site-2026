@@ -1,10 +1,23 @@
-import { useEffect, useState, type ReactNode, type RefObject } from 'react';
+import { useEffect, useId, useState, type ReactNode, type RefObject } from 'react';
 import {
   Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronsUpDown, ChartPie, Download, Factory, FileWarning, House, Info,
   LifeBuoy, Lightbulb, LoaderCircle, PanelLeft, RefreshCw, Search, Target, TriangleAlert,
 } from 'lucide-react';
 import { Frame, fmt, reduced } from './AppDemos';
 import { JeanOrbIcon } from './JeanOrb';
+import { demoLocale, useDemoT } from './demoI18n';
+import type { Language } from '@/i18n/store';
+
+type Tr = (pt: string, vars?: Record<string, string | number>) => string;
+/** Data completa pelo idioma: PT 03/11/2026, EN Nov 3, 2026, ES 3/11/2026. */
+export const fdate = (lang: Language, d: number, m: number, y = 2026) =>
+  new Date(y, m - 1, d).toLocaleDateString(demoLocale(lang), lang === 'en' ? { month: 'short', day: 'numeric', year: 'numeric' } : lang === 'es' ? { day: 'numeric', month: 'numeric', year: 'numeric' } : { day: '2-digit', month: '2-digit', year: 'numeric' });
+/** Dia e mês pelo idioma: PT 15/08, EN Aug 15, ES 15/8. */
+export const fshort = (lang: Language, d: number, m: number) =>
+  new Date(2026, m - 1, d).toLocaleDateString(demoLocale(lang), lang === 'en' ? { month: 'short', day: 'numeric' } : lang === 'es' ? { day: 'numeric', month: 'numeric' } : { day: '2-digit', month: '2-digit' });
+/** "2 un." e "2–5 un" saem como unidades no idioma da tela. Outro texto volta igual. */
+export const qty = (t: Tr, s: string) => s.replace(/^([\d–]+) un(\.?)$/, (_m, n, dot) => (dot ? t('{n} un.', { n }) : t('{n} un', { n })));
+const node = (t: Tr, n: ReactNode) => (typeof n === 'string' ? t(n) : n);
 
 // Peças das telas fiéis ao app do Dinn (RealDemos.tsx). Base: os prints da
 // plataforma em referencia-plataforma/ (nov/2026). Mesmo desenho do app:
@@ -32,16 +45,17 @@ const NAV = [
 ];
 
 export function RSide({ nav }: { nav: string }) {
+  const { t } = useDemoT();
   return (
     <nav className="rl-side" aria-hidden="true">
       <img src="/logo/Dinn_logo_v2_Light.svg" alt="" width={86} height={34} />
       <ul>
         {NAV.map(({ k, icon: I, label }) => (
-          <li key={k} className={k === nav ? 'on' : ''}><I size={18} />{label}</li>
+          <li key={k} className={k === nav ? 'on' : ''}><I size={18} />{t(label)}</li>
         ))}
       </ul>
       <ul className="rl-side-sep">
-        <li className={nav === 'support' ? 'on' : ''}><LifeBuoy size={18} />Suporte</li>
+        <li className={nav === 'support' ? 'on' : ''}><LifeBuoy size={18} />{t('Suporte')}</li>
       </ul>
       <div className="rl-user"><span>A</span><p><b>Ana Exemplo</b><small>ana@exemplo.com.br</small></p></div>
     </nav>
@@ -51,8 +65,9 @@ export function RSide({ nav }: { nav: string }) {
 type Cur = Parameters<typeof Frame>[0]['cur'];
 /** Tela inteira: menu lateral aberto + área principal. */
 export function RFrame({ app, cur, nav, label, h = RH, children }: { app: RefObject<HTMLDivElement | null>; cur: Cur; nav: string; label: string; h?: number; children: ReactNode }) {
+  const { t } = useDemoT();
   return (
-    <Frame app={app} w={RW} h={h} nav={nav} cur={cur} label={label} side={<RSide nav={nav} />} kind="rl-app">
+    <Frame app={app} w={RW} h={h} nav={nav} cur={cur} label={t(label)} side={<RSide nav={nav} />} kind="rl-app">
       {children}
     </Frame>
   );
@@ -60,17 +75,18 @@ export function RFrame({ app, cur, nav, label, h = RH, children }: { app: RefObj
 
 /** Barra do topo: saudação com a data do dado (D-1) ou caminho da página. */
 export function RTop({ crumb, sub, actions = true }: { crumb?: string; sub?: string; actions?: boolean }) {
+  const { t, lang } = useDemoT();
   return (
     <header className="rl-top">
       <PanelLeft size={18} className="rl-top-ico" />
       {crumb ? (
-        <p className="rl-crumb"><span>Início</span><ChevronRight size={14} /><b>{crumb}</b>{sub && <small>{sub}</small>}</p>
+        <p className="rl-crumb"><span>{t('Início')}</span><ChevronRight size={14} /><b>{t(crumb)}</b>{sub && <small>{t(sub)}</small>}</p>
       ) : (
-        <p className="rl-hello"><b>Olá, Ana.</b><small>{sub ?? 'Atualizado em 03/11/2026 (D-1)'}</small></p>
+        <p className="rl-hello"><b>{t('Olá, Ana.')}</b><small>{sub ? t(sub) : t('Atualizado em {d} (D-1)', { d: fdate(lang, 3, 11) })}</small></p>
       )}
       <span className="rl-top-r">
         <span className="rl-pill rl-pill-jean"><JeanOrbIcon size={15} />Jean</span>
-        {actions && <><span className="rl-pill"><Bookmark size={15} />Ver</span><span className="rl-pill"><Lightbulb size={15} className="rl-bulb" />Boa prática</span></>}
+        {actions && <><span className="rl-pill"><Bookmark size={15} />{t('Ver')}</span><span className="rl-pill"><Lightbulb size={15} className="rl-bulb" />{t('Boa prática')}</span></>}
       </span>
     </header>
   );
@@ -95,18 +111,19 @@ type Tg = (k: string) => object;
 export function RSelect({ k, tg, label, count, value, w = 140, open, items, picked = [], search, disabled }: {
   k: string; tg: Tg; label: string; count?: number; value?: string; w?: number; open?: boolean; items?: string[]; picked?: number[]; search?: string; disabled?: boolean;
 }) {
+  const { t } = useDemoT();
   return (
     <span className="rl-sel-wrap">
       <span className={`rl-sel ${disabled ? 'off' : ''} ${open ? 'is-open' : ''}`} style={{ width: w }} {...tg(k)}>
-        <span className="rl-sel-v">{value ?? label}{count ? <i>{count}</i> : null}</span>
+        <span className="rl-sel-v">{t(value ?? label)}{count ? <i>{count}</i> : null}</span>
         <ChevronDown size={16} />
       </span>
       {open && items && (
         <span className="rl-menu">
-          {search !== undefined && <span className="rl-menu-search"><Search size={14} />{search || <em>Buscar…</em>}</span>}
+          {search !== undefined && <span className="rl-menu-search"><Search size={14} />{search || <em>{t('Buscar…')}</em>}</span>}
           {items.map((it, i) => (
             <span key={it} className={picked.includes(i) ? 'on' : ''} {...tg(`${k}-${i}`)}>
-              <i>{picked.includes(i) && <Check size={11} strokeWidth={3} />}</i>{it}
+              <i>{picked.includes(i) && <Check size={11} strokeWidth={3} />}</i>{t(it)}
             </span>
           ))}
         </span>
@@ -115,12 +132,15 @@ export function RSelect({ k, tg, label, count, value, w = 140, open, items, pick
   );
 }
 
-export const RSave = ({ clear = false, tg }: { clear?: boolean; tg?: Tg }) => (
-  <>
-    <span className="rl-sel rl-btn-line" {...(tg ? tg('save') : {})}><Bookmark size={15} />Salvar</span>
-    {clear && <span className="rl-clear">✕ Limpar filtros</span>}
-  </>
-);
+export function RSave({ clear = false, tg }: { clear?: boolean; tg?: Tg }) {
+  const { t } = useDemoT();
+  return (
+    <>
+      <span className="rl-sel rl-btn-line" {...(tg ? tg('save') : {})}><Bookmark size={15} />{t('Salvar')}</span>
+      {clear && <span className="rl-clear">{t('✕ Limpar filtros')}</span>}
+    </>
+  );
+}
 
 // ── Cards e números ────────────────────────────────────────────────────────
 export function Count({ v, on, d = 0, suffix = '' }: { v: number; on: boolean; d?: number; suffix?: string }) {
@@ -144,32 +164,36 @@ export function Count({ v, on, d = 0, suffix = '' }: { v: number; on: boolean; d
   return on ? <>{fmt(x, d)}{suffix}</> : <span className="rl-sk" />;
 }
 
-export function RKpi({ icon, label, children, t }: { icon: ReactNode; label: string; children: ReactNode; t?: object }) {
+export function RKpi({ icon, label, children, t: target }: { icon: ReactNode; label: string; children: ReactNode; t?: object }) {
+  const { t } = useDemoT();
   return (
-    <div className="rl-kpi" {...t}>
+    <div className="rl-kpi" {...target}>
       <span className="rl-kpi-ico">{icon}</span>
-      <span><small>{label}<Info size={13} /></small><b>{children}</b></span>
+      <span><small>{t(label)}<Info size={13} /></small><b>{children}</b></span>
     </div>
   );
 }
 
-export function RCard({ title, sub, aside, children, className = '', t }: { title?: ReactNode; sub?: ReactNode; aside?: ReactNode; children: ReactNode; className?: string; t?: object }) {
+export function RCard({ title, sub, aside, children, className = '', t: target }: { title?: ReactNode; sub?: ReactNode; aside?: ReactNode; children: ReactNode; className?: string; t?: object }) {
+  const { t } = useDemoT();
   return (
-    <section className={`rl-card ${className}`} {...t}>
-      {title && <header><h4>{title}<Info size={14} /></h4>{aside}</header>}
-      {sub && <p className="rl-card-sub">{sub}</p>}
+    <section className={`rl-card ${className}`} {...target}>
+      {title && <header><h4>{node(t, title)}<Info size={14} /></h4>{aside}</header>}
+      {sub && <p className="rl-card-sub">{node(t, sub)}</p>}
       {children}
     </section>
   );
 }
 
-export const RSeg = ({ items, on = 0, t }: { items: string[]; on?: number; t?: (i: number) => object }) => (
-  <span className="rl-seg">{items.map((x, i) => <i key={x} className={i === on ? 'on' : ''} {...(t ? t(i) : {})}>{x}</i>)}</span>
-);
+export function RSeg({ items, on = 0, t: target }: { items: string[]; on?: number; t?: (i: number) => object }) {
+  const { t } = useDemoT();
+  return <span className="rl-seg">{items.map((x, i) => <i key={x} className={i === on ? 'on' : ''} {...(target ? target(i) : {})}>{t(x)}</i>)}</span>;
+}
 
-export const RDrop = ({ v, w = 150, t }: { v: string; w?: number; t?: object }) => (
-  <span className="rl-drop" style={{ width: w }} {...t}>{v}<ChevronDown size={15} /></span>
-);
+export function RDrop({ v, w = 150, t: target }: { v: string; w?: number; t?: object }) {
+  const { t } = useDemoT();
+  return <span className="rl-drop" style={{ width: w }} {...target}>{t(v)}<ChevronDown size={15} /></span>;
+}
 
 export const RIconBtn = ({ children }: { children: ReactNode }) => <span className="rl-ibtn">{children}</span>;
 export const RPager = () => (
@@ -178,7 +202,10 @@ export const RPager = () => (
 
 // ── Selos, medidor e barras ────────────────────────────────────────────────
 export const LV: Record<string, string> = { Crítico: 'crit', Alto: 'high', Moderado: 'mod', Leve: 'low' };
-export const RBadge = ({ lv }: { lv: string }) => <span className={`rl-badge ${LV[lv] ?? lv}`}>{lv}</span>;
+export function RBadge({ lv }: { lv: string }) {
+  const { t } = useDemoT();
+  return <span className={`rl-badge ${LV[lv] ?? lv}`}>{t(lv)}</span>;
+}
 
 /** Medidor de % de ruptura: anel roxo, como na coluna "% Ruptura" do app. */
 export function RGauge({ v, on = true }: { v: number; on?: boolean }) {
@@ -197,40 +224,57 @@ export function RGauge({ v, on = true }: { v: number; on?: boolean }) {
 }
 
 /** "16 dias de 30 dias" com barra, e alerta quando passa da metade. */
-export const RDays = ({ d, of, on = true, warn }: { d: number; of: number; on?: boolean; warn?: boolean }) => (
-  <span className="rl-days">
-    {warn && <TriangleAlert size={14} className="rl-warn" />}
-    <b>{d} dias</b><small>de {of} dias</small>
-    <i><u style={{ width: on ? `${(d / of) * 100}%` : 0 }} /></i>
-  </span>
-);
+export function RDays({ d, of, on = true, warn }: { d: number; of: number; on?: boolean; warn?: boolean }) {
+  const { t } = useDemoT();
+  return (
+    <span className="rl-days">
+      {warn && <TriangleAlert size={14} className="rl-warn" />}
+      <b>{t('{n} dias', { n: d })}</b><small>{t('de {n} dias', { n: of })}</small>
+      <i><u style={{ width: on ? `${(d / of) * 100}%` : 0 }} /></i>
+    </span>
+  );
+}
 
-export const RStock = ({ v, k = 'off' }: { v: string; k?: 'off' | 'mid' | 'ok' }) => <span className={`rl-stock ${k}`}>{v}</span>;
+export function RStock({ v, k = 'off' }: { v: string; k?: 'off' | 'mid' | 'ok' }) {
+  const { t } = useDemoT();
+  const q = qty(t, v);
+  return <span className={`rl-stock ${k}`}>{q === v ? t(v) : q}</span>;
+}
 
-export const RConsult = ({ busy, t }: { busy?: boolean; t?: object }) => (
-  <span className={`rl-consult ${busy ? 'busy' : ''}`} {...t}>
-    {busy ? <LoaderCircle size={13} className="rl-spin" /> : <RefreshCw size={13} />}{busy ? 'Consultando…' : 'Consultar agora'}
-  </span>
-);
-export const RReport = ({ t }: { t?: object }) => <span className="rl-report" {...t}><FileWarning size={13} />Reportar</span>;
+export function RConsult({ busy, t: target }: { busy?: boolean; t?: object }) {
+  const { t } = useDemoT();
+  return (
+    <span className={`rl-consult ${busy ? 'busy' : ''}`} {...target}>
+      {busy ? <LoaderCircle size={13} className="rl-spin" /> : <RefreshCw size={13} />}{busy ? t('Consultando…') : t('Consultar agora')}
+    </span>
+  );
+}
+export function RReport({ t: target }: { t?: object }) {
+  const { t } = useDemoT();
+  return <span className="rl-report" {...target}><FileWarning size={13} />{t('Reportar')}</span>;
+}
 
-export const RTh = ({ children, sort, active, t }: { children: ReactNode; sort?: boolean; active?: 'up' | 'down'; t?: object }) => (
-  <th {...t} className={active ? 'on' : ''}>
-    <span>{children}{sort && (active ? <ChevronDown size={13} className={active === 'up' ? 'up' : ''} /> : <ChevronsUpDown size={12} />)}<Info size={12} /></span>
+export function RTh({ children, sort, active, t: target }: { children: ReactNode; sort?: boolean; active?: 'up' | 'down'; t?: object }) {
+  const { t } = useDemoT();
+  return (
+  <th {...target} className={active ? 'on' : ''}>
+    <span>{node(t, children)}{sort && (active ? <ChevronDown size={13} className={active === 'up' ? 'up' : ''} /> : <ChevronsUpDown size={12} />)}<Info size={12} /></span>
   </th>
-);
+  );
+}
 
 /** Linhas de classificação: ponto, nome, total, barra e %. */
-export function RLevels({ head, rows, on, t, tg, sel }: {
+export function RLevels({ head, rows, on, t: target, tg, sel }: {
   head: [string, string, string]; rows: { n: string; c: number; p: number; col: string }[]; on: boolean; t?: object; tg?: Tg; sel?: number;
 }) {
+  const { t } = useDemoT();
   return (
-    <table className="rl-levels" {...t}>
-      <thead><tr><th>{head[0]}<ChevronsUpDown size={11} /></th><th>{head[1]}<ChevronsUpDown size={11} /></th><th /><th>{head[2]}<ChevronsUpDown size={11} /></th></tr></thead>
+    <table className="rl-levels" {...target}>
+      <thead><tr><th>{t(head[0])}<ChevronsUpDown size={11} /></th><th>{t(head[1])}<ChevronsUpDown size={11} /></th><th /><th>{t(head[2])}<ChevronsUpDown size={11} /></th></tr></thead>
       <tbody>
         {rows.map((r, i) => (
           <tr key={r.n} className={sel === i ? 'on' : ''} {...(tg ? tg(`lv-${i}`) : {})}>
-            <td><i style={{ background: r.col }} />{r.n}</td>
+            <td><i style={{ background: r.col }} />{t(r.n)}</td>
             <td><Count v={r.c} on={on} /></td>
             <td><span className="rl-bar"><u style={{ width: on ? `${r.p}%` : 0, background: r.col, transitionDelay: `${i * 0.08}s` }} /></span></td>
             <td><Count v={r.p} on={on} d={r.p % 1 ? 1 : 0} suffix="%" /></td>
@@ -255,14 +299,13 @@ const curve = (pts: [number, number][]) => {
 };
 
 export type Series = { values: number[]; color: string; name?: string; dash?: boolean };
-let gid = 0;
 export function RArea({ labels, series, ticks, on, w = 640, h = 240, unit = '', tip, fill = true, xEvery = 1, mark }: {
   labels: string[]; series: Series[]; ticks: number[]; on: boolean; w?: number; h?: number; unit?: string;
   tip?: { i: number; text: ReactNode }; fill?: boolean; xEvery?: number;
   /** Alvo invisível num ponto da 1ª série, para o cursor do roteiro. */
   mark?: { i: number; t: object };
 }) {
-  const [id] = useState(() => `rl-g${gid++}`);
+  const id = `rl-g${useId().replace(/:/g, '')}`;
   const L = 46, R = 14, T = 10, B = 28;
   const min = ticks[0];
   const max = ticks[ticks.length - 1];
@@ -322,9 +365,10 @@ export function RArea({ labels, series, ticks, on, w = 640, h = 240, unit = '', 
 }
 
 // ── Rosca (market share) ───────────────────────────────────────────────────
-export function RDonut({ items, on, center, sub = 'total', size = 170, t, hi }: {
+export function RDonut({ items, on, center, sub = 'total', size = 170, t: target, hi }: {
   items: { label: string; value: number; color: string }[]; on: boolean; center: string; sub?: string; size?: number; t?: (i: number) => object; hi?: number;
 }) {
+  const { t } = useDemoT();
   const r = 50;
   const C = 2 * Math.PI * r;
   let acc = 0;
@@ -337,11 +381,11 @@ export function RDonut({ items, on, center, sub = 'total', size = 170, t, hi }: 
         return (
           <circle key={it.label} cx="70" cy="70" r={r} fill="none" stroke={it.color} strokeWidth={hi === i ? 22 : 18} transform="rotate(-90 70 70)"
             strokeDasharray={`${on ? Math.max(0, seg - 0.6) : 0} ${C}`} strokeDashoffset={-off}
-            style={{ transition: `stroke-dasharray 1s cubic-bezier(.16,1,.3,1) ${i * 0.08}s, stroke-width .35s cubic-bezier(.175,.885,.32,1.275)` }} {...(t ? t(i) : {})} />
+            style={{ transition: `stroke-dasharray 1s cubic-bezier(.16,1,.3,1) ${i * 0.08}s, stroke-width .35s cubic-bezier(.175,.885,.32,1.275)` }} {...(target ? target(i) : {})} />
         );
       })}
       <text x="70" y="72" textAnchor="middle" className="rl-donut-v">{on ? center : ''}</text>
-      <text x="70" y="88" textAnchor="middle" className="rl-donut-s">{on ? sub : ''}</text>
+      <text x="70" y="88" textAnchor="middle" className="rl-donut-s">{on ? t(sub) : ''}</text>
     </svg>
   );
 }

@@ -3,7 +3,9 @@ import { fmt, useDemo, type Def, type DemoProps } from './AppDemos';
 import {
   BRAND, Count, RArea, RBadge, RCard, RConsult, RDays, RDrop, RFrame, RGauge, RIconBtn, RKpi, RLevels, RPage, RPager,
   RReport, RSave, RSeg, RSelect, RStock, RTh, RTop, RED,
+  fdate, fshort, qty,
 } from './RealKit';
+import { useDemoT } from './demoI18n';
 
 // Telas da Início do Dinn, fiéis ao app (prints de nov/2026): Ruptura, Giro
 // e Preço. Dados fictícios, com nomes do modo demonstração do app.
@@ -50,7 +52,7 @@ const SKU_ROWS: SkuRow[] = [
   ['Moderado', 'Algirex comprimido 1g', 'MRD-4797-12', 'Indisponível', 'off', 42, 12, '0 un.', '27 un.'],
   ['Moderado', 'Broncolar xarope 120ml', 'KLD-6505-01', '1–3 un', 'mid', 41, 13, '0 un.', '54 un.'],
 ];
-const WEEKS = ['15/08', '22/08', '29/08', '05/09', '12/09', '19/09', '26/09', '03/10', '10/10', '17/10', '24/10', '31/10'];
+const WEEKS: [number, number][] = [[15, 8], [22, 8], [29, 8], [5, 9], [12, 9], [19, 9], [26, 9], [3, 10], [10, 10], [17, 10], [24, 10], [31, 10]];
 const RUP_ALL = [27.4, 26.8, 26.1, 26.5, 25.2, 25.9, 26.8, 25.6, 24.9, 24.6, 23.8, 24.6];
 const RUP_ONE = [39.0, 35.4, 33.6, 33.1, 32.5, 29.0, 30.8, 34.4, 31.6, 29.4, 28.7, 26.2];
 
@@ -73,6 +75,7 @@ const RUP_DEF: Def = {
 };
 
 export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
+  const { t, lang } = useDemoT();
   const { app, phase, cur, tg } = useDemo(def, step);
   const one = phase >= 2;
   const on = phase !== 2;
@@ -81,7 +84,7 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
     : [{ n: 'Crítico', c: 62, p: 5, col: RED }, { n: 'Alto', c: 211, p: 17, col: ORANGE }, { n: 'Moderado', c: 397, p: 32, col: YELLOW }, { n: 'Leve', c: 570, p: 46, col: '#22c55e' }];
   const modal = phase >= 6;
   return (
-    <RFrame app={app} cur={cur} nav="home" label="Tela Início do Dinn: o cursor escolhe um produto, a ruptura e a classificação dos PDVs carregam, e o ranking de ruptura por SKU de uma loja abre com a consulta do estoque agora.">
+    <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: o cursor escolhe um produto, a ruptura e a classificação dos PDVs carregam, e o ranking de ruptura por SKU de uma loja abre com a consulta do estoque agora.')}>
       <RPage top={<RTop />} filters={<Filters tg={tg} phase={phase} openAt={1} count={one} />} y={phase >= 5 ? 520 : 0}>
         <div className="rl-stackv" {...tg('dash')}>
         <div className={`rl-kpis k4 ${phase === 2 ? 'rl-loading' : ''}`}>
@@ -93,10 +96,10 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
         <div className="rl-row">
           <RCard className="grow" title="Ruptura" t={tg('chart')}
             aside={<span className="rl-aside"><RSeg items={['Diário', 'Semanal']} on={1} /><RDrop v="90 dias" w={150} /></span>}
-            sub={one ? <><b>Filtrando por:</b> Produtos: Cefalgin cápsula 400mg</> : <><b>Filtrando por:</b> Todos os produtos</>}>
-            <RArea labels={WEEKS} series={[{ values: one ? RUP_ONE : RUP_ALL, color: BRAND }]} ticks={[15, 23, 31, 39, 45]} unit="%" on={on} w={600} h={262}
+            sub={one ? <><b>{t('Filtrando por:')}</b> {t('Produtos')}: Cefalgin cápsula 400mg</> : <><b>{t('Filtrando por:')}</b> {t('Todos os produtos')}</>}>
+            <RArea labels={WEEKS.map(([d, m]) => fshort(lang, d, m))} series={[{ values: one ? RUP_ONE : RUP_ALL, color: BRAND }]} ticks={[15, 23, 31, 39, 45]} unit="%" on={on} w={600} h={262}
               mark={{ i: 7, t: tg('pt') }}
-              tip={phase === 4 ? { i: 7, text: <><b>Semana de 03/10</b><span><i style={{ background: BRAND }} />Ruptura: 34,4%</span></> } : undefined} />
+              tip={phase === 4 ? { i: 7, text: <><b>{t('Semana de {d}', { d: fshort(lang, 3, 10) })}</b><span><i style={{ background: BRAND }} />{t('Ruptura: {v}', { v: `${fmt(34.4, 1)}%` })}</span></> } : undefined} />
           </RCard>
           <RCard className="side" title="Classificação de Ruptura" t={tg('lv')}>
             <RLevels head={['Nível', 'Total PDVs', '%']} rows={lv} on={on} />
@@ -104,10 +107,10 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
         </div>
         </div>
         <div className="rl-sect-h">
-          <div><h3><Store size={24} /> Pontos de venda</h3><p>Total: {fmt(one ? 805 : 1240)} PDVs na sua carteira</p></div>
-          <span className="rl-aside"><span className="rl-search"><Search size={16} />Buscar por rede, loja ou CNPJ.</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
+          <div><h3><Store size={24} /> {t('Pontos de venda')}</h3><p>{t('Total: {n} PDVs na sua carteira', { n: fmt(one ? 805 : 1240) })}</p></div>
+          <span className="rl-aside"><span className="rl-search"><Search size={16} />{t('Buscar por rede, loja ou CNPJ.')}</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
         </div>
-        <p className="rl-note">O período abaixo muda a coluna % Ruptura. A coluna Nível usa sempre a janela fixa de 30 dias, com corte no sábado.</p>
+        <p className="rl-note">{t('O período abaixo muda a coluna % Ruptura. A coluna Nível usa sempre a janela fixa de 30 dias, com corte no sábado.')}</p>
         <RCard t={tg('tbl')}>
           <table className="rl-table">
             <thead><tr>
@@ -117,7 +120,7 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
               {RUP_ROWS.map(([n, net, l, r, d, g, , rep, c, s], i) => (
                 <tr key={n} className={`${phase >= 5 ? 'rl-in' : ''} ${modal && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${0.25 + Math.min(i, 4) * 0.08}s` }} {...tg(`row-${i}`)}>
                   <PdvCell n={n} net={net} /><td><RBadge lv={l} /></td><td><RGauge v={r} on={phase >= 5} /></td>
-                  <td><RDays d={d} of={90} warn={d > 30} on={phase >= 5} /></td><td>{g}</td><td>{rep}</td>
+                  <td><RDays d={d} of={90} warn={d > 30} on={phase >= 5} /></td><td>{qty(t, g)}</td><td>{qty(t, rep)}</td>
                   <LocCell c={c} s={s} /><td className="rl-chev"><ChevronRight size={16} /></td>
                 </tr>
               ))}
@@ -135,12 +138,12 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
                 <p><MapPin size={14} /> Rua Bom Pastor, 2100 - Ipiranga, São Paulo/SP</p>
               </div>
               <div className="rl-modal-meta">
-                <span>Atualizado em 03/11/2026 <span className="rl-tagpill"><Boxes size={13} />Estoque estimado</span><span className="rl-x"><X size={18} /></span></span>
-                <span>Aberto - Fecha às 22:00</span>
+                <span>{t('Atualizado em {d}', { d: fdate(lang, 3, 11) })} <span className="rl-tagpill"><Boxes size={13} />{t('Estoque estimado')}</span><span className="rl-x"><X size={18} /></span></span>
+                <span>{t('Aberto - Fecha às 22:00')}</span>
               </div>
             </div>
             <div className="rl-modal-b">
-              <RCard title="Ranking de ruptura por SKU" t={tg('m-tbl')} aside={<span className="rl-aside"><RDrop v="Todos" w={120} /><RDrop v="30 dias" w={110} /><RPager /></span>}>
+              <RCard title={t('Ranking de ruptura por SKU')} t={tg('m-tbl')} aside={<span className="rl-aside"><RDrop v="Todos" w={120} /><RDrop v="30 dias" w={110} /><RPager /></span>}>
                 <table className="rl-table">
                   <thead><tr><RTh>Nível</RTh><RTh>SKU</RTh><RTh>Estoque</RTh><RTh>% Ruptura</RTh><RTh>Parados</RTh><RTh>Congelados</RTh><RTh>Giro</RTh></tr></thead>
                   <tbody>
@@ -153,14 +156,14 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
                           <td {...tg(`m-est-${i}`)}>
                             <span className="rl-aside">
                               <RStock v={now ? '3 un' : sv} k={now ? 'ok' : sk} />
-                              <span className={`rl-est ${now ? 'now' : ''}`}><Calendar size={12} />{now ? <>Consulta feita<br />agora, 15:12</> : <>Estimativa de ontem,<br />02/11/2026</>}</span>
+                              <span className={`rl-est ${now ? 'now' : ''}`}><Calendar size={12} />{now ? <>{t('Consulta feita')}<br />{t('agora, 15:12')}</> : <>{t('Estimativa de ontem,')}<br />{fdate(lang, 2, 11)}</>}</span>
                               <RConsult busy={i === 0 && phase === 7} t={tg(`m-con-${i}`)} />
                               <RReport />
                             </span>
                           </td>
                           <td><RGauge v={r} /></td>
                           <td><RDays d={d} of={30} warn={d > 8} /></td>
-                          <td>{cg}</td><td>{g}</td>
+                          <td>{qty(t, cg)}</td><td>{qty(t, g)}</td>
                         </tr>
                       );
                     })}
@@ -209,18 +212,19 @@ const TURN_DEF: Def = {
 };
 
 export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
+  const { t } = useDemoT();
   const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 1;
   const sorted = phase >= 5;
   const rows = sorted ? [...TURN_ROWS].sort((a, b) => b[4] - a[4]) : TURN_ROWS;
   const H = 206;
   return (
-    <RFrame app={app} cur={cur} nav="home" label="Tela Início do Dinn: a disponibilidade por rede mostra lojas sem estoque, sem vendas e girando; o cursor abre o detalhe de uma rede, escolhe o estoque parado há 30 dias e ordena os PDVs pelos dias parados.">
+    <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: a disponibilidade por rede mostra lojas sem estoque, sem vendas e girando; o cursor abre o detalhe de uma rede, escolhe o estoque parado há 30 dias e ordena os PDVs pelos dias parados.')}>
       <RPage top={<RTop />} filters={<Filters tg={tg} phase={phase} count />} y={phase >= 4 ? 448 : 0}>
         <div className="rl-row">
           <RCard className="grow" title="Disponibilidade nos PDVs por rede" t={tg('stack')} aside={<RDrop v="30 dias" w={120} />}
-            sub="Somente redes digitalizadas (estoque exato), ordenadas por nº de PDVs.">
-            <p className="rl-legend"><span><i style={{ background: '#ff6b3d' }} />Sem estoque</span><span><i style={{ background: '#f8b84e' }} />Sem vendas</span><span><i style={{ background: BRAND }} />Em estoque (girando)</span></p>
+            sub={t('Somente redes digitalizadas (estoque exato), ordenadas por nº de PDVs.')}>
+            <p className="rl-legend"><span><i style={{ background: '#ff6b3d' }} />{t('Sem estoque')}</span><span><i style={{ background: '#f8b84e' }} />{t('Sem vendas')}</span><span><i style={{ background: BRAND }} />{t('Em estoque (girando)')}</span></p>
             <div className="rl-stack" style={{ marginBottom: 30 }}>
               {NETS.map(([code, a, b, c], i) => {
                 const hi = phase === 2 || phase === 3 ? i === HI : false;
@@ -234,14 +238,14 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
             </div>
             {(phase === 2 || phase === 3) && (
               <div className="rl-stack-tip rl-pop" style={{ left: '24%', top: 36 }}>
-                <header><b>Viva Bem</b><span>Grupo: Farmácias Viva Bem</span></header>
+                <header><b>Viva Bem</b><span>{t('Grupo')}: Farmácias Viva Bem</span></header>
                 <ul>
-                  <li><i style={{ background: '#ff6b3d' }} /><b>46,3%</b>Sem estoque</li>
-                  <li><i style={{ background: '#f8b84e' }} /><b>27,2%</b>Sem vendas</li>
-                  <li><i style={{ background: BRAND }} /><b>26,5%</b>Em estoque (girando)</li>
+                  <li><i style={{ background: '#ff6b3d' }} /><b>{fmt(46.3, 1)}%</b>{t('Sem estoque')}</li>
+                  <li><i style={{ background: '#f8b84e' }} /><b>{fmt(27.2, 1)}%</b>{t('Sem vendas')}</li>
+                  <li><i style={{ background: BRAND }} /><b>{fmt(26.5, 1)}%</b>{t('Em estoque (girando)')}</li>
                 </ul>
-                <footer>134 PDVs</footer>
-                <p>Sem estoque em nenhum dos 30 dias = "Sem estoque". Teve estoque em pelo menos 1 dia e vendeu = "Em estoque (girando)". Teve estoque e não vendeu = "Sem vendas".</p>
+                <footer>{t('{n} PDVs', { n: 134 })}</footer>
+                <p>{t('Sem estoque em nenhum dos 30 dias = "Sem estoque". Teve estoque em pelo menos 1 dia e vendeu = "Em estoque (girando)". Teve estoque e não vendeu = "Sem vendas".')}</p>
               </div>
             )}
           </RCard>
@@ -251,10 +255,10 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
           </RCard>
         </div>
         <div className="rl-sect-h">
-          <div><h3><Store size={24} /> Pontos de venda</h3><p>Total: 8.240 PDVs na sua carteira</p></div>
-          <span className="rl-aside"><span className="rl-search"><Search size={16} />Buscar por rede, loja ou CNPJ.</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
+          <div><h3><Store size={24} /> {t('Pontos de venda')}</h3><p>{t('Total: {n} PDVs na sua carteira', { n: fmt(8240) })}</p></div>
+          <span className="rl-aside"><span className="rl-search"><Search size={16} />{t('Buscar por rede, loja ou CNPJ.')}</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
         </div>
-        <p className="rl-note">O período abaixo muda a coluna % Ruptura. A coluna Nível usa sempre a janela fixa de 30 dias, com corte no sábado.</p>
+        <p className="rl-note">{t('O período abaixo muda a coluna % Ruptura. A coluna Nível usa sempre a janela fixa de 30 dias, com corte no sábado.')}</p>
         <RCard t={tg('tbl')}>
           <table className="rl-table">
             <thead><tr>
@@ -265,7 +269,7 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
               {rows.map(([n, net, l, r, d, cg, g, vb, c, s], i) => (
                 <tr key={n} className={phase >= 4 ? 'rl-in' : ''} style={{ animationDelay: `${(sorted ? 0.05 : 0.25) + Math.min(i, 4) * 0.08}s` }}>
                   <PdvCell n={n} net={net} /><td><RBadge lv={l} /></td><td><RGauge v={r} /></td>
-                  <td><RDays d={d} of={90} warn={d > 30} on={phase >= 4} /></td><td>{cg}</td><td>{g}</td><td>{vb}</td>
+                  <td><RDays d={d} of={90} warn={d > 30} on={phase >= 4} /></td><td>{qty(t, cg)}</td><td>{qty(t, g)}</td><td>{qty(t, vb)}</td>
                   <LocCell c={c} s={s} /><td className="rl-chev"><ChevronRight size={16} /></td>
                 </tr>
               ))}
@@ -310,13 +314,14 @@ const PRICE_DEF: Def = {
 };
 
 export function PriceDemo2({ step, def = PRICE_DEF }: DemoProps) {
+  const { t, lang } = useDemoT();
   const { app, phase, cur, tg } = useDemo(def, step);
   const sorted = phase >= 1;
   const only = phase >= 4;
   let rows = sorted ? [...PRICE_ROWS].sort((a, b) => a[3] - b[3]) : PRICE_ROWS;
   if (only) rows = rows.filter((r) => r[1] === CHAINS[0]);
   return (
-    <RFrame app={app} cur={cur} nav="home" label="Tela Início do Dinn: a tabela de pontos de venda mostra o preço observado em cada loja; o cursor ordena pelo preço e filtra uma rede.">
+    <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: a tabela de pontos de venda mostra o preço observado em cada loja; o cursor ordena pelo preço e filtra uma rede.')}>
       <RPage top={<RTop />} filters={(
         <>
           <RSelect k="prod" tg={tg} label="Produtos" count={1} />
@@ -326,10 +331,10 @@ export function PriceDemo2({ step, def = PRICE_DEF }: DemoProps) {
         </>
       )}>
         <div className="rl-sect-h">
-          <div><h3><Store size={24} /> Pontos de venda</h3><p>Total: {only ? '64 PDVs da Drogaria Serrana' : '805 PDVs na sua carteira'}</p></div>
-          <span className="rl-aside"><span className="rl-search"><Search size={16} />Buscar por rede, loja ou CNPJ.</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
+          <div><h3><Store size={24} /> {t('Pontos de venda')}</h3><p>{only ? t('Total: {n} PDVs da Drogaria Serrana', { n: 64 }) : t('Total: {n} PDVs na sua carteira', { n: 805 })}</p></div>
+          <span className="rl-aside"><span className="rl-search"><Search size={16} />{t('Buscar por rede, loja ou CNPJ.')}</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
         </div>
-        <p className="rl-note">Preço observado no canal digital de cada loja, na data de corte. O período abaixo muda a coluna % Ruptura.</p>
+        <p className="rl-note">{t('Preço observado no canal digital de cada loja, na data de corte. O período abaixo muda a coluna % Ruptura.')}</p>
         <RCard t={tg('tbl')}>
           <table className="rl-table">
             <thead><tr>
@@ -339,9 +344,9 @@ export function PriceDemo2({ step, def = PRICE_DEF }: DemoProps) {
               {rows.map(([n, net, l, p, sv, sk, g, c, s], i) => (
                 <tr key={n} className={`rl-in ${phase >= 5 && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${Math.min(i, 4) * 0.08}s` }} {...tg(`row-${i}`)}>
                   <PdvCell n={n} net={net} /><td><RBadge lv={l} /></td>
-                  <td className="rl-name"><b>R$ {fmt(p, 2)}</b><small>por unidade</small></td>
-                  <td><RStock v={sv} k={sk} /></td><td>{g}</td>
-                  <LocCell c={c} s={s} /><td><b style={{ fontWeight: 500 }}>31/10/2026</b></td><td className="rl-chev"><ChevronRight size={16} /></td>
+                  <td className="rl-name"><b>R$ {fmt(p, 2)}</b><small>{t('por unidade')}</small></td>
+                  <td><RStock v={sv} k={sk} /></td><td>{qty(t, g)}</td>
+                  <LocCell c={c} s={s} /><td><b style={{ fontWeight: 500 }}>{fdate(lang, 31, 10)}</b></td><td className="rl-chev"><ChevronRight size={16} /></td>
                 </tr>
               ))}
             </tbody>

@@ -63,7 +63,7 @@ export const pt: Customer = {
     {
       title: 'Ruptura: ver onde falta produto, loja a loja',
       viz: [
-        { kind: 'bars', title: 'Dias-loja com estoque zero, por grupo de dose', sub: 'Out/2026, razão sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.' },
+        { kind: 'bars', as: 'kpis', title: 'Dias-loja com estoque zero, por grupo de dose', sub: 'Out/2026, razão sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.' },
       ],
       paragraphs: [
         'O Dinn mostrou à Lilly, pela primeira vez, a disponibilidade do produto por loja e por rede. No mercado de alta demanda, a ruptura não é uniforme entre as doses.',
@@ -79,7 +79,7 @@ export const pt: Customer = {
       title: 'Confiança: o dado único que escondia a história',
       viz: [
         { kind: 'compare', title: 'Ruptura da marca numa rede regional', from: { value: 'Consolidado', label: 'indicador único, que contava PDVs zerados em todo o catálogo' }, to: { value: '≈ 8 p.p. a menos', label: 'depois de separar esses PDVs em "PDVs em atenção"' } },
-        { kind: 'bars', title: 'Mesma rede, por grupo de dose', sub: 'Razão de dias-loja com estoque zero, sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 5.3, display: 'mais de 5x', hot: true }], note: 'O número único da marca misturava doses muito diferentes.' },
+        { kind: 'bars', as: 'lollipop', title: 'Mesma rede, por grupo de dose', sub: 'Razão de dias-loja com estoque zero, sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 5.3, display: 'mais de 5x', hot: true }], note: 'O número único da marca misturava doses muito diferentes.' },
       ],
       paragraphs: [
         'Em setembro, o time B2B questionou o dado. O painel mostrava ruptura alta numa rede regional. A base da própria rede indicava abundância do produto. O Dinn investigou e abriu a análise:',
@@ -217,7 +217,7 @@ export const en: Customer = {
     {
       title: 'Stock-outs: see missing product, store by store',
       viz: [
-        { kind: 'bars', title: 'Store-days with zero stock, by dose group', sub: 'Oct 2026, ratio to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 1.7, display: 'about 1.7x', hot: true }], note: 'The rate measures store-days with zero stock. It does not measure lost sales.' },
+        { kind: 'bars', as: 'kpis', title: 'Store-days with zero stock, by dose group', sub: 'Oct 2026, ratio to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 1.7, display: 'about 1.7x', hot: true }], note: 'The rate measures store-days with zero stock. It does not measure lost sales.' },
       ],
       paragraphs: [
         'For the first time, Dinn showed Lilly product availability by store and by chain. In the high-demand market, the stock-out is not the same across doses.',
@@ -233,7 +233,7 @@ export const en: Customer = {
       title: 'Trust: one figure hid the story',
       viz: [
         { kind: 'compare', title: 'Brand stock-out in a regional chain', from: { value: 'Consolidated', label: 'single indicator, which counted stores at zero across the whole catalog' }, to: { value: '≈ 8 p.p. lower', label: 'after moving these stores to "stores to watch"' } },
-        { kind: 'bars', title: 'Same chain, by dose group', sub: 'Ratio of store-days with zero stock, to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 5.3, display: 'more than 5x', hot: true }], note: 'The single brand number mixed very different doses.' },
+        { kind: 'bars', as: 'lollipop', title: 'Same chain, by dose group', sub: 'Ratio of store-days with zero stock, to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 5.3, display: 'more than 5x', hot: true }], note: 'The single brand number mixed very different doses.' },
       ],
       paragraphs: [
         'In September, the B2B team questioned the data. The panel showed a high stock-out at a regional chain. The chain\'s own data showed plenty of product. Dinn investigated and opened the analysis:',
@@ -371,7 +371,7 @@ export const es: Customer = {
     {
       title: 'Quiebre de stock: dónde falta, tienda a tienda',
       viz: [
-        { kind: 'bars', title: 'Días-tienda con stock cero, por grupo de dosis', sub: 'oct 2026, razón sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'La tasa mide días-tienda con stock cero. No mide venta perdida.' },
+        { kind: 'bars', as: 'kpis', title: 'Días-tienda con stock cero, por grupo de dosis', sub: 'oct 2026, razón sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'La tasa mide días-tienda con stock cero. No mide venta perdida.' },
       ],
       paragraphs: [
         'Dinn mostró a Lilly, por primera vez, la disponibilidad del producto por tienda y por cadena. En el mercado de alta demanda, el quiebre de stock no es uniforme entre las dosis.',
@@ -387,7 +387,7 @@ export const es: Customer = {
       title: 'Confianza: un solo dato escondía la historia',
       viz: [
         { kind: 'compare', title: 'Quiebre de stock de la marca en una cadena regional', from: { value: 'Consolidado', label: 'indicador único, que contaba tiendas en cero en todo el catálogo' }, to: { value: '≈ 8 p.p. menos', label: 'después de separar esas tiendas en "tiendas en atención"' } },
-        { kind: 'bars', title: 'Misma cadena, por grupo de dosis', sub: 'Razón de días-tienda con stock cero, sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 5.3, display: 'más de 5x', hot: true }], note: 'El número único de la marca mezclaba dosis muy distintas.' },
+        { kind: 'bars', as: 'lollipop', title: 'Misma cadena, por grupo de dosis', sub: 'Razón de días-tienda con stock cero, sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 5.3, display: 'más de 5x', hot: true }], note: 'El número único de la marca mezclaba dosis muy distintas.' },
       ],
       paragraphs: [
         'En septiembre, el equipo B2B cuestionó el dato. El panel mostraba un quiebre de stock alto en una cadena regional. La base de la propia cadena indicaba abundancia del producto. Dinn investigó y abrió el análisis:',

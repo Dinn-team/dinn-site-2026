@@ -85,7 +85,7 @@ export const pt: Aggregate = {
       { label: 'Acatadas ou concluídas', value: 2581 },
       { label: 'Descartadas ou sem ação', value: 1158 },
     ], center: { value: '69%', label: 'viram ação' }, note: 'O descarte também é dado. Ele mostra à Jean o que o campo considera irrelevante.' },
-    { kind: 'bars', title: 'Satisfação por time', sub: 'Percentual, na medida de cada caso', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'rings', title: 'Satisfação por time', sub: 'Percentual, na medida de cada caso', unit: '%', digits: 1, max: 100, items: [
       { label: 'Consultores de campo: satisfação (CSAT)', value: 90.85 },
       { label: 'Time de campo: avaliações das ações com 5 estrelas', value: 86.8 },
       { label: 'Gestores: sentiriam o impacto se o Dinn saísse', value: 78 },
@@ -106,33 +106,33 @@ export const pt: Aggregate = {
     note: 'Só contas de clientes. A equipe da Dinn fica fora. A semana de 2 de novembro é parcial. O uso mostra que o time adotou o Dinn. Ele não mede venda.',
     viz: [
     { kind: 'line', title: 'Pessoas ativas por semana', sub: 'Percentual das pessoas que usaram o Dinn, de 29/06 a 02/11', labels: ['29/06','','13/07','','27/07','','10/08','','24/08','','07/09','','21/09','','05/10','','19/10','','02/11*'], series: [{ name: '% das pessoas', values: [54,56,46,49,29,44,25,37,34,36,27,25,27,46,56,49,37,42,37] }], unit: '%', digits: 0, note: 'Fica entre 25% e 56% das pessoas por semana. A semana de 02/11 é parcial.' },
-    { kind: 'bars', title: 'Pessoas por mês', sub: 'Percentual das pessoas que usaram o Dinn em cada mês', unit: '%', digits: 0, max: 100, items: [
+    { kind: 'bars', as: 'columns', title: 'Pessoas por mês', sub: 'Percentual das pessoas que usaram o Dinn em cada mês', unit: '%', digits: 0, max: 100, items: [
       { label: 'Julho', value: 78 },
       { label: 'Agosto', value: 73 },
       { label: 'Setembro', value: 61 },
       { label: 'Outubro', value: 81, hot: true },
       { label: 'Novembro (1 a 5)', value: 37 },
     ], note: 'Outubro é o mês mais forte: 81% das pessoas usaram o Dinn.' },
-    { kind: 'bars', title: 'O Dinn responde', sub: 'Taxa de resposta por função', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'kpis', title: 'O Dinn responde', sub: 'Taxa de resposta por função', unit: '%', digits: 1, max: 100, items: [
       { label: 'Buscas de produto concluídas', value: 99.5 },
       { label: 'Perguntas à Jean respondidas', value: 98 },
       { label: 'Consultas em tempo real com resposta válida', value: 89.1 },
       { label: 'Convites de correção de estoque respondidos', value: 86 },
     ], note: 'A Jean responde em 8 segundos, na mediana.' },
     { kind: 'line', title: 'Consultas de estoque em tempo real por semana', sub: 'Consultas manuais e automáticas, de 31/08 a 02/11', labels: ['31/08','07/09','14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11*'], series: [{ name: 'Consultas', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'Passam de 29 a 41 por semana em setembro para 295 a 618 em outubro. Desde 16/09 o sistema também consulta sozinho: são 2.274 das 2.628. As outras 354 vêm de pedidos das pessoas.' },
-    { kind: 'bars', title: 'Quantas pessoas usam cada função', sub: 'Percentual das pessoas que usaram o Dinn', unit: '%', digits: 0, max: 100, items: [
-      { label: 'Buscar produto', value: 83 },
-      { label: 'Abrir a farmácia do resultado', value: 76 },
-      { label: 'Tour de apresentação concluído', value: 66 },
-      { label: 'Destaques de tempo real', value: 64 },
-      { label: 'Consulta automática em tempo real', value: 63 },
-      { label: 'Filtros do painel', value: 53 },
-      { label: 'Consulta manual em tempo real', value: 41 },
-      { label: 'Rota no mapa até a farmácia', value: 34 },
-      { label: 'Pergunta à Jean', value: 22 },
-      { label: 'Correção de estoque enviada', value: 19 },
+    { kind: 'bars', as: 'lollipop', title: 'Quantas pessoas usam cada função', sub: 'Percentual das pessoas que usaram o Dinn', unit: '%', digits: 0, max: 100, items: [
+      { label: 'Buscar produto', value: 83, group: 'Busca' },
+      { label: 'Abrir a farmácia do resultado', value: 76, group: 'Busca' },
+      { label: 'Tour de apresentação concluído', value: 66, group: 'Busca' },
+      { label: 'Destaques de tempo real', value: 64, group: 'Tempo real' },
+      { label: 'Consulta automática em tempo real', value: 63, group: 'Tempo real' },
+      { label: 'Filtros do painel', value: 53, group: 'Busca' },
+      { label: 'Consulta manual em tempo real', value: 41, group: 'Tempo real' },
+      { label: 'Rota no mapa até a farmácia', value: 34, group: 'Busca' },
+      { label: 'Pergunta à Jean', value: 22, group: 'Jean e correção' },
+      { label: 'Correção de estoque enviada', value: 19, group: 'Jean e correção' },
     ], note: 'Tempo real, filtros e Jean entraram entre setembro e outubro. As taxas dessas funções ainda são parciais.' },
-    { kind: 'bars', title: 'Onde as pessoas buscam', sub: 'Percentual das buscas, por estado. 23 estados no total', unit: '%', digits: 1, max: 40, items: [
+    { kind: 'bars', as: 'hexmap', title: 'Onde as pessoas buscam', sub: 'Percentual das buscas, por estado. 23 estados no total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
       { label: 'PR', value: 9.7 },
@@ -185,7 +185,7 @@ export const en: Aggregate = {
       { label: 'Accepted or completed', value: 2581 },
       { label: 'Dismissed or no action', value: 1158 },
     ], center: { value: '69%', label: 'become action' }, note: 'Dismissals are data too. They show Jean what the field considers irrelevant.' },
-    { kind: 'bars', title: 'Satisfaction by team', sub: 'Percent, with the measure of each case', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'rings', title: 'Satisfaction by team', sub: 'Percent, with the measure of each case', unit: '%', digits: 1, max: 100, items: [
       { label: 'Field consultants: satisfaction (CSAT)', value: 90.85 },
       { label: 'Field team: action ratings with 5 stars', value: 86.8 },
       { label: 'Managers: would feel the impact if Dinn left', value: 78 },
@@ -205,34 +205,34 @@ export const en: Aggregate = {
     ],
     note: 'Customer accounts only. The Dinn team is not counted. The week of November 2 is partial. Usage shows the team adopted Dinn. It does not measure sales.',
     viz: [
-    { kind: 'line', title: 'People active per week', sub: 'Percent of the people who used Dinn, June 29 to November 2', labels: ['29/06','','13/07','','27/07','','10/08','','24/08','','07/09','','21/09','','05/10','','19/10','','02/11*'], series: [{ name: '% of people', values: [54,56,46,49,29,44,25,37,34,36,27,25,27,46,56,49,37,42,37] }], unit: '%', digits: 0, note: 'It stays between 25% and 56% of people per week. The week of 11/02 is partial.' },
-    { kind: 'bars', title: 'People per month', sub: 'Percent of the people who used Dinn in each month', unit: '%', digits: 0, max: 100, items: [
+    { kind: 'line', title: 'People active per week', sub: 'Percent of the people who used Dinn, June 29 to November 2', labels: ['29 Jun','','13 Jul','','27 Jul','','10 Aug','','24 Aug','','7 Sep','','21 Sep','','5 Oct','','19 Oct','','2 Nov*'], series: [{ name: '% of people', values: [54,56,46,49,29,44,25,37,34,36,27,25,27,46,56,49,37,42,37] }], unit: '%', digits: 0, note: 'It stays between 25% and 56% of people per week. The week of Nov 2 is partial.' },
+    { kind: 'bars', as: 'columns', title: 'People per month', sub: 'Percent of the people who used Dinn in each month', unit: '%', digits: 0, max: 100, items: [
       { label: 'July', value: 78 },
       { label: 'August', value: 73 },
       { label: 'September', value: 61 },
       { label: 'October', value: 81, hot: true },
       { label: 'November (1 to 5)', value: 37 },
     ], note: 'October is the strongest month: 81% of people used Dinn.' },
-    { kind: 'bars', title: 'Dinn responds', sub: 'Response rate by function', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'kpis', title: 'Dinn responds', sub: 'Response rate by function', unit: '%', digits: 1, max: 100, items: [
       { label: 'Product searches completed', value: 99.5 },
       { label: 'Jean questions answered', value: 98 },
       { label: 'Real-time queries with a valid answer', value: 89.1 },
       { label: 'Stock correction invitations answered', value: 86 },
     ], note: 'Jean answers in 8 seconds, on median.' },
-    { kind: 'line', title: 'Real-time stock queries per week', sub: 'Manual and automatic queries, August 31 to November 2', labels: ['31/08','07/09','14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11*'], series: [{ name: 'Queries', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'They go from 29 to 41 per week in September to 295 to 618 in October. Since 09/16 the system also queries on its own: 2,274 of the 2,628. The other 354 come from people.' },
-    { kind: 'bars', title: 'How many people use each function', sub: 'Percent of the people who used Dinn', unit: '%', digits: 0, max: 100, items: [
-      { label: 'Search for a product', value: 83 },
-      { label: 'Open the pharmacy from the result', value: 76 },
-      { label: 'Product tour completed', value: 66 },
-      { label: 'Real-time highlights', value: 64 },
-      { label: 'Automatic real-time query', value: 63 },
-      { label: 'Dashboard filters', value: 53 },
-      { label: 'Manual real-time query', value: 41 },
-      { label: 'Map route to the pharmacy', value: 34 },
-      { label: 'Question to Jean', value: 22 },
-      { label: 'Stock correction sent', value: 19 },
+    { kind: 'line', title: 'Real-time stock queries per week', sub: 'Manual and automatic queries, August 31 to November 2', labels: ['31 Aug','7 Sep','14 Sep','21 Sep','28 Sep','5 Oct','12 Oct','19 Oct','26 Oct','2 Nov*'], series: [{ name: 'Queries', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'They go from 29 to 41 per week in September to 295 to 618 in October. Since Sep 16 the system also queries on its own: 2,274 of the 2,628. The other 354 come from people.' },
+    { kind: 'bars', as: 'lollipop', title: 'How many people use each function', sub: 'Percent of the people who used Dinn', unit: '%', digits: 0, max: 100, items: [
+      { label: 'Search for a product', value: 83, group: 'Search' },
+      { label: 'Open the pharmacy from the result', value: 76, group: 'Search' },
+      { label: 'Product tour completed', value: 66, group: 'Search' },
+      { label: 'Real-time highlights', value: 64, group: 'Real time' },
+      { label: 'Automatic real-time query', value: 63, group: 'Real time' },
+      { label: 'Dashboard filters', value: 53, group: 'Search' },
+      { label: 'Manual real-time query', value: 41, group: 'Real time' },
+      { label: 'Map route to the pharmacy', value: 34, group: 'Search' },
+      { label: 'Question to Jean', value: 22, group: 'Jean and correction' },
+      { label: 'Stock correction sent', value: 19, group: 'Jean and correction' },
     ], note: 'Real time, filters and Jean launched between September and October. Their rates are still partial.' },
-    { kind: 'bars', title: 'Where people search', sub: 'Percent of searches, by state. 23 states in total', unit: '%', digits: 1, max: 40, items: [
+    { kind: 'bars', as: 'hexmap', title: 'Where people search', sub: 'Percent of searches, by state. 23 states in total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
       { label: 'PR', value: 9.7 },
@@ -285,7 +285,7 @@ export const es: Aggregate = {
       { label: 'Aceptadas o completadas', value: 2581 },
       { label: 'Descartadas o sin acción', value: 1158 },
     ], center: { value: '69%', label: 'se vuelven acción' }, note: 'El descarte también es un dato. Muestra a Jean lo que el campo considera irrelevante.' },
-    { kind: 'bars', title: 'Satisfacción por equipo', sub: 'Porcentaje, con la medida de cada caso', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'rings', title: 'Satisfacción por equipo', sub: 'Porcentaje, con la medida de cada caso', unit: '%', digits: 1, max: 100, items: [
       { label: 'Consultores de campo: satisfacción (CSAT)', value: 90.85 },
       { label: 'Equipo de campo: evaluaciones de las acciones con 5 estrellas', value: 86.8 },
       { label: 'Gestores: sentirían el impacto si Dinn saliera', value: 78 },
@@ -306,33 +306,33 @@ export const es: Aggregate = {
     note: 'Solo cuentas de clientes. El equipo de Dinn queda fuera. La semana del 2 de noviembre es parcial. El uso muestra que el equipo adoptó Dinn. No mide ventas.',
     viz: [
     { kind: 'line', title: 'Personas activas por semana', sub: 'Porcentaje de las personas que usaron Dinn, del 29/06 al 02/11', labels: ['29/06','','13/07','','27/07','','10/08','','24/08','','07/09','','21/09','','05/10','','19/10','','02/11*'], series: [{ name: '% de las personas', values: [54,56,46,49,29,44,25,37,34,36,27,25,27,46,56,49,37,42,37] }], unit: '%', digits: 0, note: 'Se mantiene entre 25% y 56% de las personas por semana. La semana del 02/11 es parcial.' },
-    { kind: 'bars', title: 'Personas por mes', sub: 'Porcentaje de las personas que usaron Dinn cada mes', unit: '%', digits: 0, max: 100, items: [
+    { kind: 'bars', as: 'columns', title: 'Personas por mes', sub: 'Porcentaje de las personas que usaron Dinn cada mes', unit: '%', digits: 0, max: 100, items: [
       { label: 'Julio', value: 78 },
       { label: 'Agosto', value: 73 },
       { label: 'Septiembre', value: 61 },
       { label: 'Octubre', value: 81, hot: true },
       { label: 'Noviembre (1 a 5)', value: 37 },
     ], note: 'Octubre es el mes más fuerte: 81% de las personas usaron Dinn.' },
-    { kind: 'bars', title: 'Dinn responde', sub: 'Tasa de respuesta por función', unit: '%', digits: 1, max: 100, items: [
+    { kind: 'bars', as: 'kpis', title: 'Dinn responde', sub: 'Tasa de respuesta por función', unit: '%', digits: 1, max: 100, items: [
       { label: 'Búsquedas de producto concluidas', value: 99.5 },
       { label: 'Preguntas a Jean respondidas', value: 98 },
       { label: 'Consultas en tiempo real con respuesta válida', value: 89.1 },
       { label: 'Invitaciones de corrección de stock respondidas', value: 86 },
     ], note: 'Jean responde en 8 segundos, en la mediana.' },
     { kind: 'line', title: 'Consultas de stock en tiempo real por semana', sub: 'Consultas manuales y automáticas, del 31/08 al 02/11', labels: ['31/08','07/09','14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11*'], series: [{ name: 'Consultas', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'Pasan de 29 a 41 por semana en septiembre a 295 a 618 en octubre. Desde el 16/09 el sistema también consulta solo: son 2.274 de las 2.628. Las otras 354 vienen de pedidos de las personas.' },
-    { kind: 'bars', title: 'Cuántas personas usan cada función', sub: 'Porcentaje de las personas que usaron Dinn', unit: '%', digits: 0, max: 100, items: [
-      { label: 'Buscar producto', value: 83 },
-      { label: 'Abrir la farmacia del resultado', value: 76 },
-      { label: 'Tour de presentación concluido', value: 66 },
-      { label: 'Destacados de tiempo real', value: 64 },
-      { label: 'Consulta automática en tiempo real', value: 63 },
-      { label: 'Filtros del panel', value: 53 },
-      { label: 'Consulta manual en tiempo real', value: 41 },
-      { label: 'Ruta en el mapa hasta la farmacia', value: 34 },
-      { label: 'Pregunta a Jean', value: 22 },
-      { label: 'Corrección de stock enviada', value: 19 },
+    { kind: 'bars', as: 'lollipop', title: 'Cuántas personas usan cada función', sub: 'Porcentaje de las personas que usaron Dinn', unit: '%', digits: 0, max: 100, items: [
+      { label: 'Buscar producto', value: 83, group: 'Búsqueda' },
+      { label: 'Abrir la farmacia del resultado', value: 76, group: 'Búsqueda' },
+      { label: 'Tour de presentación concluido', value: 66, group: 'Búsqueda' },
+      { label: 'Destacados de tiempo real', value: 64, group: 'Tiempo real' },
+      { label: 'Consulta automática en tiempo real', value: 63, group: 'Tiempo real' },
+      { label: 'Filtros del panel', value: 53, group: 'Búsqueda' },
+      { label: 'Consulta manual en tiempo real', value: 41, group: 'Tiempo real' },
+      { label: 'Ruta en el mapa hasta la farmacia', value: 34, group: 'Búsqueda' },
+      { label: 'Pregunta a Jean', value: 22, group: 'Jean y corrección' },
+      { label: 'Corrección de stock enviada', value: 19, group: 'Jean y corrección' },
     ], note: 'Tiempo real, filtros y Jean entraron entre septiembre y octubre. Las tasas de estas funciones aún son parciales.' },
-    { kind: 'bars', title: 'Dónde buscan las personas', sub: 'Porcentaje de las búsquedas, por estado. 23 estados en total', unit: '%', digits: 1, max: 40, items: [
+    { kind: 'bars', as: 'hexmap', title: 'Dónde buscan las personas', sub: 'Porcentaje de las búsquedas, por estado. 23 estados en total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
       { label: 'PR', value: 9.7 },

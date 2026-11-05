@@ -1,0 +1,51 @@
+/*
+  Tokens de gráficos da Dinn (biblioteca de 05/11/2026).
+  Fonte: rules/DESIGN_SYSTEM_V2.md, seção 11. Referência visual: rules/biblioteca-graficos.html.
+  Nomes seguem o shadcn (--chart-1 a --chart-5). Copie este arquivo para outro projeto sem mudar os nomes.
+*/
+:root {
+  --chart-1: #7008e7;          /* roxo, série principal (= --primary do site) */
+  --chart-2: #c9aaf7;          /* lilás, preenchimento */
+  --chart-3: #08090a;          /* preto */
+  --chart-4: #e4f222;          /* lime, pico e ganho */
+  --chart-5: #fd673e;          /* laranja, ruptura e queda */
+  --chart-deep: #3d0a82;       /* subtom escuro do roxo */
+  --chart-soft: #e1d0fb;       /* subtom claro do roxo */
+  --chart-track: #f1ebfc;      /* fundo de trilha */
+  --chart-2-line: #a97ff0;     /* lilás para linha fina (contraste) */
+  --chart-5-line: #ee5a2f;     /* laranja para linha fina: 3,4:1 no branco */
+
+  /* tooltip: fundo branco no tema claro */
+  --tip-bg: #fff;
+  --tip-fg: #08090a;
+  --tip-mut: #7a788a;
+  --tip-bd: #e6e3ef;
+  --tip-sh: 0 14px 34px -12px rgb(60 20 120 / .28), 0 2px 6px rgb(20 10 40 / .06);
+
+  /* grade, texto e média da carteira */
+  --chart-grid: #eeedf4;
+  --chart-muted: #7a788a;
+  --chart-avg: #4a4856;        /* linha pontilhada da média */
+}
+
+.dark,
+:root[data-theme="dark"] {
+  --chart-1: #9558f7;
+  --chart-2: #cdb3fa;
+  --chart-3: #f4f3fa;
+  --chart-deep: #5a2fb0;
+  --chart-soft: #3a2b66;
+  --chart-track: #241d38;
+  --chart-2-line: #a98af0;
+  --chart-5-line: #fd673e;
+
+  --tip-bg: #2b2738;
+  --tip-fg: #fff;
+  --tip-mut: #aaa7b9;
+  --tip-bd: rgb(255 255 255 / .08);
+  --tip-sh: 0 14px 34px -10px rgb(0 0 0 / .5);
+
+  --chart-grid: #221f2c;
+  --chart-muted: #8d899f;
+  --chart-avg: #bab7c9;
+}

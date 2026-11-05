@@ -343,7 +343,7 @@ export function RealtimeStage({ heading = false }: { heading?: boolean }) {
                         <span className="lc-mini-icon"><TrendingUp size={15} aria-hidden="true" /></span>
                         <div>
                           <small>{popup.giro}</small>
-                          <strong>{p.giro} <em>{popup.perDay}</em></strong>
+                          <strong>{lang === 'en' ? p.giro.replace(',', '.') : p.giro} <em>{popup.perDay}</em></strong>
                         </div>
                       </div>
                       <div className="lc-mini is-stalled">

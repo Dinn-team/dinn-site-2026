@@ -1,0 +1,534 @@
+{
+  "Início": {
+    "en": "Home",
+    "es": "Inicio"
+  },
+  "Nova conversa": {
+    "en": "New chat",
+    "es": "Nueva conversación"
+  },
+  "Todas": {
+    "en": "All",
+    "es": "Todas"
+  },
+  "Favoritas": {
+    "en": "Favorites",
+    "es": "Favoritas"
+  },
+  "Olá, Ana. O que você quer que eu acompanhe?": {
+    "en": "Hello, Ana. What do you want me to track?",
+    "es": "Hola, Ana. ¿Qué quieres que siga?"
+  },
+  "Para começar": {
+    "en": "To start",
+    "es": "Para empezar"
+  },
+  "Entendendo o pedido": {
+    "en": "Reading your request",
+    "es": "Leyendo tu pedido"
+  },
+  "Entendi. Confira o combinado antes de eu começar.": {
+    "en": "Understood. Check the plan before I start.",
+    "es": "Entendido. Revisa el acuerdo antes de que empiece."
+  },
+  "Acompanhamento": {
+    "en": "Tracking task",
+    "es": "Seguimiento"
+  },
+  "Ativo": {
+    "en": "Active",
+    "es": "Activo"
+  },
+  "Rascunho": {
+    "en": "Draft",
+    "es": "Borrador"
+  },
+  "Ajustar": {
+    "en": "Edit",
+    "es": "Ajustar"
+  },
+  "Acompanhamento ativo": {
+    "en": "Tracking active",
+    "es": "Seguimiento activo"
+  },
+  "Ativar acompanhamento": {
+    "en": "Start tracking",
+    "es": "Activar seguimiento"
+  },
+  "Peça um acompanhamento, uma rotina ou um relatório…": {
+    "en": "Ask for a tracking task, a routine or a report…",
+    "es": "Pide un seguimiento, una rutina o un informe…"
+  },
+  "A Jean pode errar. Verifique os dados importantes.": {
+    "en": "Jean can make mistakes. Check important data.",
+    "es": "Jean puede equivocarse. Verifica los datos importantes."
+  },
+  "Acompanha a disponibilidade destes produtos nas minhas redes. Antes das reuniões, prepara os pontos e me chama no WhatsApp.": {
+    "en": "Track the availability of these products in my networks. Before meetings, prepare the key points and message me on WhatsApp.",
+    "es": "Sigue la disponibilidad de estos productos en mis redes. Antes de las reuniones, prepara los puntos y escríbeme por WhatsApp."
+  },
+  "Objetivo": {
+    "en": "Goal",
+    "es": "Objetivo"
+  },
+  "Acompanhar a disponibilidade e preparar as reuniões": {
+    "en": "Track availability and prepare meetings",
+    "es": "Seguir la disponibilidad y preparar las reuniones"
+  },
+  "Produtos": {
+    "en": "Products",
+    "es": "Productos"
+  },
+  "Redes": {
+    "en": "Networks",
+    "es": "Redes"
+  },
+  "Fontes": {
+    "en": "Sources",
+    "es": "Fuentes"
+  },
+  "Quando": {
+    "en": "When",
+    "es": "Cuándo"
+  },
+  "Todo dia útil às {h8} e 1 h antes de cada reunião": {
+    "en": "Every working day at {h8} and 1 hour before each meeting",
+    "es": "Cada día hábil a las {h8} y 1 h antes de cada reunión"
+  },
+  "Canal": {
+    "en": "Channel",
+    "es": "Canal"
+  },
+  "Ações": {
+    "en": "Actions",
+    "es": "Acciones"
+  },
+  "Prepara resumos e rascunhos. Envio de e-mail pede aprovação.": {
+    "en": "Prepares summaries and drafts. Sending an email needs approval.",
+    "es": "Prepara resúmenes y borradores. El envío de correos pide aprobación."
+  },
+  "Prepara minha reunião com a Rede Beta amanhã.": {
+    "en": "Prepare my meeting with Rede Beta tomorrow.",
+    "es": "Prepara mi reunión con Rede Beta mañana."
+  },
+  "Toda segunda, revisa a disponibilidade e me manda um resumo.": {
+    "en": "Every Monday, review availability and send me a summary.",
+    "es": "Cada lunes, revisa la disponibilidad y envíame un resumen."
+  },
+  "Acompanha a resposta da Rede Alfa e me avisa se o prazo chegar.": {
+    "en": "Track the reply from Rede Alfa and tell me if the deadline arrives.",
+    "es": "Sigue la respuesta de Rede Alfa y avísame si llega el plazo."
+  },
+  "Hoje": {
+    "en": "Today",
+    "es": "Hoy"
+  },
+  "Acompanhamento de disponibilidade": {
+    "en": "Availability tracking",
+    "es": "Seguimiento de disponibilidad"
+  },
+  "Últimos 7 dias": {
+    "en": "Last 7 days",
+    "es": "Últimos 7 días"
+  },
+  "Prepara minha reunião com a Rede Beta": {
+    "en": "Prepare my meeting with Rede Beta",
+    "es": "Prepara mi reunión con Rede Beta"
+  },
+  "Resumo semanal de disponibilidade": {
+    "en": "Weekly availability summary",
+    "es": "Resumen semanal de disponibilidad"
+  },
+  "Mais antigas": {
+    "en": "Older",
+    "es": "Más antiguas"
+  },
+  "Pendências da Rede Alfa": {
+    "en": "Open items for Rede Alfa",
+    "es": "Pendientes de Rede Alfa"
+  },
+  "Disponibilidade por região": {
+    "en": "Availability by region",
+    "es": "Disponibilidad por región"
+  },
+  "Tela da Jean: a pessoa pede um acompanhamento, a Jean mostra o combinado com objetivo, recorte, fontes, canal e ações autorizadas, e a pessoa ativa.": {
+    "en": "Jean screen: the user asks for a tracking task. Jean shows the plan with goal, scope, sources, channel and allowed actions. The user starts it.",
+    "es": "Pantalla de Jean: la persona pide un seguimiento. Jean muestra el acuerdo con objetivo, alcance, fuentes, canal y acciones autorizadas. La persona lo activa."
+  },
+  "Configurações da Jean: a pessoa conecta a conta Microsoft escolhendo os acessos e depois define, por tipo de ação, o que a Jean faz sozinha e o que pede aprovação.": {
+    "en": "Jean settings: the user connects a Microsoft account and picks the access. Then the user sets, for each type of action, what Jean does alone and what needs approval.",
+    "es": "Configuración de Jean: la persona conecta la cuenta Microsoft y elige los accesos. Luego define, por tipo de acción, qué hace Jean sola y qué pide aprobación."
+  },
+  "Configurações": {
+    "en": "Settings",
+    "es": "Configuración"
+  },
+  "Conexões, canais e autonomia": {
+    "en": "Connections, channels and autonomy",
+    "es": "Conexiones, canales y autonomía"
+  },
+  "Conexões": {
+    "en": "Connections",
+    "es": "Conexiones"
+  },
+  "Canais": {
+    "en": "Channels",
+    "es": "Canales"
+  },
+  "Autonomia": {
+    "en": "Autonomy",
+    "es": "Autonomía"
+  },
+  "Gmail e Google Calendar": {
+    "en": "Gmail and Google Calendar",
+    "es": "Gmail y Google Calendar"
+  },
+  "Conectado": {
+    "en": "Connected",
+    "es": "Conectado"
+  },
+  "Gerenciar": {
+    "en": "Manage",
+    "es": "Gestionar"
+  },
+  "Outlook e calendário Microsoft": {
+    "en": "Outlook and Microsoft Calendar",
+    "es": "Outlook y calendario de Microsoft"
+  },
+  "Ler e-mails dos acompanhamentos · Ver calendário": {
+    "en": "Read tracking emails · See calendar",
+    "es": "Leer correos de los seguimientos · Ver calendario"
+  },
+  "Preparar rascunhos": {
+    "en": "Prepare drafts",
+    "es": "Preparar borradores"
+  },
+  "Não conectado": {
+    "en": "Not connected",
+    "es": "No conectado"
+  },
+  "Conectar": {
+    "en": "Connect",
+    "es": "Conectar"
+  },
+  "Produtos, redes e regiões do seu plano": {
+    "en": "Products, networks and regions in your plan",
+    "es": "Productos, redes y regiones de tu plan"
+  },
+  "Você pode revogar cada acesso a qualquer momento. Conectar uma conta não autoriza qualquer ação nela.": {
+    "en": "You can remove each access at any time. Connecting an account does not allow every action in it.",
+    "es": "Puedes revocar cada acceso en cualquier momento. Conectar una cuenta no autoriza cualquier acción en ella."
+  },
+  "O que a Jean faz em cada ação": {
+    "en": "What Jean does for each action",
+    "es": "Qué hace Jean en cada acción"
+  },
+  "Defina por tipo de ação o que ela faz sozinha e o que pede aprovação.": {
+    "en": "Set, for each type of action, what Jean does alone and what needs approval.",
+    "es": "Define, por tipo de acción, qué hace sola y qué pide aprobación."
+  },
+  "Consultar fontes e analisar": {
+    "en": "Read sources and analyze",
+    "es": "Consultar fuentes y analizar"
+  },
+  "Preparar resumo, relatório ou rascunho": {
+    "en": "Prepare a summary, report or draft",
+    "es": "Preparar resumen, informe o borrador"
+  },
+  "Enviar e-mail": {
+    "en": "Send email",
+    "es": "Enviar correo"
+  },
+  "Criar ou alterar compromisso": {
+    "en": "Create or change an appointment",
+    "es": "Crear o cambiar un compromiso"
+  },
+  "Assumir compromisso comercial": {
+    "en": "Make a commercial commitment",
+    "es": "Asumir un compromiso comercial"
+  },
+  "Sozinha": {
+    "en": "Alone",
+    "es": "Sola"
+  },
+  "Pede aprovação": {
+    "en": "Asks for approval",
+    "es": "Pide aprobación"
+  },
+  "Encaminha para você": {
+    "en": "Sends to you",
+    "es": "Te lo envía"
+  },
+  "Instruções dentro de e-mails ou documentos não mudam estas regras.": {
+    "en": "Instructions inside emails or documents do not change these rules.",
+    "es": "Las instrucciones dentro de correos o documentos no cambian estas reglas."
+  },
+  "Conectar Outlook e calendário Microsoft": {
+    "en": "Connect Outlook and Microsoft Calendar",
+    "es": "Conectar Outlook y calendario de Microsoft"
+  },
+  "Escolha o que a Jean pode acessar nesta conta.": {
+    "en": "Choose what Jean can access in this account.",
+    "es": "Elige a qué puede acceder Jean en esta cuenta."
+  },
+  "Ler e-mails ligados aos acompanhamentos": {
+    "en": "Read emails linked to tracking tasks",
+    "es": "Leer correos ligados a los seguimientos"
+  },
+  "Ver o calendário": {
+    "en": "See the calendar",
+    "es": "Ver el calendario"
+  },
+  "Preparar rascunhos e convites": {
+    "en": "Prepare drafts and invitations",
+    "es": "Preparar borradores e invitaciones"
+  },
+  "Enviar e-mail e alterar compromissos sem pedir": {
+    "en": "Send email and change appointments without asking",
+    "es": "Enviar correos y cambiar compromisos sin pedir"
+  },
+  "Sem isso, a Jean pede aprovação antes de enviar ou alterar.": {
+    "en": "Without this, Jean asks for approval before it sends or changes anything.",
+    "es": "Sin esto, Jean pide aprobación antes de enviar o cambiar."
+  },
+  "Cancelar": {
+    "en": "Cancel",
+    "es": "Cancelar"
+  },
+  "Permitir": {
+    "en": "Allow",
+    "es": "Permitir"
+  },
+  "Precisa de você": {
+    "en": "Needs you",
+    "es": "Te necesita"
+  },
+  "Em andamento": {
+    "en": "In progress",
+    "es": "En curso"
+  },
+  "Concluído": {
+    "en": "Done",
+    "es": "Concluido"
+  },
+  "Tela Atividades: a pessoa aprova um e-mail preparado pela Jean, vê a reunião que ela está preparando e o histórico do que já foi entregue.": {
+    "en": "Activities screen: the user approves an email that Jean prepared, sees the meeting Jean is preparing, and sees the history of delivered work.",
+    "es": "Pantalla Actividades: la persona aprueba un correo que preparó Jean, ve la reunión que Jean prepara y el historial de lo entregado."
+  },
+  "Atividades": {
+    "en": "Activities",
+    "es": "Actividades"
+  },
+  "O trabalho da Jean": {
+    "en": "Jean's work",
+    "es": "El trabajo de Jean"
+  },
+  "Aprovar e-mail para a Rede Alfa": {
+    "en": "Approve email to Rede Alfa",
+    "es": "Aprobar correo para Rede Alfa"
+  },
+  "Rascunho pronto · Pendência de reposição": {
+    "en": "Draft ready · Restock open item",
+    "es": "Borrador listo · Pendiente de reposición"
+  },
+  "Aguarda você": {
+    "en": "Waiting for you",
+    "es": "Espera por ti"
+  },
+  "Rede Beta: queda de disponibilidade": {
+    "en": "Rede Beta: availability drop",
+    "es": "Rede Beta: caída de disponibilidad"
+  },
+  "Decisão": {
+    "en": "Decision",
+    "es": "Decisión"
+  },
+  "Reunião com a Rede Beta, {d0511} {h10}": {
+    "en": "Meeting with Rede Beta, {d0511}, {h10}",
+    "es": "Reunión con Rede Beta, {d0511} {h10}"
+  },
+  "Preparando os pontos": {
+    "en": "Preparing the key points",
+    "es": "Preparando los puntos"
+  },
+  "Disponibilidade · Redes Alfa e Beta": {
+    "en": "Availability · Rede Alfa and Rede Beta",
+    "es": "Disponibilidad · Rede Alfa y Rede Beta"
+  },
+  "Todo dia útil às {h8}": {
+    "en": "Every working day at {h8}",
+    "es": "Cada día hábil a las {h8}"
+  },
+  "Acompanhando": {
+    "en": "Tracking",
+    "es": "En seguimiento"
+  },
+  "Resposta da Rede Alfa": {
+    "en": "Reply from Rede Alfa",
+    "es": "Respuesta de Rede Alfa"
+  },
+  "Prazo {d0711}": {
+    "en": "Deadline {d0711}",
+    "es": "Plazo {d0711}"
+  },
+  "Aguardando resposta": {
+    "en": "Waiting for reply",
+    "es": "Esperando respuesta"
+  },
+  "E-mail para a Rede Alfa": {
+    "en": "Email to Rede Alfa",
+    "es": "Correo para Rede Alfa"
+  },
+  "Enviado pela sua conta · {t0942}": {
+    "en": "Sent from your account · {t0942}",
+    "es": "Enviado desde tu cuenta · {t0942}"
+  },
+  "Entregue": {
+    "en": "Delivered",
+    "es": "Entregado"
+  },
+  "Entregue {d0311} · {h8}": {
+    "en": "Delivered {d0311} · {h8}",
+    "es": "Entregado {d0311} · {h8}"
+  },
+  "A Jean viu que a resposta sobre a reposição não chegou. Ela preparou uma cobrança.": {
+    "en": "Jean saw that the reply about restock did not arrive. Jean prepared a follow-up.",
+    "es": "Jean vio que la respuesta sobre la reposición no llegó. Preparó un recordatorio."
+  },
+  "Para": {
+    "en": "To",
+    "es": "Para"
+  },
+  "Assunto": {
+    "en": "Subject",
+    "es": "Asunto"
+  },
+  "Reposição do {pa}": {
+    "en": "Restock of {pa}",
+    "es": "Reposición de {pa}"
+  },
+  "Olá, Carla. Seguimos sem retorno sobre a reposição combinada em {d2810}. A disponibilidade caiu em 9 lojas da rede (dado de {d0211}). Podemos alinhar até {d0711}?": {
+    "en": "Hello, Carla. We still have no reply about the restock we agreed on {d2810}. Availability dropped in 9 stores of the network (data from {d0211}). Can we agree on a date by {d0711}?",
+    "es": "Hola, Carla. Seguimos sin respuesta sobre la reposición acordada el {d2810}. La disponibilidad cayó en 9 tiendas de la red (dato del {d0211}). ¿Podemos alinear hasta el {d0711}?"
+  },
+  "Recusar": {
+    "en": "Reject",
+    "es": "Rechazar"
+  },
+  "Editar": {
+    "en": "Edit",
+    "es": "Editar"
+  },
+  "Aprovar envio": {
+    "en": "Approve sending",
+    "es": "Aprobar envío"
+  },
+  "Reunião com a Rede Beta": {
+    "en": "Meeting with Rede Beta",
+    "es": "Reunión con Rede Beta"
+  },
+  "Preparar os pontos da reunião": {
+    "en": "Prepare the key points for the meeting",
+    "es": "Preparar los puntos de la reunión"
+  },
+  "O que a Jean fez": {
+    "en": "What Jean did",
+    "es": "Qué hizo Jean"
+  },
+  "Leu 3 e-mails da conversa com a Rede Beta. Consultou a disponibilidade em 140 lojas (D-1, {dy0211}). Achou 1 pendência no último e-mail.": {
+    "en": "Read 3 emails from the thread with Rede Beta. Checked availability in 140 stores (D-1, {dy0211}). Found 1 open item in the last email.",
+    "es": "Leyó 3 correos de la conversación con Rede Beta. Consultó la disponibilidad en 140 tiendas (D-1, {dy0211}). Encontró 1 pendiente en el último correo."
+  },
+  "Resultado": {
+    "en": "Result",
+    "es": "Resultado"
+  },
+  "Resumo pronto para revisar": {
+    "en": "Summary ready to review",
+    "es": "Resumen listo para revisar"
+  },
+  "Próximo passo": {
+    "en": "Next step",
+    "es": "Siguiente paso"
+  },
+  "Enviar o resumo no WhatsApp, 1 h antes da reunião": {
+    "en": "Send the summary on WhatsApp 1 hour before the meeting",
+    "es": "Enviar el resumen por WhatsApp 1 h antes de la reunión"
+  },
+  "A Jean viu a pendência sem resposta": {
+    "en": "Jean saw the open item with no reply",
+    "es": "Jean vio el pendiente sin respuesta"
+  },
+  "Rascunho pronto para aprovação": {
+    "en": "Draft ready for approval",
+    "es": "Borrador listo para aprobación"
+  },
+  "Ana aprovou o envio": {
+    "en": "Ana approved sending",
+    "es": "Ana aprobó el envío"
+  },
+  "E-mail enviado pela conta da Ana": {
+    "en": "Email sent from Ana's account",
+    "es": "Correo enviado desde la cuenta de Ana"
+  },
+  "Próximo": {
+    "en": "Next",
+    "es": "Siguiente"
+  },
+  "Acompanhar a resposta até {d0711}": {
+    "en": "Track the reply until {d0711}",
+    "es": "Seguir la respuesta hasta el {d0711}"
+  },
+  "Selecione uma atividade.": {
+    "en": "Select an activity.",
+    "es": "Selecciona una actividad."
+  },
+  "Conversa no WhatsApp com o número da Jean: ela envia os pontos da reunião, prepara um e-mail e pede aprovação. Ao lado, o mesmo histórico aparece em Atividades.": {
+    "en": "WhatsApp chat with Jean's number: Jean sends the key points of the meeting, prepares an email and asks for approval. Next to it, the same history shows in Activities.",
+    "es": "Conversación de WhatsApp con el número de Jean: envía los puntos de la reunión, prepara un correo y pide aprobación. Al lado, el mismo historial aparece en Actividades."
+  },
+  "Bom dia, Ana. Preparei os pontos da reunião com a Rede Beta, hoje às {h10}. Achei uma pendência no último e-mail e uma queda de disponibilidade em 12 lojas. Quer revisar?": {
+    "en": "Good morning, Ana. I prepared the key points for today's meeting with Rede Beta at {h10}. I found one open item in the last email and an availability drop in 12 stores. Do you want to review?",
+    "es": "Buenos días, Ana. Preparé los puntos de la reunión de hoy con Rede Beta a las {h10}. Encontré un pendiente en el último correo y una caída de disponibilidad en 12 tiendas. ¿Quieres revisar?"
+  },
+  "Resumo da reunião · Rede Beta": {
+    "en": "Meeting summary · Rede Beta",
+    "es": "Resumen de la reunión · Rede Beta"
+  },
+  "Prepara também um e-mail com esses pontos.": {
+    "en": "Also prepare an email with these points.",
+    "es": "Prepara también un correo con esos puntos."
+  },
+  "Preparei o rascunho para a Rede Beta. Revise antes do envio.": {
+    "en": "I prepared the draft for Rede Beta. Review it before sending.",
+    "es": "Preparé el borrador para Rede Beta. Revísalo antes del envío."
+  },
+  "Ver no portal": {
+    "en": "See in portal",
+    "es": "Ver en el portal"
+  },
+  "Enviei pela sua conta às {t0942}. Continuo acompanhando a resposta até {d0711}.": {
+    "en": "I sent it from your account at {t0942}. I will keep tracking the reply until {d0711}.",
+    "es": "Lo envié desde tu cuenta a las {t0942}. Sigo atenta a la respuesta hasta el {d0711}."
+  },
+  "Atividades · no portal": {
+    "en": "Activities · in the portal",
+    "es": "Actividades · en el portal"
+  },
+  "Resumo da reunião enviado no WhatsApp": {
+    "en": "Meeting summary sent on WhatsApp",
+    "es": "Resumen de la reunión enviado por WhatsApp"
+  },
+  "Ana pediu um e-mail com os pontos": {
+    "en": "Ana asked for an email with the points",
+    "es": "Ana pidió un correo con los puntos"
+  },
+  "Envio aprovado no WhatsApp": {
+    "en": "Sending approved on WhatsApp",
+    "es": "Envío aprobado por WhatsApp"
+  },
+  "12 lojas · Produto A 20 mg 30 cp": {
+    "en": "12 stores · Produto A 20 mg 30 cp",
+    "es": "12 tiendas · Produto A 20 mg 30 cp"
+  }
+}

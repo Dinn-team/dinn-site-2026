@@ -1,0 +1,434 @@
+{
+ "Tela Suporte do Dinn: a pessoa abre um novo pedido, descreve o problema e a Zoe, assistente do Dinn, responde na conversa.": {
+  "en": "Dinn Support screen: the user opens a new request and describes the problem. Zoe, the Dinn assistant, replies in the chat.",
+  "es": "Pantalla Soporte de Dinn: la persona abre una solicitud nueva y describe el problema. Zoe, la asistente de Dinn, responde en el chat."
+ },
+ "Suporte": {
+  "en": "Support",
+  "es": "Soporte"
+ },
+ "Tire dúvidas e resolva problemas com a Zoe, nossa assistente. Quando precisar, a equipe Dinn assume.": {
+  "en": "Ask questions and solve problems with Zoe, our assistant. When needed, the Dinn team takes over.",
+  "es": "Resuelve dudas y problemas con Zoe, nuestra asistente. Si hace falta, el equipo Dinn toma el caso."
+ },
+ "Novo pedido": {
+  "en": "New request",
+  "es": "Nueva solicitud"
+ },
+ "Como abrir um bom pedido": {
+  "en": "How to open a good request",
+  "es": "Cómo abrir una buena solicitud"
+ },
+ "Quanto mais detalhes você der, mais rápido a gente resolve. Deixe à mão:": {
+  "en": "The more detail you give, the faster we solve it. Have these ready:",
+  "es": "Cuantos más detalles des, más rápido lo resolvemos. Ten a mano:"
+ },
+ "Nome e CNPJ do PDV (a loja)": {
+  "en": "Name and tax ID of the point of sale (the store)",
+  "es": "Nombre y CNPJ del PDV (la tienda)"
+ },
+ "Produto ou código de barras (EAN)": {
+  "en": "Product or barcode (EAN)",
+  "es": "Producto o código de barras (EAN)"
+ },
+ "Print da tela mostrando o problema": {
+  "en": "Screenshot that shows the problem",
+  "es": "Captura de pantalla que muestre el problema"
+ },
+ "Desde quando acontece": {
+  "en": "Since when it happens",
+  "es": "Desde cuándo ocurre"
+ },
+ "O que você esperava ver": {
+  "en": "What you expected to see",
+  "es": "Qué esperabas ver"
+ },
+ "A Zoe consulta os dados da sua empresa, mas não altera nada. Quando a solução precisa de uma pessoa, ela encaminha o pedido para a equipe.": {
+  "en": "Zoe reads your company data but changes nothing. If a person must solve the case, she sends the request to the team.",
+  "es": "Zoe consulta los datos de tu empresa, pero no cambia nada. Si el caso necesita a una persona, envía la solicitud al equipo."
+ },
+ "Em andamento": {
+  "en": "In progress",
+  "es": "En curso"
+ },
+ "Aguardando você": {
+  "en": "Waiting for you",
+  "es": "Esperando tu respuesta"
+ },
+ "Encerrados": {
+  "en": "Closed",
+  "es": "Cerradas"
+ },
+ "Aguardando sua resposta": {
+  "en": "Waiting for your reply",
+  "es": "Esperando tu respuesta"
+ },
+ "Preço do Gastrolev na Rede Farmacore": {
+  "en": "Price of Gastrolev at Rede Farmacore",
+  "es": "Precio de Gastrolev en Rede Farmacore"
+ },
+ "Última atividade ontem": {
+  "en": "Last activity yesterday",
+  "es": "Última actividad ayer"
+ },
+ "Última atividade há 3 horas": {
+  "en": "Last activity 3 hours ago",
+  "es": "Última actividad hace 3 horas"
+ },
+ "Última atividade há 5 minutos": {
+  "en": "Last activity 5 minutes ago",
+  "es": "Última actividad hace 5 minutos"
+ },
+ "Última atividade agora": {
+  "en": "Last activity now",
+  "es": "Última actividad ahora"
+ },
+ "Última atividade em {d}": {
+  "en": "Last activity on {d}",
+  "es": "Última actividad el {d}"
+ },
+ "12 de outubro": {
+  "en": "Oct 12",
+  "es": "12 de octubre"
+ },
+ "8 de outubro": {
+  "en": "Oct 8",
+  "es": "8 de octubre"
+ },
+ "Voltar para Suporte": {
+  "en": "Back to Support",
+  "es": "Volver a Soporte"
+ },
+ "Em atendimento": {
+  "en": "Being handled",
+  "es": "En atención"
+ },
+ "Encerrar pedido": {
+  "en": "Close request",
+  "es": "Cerrar solicitud"
+ },
+ "Estoque da Drogaria Exemplo parado": {
+  "en": "Stock at Drogaria Exemplo is frozen",
+  "es": "Stock de Drogaria Exemplo detenido"
+ },
+ "O estoque da Drogaria Exemplo (CNPJ 00.000.000/0001-00) está parado desde segunda.": {
+  "en": "The stock at Drogaria Exemplo (tax ID 00.000.000/0001-00) has been frozen since Monday.",
+  "es": "El stock de Drogaria Exemplo (CNPJ 00.000.000/0001-00) está detenido desde el lunes."
+ },
+ "Olá, obrigada por avisar. Conferi o cadastro da Drogaria Exemplo: a última leitura de estoque foi na segunda, às 08:12. O arquivo de estoque não chegou desde então. Peça ao responsável pelo PDV para reenviar. Depois eu confiro de novo.": {
+  "en": "Hi, thanks for the notice. I checked the Drogaria Exemplo record. The last stock reading was on Monday at 08:12. No stock file has arrived since then. Ask the person in charge of the point of sale to send it again. Then I will check again.",
+  "es": "Hola, gracias por avisar. Revisé el registro de Drogaria Exemplo. La última lectura de stock fue el lunes a las 08:12. Desde entonces no llegó el archivo de stock. Pide al responsable del PDV que lo envíe de nuevo. Después lo reviso otra vez."
+ },
+ "5 de novembro de 2026": {
+  "en": "Nov 5, 2026",
+  "es": "5/11/2026"
+ },
+ "30 de outubro de 2026": {
+  "en": "Oct 30, 2026",
+  "es": "30/10/2026"
+ },
+ "29 de outubro de 2026": {
+  "en": "Oct 29, 2026",
+  "es": "29/10/2026"
+ },
+ "Você": {
+  "en": "You",
+  "es": "Tú"
+ },
+ "Enviada": {
+  "en": "Sent",
+  "es": "Enviada"
+ },
+ "Lida": {
+  "en": "Read",
+  "es": "Leída"
+ },
+ "Pensando": {
+  "en": "Thinking",
+  "es": "Pensando"
+ },
+ "Escreva sua resposta": {
+  "en": "Write your reply",
+  "es": "Escribe tu respuesta"
+ },
+ "Anexar print": {
+  "en": "Attach screenshot",
+  "es": "Adjuntar captura"
+ },
+ "Enviar": {
+  "en": "Send",
+  "es": "Enviar"
+ },
+ "Conte o que está acontecendo. A Zoe responde aqui mesmo.": {
+  "en": "Tell us what is happening. Zoe replies right here.",
+  "es": "Cuenta qué está pasando. Zoe responde aquí mismo."
+ },
+ "Assunto": {
+  "en": "Subject",
+  "es": "Asunto"
+ },
+ "Resuma em uma frase": {
+  "en": "Sum it up in one sentence",
+  "es": "Resume en una frase"
+ },
+ "O que está acontecendo?": {
+  "en": "What is happening?",
+  "es": "¿Qué está pasando?"
+ },
+ "Conte com detalhes": {
+  "en": "Give details",
+  "es": "Cuenta con detalle"
+ },
+ "Tipo de pedido (opcional)": {
+  "en": "Request type (optional)",
+  "es": "Tipo de solicitud (opcional)"
+ },
+ "Não sei dizer": {
+  "en": "Not sure",
+  "es": "No sé decir"
+ },
+ "Print da tela": {
+  "en": "Screenshot",
+  "es": "Captura de pantalla"
+ },
+ "PNG, JPG, WEBP ou GIF. Até 3 imagens. Reduzimos o tamanho sozinhos.": {
+  "en": "PNG, JPG, WEBP or GIF. Up to 3 images. We shrink them for you.",
+  "es": "PNG, JPG, WEBP o GIF. Hasta 3 imágenes. Reducimos el tamaño solos."
+ },
+ "Cancelar": {
+  "en": "Cancel",
+  "es": "Cancelar"
+ },
+ "Enviar pedido": {
+  "en": "Send request",
+  "es": "Enviar solicitud"
+ },
+ "Demonstração: a pessoa envia o problema e a Zoe analisa e responde no chat": {
+  "en": "Demo: the user sends the problem and Zoe checks it and replies in the chat",
+  "es": "Demostración: la persona envía el problema y Zoe lo analiza y responde en el chat"
+ },
+ "Demonstração: o pedido sendo preenchido e enviado": {
+  "en": "Demo: a request is filled in and sent",
+  "es": "Demostración: la solicitud se completa y se envía"
+ },
+ "Demonstração: o cursor troca as abas da lista de pedidos": {
+  "en": "Demo: the cursor switches the tabs of the request list",
+  "es": "Demostración: el cursor cambia las pestañas de la lista de solicitudes"
+ },
+ "Demonstração: o cursor clica em Encerrar pedido, confirma e a lista de pedidos volta": {
+  "en": "Demo: the cursor clicks Close request, confirms, and the request list returns",
+  "es": "Demostración: el cursor hace clic en Cerrar solicitud, confirma y vuelve la lista de solicitudes"
+ },
+ "Estoque do PDV não atualiza": {
+  "en": "Point-of-sale stock does not update",
+  "es": "El stock del PDV no se actualiza"
+ },
+ "Ex.: Estoque do PDV não atualiza": {
+  "en": "Ex.: Point-of-sale stock does not update",
+  "es": "Ej.: El stock del PDV no se actualiza"
+ },
+ "Descreva o problema: o nome e o CNPJ do PDV, o produto, desde quando acontece e o que você esperava ver.": {
+  "en": "Describe the problem: the name and tax ID of the point of sale, the product, since when it happens, and what you expected to see.",
+  "es": "Describe el problema: el nombre y el CNPJ del PDV, el producto, desde cuándo ocurre y qué esperabas ver."
+ },
+ "Dado de estoque ou ruptura": {
+  "en": "Stock data or stock-out",
+  "es": "Dato de stock o ruptura"
+ },
+ "Pedido SAU-0042 aberto. A Zoe já vai responder.": {
+  "en": "Request SAU-0042 is open. Zoe will reply soon.",
+  "es": "Solicitud SAU-0042 abierta. Zoe responderá pronto."
+ },
+ "print-da-tela.png": {
+  "en": "screenshot.png",
+  "es": "captura-de-pantalla.png"
+ },
+ "O estoque da Drogaria Exemplo (CNPJ 00.000.000/0001-00) está parado desde segunda. Segue o print.": {
+  "en": "The stock at Drogaria Exemplo (tax ID 00.000.000/0001-00) has been frozen since Monday. Screenshot attached.",
+  "es": "El stock de Drogaria Exemplo (CNPJ 00.000.000/0001-00) está detenido desde el lunes. Adjunto la captura."
+ },
+ "Olá, obrigada por avisar. Conferi o cadastro da Drogaria Exemplo e vi que a última leitura de estoque foi na segunda-feira. Vou olhar o produto que você citou antes de te responder.": {
+  "en": "Hi, thanks for the notice. I checked the Drogaria Exemplo record. The last stock reading was on Monday. I will look at the product you named before I answer.",
+  "es": "Hola, gracias por avisar. Revisé el registro de Drogaria Exemplo. La última lectura de stock fue el lunes. Voy a mirar el producto que mencionaste antes de responderte."
+ },
+ "É o Produto A, EAN 7890000000000.": {
+  "en": "It is Product A, EAN 7890000000000.",
+  "es": "Es el Producto A, EAN 7890000000000."
+ },
+ "Achei o Produto A. A última leitura de estoque dessa loja foi na segunda, às 08:12. Desde então, o arquivo de estoque não chegou. Peça ao responsável pelo PDV para reenviar o arquivo. Depois eu confiro de novo.": {
+  "en": "I found Product A. The last stock reading for this store was on Monday at 08:12. No stock file has arrived since then. Ask the person in charge of the point of sale to send the file again. Then I will check again.",
+  "es": "Encontré el Producto A. La última lectura de stock de esta tienda fue el lunes a las 08:12. Desde entonces no llegó el archivo de stock. Pide al responsable del PDV que envíe el archivo de nuevo. Después lo reviso otra vez."
+ },
+ "Lendo sua mensagem": {
+  "en": "Reading your message",
+  "es": "Leyendo tu mensaje"
+ },
+ "Consultando o cadastro": {
+  "en": "Checking the record",
+  "es": "Consultando el registro"
+ },
+ "Procurando o produto": {
+  "en": "Looking for the product",
+  "es": "Buscando el producto"
+ },
+ "Conferindo o estoque": {
+  "en": "Checking the stock",
+  "es": "Revisando el stock"
+ },
+ "Escrevendo a resposta": {
+  "en": "Writing the reply",
+  "es": "Escribiendo la respuesta"
+ },
+ "Início": {
+  "en": "Home",
+  "es": "Inicio"
+ },
+ "Localizar Produtos": {
+  "en": "Find Products",
+  "es": "Localizar Productos"
+ },
+ "Mercado": {
+  "en": "Market",
+  "es": "Mercado"
+ },
+ "Oportunidades": {
+  "en": "Opportunities",
+  "es": "Oportunidades"
+ },
+ "Distribuição": {
+  "en": "Distribution",
+  "es": "Distribución"
+ },
+ "Jean": {
+  "en": "Jean",
+  "es": "Jean"
+ },
+ "Nome da pessoa": {
+  "en": "User name",
+  "es": "Nombre de la persona"
+ },
+ "Laboratório": {
+  "en": "Laboratory",
+  "es": "Laboratorio"
+ },
+ "Nova resposta": {
+  "en": "New reply",
+  "es": "Nueva respuesta"
+ },
+ "Dúvida sobre ruptura do produto no PDV": {
+  "en": "Question about product stock-out at the point of sale",
+  "es": "Duda sobre ruptura del producto en el PDV"
+ },
+ "Com a equipe Dinn": {
+  "en": "With the Dinn team",
+  "es": "Con el equipo Dinn"
+ },
+ "Preciso liberar Dinn Insights para outro usuário": {
+  "en": "I need to give another user access to Dinn Insights",
+  "es": "Necesito dar acceso a Dinn Insights a otro usuario"
+ },
+ "Encerrado": {
+  "en": "Closed",
+  "es": "Cerrada"
+ },
+ "Resolvido": {
+  "en": "Solved",
+  "es": "Resuelta"
+ },
+ "Dúvida sobre ruptura": {
+  "en": "Question about stock-out",
+  "es": "Duda sobre ruptura"
+ },
+ "Acesso ao Dinn Insights": {
+  "en": "Access to Dinn Insights",
+  "es": "Acceso a Dinn Insights"
+ },
+ "Enviamos junto com o pedido": {
+  "en": "We send with the request",
+  "es": "Enviamos junto con la solicitud"
+ },
+ "Tela: Localizar Produtos": {
+  "en": "Screen: Find Products",
+  "es": "Pantalla: Localizar Productos"
+ },
+ "Erro exibido: ERR-4F2A91": {
+  "en": "Error shown: ERR-4F2A91",
+  "es": "Error mostrado: ERR-4F2A91"
+ },
+ "Erro no sistema": {
+  "en": "System error",
+  "es": "Error del sistema"
+ },
+ "Encerrar este pedido?": {
+  "en": "Close this request?",
+  "es": "¿Cerrar esta solicitud?"
+ },
+ "Um pedido encerrado não pode ser reaberto. Se precisar de ajuda depois, abra um novo pedido.": {
+  "en": "A closed request cannot be reopened. If you need help later, open a new request.",
+  "es": "Una solicitud cerrada no se puede reabrir. Si necesitas ayuda después, abre una solicitud nueva."
+ },
+ "Voltar": {
+  "en": "Back",
+  "es": "Volver"
+ },
+ "Seu pedido foi encaminhado para a equipe Dinn. Eles respondem por aqui.": {
+  "en": "Your request went to the Dinn team. They reply here.",
+  "es": "Tu solicitud se envió al equipo Dinn. Ellos responden aquí."
+ },
+ "Preciso liberar o Dinn Insights para a Maria.": {
+  "en": "I need to give Maria access to Dinn Insights.",
+  "es": "Necesito dar acceso a Dinn Insights a María."
+ },
+ "Entendi, obrigada. Alterar acesso precisa de uma pessoa da equipe. Encaminhei seu pedido com todo o contexto para eles.": {
+  "en": "Understood, thank you. A person on the team must change access. I sent your request to them with the full context.",
+  "es": "Entendido, gracias. Cambiar un acceso requiere a una persona del equipo. Les envié tu solicitud con todo el contexto."
+ },
+ "Pedido encaminhado à equipe Dinn": {
+  "en": "Request sent to the Dinn team",
+  "es": "Solicitud enviada al equipo Dinn"
+ },
+ "Equipe Dinn": {
+  "en": "Dinn team",
+  "es": "Equipo Dinn"
+ },
+ "Oi! Já liberamos o acesso. Pode conferir e nos dizer se apareceu?": {
+  "en": "Hi! We gave you access. Please check and tell us if it shows up.",
+  "es": "¡Hola! Ya dimos el acceso. ¿Puedes revisar y decirnos si aparece?"
+ },
+ "Algo deu errado nesta tela": {
+  "en": "Something went wrong on this screen",
+  "es": "Algo salió mal en esta pantalla"
+ },
+ "Tente de novo. Se o problema continuar, abra um pedido no Suporte: enviamos junto a tela e o código do erro.": {
+  "en": "Try again. If the problem continues, open a request in Support. We send the screen and the error code with it.",
+  "es": "Inténtalo de nuevo. Si el problema sigue, abre una solicitud en Soporte. Enviamos la pantalla y el código del error."
+ },
+ "Código do erro: ERR-4F2A91": {
+  "en": "Error code: ERR-4F2A91",
+  "es": "Código del error: ERR-4F2A91"
+ },
+ "Tentar de novo": {
+  "en": "Try again",
+  "es": "Intentar de nuevo"
+ },
+ "Abrir pedido no Suporte": {
+  "en": "Open request in Support",
+  "es": "Abrir solicitud en Soporte"
+ },
+ "Dúvidas sobre esta funcionalidade?": {
+  "en": "Questions about this feature?",
+  "es": "¿Dudas sobre esta funcionalidad?"
+ },
+ "Qualquer tela do portal": {
+  "en": "Any screen in the portal",
+  "es": "Cualquier pantalla del portal"
+ },
+ "O item": {
+  "en": "The",
+  "es": "El elemento"
+ },
+ "fica no menu lateral, abaixo das telas do produto.": {
+  "en": "item is in the side menu, below the product screens.",
+  "es": "está en el menú lateral, debajo de las pantallas del producto."
+ }
+}

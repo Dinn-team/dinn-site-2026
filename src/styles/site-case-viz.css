@@ -3,7 +3,7 @@
 
 .cv-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
 .cv-group > * { min-width: 0; }
-.cv-group > .cv-screen, .cv-group > .cv-art, .cv-group > .cv-card:has(.cv-timeline), .cv-group > .cv-card:has(.cv-compare), .cv-group > .cv-card:has(.cv-line), .cv-group > .cv-card:has(.cv-compare) + .cv-card:last-child, .cv-group > .cv-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.cv-group > .cv-screen, .cv-group > .cv-art, .cv-group > .cv-card:has(.cv-timeline), .cv-group > .cv-card:has(.cv-compare) { grid-column: 1 / -1; }
 .cv-block-viz + .cu3-table-wrap { margin-top: 8px; }
 
 /* Cartão de gráfico */
@@ -44,7 +44,7 @@
 /* Antes e depois */
 .cv-compare { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 16px; align-items: center; }
 .cv-compare > div { display: grid; gap: 6px; }
-.cv-compare strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 4vw, 52px); line-height: 1; letter-spacing: -0.02em; color: var(--muted-foreground); }
+.cv-compare strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; letter-spacing: -0.02em; color: var(--muted-foreground); }
 .cv-compare .is-to strong { color: var(--primary); }
 .cv-compare span { font-size: 14px; line-height: 1.4; color: var(--muted-foreground); }
 .cv-compare svg { color: var(--primary); }

@@ -3,6 +3,7 @@ import { ArrowRight, Search } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import type { Lab, LogoCredit } from '@/lib/labs-types';
 import { LabLogo, fmtNum } from './LabsParts';
+import { PillBar, Spark } from './ChartKit';
 
 // /laboratorios: ranking dos maiores laboratórios do mundo (por receita) e dos laboratórios com
 // medicamento ativo no Brasil (por registros na Anvisa). Tabela sem bordas laterais: posição,
@@ -11,23 +12,6 @@ import { LabLogo, fmtNum } from './LabsParts';
 // (o HubSpot lê a origem; ver src/lib/links.ts e contact-form.ts). No toque o botão fica visível.
 
 const PAGE = 30;
-
-function Spark({ series }: { series: [number, number][] }) {
-  const w = 150, h = 36, pad = 4;
-  const vs = series.map((p) => p[1]);
-  const lo = Math.min(...vs), hi = Math.max(...vs);
-  const x = (i: number) => pad + (i * (w - pad * 2)) / Math.max(1, series.length - 1);
-  const y = (v: number) => pad + (1 - (hi === lo ? 0.5 : (v - lo) / (hi - lo))) * (h - pad * 2);
-  const d = series.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join('');
-  const last = series.length - 1;
-  return (
-    <svg className="lb-spark" viewBox={`0 0 ${w} ${h}`} aria-hidden="true">
-      <path className="a" d={`${d}L${x(last)},${h}L${x(0)},${h}Z`} />
-      <path className="l" d={d} />
-      <circle cx={x(last)} cy={y(series[last][1])} r="3" />
-    </svg>
-  );
-}
 
 const initials = (n: string) => n.replace(/\(.*\)/, '').split(/\s+/).filter((w) => /^[A-Za-zÀ-ú]/.test(w)).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
 
@@ -47,7 +31,7 @@ function Row({ lab, max, lang }: { lab: Lab; max: number; lang: string }) {
         </div>
       </td>
       <td className="c-spark">
-        {lab.group === 'global' && lab.series ? <Spark series={lab.series} /> : lab.regs ? <span className="lb-bar"><i style={{ width: `${Math.max(2, (lab.regs / max) * 100)}%` }} /></span> : null}
+        {lab.group === 'global' && lab.series ? <Spark series={lab.series} label={`${lab.name}: ${lab.year}`} /> : lab.regs ? <PillBar pct={(lab.regs / max) * 100} label={`${lab.name}: ${lab.regs}`} /> : null}
       </td>
       <td className="c-val" title={src}>
         {lab.group === 'global' && lab.revenueBn != null ? (

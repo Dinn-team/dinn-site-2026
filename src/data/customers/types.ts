@@ -9,10 +9,10 @@
 // Libbs e Lilly entraram em 03/11/2026, com a mesma regra: trecho marcado como
 // "REVISAR" no documento fica fora, e cada citação tem `approved: false`.
 
-export type VizItem = { label: string; value: number; display?: string; hot?: boolean };
+export type VizItem = { label: string; value: number; display?: string; hot?: boolean; group?: string };
 /** Gráficos e telas do produto de cada bloco (ver CaseViz.tsx). Só números que já estão no texto. */
 export type Viz =
-  | { kind: 'bars'; title: string; sub?: string; unit?: string; digits?: number; max?: number; items: VizItem[]; note?: string }
+  | { kind: 'bars'; as?: 'pills' | 'columns' | 'rings' | 'kpis' | 'lollipop' | 'hexmap'; title: string; sub?: string; unit?: string; digits?: number; max?: number; items: VizItem[]; note?: string }
   | { kind: 'donut'; title: string; sub?: string; items: { label: string; value: number }[]; center?: { value: string; label: string }; note?: string }
   | { kind: 'line'; title: string; sub?: string; labels: string[]; series: { name: string; values: number[] }[]; unit?: string; digits?: number; note?: string }
   | { kind: 'compare'; title: string; from: { value: string; label: string }; to: { value: string; label: string }; note?: string }

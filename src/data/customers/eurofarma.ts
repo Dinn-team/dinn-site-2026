@@ -81,9 +81,9 @@ export const pt: Customer = {
     {
       title: 'Validação de carteira: quem manter, quem remover',
       viz: [
-        { kind: 'bars', title: 'Carteira validada por grupo', sub: '% de médicos validados', unit: '%', items: [{ label: 'Grupo A', value: 18.2, hot: true }, { label: 'Grupo B', value: 17.4 }, { label: 'Grupo C', value: 5.6 }, { label: 'Grupo D', value: 1.1 }] },
-        { kind: 'bars', title: 'Alto potencial fora da carteira', sub: '% validado, por classe de potencial', unit: '%', items: [{ label: 'Classe 1 (maior prioridade)', value: 32.1, hot: true }, { label: 'Classe 2', value: 21.8 }, { label: 'Classe 3', value: 15.2 }, { label: 'Classe 4', value: 8.0 }] },
-        { kind: 'bars', title: 'Por que remover um médico', sub: '% dos sinais de remoção', unit: '%', items: [{ label: 'Localização ou acesso ao médico', value: 40.3, hot: true }, { label: 'Visita recusada ou compliance', value: 12.3 }, { label: 'Erro de cadastro', value: 10.6 }] },
+        { kind: 'bars', as: 'columns', title: 'Carteira validada por grupo', sub: '% de médicos validados', unit: '%', digits: 1, items: [{ label: 'Grupo A', value: 18.2, hot: true }, { label: 'Grupo B', value: 17.4 }, { label: 'Grupo C', value: 5.6 }, { label: 'Grupo D', value: 1.1 }] },
+        { kind: 'bars', as: 'kpis', title: 'Alto potencial fora da carteira', sub: '% validado, por classe de potencial', unit: '%', digits: 1, items: [{ label: 'Classe 1 (maior prioridade)', value: 32.1, hot: true }, { label: 'Classe 2', value: 21.8 }, { label: 'Classe 3', value: 15.2 }, { label: 'Classe 4', value: 8.0 }] },
+        { kind: 'bars', as: 'lollipop', title: 'Por que remover um médico', sub: '% dos sinais de remoção', unit: '%', digits: 1, items: [{ label: 'Localização ou acesso ao médico', value: 40.3, hot: true }, { label: 'Visita recusada ou compliance', value: 12.3 }, { label: 'Erro de cadastro', value: 10.6 }] },
       ],
       paragraphs: [
         'Os representantes validam a carteira por prioridade. Não revisam milhares de médicos de uma vez. Até 10 de novembro, eles validaram 1.953 médicos da carteira: 1.796 para manter e 157 para remover. O número é parcial.',
@@ -257,9 +257,9 @@ export const en: Customer = {
     {
       title: 'List validation: who to keep or remove',
       viz: [
-        { kind: 'bars', title: 'List validated by group', sub: '% of doctors validated', unit: '%', items: [{ label: 'Group A', value: 18.2, hot: true }, { label: 'Group B', value: 17.4 }, { label: 'Group C', value: 5.6 }, { label: 'Group D', value: 1.1 }] },
-        { kind: 'bars', title: 'High potential outside the list', sub: '% validated, by potential class', unit: '%', items: [{ label: 'Class 1 (top priority)', value: 32.1, hot: true }, { label: 'Class 2', value: 21.8 }, { label: 'Class 3', value: 15.2 }, { label: 'Class 4', value: 8.0 }] },
-        { kind: 'bars', title: 'Why remove a doctor', sub: '% of removal signals', unit: '%', items: [{ label: 'Location or access to the doctor', value: 40.3, hot: true }, { label: 'Visit refused or compliance', value: 12.3 }, { label: 'Registration error', value: 10.6 }] },
+        { kind: 'bars', as: 'columns', title: 'List validated by group', sub: '% of doctors validated', unit: '%', digits: 1, items: [{ label: 'Group A', value: 18.2, hot: true }, { label: 'Group B', value: 17.4 }, { label: 'Group C', value: 5.6 }, { label: 'Group D', value: 1.1 }] },
+        { kind: 'bars', as: 'kpis', title: 'High potential outside the list', sub: '% validated, by potential class', unit: '%', digits: 1, items: [{ label: 'Class 1 (top priority)', value: 32.1, hot: true }, { label: 'Class 2', value: 21.8 }, { label: 'Class 3', value: 15.2 }, { label: 'Class 4', value: 8.0 }] },
+        { kind: 'bars', as: 'lollipop', title: 'Why remove a doctor', sub: '% of removal signals', unit: '%', digits: 1, items: [{ label: 'Location or access to the doctor', value: 40.3, hot: true }, { label: 'Visit refused or compliance', value: 12.3 }, { label: 'Registration error', value: 10.6 }] },
       ],
       paragraphs: [
         'Reps validate the list by priority. They do not review thousands of doctors at once. Until November 10, they validated 1,953 doctors on the list: 1,796 to keep and 157 to remove. The number is partial.',
@@ -433,9 +433,9 @@ export const es: Customer = {
     {
       title: 'Validación de cartera: a quién mantener o quitar',
       viz: [
-        { kind: 'bars', title: 'Cartera validada por grupo', sub: '% de médicos validados', unit: '%', items: [{ label: 'Grupo A', value: 18.2, hot: true }, { label: 'Grupo B', value: 17.4 }, { label: 'Grupo C', value: 5.6 }, { label: 'Grupo D', value: 1.1 }] },
-        { kind: 'bars', title: 'Alto potencial fuera de la cartera', sub: '% validado, por clase de potencial', unit: '%', items: [{ label: 'Clase 1 (mayor prioridad)', value: 32.1, hot: true }, { label: 'Clase 2', value: 21.8 }, { label: 'Clase 3', value: 15.2 }, { label: 'Clase 4', value: 8.0 }] },
-        { kind: 'bars', title: 'Por qué quitar a un médico', sub: '% de las señales de baja', unit: '%', items: [{ label: 'Ubicación o acceso al médico', value: 40.3, hot: true }, { label: 'Visita rechazada o compliance', value: 12.3 }, { label: 'Error de registro', value: 10.6 }] },
+        { kind: 'bars', as: 'columns', title: 'Cartera validada por grupo', sub: '% de médicos validados', unit: '%', digits: 1, items: [{ label: 'Grupo A', value: 18.2, hot: true }, { label: 'Grupo B', value: 17.4 }, { label: 'Grupo C', value: 5.6 }, { label: 'Grupo D', value: 1.1 }] },
+        { kind: 'bars', as: 'kpis', title: 'Alto potencial fuera de la cartera', sub: '% validado, por clase de potencial', unit: '%', digits: 1, items: [{ label: 'Clase 1 (mayor prioridad)', value: 32.1, hot: true }, { label: 'Clase 2', value: 21.8 }, { label: 'Clase 3', value: 15.2 }, { label: 'Clase 4', value: 8.0 }] },
+        { kind: 'bars', as: 'lollipop', title: 'Por qué quitar a un médico', sub: '% de las señales de baja', unit: '%', digits: 1, items: [{ label: 'Ubicación o acceso al médico', value: 40.3, hot: true }, { label: 'Visita rechazada o compliance', value: 12.3 }, { label: 'Error de registro', value: 10.6 }] },
       ],
       paragraphs: [
         'Los representantes validan la cartera por prioridad. No revisan miles de médicos de una vez. Hasta el 10 de noviembre, validaron 1.953 médicos de la cartera: 1.796 para mantener y 157 para quitar. El número es parcial.',

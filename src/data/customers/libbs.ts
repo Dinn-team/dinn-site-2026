@@ -122,7 +122,7 @@ export const pt: Customer = {
       title: 'Uso do Localizador',
       viz: [
         { kind: 'line', title: 'Usuários por semana', sub: 'Localizador, produtos Libbs', labels: ['29/06', '06/07', '27/07', '31/08', '07/09', '05/10', '19/10'], series: [{ name: 'Usuários', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', title: 'Buscas por semana', sub: 'Localizador, produtos Libbs', items: [{ label: '29/06', value: 223 }, { label: '06/07', value: 275, hot: true }, { label: '27/07', value: 93 }, { label: '31/08', value: 152 }, { label: '07/09', value: 78 }, { label: '05/10', value: 135 }, { label: '19/10', value: 197 }] },
+        { kind: 'bars', as: 'columns', title: 'Buscas por semana', sub: 'Localizador, produtos Libbs', items: [{ label: '29/06', value: 223 }, { label: '06/07', value: 275, hot: true }, { label: '27/07', value: 93 }, { label: '31/08', value: 152 }, { label: '07/09', value: 78 }, { label: '05/10', value: 135 }, { label: '19/10', value: 197 }] },
       ],
       paragraphs: ['O uso foi forte no lançamento, caiu no segundo semestre e subiu de novo em outubro. A alta veio depois de agendas com o campo e o SAC e da Imersão de 9 de outubro.'],
       note: 'Contagem por produto, sem separar por empresa. A captura de buscas começa em 29 de junho. Em 15 de outubro, o time resumiu: o volume de usuários, de logins e de telas acessadas aumentou, e o time está usando.',
@@ -130,7 +130,7 @@ export const pt: Customer = {
     {
       title: 'Tamanho da ruptura nos produtos foco',
       viz: [
-        { kind: 'bars', title: 'Unidades vendidas e perdidas', sub: 'Set e out/2026, estimativa técnica, base 100%', max: 100, items: [{ label: 'Vendidas nos pares PDV e produto', value: 100, display: '100%' }, { label: 'Potencialmente não vendidas por estoque zero', value: 15, display: '≈ 15%', hot: true }], note: 'A perda estimada é de cerca de 15% sobre as unidades vendidas. É potencial técnico, não faturamento perdido.' },
+        { kind: 'bars', as: 'rings', title: 'Unidades vendidas e perdidas', sub: 'Set e out/2026, estimativa técnica, base 100%', max: 100, items: [{ label: 'Vendidas nos pares PDV e produto', value: 100, display: '100%' }, { label: 'Potencialmente não vendidas por estoque zero', value: 15, display: '≈ 15%', hot: true }], note: 'A perda estimada é de cerca de 15% sobre as unidades vendidas. É potencial técnico, não faturamento perdido.' },
       ],
       paragraphs: ['Esta análise cobre o grupo de produtos mais buscados e citados pelo time em setembro e outubro de 2026. Ela inclui só pares PDV e produto com venda regular (pelo menos 6 unidades em 60 dias).'],
       tables: [
@@ -151,7 +151,7 @@ export const pt: Customer = {
     {
       title: 'Como os usuários avaliam o Dinn hoje',
       viz: [
-        { kind: 'bars', title: 'Satisfação no 1º ciclo', sub: 'CSAT, nota de 1 a 5, 17 respostas', max: 5, digits: 2, items: [{ label: 'Média dos usuários (jun a ago/2026)', value: 3.35, display: '3,35 de 5' }] },
+        { kind: 'bars', as: 'rings', title: 'Satisfação no 1º ciclo', sub: 'CSAT, nota de 1 a 5, 17 respostas', max: 5, digits: 2, items: [{ label: 'Média dos usuários (jun a ago/2026)', value: 3.35, display: '3,35 de 5' }] },
       ],
       paragraphs: ['O ponto de partida é transparente. A confiança no dado é a principal barreira. Ela cresce com o uso.'],
       tables: [
@@ -308,7 +308,7 @@ export const en: Customer = {
       title: 'Product Locator use',
       viz: [
         { kind: 'line', title: 'Users per week', sub: 'Product Locator, Libbs products', labels: ['29 Jun', '6 Jul', '27 Jul', '31 Aug', '7 Sep', '5 Oct', '19 Oct'], series: [{ name: 'Users', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', title: 'Searches per week', sub: 'Product Locator, Libbs products', items: [{ label: '29 Jun', value: 223 }, { label: '6 Jul', value: 275, hot: true }, { label: '27 Jul', value: 93 }, { label: '31 Aug', value: 152 }, { label: '7 Sep', value: 78 }, { label: '5 Oct', value: 135 }, { label: '19 Oct', value: 197 }] },
+        { kind: 'bars', as: 'columns', title: 'Searches per week', sub: 'Product Locator, Libbs products', items: [{ label: '29 Jun', value: 223 }, { label: '6 Jul', value: 275, hot: true }, { label: '27 Jul', value: 93 }, { label: '31 Aug', value: 152 }, { label: '7 Sep', value: 78 }, { label: '5 Oct', value: 135 }, { label: '19 Oct', value: 197 }] },
       ],
       paragraphs: ['Use was strong at launch, fell in the second half of the year and rose again in October. The rise came after sessions with the field team and SAC, and after the October 9 Immersion.'],
       note: 'Count per product, not split by company. Search capture starts on June 29. On October 15, the team summarized: the volume of users, logins and screens viewed grew, and the team is using it.',
@@ -316,7 +316,7 @@ export const en: Customer = {
     {
       title: 'Size of stock-outs in focus products',
       viz: [
-        { kind: 'bars', title: 'Units sold and lost', sub: 'Sep and Oct 2026, technical estimate, base 100%', max: 100, items: [{ label: 'Sold in store and product pairs', value: 100, display: '100%' }, { label: 'Potentially not sold because of zero stock', value: 15, display: '≈ 15%', hot: true }], note: 'The estimated loss is about 15% of the units sold. It is technical potential, not lost revenue.' },
+        { kind: 'bars', as: 'rings', title: 'Units sold and lost', sub: 'Sep and Oct 2026, technical estimate, base 100%', max: 100, items: [{ label: 'Sold in store and product pairs', value: 100, display: '100%' }, { label: 'Potentially not sold because of zero stock', value: 15, display: '≈ 15%', hot: true }], note: 'The estimated loss is about 15% of the units sold. It is technical potential, not lost revenue.' },
       ],
       paragraphs: ['This analysis covers the group of products most searched for and cited by the team in September and October 2026. It includes only store and product pairs with regular sales (at least 6 units in 60 days).'],
       tables: [
@@ -337,7 +337,7 @@ export const en: Customer = {
     {
       title: 'How users rate Dinn today',
       viz: [
-        { kind: 'bars', title: 'Satisfaction in the first cycle', sub: 'CSAT, score from 1 to 5, 17 responses', max: 5, digits: 2, items: [{ label: 'User average (Jun to Aug 2026)', value: 3.35, display: '3.35 of 5' }] },
+        { kind: 'bars', as: 'rings', title: 'Satisfaction in the first cycle', sub: 'CSAT, score from 1 to 5, 17 responses', max: 5, digits: 2, items: [{ label: 'User average (Jun to Aug 2026)', value: 3.35, display: '3.35 of 5' }] },
       ],
       paragraphs: ['The starting point is transparent. Trust in the data is the main barrier. It grows with use.'],
       tables: [
@@ -494,7 +494,7 @@ export const es: Customer = {
       title: 'Uso del Localizador de productos',
       viz: [
         { kind: 'line', title: 'Usuarios por semana', sub: 'Localizador de productos, productos Libbs', labels: ['29 jun', '6 jul', '27 jul', '31 ago', '7 sep', '5 oct', '19 oct'], series: [{ name: 'Usuarios', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', title: 'Búsquedas por semana', sub: 'Localizador de productos, productos Libbs', items: [{ label: '29 jun', value: 223 }, { label: '6 jul', value: 275, hot: true }, { label: '27 jul', value: 93 }, { label: '31 ago', value: 152 }, { label: '7 sep', value: 78 }, { label: '5 oct', value: 135 }, { label: '19 oct', value: 197 }] },
+        { kind: 'bars', as: 'columns', title: 'Búsquedas por semana', sub: 'Localizador de productos, productos Libbs', items: [{ label: '29 jun', value: 223 }, { label: '6 jul', value: 275, hot: true }, { label: '27 jul', value: 93 }, { label: '31 ago', value: 152 }, { label: '7 sep', value: 78 }, { label: '5 oct', value: 135 }, { label: '19 oct', value: 197 }] },
       ],
       paragraphs: ['El uso fue fuerte en el lanzamiento, cayó en el segundo semestre y subió de nuevo en octubre. La subida vino después de sesiones con el campo y el SAC y de la Inmersión del 9 de octubre.'],
       note: 'Conteo por producto, sin separar por empresa. La captura de búsquedas empieza el 29 de junio. El 15 de octubre, el equipo resumió: el volumen de usuarios, de inicios de sesión y de pantallas vistas aumentó, y el equipo lo está usando.',
@@ -502,7 +502,7 @@ export const es: Customer = {
     {
       title: 'Tamaño del quiebre en los productos foco',
       viz: [
-        { kind: 'bars', title: 'Unidades vendidas y perdidas', sub: 'Sep y oct de 2026, estimación técnica, base 100%', max: 100, items: [{ label: 'Vendidas en los pares tienda y producto', value: 100, display: '100%' }, { label: 'Potencialmente no vendidas por stock cero', value: 15, display: '≈ 15%', hot: true }], note: 'La pérdida estimada es de cerca de 15% sobre las unidades vendidas. Es potencial técnico, no facturación perdida.' },
+        { kind: 'bars', as: 'rings', title: 'Unidades vendidas y perdidas', sub: 'Sep y oct de 2026, estimación técnica, base 100%', max: 100, items: [{ label: 'Vendidas en los pares tienda y producto', value: 100, display: '100%' }, { label: 'Potencialmente no vendidas por stock cero', value: 15, display: '≈ 15%', hot: true }], note: 'La pérdida estimada es de cerca de 15% sobre las unidades vendidas. Es potencial técnico, no facturación perdida.' },
       ],
       paragraphs: ['Este análisis cubre el grupo de productos más buscados y citados por el equipo en septiembre y octubre de 2026. Incluye solo pares tienda y producto con venta regular (al menos 6 unidades en 60 días).'],
       tables: [
@@ -523,7 +523,7 @@ export const es: Customer = {
     {
       title: 'Cómo evalúan hoy los usuarios a Dinn',
       viz: [
-        { kind: 'bars', title: 'Satisfacción en el 1.er ciclo', sub: 'CSAT, nota de 1 a 5, 17 respuestas', max: 5, digits: 2, items: [{ label: 'Promedio de los usuarios (jun a ago de 2026)', value: 3.35, display: '3,35 de 5' }] },
+        { kind: 'bars', as: 'rings', title: 'Satisfacción en el 1.er ciclo', sub: 'CSAT, nota de 1 a 5, 17 respuestas', max: 5, digits: 2, items: [{ label: 'Promedio de los usuarios (jun a ago de 2026)', value: 3.35, display: '3,35 de 5' }] },
       ],
       paragraphs: ['El punto de partida es transparente. La confianza en el dato es la principal barrera. Crece con el uso.'],
       tables: [

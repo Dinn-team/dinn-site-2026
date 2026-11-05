@@ -101,7 +101,7 @@ export const pt: Customer = {
       title: 'Quanto giro a ruptura faz perder',
       viz: [
         { kind: 'donut', title: 'Perda sobre o giro do mercado', sub: '% do giro potencial dos 3 mercados, set a nov/2025', items: [{ label: 'Restante do giro dos 3 mercados', value: 86 }, { label: 'Perda estimada por ruptura', value: 14 }], center: { value: '≈ 14%', label: 'do giro perdido' }, note: 'Base: giro potencial dos três mercados, Marjan e concorrência.' },
-        { kind: 'bars', title: 'Perda por mercado', sub: '% do giro, estimativa técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'rings', title: 'Perda por mercado', sub: '% do giro, estimativa técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
       ],
       paragraphs: ['Nos três principais mercados da Marjan, em redes de grande porte, de setembro a novembro de 2025:'],
       tables: [
@@ -122,7 +122,7 @@ export const pt: Customer = {
     {
       title: 'Os três produtos mais críticos',
       viz: [
-        { kind: 'bars', title: 'Ruptura média por produto', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Produto A', value: 39.2, hot: true }, { label: 'Produto B', value: 23.4 }, { label: 'Produto C', value: 12.5 }] },
+        { kind: 'bars', as: 'columns', title: 'Ruptura média por produto', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Produto A', value: 39.2, hot: true }, { label: 'Produto B', value: 23.4 }, { label: 'Produto C', value: 12.5 }] },
       ],
       paragraphs: ['Entre os 10 produtos de maior giro, três concentram o maior potencial por indisponibilidade.'],
       tables: [
@@ -143,7 +143,7 @@ export const pt: Customer = {
     {
       title: 'Onde focar: execução por classe de praça',
       viz: [
-        { kind: 'bars', title: 'Ruptura atual por classe de praça', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Praça A', value: 41, hot: true, display: 'acima de 40%' }, { label: 'Praça B', value: 26, display: '23% a 29%' }, { label: 'Praça C', value: 19, display: 'até 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Ruptura atual por classe de praça', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Praça A', value: 41, hot: true, display: 'acima de 40%' }, { label: 'Praça B', value: 26, display: '23% a 29%' }, { label: 'Praça C', value: 19, display: 'até 19%' }] },
       ],
       paragraphs: [
         'Execução. A rede de melhor execução gira bem mais que a média das redes. A diferença mostra o espaço para ganhar com sortimento, abastecimento e ativação comercial.',
@@ -168,7 +168,7 @@ export const pt: Customer = {
     {
       title: 'Quanto giro vale recuperar',
       viz: [
-        { kind: 'bars', title: 'Giro recuperado por meta', sub: 'pontos percentuais do giro do mercado', items: [{ label: 'Meta realista: de 14% para 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% para 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelência: de 14% para 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Giro recuperado por meta', sub: 'pontos percentuais do giro do mercado', items: [{ label: 'Meta realista: de 14% para 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% para 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelência: de 14% para 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
       paragraphs: ['O Dinn simulou três metas. A base é a perda de 14% sobre o giro do mercado.'],
       tables: [
@@ -323,7 +323,7 @@ export const en: Customer = {
       title: 'How much sell-through stock-outs cost',
       viz: [
         { kind: 'donut', title: 'Loss over market sell-through', sub: '% of potential sell-through in the 3 markets, Sep to Nov 2025', items: [{ label: 'Rest of the sell-through in the 3 markets', value: 86 }, { label: 'Estimated loss from stock-outs', value: 14 }], center: { value: '≈ 14%', label: 'of sell-through lost' }, note: 'Base: potential sell-through in the three markets, Marjan and competitors.' },
-        { kind: 'bars', title: 'Loss by market', sub: '% of sell-through, technical estimate', unit: '%', items: [{ label: 'Market A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Market B', value: 20, display: '≈ 20%' }, { label: 'Market C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'rings', title: 'Loss by market', sub: '% of sell-through, technical estimate', unit: '%', items: [{ label: 'Market A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Market B', value: 20, display: '≈ 20%' }, { label: 'Market C', value: 7, display: '≈ 7%' }] },
       ],
       paragraphs: ['In the three main Marjan markets, in large chains, from September to November 2025:'],
       tables: [
@@ -344,7 +344,7 @@ export const en: Customer = {
     {
       title: 'The three most critical products',
       viz: [
-        { kind: 'bars', title: 'Average stock-out by product', sub: '% of days without stock', unit: '%', items: [{ label: 'Product A', value: 39.2, hot: true }, { label: 'Product B', value: 23.4 }, { label: 'Product C', value: 12.5 }] },
+        { kind: 'bars', as: 'columns', title: 'Average stock-out by product', sub: '% of days without stock', unit: '%', items: [{ label: 'Product A', value: 39.2, hot: true }, { label: 'Product B', value: 23.4 }, { label: 'Product C', value: 12.5 }] },
       ],
       paragraphs: ['Among the 10 highest sell-through products, three hold the largest potential from missing availability.'],
       tables: [
@@ -365,7 +365,7 @@ export const en: Customer = {
     {
       title: 'Where to focus: execution by area class',
       viz: [
-        { kind: 'bars', title: 'Current stock-out by area class', sub: '% of days without stock', unit: '%', items: [{ label: 'Area A', value: 41, hot: true, display: 'above 40%' }, { label: 'Area B', value: 26, display: '23% to 29%' }, { label: 'Area C', value: 19, display: 'up to 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Current stock-out by area class', sub: '% of days without stock', unit: '%', items: [{ label: 'Area A', value: 41, hot: true, display: 'above 40%' }, { label: 'Area B', value: 26, display: '23% to 29%' }, { label: 'Area C', value: 19, display: 'up to 19%' }] },
       ],
       paragraphs: [
         'Execution. The best-executing chain sells much more than the chain average. The gap shows the room to gain with assortment, supply and commercial activation.',
@@ -390,7 +390,7 @@ export const en: Customer = {
     {
       title: 'How much sell-through is worth recovering',
       viz: [
-        { kind: 'bars', title: 'Sell-through recovered by target', sub: 'percentage points of market sell-through', items: [{ label: 'Realistic target: from 14% to 10%', value: 4, display: '+4 p.p.' }, { label: 'Ambitious target: from 14% to 7%', value: 7, display: '+7 p.p.' }, { label: 'Excellence: from 14% to 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Sell-through recovered by target', sub: 'percentage points of market sell-through', items: [{ label: 'Realistic target: from 14% to 10%', value: 4, display: '+4 p.p.' }, { label: 'Ambitious target: from 14% to 7%', value: 7, display: '+7 p.p.' }, { label: 'Excellence: from 14% to 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
       paragraphs: ['Dinn simulated three targets. The base is the 14% loss over market sell-through.'],
       tables: [
@@ -545,7 +545,7 @@ export const es: Customer = {
       title: 'Cuánta rotación hacen perder los quiebres',
       viz: [
         { kind: 'donut', title: 'Pérdida sobre la rotación del mercado', sub: '% de la rotación potencial de los 3 mercados, sep a nov 2025', items: [{ label: 'Resto de la rotación de los 3 mercados', value: 86 }, { label: 'Pérdida estimada por quiebres', value: 14 }], center: { value: '≈ 14%', label: 'de la rotación perdida' }, note: 'Base: rotación potencial de los tres mercados, Marjan y competencia.' },
-        { kind: 'bars', title: 'Pérdida por mercado', sub: '% de la rotación, estimación técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'rings', title: 'Pérdida por mercado', sub: '% de la rotación, estimación técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
       ],
       paragraphs: ['En los tres mercados principales de Marjan, en cadenas de gran porte, de septiembre a noviembre de 2025:'],
       tables: [
@@ -566,7 +566,7 @@ export const es: Customer = {
     {
       title: 'Los tres productos más críticos',
       viz: [
-        { kind: 'bars', title: 'Quiebre medio por producto', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Producto A', value: 39.2, hot: true }, { label: 'Producto B', value: 23.4 }, { label: 'Producto C', value: 12.5 }] },
+        { kind: 'bars', as: 'columns', title: 'Quiebre medio por producto', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Producto A', value: 39.2, hot: true }, { label: 'Producto B', value: 23.4 }, { label: 'Producto C', value: 12.5 }] },
       ],
       paragraphs: ['Entre los 10 productos de mayor rotación, tres concentran el mayor potencial por falta de disponibilidad.'],
       tables: [
@@ -587,7 +587,7 @@ export const es: Customer = {
     {
       title: 'Dónde enfocar: ejecución por clase de plaza',
       viz: [
-        { kind: 'bars', title: 'Quiebre actual por clase de plaza', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Plaza A', value: 41, hot: true, display: 'sobre 40%' }, { label: 'Plaza B', value: 26, display: '23% a 29%' }, { label: 'Plaza C', value: 19, display: 'hasta 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Quiebre actual por clase de plaza', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Plaza A', value: 41, hot: true, display: 'sobre 40%' }, { label: 'Plaza B', value: 26, display: '23% a 29%' }, { label: 'Plaza C', value: 19, display: 'hasta 19%' }] },
       ],
       paragraphs: [
         'Ejecución. La cadena de mejor ejecución rota mucho más que el promedio de las cadenas. La diferencia muestra el espacio para ganar con surtido, abastecimiento y activación comercial.',
@@ -612,7 +612,7 @@ export const es: Customer = {
     {
       title: 'Cuánta rotación vale recuperar',
       viz: [
-        { kind: 'bars', title: 'Rotación recuperada por meta', sub: 'puntos porcentuales de la rotación del mercado', items: [{ label: 'Meta realista: de 14% a 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% a 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelencia: de 14% a 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Rotación recuperada por meta', sub: 'puntos porcentuales de la rotación del mercado', items: [{ label: 'Meta realista: de 14% a 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% a 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelencia: de 14% a 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
       paragraphs: ['Dinn simuló tres metas. La base es la pérdida de 14% sobre la rotación del mercado.'],
       tables: [

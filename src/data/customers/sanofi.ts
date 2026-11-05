@@ -111,7 +111,7 @@ export const pt: Customer = {
       title: 'Adoção e satisfação',
       viz: [
         { kind: 'donut', title: 'Missões do período', sub: 'Acatadas e rejeitadas', items: [{ label: 'Acatadas (573)', value: 573 }, { label: 'Rejeitadas (45)', value: 45 }], center: { value: '92,7%', label: 'acatadas' } },
-        { kind: 'bars', title: 'Satisfação dos consultores', sub: 'CSAT, nota de 1 a 5, em 17 dias', max: 5, digits: 2, items: [{ label: 'Navegação intuitiva na busca por informações', value: 4.83 }, { label: 'Priorização de clientes', value: 4.67 }, { label: 'Probabilidade de uso contínuo', value: 4.67 }, { label: 'Adequação das informações nas missões', value: 4.0, hot: true }] },
+        { kind: 'bars', as: 'rings', title: 'Satisfação dos consultores', sub: 'CSAT, nota de 1 a 5, em 17 dias', max: 5, digits: 2, items: [{ label: 'Navegação intuitiva na busca por informações', value: 4.83 }, { label: 'Priorização de clientes', value: 4.67 }, { label: 'Probabilidade de uso contínuo', value: 4.67 }, { label: 'Adequação das informações nas missões', value: 4.0, hot: true }] },
       ],
       bullets: [
         '92,7% das missões acatadas em todo o período: 573 acatadas e 45 rejeitadas',
@@ -255,7 +255,7 @@ export const en: Customer = {
       title: 'Adoption and satisfaction',
       viz: [
         { kind: 'donut', title: 'Missions in the period', sub: 'Accepted and rejected', items: [{ label: 'Accepted (573)', value: 573 }, { label: 'Rejected (45)', value: 45 }], center: { value: '92.7%', label: 'accepted' } },
-        { kind: 'bars', title: 'Consultant satisfaction', sub: 'CSAT, score from 1 to 5, over 17 days', max: 5, digits: 2, items: [{ label: 'Intuitive navigation to find information', value: 4.83 }, { label: 'Customer prioritization', value: 4.67 }, { label: 'Likelihood of continued use', value: 4.67 }, { label: 'Fit of the information in missions', value: 4.0, hot: true }] },
+        { kind: 'bars', as: 'rings', title: 'Consultant satisfaction', sub: 'CSAT, score from 1 to 5, over 17 days', max: 5, digits: 2, items: [{ label: 'Intuitive navigation to find information', value: 4.83 }, { label: 'Customer prioritization', value: 4.67 }, { label: 'Likelihood of continued use', value: 4.67 }, { label: 'Fit of the information in missions', value: 4.0, hot: true }] },
       ],
       bullets: [
         '92.7% of missions accepted over the whole period: 573 accepted and 45 rejected',
@@ -399,7 +399,7 @@ export const es: Customer = {
       title: 'Adopción y satisfacción',
       viz: [
         { kind: 'donut', title: 'Misiones del período', sub: 'Aceptadas y rechazadas', items: [{ label: 'Aceptadas (573)', value: 573 }, { label: 'Rechazadas (45)', value: 45 }], center: { value: '92,7%', label: 'aceptadas' } },
-        { kind: 'bars', title: 'Satisfacción de los consultores', sub: 'CSAT, nota de 1 a 5, en 17 días', max: 5, digits: 2, items: [{ label: 'Navegación intuitiva para buscar información', value: 4.83 }, { label: 'Priorización de clientes', value: 4.67 }, { label: 'Probabilidad de uso continuo', value: 4.67 }, { label: 'Adecuación de la información en las misiones', value: 4.0, hot: true }] },
+        { kind: 'bars', as: 'rings', title: 'Satisfacción de los consultores', sub: 'CSAT, nota de 1 a 5, en 17 días', max: 5, digits: 2, items: [{ label: 'Navegación intuitiva para buscar información', value: 4.83 }, { label: 'Priorización de clientes', value: 4.67 }, { label: 'Probabilidad de uso continuo', value: 4.67 }, { label: 'Adecuación de la información en las misiones', value: 4.0, hot: true }] },
       ],
       bullets: [
         '92,7% de las misiones aceptadas en todo el período: 573 aceptadas y 45 rechazadas',

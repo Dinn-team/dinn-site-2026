@@ -1,3 +1,5 @@
+import { demoLocale } from './demoI18n';
+import { useTranslation } from '@/i18n/useTranslation';
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
 import { animate, motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Check, ChevronDown, House, LifeBuoy, Map as MapIcon, MapPin, ChartPie, Truck } from 'lucide-react';
@@ -19,7 +21,7 @@ import { JeanOrbIcon } from './JeanOrb';
 export const BRAND = '#5625f2';
 export const GREY = '#a3a3b2';
 export const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-export const fmt = (v: number, d = 0) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+export const fmt = (v: number, d = 0) => v.toLocaleString(demoLocale(), { minimumFractionDigits: d, maximumFractionDigits: d });
 
 // ── Motor: roteiro, cursor e passos ─────────────────────────────────────────
 // Linguagem de movimento: skill motion-de-produto (.agents/skills/motion-de-produto).
@@ -58,6 +60,8 @@ export function useDemo(def: Def, step?: number) {
   const [press, setPress] = useState<string | null>(null);
   const seen = useInView(app, { margin: '-10% 0px' });
   const camOn = useContext(FrameCamera);
+  // O roteiro tem texto digitado por idioma: trocar de idioma reinicia o laço.
+  const { lang } = useTranslation();
 
   // Retângulo de um alvo em coordenadas da tela (sem escala nem câmera).
   const rectOf = (key: string) => {
@@ -177,7 +181,7 @@ export function useDemo(def: Def, step?: number) {
       on = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seen, step === undefined]);
+  }, [seen, step === undefined, lang]);
 
   // O pulso do alvo clicado dura o tempo da animação de CSS.
   useEffect(() => {

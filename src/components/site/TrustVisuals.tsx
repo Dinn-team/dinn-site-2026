@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useId } from 'react';
 import { motion } from 'framer-motion';
 import {
   Activity, AlertTriangle, Building2, Check, ChevronRight, Clock, Eye, Gauge, KeyRound, Layers, Lightbulb, Lock, Mail,
@@ -8,6 +8,7 @@ import type { ComponentType, ReactNode } from 'react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { LEVEL } from '@/components/home/palette';
 import { IlEstimated, IlInferred, IlObserved } from '@/components/illustrations/trust';
+import { curve } from './ChartKit';
 
 // Visuais da página Confiança: o que um sinal diz sobre si, o que ele não
 // prova, de onde vem e com que frequência chega, e como o acesso é protegido.
@@ -41,7 +42,10 @@ export function SignalAnatomy() {
   const icons: IconType[] = [Eye, Clock, Gauge, AlertTriangle, Check];
   const tones = [GREEN, ACCENT, ACCENT, AMBER, GREEN];
   const spark = [30, 34, 38, 45, 52, 57, 60, 71, 78, 87];
-  const pts = spark.map((v, i) => `${8 + i * 22},${58 - (v / 100) * 50}`).join(' ');
+  const gid = `tr${useId().replace(/:/g, '')}`;
+  const pts = spark.map((v, i) => [8 + i * 22, 58 - (v / 100) * 50] as [number, number]);
+  const line = curve(pts);
+  const lineColor = 'var(--chart-5-line)';
 
   return (
     <motion.figure className="tr-anatomy" {...reveal()} aria-label={a.title}>
@@ -59,8 +63,15 @@ export function SignalAnatomy() {
         <div className="tr-card-metric">
           <span className="tr-big">86,7%</span>
           <svg viewBox="0 0 220 64" aria-hidden="true">
-            <polyline points={pts} fill="none" stroke={LEVEL.critico.dot} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray="1" className="tr-draw" />
-            <circle cx={8 + 9 * 22} cy={58 - 0.87 * 50} r="4.5" fill={LEVEL.critico.dot} />
+            <defs>
+              <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" style={{ stopColor: 'var(--chart-5)' }} stopOpacity=".32" />
+                <stop offset="1" style={{ stopColor: 'var(--chart-5)' }} stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d={`${line}L${pts[9][0]},62L${pts[0][0]},62Z`} style={{ fill: `url(#${gid})` }} />
+            <path d={line} fill="none" stroke={lineColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray="1" className="tr-draw" />
+            <circle cx={pts[9][0]} cy={pts[9][1]} r="5" style={{ fill: 'var(--card)', stroke: lineColor }} strokeWidth="2.5" />
           </svg>
         </div>
         <ul className="tr-callouts">
@@ -163,6 +174,8 @@ export function NotProveList() {
 }
 
 // ── Cobertura e atualização: da consulta à leitura ────────────────────────
+const FACTOR_COLORS = ['var(--chart-1)', 'var(--chart-3)', 'var(--chart-2-line)', 'var(--chart-5-line)'];
+const DEPLOY_COLORS = ['var(--chart-2)', 'var(--chart-1)', 'var(--chart-4)'];
 export function CoverageViz() {
   const { t } = useTranslation();
   const v = (t('trustVisual.coverage') as Dict) ?? {};
@@ -192,7 +205,7 @@ export function CoverageViz() {
             <li key={f}>
               <span>{f}</span>
               <div aria-hidden="true">
-                <motion.i initial={{ width: 0 }} whileInView={{ width: `${widths[i]}%` }} viewport={{ once: true }} transition={{ delay: 0.15 * i, duration: 0.9, ease: EASE }} />
+                <motion.i style={{ background: FACTOR_COLORS[i % FACTOR_COLORS.length] }} initial={{ width: 0 }} whileInView={{ width: `${widths[i]}%` }} viewport={{ once: true }} transition={{ delay: 0.15 * i, duration: 0.9, ease: EASE }} />
               </div>
             </li>
           ))}
@@ -278,7 +291,7 @@ export function DeployBar() {
           <motion.span
             key={i}
             className={i === 1 ? 'is-main' : ''}
-            style={{ flexBasis: `${g}%` }}
+            style={{ flexBasis: `${g}%`, background: DEPLOY_COLORS[i] }}
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}

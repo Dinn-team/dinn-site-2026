@@ -118,6 +118,9 @@ export default function Footer() {
         .ftr-bar { background: color-mix(in oklab, var(--muted) 94%, var(--foreground)); }
         .ftr-bar-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 20px; padding-bottom: 20px; }
         .ftr-bar-in p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); }
+        /* O botão "Dúvidas?" fica fixo no canto direito e cobria o texto da direita. Reserva o espaço dele. */
+        @media (min-width: 761px) { .ftr-bar .ftr-bar-in { padding-right: 232px; } }
+        @media (max-width: 760px) { .ftr-bar .ftr-bar-in { padding-bottom: 88px; } }
         @media (max-width: 1100px) {
           .ftr .footer-grid { grid-template-columns: repeat(3, 1fr); }
           .ftr .footer-grid > div:first-child { grid-column: 1 / -1; }

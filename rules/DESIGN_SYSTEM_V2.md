@@ -351,5 +351,6 @@ Regra para todo gráfico de séries. A biblioteca já aplica tudo isto nos dois 
 ### 11.11 Como portar
 - No código do site, use `ChartContainer`, `ChartTooltip` e `ChartLegend` do shadcn (Recharts) com os tokens de `rules/charts-tokens.css`. A biblioteca é SVG puro e serve de referência visual. O porte para Recharts ainda não foi feito.
 - Os gráficos de `/clientes` migram um por vez para este padrão (lista de estado na seção 9).
+- **Estado do porte (05/11/2026).** `src/components/site/ChartKit.tsx` (SVG puro, sem Recharts) implementa linha, barras em pílula, rosca e mini linha, com estilos em `src/styles/site-charts.css` e tokens em `src/styles/charts-tokens.css`. Ligados em `/clientes` e nas páginas de cliente (`CaseViz.tsx`) e no ranking de laboratórios (`LabsRanking.tsx`). Faltam os demais gráficos do site e o porte para `ChartContainer` do shadcn.
 - Em outro projeto: copie `rules/charts-tokens.css`, mantenha os nomes dos tokens e siga as seções 11.1 a 11.10.
 - **Divergência com o app.** O Design System da plataforma (`dinn-os/products/dinn-platform/design-system.md`, seção 2.6) define `--chart-1` como `#5625F2` e `--chart-2` a `--chart-5` do shadcn. O site usa a paleta desta seção. Decidir se o app adota a paleta do site é uma pendência aberta.
