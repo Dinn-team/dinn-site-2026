@@ -91,12 +91,14 @@
 .h2-shot-ph { background-size: cover; background-position: center; }
 
 /* ---- Para a sua área ---- */
-.h2-area-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.h2-area-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; grid-auto-rows: 1fr; }
+.h2-area-grid > li { display: flex; min-width: 0; }
+.h2-area-grid > li > .h2-area { flex: 1; }
 .h2-area { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; padding: 28px; border-radius: 16px; background: var(--muted); transition: background .2s; }
 .h2-area:hover { background: color-mix(in oklab, var(--muted) 94%, var(--foreground)); }
 .h2-area-art { display: grid; place-items: center; flex: 1; color: var(--foreground); }
 .h2-area-art .il { width: min(100%, 300px); }
-.h2-area-txt { display: grid; gap: 6px; }
+.h2-area-txt { display: grid; gap: 6px; align-content: start; min-height: 7.5rem; }
 .h2-area-promise { font-size: 16px; line-height: 1.4; color: var(--muted-foreground); max-width: 30ch; }
 .h2-area-name { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
 .h2-area-go { position: absolute; top: 24px; right: 24px; color: var(--muted-foreground); }
