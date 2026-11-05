@@ -267,3 +267,89 @@ Para texto escuro (fechamento, cartão claro) use `g10` (amarelo), `g03` ou `lil
 - **Fotos do Pexels sem pessoa em destaque** nos casos de estoque parado, lançamentos e concorrência (trocadas em 03/11/2026).
 - **Cabeçalho do Conecta** segue o padrão das demais páginas: título à esquerda, texto e botões à direita, ilustração `IlConnect` com movimento no hover.
 - **Times que usam:** Ruptura, Giro e Preço servem todos os times. A página mostra "Todos os times" com link para `/solucoes`.
+
+## 11. Gráficos (biblioteca de 05/11/2026)
+
+Todo gráfico do site e dos outros projetos da Dinn segue esta seção. A biblioteca visual está em `rules/biblioteca-graficos.html` (abra no navegador, tem hover, tema escuro e 22 gráficos). Os tokens estão em `rules/charts-tokens.css`. Cópia no Dinn OS: `products/dinn-platform/charts-library.html`. Os dados da biblioteca são de exemplo.
+
+### 11.1 Base e regras
+1. **Base shadcn.** Séries em `--chart-1` a `--chart-5`. Tooltip e legenda são peças separadas. Grade leve.
+2. **Curvas e cantos redondos.** Linha de 2,5 px com ponta redonda. Barra com topo arredondado ou em pílula. Arco com ponta redonda. Hexágono com quina redonda. Cartão de 28 px.
+3. **Paleta da marca.** O roxo manda. Lilás e roxo-escuro dão tom ao roxo. Preto dá contraste. Lime marca pico e ganho. Laranja marca ruptura e queda. Saia da paleta só para criar subtom.
+
+### 11.2 Tokens
+| Token | Valor | Uso |
+|---|---|---|
+| `--chart-1` | `#7008e7` | roxo, série principal (igual a `--primary`) |
+| `--chart-2` | `#c9aaf7` | lilás, preenchimento |
+| `--chart-3` | `#08090a` | preto |
+| `--chart-4` | `#e4f222` | lime, pico e ganho |
+| `--chart-5` | `#fd673e` | laranja, ruptura e queda |
+| `--chart-deep` / `--chart-soft` / `--chart-track` | `#3d0a82` / `#e1d0fb` / `#f1ebfc` | subtons do roxo e fundo de trilha |
+| `--chart-2-line` | `#a97ff0` | lilás em linha fina |
+| `--chart-5-line` | `#ee5a2f` | laranja em linha fina (3,4:1 no branco) |
+| `--tip-*` | branco no claro, `#2b2738` no escuro | tooltip |
+
+No tema escuro, `--chart-3` vira `#f4f3fa` e o roxo sobe para `#9558f7`. Os valores completos estão em `rules/charts-tokens.css`.
+
+### 11.3 Catálogo
+| Grupo | Gráficos | Quando usar |
+|---|---|---|
+| Áreas e linhas | comparador de séries (opções A e B), previsão, áreas empilhadas | evolução no tempo |
+| Colunas e barras | coluna com destaque, colunas empilhadas com hachura de previsão, pílulas agrupadas, pirulito, ranking, barra de pílulas e barra segmentada | comparar itens |
+| Pizza e radiais | rosca, barras radiais, raios, medidor, anéis de meta | parte do todo e meta |
+| Esferas, matrizes e fluxo | esferas, funil em curva, matriz de retenção, mapa de hexágonos | grupos, densidade e fluxo |
+| Indicadores | quatro cartões padrão e quatro em destaque | número com variação |
+
+### 11.4 Séries, cor e traço
+- **Ordem fixa das séries:** roxo, lilás, preto, lime, laranja. A cor segue a série, nunca o ranking. Mais de cinco séries viram "Outros".
+- **Cor e traço identificam o produto:** o roxo é contínuo e o laranja é tracejado. Assim o gráfico não depende só de cor.
+- **A média da carteira é pontilhada e fica sempre visível.** Não existe botão para ocultar.
+- **Só a série em foco recebe preenchimento** (linhas verticais que somem para baixo). Nunca preencha todas as séries: as áreas se misturam.
+- **Comparador, opção A:** dois produtos contra a média, com seletor de cidade ("All cities" e cada cidade). Use quando a pergunta é produto contra produto.
+- **Comparador, opção B:** até 3 séries em um gráfico. O traço identifica a cidade: contínuo, tracejado ou traço e ponto. Use para cruzar cidades e produtos. Rótulo com nome e valor na ponta de cada linha.
+- **Cabeçalho do comparador:** mostra só o foco, a média e a diferença em pontos percentuais. Acompanha o cursor.
+
+### 11.5 Texto, cor e contraste
+- Texto de eixo, rótulo e legenda usa cinza ou preto. Nunca use a cor da série no texto.
+- Não escreva número em todo ponto. Rotule a ponta da linha ou o item em destaque.
+- Com duas séries ou mais, mostre legenda. Ela é feita de botões com `aria-pressed`.
+- Lilás, lime e laranja ficam abaixo de 3:1 no branco. Use em preenchimento, com legenda ou rótulo ao lado. Para linha fina use `--chart-2-line` e `--chart-5-line`.
+- Filtro, chip e botão ativo usam roxo (`--primary`) com texto branco. Nunca preto.
+
+### 11.6 Tooltip e interação
+- Tooltip com fundo branco no tema claro e escuro no tema escuro. Raio de 14 px, borda fina e sombra suave.
+- Linha com guia vertical e pontos nas séries. Barra e esfera destacam o item e baixam o resto para 50%.
+- Nos comparadores, cada linha do tooltip mostra a diferença contra a média da carteira.
+
+### 11.7 Movimento
+- Linhas se desenham, barras crescem, pontos aparecem. Duração menor que 1,2 s, uma vez só, ao carregar.
+- Em "reduzir movimento", tudo fica parado e completo.
+
+### 11.8 Indicadores em destaque
+Um cartão em destaque por tela, para o número que a plataforma quer destacar. O fundo vem de `public/gradients` e o conteúdo muda de cor para manter a leitura.
+
+| Cartão | Fundo | Conteúdo |
+|---|---|---|
+| Roxo | `web/roxo-noite` (parte roxa) | branco, selo lime |
+| Lime | `g10` (amarelo; não existe fundo lime na pasta) | preto, selo preto |
+| Laranja | `web/pessego` | preto, selo preto |
+| Roxo escuro | `web/roxo-noite` (parte escura) | branco, selo lime |
+
+### 11.9 Esferas
+Cada esfera usa um fundo de `public/gradients` recortado em quadrado, sem camada 3D: roxo e roxo escuro com `web/roxo-noite`, preto com `web/grafite`, lilás com `web/lilas-azul`, lime com `g10` e laranja com `web/pessego`. Use as cópias web da pasta, nunca os `*-unsplash.avif`. Texto branco nas esferas escuras e preto nas claras.
+
+### 11.10 Acessibilidade
+Regra para todo gráfico de séries. A biblioteca já aplica tudo isto nos dois comparadores. Nos outros gráficos, aplique ao portar para o código.
+- O gráfico tem `aria-label` com os valores do último ponto.
+- Setas do teclado percorrem os dias. `Esc` fecha o tooltip.
+- Um botão "Table view" mostra os mesmos dados em tabela.
+- Um resumo em texto acima do gráfico diz o que mudou, por exemplo quantos pontos o produto está acima da média.
+- Toque e arraste funcionam. O gráfico não impede a rolagem vertical.
+- A cor nunca é o único código: use também traço, forma ou rótulo.
+
+### 11.11 Como portar
+- No código do site, use `ChartContainer`, `ChartTooltip` e `ChartLegend` do shadcn (Recharts) com os tokens de `rules/charts-tokens.css`. A biblioteca é SVG puro e serve de referência visual. O porte para Recharts ainda não foi feito.
+- Os gráficos de `/clientes` migram um por vez para este padrão (lista de estado na seção 9).
+- Em outro projeto: copie `rules/charts-tokens.css`, mantenha os nomes dos tokens e siga as seções 11.1 a 11.10.
+- **Divergência com o app.** O Design System da plataforma (`dinn-os/products/dinn-platform/design-system.md`, seção 2.6) define `--chart-1` como `#5625F2` e `--chart-2` a `--chart-5` do shadcn. O site usa a paleta desta seção. Decidir se o app adota a paleta do site é uma pendência aberta.
