@@ -16,6 +16,13 @@ Regras curtas:
 - Menu e rodapé são globais: só acrescente ou renomeie itens.
 - Páginas internas migram uma por vez para o padrão da home (lista de estado no v2, seção 9).
 
+## Gráficos (biblioteca de 05/11/2026)
+
+Antes de criar ou mudar qualquer gráfico, leia `rules/DESIGN_SYSTEM_V2.md`, seção 11. A biblioteca visual está em `rules/biblioteca-graficos.html` e os tokens em `rules/charts-tokens.css`.
+
+- Séries em `--chart-1` a `--chart-5`, sempre na mesma ordem. Cor e traço identificam o produto. A média da carteira é pontilhada e fica sempre visível.
+- Só a série em foco recebe preenchimento. Tooltip branco no tema claro. Filtro e botão ativo em roxo com texto branco.
+
 ## Atualização de páginas (padrão de 03/11/2026)
 
 Para atualizar qualquer página, siga `rules/DESIGN_SYSTEM_V2.md`, seção 10.
