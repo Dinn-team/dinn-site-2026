@@ -6,6 +6,7 @@ import * as libbs from './libbs';
 import * as lilly from './lilly';
 
 export * from './types';
+export { aggregateFor, type Aggregate } from './aggregate';
 
 // Cada cliente tem um arquivo com o texto em PT, EN e ES (mesma estrutura).
 type Entry = { pt: Customer; en?: Customer; es?: Customer };

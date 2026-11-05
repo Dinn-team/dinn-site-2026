@@ -66,3 +66,6 @@ Thumbs.db
 # capturas de teste da skill de front e atalho local da skill (caminho absoluto)
 .taste-skill/
 .claude/skills/
+
+# Prints da plataforma com dados reais de cliente: só referência local, não versionar.
+referencia-plataforma/

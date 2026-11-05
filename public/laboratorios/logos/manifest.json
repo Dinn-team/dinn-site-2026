@@ -1,0 +1,337 @@
+{
+ "roche": {
+  "found": true,
+  "title": "File:Roche Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ARoche_Logo.svg",
+  "license": "Public domain",
+  "bytes": 6172
+ },
+ "pfizer": {
+  "found": true,
+  "title": "File:Pfizer logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3APfizer_logo.svg",
+  "license": "Public domain",
+  "bytes": 7055
+ },
+ "abbvie": {
+  "found": true,
+  "title": "File:AbbVie logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AAbbVie_logo.svg",
+  "license": "Public domain",
+  "bytes": 3445
+ },
+ "astrazeneca": {
+  "found": true,
+  "title": "File:Astrazeneca text logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AAstrazeneca_text_logo.svg",
+  "license": "Public domain",
+  "bytes": 7386
+ },
+ "novartis": {
+  "found": true,
+  "title": "File:Novartis-Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ANovartis-Logo.svg",
+  "license": "Public domain",
+  "bytes": 2388
+ },
+ "sanofi": {
+  "found": true,
+  "title": "File:Sanofi logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ASanofi_logo.svg",
+  "license": "Public domain",
+  "bytes": 8336
+ },
+ "bristol-myers-squibb": {
+  "found": true,
+  "title": "File:Bristol-Myers Squibb Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ABristol-Myers_Squibb_Logo.svg",
+  "license": "Public domain",
+  "bytes": 18701
+ },
+ "gsk": {
+  "found": false
+ },
+ "abbott": {
+  "found": true,
+  "title": "File:Logo Abbott Laboratories.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogo_Abbott_Laboratories.svg",
+  "license": "Public domain",
+  "bytes": 4738
+ },
+ "boehringer-ingelheim": {
+  "found": true,
+  "title": "File:Boehringer Ingelheim Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ABoehringer_Ingelheim_Logo.svg",
+  "license": "Public domain",
+  "bytes": 9410
+ },
+ "gilead-sciences": {
+  "found": false
+ },
+ "teva": {
+  "found": true,
+  "title": "File:Teva logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ATeva_logo.svg",
+  "license": "Public domain",
+  "bytes": 10102
+ },
+ "kenvue": {
+  "found": true,
+  "title": "File:Kenvue logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AKenvue_logo.svg",
+  "license": "Public domain",
+  "bytes": 4594
+ },
+ "astellas": {
+  "found": true,
+  "title": "File:Astellas logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AAstellas_logo.svg",
+  "license": "CC BY 2.5",
+  "bytes": 4367
+ },
+ "bausch-health": {
+  "found": true,
+  "title": "File:Bausch Health logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ABausch_Health_logo.svg",
+  "license": "Public domain",
+  "bytes": 3619
+ },
+ "biogen": {
+  "found": true,
+  "title": "File:Biogen logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ABiogen_logo.svg",
+  "license": "Public domain",
+  "bytes": 13673
+ },
+ "ucb": {
+  "found": true,
+  "title": "File:Ucb Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AUcb_Logo.svg",
+  "license": "Public domain",
+  "bytes": 1095
+ },
+ "servier": {
+  "found": true,
+  "title": "File:Servier logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AServier_logo.svg",
+  "license": "Public domain",
+  "bytes": 5765
+ },
+ "organon": {
+  "found": true,
+  "title": "File:Organon-logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AOrganon-logo.svg",
+  "license": "Public domain",
+  "bytes": 10456
+ },
+ "sun-pharma": {
+  "found": false
+ },
+ "galderma": {
+  "found": true,
+  "title": "File:Galderma logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AGalderma_logo.svg",
+  "license": "Public domain",
+  "bytes": 3801
+ },
+ "ipsen": {
+  "found": true,
+  "title": "File:Ipsen logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AIpsen_logo.svg",
+  "license": "Public domain",
+  "bytes": 22769
+ },
+ "stada": {
+  "found": true,
+  "title": "File:Stada logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AStada_logo.svg",
+  "license": "Public domain",
+  "bytes": 3274
+ },
+ "perrigo": {
+  "found": true,
+  "title": "File:Perrigo logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3APerrigo_logo.svg",
+  "license": "Public domain",
+  "bytes": 5395
+ },
+ "chiesi": {
+  "found": true,
+  "title": "File:Chiesi Farmaceutici S.p.A. - Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AChiesi_Farmaceutici_S.p.A._-_Logo.svg",
+  "license": "Public domain",
+  "bytes": 4431
+ },
+ "lundbeck": {
+  "found": true,
+  "title": "File:Lundbeck logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALundbeck_logo.svg",
+  "license": "Public domain",
+  "bytes": 79205
+ },
+ "pierre-fabre": {
+  "found": false
+ },
+ "aurobindo": {
+  "found": false
+ },
+ "hikma": {
+  "found": true,
+  "title": "File:Hikma Pharmaceuticals logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AHikma_Pharmaceuticals_logo.svg",
+  "license": "Public domain",
+  "bytes": 2008
+ },
+ "cipla": {
+  "found": true,
+  "title": "File:Cipla logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ACipla_logo.svg",
+  "license": "Public domain",
+  "bytes": 4129
+ },
+ "ferring": {
+  "found": true,
+  "title": "File:Ferring Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AFerring_Logo.svg",
+  "license": "Public domain",
+  "bytes": 12496
+ },
+ "dr-reddy-s": {
+  "found": false
+ },
+ "lupin": {
+  "found": false
+ },
+ "zydus": {
+  "found": false
+ },
+ "ems-grupo-nc": {
+  "found": true,
+  "title": "File:Logo EMS.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogo_EMS.svg",
+  "license": "Public domain",
+  "bytes": 18915
+ },
+ "ache": {
+  "found": true,
+  "title": "File:Logotipo do Aché.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogotipo_do_Ach%C3%A9.svg",
+  "license": "Public domain",
+  "bytes": 1768
+ },
+ "eurofarma": {
+  "found": false
+ },
+ "hypera-pharma": {
+  "found": false
+ },
+ "cimed": {
+  "found": true,
+  "title": "File:Logotipo da Cimed.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogotipo_da_Cimed.svg",
+  "license": "Public domain",
+  "bytes": 893
+ },
+ "biolab-farmaceutica": {
+  "found": false
+ },
+ "cristalia": {
+  "found": false
+ },
+ "geolab": {
+  "found": false
+ },
+ "blau-farmaceutica": {
+  "found": false
+ },
+ "uniao-quimica": {
+  "found": true,
+  "title": "File:Logotipo da União Química.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogotipo_da_Uni%C3%A3o_Qu%C3%ADmica.svg",
+  "license": "Public domain",
+  "bytes": 18941
+ },
+ "prati-donaduzzi": {
+  "found": false
+ },
+ "marjan": {
+  "found": false
+ },
+ "johnson-johnson-janssen": {
+  "found": true,
+  "title": "File:Johnson and Johnson Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AJohnson_and_Johnson_Logo.svg",
+  "license": "Public domain",
+  "bytes": 17044
+ },
+ "bayer": {
+  "found": true,
+  "title": "File:Logo Bayer.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ALogo_Bayer.svg",
+  "license": "Public domain",
+  "bytes": 7403
+ },
+ "novo-nordisk": {
+  "found": true,
+  "title": "File:Novo Nordisk Foundation logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ANovo_Nordisk_Foundation_logo.svg",
+  "license": "Public domain",
+  "bytes": 6437
+ },
+ "amgen": {
+  "found": true,
+  "title": "File:Amgen.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AAmgen.svg",
+  "license": "Public domain",
+  "bytes": 2336
+ },
+ "takeda": {
+  "found": true,
+  "title": "File:Takeda Pharmaceutical Company logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ATakeda_Pharmaceutical_Company_logo.svg",
+  "license": "Public domain",
+  "bytes": 5610
+ },
+ "otsuka": {
+  "found": true,
+  "title": "File:Otsuka Holdings logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AOtsuka_Holdings_logo.svg",
+  "license": "Public domain",
+  "bytes": 7943
+ },
+ "haleon": {
+  "found": true,
+  "title": "File:Haleon.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AHaleon.svg",
+  "license": "Public domain",
+  "bytes": 3284
+ },
+ "viatris": {
+  "found": true,
+  "title": "File:Viatris.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AViatris.svg",
+  "license": "Public domain",
+  "bytes": 8979
+ },
+ "grifols": {
+  "found": true,
+  "title": "File:Grifols.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3AGrifols.svg",
+  "license": "Public domain",
+  "bytes": 2765
+ },
+ "eisai": {
+  "found": true,
+  "title": "File:Ēzai-Logo.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3A%C4%92zai-Logo.svg",
+  "license": "Public domain",
+  "bytes": 15604
+ },
+ "recordati": {
+  "found": true,
+  "title": "File:Recordati.svg",
+  "page": "https://commons.wikimedia.org/wiki/File%3ARecordati.svg",
+  "license": "Public domain",
+  "bytes": 2389
+ }
+}

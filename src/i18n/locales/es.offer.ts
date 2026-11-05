@@ -468,6 +468,16 @@ export const offerEs = {
         decision: "Dónde tu equipo empieza a usar el dato.",
         limit: "Las fuentes y las integraciones dependen de acceso, licencia y alcance. El MCP es de solo lectura.",
         href: "/produtos/conecta"
+      },
+      {
+        id: "suporte", name: "Soporte", kind: "interface",
+        problem: "Necesito ayuda o tengo una duda sobre los datos.",
+        input: "Qué está pasando, la tienda o el producto y, si hay, una captura de pantalla.",
+        action: "Abres un pedido en la plataforma. Zoe, la asistente de Dinn, consulta los datos de tu empresa y responde al instante.",
+        output: "Una respuesta con lo que se revisó. Si hace falta una persona, Zoe envía el pedido al equipo de Dinn.",
+        decision: "Cuándo reenviar un archivo, ajustar un registro o esperar la próxima actualización.",
+        limit: "Zoe lee los datos, pero no cambia nada. El equipo de Dinn asume lo que exige una persona.",
+        href: "/suporte"
       }
     ],
     cta: {
@@ -992,8 +1002,8 @@ export const offerEs = {
     },
     voices: { title: "Lo que dicen quienes lo usan" },
     page: {
-      hero_title: "Quién usa *Dinn* cada día",
-      hero_lead: "Mira cómo los equipos de farma usan Dinn para decidir y actuar en el punto de venta.",
+      hero_title: "El impacto de *Dinn* en los equipos de farma",
+      hero_lead: "Números sumados de laboratorios que usan Dinn cada día. Los nombres quedan reservados. Cada laboratorio tiene su caso abajo.",
       list_title: "Historias de clientes",
       list_intro: "Cada página muestra el problema, qué cambió y los números.",
       read: "Leer la historia",

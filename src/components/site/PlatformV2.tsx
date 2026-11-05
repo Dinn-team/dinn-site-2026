@@ -9,8 +9,9 @@ import { scrollToStage } from '@/components/home/scroll-to';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { ClosingCard, H2Head } from './PageShell';
 import { StageSteps } from './StageSteps';
-import { HomeDemo } from './AppDemos';
+import { RuptureDemo } from './RealHomeDemos';
 import { CYCLE_SCREENS } from './FeatureDemos';
+import { ProductScreen } from './ProductScreen';
 import { FeaturePicker, type Feature } from './FeaturesV2';
 import { gradUrl, plain } from './area-theme';
 
@@ -75,7 +76,7 @@ function CycleStage() {
           </div>
           <div className="as-scene">
             <div className="as-scene-frame">
-              {screen && <screen.Demo key={active} step={screen.step} />}
+              {screen && <ProductScreen key={active} demo={screen.Demo} step={screen.step} />}
               <div className="as-progress" aria-hidden="true"><i style={{ transform: `scaleX(${p})` }} /></div>
             </div>
           </div>
@@ -105,7 +106,7 @@ export function PlatformPageV2() {
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl('g08') }}>
-            <div className="sl2-screen"><HomeDemo /></div>
+            <div className="sl2-screen"><ProductScreen demo={RuptureDemo} /></div>
           </div>
           <p className="ft2-caption">{t('features.page.caption')}</p>
         </div>

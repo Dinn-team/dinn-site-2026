@@ -10,6 +10,8 @@ import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { ClosingCard, H2Head } from './PageShell';
 import { StageSteps, type StageStep } from './StageSteps';
 import type { DemoProps } from './AppDemos';
+import { ProductScreen } from './ProductScreen';
+import { JeanDemo2 } from './RealMapDemos';
 import { JeanActivitiesDemo, JeanChatDemo, JeanSettingsDemo, JeanWhatsAppDemo } from './JeanDemos';
 import { FeatureTile, type Feature } from './FeaturesV2';
 import { gradUrl, plain } from './area-theme';
@@ -116,7 +118,7 @@ export function JeanPage() {
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl('web/roxo-noite') }}>
-            <div className="sl2-screen"><JeanChatDemo /></div>
+            <div className="sl2-screen"><ProductScreen demo={JeanDemo2} /></div>
           </div>
           <p className="ft2-caption">{t('features.page.caption')}</p>
         </div>

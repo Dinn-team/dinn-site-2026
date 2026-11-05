@@ -16,7 +16,7 @@ export const home2En = {
     },
     features: {
       title: "How Dinn works",
-      sub: "Nine features. One view of the channel.",
+      sub: "Ten features. One view of the channel.",
       more: "Learn more",
       items: [
         { id: "ruptura", name: "Stock-out", text: "See where products are missing and which stores to check first." },
@@ -27,7 +27,8 @@ export const home2En = {
         { id: "oportunidades", name: "Opportunities", text: "See where to act first. Each one shows source and limits." },
         { id: "distribuicao", name: "Distribution", text: "Cross distributor stock with store availability to find the gap." },
         { id: "jean", name: "Jean", text: "Delegate follow-ups. Jean prepares the work and calls you when you need to decide." },
-        { id: "conecta", name: "Dinn Conecta", text: "Send Dinn data to your BI, your AI and your integrations." }
+        { id: "conecta", name: "Dinn Conecta", text: "Send Dinn data to your BI, your AI and your integrations." },
+        { id: "suporte", name: "Support", text: "Ask for help inside the platform. Zoe answers, and the Dinn team steps in when needed." }
       ]
     },
     areas: {
@@ -51,6 +52,50 @@ export const home2En = {
         { id: "distribuicao", name: "Distribution", ids: ["distribuicao", "parado"] },
         { id: "vendas", name: "Sales", ids: ["campo", "sac"] }
       ]
+    },
+    labs: {
+      "title": "Who Dinn can serve",
+      "lead": "Any lab that sells in pharmacies. We learn from our customers.",
+      "all": "See all",
+      "client": "See the case",
+      "page": {
+        "metaTitle": "Labs that Dinn can serve | Dinn",
+        "metaDescription": "Ranking of the largest pharmaceutical labs in the world, by revenue, and of the labs with an active medicine in Brazil. Dinn can serve all of them.",
+        "title": "Dinn can serve every lab on the list.",
+        "lead": "The largest in the world and every lab with an active medicine in Brazil. For any of them, Dinn can show where the product is out, moves and costs more in pharmacies.",
+        "cta": "Talk to Dinn",
+        "statGlobal": "labs in the global ranking",
+        "statBrasil": "labs with an active medicine in Brazil",
+        "statClients": "Dinn customers",
+        "tabGlobal": "Global, by revenue",
+        "tabBrasil": "Brazil, by registrations",
+        "tabClients": "Current customers",
+        "clientsSub": "The labs that use Dinn, with the case of each one.",
+        "search": "Search for a lab",
+        "colLab": "Lab",
+        "colRevenue": "Revenue, 2016 to 2025",
+        "colRegs": "Active medicines",
+        "colRevenueVal": "Revenue",
+        "colRegsVal": "Registrations",
+        "clientTag": "Dinn customer",
+        "globalSub": "Total revenue for the fiscal year, in US$ billion. The chart shows revenue from 2016 to 2025. Values are converted to US$ by the source.",
+        "brasilSub": "Every lab with at least one medicine with an active registration at Anvisa, sorted by number of registrations. Each company counts once, by base CNPJ.",
+        "revenue": "US$ {v} bn",
+        "regs": "{v} registrations",
+        "more": "Show more",
+        "noResult": "No lab found.",
+        "act": "Get to know Dinn for my team",
+        "disclaimer": "Brands and logos belong to their owners. The list shows labs that Dinn can serve. It does not mean a partnership, except where there is a customer case. Labs without a free logo show their initials.",
+        "sources": "Revenue: Wikipedia (list of largest biomedical companies) and ChemAnalyst (Top 100 Pharma 2026), with the fiscal year in each row. Brazil: Anvisa open data (medicines, file of 13 Oct 2026), active registrations, grouped by base CNPJ.",
+        "credits": "Logo credits",
+        "legalShort": "Brands and logos belong to their owners.",
+        "legalLink": "See legal notice and credits",
+        "legalTitle": "Legal notice and credits",
+        "close": "Close",
+        "finalTitle": "Is your lab on the list?",
+        "finalSub": "Talk to Dinn and see stock-out, sell-through, price and market for your portfolio.",
+        "finalButton": "Talk to Dinn"
+      }
     },
     resources: {
       title: "Resources",

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Boxes, Package, Store, TriangleAlert, Users } from 'lucide-react';
+import { useTranslation } from '@/i18n/useTranslation';
 import { DonutSvg, LineSvg } from './vizPrimitives';
 
 // Telas reais do Dinn, reproduzidas a partir do briefing em
@@ -8,6 +9,50 @@ import { DonutSvg, LineSvg } from './vizPrimitives';
 // Centro 014, Produto A 20 mg 30 cp, Laboratório Exemplo), dado de ontem (D-1) nunca
 // chamado de tempo real, vendas só como "estimadas" e sem selos de Beta.
 // Só telas em produção: Início, Localizar Produto e Mercado.
+
+// Textos das telas em EN e ES. A chave é o texto em português. O dado é fictício.
+const DICT: Record<string, { en: string; es: string }> = {
+  'Crítico': { en: 'Critical', es: 'Crítico' }, 'Alto': { en: 'High', es: 'Alto' }, 'Moderado': { en: 'Moderate', es: 'Moderado' }, 'Leve': { en: 'Low', es: 'Leve' },
+  'Médio': { en: 'Medium', es: 'Medio' }, 'Baixo': { en: 'Low', es: 'Bajo' },
+  'Rede Alfa': { en: 'Chain Alpha', es: 'Cadena Alfa' }, 'Rede Beta': { en: 'Chain Beta', es: 'Cadena Beta' }, 'Rede Gama': { en: 'Chain Gamma', es: 'Cadena Gamma' },
+  '1.200 PDVs': { en: '1,200 stores', es: '1.200 tiendas' }, '950 PDVs': { en: '950 stores', es: '950 tiendas' }, '700 PDVs': { en: '700 stores', es: '700 tiendas' },
+  'Olá, Ana Exemplo.': { en: 'Hello, Ana Example.', es: 'Hola, Ana Ejemplo.' },
+  'Atualizado em 02/11/2026 (D-1)': { en: 'Updated on 11/02/2026 (D-1)', es: 'Actualizado el 02/11/2026 (D-1)' },
+  'Produtos': { en: 'Products', es: 'Productos' }, 'Produto A 20 mg 30 cp': { en: 'Product A 20 mg 30 tablets', es: 'Producto A 20 mg 30 comp.' },
+  'Modelo': { en: 'Model', es: 'Modelo' }, 'Todos': { en: 'All', es: 'Todos' },
+  'Total de PDV': { en: 'Total stores', es: 'Total de tiendas' }, 'Total de SKU': { en: 'Total SKUs', es: 'Total de SKU' },
+  'Estoque aproximado': { en: 'Approximate stock', es: 'Stock aproximado' }, '% sem estoque': { en: '% out of stock', es: '% sin stock' },
+  'Ruptura': { en: 'Stock-out', es: 'Quiebre de stock' }, 'Semanal': { en: 'Weekly', es: 'Semanal' }, 'Diário': { en: 'Daily', es: 'Diario' }, '30 dias': { en: '30 days', es: '30 días' },
+  'Classificação de Ruptura': { en: 'Stock-out level', es: 'Nivel de quiebre' }, 'Nível': { en: 'Level', es: 'Nivel' }, 'Total PDVs': { en: 'Total stores', es: 'Total tiendas' },
+  'Ranking de ruptura por rede': { en: 'Stock-out ranking by chain', es: 'Ranking de quiebre por cadena' },
+  'Localizar Produto': { en: 'Find Product', es: 'Localizar Producto' }, 'Produto': { en: 'Product', es: 'Producto' },
+  'Localização': { en: 'Location', es: 'Ubicación' }, 'Rua Exemplo, 100': { en: '100 Example Street', es: 'Calle Ejemplo, 100' },
+  'Farmácias encontradas': { en: 'Pharmacies found', es: 'Farmacias encontradas' }, 'Mais próximas': { en: 'Nearest', es: 'Más cercanas' },
+  'Farmácia Centro 014': { en: 'Downtown Pharmacy 014', es: 'Farmacia Centro 014' }, 'Farmácia Centro 021': { en: 'Downtown Pharmacy 021', es: 'Farmacia Centro 021' }, 'Farmácia Bairro 007': { en: 'Local Pharmacy 007', es: 'Farmacia Barrio 007' },
+  'Aberto · Fecha às 22:00': { en: 'Open · Closes at 10:00 PM', es: 'Abierto · Cierra a las 22:00' }, 'Aberto · Fecha às 20:00': { en: 'Open · Closes at 8:00 PM', es: 'Abierto · Cierra a las 20:00' }, 'Fechado': { en: 'Closed', es: 'Cerrado' },
+  '6–12 un': { en: '6–12 units', es: '6–12 un' }, '2–5 un': { en: '2–5 units', es: '2–5 un' }, '0–2 un': { en: '0–2 units', es: '0–2 un' },
+  'Disponibilidade': { en: 'Availability', es: 'Disponibilidad' },
+  'Estoque exato': { en: 'Exact stock', es: 'Stock exacto' }, 'Estoque do produto': { en: 'Product stock', es: 'Stock del producto' },
+  'Estimativa de ontem, 02/11/2026': { en: 'Estimate from yesterday, 11/02/2026', es: 'Estimación de ayer, 02/11/2026' },
+  'Preço': { en: 'Price', es: 'Precio' }, 'R$ 39,90': { en: 'R$ 39.90', es: 'R$ 39,90' }, 'por unidade': { en: 'per unit', es: 'por unidad' },
+  'Confiabilidade do estoque': { en: 'Stock reliability', es: 'Confiabilidad del stock' }, 'A - Confiável': { en: 'A - Reliable', es: 'A - Confiable' },
+  'Consultar agora': { en: 'Check now', es: 'Consultar ahora' },
+  'Laboratório Exemplo': { en: 'Example Laboratory', es: 'Laboratorio Ejemplo' }, 'Laboratório B': { en: 'Laboratory B', es: 'Laboratorio B' }, 'Laboratório C': { en: 'Laboratory C', es: 'Laboratorio C' }, 'Laboratório D': { en: 'Laboratory D', es: 'Laboratorio D' }, 'Outros': { en: 'Others', es: 'Otros' },
+  'Mercado': { en: 'Market', es: 'Mercado' }, 'Vendas estimadas a partir do giro de estoque': { en: 'Sales estimated from stock turnover', es: 'Ventas estimadas a partir de la rotación de stock' },
+  'Mercado Exemplo X': { en: 'Example Market X', es: 'Mercado Ejemplo X' }, 'Período': { en: 'Period', es: 'Período' }, 'Últimos 30 dias': { en: 'Last 30 days', es: 'Últimos 30 días' },
+  'Total de PDVs no mercado': { en: 'Total stores in the market', es: 'Total de tiendas en el mercado' }, 'PDVs só com concorrente': { en: 'Stores with competitors only', es: 'Tiendas solo con competidores' }, 'PDVs que concentram 80%': { en: 'Stores that hold 80%', es: 'Tiendas que concentran el 80%' },
+  'Market share por laboratório': { en: 'Market share by laboratory', es: 'Market share por laboratorio' }, 'total': { en: 'total', es: 'total' },
+  'Vendas estimadas: laboratório vs. concorrentes': { en: 'Estimated sales: laboratory vs. competitors', es: 'Ventas estimadas: laboratorio vs. competidores' },
+  'Meu laboratório': { en: 'My laboratory', es: 'Mi laboratorio' }, 'Concorrentes': { en: 'Competitors', es: 'Competidores' }, ' mil': { en: 'k', es: ' mil' },
+  'Tela Início do Dinn: ruptura por produto, nível dos PDVs e ranking por rede.': { en: 'Dinn Home screen: stock-out by product, store level and ranking by chain.', es: 'Pantalla Inicio de Dinn: quiebre por producto, nivel de las tiendas y ranking por cadena.' },
+  'Tela Localizar Produto do Dinn: lista de farmácias e mapa com o nível de estoque.': { en: 'Dinn Find Product screen: list of pharmacies and a map with the stock level.', es: 'Pantalla Localizar Producto de Dinn: lista de farmacias y mapa con el nivel de stock.' },
+  'Tela Mercado do Dinn: participação por laboratório e vendas estimadas.': { en: 'Dinn Market screen: share by laboratory and estimated sales.', es: 'Pantalla Mercado de Dinn: participación por laboratorio y ventas estimadas.' },
+};
+type L = 'pt' | 'en' | 'es';
+const makeTr = (lang: L) => (s: string) => (lang === 'pt' ? s : DICT[s]?.[lang] ?? s);
+// Números: PT e ES usam ponto no milhar e vírgula no decimal. EN troca os dois.
+const makeNum = (lang: L) => (s: string) => (lang === 'en' ? s.replace(/[.,]/g, (c) => (c === '.' ? ',' : '.')) : s);
+const LOC: Record<L, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
 
 export type ScreenKind = 'home' | 'locator' | 'market';
 
@@ -52,7 +97,8 @@ const Panel = ({ title, aside, children, className = '' }: { title: string; asid
 );
 
 // ── Início ────────────────────────────────────────────────────────────────
-function Home() {
+function Home({ lang }: { lang: L }) {
+  const tr = makeTr(lang), nm = makeNum(lang);
   const levels: [string, string, string, string][] = [
     ['Crítico', '1.120', '13,6%', 'crit'],
     ['Alto', '1.870', '22,7%', 'high'],
@@ -66,36 +112,36 @@ function Home() {
   ];
   return (
     <>
-      <div className="da-bar"><b>Olá, Ana Exemplo.</b><span>Atualizado em 02/11/2026 (D-1)</span></div>
-      <div className="da-filters"><Chip label="Produtos" value="Produto A 20 mg 30 cp" /><Chip label="UF" value="SP" /><Chip label="Modelo" value="Todos" /></div>
+      <div className="da-bar"><b>{tr('Olá, Ana Exemplo.')}</b><span>{tr('Atualizado em 02/11/2026 (D-1)')}</span></div>
+      <div className="da-filters"><Chip label={tr('Produtos')} value={tr('Produto A 20 mg 30 cp')} /><Chip label="UF" value="SP" /><Chip label={tr('Modelo')} value={tr('Todos')} /></div>
       <div className="da-metrics four">
-        <Metric icon={<Store size={20} />} label="Total de PDV" value="8.240" />
-        <Metric icon={<Package size={20} />} label="Total de SKU" value="6" />
-        <Metric icon={<Boxes size={20} />} label="Estoque aproximado" value="1.250.000" />
-        <Metric icon={<TriangleAlert size={20} />} label="% sem estoque" value="18,4%" />
+        <Metric icon={<Store size={20} />} label={tr('Total de PDV')} value={nm('8.240')} />
+        <Metric icon={<Package size={20} />} label={tr('Total de SKU')} value="6" />
+        <Metric icon={<Boxes size={20} />} label={tr('Estoque aproximado')} value={nm('1.250.000')} />
+        <Metric icon={<TriangleAlert size={20} />} label={tr('% sem estoque')} value={nm('18,4%')} />
       </div>
       <div className="da-row">
-        <Panel className="grow" title="Ruptura" aside={<span className="da-seg"><i className="on">Semanal</i><i>Diário</i><u>30 dias</u></span>}>
-          <LineSvg labels={['04/10', '11/10', '18/10', '25/10']} series={[{ name: 'Produto A 20 mg 30 cp', values: [31.2, 29.8, 27.5, 24.9], color: BRAND }]} unit="%" digits={1} height={190} area />
+        <Panel className="grow" title={tr('Ruptura')} aside={<span className="da-seg"><i className="on">{tr('Semanal')}</i><i>{tr('Diário')}</i><u>{tr('30 dias')}</u></span>}>
+          <LineSvg labels={lang === 'en' ? ['10/04', '10/11', '10/18', '10/25'] : ['04/10', '11/10', '18/10', '25/10']} series={[{ name: tr('Produto A 20 mg 30 cp'), values: [31.2, 29.8, 27.5, 24.9], color: BRAND }]} unit="%" digits={1} height={190} area />
         </Panel>
-        <Panel className="side" title="Classificação de Ruptura">
+        <Panel className="side" title={tr('Classificação de Ruptura')}>
           <table className="da-table">
-            <thead><tr><th>Nível</th><th>Total PDVs</th><th>%</th></tr></thead>
+            <thead><tr><th>{tr('Nível')}</th><th>{tr('Total PDVs')}</th><th>%</th></tr></thead>
             <tbody>
               {levels.map(([n, c, p, k]) => (
-                <tr key={n}><td><span className={`da-badge ${k}`}>{n}</span></td><td>{c}</td><td>{p}</td></tr>
+                <tr key={n}><td><span className={`da-badge ${k}`}>{tr(n)}</span></td><td>{nm(c)}</td><td>{nm(p)}</td></tr>
               ))}
             </tbody>
           </table>
         </Panel>
       </div>
-      <Panel title="Ranking de ruptura por rede">
+      <Panel title={tr('Ranking de ruptura por rede')}>
         <ul className="da-rank">
           {nets.map(([n, p, v, lv]) => (
             <li key={n}>
-              <span>{n}<small>{p}</small></span>
+              <span>{tr(n)}<small>{tr(p)}</small></span>
               <span className="da-track"><i style={{ width: `${v * 2}%` }} className={lv} /></span>
-              <b>{v.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</b>
+              <b>{v.toLocaleString(LOC[lang], { minimumFractionDigits: 1 })}%</b>
             </li>
           ))}
         </ul>
@@ -105,7 +151,8 @@ function Home() {
 }
 
 // ── Localizar Produto ─────────────────────────────────────────────────────
-function Locator() {
+function Locator({ lang }: { lang: L }) {
+  const tr = makeTr(lang);
   const cards: [string, string, string, string, string, string, string][] = [
     ['Farmácia Centro 014', 'Rede Alfa', 'Aberto · Fecha às 22:00', 'Alto', '6–12 un', '0,6 km', 'ok'],
     ['Farmácia Centro 021', 'Rede Alfa', 'Aberto · Fecha às 20:00', 'Médio', '2–5 un', '1,1 km', 'warn'],
@@ -119,16 +166,16 @@ function Locator() {
   return (
     <div className="da-loc">
       <aside className="da-loc-panel">
-        <h3>Localizar Produto</h3>
-        <div className="da-field"><em>Produto</em><span>Produto A 20 mg 30 cp</span></div>
-        <div className="da-field"><em>Localização</em><span>Rua Exemplo, 100</span></div>
-        <div className="da-loc-count"><b>4</b> Farmácias encontradas<small>Mais próximas</small></div>
+        <h3>{tr('Localizar Produto')}</h3>
+        <div className="da-field"><em>{tr('Produto')}</em><span>{tr('Produto A 20 mg 30 cp')}</span></div>
+        <div className="da-field"><em>{tr('Localização')}</em><span>{tr('Rua Exemplo, 100')}</span></div>
+        <div className="da-loc-count"><b>4</b> {tr('Farmácias encontradas')}<small>{tr('Mais próximas')}</small></div>
         {cards.map(([n, net, hours, lv, rng, km, k]) => (
           <div key={n} className="da-store">
-            <div className="da-store-top"><b>{n}</b><i>{km}</i></div>
-            <small>{net} · {hours}</small>
+            <div className="da-store-top"><b>{tr(n)}</b><i>{lang === 'en' ? km.replace(',', '.') : km}</i></div>
+            <small>{tr(net)} · {tr(hours)}</small>
             <div className="da-store-lv">
-              <span className={`da-badge ${k}`}>Disponibilidade ({lv}): {rng}</span>
+              <span className={`da-badge ${k}`}>{tr('Disponibilidade')} ({tr(lv)}): {tr(rng)}</span>
               <span className="da-conf">{k === 'ok' ? 'A' : k === 'warn' ? 'B' : 'C'}</span>
             </div>
           </div>
@@ -153,14 +200,14 @@ function Locator() {
           <circle cx="290" cy="235" r="7" fill={BRAND} stroke="#fff" strokeWidth="3" />
         </svg>
         <div className="da-popup">
-          <div className="da-popup-head"><b>Farmácia Centro 014</b><span className="da-tag">Estoque exato</span></div>
-          <small>Rede Alfa · Aberto · Fecha às 22:00</small>
-          <div className="da-popup-stock"><em>Estoque do produto</em><b>6–12 un</b><small>Estimativa de ontem, 02/11/2026</small></div>
+          <div className="da-popup-head"><b>{tr('Farmácia Centro 014')}</b><span className="da-tag">{tr('Estoque exato')}</span></div>
+          <small>{tr('Rede Alfa')} · {tr('Aberto · Fecha às 22:00')}</small>
+          <div className="da-popup-stock"><em>{tr('Estoque do produto')}</em><b>{tr('6–12 un')}</b><small>{tr('Estimativa de ontem, 02/11/2026')}</small></div>
           <div className="da-popup-cols">
-            <div><em>Preço</em><b>R$ 39,90</b><small>por unidade</small></div>
-            <div><em>Confiabilidade do estoque</em><b>A - Confiável</b></div>
+            <div><em>{tr('Preço')}</em><b>{tr('R$ 39,90')}</b><small>{tr('por unidade')}</small></div>
+            <div><em>{tr('Confiabilidade do estoque')}</em><b>{tr('A - Confiável')}</b></div>
           </div>
-          <span className="da-btn">Consultar agora</span>
+          <span className="da-btn">{tr('Consultar agora')}</span>
         </div>
       </div>
     </div>
@@ -168,48 +215,49 @@ function Locator() {
 }
 
 // ── Mercado ───────────────────────────────────────────────────────────────
-function Market() {
+function Market({ lang }: { lang: L }) {
+  const tr = makeTr(lang), nm = makeNum(lang);
   const labs = [
-    { label: 'Laboratório Exemplo', value: 34.2 },
-    { label: 'Laboratório B', value: 28.1 },
-    { label: 'Laboratório C', value: 18.2 },
-    { label: 'Laboratório D', value: 11.3 },
-    { label: 'Outros', value: 8.2 },
+    { label: tr('Laboratório Exemplo'), value: 34.2 },
+    { label: tr('Laboratório B'), value: 28.1 },
+    { label: tr('Laboratório C'), value: 18.2 },
+    { label: tr('Laboratório D'), value: 11.3 },
+    { label: tr('Outros'), value: 8.2 },
   ];
   const colors = [BRAND, '#8b6cf6', '#b9a6fa', '#dcd3fc', '#e9e9ee'];
   return (
     <>
-      <div className="da-bar"><b>Mercado</b><span>Vendas estimadas a partir do giro de estoque</span></div>
-      <div className="da-filters"><Chip label="Mercado" value="Mercado Exemplo X" /><Chip label="Período" value="Últimos 30 dias" /></div>
+      <div className="da-bar"><b>{tr('Mercado')}</b><span>{tr('Vendas estimadas a partir do giro de estoque')}</span></div>
+      <div className="da-filters"><Chip label={tr('Mercado')} value={tr('Mercado Exemplo X')} /><Chip label={tr('Período')} value={tr('Últimos 30 dias')} /></div>
       <div className="da-metrics three">
-        <Metric icon={<Store size={20} />} label="Total de PDVs no mercado" value="12.400" />
-        <Metric icon={<Users size={20} />} label="PDVs só com concorrente" value="3.150" />
-        <Metric icon={<Boxes size={20} />} label="PDVs que concentram 80%" value="2.860" />
+        <Metric icon={<Store size={20} />} label={tr('Total de PDVs no mercado')} value={nm('12.400')} />
+        <Metric icon={<Users size={20} />} label={tr('PDVs só com concorrente')} value={nm('3.150')} />
+        <Metric icon={<Boxes size={20} />} label={tr('PDVs que concentram 80%')} value={nm('2.860')} />
       </div>
       <div className="da-row">
-        <Panel className="donut" title="Market share por laboratório">
+        <Panel className="donut" title={tr('Market share por laboratório')}>
           <div className="da-donut-row">
-            <DonutSvg items={labs} colors={colors} size={130} stroke={22} center={{ value: '100%', label: 'total' }} />
+            <DonutSvg items={labs} colors={colors} size={130} stroke={22} center={{ value: '100%', label: tr('total') }} />
             <ul className="da-legend">
               {labs.map((l, i) => (
-                <li key={l.label}><i style={{ background: colors[i] }} />{l.label}<b>{l.value.toLocaleString('pt-BR', { minimumFractionDigits: 1 })}%</b></li>
+                <li key={l.label}><i style={{ background: colors[i] }} />{l.label}<b>{l.value.toLocaleString(LOC[lang], { minimumFractionDigits: 1 })}%</b></li>
               ))}
             </ul>
           </div>
         </Panel>
-        <Panel className="grow" title="Vendas estimadas: laboratório vs. concorrentes" aside={<span className="da-seg"><i className="on">Semanal</i><i>Diário</i></span>}>
+        <Panel className="grow" title={tr('Vendas estimadas: laboratório vs. concorrentes')} aside={<span className="da-seg"><i className="on">{tr('Semanal')}</i><i>{tr('Diário')}</i></span>}>
           <LineSvg
-            labels={['04/10', '11/10', '18/10', '25/10', '01/11']}
+            labels={lang === 'en' ? ['10/04', '10/11', '10/18', '10/25', '11/01'] : ['04/10', '11/10', '18/10', '25/10', '01/11']}
             series={[
-              { name: 'Meu laboratório', values: [41.2, 43.9, 46.8, 49.5, 52.1], color: BRAND },
-              { name: 'Concorrentes', values: [97.8, 96.1, 95.4, 94.7, 93.9], color: '#a3a3b2' },
+              { name: tr('Meu laboratório'), values: [41.2, 43.9, 46.8, 49.5, 52.1], color: BRAND },
+              { name: tr('Concorrentes'), values: [97.8, 96.1, 95.4, 94.7, 93.9], color: '#a3a3b2' },
             ]}
-            unit=" mil"
+            unit={tr(' mil')}
             digits={1}
             height={170}
             area
           />
-          <p className="da-legend-inline"><i style={{ background: BRAND }} />Meu laboratório<i style={{ background: '#a3a3b2' }} />Concorrentes</p>
+          <p className="da-legend-inline"><i style={{ background: BRAND }} />{tr('Meu laboratório')}<i style={{ background: '#a3a3b2' }} />{tr('Concorrentes')}</p>
         </Panel>
       </div>
     </>
@@ -223,12 +271,14 @@ const SIZES: Record<ScreenKind, { w: number; h: number; label: string }> = {
 };
 
 export function AppScreen({ kind }: { kind: ScreenKind }) {
+  const { lang } = useTranslation();
+  const l = (lang === 'en' || lang === 'es' ? lang : 'pt') as L;
   const { w, h, label } = SIZES[kind];
   return (
-    <Stage w={w} h={h} label={label}>
-      {kind === 'home' && <Home />}
-      {kind === 'locator' && <Locator />}
-      {kind === 'market' && <Market />}
+    <Stage w={w} h={h} label={makeTr(l)(label)}>
+      {kind === 'home' && <Home lang={l} />}
+      {kind === 'locator' && <Locator lang={l} />}
+      {kind === 'market' && <Market lang={l} />}
     </Stage>
   );
 }

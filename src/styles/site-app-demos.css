@@ -110,3 +110,10 @@
 
 /* Ranking na coluna estreita */
 .dd-app .da-row .side .da-rank li { grid-template-columns: 96px 1fr 52px; gap: 10px; }
+
+/* Cursor em arco (Frame em AppDemos.tsx): a posição vem do JS, então só a opacidade tem transição. */
+.dd-stage .demo-cursor.dd-arc { transition: opacity .35s ease !important; will-change: transform; }
+/* Corte em movimento no recomeço do laço: a tela desfoca e volta já no estado inicial. */
+.dd-stage .dnn-app { transition: filter .5s cubic-bezier(.65, 0, .35, 1), opacity .5s cubic-bezier(.65, 0, .35, 1); }
+.dd-stage.dd-cut .dnn-app { filter: blur(8px); opacity: .25; }
+@media (prefers-reduced-motion: reduce) { .dd-stage .dnn-app { transition: none; } }

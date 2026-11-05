@@ -26,6 +26,8 @@ export default defineConfig({
 
   redirects: {
     '/blog/[slug]': '/articles/[slug]',
+    // O ranking de laboratórios mora em /clientes (05/11/2026)
+    '/laboratorios': '/clientes#ranking',
     // Funcionalidades que viraram parte das nove (03/11/2026)
     '/funcionalidades/disponibilidade': '/funcionalidades/ruptura',
     '/funcionalidades/estimado': '/funcionalidades/ruptura',

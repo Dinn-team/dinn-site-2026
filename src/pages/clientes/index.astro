@@ -3,12 +3,16 @@ import Layout from '@/layouts/Layout.astro';
 import { CustomersIndex } from '@/components/site/CustomersPages';
 import { pagesPt } from '@/i18n/locales/pt.pages';
 import { getClientLogos } from '@/lib/clients';
+import { getLabs, getLogoCredits } from '@/lib/labs';
 
 const { title, description } = pagesPt.clients.meta;
 // Só entram logos com arquivo em public/clientes (ver src/lib/clients.ts).
 const logos = getClientLogos();
+// Ranking de laboratórios (abaixo dos dados) e os 5 cartões de caso.
+const labs = getLabs();
+const credits = getLogoCredits();
 ---
 
 <Layout title={title} description={description}>
-  <CustomersIndex logos={logos} client:load />
+  <CustomersIndex logos={logos} labs={labs} credits={credits} client:load />
 </Layout>

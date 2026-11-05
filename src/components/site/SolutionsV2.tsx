@@ -9,7 +9,9 @@ import { scrollToStage } from '@/components/home/scroll-to';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { ClosingCard, H2Head } from './PageShell';
 import { StageSteps } from './StageSteps';
-import { AREA_DEMO, HomeDemo } from './AppDemos';
+import { AREA_DEMO } from './FeatureDemos';
+import { ProductScreen } from './ProductScreen';
+import { RuptureDemo } from './RealHomeDemos';
 import { CaseCard, publishedCases } from './CasesPages';
 import { AREA_ART, AREA_CLOSING, AREA_DARK, gradUrl, plain } from './area-theme';
 import type { Area } from './SolutionsPages';
@@ -67,7 +69,7 @@ export function SolutionsHub() {
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl('g08') }}>
-            <div className="sl2-screen"><HomeDemo /></div>
+            <div className="sl2-screen"><ProductScreen demo={RuptureDemo} /></div>
           </div>
         </div>
       </header>
@@ -183,7 +185,7 @@ function SolutionStage({ area }: { area: Area }) {
           </div>
           <div className="as-scene">
             <div className="as-scene-frame">
-              {Demo && <Demo step={active} />}
+              {Demo && <ProductScreen demo={Demo} step={active} />}
               <div className="as-progress" aria-hidden="true"><i style={{ transform: `scaleX(${p})` }} /></div>
             </div>
           </div>
@@ -221,7 +223,7 @@ export function SolutionPage({ slug }: { slug: string }) {
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl(AREA_DARK[slug] ?? 'web/roxo-noite') }}>
-            <div className="sl2-screen">{Demo && <Demo />}</div>
+            <div className="sl2-screen">{Demo && <ProductScreen demo={Demo} />}</div>
           </div>
         </div>
       </header>

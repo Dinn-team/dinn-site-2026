@@ -41,7 +41,7 @@ export type NavArea = { slug: string; name: string };
 export type SubItem = { href: string; label: string };
 export type Submenu = { items: SubItem[]; allHref?: string; allLabel?: string };
 
-/** As nove funcionalidades do Dinn, com o mesmo nome e a mesma ordem da home. */
+/** As dez funcionalidades do Dinn, com o mesmo nome e a mesma ordem da home. */
 export function newFeatureLinks(t: (key: string) => any): SubItem[] {
   const items = (t("home2.features.items") as { id: string; name: string }[]) ?? [];
   return items.map((i) => ({ href: featurePath(i.id), label: i.name }));

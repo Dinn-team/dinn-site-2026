@@ -468,6 +468,16 @@ export const offerEn = {
         decision: "Where your team starts to use the data.",
         limit: "Sources and integrations depend on access, license and scope. MCP is read-only.",
         href: "/produtos/conecta"
+      },
+      {
+        id: "suporte", name: "Support", kind: "interface",
+        problem: "I need help or I have a question about the data.",
+        input: "What is happening, the store or product and, if you have one, a screenshot.",
+        action: "You open a request in the platform. Zoe, the Dinn assistant, checks your company data and answers right away.",
+        output: "An answer with what was checked. If a person is needed, Zoe sends the request to the Dinn team.",
+        decision: "When to resend a file, fix a record or wait for the next update.",
+        limit: "Zoe reads the data but changes nothing. The Dinn team takes what needs a person.",
+        href: "/suporte"
       }
     ],
     cta: {
@@ -992,8 +1002,8 @@ export const offerEn = {
     },
     voices: { title: "What users say" },
     page: {
-      hero_title: "Who uses *Dinn* every day",
-      hero_lead: "See how pharma teams use Dinn to decide and act at the point of sale.",
+      hero_title: "The impact of *Dinn* on pharma teams",
+      hero_lead: "Combined numbers from laboratories that use Dinn every day. Names stay private. Each laboratory has its own case below.",
       list_title: "Customer stories",
       list_intro: "Each page shows the problem, what changed and the numbers.",
       read: "Read the story",

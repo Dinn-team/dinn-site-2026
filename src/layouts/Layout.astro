@@ -183,11 +183,24 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 		)}
 	</head>
 	<body style="background-color: var(--foreground); color: var(--foreground); margin: 0; padding: 0; overflow-x: clip;">
-		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+		<a class="skip-link" href="#conteudo" id="skip-link">Pular para o conteúdo</a>
 		<Header client:load />
 		<main id="conteudo" tabindex="-1">
 			<slot />
 		</main>
 		<Footer client:load />
-	</body>
+	
+<script is:inline>
+	// O link "Pular para o conteúdo" acompanha o idioma escolhido (o <html lang> muda no cliente).
+	(function () {
+		var T = { 'pt-BR': 'Pular para o conteúdo', en: 'Skip to content', 'es-419': 'Saltar al contenido' };
+		function sync() {
+			var a = document.getElementById('skip-link');
+			if (a) a.textContent = T[document.documentElement.lang] || T['pt-BR'];
+		}
+		sync();
+		new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+	})();
+</script>
+</body>
 </html>

@@ -34,6 +34,12 @@ Detalhes em `docs/design-taste-skill.md`.
 - O Design System v2 manda. Se a skill sugerir direção, cor ou fonte diferente do v2, siga o v2.
 - Não rode `assets.mjs` sem avisar o Renan. O script baixa imagens de sites públicos.
 
+## Skill de movimento: motion-de-produto (telas animadas do produto)
+
+Instalada em `.agents/skills/motion-de-produto` (ligada em `.claude/skills/`). Detalhes em `docs/motion-de-produto-skill.md`.
+Use ao criar ou mudar uma tela animada do Dinn: planos de câmera, cursor em arco, corte em movimento, números em outExpo.
+**Padrão obrigatório:** toda tela do produto no site usa `ProductScreen`. Regras e passo a passo em `docs/padrao-telas-animadas.md`.
+
 ## Texto do site: Simplified Technical English (ASD-STE100)
 
 Todo texto de interface e de site (`src/i18n/locales/*`) segue o ASD-STE100.

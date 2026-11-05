@@ -10,6 +10,7 @@ import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { ClosingCard, H2Head } from './PageShell';
 import { StageSteps } from './StageSteps';
 import { FEATURE_DEMO } from './FeatureDemos';
+import { ProductScreen } from './ProductScreen';
 import { AREA_CLOSING, AREA_DARK, gradUrl, plain } from './area-theme';
 import type { Area } from './SolutionsPages';
 
@@ -41,6 +42,7 @@ export const FEATURE_AREAS: Record<string, string[] | 'all'> = {
   mercado: ['inteligencia-pricing', 'marketing-lancamentos'],
   oportunidades: ['inteligencia-pricing', 'trade-kam-campo'],
   distribuicao: ['supply-distribuicao'],
+  suporte: ['sac-customer-experience'],
   jean: ['trade-kam-campo', 'inteligencia-pricing', 'ti-dados-governanca'],
   conecta: ['ti-dados-governanca'],
 };
@@ -84,7 +86,7 @@ export function FeaturePicker({ items }: { items: Feature[] }) {
         ))}
       </div>
       <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl(darkOf(pick)) }} role="tabpanel">
-        <div className="sl2-screen">{Demo && <Demo key={pick} />}</div>
+        <div className="sl2-screen">{Demo && <ProductScreen key={pick} demo={Demo} />}</div>
       </div>
       <p className="ft2-caption">
         {t('features.page.caption')}{' '}
@@ -197,7 +199,7 @@ function FeatureStage({ f }: { f: Feature }) {
           </div>
           <div className="as-scene">
             <div className="as-scene-frame">
-              {Demo && <Demo step={active} />}
+              {Demo && <ProductScreen demo={Demo} step={active} />}
               <div className="as-progress" aria-hidden="true"><i style={{ transform: `scaleX(${p})` }} /></div>
             </div>
           </div>
@@ -242,7 +244,7 @@ export function FeaturePage({ slug }: { slug: string }) {
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl(darkOf(slug)) }}>
-            <div className="sl2-screen">{Demo && <Demo />}</div>
+            <div className="sl2-screen">{Demo && <ProductScreen demo={Demo} />}</div>
           </div>
           <p className="ft2-caption">{t('features.page.caption')}</p>
         </div>

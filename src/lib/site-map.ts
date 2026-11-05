@@ -41,8 +41,8 @@ export const PATHS = {
 export const areaPath = (slug: string) => `/solucoes/${slug}`;
 export const guidePath = (slug: string) => `${PATHS.resources}/${slug}`;
 
-// As nove funcionalidades do Dinn. As oito com tela têm página em
-// /funcionalidades/<slug>. Dinn Conecta (com as integrações) usa /produtos/conecta.
+// As dez funcionalidades do Dinn. As oito com tela têm página em
+// /funcionalidades/<slug>. Dinn Conecta (com as integrações) usa /produtos/conecta e o Suporte usa /suporte.
 export const FEATURE_SLUGS = [
   'ruptura',
   'giro',
@@ -63,5 +63,6 @@ export const FEATURE_ALIAS: Record<string, string> = {
 export const featurePath = (slug: string) => {
   const id = FEATURE_ALIAS[slug] ?? slug;
   if (id === 'conecta') return PATHS.conecta;
+  if (id === 'suporte') return '/suporte';
   return (FEATURE_SLUGS as readonly string[]).includes(id) ? `${PATHS.features}/${id}` : PATHS.features;
 };

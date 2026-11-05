@@ -4,7 +4,7 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { contactUrl } from '@/lib/links';
 import { PATHS } from '@/lib/site-map';
-import { HomeDemo } from '@/components/site/AppDemos';
+import { RuptureDemo, START_STILL } from '@/components/site/RealHomeDemos';
 import { gradUrl } from '@/components/site/area-theme';
 
 // Vídeo institucional "Um dia com o Dinn" (render de 03/11/2026, 2 min 54 s).
@@ -38,7 +38,7 @@ export function Hero2() {
             <video className="hv-video" src={HERO_VIDEO_SRC} autoPlay controls playsInline preload="auto" aria-label={t('home2.hero.play') as string} />
           ) : (
             <>
-              <div className="sl2-screen hv-screen"><HomeDemo step={0} /></div>
+              <div className="sl2-screen hv-screen"><RuptureDemo step={0} def={START_STILL} /></div>
               <button type="button" className="hv-play" onClick={() => setPlaying(true)} aria-label={t('home2.hero.play') as string}>
                 <Play size={28} fill="currentColor" aria-hidden="true" />
               </button>

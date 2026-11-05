@@ -9,17 +9,16 @@ export const pt: Customer = {
   about: 'A Marjan é um laboratório farmacêutico brasileiro. Seu portfólio de medicamentos e suplementos é vendido em farmácias de todo o país.',
   title: 'Marjan transforma ruptura em ação de campo',
   summary: 'O Dinn mostra à Marjan o estoque e a ruptura loja a loja. O campo sabe o que atacar primeiro.',
-  metaDescription: 'Com o Dinn, a Marjan vê estoque e ruptura loja a loja. A estimativa é de R$ 27,6 milhões de sellout em risco por trimestre. O campo ganha um mapa do que atacar primeiro.',
+  metaDescription: 'Com o Dinn, a Marjan vê estoque e ruptura loja a loja. Cerca de 14% do giro potencial não é capturado por ruptura. O campo ganha um mapa do que atacar primeiro.',
   metrics: [
-    { value: '≈ R$ 27,6 mi', label: 'de sellout em risco por trimestre por causa da ruptura (estimativa técnica)' },
-    { value: '≈ 14%', label: 'do giro dos três mercados analisados não foi capturado por ruptura' },
+    { value: '≈ 14%', label: 'do giro potencial dos três mercados analisados não foi capturado por ruptura' },
+    { value: '47', label: 'gestores cadastrados no Dinn' },
     { value: '78%', label: 'dos gestores sentiriam impacto no dia a dia se o Dinn saísse amanhã' },
     { value: '43%', label: 'dos gestores economizam 30 minutos ou mais por semana' },
   ],
   quote: {
     text: 'O Dinn virou meu mapa de calor de ruptura. Eu sei exatamente por onde começar o dia e onde colocar o time.',
-    who: 'Gilberto da Rocha Santos',
-    role: 'Marjan',
+    role: 'Gestor de campo',
     approved: false,
   },
   intro: [
@@ -29,9 +28,9 @@ export const pt: Customer = {
   ],
   problem: {
     title: 'Ver a ruptura não diz o que fazer',
-      viz: [
-        { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'Do estoque da loja à rota do time' },
-      ],
+    viz: [
+      { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'Do estoque da loja à rota do time' },
+    ],
     paragraphs: ['Antes do Dinn, o gestor de campo tinha duas dificuldades que se reforçavam.'],
     bullets: [
       'Falta de granularidade. A visão era macro. Era difícil achar as lojas do próprio território e separar o problema de produto, de rede e de loja.',
@@ -41,9 +40,9 @@ export const pt: Customer = {
   },
   solution: {
     title: 'Estoque D-1, ruptura por loja, comparação de redes',
-      viz: [
-        { kind: 'screen', screen: 'home', caption: 'Início do Dinn: ruptura por produto, nível dos PDVs e ranking por rede, com o dado do dia anterior (D-1).' },
-      ],
+    viz: [
+      { kind: 'screen', screen: 'home', caption: 'Início do Dinn: ruptura por produto, nível dos PDVs e ranking por rede, com o dado do dia anterior (D-1).' },
+    ],
     paragraphs: [
       'Com o Dinn, a Marjan passou a ver o estoque D-1, a ruptura por dia e por loja e a comparação entre redes e lojas vizinhas.',
       'A análise cobre o trimestre de 1º de setembro a 30 de novembro de 2025.',
@@ -51,7 +50,7 @@ export const pt: Customer = {
     bullets: [
       'Escopo monitorado: 79 EANs, mais de 45 mil PDVs e mais de 50 redes',
       'Mercados montados: 3, com 30 EANs no total',
-      'Análise de ruptura: os 10 SKUs de maior giro da Marjan em 14 redes da Abrafarma',
+      'Análise de ruptura: os 10 produtos de maior giro da Marjan em redes de grande porte',
       'Usuários: 47 gestores cadastrados',
     ],
   },
@@ -72,7 +71,7 @@ export const pt: Customer = {
       title: 'Abrir a negociação com dado na mesa',
       paragraphs: [
         'Um gestor acompanhava uma grande rede com descontos muito altos. Os descontos pressionavam a margem e geravam pedidos de condições adicionais à indústria.',
-        'No painel de Análise de Preço do Dinn, ele viu o preço médio e o desconto médio da rede. Comparou com as outras redes. O desconto estava acima da média e, em alguns casos, abaixo do preço de fábrica. Na conversa com a rede, ele usou preço, giro e impacto em ruptura e margem.',
+        'No painel de Análise de Preço do Dinn, ele viu o preço médio e o desconto médio da rede. Comparou com as outras redes. O desconto estava acima da média das outras redes. Na conversa com a rede, ele usou preço, giro e impacto em ruptura e margem.',
       ],
     },
     {
@@ -99,96 +98,86 @@ export const pt: Customer = {
   ],
   results: [
     {
-      title: 'Quanto a ruptura custa em sellout',
+      title: 'Quanto giro a ruptura faz perder',
       viz: [
-        { kind: 'donut', title: 'Perda sobre o giro do mercado', sub: 'Unidades dos 3 mercados, set a nov/2025', items: [{ label: 'Restante do giro dos 3 mercados', value: 1190923 }, { label: 'Perda estimada por ruptura (≈ 195 mil)', value: 195137 }], center: { value: '≈ 14%', label: 'do giro perdido' }, note: 'O giro total dos três mercados, Marjan e concorrência, é de cerca de 1,39 milhão de unidades.' },
-        { kind: 'bars', title: 'Perda por mercado', sub: '% do giro, estimativa técnica', unit: '%', items: [{ label: 'CALDE-MAX', value: 27, hot: true, display: '≈ 27%' }, { label: 'BIOTTA-25-BI', value: 20, display: '≈ 20%' }, { label: 'DOZEMAST', value: 7, display: '≈ 7%' }] },
+        { kind: 'donut', title: 'Perda sobre o giro do mercado', sub: '% do giro potencial dos 3 mercados, set a nov/2025', items: [{ label: 'Restante do giro dos 3 mercados', value: 86 }, { label: 'Perda estimada por ruptura', value: 14 }], center: { value: '≈ 14%', label: 'do giro perdido' }, note: 'Base: giro potencial dos três mercados, Marjan e concorrência.' },
+        { kind: 'bars', title: 'Perda por mercado', sub: '% do giro, estimativa técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
       ],
-      paragraphs: ['Nos três principais mercados da Marjan, em 14 redes da Abrafarma, de setembro a novembro de 2025:'],
+      paragraphs: ['Nos três principais mercados da Marjan, em redes de grande porte, de setembro a novembro de 2025:'],
       tables: [
         {
           head: ['Indicador', 'Resultado'],
           rows: [
-            ['Giro registrado da Marjan nos 3 mercados', '610.006 unidades'],
-            ['Giro total dos 3 mercados (Marjan e concorrência)', '1.386.060 unidades'],
-            ['Perda estimada da Marjan por ruptura', '≈ 195.137 unidades'],
-            ['Perda sobre o giro do mercado', '≈ 14%'],
-            ['Sellout não capturado no trimestre', '≈ R$ 27,6 milhões'],
+            ['Perda sobre o giro dos 3 mercados', '≈ 14%'],
+            ['Perda por mercado', 'de ≈ 7% a ≈ 27%'],
           ],
         },
       ],
       bullets: [
         'São cerca de 32 unidades perdidas para cada 100 vendidas',
-        'A perda varia por mercado: ≈ 27% do giro em CALDE-MAX, ≈ 20% em BIOTTA-25-BI e ≈ 7% em DOZEMAST',
-        'Projeção anual: se nada mudar, a Marjan pode deixar de capturar ≈ R$ 110 milhões por ano (o trimestre vezes quatro, sem ajuste de sazonalidade)',
+        'A perda varia por mercado: ≈ 27% do giro no mercado A, ≈ 20% no B e ≈ 7% no C',
       ],
-      note: 'Como ler os valores: eles são um potencial técnico estimado. O cálculo usa o giro diário nas lojas com estoque, a taxa de ruptura observada e o preço médio. Não são perda real de faturamento. A validação final usa os dados oficiais de venda das redes.',
+      note: 'Como ler os valores: eles são um potencial técnico estimado. O cálculo usa o giro diário nas lojas com estoque e a taxa de ruptura observada. Não são perda real de faturamento. A validação final usa os dados oficiais de venda das redes.',
     },
     {
-      title: 'Os três SKUs críticos',
+      title: 'Os três produtos mais críticos',
       viz: [
-        { kind: 'bars', title: 'Ruptura média por SKU', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Caldê MDK 2.000UI, 30 comprimidos', value: 39.2, hot: true }, { label: 'Caldê MDK 2000UI, 60 comprimidos', value: 23.4 }, { label: 'Dozemast 1.000mcg, 30 comprimidos', value: 12.5 }] },
-        { kind: 'bars', title: 'Potencial em sellout', sub: 'R$ milhões no trimestre, estimativa', digits: 1, items: [{ label: 'Caldê MDK 2000UI, 60 comprimidos', value: 3.0, display: '≈ R$ 3,0 mi' }, { label: 'Dozemast 1.000mcg, 30 comprimidos', value: 2.0, display: '≈ R$ 2,0 mi' }, { label: 'Caldê MDK 2.000UI, 30 comprimidos', value: 1.6, display: '≈ R$ 1,6 mi' }] },
+        { kind: 'bars', title: 'Ruptura média por produto', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Produto A', value: 39.2, hot: true }, { label: 'Produto B', value: 23.4 }, { label: 'Produto C', value: 12.5 }] },
       ],
-      paragraphs: ['Entre os 10 SKUs de maior giro, três concentram o maior potencial por indisponibilidade.'],
+      paragraphs: ['Entre os 10 produtos de maior giro, três concentram o maior potencial por indisponibilidade.'],
       tables: [
         {
-          head: ['SKU', 'Ruptura média', 'Unidades não vendidas', 'Potencial em sellout'],
+          head: ['Produto', 'Ruptura média'],
           rows: [
-            ['Caldê MDK 2000UI, 60 comprimidos', '23,4%', '≈ 19.137', '≈ R$ 3,0 milhões'],
-            ['Dozemast 1.000mcg, 30 comprimidos', '12,5%', '≈ 23.461', '≈ R$ 2,0 milhões'],
-            ['Caldê MDK 2.000UI, 30 comprimidos', '39,2%', '≈ 15.666', '≈ R$ 1,6 milhão'],
-            ['Total', '', '≈ 58.264', '≈ R$ 6,6 milhões'],
+            ['Produto A', '39,2%'],
+            ['Produto B', '23,4%'],
+            ['Produto C', '12,5%'],
           ],
         },
       ],
       bullets: [
-        'O terceiro SKU é o mais crítico: em quase 4 de cada 10 dias o produto está indisponível',
-        'No Dozemast a ruptura é menor, mas o valor unitário alto aumenta o impacto',
-        'Nos 10 SKUs, a ruptura média ponderada pelo giro foi de ≈ 21%',
+        'O produto A é o mais crítico: em quase 4 de cada 10 dias ele está indisponível',
+        'Nos 10 produtos, a ruptura média ponderada pelo giro foi de ≈ 21%',
       ],
     },
     {
-      title: 'Onde focar: execução por rede e geografia',
+      title: 'Onde focar: execução por classe de praça',
       viz: [
-        { kind: 'bars', title: 'Ruptura atual por praça', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Brasília (DF)', value: 41.0, hot: true }, { label: 'Rio de Janeiro (RJ)', value: 29.4 }, { label: 'Porto Alegre (RS)', value: 27.9 }, { label: 'Curitiba (PR)', value: 23.1 }, { label: 'São Paulo (SP)', value: 18.8 }] },
-        { kind: 'bars', title: 'Ganho técnico se a ruptura cair a 5%', sub: 'Mil unidades por trimestre', digits: 1, items: [{ label: 'São Paulo (SP)', value: 11.1, display: '+11,1 mil', hot: true }, { label: 'Rio de Janeiro (RJ)', value: 10.9, display: '+10,9 mil' }, { label: 'Porto Alegre (RS)', value: 4.0, display: '+4,0 mil' }, { label: 'Brasília (DF)', value: 3.8, display: '+3,8 mil' }, { label: 'Curitiba (PR)', value: 3.1, display: '+3,1 mil' }] },
+        { kind: 'bars', title: 'Ruptura atual por classe de praça', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Praça A', value: 41, hot: true, display: 'acima de 40%' }, { label: 'Praça B', value: 26, display: '23% a 29%' }, { label: 'Praça C', value: 19, display: 'até 19%' }] },
       ],
       paragraphs: [
-        'Execução. A rede de melhor execução gira 8,71 unidades por semana por loja. A média das 14 redes é 3,76. A diferença mostra o espaço para ganhar com sortimento, abastecimento e ativação comercial.',
-        'Geografia. SP concentra 34,4% do volume dos 10 SKUs e tem ruptura abaixo da média (≈ 16,6%). Ali a prioridade é sortimento, preço e ativação. RS (≈ 36%), RJ (≈ 40%), PR (≈ 32%) e MG (≈ 29%) combinam volume relevante com ruptura acima da média. Nesses estados, ataque a disponibilidade primeiro.',
-        'Se a ruptura caísse para 5% em cada cidade, as cinco praças de maior ganho técnico seriam:',
+        'Execução. A rede de melhor execução gira bem mais que a média das redes. A diferença mostra o espaço para ganhar com sortimento, abastecimento e ativação comercial.',
+        'Classe de praça. A praça C concentra ≈ 34% do volume dos 10 produtos e tem ruptura abaixo da média (≈ 17%). Ali a prioridade é sortimento, preço e ativação. As praças A e B combinam volume relevante com ruptura acima da média. Nelas, ataque a disponibilidade primeiro.',
+        'A tabela mostra a leitura por classe de praça:',
       ],
       tables: [
         {
-          head: ['Cidade', 'Ruptura atual', 'Ganho técnico potencial'],
+          head: ['Classe de praça', 'Ruptura atual', 'Prioridade'],
           rows: [
-            ['São Paulo (SP)', '≈ 18,8%', '+11,1 mil unidades'],
-            ['Rio de Janeiro (RJ)', '≈ 29,4%', '+10,9 mil unidades'],
-            ['Porto Alegre (RS)', '≈ 27,9%', '+4,0 mil unidades'],
-            ['Brasília (DF)', '≈ 41,0%', '+3,8 mil unidades'],
-            ['Curitiba (PR)', '≈ 23,1%', '+3,1 mil unidades'],
+            ['Praça A', 'acima de 40%', 'Disponibilidade primeiro'],
+            ['Praça B', '23% a 29%', 'Disponibilidade primeiro'],
+            ['Praça C', 'até 19%', 'Sortimento, preço e ativação'],
           ],
         },
       ],
       bullets: [
         'Onde a disponibilidade é boa e o giro é fraco, a causa tende a ser preço, promoção, mix ou gôndola. A ação é comercial',
-        'Onde a disponibilidade é boa, o giro é forte e a participação cresce, estão os casos para replicar: praças do Ceará, da Bahia e do Tocantins',
+        'Onde a disponibilidade é boa, o giro é forte e a participação cresce, estão os casos para replicar: praças de outras regiões',
       ],
     },
     {
-      title: 'Quanto vale reduzir a ruptura',
+      title: 'Quanto giro vale recuperar',
       viz: [
-        { kind: 'bars', title: 'Sellout adicional por trimestre', sub: 'R$ milhões, por meta de redução da perda', digits: 1, items: [{ label: 'Meta realista: de 14% para 10%', value: 7.9, display: '≈ R$ 7,9 mi' }, { label: 'Meta ambiciosa: de 14% para 7%', value: 13.8, display: '≈ R$ 13,8 mi' }, { label: 'Excelência: de 14% para 5%', value: 17.8, display: '≈ R$ 17,8 mi', hot: true }] },
+        { kind: 'bars', title: 'Giro recuperado por meta', sub: 'pontos percentuais do giro do mercado', items: [{ label: 'Meta realista: de 14% para 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% para 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelência: de 14% para 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
-      paragraphs: ['O Dinn simulou três metas. A base é a perda de 14% sobre o giro do mercado e o preço médio de sellout de R$ 141,52.'],
+      paragraphs: ['O Dinn simulou três metas. A base é a perda de 14% sobre o giro do mercado.'],
       tables: [
         {
-          head: ['Cenário', 'Unidades recuperadas', 'Sellout adicional por trimestre'],
+          head: ['Cenário', 'Giro recuperado'],
           rows: [
-            ['A perda cai de 14% para 10% (meta realista)', '≈ 55.753', '≈ R$ 7,9 milhões'],
-            ['A perda cai de 14% para 7% (meta ambiciosa)', '≈ 97.568', '≈ R$ 13,8 milhões'],
-            ['A perda cai de 14% para 5% (excelência)', '≈ 125.445', '≈ R$ 17,8 milhões'],
+            ['A perda cai de 14% para 10% (meta realista)', '+4 p.p. do giro do mercado'],
+            ['A perda cai de 14% para 7% (meta ambiciosa)', '+7 p.p. do giro do mercado'],
+            ['A perda cai de 14% para 5% (excelência)', '+9 p.p. do giro do mercado'],
           ],
         },
       ],
@@ -242,17 +231,16 @@ export const en: Customer = {
   about: 'Marjan is a Brazilian pharmaceutical laboratory. It sells its medicines and supplements in pharmacies across the country.',
   title: 'Marjan turns stock-outs into field action',
   summary: 'Dinn shows Marjan stock and stock-outs store by store. The field knows what to fix first.',
-  metaDescription: 'With Dinn, Marjan sees stock and stock-outs store by store. It estimates R$ 27.6 million of sell-out at risk each quarter and gives the field a map of what to fix first.',
+  metaDescription: 'With Dinn, Marjan sees stock and stock-outs store by store. About 14% of potential sell-through is lost to stock-outs. The field gets a map of what to fix first.',
   metrics: [
-    { value: '≈ R$ 27.6 M', label: 'of sell-out at risk each quarter because of stock-outs (technical estimate)' },
-    { value: '≈ 14%', label: 'of sell-through in the three analyzed markets was not captured because of stock-outs' },
+    { value: '≈ 14%', label: 'of potential sell-through in the three analyzed markets was not captured because of stock-outs' },
+    { value: '47', label: 'managers registered in Dinn' },
     { value: '78%', label: 'of managers would feel the impact in their daily work if Dinn left tomorrow' },
     { value: '43%', label: 'of managers save 30 minutes or more each week' },
   ],
   quote: {
     text: 'Dinn became my stock-out heat map. I know exactly where to start the day and where to send the team.',
-    who: 'Gilberto da Rocha Santos',
-    role: 'Marjan',
+    role: 'Field manager',
     approved: false,
   },
   intro: [
@@ -262,9 +250,9 @@ export const en: Customer = {
   ],
   problem: {
     title: 'Seeing stock-outs does not show what to do',
-      viz: [
-        { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'From store stock to the team route' },
-      ],
+    viz: [
+      { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'From store stock to the team route' },
+    ],
     paragraphs: ['Before Dinn, the field manager had two linked difficulties.'],
     bullets: [
       'No granularity. The view was broad. It was hard to find the stores in the own territory and to separate product, chain and store problems.',
@@ -274,9 +262,9 @@ export const en: Customer = {
   },
   solution: {
     title: 'D-1 stock, stock-out by store, chain comparison',
-      viz: [
-        { kind: 'screen', screen: 'home', caption: 'Dinn home screen: stock-out by product, store level and ranking by chain, with data from the previous day (D-1).' },
-      ],
+    viz: [
+      { kind: 'screen', screen: 'home', caption: 'Dinn home screen: stock-out by product, store level and ranking by chain, with data from the previous day (D-1).' },
+    ],
     paragraphs: [
       'With Dinn, Marjan sees D-1 stock, stock-out by day and by store, and a comparison between chains and nearby stores.',
       'The analysis covers the quarter from September 1 to November 30, 2025.',
@@ -284,7 +272,7 @@ export const en: Customer = {
     bullets: [
       'Monitored scope: 79 EANs, more than 45,000 stores and more than 50 chains',
       'Markets built: 3, with 30 EANs in total',
-      'Stock-out analysis: the 10 highest sell-through SKUs of Marjan in 14 Abrafarma chains',
+      'Stock-out analysis: the 10 highest sell-through products of Marjan in large chains',
       'Users: 47 registered managers',
     ],
   },
@@ -305,7 +293,7 @@ export const en: Customer = {
       title: 'Start the negotiation with data on the table',
       paragraphs: [
         'A manager followed a large chain with very high discounts. The discounts hurt margin and led to requests for extra terms from the industry.',
-        'In the Dinn Price Analysis panel, he saw the average price and average discount of the chain. He compared them with other chains. The discount was above average and, in some cases, below the factory price. In the talk with the chain, he used price, sell-through and the impact on stock-outs and margin.',
+        'In the Dinn Price Analysis panel, he saw the average price and average discount of the chain. He compared them with other chains. The discount was above the average of the other chains. In the talk with the chain, he used price, sell-through and the impact on stock-outs and margin.',
       ],
     },
     {
@@ -332,96 +320,86 @@ export const en: Customer = {
   ],
   results: [
     {
-      title: 'How much stock-outs cost in sell-out',
+      title: 'How much sell-through stock-outs cost',
       viz: [
-        { kind: 'donut', title: 'Loss over market sell-through', sub: 'Units in the 3 markets, Sep to Nov 2025', items: [{ label: 'Rest of the sell-through in the 3 markets', value: 1190923 }, { label: 'Estimated loss from stock-outs (≈ 195 thousand)', value: 195137 }], center: { value: '≈ 14%', label: 'of sell-through lost' }, note: 'Total sell-through in the three markets, Marjan and competitors, is about 1.39 million units.' },
-        { kind: 'bars', title: 'Loss by market', sub: '% of sell-through, technical estimate', unit: '%', items: [{ label: 'CALDE-MAX', value: 27, hot: true, display: '≈ 27%' }, { label: 'BIOTTA-25-BI', value: 20, display: '≈ 20%' }, { label: 'DOZEMAST', value: 7, display: '≈ 7%' }] },
+        { kind: 'donut', title: 'Loss over market sell-through', sub: '% of potential sell-through in the 3 markets, Sep to Nov 2025', items: [{ label: 'Rest of the sell-through in the 3 markets', value: 86 }, { label: 'Estimated loss from stock-outs', value: 14 }], center: { value: '≈ 14%', label: 'of sell-through lost' }, note: 'Base: potential sell-through in the three markets, Marjan and competitors.' },
+        { kind: 'bars', title: 'Loss by market', sub: '% of sell-through, technical estimate', unit: '%', items: [{ label: 'Market A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Market B', value: 20, display: '≈ 20%' }, { label: 'Market C', value: 7, display: '≈ 7%' }] },
       ],
-      paragraphs: ['In the three main Marjan markets, in 14 Abrafarma chains, from September to November 2025:'],
+      paragraphs: ['In the three main Marjan markets, in large chains, from September to November 2025:'],
       tables: [
         {
           head: ['Indicator', 'Result'],
           rows: [
-            ['Marjan recorded sell-through in the 3 markets', '610,006 units'],
-            ['Total sell-through in the 3 markets (Marjan and competitors)', '1,386,060 units'],
-            ['Estimated Marjan loss from stock-outs', '≈ 195,137 units'],
-            ['Loss over market sell-through', '≈ 14%'],
-            ['Sell-out not captured in the quarter', '≈ R$ 27.6 million'],
+            ['Loss over sell-through in the 3 markets', '≈ 14%'],
+            ['Loss by market', 'from ≈ 7% to ≈ 27%'],
           ],
         },
       ],
       bullets: [
         'That is about 32 units lost for every 100 sold',
-        'The loss changes by market: ≈ 27% of sell-through in CALDE-MAX, ≈ 20% in BIOTTA-25-BI and ≈ 7% in DOZEMAST',
-        'Annual projection: if nothing changes, Marjan may fail to capture ≈ R$ 110 million a year (the quarter times four, with no seasonality adjustment)',
+        'The loss changes by market: ≈ 27% of sell-through in market A, ≈ 20% in B and ≈ 7% in C',
       ],
-      note: 'How to read the values: they are an estimated technical potential. The calculation uses daily sell-through in stores with stock, the observed stock-out rate and the average price. They are not real revenue loss. Final validation uses the official chain sales data.',
+      note: 'How to read the values: they are an estimated technical potential. The calculation uses daily sell-through in stores with stock and the observed stock-out rate. They are not real revenue loss. Final validation uses the official chain sales data.',
     },
     {
-      title: 'The three critical SKUs',
+      title: 'The three most critical products',
       viz: [
-        { kind: 'bars', title: 'Average stock-out by SKU', sub: '% of days without stock', unit: '%', items: [{ label: 'Caldê MDK 2,000UI, 30 tablets', value: 39.2, hot: true }, { label: 'Caldê MDK 2000UI, 60 tablets', value: 23.4 }, { label: 'Dozemast 1,000mcg, 30 tablets', value: 12.5 }] },
-        { kind: 'bars', title: 'Sell-out potential', sub: 'R$ million in the quarter, estimate', digits: 1, items: [{ label: 'Caldê MDK 2000UI, 60 tablets', value: 3.0, display: '≈ R$ 3.0 M' }, { label: 'Dozemast 1,000mcg, 30 tablets', value: 2.0, display: '≈ R$ 2.0 M' }, { label: 'Caldê MDK 2,000UI, 30 tablets', value: 1.6, display: '≈ R$ 1.6 M' }] },
+        { kind: 'bars', title: 'Average stock-out by product', sub: '% of days without stock', unit: '%', items: [{ label: 'Product A', value: 39.2, hot: true }, { label: 'Product B', value: 23.4 }, { label: 'Product C', value: 12.5 }] },
       ],
-      paragraphs: ['Among the 10 highest sell-through SKUs, three hold the largest potential from missing availability.'],
+      paragraphs: ['Among the 10 highest sell-through products, three hold the largest potential from missing availability.'],
       tables: [
         {
-          head: ['SKU', 'Average stock-out', 'Units not sold', 'Sell-out potential'],
+          head: ['Product', 'Average stock-out'],
           rows: [
-            ['Caldê MDK 2000UI, 60 tablets', '23.4%', '≈ 19,137', '≈ R$ 3.0 million'],
-            ['Dozemast 1,000mcg, 30 tablets', '12.5%', '≈ 23,461', '≈ R$ 2.0 million'],
-            ['Caldê MDK 2,000UI, 30 tablets', '39.2%', '≈ 15,666', '≈ R$ 1.6 million'],
-            ['Total', '', '≈ 58,264', '≈ R$ 6.6 million'],
+            ['Product A', '39.2%'],
+            ['Product B', '23.4%'],
+            ['Product C', '12.5%'],
           ],
         },
       ],
       bullets: [
-        'The third SKU is the most critical: the product is unavailable on almost 4 of every 10 days',
-        'Dozemast has a lower stock-out rate, but its high unit price increases the impact',
-        'Across the 10 SKUs, the average stock-out weighted by sell-through was ≈ 21%',
+        'Product A is the most critical: it is unavailable on almost 4 of every 10 days',
+        'Across the 10 products, the average stock-out weighted by sell-through was ≈ 21%',
       ],
     },
     {
-      title: 'Where to focus: execution by chain and region',
+      title: 'Where to focus: execution by area class',
       viz: [
-        { kind: 'bars', title: 'Current stock-out by city', sub: '% of days without stock', unit: '%', items: [{ label: 'Brasília (DF)', value: 41.0, hot: true }, { label: 'Rio de Janeiro (RJ)', value: 29.4 }, { label: 'Porto Alegre (RS)', value: 27.9 }, { label: 'Curitiba (PR)', value: 23.1 }, { label: 'São Paulo (SP)', value: 18.8 }] },
-        { kind: 'bars', title: 'Technical gain if stock-out falls to 5%', sub: 'Thousand units per quarter', digits: 1, items: [{ label: 'São Paulo (SP)', value: 11.1, display: '+11.1 K', hot: true }, { label: 'Rio de Janeiro (RJ)', value: 10.9, display: '+10.9 K' }, { label: 'Porto Alegre (RS)', value: 4.0, display: '+4.0 K' }, { label: 'Brasília (DF)', value: 3.8, display: '+3.8 K' }, { label: 'Curitiba (PR)', value: 3.1, display: '+3.1 K' }] },
+        { kind: 'bars', title: 'Current stock-out by area class', sub: '% of days without stock', unit: '%', items: [{ label: 'Area A', value: 41, hot: true, display: 'above 40%' }, { label: 'Area B', value: 26, display: '23% to 29%' }, { label: 'Area C', value: 19, display: 'up to 19%' }] },
       ],
       paragraphs: [
-        'Execution. The best-executing chain sells 8.71 units per week per store. The average of the 14 chains is 3.76. The gap shows the room to gain with assortment, supply and commercial activation.',
-        'Geography. SP holds 34.4% of the volume of the 10 SKUs and has a below-average stock-out rate (≈ 16.6%). There the priority is assortment, price and activation. RS (≈ 36%), RJ (≈ 40%), PR (≈ 32%) and MG (≈ 29%) combine relevant volume with above-average stock-outs. In these states, fix availability first.',
-        'If stock-out fell to 5% in each city, the five cities with the largest technical gain would be:',
+        'Execution. The best-executing chain sells much more than the chain average. The gap shows the room to gain with assortment, supply and commercial activation.',
+        'Area class. Area C holds ≈ 34% of the volume of the 10 products and has a below-average stock-out rate (≈ 17%). There the priority is assortment, price and activation. Areas A and B combine relevant volume with above-average stock-outs. In these areas, fix availability first.',
+        'The table shows the reading for each area class:',
       ],
       tables: [
         {
-          head: ['City', 'Current stock-out', 'Potential technical gain'],
+          head: ['Area class', 'Current stock-out', 'Priority'],
           rows: [
-            ['São Paulo (SP)', '≈ 18.8%', '+11.1 thousand units'],
-            ['Rio de Janeiro (RJ)', '≈ 29.4%', '+10.9 thousand units'],
-            ['Porto Alegre (RS)', '≈ 27.9%', '+4.0 thousand units'],
-            ['Brasília (DF)', '≈ 41.0%', '+3.8 thousand units'],
-            ['Curitiba (PR)', '≈ 23.1%', '+3.1 thousand units'],
+            ['Area A', 'above 40%', 'Availability first'],
+            ['Area B', '23% to 29%', 'Availability first'],
+            ['Area C', 'up to 19%', 'Assortment, price and activation'],
           ],
         },
       ],
       bullets: [
         'Where availability is good and sell-through is weak, the cause tends to be price, promotion, mix or shelf. The action is commercial',
-        'Where availability is good, sell-through is strong and share grows, there are cases to copy: cities in Ceará, Bahia and Tocantins',
+        'Where availability is good, sell-through is strong and share grows, there are cases to copy: areas in other regions',
       ],
     },
     {
-      title: 'What reducing stock-outs is worth',
+      title: 'How much sell-through is worth recovering',
       viz: [
-        { kind: 'bars', title: 'Extra sell-out per quarter', sub: 'R$ million, by loss reduction target', digits: 1, items: [{ label: 'Realistic target: from 14% to 10%', value: 7.9, display: '≈ R$ 7.9 M' }, { label: 'Ambitious target: from 14% to 7%', value: 13.8, display: '≈ R$ 13.8 M' }, { label: 'Excellence: from 14% to 5%', value: 17.8, display: '≈ R$ 17.8 M', hot: true }] },
+        { kind: 'bars', title: 'Sell-through recovered by target', sub: 'percentage points of market sell-through', items: [{ label: 'Realistic target: from 14% to 10%', value: 4, display: '+4 p.p.' }, { label: 'Ambitious target: from 14% to 7%', value: 7, display: '+7 p.p.' }, { label: 'Excellence: from 14% to 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
-      paragraphs: ['Dinn simulated three targets. The base is the 14% loss over market sell-through and the average sell-out price of R$ 141.52.'],
+      paragraphs: ['Dinn simulated three targets. The base is the 14% loss over market sell-through.'],
       tables: [
         {
-          head: ['Scenario', 'Units recovered', 'Extra sell-out per quarter'],
+          head: ['Scenario', 'Sell-through recovered'],
           rows: [
-            ['Loss falls from 14% to 10% (realistic target)', '≈ 55,753', '≈ R$ 7.9 million'],
-            ['Loss falls from 14% to 7% (ambitious target)', '≈ 97,568', '≈ R$ 13.8 million'],
-            ['Loss falls from 14% to 5% (excellence)', '≈ 125,445', '≈ R$ 17.8 million'],
+            ['Loss falls from 14% to 10% (realistic target)', '+4 p.p. of market sell-through'],
+            ['Loss falls from 14% to 7% (ambitious target)', '+7 p.p. of market sell-through'],
+            ['Loss falls from 14% to 5% (excellence)', '+9 p.p. of market sell-through'],
           ],
         },
       ],
@@ -475,17 +453,16 @@ export const es: Customer = {
   about: 'Marjan es un laboratorio farmacéutico brasileño. Vende sus medicamentos y suplementos en farmacias de todo el país.',
   title: 'Marjan convierte quiebres de stock en acción de campo',
   summary: 'Dinn muestra a Marjan el stock y los quiebres de stock tienda por tienda. El campo sabe qué atacar primero.',
-  metaDescription: 'Con Dinn, Marjan ve el stock y los quiebres de stock tienda por tienda. Estima R$ 27,6 millones de sell-out en riesgo por trimestre y da al campo un mapa de qué atacar primero.',
+  metaDescription: 'Con Dinn, Marjan ve el stock y los quiebres de stock tienda por tienda. Cerca de 14% de la rotación potencial se pierde por quiebres. El campo recibe un mapa de qué atacar primero.',
   metrics: [
-    { value: '≈ R$ 27,6 M', label: 'de sell-out en riesgo por trimestre por los quiebres de stock (estimación técnica)' },
-    { value: '≈ 14%', label: 'de la rotación de los tres mercados analizados no se capturó por quiebres de stock' },
+    { value: '≈ 14%', label: 'de la rotación potencial de los tres mercados analizados no se capturó por quiebres de stock' },
+    { value: '47', label: 'gestores registrados en Dinn' },
     { value: '78%', label: 'de los gestores sentirían el impacto en el día a día si Dinn saliera mañana' },
     { value: '43%', label: 'de los gestores ahorran 30 minutos o más por semana' },
   ],
   quote: {
     text: 'Dinn se volvió mi mapa de calor de quiebres de stock. Sé exactamente por dónde empezar el día y dónde poner al equipo.',
-    who: 'Gilberto da Rocha Santos',
-    role: 'Marjan',
+    role: 'Gestor de campo',
     approved: false,
   },
   intro: [
@@ -495,9 +472,9 @@ export const es: Customer = {
   ],
   problem: {
     title: 'Ver el quiebre de stock no dice qué hacer',
-      viz: [
-        { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'Del stock de la tienda a la ruta del equipo' },
-      ],
+    viz: [
+      { kind: 'art', art: 'supply', g: 'web/azul-claro', caption: 'Del stock de la tienda a la ruta del equipo' },
+    ],
     paragraphs: ['Antes de Dinn, el gestor de campo tenía dos dificultades ligadas.'],
     bullets: [
       'Sin granularidad. La visión era general. Era difícil encontrar las tiendas del propio territorio y separar el problema de producto, de cadena y de tienda.',
@@ -507,9 +484,9 @@ export const es: Customer = {
   },
   solution: {
     title: 'Stock D-1, quiebre por tienda, comparación de cadenas',
-      viz: [
-        { kind: 'screen', screen: 'home', caption: 'Inicio de Dinn: quiebre de stock por producto, nivel de las tiendas y ranking por cadena, con el dato del día anterior (D-1).' },
-      ],
+    viz: [
+      { kind: 'screen', screen: 'home', caption: 'Inicio de Dinn: quiebre de stock por producto, nivel de las tiendas y ranking por cadena, con el dato del día anterior (D-1).' },
+    ],
     paragraphs: [
       'Con Dinn, Marjan ve el stock D-1, el quiebre por día y por tienda, y la comparación entre cadenas y tiendas vecinas.',
       'El análisis cubre el trimestre del 1 de septiembre al 30 de noviembre de 2025.',
@@ -517,7 +494,7 @@ export const es: Customer = {
     bullets: [
       'Alcance monitoreado: 79 EAN, más de 45.000 tiendas y más de 50 cadenas',
       'Mercados armados: 3, con 30 EAN en total',
-      'Análisis de quiebre: los 10 SKU de mayor rotación de Marjan en 14 cadenas de Abrafarma',
+      'Análisis de quiebre: los 10 productos de mayor rotación de Marjan en cadenas de gran porte',
       'Usuarios: 47 gestores registrados',
     ],
   },
@@ -538,7 +515,7 @@ export const es: Customer = {
       title: 'Abrir la negociación con datos sobre la mesa',
       paragraphs: [
         'Un gestor seguía una gran cadena con descuentos muy altos. Los descuentos presionaban el margen y generaban pedidos de condiciones adicionales a la industria.',
-        'En el panel de Análisis de Precios de Dinn, vio el precio medio y el descuento medio de la cadena. Los comparó con otras cadenas. El descuento estaba sobre el promedio y, en algunos casos, bajo el precio de fábrica. En la conversación con la cadena, usó precio, rotación e impacto en quiebres de stock y margen.',
+        'En el panel de Análisis de Precios de Dinn, vio el precio medio y el descuento medio de la cadena. Los comparó con otras cadenas. El descuento estaba sobre el promedio de las otras cadenas. En la conversación con la cadena, usó precio, rotación e impacto en quiebres de stock y margen.',
       ],
     },
     {
@@ -565,96 +542,86 @@ export const es: Customer = {
   ],
   results: [
     {
-      title: 'Cuánto cuestan los quiebres en sell-out',
+      title: 'Cuánta rotación hacen perder los quiebres',
       viz: [
-        { kind: 'donut', title: 'Pérdida sobre la rotación del mercado', sub: 'Unidades de los 3 mercados, sep a nov 2025', items: [{ label: 'Resto de la rotación de los 3 mercados', value: 1190923 }, { label: 'Pérdida estimada por quiebres (≈ 195 mil)', value: 195137 }], center: { value: '≈ 14%', label: 'de la rotación perdida' }, note: 'La rotación total de los tres mercados, Marjan y competencia, es de cerca de 1,39 millones de unidades.' },
-        { kind: 'bars', title: 'Pérdida por mercado', sub: '% de la rotación, estimación técnica', unit: '%', items: [{ label: 'CALDE-MAX', value: 27, hot: true, display: '≈ 27%' }, { label: 'BIOTTA-25-BI', value: 20, display: '≈ 20%' }, { label: 'DOZEMAST', value: 7, display: '≈ 7%' }] },
+        { kind: 'donut', title: 'Pérdida sobre la rotación del mercado', sub: '% de la rotación potencial de los 3 mercados, sep a nov 2025', items: [{ label: 'Resto de la rotación de los 3 mercados', value: 86 }, { label: 'Pérdida estimada por quiebres', value: 14 }], center: { value: '≈ 14%', label: 'de la rotación perdida' }, note: 'Base: rotación potencial de los tres mercados, Marjan y competencia.' },
+        { kind: 'bars', title: 'Pérdida por mercado', sub: '% de la rotación, estimación técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
       ],
-      paragraphs: ['En los tres mercados principales de Marjan, en 14 cadenas de Abrafarma, de septiembre a noviembre de 2025:'],
+      paragraphs: ['En los tres mercados principales de Marjan, en cadenas de gran porte, de septiembre a noviembre de 2025:'],
       tables: [
         {
           head: ['Indicador', 'Resultado'],
           rows: [
-            ['Rotación registrada de Marjan en los 3 mercados', '610.006 unidades'],
-            ['Rotación total de los 3 mercados (Marjan y competencia)', '1.386.060 unidades'],
-            ['Pérdida estimada de Marjan por quiebres', '≈ 195.137 unidades'],
-            ['Pérdida sobre la rotación del mercado', '≈ 14%'],
-            ['Sell-out no capturado en el trimestre', '≈ R$ 27,6 millones'],
+            ['Pérdida sobre la rotación de los 3 mercados', '≈ 14%'],
+            ['Pérdida por mercado', 'de ≈ 7% a ≈ 27%'],
           ],
         },
       ],
       bullets: [
         'Son cerca de 32 unidades perdidas por cada 100 vendidas',
-        'La pérdida cambia por mercado: ≈ 27% de la rotación en CALDE-MAX, ≈ 20% en BIOTTA-25-BI y ≈ 7% en DOZEMAST',
-        'Proyección anual: si nada cambia, Marjan puede dejar de capturar ≈ R$ 110 millones al año (el trimestre por cuatro, sin ajuste de estacionalidad)',
+        'La pérdida cambia por mercado: ≈ 27% de la rotación en el mercado A, ≈ 20% en el B y ≈ 7% en el C',
       ],
-      note: 'Cómo leer los valores: son un potencial técnico estimado. El cálculo usa la rotación diaria en tiendas con stock, la tasa de quiebre observada y el precio medio. No son pérdida real de facturación. La validación final usa los datos oficiales de venta de las cadenas.',
+      note: 'Cómo leer los valores: son un potencial técnico estimado. El cálculo usa la rotación diaria en tiendas con stock y la tasa de quiebre observada. No son pérdida real de facturación. La validación final usa los datos oficiales de venta de las cadenas.',
     },
     {
-      title: 'Los tres SKU críticos',
+      title: 'Los tres productos más críticos',
       viz: [
-        { kind: 'bars', title: 'Quiebre medio por SKU', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Caldê MDK 2.000UI, 30 comprimidos', value: 39.2, hot: true }, { label: 'Caldê MDK 2000UI, 60 comprimidos', value: 23.4 }, { label: 'Dozemast 1.000mcg, 30 comprimidos', value: 12.5 }] },
-        { kind: 'bars', title: 'Potencial en sell-out', sub: 'R$ millones en el trimestre, estimación', digits: 1, items: [{ label: 'Caldê MDK 2000UI, 60 comprimidos', value: 3.0, display: '≈ R$ 3,0 M' }, { label: 'Dozemast 1.000mcg, 30 comprimidos', value: 2.0, display: '≈ R$ 2,0 M' }, { label: 'Caldê MDK 2.000UI, 30 comprimidos', value: 1.6, display: '≈ R$ 1,6 M' }] },
+        { kind: 'bars', title: 'Quiebre medio por producto', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Producto A', value: 39.2, hot: true }, { label: 'Producto B', value: 23.4 }, { label: 'Producto C', value: 12.5 }] },
       ],
-      paragraphs: ['Entre los 10 SKU de mayor rotación, tres concentran el mayor potencial por falta de disponibilidad.'],
+      paragraphs: ['Entre los 10 productos de mayor rotación, tres concentran el mayor potencial por falta de disponibilidad.'],
       tables: [
         {
-          head: ['SKU', 'Quiebre medio', 'Unidades no vendidas', 'Potencial en sell-out'],
+          head: ['Producto', 'Quiebre medio'],
           rows: [
-            ['Caldê MDK 2000UI, 60 comprimidos', '23,4%', '≈ 19.137', '≈ R$ 3,0 millones'],
-            ['Dozemast 1.000mcg, 30 comprimidos', '12,5%', '≈ 23.461', '≈ R$ 2,0 millones'],
-            ['Caldê MDK 2.000UI, 30 comprimidos', '39,2%', '≈ 15.666', '≈ R$ 1,6 millones'],
-            ['Total', '', '≈ 58.264', '≈ R$ 6,6 millones'],
+            ['Producto A', '39,2%'],
+            ['Producto B', '23,4%'],
+            ['Producto C', '12,5%'],
           ],
         },
       ],
       bullets: [
-        'El tercer SKU es el más crítico: casi 4 de cada 10 días el producto no está disponible',
-        'En Dozemast el quiebre es menor, pero el alto valor unitario aumenta el impacto',
-        'En los 10 SKU, el quiebre medio ponderado por rotación fue de ≈ 21%',
+        'El producto A es el más crítico: casi 4 de cada 10 días no está disponible',
+        'En los 10 productos, el quiebre medio ponderado por rotación fue de ≈ 21%',
       ],
     },
     {
-      title: 'Dónde enfocar: ejecución por cadena y región',
+      title: 'Dónde enfocar: ejecución por clase de plaza',
       viz: [
-        { kind: 'bars', title: 'Quiebre actual por ciudad', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Brasília (DF)', value: 41.0, hot: true }, { label: 'Rio de Janeiro (RJ)', value: 29.4 }, { label: 'Porto Alegre (RS)', value: 27.9 }, { label: 'Curitiba (PR)', value: 23.1 }, { label: 'São Paulo (SP)', value: 18.8 }] },
-        { kind: 'bars', title: 'Ganancia técnica si el quiebre baja a 5%', sub: 'Miles de unidades por trimestre', digits: 1, items: [{ label: 'São Paulo (SP)', value: 11.1, display: '+11,1 mil', hot: true }, { label: 'Rio de Janeiro (RJ)', value: 10.9, display: '+10,9 mil' }, { label: 'Porto Alegre (RS)', value: 4.0, display: '+4,0 mil' }, { label: 'Brasília (DF)', value: 3.8, display: '+3,8 mil' }, { label: 'Curitiba (PR)', value: 3.1, display: '+3,1 mil' }] },
+        { kind: 'bars', title: 'Quiebre actual por clase de plaza', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Plaza A', value: 41, hot: true, display: 'sobre 40%' }, { label: 'Plaza B', value: 26, display: '23% a 29%' }, { label: 'Plaza C', value: 19, display: 'hasta 19%' }] },
       ],
       paragraphs: [
-        'Ejecución. La cadena de mejor ejecución rota 8,71 unidades por semana por tienda. El promedio de las 14 cadenas es 3,76. La diferencia muestra el espacio para ganar con surtido, abastecimiento y activación comercial.',
-        'Geografía. SP concentra el 34,4% del volumen de los 10 SKU y tiene un quiebre bajo el promedio (≈ 16,6%). Allí la prioridad es surtido, precio y activación. RS (≈ 36%), RJ (≈ 40%), PR (≈ 32%) y MG (≈ 29%) combinan volumen relevante con quiebre sobre el promedio. En esos estados, ataque la disponibilidad primero.',
-        'Si el quiebre bajara a 5% en cada ciudad, las cinco ciudades con mayor ganancia técnica serían:',
+        'Ejecución. La cadena de mejor ejecución rota mucho más que el promedio de las cadenas. La diferencia muestra el espacio para ganar con surtido, abastecimiento y activación comercial.',
+        'Clase de plaza. La plaza C concentra ≈ 34% del volumen de los 10 productos y tiene un quiebre bajo el promedio (≈ 17%). Allí la prioridad es surtido, precio y activación. Las plazas A y B combinan volumen relevante con quiebre sobre el promedio. En ellas, ataque la disponibilidad primero.',
+        'La tabla muestra la lectura por clase de plaza:',
       ],
       tables: [
         {
-          head: ['Ciudad', 'Quiebre actual', 'Ganancia técnica potencial'],
+          head: ['Clase de plaza', 'Quiebre actual', 'Prioridad'],
           rows: [
-            ['São Paulo (SP)', '≈ 18,8%', '+11,1 mil unidades'],
-            ['Rio de Janeiro (RJ)', '≈ 29,4%', '+10,9 mil unidades'],
-            ['Porto Alegre (RS)', '≈ 27,9%', '+4,0 mil unidades'],
-            ['Brasília (DF)', '≈ 41,0%', '+3,8 mil unidades'],
-            ['Curitiba (PR)', '≈ 23,1%', '+3,1 mil unidades'],
+            ['Plaza A', 'sobre 40%', 'Disponibilidad primero'],
+            ['Plaza B', '23% a 29%', 'Disponibilidad primero'],
+            ['Plaza C', 'hasta 19%', 'Surtido, precio y activación'],
           ],
         },
       ],
       bullets: [
         'Donde la disponibilidad es buena y la rotación es débil, la causa suele ser precio, promoción, mix o góndola. La acción es comercial',
-        'Donde la disponibilidad es buena, la rotación es fuerte y la participación crece, están los casos para replicar: ciudades de Ceará, Bahía y Tocantins',
+        'Donde la disponibilidad es buena, la rotación es fuerte y la participación crece, están los casos para replicar: plazas de otras regiones',
       ],
     },
     {
-      title: 'Cuánto vale reducir los quiebres de stock',
+      title: 'Cuánta rotación vale recuperar',
       viz: [
-        { kind: 'bars', title: 'Sell-out adicional por trimestre', sub: 'R$ millones, por meta de reducción de la pérdida', digits: 1, items: [{ label: 'Meta realista: de 14% a 10%', value: 7.9, display: '≈ R$ 7,9 M' }, { label: 'Meta ambiciosa: de 14% a 7%', value: 13.8, display: '≈ R$ 13,8 M' }, { label: 'Excelencia: de 14% a 5%', value: 17.8, display: '≈ R$ 17,8 M', hot: true }] },
+        { kind: 'bars', title: 'Rotación recuperada por meta', sub: 'puntos porcentuales de la rotación del mercado', items: [{ label: 'Meta realista: de 14% a 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% a 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelencia: de 14% a 5%', value: 9, display: '+9 p.p.', hot: true }] },
       ],
-      paragraphs: ['Dinn simuló tres metas. La base es la pérdida de 14% sobre la rotación del mercado y el precio medio de sell-out de R$ 141,52.'],
+      paragraphs: ['Dinn simuló tres metas. La base es la pérdida de 14% sobre la rotación del mercado.'],
       tables: [
         {
-          head: ['Escenario', 'Unidades recuperadas', 'Sell-out adicional por trimestre'],
+          head: ['Escenario', 'Rotación recuperada'],
           rows: [
-            ['La pérdida baja de 14% a 10% (meta realista)', '≈ 55.753', '≈ R$ 7,9 millones'],
-            ['La pérdida baja de 14% a 7% (meta ambiciosa)', '≈ 97.568', '≈ R$ 13,8 millones'],
-            ['La pérdida baja de 14% a 5% (excelencia)', '≈ 125.445', '≈ R$ 17,8 millones'],
+            ['La pérdida baja de 14% a 10% (meta realista)', '+4 p.p. de la rotación del mercado'],
+            ['La pérdida baja de 14% a 7% (meta ambiciosa)', '+7 p.p. de la rotación del mercado'],
+            ['La pérdida baja de 14% a 5% (excelencia)', '+9 p.p. de la rotación del mercado'],
           ],
         },
       ],

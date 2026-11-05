@@ -3,6 +3,9 @@
 // documento marca como "REVISAR" ou "só publicar com confirmação" ficam fora do
 // ar: citação com `approved: false` não aparece na página. Para publicar,
 // confirme com o cliente e troque para `true`.
+// Regra de 05/11/2026: página de cliente não expõe dado sensível do caso (produto, rede,
+// concorrente, valor em reais, praça) nem o nome de quem deu o depoimento. Os números
+// de uso do próprio Dinn podem aparecer. Dado do cliente vira grupo, classe ou faixa.
 // Libbs e Lilly entraram em 03/11/2026, com a mesma regra: trecho marcado como
 // "REVISAR" no documento fica fora, e cada citação tem `approved: false`.
 
@@ -16,7 +19,8 @@ export type Viz =
   | { kind: 'timeline'; title: string; steps: { date: string; label: string }[] }
   | { kind: 'screen'; screen: 'home' | 'locator' | 'market'; caption: string }
   | { kind: 'art'; art: 'supply' | 'sac' | 'trade' | 'launch' | 'govern' | 'pricing' | 'layers'; g?: string; caption?: string };
-export type Quote = { text: string; who: string; role: string; approved: boolean };
+/** Depoimento anônimo: sem nome de pessoa. `role` traz só a função (ex.: "Consultor de vendas"). */
+export type Quote = { text: string; role: string; approved: boolean };
 export type Table = { title?: string; head: string[]; rows: string[][]; note?: string };
 export type Block = {
   title: string;
@@ -26,6 +30,8 @@ export type Block = {
   viz?: Viz[];
   note?: string;
   quote?: Quote;
+  /** Mais de um depoimento no mesmo bloco da história. */
+  quotes?: Quote[];
 };
 export type Customer = {
   slug: string;

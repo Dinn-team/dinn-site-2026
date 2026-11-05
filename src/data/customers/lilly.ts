@@ -6,20 +6,19 @@ export const pt: Customer = {
   sector: 'Indústria farmacêutica',
   hq: 'São Paulo, Brasil',
   useCase: 'Análise de mercado: da ruptura no PDV à concorrência e às oportunidades',
-  about: 'A Lilly é uma farmacêutica global, com portfólio no Brasil em diabetes e obesidade.',
+  about: 'A Lilly é uma farmacêutica global, com portfólio de alta demanda no Brasil.',
   title: 'Como a Lilly vê onde concorrentes ganham espaço',
   summary: 'A Lilly começou a usar o Dinn para achar produto em falta. Depois, ajudou a criar um painel que mostra onde a participação cai, por estado e rede.',
   metaDescription: 'A Lilly começou a usar o Dinn para achar produto em falta nas farmácias. Quando a escassez passou, ajudou a criar um painel. Ele mostra onde a participação cai e quem ganha espaço, por estado e rede.',
   metrics: [
     { value: '14 dias', label: 'entre o pedido estratégico da Lilly e a entrega do Painel de Oportunidades' },
     { value: '10 pedidos', label: 'do time B2B atendidos e reportados em 13 dias' },
-    { value: '≈ 16 mil', label: 'PDVs por semana no mercado de GLP-1, com 22 EANs de 4 laboratórios' },
+    { value: 'Milhares', label: 'de PDVs observados por semana no mercado de alta demanda' },
     { value: '3 regras', label: 'de ação sugerida para o KAM, sem número inventado por IA' },
   ],
   quote: {
     text: 'Hoje a ruptura é o menor dos nossos problemas. Agora a gente precisa de uma análise mais estratégica de mercado.',
-    who: 'Time B2B',
-    role: 'Lilly',
+    role: 'Time B2B',
     approved: false,
   },
   intro: [
@@ -29,9 +28,9 @@ export const pt: Customer = {
   ],
   problem: {
     title: 'A necessidade de ontem não é a de hoje',
-      viz: [
-        { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'Do estoque na loja ao espaço no mercado' },
-      ],
+    viz: [
+      { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'Do estoque na loja ao espaço no mercado' },
+    ],
     paragraphs: [
       'Em julho, no kickoff, a Lilly queria uma visão de disponibilidade por loja e por rede. A visão serviria à negociação comercial e à operação.',
       'Três meses depois, o time reavaliou o valor da ferramenta. Em 5 de outubro, a Lilly escreveu ao Dinn:',
@@ -44,13 +43,13 @@ export const pt: Customer = {
     note: 'A Lilly pediu uma só experiência com o "retrovisor" (o histórico) e o "para-brisa" (o que vem pela frente).',
   },
   solution: {
-    title: 'Nova camada: mercado GLP-1 e Painel de Oportunidades',
-      viz: [
-        { kind: 'screen', screen: 'market', caption: 'Mercado no Dinn: participação por laboratório e vendas estimadas do laboratório contra os concorrentes. A participação tem margem de ±1,3 p.p.' },
-      ],
+    title: 'Nova camada: o Painel de Oportunidades',
+    viz: [
+      { kind: 'screen', screen: 'market', caption: 'Mercado no Dinn: participação por laboratório e vendas estimadas do laboratório contra os concorrentes.' },
+    ],
     paragraphs: [
       'O Dinn já tinha, para a Lilly, estoque diário por loja e por rede, ruptura, preço e um mercado de referência. Em outubro, o Dinn ganhou uma nova camada.',
-      'O mercado GLP-1 reúne 22 EANs de 4 laboratórios. O Dinn os observa em cerca de 16 mil PDVs por semana, com dado desde junho de 2026.',
+      'Essa camada acompanha o mercado de alta demanda. O Dinn o observa em milhares de PDVs por semana.',
       'O Painel de Oportunidades responde a perguntas de negócio, por estado, rede e cidade:',
     ],
     bullets: [
@@ -64,32 +63,31 @@ export const pt: Customer = {
     {
       title: 'Ruptura: ver onde falta produto, loja a loja',
       viz: [
-        { kind: 'bars', title: 'Dias-loja com estoque zero, por dose', sub: 'Out/2026, % dos dias-loja', unit: '%', items: [{ label: 'Doses de 2,5 a 10 mg', value: 23.5, display: '23% a 24%' }, { label: '7,5 mg', value: 28.6 }, { label: '12,5 mg', value: 40.5 }, { label: '15 mg', value: 41.9, hot: true }], note: 'A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.' },
+        { kind: 'bars', title: 'Dias-loja com estoque zero, por grupo de dose', sub: 'Out/2026, razão sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.' },
       ],
       paragraphs: [
-        'O Dinn mostrou à Lilly, pela primeira vez, a disponibilidade do produto por loja e por rede. No mercado de GLP-1, a ruptura não é uniforme entre as doses.',
+        'O Dinn mostrou à Lilly, pela primeira vez, a disponibilidade do produto por loja e por rede. No mercado de alta demanda, a ruptura não é uniforme entre as doses.',
       ],
       quote: {
         text: 'Primeira vez que a gente está tendo essa visão. A gente não tinha essa visibilidade de onde, teoricamente, está abastecido.',
-        who: 'Time Lilly',
-        role: 'Kickoff do projeto',
+        role: 'Time comercial',
         approved: false,
       },
-      note: 'As doses mais recentes ficam mais tempo sem estoque na gôndola. O número único da marca esconde essa diferença. A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.',
+      note: 'As doses de maior concentração ficam mais tempo sem estoque na gôndola. O número único da marca esconde essa diferença. A taxa mede dias-loja com estoque zero. Ela não mede venda perdida.',
     },
     {
       title: 'Confiança: o dado único que escondia a história',
       viz: [
-        { kind: 'compare', title: 'Ruptura da marca numa rede regional', from: { value: '39,5%', label: 'indicador consolidado, com 162 PDVs zerados em todo o catálogo' }, to: { value: '31,3%', label: 'depois de separar esses PDVs em "PDVs em atenção"' } },
-        { kind: 'bars', title: 'Mesma rede, por dose', sub: '% dos dias-loja com estoque zero', unit: '%', items: [{ label: 'Doses de 2,5 e 5 mg', value: 14.3 }, { label: 'Doses de 12,5 e 15 mg', value: 75.1, hot: true }], note: 'O número único da marca misturava doses muito diferentes.' },
+        { kind: 'compare', title: 'Ruptura da marca numa rede regional', from: { value: 'Consolidado', label: 'indicador único, que contava PDVs zerados em todo o catálogo' }, to: { value: '≈ 8 p.p. a menos', label: 'depois de separar esses PDVs em "PDVs em atenção"' } },
+        { kind: 'bars', title: 'Mesma rede, por grupo de dose', sub: 'Razão de dias-loja com estoque zero, sobre as doses de menor concentração', digits: 1, items: [{ label: 'Doses de menor concentração', value: 1, display: '1,0x (base)' }, { label: 'Doses de maior concentração', value: 5.3, display: 'mais de 5x', hot: true }], note: 'O número único da marca misturava doses muito diferentes.' },
       ],
       paragraphs: [
-        'Em setembro, o time B2B questionou o dado. O painel mostrava ruptura de 39,5% numa grande rede regional. A base da própria rede indicava abundância do produto. O Dinn investigou e abriu a análise:',
+        'Em setembro, o time B2B questionou o dado. O painel mostrava ruptura alta numa rede regional. A base da própria rede indicava abundância do produto. O Dinn investigou e abriu a análise:',
       ],
       bullets: [
         'Os dados de disponibilidade estavam corretos. Um indicador consolidado enganava, porque misturava doses e lojas muito diferentes.',
-        '162 PDVs estavam zerados em todo o catálogo, possivelmente inativos. Separados, a ruptura da marca na rede caiu de 39,5% para 31,3%.',
-        'Por dose, as de 2,5 e 5 mg tinham 14,3%. As de 12,5 e 15 mg chegavam a 75,1%, o que bate com a base enviada pela Lilly.',
+        'Parte dos PDVs estava zerada em todo o catálogo, possivelmente inativa. Separados, a ruptura da marca na rede caiu cerca de 8 p.p.',
+        'Por dose, as de menor concentração tinham ruptura baixa. As de maior concentração chegavam a mais de 5 vezes esse nível, o que bate com a base enviada pelo cliente.',
         'O Dinn criou a classificação "PDVs em atenção": loja zerada em todo o catálogo por 30 dias ou mais. Ela não esconde nem apaga a loja. O Dinn também mostra as doses lado a lado, com uma linha de total das selecionadas.',
       ],
       note: 'Em 15 de setembro, 13 dias depois do pedido, o time Dinn entregou o relatório de fechamento dos 10 itens. O relatório cobre: correção do dado de uma rede, reprocessamento do histórico e agrupamento de redes do mesmo grupo. Cobre também filtros por cidade e rede, nomes de apresentações e lista de PDVs cruzada com CNPJ.',
@@ -103,16 +101,15 @@ export const pt: Customer = {
         'Na manhã de 5 de outubro, a Lilly fez uma reunião estratégica. À tarde, enviou ao Dinn os temas:',
       ],
       bullets: [
-        'Expansão da categoria de semaglutida por região',
+        'Expansão da categoria por região',
         'Identificar redes e clientes onde concorrentes ganham espaço',
-        'Oportunidades em Minas Gerais e no Rio Grande do Sul',
+        'Oportunidades nos estados prioritários',
         'Sugestões automáticas de ação para os KAMs',
       ],
       note: 'O Dinn respondeu com perguntas objetivas. A Lilly retornou em dois dias. O time B2B ajustou o escopo. Olhar todos os estados. Usar o último trimestre. Cruzar participação, vendas e presença nas lojas. Gerar planos de ação por IA quando houver queda importante.',
       quote: {
         text: 'A combinação desses fatores na análise será rica, principalmente se trouxer insights sobre ações a tomar em caso de queda importante de vendas.',
-        who: 'Time B2B',
-        role: 'Lilly',
+        role: 'Time B2B',
         approved: false,
       },
     },
@@ -145,11 +142,11 @@ export const pt: Customer = {
       {
         head: ['O que a Lilly pediu', 'O que está no plano'],
         rows: [
-          ['Visão por todos os estados, não só MG e RS', 'Filtros por UF no Painel de Oportunidades'],
-          ['Cruzar com outras fontes de mercado e com os grupos de genéricos e similares da própria Lilly', 'Integração de dados e catálogo de concorrentes definido pelo time de BI da Lilly'],
+          ['Visão por todos os estados, não só os prioritários', 'Filtros por UF no Painel de Oportunidades'],
+          ['Cruzar com outras fontes de mercado e com outras linhas do portfólio da própria Lilly', 'Integração de dados e catálogo de concorrentes definido pelo time de BI da Lilly'],
           ['Planos de ação gerados por IA a partir da queda de vendas', 'Dinn Insights com ações sugeridas'],
           ['Fechamentos mensais, em vez de só o dado diário', 'Primeira entrega do fechamento mensal feita em outubro'],
-          ['Dado dentro dos sistemas internos de B2B da Lilly', 'Transferência de dados brutos para o banco interno da Lilly'],
+          ['Dado dentro dos sistemas internos de B2B', 'Transferência de dados brutos para o banco interno'],
         ],
       },
     ],
@@ -163,20 +160,19 @@ export const en: Customer = {
   sector: 'Pharmaceutical industry',
   hq: 'São Paulo, Brazil',
   useCase: 'Market analysis: from store stock-outs to competition and market opportunities',
-  about: 'Lilly is a global pharmaceutical company. Its Brazil portfolio covers diabetes and obesity.',
+  about: 'Lilly is a global pharmaceutical company. Its Brazil portfolio has high demand.',
   title: 'How Lilly sees where competitors gain ground',
   summary: 'Lilly started to use Dinn to find missing product. Later, it helped build a panel that shows where share falls, by state and chain.',
   metaDescription: 'Lilly started to use Dinn to find missing product in pharmacies. When the shortage ended, it helped build a panel. The panel shows where share falls and who gains ground, by state and chain.',
   metrics: [
     { value: '14 days', label: 'from the Lilly strategic request to the delivery of the Opportunities Panel' },
     { value: '10 requests', label: 'from the B2B team, closed and reported in 13 days' },
-    { value: '≈ 16 thousand', label: 'stores per week in the GLP-1 market, with 22 EANs from 4 laboratories' },
+    { value: 'Thousands', label: 'of stores observed per week in the high-demand market' },
     { value: '3 rules', label: 'for suggested KAM actions, with no number invented by AI' },
   ],
   quote: {
     text: 'Today the stock-out is the smallest of our problems. Now we need a more strategic market analysis.',
-    who: 'B2B team',
-    role: 'Lilly',
+    role: 'B2B team',
     approved: false,
   },
   intro: [
@@ -186,9 +182,9 @@ export const en: Customer = {
   ],
   problem: {
     title: "Yesterday's need is not today's need",
-      viz: [
-        { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'From stock in the store to share in the market' },
-      ],
+    viz: [
+      { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'From stock in the store to share in the market' },
+    ],
     paragraphs: [
       'In July, at the kickoff, Lilly wanted a view of availability by store and by chain. The view would support commercial negotiation and operations.',
       'Three months later, the team reviewed the value of the tool. On Oct 5, Lilly wrote to Dinn:',
@@ -201,13 +197,13 @@ export const en: Customer = {
     note: 'Lilly asked for one experience with the "rear-view mirror" (the history) and the "windshield" (what is ahead).',
   },
   solution: {
-    title: 'New layer: GLP-1 market and Opportunities Panel',
-      viz: [
-        { kind: 'screen', screen: 'market', caption: 'Market in Dinn: share by laboratory and estimated laboratory sales against competitors. Share has a margin of ±1.3 p.p.' },
-      ],
+    title: 'New layer: the Opportunities Panel',
+    viz: [
+      { kind: 'screen', screen: 'market', caption: 'Market in Dinn: share by laboratory and estimated laboratory sales against competitors.' },
+    ],
     paragraphs: [
       'Dinn already had daily stock by store and by chain for Lilly, plus stock-outs, price and a reference market. In October, Dinn added a new layer.',
-      'The GLP-1 market covers 22 EANs from 4 laboratories. Dinn observes them in about 16 thousand stores per week, with data since June 2026.',
+      'This layer tracks the high-demand market. Dinn observes it in thousands of stores per week.',
       'The Opportunities Panel answers business questions, by state, chain and city:',
     ],
     bullets: [
@@ -221,32 +217,31 @@ export const en: Customer = {
     {
       title: 'Stock-outs: see missing product, store by store',
       viz: [
-        { kind: 'bars', title: 'Store-days with zero stock, by dose', sub: 'Oct 2026, % of store-days', unit: '%', items: [{ label: '2.5 to 10 mg doses', value: 23.5, display: '23% to 24%' }, { label: '7.5 mg', value: 28.6 }, { label: '12.5 mg', value: 40.5 }, { label: '15 mg', value: 41.9, hot: true }], note: 'The rate measures store-days with zero stock. It does not measure lost sales.' },
+        { kind: 'bars', title: 'Store-days with zero stock, by dose group', sub: 'Oct 2026, ratio to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 1.7, display: 'about 1.7x', hot: true }], note: 'The rate measures store-days with zero stock. It does not measure lost sales.' },
       ],
       paragraphs: [
-        'For the first time, Dinn showed Lilly product availability by store and by chain. In the GLP-1 market, the stock-out is not the same across doses.',
+        'For the first time, Dinn showed Lilly product availability by store and by chain. In the high-demand market, the stock-out is not the same across doses.',
       ],
       quote: {
         text: 'This is the first time we have this view. We did not have this visibility of where, in theory, stock is available.',
-        who: 'Lilly team',
-        role: 'Project kickoff',
+        role: 'Sales team',
         approved: false,
       },
-      note: 'The newest doses stay out of stock on the shelf for longer. A single brand number hides this difference. The rate measures store-days with zero stock. It does not measure lost sales.',
+      note: 'The higher-concentration doses stay out of stock on the shelf for longer. A single brand number hides this difference. The rate measures store-days with zero stock. It does not measure lost sales.',
     },
     {
       title: 'Trust: one figure hid the story',
       viz: [
-        { kind: 'compare', title: 'Brand stock-out in a regional chain', from: { value: '39.5%', label: 'consolidated indicator, with 162 stores at zero across the whole catalog' }, to: { value: '31.3%', label: 'after moving these stores to "stores to watch"' } },
-        { kind: 'bars', title: 'Same chain, by dose', sub: '% of store-days with zero stock', unit: '%', items: [{ label: '2.5 and 5 mg doses', value: 14.3 }, { label: '12.5 and 15 mg doses', value: 75.1, hot: true }], note: 'The single brand number mixed very different doses.' },
+        { kind: 'compare', title: 'Brand stock-out in a regional chain', from: { value: 'Consolidated', label: 'single indicator, which counted stores at zero across the whole catalog' }, to: { value: '≈ 8 p.p. lower', label: 'after moving these stores to "stores to watch"' } },
+        { kind: 'bars', title: 'Same chain, by dose group', sub: 'Ratio of store-days with zero stock, to the lower-concentration doses', digits: 1, items: [{ label: 'Lower-concentration doses', value: 1, display: '1.0x (base)' }, { label: 'Higher-concentration doses', value: 5.3, display: 'more than 5x', hot: true }], note: 'The single brand number mixed very different doses.' },
       ],
       paragraphs: [
-        'In September, the B2B team questioned the data. The panel showed a 39.5% stock-out at a large regional chain. The chain\'s own data showed plenty of product. Dinn investigated and opened the analysis:',
+        'In September, the B2B team questioned the data. The panel showed a high stock-out at a regional chain. The chain\'s own data showed plenty of product. Dinn investigated and opened the analysis:',
       ],
       bullets: [
         'The availability data was correct. A consolidated indicator misled, because it mixed very different doses and stores.',
-        '162 stores were at zero across the whole catalog, possibly inactive. When separated, the brand stock-out in the chain fell from 39.5% to 31.3%.',
-        'By dose, the 2.5 and 5 mg doses had 14.3%. The 12.5 and 15 mg doses reached 75.1%, which matches the data Lilly sent.',
+        'Some stores were at zero across the whole catalog, possibly inactive. When separated, the brand stock-out in the chain fell by about 8 p.p.',
+        'By dose, the lower-concentration doses had a low stock-out. The higher-concentration doses reached more than 5 times that level, which matches the data the customer sent.',
         'Dinn created the "stores to watch" class: a store at zero across the whole catalog for 30 days or more. It does not hide or delete the store. Dinn also shows doses side by side, with a total line for the selected ones.',
       ],
       note: 'On Sep 15, 13 days after the request, the Dinn team delivered the closing report for the 10 items. The report covers: a data fix for one chain, history reprocessing and grouping of chains from the same group. It also covers filters by city and chain, product presentation names and a store list matched with CNPJ.',
@@ -260,16 +255,15 @@ export const en: Customer = {
         'On the morning of Oct 5, Lilly held a strategy meeting. In the afternoon, it sent Dinn the topics:',
       ],
       bullets: [
-        'Growth of the semaglutide category by region',
+        'Growth of the category by region',
         'Find chains and customers where competitors gain ground',
-        'Opportunities in Minas Gerais and Rio Grande do Sul',
+        'Opportunities in the priority states',
         'Automatic action suggestions for KAMs',
       ],
       note: 'Dinn replied with direct questions. Lilly answered in two days. The B2B team adjusted the scope. Look at all states. Use the last quarter. Cross share, sales and store presence. Generate AI action plans when there is a major drop.',
       quote: {
         text: 'Combining these factors in the analysis will be rich, mainly if it brings insights on actions to take when sales drop sharply.',
-        who: 'B2B team',
-        role: 'Lilly',
+        role: 'B2B team',
         approved: false,
       },
     },
@@ -302,11 +296,11 @@ export const en: Customer = {
       {
         head: ['What Lilly asked for', 'What is in the plan'],
         rows: [
-          ['A view of all states, not only MG and RS', 'State filters in the Opportunities Panel'],
-          ['Cross with other market sources and with the generics and similars groups of Lilly itself', 'Data integration and a competitor catalog defined by the Lilly BI team'],
+          ['A view of all states, not only the priority ones', 'State filters in the Opportunities Panel'],
+          ['Cross with other market sources and with other lines of the Lilly portfolio', 'Data integration and a competitor catalog defined by the Lilly BI team'],
           ['AI-generated action plans from sales drops', 'Dinn Insights with suggested actions'],
           ['Monthly closings, not only daily data', 'First monthly closing delivered in October'],
-          ['Data inside the internal B2B systems of Lilly', 'Transfer of raw data to the internal Lilly database'],
+          ['Data inside the internal B2B systems', 'Transfer of raw data to the internal database'],
         ],
       },
     ],
@@ -320,20 +314,19 @@ export const es: Customer = {
   sector: 'Industria farmacéutica',
   hq: 'São Paulo, Brasil',
   useCase: 'Análisis de mercado: del quiebre de stock en la tienda a la competencia y las oportunidades',
-  about: 'Lilly es una farmacéutica global. Su portafolio en Brasil cubre diabetes y obesidad.',
+  about: 'Lilly es una farmacéutica global. Su portafolio en Brasil tiene alta demanda.',
   title: 'Cómo Lilly ve dónde los competidores ganan espacio',
   summary: 'Lilly empezó a usar Dinn para encontrar producto faltante. Después, ayudó a crear un panel que muestra dónde cae la participación, por estado y cadena.',
   metaDescription: 'Lilly empezó a usar Dinn para encontrar producto faltante en las farmacias. Cuando terminó la escasez, ayudó a crear un panel. El panel muestra dónde cae la participación y quién gana espacio, por estado y cadena.',
   metrics: [
     { value: '14 días', label: 'entre el pedido estratégico de Lilly y la entrega del Panel de Oportunidades' },
     { value: '10 pedidos', label: 'del equipo B2B atendidos y reportados en 13 días' },
-    { value: '≈ 16.000', label: 'tiendas por semana en el mercado de GLP-1, con 22 EANs de 4 laboratorios' },
+    { value: 'Miles', label: 'de tiendas observadas por semana en el mercado de alta demanda' },
     { value: '3 reglas', label: 'de acción sugerida para el KAM, sin número inventado por IA' },
   ],
   quote: {
     text: 'Hoy el quiebre de stock es el menor de nuestros problemas. Ahora necesitamos un análisis de mercado más estratégico.',
-    who: 'Equipo B2B',
-    role: 'Lilly',
+    role: 'Equipo B2B',
     approved: false,
   },
   intro: [
@@ -343,9 +336,9 @@ export const es: Customer = {
   ],
   problem: {
     title: 'La necesidad de ayer no es la de hoy',
-      viz: [
-        { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'Del stock en la tienda al espacio en el mercado' },
-      ],
+    viz: [
+      { kind: 'art', art: 'trade', g: 'web/rosa-fluxo', caption: 'Del stock en la tienda al espacio en el mercado' },
+    ],
     paragraphs: [
       'En julio, en el kickoff, Lilly quería una vista de disponibilidad por tienda y por cadena. La vista serviría a la negociación comercial y a la operación.',
       'Tres meses después, el equipo reevaluó el valor de la herramienta. El 5 de oct, Lilly escribió a Dinn:',
@@ -358,13 +351,13 @@ export const es: Customer = {
     note: 'Lilly pidió una sola experiencia con el "retrovisor" (el historial) y el "parabrisas" (lo que viene por delante).',
   },
   solution: {
-    title: 'Nueva capa: mercado GLP-1 y Panel de Oportunidades',
-      viz: [
-        { kind: 'screen', screen: 'market', caption: 'Mercado en Dinn: participación por laboratorio y ventas estimadas del laboratorio frente a los competidores. La participación tiene un margen de ±1,3 p.p.' },
-      ],
+    title: 'Nueva capa: el Panel de Oportunidades',
+    viz: [
+      { kind: 'screen', screen: 'market', caption: 'Mercado en Dinn: participación por laboratorio y ventas estimadas del laboratorio frente a los competidores.' },
+    ],
     paragraphs: [
       'Dinn ya tenía para Lilly el stock diario por tienda y por cadena, el quiebre de stock, el precio y un mercado de referencia. En octubre, Dinn sumó una nueva capa.',
-      'El mercado GLP-1 reúne 22 EANs de 4 laboratorios. Dinn los observa en cerca de 16.000 tiendas por semana, con datos desde junio de 2026.',
+      'Esta capa sigue el mercado de alta demanda. Dinn lo observa en miles de tiendas por semana.',
       'El Panel de Oportunidades responde a preguntas de negocio, por estado, cadena y ciudad:',
     ],
     bullets: [
@@ -378,32 +371,31 @@ export const es: Customer = {
     {
       title: 'Quiebre de stock: dónde falta, tienda a tienda',
       viz: [
-        { kind: 'bars', title: 'Días-tienda con stock cero, por dosis', sub: 'oct 2026, % de los días-tienda', unit: '%', items: [{ label: 'Dosis de 2,5 a 10 mg', value: 23.5, display: '23% a 24%' }, { label: '7,5 mg', value: 28.6 }, { label: '12,5 mg', value: 40.5 }, { label: '15 mg', value: 41.9, hot: true }], note: 'La tasa mide días-tienda con stock cero. No mide venta perdida.' },
+        { kind: 'bars', title: 'Días-tienda con stock cero, por grupo de dosis', sub: 'oct 2026, razón sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 1.7, display: 'cerca de 1,7x', hot: true }], note: 'La tasa mide días-tienda con stock cero. No mide venta perdida.' },
       ],
       paragraphs: [
-        'Dinn mostró a Lilly, por primera vez, la disponibilidad del producto por tienda y por cadena. En el mercado de GLP-1, el quiebre de stock no es uniforme entre las dosis.',
+        'Dinn mostró a Lilly, por primera vez, la disponibilidad del producto por tienda y por cadena. En el mercado de alta demanda, el quiebre de stock no es uniforme entre las dosis.',
       ],
       quote: {
         text: 'Es la primera vez que tenemos esta visión. No teníamos esta visibilidad de dónde, en teoría, hay abastecimiento.',
-        who: 'Equipo Lilly',
-        role: 'Kickoff del proyecto',
+        role: 'Equipo comercial',
         approved: false,
       },
-      note: 'Las dosis más recientes pasan más tiempo sin stock en la góndola. El número único de la marca esconde esa diferencia. La tasa mide días-tienda con stock cero. No mide venta perdida.',
+      note: 'Las dosis de mayor concentración pasan más tiempo sin stock en la góndola. El número único de la marca esconde esa diferencia. La tasa mide días-tienda con stock cero. No mide venta perdida.',
     },
     {
       title: 'Confianza: un solo dato escondía la historia',
       viz: [
-        { kind: 'compare', title: 'Quiebre de stock en una cadena regional', from: { value: '39,5%', label: 'indicador consolidado, con 162 tiendas en cero en todo el catálogo' }, to: { value: '31,3%', label: 'después de separar esas tiendas en "tiendas en atención"' } },
-        { kind: 'bars', title: 'Misma cadena, por dosis', sub: '% de los días-tienda con stock cero', unit: '%', items: [{ label: 'Dosis de 2,5 y 5 mg', value: 14.3 }, { label: 'Dosis de 12,5 y 15 mg', value: 75.1, hot: true }], note: 'El número único de la marca mezclaba dosis muy distintas.' },
+        { kind: 'compare', title: 'Quiebre de stock de la marca en una cadena regional', from: { value: 'Consolidado', label: 'indicador único, que contaba tiendas en cero en todo el catálogo' }, to: { value: '≈ 8 p.p. menos', label: 'después de separar esas tiendas en "tiendas en atención"' } },
+        { kind: 'bars', title: 'Misma cadena, por grupo de dosis', sub: 'Razón de días-tienda con stock cero, sobre las dosis de menor concentración', digits: 1, items: [{ label: 'Dosis de menor concentración', value: 1, display: '1,0x (base)' }, { label: 'Dosis de mayor concentración', value: 5.3, display: 'más de 5x', hot: true }], note: 'El número único de la marca mezclaba dosis muy distintas.' },
       ],
       paragraphs: [
-        'En septiembre, el equipo B2B cuestionó el dato. El panel mostraba un quiebre de stock de 39,5% en una gran cadena regional. La base de la propia cadena indicaba abundancia del producto. Dinn investigó y abrió el análisis:',
+        'En septiembre, el equipo B2B cuestionó el dato. El panel mostraba un quiebre de stock alto en una cadena regional. La base de la propia cadena indicaba abundancia del producto. Dinn investigó y abrió el análisis:',
       ],
       bullets: [
         'Los datos de disponibilidad eran correctos. Un indicador consolidado engañaba, porque mezclaba dosis y tiendas muy distintas.',
-        '162 tiendas estaban en cero en todo el catálogo, posiblemente inactivas. Separadas, el quiebre de stock de la marca en la cadena bajó de 39,5% a 31,3%.',
-        'Por dosis, las de 2,5 y 5 mg tenían 14,3%. Las de 12,5 y 15 mg llegaban a 75,1%, lo que coincide con la base enviada por Lilly.',
+        'Parte de las tiendas estaba en cero en todo el catálogo, posiblemente inactiva. Separadas, el quiebre de stock de la marca en la cadena bajó cerca de 8 p.p.',
+        'Por dosis, las de menor concentración tenían un quiebre bajo. Las de mayor concentración llegaban a más de 5 veces ese nivel, lo que coincide con la base enviada por el cliente.',
         'Dinn creó la clasificación "tiendas en atención": tienda en cero en todo el catálogo por 30 días o más. No esconde ni borra la tienda. Dinn también muestra las dosis lado a lado, con una línea de total de las seleccionadas.',
       ],
       note: 'El 15 de sep, 13 días después del pedido, el equipo Dinn entregó el informe de cierre de los 10 puntos. El informe cubre: corrección del dato de una cadena, reprocesamiento del historial y agrupación de cadenas del mismo grupo. También cubre filtros por ciudad y cadena, nombres de presentaciones y lista de tiendas cruzada con CNPJ.',
@@ -417,16 +409,15 @@ export const es: Customer = {
         'En la mañana del 5 de oct, Lilly hizo una reunión estratégica. Por la tarde, envió a Dinn los temas:',
       ],
       bullets: [
-        'Expansión de la categoría de semaglutida por región',
+        'Expansión de la categoría por región',
         'Identificar cadenas y clientes donde los competidores ganan espacio',
-        'Oportunidades en Minas Gerais y Rio Grande do Sul',
+        'Oportunidades en los estados prioritarios',
         'Sugerencias automáticas de acción para los KAMs',
       ],
       note: 'Dinn respondió con preguntas objetivas. Lilly contestó en dos días. El equipo B2B ajustó el alcance. Mirar todos los estados. Usar el último trimestre. Cruzar participación, ventas y presencia en las tiendas. Generar planes de acción por IA cuando haya una caída importante.',
       quote: {
         text: 'La combinación de estos factores en el análisis será rica, sobre todo si aporta insights sobre acciones a tomar ante una caída importante de ventas.',
-        who: 'Equipo B2B',
-        role: 'Lilly',
+        role: 'Equipo B2B',
         approved: false,
       },
     },
@@ -459,11 +450,11 @@ export const es: Customer = {
       {
         head: ['Lo que pidió Lilly', 'Lo que está en el plan'],
         rows: [
-          ['Vista de todos los estados, no solo MG y RS', 'Filtros por estado en el Panel de Oportunidades'],
-          ['Cruzar con otras fuentes de mercado y con los grupos de genéricos y similares de la propia Lilly', 'Integración de datos y catálogo de competidores definido por el equipo de BI de Lilly'],
+          ['Vista de todos los estados, no solo los prioritarios', 'Filtros por estado en el Panel de Oportunidades'],
+          ['Cruzar con otras fuentes de mercado y con otras líneas del portafolio de la propia Lilly', 'Integración de datos y catálogo de competidores definido por el equipo de BI de Lilly'],
           ['Planes de acción generados por IA a partir de la caída de ventas', 'Dinn Insights con acciones sugeridas'],
           ['Cierres mensuales, en vez de solo el dato diario', 'Primera entrega del cierre mensual hecha en octubre'],
-          ['Datos dentro de los sistemas internos de B2B de Lilly', 'Transferencia de datos brutos a la base interna de Lilly'],
+          ['Datos dentro de los sistemas internos de B2B', 'Transferencia de datos brutos a la base interna'],
         ],
       },
     ],

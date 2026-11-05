@@ -310,7 +310,7 @@ export const pagesEn = {
   platform: {
     meta: {
       title: "Platform | Dinn",
-      description: "How Dinn works: it observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. See the nine features on the Dinn screen."
+      description: "How Dinn works: it observes, validates, helps you understand and decide, delivers to the executor and learns from feedback. See the ten features on the Dinn screen."
     },
     hero: {
       eyebrow: "Platform",

@@ -1,0 +1,29 @@
+// Tipos e ordem da faixa da home. Sem acesso a arquivos: pode ir para o cliente.
+export type Lab = {
+  slug: string; name: string; country: string;
+  /** Código ISO do país (bandeira em /flags/<cc>.svg). */
+  cc: string;
+  group: 'global' | 'brasil';
+  /** Posição: por receita (global) ou por registros ativos na Anvisa (Brasil). */
+  rank: number;
+  revenueBn?: number | null; year?: number | null; source?: string | null;
+  /** Receita por ano, em US$ bi, do mais antigo ao mais novo (global). */
+  series?: [number, number][];
+  /** Medicamentos com registro ativo na Anvisa (Brasil). */
+  regs?: number;
+  /** Caminho do logo, quando existe arquivo. Sem logo, a tela mostra o nome em texto. */
+  logo?: string;
+  /** Chave do cliente (slug da página em /clientes), quando o laboratório é cliente. */
+  client?: string;
+  /** Logos dos clientes são brancos: a tela pinta com a cor da marca. */
+  tint?: { color: string; w: number; h: number };
+};
+export type LogoCredit = { name: string; title: string; page: string; license: string };
+
+/** Os 5 clientes e os maiores laboratórios com logo, 20 no total, na ordem da faixa da home. */
+export function homeLabs(labs: Lab[]): { clients: Lab[]; others: Lab[] } {
+  const order = ['lilly', 'sanofi', 'eurofarma', 'libbs', 'marjan'];
+  const clients = order.map((k) => labs.find((l) => l.client === k)).filter(Boolean) as Lab[];
+  const others = labs.filter((l) => l.group === 'global' && !l.client && l.logo).slice(0, 20 - clients.length);
+  return { clients, others };
+}

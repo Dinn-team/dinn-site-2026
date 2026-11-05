@@ -1,12 +1,16 @@
-import { ArrowRight, Quote } from 'lucide-react';
+import { useEffect } from 'react';
+import { ArrowRight, Quote, UserRound } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { contactUrl } from '@/lib/links';
 import { PATHS } from '@/lib/site-map';
 import { brandOf } from '@/lib/client-brand';
 import type { ClientLogo } from '@/lib/clients';
-import { customerBySlug, type Block, type Customer, type Lang } from '@/data/customers';
+import { aggregateFor, customerBySlug, type Block, type Customer, type Lang } from '@/data/customers';
 import { Customers2 } from '@/components/home2/Customers2';
+import { ClientCases } from './ClientCases';
+import { LabsRanking } from './LabsRanking';
+import type { Lab, LogoCredit } from '@/lib/labs-types';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { CaseCard, publishedCases } from './CasesPages';
 import { VizGroup } from './CaseViz';
@@ -22,8 +26,13 @@ const brandStyle = (name: string) => {
 };
 
 // ── Lista de clientes ──────────────────────────────────────────────────────
-export function CustomersIndex({ logos }: { logos: ClientLogo[] }) {
-  const { t } = useTranslation();
+export function CustomersIndex({ logos: _logos, labs, credits }: { logos: ClientLogo[]; labs: Lab[]; credits: LogoCredit[] }) {
+  const { t, lang } = useTranslation();
+  const agg = aggregateFor(lang as Lang);
+  const metaTitle = t('clients.meta.title') as string;
+  useEffect(() => {
+    document.title = metaTitle;
+  }, [metaTitle]);
 
   return (
     <div className="h2 cu3">
@@ -35,14 +44,86 @@ export function CustomersIndex({ logos }: { logos: ClientLogo[] }) {
               <p className="h2-hero-sub">{t('clients.page.hero_lead')}</p>
               <div className="h2-actions">
                 <a className="btn btn-primary" href={contactUrl('clientes')}>{t('clients.page.cta')}</a>
-                <a className="h2-link" href={PATHS.cases}>{t('clients.page.cases_title')} <ArrowRight size={15} aria-hidden="true" /></a>
+                <a className="h2-link" href="#cu3-opens">{agg.opensTitle} <ArrowRight size={15} aria-hidden="true" /></a>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <Customers2 logos={logos} title={t('clients.page.list_title') as string} describe auto hideCta />
+      {/* Impacto somado: números de uso do Dinn, sem dizer de qual laboratório */}
+      <section className="h2-section cu3-agg" aria-labelledby="cu3-agg-title">
+        <div className="h2-wrap">
+          <div className="h2-head">
+            <div>
+              <h2 id="cu3-agg-title" className="h2-title">{agg.chartsTitle}</h2>
+              <p className="h2-sub">{agg.chartsLead}</p>
+            </div>
+          </div>
+          <ul className="cu3-metrics">
+            {agg.stats.map((m) => (
+              <li key={m.value + m.label}><strong>{m.value}</strong><span>{m.label}</span></li>
+            ))}
+          </ul>
+          <p className="cu3-agg-note">{agg.statsNote}</p>
+          <div className="cu3-agg-viz"><VizGroup items={agg.viz} /></div>
+        </div>
+      </section>
+
+      <section className="h2-section cu3-agg is-alt" aria-labelledby="cu3-teams">
+        <div className="h2-wrap">
+          <div className="h2-head">
+            <div>
+              <h2 id="cu3-teams" className="h2-title">{agg.teamsTitle}</h2>
+              <p className="h2-sub">{agg.teamsLead}</p>
+            </div>
+          </div>
+          <ul className="cu3-teams">
+            {agg.teams.map((x) => (
+              <li key={x.team}>
+                <h3>{x.team}</h3>
+                <p>{x.what}</p>
+                <strong>{x.stat}</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="h2-section cu3-agg" aria-labelledby="cu3-actions">
+        <div className="h2-wrap">
+          <div className="h2-head">
+            <div>
+              <h2 id="cu3-actions" className="h2-title">{agg.actionsTitle}</h2>
+              <p className="h2-sub">{agg.actionsLead}</p>
+            </div>
+          </div>
+          <ul className="cu3-actions">
+            {agg.actions.map((x) => (
+              <li key={x.title}>
+                <h3>{x.title}</h3>
+                <p>{x.text}</p>
+                {x.stat && <strong>{x.stat}</strong>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="h2-section cu3-agg is-alt" aria-labelledby="cu3-voices">
+        <div className="h2-wrap">
+          <div className="h2-head">
+            <div><h2 id="cu3-voices" className="h2-title">{agg.voicesTitle}</h2></div>
+          </div>
+          <div className="cu3-voices">
+            {agg.voices.filter((q) => q.approved).map((q, i) => <QuoteCard key={i} q={q} />)}
+          </div>
+        </div>
+      </section>
+
+      <LabsRanking labs={labs} credits={credits} />
+
+      <ClientCases labs={labs} title={agg.opensTitle} />
 
       <section className="h2-section cu3-cases" aria-labelledby="cu3-cases">
         <div className="h2-wrap">
@@ -96,19 +177,20 @@ function BlockBody({ b }: { b: Block }) {
         </div>
       ))}
       {b.quote?.approved && <QuoteCard q={b.quote} />}
+      {b.quotes?.filter((q) => q.approved).map((q, i) => <QuoteCard key={i} q={q} />)}
       {b.note && <p className="cu3-note">{b.note}</p>}
     </div>
   );
 }
 
-function QuoteCard({ q, brand }: { q: { text: string; who: string; role: string }; brand?: string }) {
+export function QuoteCard({ q, brand }: { q: { text: string; role: string }; brand?: string }) {
   return (
     <figure className={`cu3-quote ${brand ? 'is-brand' : ''}`} style={brand ? brandStyle(brand) : undefined}>
       <Quote size={26} aria-hidden="true" strokeWidth={1.6} />
       <blockquote>{q.text}</blockquote>
       <figcaption>
-        <span className="cu3-avatar" aria-hidden="true">{q.who.charAt(0)}</span>
-        <span><strong>{q.who}</strong><em>{q.role}</em></span>
+        <span className="cu3-avatar" aria-hidden="true"><UserRound size={18} strokeWidth={1.8} /></span>
+        <span><strong>{q.role}</strong></span>
       </figcaption>
     </figure>
   );
@@ -128,6 +210,10 @@ function Section({ title, id, blocks, alt }: { title: string; id: string; blocks
 export function CustomerDetail({ slug, logos }: { slug: string; logos: ClientLogo[] }) {
   const { t, lang } = useTranslation();
   const c: Customer | undefined = customerBySlug(slug, lang as Lang);
+  // O título da aba acompanha o idioma (o HTML do servidor sai em português).
+  useEffect(() => {
+    if (c) document.title = `${c.title} | Dinn`;
+  }, [c?.title]);
   if (!c) return null;
   const logo = logos.find((l) => l.name === c.name);
   const quote = c.quote?.approved ? c.quote : undefined;

@@ -311,7 +311,7 @@ export const pagesPt = {
   platform: {
     meta: {
       title: "Plataforma | Dinn",
-      description: "Como a Dinn funciona: observa, valida, ajuda você a entender e decidir, entrega a quem executa e aprende com o retorno. Veja as nove funcionalidades na tela do Dinn."
+      description: "Como a Dinn funciona: observa, valida, ajuda você a entender e decidir, entrega a quem executa e aprende com o retorno. Veja as dez funcionalidades na tela do Dinn."
     },
     hero: {
       eyebrow: "Plataforma",

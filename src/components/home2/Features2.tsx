@@ -22,8 +22,8 @@ const GRADIENTS = ['web/roxo-noite', 'web/verde-noite', 'web/laranja-noite', 'we
 // aparece (FrameCamera em AppDemos.tsx; o roteiro de cada tela está nos beats, campo cam).
 // DA = proporção da maquete: 940 ÷ altura (h) da Frame da tela.
 const DA: Record<string, number> = {
-  ruptura: 940 / 620, giro: 940 / 520, preco: 940 / 540, localizador: 940 / 600, mercado: 940 / 450,
-  oportunidades: 940 / 580, distribuicao: 940 / 640, jean: 940 / 600, conecta: 940 / 520,
+  ruptura: 1.6, giro: 1.6, preco: 1.6, localizador: 1.6, mercado: 1.6,
+  oportunidades: 1.6, distribuicao: 1.6, jean: 1.6, conecta: 940 / 520, suporte: 1.6,
 };
 // Tempo da troca entre telas: a que sai some enquanto a nova entra.
 const SWAP_MS = 750;
