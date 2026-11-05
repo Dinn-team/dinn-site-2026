@@ -7,13 +7,13 @@ import { PATHS } from '@/lib/site-map';
 import { brandOf } from '@/lib/client-brand';
 import type { ClientLogo } from '@/lib/clients';
 import { aggregateFor, customerBySlug, type Block, type Customer, type Lang } from '@/data/customers';
-import { Customers2 } from '@/components/home2/Customers2';
 import { ClientCases } from './ClientCases';
 import { LabsRanking } from './LabsRanking';
 import type { Lab, LogoCredit } from '@/lib/labs-types';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { CaseCard, publishedCases } from './CasesPages';
 import { VizGroup } from './CaseViz';
+import { VoicesRail } from './VoicesRail';
 import { ClosingCard, H2Head } from './PageShell';
 
 // /clientes (lista) e /clientes/<slug> (página de cada cliente), no Design System v2.
@@ -50,6 +50,25 @@ export function CustomersIndex({ logos: _logos, labs, credits }: { logos: Client
           </div>
         </div>
       </header>
+
+      {/* Uso real do portal, somado e sem nome de laboratório, produto ou rede */}
+      <section className="h2-section cu3-agg is-alt" aria-labelledby="cu3-usage">
+        <div className="h2-wrap">
+          <div className="h2-head">
+            <div>
+              <h2 id="cu3-usage" className="h2-title">{agg.usage.title}</h2>
+              <p className="h2-sub">{agg.usage.lead}</p>
+            </div>
+          </div>
+          <ul className="cu3-metrics">
+            {agg.usage.stats.map((m) => (
+              <li key={m.value + m.label}><strong>{m.value}</strong><span>{m.label}</span></li>
+            ))}
+          </ul>
+          <p className="cu3-agg-note">{agg.usage.note}</p>
+          <div className="cu3-agg-viz"><VizGroup items={agg.usage.viz} /></div>
+        </div>
+      </section>
 
       {/* Impacto somado: números de uso do Dinn, sem dizer de qual laboratório */}
       <section className="h2-section cu3-agg" aria-labelledby="cu3-agg-title">
@@ -110,16 +129,7 @@ export function CustomersIndex({ logos: _logos, labs, credits }: { logos: Client
         </div>
       </section>
 
-      <section className="h2-section cu3-agg is-alt" aria-labelledby="cu3-voices">
-        <div className="h2-wrap">
-          <div className="h2-head">
-            <div><h2 id="cu3-voices" className="h2-title">{agg.voicesTitle}</h2></div>
-          </div>
-          <div className="cu3-voices">
-            {agg.voices.filter((q) => q.approved).map((q, i) => <QuoteCard key={i} q={q} />)}
-          </div>
-        </div>
-      </section>
+      <VoicesRail id="cu3-voices" title={agg.voicesTitle} voices={agg.voices} />
 
       <LabsRanking labs={labs} credits={credits} />
 
@@ -207,7 +217,7 @@ function Section({ title, id, blocks, alt }: { title: string; id: string; blocks
   );
 }
 
-export function CustomerDetail({ slug, logos }: { slug: string; logos: ClientLogo[] }) {
+export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: ClientLogo[]; labs: Lab[] }) {
   const { t, lang } = useTranslation();
   const c: Customer | undefined = customerBySlug(slug, lang as Lang);
   // O título da aba acompanha o idioma (o HTML do servidor sai em português).
@@ -287,7 +297,7 @@ export function CustomerDetail({ slug, logos }: { slug: string; logos: ClientLog
         secondary={{ label: t('clients.page.back') as string, href: PATHS.customers }}
       />
 
-      <Customers2 logos={logos} exclude={c.name} title={t('clients.page.more') as string} />
+      <ClientCases labs={labs} exclude={slug} title={t('clients.page.more') as string} />
       <ChatWidget2 />
     </div>
   );

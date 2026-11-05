@@ -1003,7 +1003,7 @@ export const offerEs = {
     voices: { title: "Lo que dicen quienes lo usan" },
     page: {
       hero_title: "El impacto de *Dinn* en los equipos de farma",
-      hero_lead: "Números sumados de laboratorios que usan Dinn cada día. Los nombres quedan reservados. Cada laboratorio tiene su caso abajo.",
+      hero_lead: "Resultados de los casos y datos de uso de Dinn, sumados. Los nombres de los laboratorios se preservan. Cada laboratorio tiene su caso abajo.",
       list_title: "Historias de clientes",
       list_intro: "Cada página muestra el problema, qué cambió y los números.",
       read: "Leer la historia",

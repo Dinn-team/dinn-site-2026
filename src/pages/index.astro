@@ -1,30 +1,25 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { Hero2 } from '@/components/home2/Hero2';
-import { Customers2 } from '@/components/home2/Customers2';
 import { Features2 } from '@/components/home2/Features2';
 import { Areas2 } from '@/components/home2/Areas2';
 import { Showcase2 } from '@/components/home2/Showcase2';
 import { Resources2 } from '@/components/home2/Resources2';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
-import { getClientLogos } from '@/lib/clients';
 import { QuemAtende2 } from '@/components/home2/QuemAtende2';
 import { getLabs } from '@/lib/labs';
 
-// Faixa de clientes (âncora #clientes): só entram logos com arquivo em public/clientes.
-const logos = getClientLogos();
-// Faixa Quem a Dinn pode atender (acima dos clientes): 5 clientes e os maiores laboratorios com logo.
+// Seção Clientes (id #atende): 5 clientes com o ganho do caso e os maiores laboratórios com logo.
 const labs = getLabs();
 
 // Home nova (29/10/2026), no modelo da Harvey e da ElevenLabs. Ver rules/REFERENCES_UI_UX.md.
-// Hero com vídeo → clientes → como funciona → para a sua área → casos → recursos. Dúvidas: chat flutuante à direita.
+// Hero com vídeo → clientes (único bloco de clientes) → como funciona → para a sua área → casos → recursos. Dúvidas: chat flutuante à direita.
 ---
 
 <Layout>
   <div class="h2">
     <Hero2 client:load />
     <QuemAtende2 labs={labs} client:idle />
-    <Customers2 logos={logos} client:idle />
     <Features2 client:idle />
     <Areas2 client:idle />
     <Showcase2 client:visible />

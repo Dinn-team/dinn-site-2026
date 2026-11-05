@@ -54,8 +54,8 @@ export const home2En = {
       ]
     },
     labs: {
-      "title": "Who Dinn can serve",
-      "lead": "Any lab that sells in pharmacies. We learn from our customers.",
+      "title": "Brands Dinn can serve",
+      "lead": "Our customers show their case results.",
       "all": "See all",
       "client": "See the case",
       "page": {

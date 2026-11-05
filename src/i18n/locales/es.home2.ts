@@ -54,8 +54,8 @@ export const home2Es = {
       ]
     },
     labs: {
-      "title": "A quién puede atender Dinn",
-      "lead": "Cualquier laboratorio que vende en farmacias. Aprendemos de nuestros clientes.",
+      "title": "Marcas que Dinn puede atender",
+      "lead": "Nuestros clientes muestran el resultado de su caso.",
       "all": "Ver todos",
       "client": "Ver el caso",
       "page": {

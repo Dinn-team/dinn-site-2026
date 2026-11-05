@@ -83,6 +83,18 @@
 .cu3-teams h3, .cu3-actions h3 { margin: 0; font-size: 20px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; }
 .cu3-teams p, .cu3-actions p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
 .cu3-teams strong, .cu3-actions strong { margin-top: 4px; padding-top: 14px; border-top: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent); font-size: 15px; font-weight: 500; line-height: 1.4; color: var(--primary); }
+.h2-section.cu3-rail { padding: 0; }
+.cu3-rail-stage { padding: clamp(64px, 8vw, 104px) 0; }
+.cu3-rail.is-pinned .cu3-rail-stage { position: sticky; top: 0; height: 100svh; min-height: 560px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: clamp(88px, 12svh, 116px) 0 clamp(40px, 6svh, 64px); overflow: hidden; }
+.cu3-rail-view { margin-top: clamp(20px, 4svh, 40px); overflow-x: auto; scrollbar-width: none; }
+.cu3-rail.is-pinned .cu3-rail-view { overflow: visible; }
+.cu3-rail .cu3-rail-track { list-style: none; margin: 0; padding: 0 max(var(--h2-gutter), calc((100% - 1472px) / 2 + var(--h2-gutter))); display: flex; gap: 14px; width: max-content; align-items: stretch; will-change: transform; }
+.cu3-vcard { flex: none; width: clamp(290px, 30vw, 400px); display: flex; border-radius: 22px; background: var(--background); }
+.cu3-vcard figure { margin: 0; display: grid; align-content: space-between; gap: 18px; padding: clamp(22px, 2vw, 30px); color: var(--foreground); }
+.cu3-vcard blockquote { margin: 0; font-size: clamp(14px, 1.1vw, 16px); line-height: 1.5; }
+.cu3-vcard svg:first-child { color: var(--primary); }
+.cu3-vcard figcaption { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.cu3-vcard figcaption strong { font-weight: 500; }
 .cu3-voices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .cu3-voices .cu3-quote { margin: 0; background: var(--background); align-content: start; }
 .cu3-voices .cu3-quote blockquote { font-size: clamp(17px, 1.4vw, 20px); }

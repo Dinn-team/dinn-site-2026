@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import { CustomerDetail } from '@/components/site/CustomersPages';
 import { customers } from '@/data/customers';
+import { getLabs } from '@/lib/labs';
 import { getClientLogos } from '@/lib/clients';
 
 // Cada cliente de src/data/customers.ts ganha a sua página em /clientes/<slug>.
@@ -13,6 +14,7 @@ export function getStaticPaths() {
 }
 
 const { slug, title, description, name } = Astro.props;
+const labs = getLabs();
 const logos = getClientLogos();
 const site = Astro.site ?? new URL('https://dinn.ai');
 const article = {
@@ -28,5 +30,5 @@ const article = {
 ---
 
 <Layout title={`${title} | Dinn`} description={description} type="article" jsonLd={article}>
-  <CustomerDetail slug={slug} logos={logos} client:load />
+  <CustomerDetail slug={slug} logos={logos} labs={labs} client:load />
 </Layout>

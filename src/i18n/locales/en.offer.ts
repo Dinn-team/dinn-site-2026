@@ -1003,7 +1003,7 @@ export const offerEn = {
     voices: { title: "What users say" },
     page: {
       hero_title: "The impact of *Dinn* on pharma teams",
-      hero_lead: "Combined numbers from laboratories that use Dinn every day. Names stay private. Each laboratory has its own case below.",
+      hero_lead: "Combined case results and Dinn usage data. Laboratory names stay private. Each laboratory has its own case below.",
       list_title: "Customer stories",
       list_intro: "Each page shows the problem, what changed and the numbers.",
       read: "Read the story",

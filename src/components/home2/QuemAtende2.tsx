@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
-import { customerBySlug, type Lang } from '@/data/customers';
+import { gainFor } from '@/data/client-gains';
 import { homeLabs, type Lab } from '@/lib/labs-types';
 import { LabLogo } from '@/components/site/LabsParts';
 
@@ -8,9 +8,9 @@ import { LabLogo } from '@/components/site/LabsParts';
 // sentidos alternados, no modelo da faixa de confiança da Clay. Cinco clientes (com um dado
 // do caso ou uma citação aprovada) e os maiores laboratórios do ranking, 20 no total.
 // Só os clientes têm link (para o caso). Os outros logos não são clicáveis.
-// A citação só aparece se estiver com `approved: true` em src/data/customers.
+// Cada cartão de cliente mostra o mesmo número e a mesma frase do cartão em /clientes.
+// "Ver todos" leva ao topo de /clientes, para o time ver os resultados gerais.
 // Sem movimento (prefers-reduced-motion), as fileiras ficam paradas e rolam com o dedo ou o mouse.
-const STAT: Record<string, number> = { lilly: 2, sanofi: 0, eurofarma: 1, libbs: 1, marjan: 2 };
 // Fileiras: número = quantos logos; texto = cartão de cliente. Cada fileira roda em seu ritmo.
 const ROWS: { items: (number | string)[]; s: number; rev?: boolean }[] = [
   { items: ['lilly', 4, 'eurofarma', 1], s: 80 },
@@ -39,18 +39,13 @@ export function QuemAtende2({ labs }: { labs: Lab[] }) {
     if (kind === 'logo') {
       return <li className="lb-tile"><span className="lb-tile-in" role="img" aria-label={lab.name}><LabLogo lab={lab} /></span></li>;
     }
-    const c = customerBySlug(lab.client!, lang as Lang);
-    const stat = c?.metrics[STAT[lab.client!]];
-    const quote = c?.quote?.approved ? c.quote : undefined;
+    // Mesmo número e mesma frase do cartão em /clientes (src/data/client-gains.ts).
+    const g = gainFor(lab.client!, lang);
     return (
-      <li className={`lb-tile lb-client ${quote ? 'has-quote' : ''}`}>
+      <li className="lb-tile lb-client">
         <a href={`/clientes/${lab.client}`} tabIndex={hidden ? -1 : undefined} aria-label={`${lab.name}: ${t('home2.labs.client')}`}>
           <LabLogo lab={lab} />
-          {quote ? (
-            <span className="lb-quote"><q>{quote.text}</q><small>{quote.role}</small></span>
-          ) : (
-            stat && <span className="lb-stat"><b>{stat.value}</b><small>{stat.label}</small></span>
-          )}
+          {g && <span className="lb-stat"><b>{g.num}</b><small>{g.text}</small></span>}
           <ArrowRight className="lb-go" size={16} aria-hidden="true" />
         </a>
       </li>
@@ -79,7 +74,7 @@ export function QuemAtende2({ labs }: { labs: Lab[] }) {
         ))}
       </div>
       <div className="h2-wrap">
-        <p className="lb-home-more"><a className="h2-link" href="/clientes#ranking">{t('home2.labs.all')} <ArrowRight size={15} aria-hidden="true" /></a></p>
+        <p className="lb-home-more"><a className="h2-link" href="/clientes">{t('home2.labs.all')} <ArrowRight size={15} aria-hidden="true" /></a></p>
       </div>
     </section>
   );

@@ -54,8 +54,8 @@ export const home2Pt = {
       ]
     },
     labs: {
-      "title": "Quem a Dinn pode atender",
-      "lead": "Qualquer laboratório que vende em farmácia. Aprendemos com os nossos clientes.",
+      "title": "Marcas que a Dinn pode atender",
+      "lead": "Nossos clientes mostram o resultado do caso.",
       "all": "Ver todos",
       "client": "Ver o caso",
       "page": {

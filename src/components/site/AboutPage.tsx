@@ -3,10 +3,10 @@ import { Eye, FileCheck2, Layers, RefreshCw, Search, Send } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
 import { PATHS } from '@/lib/site-map';
-import type { ClientLogo } from '@/lib/clients';
 import type { CityPhotos } from '@/lib/city-photos';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
-import { Customers2 } from '@/components/home2/Customers2';
+import { ClientCases } from './ClientCases';
+import type { Lab } from '@/lib/labs-types';
 import { H2Head } from './PageShell';
 import { FlowChain, StatStrip } from './offer/FlowViz';
 import { IlContact, IlPrivacy, IlSupport } from '@/components/illustrations/about';
@@ -31,7 +31,7 @@ const initials = (name: string) => name.split(' ').map((w) => w[0]).slice(0, 2).
 // Sobre a Dinn no padrão da home (Design System v2). Tom sério, mas com
 // imagem: fotos das cidades e degradês
 // nos cartões para dar contraste com o fundo branco.
-export function AboutPage({ logos = [], photos = {} }: { logos?: ClientLogo[]; photos?: CityPhotos }) {
+export function AboutPage({ labs = [], photos = {} }: { labs?: Lab[]; photos?: CityPhotos }) {
   const { t } = useTranslation();
   const places = (t('about.where.items') as Place[]) ?? [];
   const company = (t('about.company.rows') as string[][]) ?? [];
@@ -115,8 +115,8 @@ export function AboutPage({ logos = [], photos = {} }: { logos?: ClientLogo[]; p
         </div>
       </section>
 
-      {/* Mesmo componente da home */}
-      {logos.length > 0 && <Customers2 logos={logos} />}
+      {/* Mesmo grid de /clientes */}
+      {labs.length > 0 && <ClientCases labs={labs} title={t('home2.customers.title') as string} />}
 
       <section className="h2-section is-muted" aria-labelledby="abt-where">
         <div className="h2-wrap">
