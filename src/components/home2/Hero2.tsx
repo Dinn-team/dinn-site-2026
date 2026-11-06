@@ -7,9 +7,9 @@ import { PATHS } from '@/lib/site-map';
 import { RuptureDemo, START_STILL } from '@/components/site/RealHomeDemos';
 import { gradUrl } from '@/components/site/area-theme';
 
-// Vídeo institucional "Um dia com o Dinn" (render de 03/11/2026, 2 min 54 s).
+// Vídeo institucional "Um dia com o Dinn" (v4.1, render de 06/11/2026, 2 min 55 s).
 // O arquivo em public/video é uma versão leve (1600 px, H.264) do render em
-// wt-davinci-video. Para trocar o vídeo, gere de novo com ffmpeg:
+// wt-davinci-skill-motion (05-build-v3/out/um-dia-com-o-dinn-v4.1.mp4). Para trocar o vídeo, gere de novo com ffmpeg:
 //   ffmpeg -i render.mp4 -vf scale=1600:-2 -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k public/video/dinn-institucional.mp4
 export const HERO_VIDEO_SRC = '/video/dinn-institucional.mp4';
 
