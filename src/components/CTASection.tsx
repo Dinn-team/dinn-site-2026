@@ -1,11 +1,12 @@
 import { useTranslation } from "@/i18n/useTranslation";
+import { DEMO_URL } from "@/lib/links";
 
 interface CTASectionProps {
   ctaHref?: string;
 }
 
 export default function CTASection({
-  ctaHref = 'https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4',
+  ctaHref = DEMO_URL,
 }: CTASectionProps) {
   const { t } = useTranslation();
 

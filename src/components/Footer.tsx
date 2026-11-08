@@ -1,5 +1,6 @@
 import { useTranslation } from "@/i18n/useTranslation";
 import { blogPath } from "@/i18n/routes";
+import { DEMO_URL } from "@/lib/links";
 
 export default function Footer() {
   const { t, lang } = useTranslation();
@@ -83,7 +84,7 @@ export default function Footer() {
               {t('footer.ctaDesc')}
             </p>
             <a
-              href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4"
+              href={DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"

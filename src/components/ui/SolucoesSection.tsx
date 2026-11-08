@@ -4,6 +4,7 @@ import { Search, Handshake, Target, Crosshair, BarChart2 } from "lucide-react";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 
 import { useTranslation } from "@/i18n/useTranslation";
+import { DEMO_URL } from "@/lib/links";
 
 export function SolucoesSection() {
   const { t } = useTranslation();
@@ -128,7 +129,7 @@ export function SolucoesSection() {
       {/* CTA */}
       <div style={{ textAlign: "center", paddingBottom: "24px" }}>
         <a
-          href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4"
+          href={DEMO_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary"

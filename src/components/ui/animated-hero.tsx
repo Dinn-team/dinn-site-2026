@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/i18n/useTranslation";
+import { DEMO_URL } from "@/lib/links";
 
 function AnimatedHero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -121,7 +122,7 @@ function AnimatedHero() {
           {/* CTA */}
           <div style={{ marginTop: '8px' }}>
             <a
-              href="https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4"
+              href={DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
