@@ -1,0 +1,261 @@
+{
+  "$schema": "dinn-presentation-template/1",
+  "name": "Modelo de apresentação Dinn",
+  "version": "1.0.0",
+  "updated": "2026-11-09",
+  "language": "pt-BR",
+  "sources": {
+    "designSystem": "rules/DESIGN_SYSTEM_V2.md",
+    "chartTokens": "rules/charts-tokens.css",
+    "visualDeck": "https://claude.ai/artifact/DF1Ae1AAuh8zLNQM67mdiQ",
+    "textGuide": "docs/modelo-apresentacao-gamma.md",
+    "css": "docs/gamma/dinn-gamma-theme.css"
+  },
+
+  "brand": {
+    "colors": {
+      "primary": "#7008E7",
+      "primaryDeep": "#3D0A82",
+      "lilac": "#C9AAF7",
+      "lilacSoft": "#E1D0FB",
+      "track": "#F1EBFC",
+      "ink": "#08090A",
+      "lime": "#E4F222",
+      "orange": "#FD673E",
+      "orangeLine": "#EE5A2F",
+      "background": "#FFFFFF",
+      "surface": "#F6F4FB",
+      "border": "#E6E3EF",
+      "textMuted": "#5C5A6E",
+      "onPrimary": "#FFFFFF"
+    },
+    "themePalette": ["#7008E7", "#C9AAF7", "#08090A", "#E4F222", "#FD673E", "#3D0A82"],
+    "fonts": {
+      "heading": { "family": "Roboto", "weight": 400, "tracking": "-0.02em", "lineHeight": 1.1 },
+      "body": { "family": "Inter", "weights": [400, 500, 600], "lineHeight": 1.4 }
+    },
+    "shape": { "cardRadiusPx": 28, "buttonRadius": "pill", "stroke": "none", "shadow": "none" },
+    "logos": {
+      "onLight": "public/logo/Dinn_logo_v2_Dark.png",
+      "onDark": "public/logo/Dinn_logo_v2_Light.png"
+    },
+    "backgrounds": {
+      "dark": [
+        { "id": "g00", "file": "public/gradients/g00.avif", "use": "capa", "overlay": "rgba(8,9,10,0.5)" },
+        { "id": "azul-noite", "file": "public/gradients/web/azul-noite.avif", "use": "divisor, próximos passos", "overlay": "rgba(8,9,10,0.25)" },
+        { "id": "roxo-noite", "file": "public/gradients/web/roxo-noite.avif", "use": "indicador em destaque", "overlay": "rgba(8,9,10,0.3)" },
+        { "id": "verde-noite", "file": "public/gradients/web/verde-noite.avif", "use": "solução", "overlay": "rgba(8,9,10,0.4)" },
+        { "id": "g11", "file": "public/gradients/g11.avif", "use": "tela do produto", "overlay": "rgba(8,9,10,0.45)" },
+        { "id": "g08", "file": "public/gradients/g08.avif", "use": "próximos passos", "overlay": "rgba(8,9,10,0.45)" },
+        { "id": "laranja-noite", "file": "public/gradients/web/laranja-noite.avif", "use": "próximos passos", "overlay": "rgba(8,9,10,0.2)" }
+      ],
+      "light": [
+        { "id": "pessego", "file": "public/gradients/web/pessego.avif", "use": "citação", "overlay": "rgba(255,255,255,0.22)" },
+        { "id": "g03", "file": "public/gradients/g03.avif", "use": "fechamento", "overlay": null }
+      ],
+      "note": "Para o Gamma, converta para JPG ou PNG de 1920 x 1080. Nunca use os *-unsplash.avif."
+    }
+  },
+
+  "rules": {
+    "titleColors": 1,
+    "titleMaxWords": 8,
+    "sentenceMaxWords": 20,
+    "descriptionMaxWords": 25,
+    "buttonTextColor": "#FFFFFF",
+    "whiteTextOnlyOn": "dark backgrounds or dark overlay (25 to 50%)",
+    "statusTags": false,
+    "buttonLink": "dinn.ai/contato",
+    "numbers": "every number needs period, comparison base and source",
+    "dataFreshness": "D-1 is not real time",
+    "terms": ["signal", "stock-out", "sell-through", "coverage", "source", "refresh"],
+    "writing": "ASD-STE100 (see CLAUDE.md)"
+  },
+
+  "charts": {
+    "seriesOrder": ["#7008E7", "#C9AAF7", "#08090A", "#E4F222", "#FD673E"],
+    "identity": "color and stroke identify the series: purple solid, orange dashed, portfolio average dotted and always visible",
+    "fill": "only the focus series gets fill",
+    "labels": "label only the line end or the highlighted item; axis and legend text in gray or black, never in series color",
+    "activeFilter": { "background": "#7008E7", "text": "#FFFFFF" },
+    "types": ["line", "ranking-pill-bars", "donut", "before-after", "kpi-cards"],
+    "maxSeries": 5,
+    "overflow": "group the rest in 'Outros'"
+  },
+
+  "slides": [
+    {
+      "id": "cover", "name": "Capa", "origin": "Hero da home", "background": "g00",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8, "required": true },
+        { "key": "subtitle", "type": "text", "maxWords": 25, "required": true },
+        { "key": "client", "type": "text" },
+        { "key": "date", "type": "text" }
+      ]
+    },
+    {
+      "id": "sumario", "name": "Sumário", "origin": "Colunas com fio fino", "background": "surface",
+      "fields": [
+        { "key": "headline", "type": "text", "maxWords": 20 },
+        { "key": "sections", "type": "list", "min": 3, "max": 4, "item": { "name": "text(3 words)", "summary": "text(20 words)" } }
+      ]
+    },
+    {
+      "id": "secao", "name": "Divisor de seção", "origin": "Hero escuro", "background": "azul-noite",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 4 },
+        { "key": "lead", "type": "text", "maxWords": 25 }
+      ]
+    },
+    {
+      "id": "passos", "name": "Três passos", "origin": "Como funciona (funcionalidade)", "background": "white",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "steps", "type": "list", "min": 3, "max": 3, "item": { "title": "verb + object (3 words)", "text": "text(25 words)", "icon": "Search | Activity | CheckCircle" } }
+      ]
+    },
+    {
+      "id": "metricas", "name": "Quatro indicadores", "origin": "Números (cliente)", "background": "surface + roxo-noite no 1º cartão",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "kpis", "type": "list", "min": 4, "max": 4, "item": { "value": "text", "label": "what it measures, with period and base", "delta": "text" } },
+        { "key": "source", "type": "text", "required": true }
+      ]
+    },
+    {
+      "id": "problema-solucao", "name": "Problema e solução", "origin": "Problema e solução (cliente)", "background": "white + verde-noite no painel da solução",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "problem", "type": "object", "shape": { "headline": "text", "bullets": "list(3)" } },
+        { "key": "solution", "type": "object", "shape": { "headline": "text", "bullets": "list(3)" } }
+      ]
+    },
+    {
+      "id": "grafico-linha", "name": "Gráfico de linha", "origin": "Comparador (biblioteca de gráficos)", "background": "surface",
+      "chart": "line",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "summary", "type": "text", "maxWords": 25 },
+        { "key": "series", "type": "list", "max": 3, "item": { "name": "text", "points": "number[]", "style": "solid | dashed" } },
+        { "key": "average", "type": "number[]", "style": "dotted", "alwaysVisible": true },
+        { "key": "period", "type": "text" },
+        { "key": "source", "type": "text", "required": true }
+      ]
+    },
+    {
+      "id": "grafico-ranking", "name": "Ranking", "origin": "Barras em pílula", "background": "surface",
+      "chart": "ranking-pill-bars",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "summary", "type": "text", "maxWords": 25 },
+        { "key": "items", "type": "list", "max": 5, "sort": "desc", "item": { "label": "text", "value": "number" }, "highlight": "first = orange, others = purple" },
+        { "key": "source", "type": "text", "required": true }
+      ]
+    },
+    {
+      "id": "grafico-rosca", "name": "Rosca", "origin": "Parte do todo", "background": "white",
+      "chart": "donut",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "summary", "type": "text", "maxWords": 25 },
+        { "key": "total", "type": "text" },
+        { "key": "slices", "type": "list", "max": 5, "item": { "label": "text", "range": "text", "percent": "number" } },
+        { "key": "source", "type": "text", "required": true }
+      ]
+    },
+    {
+      "id": "antes-depois", "name": "Antes e depois", "origin": "Antes e depois (cliente)", "background": "surface",
+      "chart": "before-after",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "summary", "type": "text", "maxWords": 25 },
+        { "key": "before", "type": "object", "shape": { "value": "number", "label": "text" } },
+        { "key": "after", "type": "object", "shape": { "value": "number", "label": "text" } },
+        { "key": "delta", "type": "text", "badge": "lime" },
+        { "key": "source", "type": "text", "required": true }
+      ]
+    },
+    {
+      "id": "linha-tempo", "name": "Linha do tempo", "origin": "Linha do tempo (cliente)", "background": "white",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "milestones", "type": "list", "min": 4, "max": 4, "item": { "when": "text", "name": "text(3 words)", "text": "text(20 words)" }, "lastMarker": "lime" }
+      ]
+    },
+    {
+      "id": "tela-produto", "name": "Tela do produto", "origin": "Tela em laço (funcionalidade)", "background": "g11",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "summary", "type": "text", "maxWords": 25 },
+        { "key": "callouts", "type": "list", "max": 3 },
+        { "key": "screenshot", "type": "image", "ratio": "16:10", "size": "1280x800", "rule": "only screens in production, fictional data" },
+        { "key": "caption", "type": "text", "fixed": "Dados e nomes ilustrativos." }
+      ]
+    },
+    {
+      "id": "citacao", "name": "Citação", "origin": "Citação (cliente)", "background": "pessego",
+      "fields": [
+        { "key": "quote", "type": "text", "maxWords": 25, "rule": "only with written approval" },
+        { "key": "person", "type": "text" },
+        { "key": "role", "type": "text" },
+        { "key": "company", "type": "text" }
+      ]
+    },
+    {
+      "id": "faz-nao-faz", "name": "O que faz e não faz", "origin": "O que faz e o que não faz (funcionalidade)", "background": "surface",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "does", "type": "list", "max": 4 },
+        { "key": "doesNot", "type": "list", "max": 4, "rule": "copy 'Não pode afirmar' from the feature document" }
+      ]
+    },
+    {
+      "id": "leitura-tabela", "name": "Como ler o resultado", "origin": "Tabela Como ler (funcionalidade)", "background": "white",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "rows", "type": "list", "min": 3, "max": 4, "item": { "term": "text", "rule": "text(25 words)", "appearsAs": "text" } }
+      ]
+    },
+    {
+      "id": "proximos-passos", "name": "Próximos passos", "origin": "Cards de recurso", "background": "g08 | azul-noite | laranja-noite",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 20 },
+        { "key": "cards", "type": "list", "min": 3, "max": 3, "item": { "title": "text", "text": "text(25 words)", "link": "url" } }
+      ]
+    },
+    {
+      "id": "fechamento", "name": "Fechamento", "origin": "Fechamento", "background": "g03",
+      "fields": [
+        { "key": "title", "type": "text", "maxWords": 8 },
+        { "key": "lead", "type": "text", "maxWords": 25 },
+        { "key": "button", "type": "text", "fixed": "Fale com a Dinn" },
+        { "key": "url", "type": "text", "fixed": "dinn.ai/contato" }
+      ]
+    }
+  ],
+
+  "gamma": {
+    "importTheme": {
+      "supportedFormats": ["pptx", "google-slides"],
+      "path": "Customize > Themes > + New Theme > Import file",
+      "file": "docs/gamma/dinn-gamma-theme.pptx",
+      "note": "O Gamma não importa este JSON nem este CSS como tema. Para importar um arquivo, use o PPTX dinn-gamma-theme.pptx. O CSS vai na aba Custom CSS do editor de tema."
+    },
+    "pasteText": {
+      "file": "docs/modelo-apresentacao-gamma.md",
+      "section": "5. Esqueleto para colar no Gamma",
+      "cardBreak": "---",
+      "mode": "preserve text as is"
+    },
+    "instructions": "Use um cartão por bloco, separado por ---. Mantenha os títulos curtos, em uma cor só. Não crie texto novo. Use gráficos de linha, barras horizontais em pílula e rosca, nas cores do tema, em ordem fixa: roxo, lilás, preto, lime, laranja. Botão em roxo com texto branco. Sem selo de status. Sem foto de pessoa.",
+    "apiExample": {
+      "note": "Nomes de parâmetro da API do Gamma de memória. Confira na documentação da API antes de usar.",
+      "format": "presentation",
+      "textMode": "preserve",
+      "cardSplit": "inputTextBreaks",
+      "themeId": "<id do tema Dinn no seu workspace>",
+      "imageOptions": { "source": "noImages" },
+      "additionalInstructions": "<campo gamma.instructions acima>"
+    }
+  }
+}

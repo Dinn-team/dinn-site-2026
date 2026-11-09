@@ -1,0 +1,150 @@
+/*
+  Tema Dinn para o Gamma (campo "Custom CSS" do editor de tema).
+  Onde colar: Customize > Themes > (seu tema) > Customize > aba "Custom CSS".
+  Fonte: rules/DESIGN_SYSTEM_V2.md e rules/charts-tokens.css.
+
+  Aviso: o Gamma não publica a lista de classes do editor dele. Este arquivo usa
+  variáveis e tags comuns (h1 a h4, p, a, table, blockquote). Se uma regra não pegar,
+  ajuste o seletor no próprio editor. As cores e as fontes também vão nas abas
+  Colors e Fonts (valores na seção "Valores para as abas" abaixo).
+*/
+
+/* Fontes (as mesmas do site) */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* Marca */
+  --dinn-primary: #7008e7;      /* roxo: botão e destaque único */
+  --dinn-primary-deep: #3d0a82; /* roxo escuro */
+  --dinn-lilac: #c9aaf7;        /* lilás */
+  --dinn-lilac-soft: #e1d0fb;
+  --dinn-track: #f1ebfc;        /* trilha de gráfico */
+  --dinn-ink: #08090a;          /* preto da marca */
+  --dinn-lime: #e4f222;         /* pico, ganho, selo */
+  --dinn-orange: #fd673e;       /* ruptura, queda, calor */
+  --dinn-orange-line: #ee5a2f;  /* laranja em linha fina */
+
+  /* Superfícies e texto */
+  --dinn-bg: #ffffff;
+  --dinn-surface: #f6f4fb;
+  --dinn-border: #e6e3ef;
+  --dinn-text: #08090a;
+  --dinn-muted: #5c5a6e;
+
+  /* Gráficos: ordem fixa das séries */
+  --chart-1: #7008e7;
+  --chart-2: #c9aaf7;
+  --chart-3: #08090a;
+  --chart-4: #e4f222;
+  --chart-5: #fd673e;
+  --chart-grid: #eeedf4;
+  --chart-avg: #4a4856;
+
+  /* Forma */
+  --dinn-radius-card: 28px;
+  --dinn-radius-pill: 999px;
+}
+
+/* Texto base */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--dinn-text);
+}
+
+p, li, td, th {
+  font-family: "Inter", Arial, sans-serif;
+  line-height: 1.4;
+}
+
+/* Títulos: Roboto 400, uma cor só, tracking negativo, sem itálico */
+h1, h2, h3, h4 {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--dinn-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 { line-height: 1.04; letter-spacing: -0.025em; }
+
+/* Destaque dentro do título não muda cor, peso nem estilo */
+h1 em, h2 em, h3 em, h1 strong, h2 strong, h3 strong {
+  color: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+/* Texto secundário */
+small, figcaption, .caption {
+  color: var(--dinn-muted);
+  font-size: 0.9rem;
+}
+
+/* Links e botões: roxo com texto branco */
+a { color: var(--dinn-primary); }
+
+button,
+.button,
+a.button {
+  background: var(--dinn-primary);
+  color: #ffffff;
+  border: 0;
+  border-radius: var(--dinn-radius-pill);
+  font-weight: 600;
+}
+
+/* Citação */
+blockquote {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  border-left: 0;
+  color: var(--dinn-text);
+}
+
+/* Tabela: cabeçalho em lilás claro, linhas com fio fino */
+table { border-collapse: collapse; width: 100%; }
+th {
+  background: var(--dinn-track);
+  color: var(--dinn-text);
+  text-align: left;
+  font-weight: 600;
+}
+td, th { border-bottom: 1px solid var(--dinn-border); }
+
+/* Imagens: cantos arredondados */
+img { border-radius: var(--dinn-radius-card); }
+
+/* Sem animação para quem pediu menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/*
+  Valores para as abas do editor (Colors, Fonts, Design):
+
+  Colors
+    Primary accent ........ #7008E7
+    Page background ....... #FFFFFF
+    Card / block fill ..... #F6F4FB
+    Heading color ......... #08090A
+    Body color ............ #5C5A6E
+    Link ................... #7008E7
+    Button fill / text .... #7008E7 / #FFFFFF
+    Theme palette (adicione, nesta ordem): #7008E7, #C9AAF7, #08090A, #E4F222, #FD673E, #3D0A82
+    Desmarque "Adjust colors for contrast and accessibility" para manter os hex exatos.
+
+  Fonts
+    Heading ............... Roboto, peso 400
+    Body .................. Inter
+    Line height ........... 1.4 (Advanced)
+
+  Design
+    Roundness ............. alta (cartão 28 px, botão em pílula)
+    Stroke e shadow ....... nenhum
+
+  Logo
+    Fundo claro ........... public/logo/Dinn_logo_v2_Dark.png
+    Fundo escuro .......... public/logo/Dinn_logo_v2_Light.png
+*/
