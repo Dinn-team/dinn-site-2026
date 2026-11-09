@@ -367,8 +367,8 @@ export const offerPt = {
       caption: "Dados e nomes ilustrativos.",
       screens: {
         ruptura: "Início",
-        giro: "Início",
-        preco: "Início",
+        giro: "Início e Localizador",
+        preco: "Localizador e Início",
         localizador: "Localizar Produtos",
         mercado: "Mercado",
         oportunidades: "Oportunidades",
@@ -382,10 +382,10 @@ export const offerPt = {
         id: "ruptura", name: "Ruptura", kind: "produto",
         problem: "Qual produto está faltando, e por onde começo a verificar?",
         input: "SKU, rede e região.",
-        action: "Selecione o recorte. A Dinn mostra o período e o denominador da leitura e abre as lojas.",
-        output: "Lojas ordenadas pela proporção de dias sem estoque sobre dias observados.",
+        action: "Selecione o recorte. A Dinn mostra a ruptura ao longo do tempo e abre as lojas.",
+        output: "Lojas ordenadas por nível: Crítico, Alto, Moderado e Leve. O nível usa os últimos 30 dias.",
         decision: "Quais lojas verificar primeiro.",
-        limit: "Ausência não é ruptura confirmada. Lojas que nunca venderam o item não entram no cálculo. O estoque estimado aparece rotulado, com nível de confiança.",
+        limit: "Ausência não é ruptura confirmada. O dado é do dia anterior (D-1). Lojas que nunca venderam o item não entram no cálculo.",
         href: "/solucoes/trade-kam-campo"
       },
       {
@@ -402,15 +402,15 @@ export const offerPt = {
         id: "preco", name: "Preço", kind: "produto",
         problem: "A que preço o meu produto está nas lojas?",
         input: "Produto, rede e região.",
-        action: "Escolha o produto. A Dinn mostra o preço observado em cada loja e ordena a lista pelo preço.",
-        output: "Preço por loja e por rede, com a data da leitura.",
+        action: "Escolha o produto. A Dinn mostra o preço observado em cada loja. No Localizador, a lista ordena pelo preço.",
+        output: "Preço por loja. O Localizador mostra a data da leitura.",
         decision: "Em qual rede ou loja o preço sai da faixa.",
         limit: "É o preço observado no canal digital da loja. Compare só o que é comparável.",
         href: "/solucoes/inteligencia-pricing"
       },
       {
         id: "localizador", name: "Localizador de Produtos", kind: "produto",
-        problem: "Onde o consumidor encontra o produto por perto?",
+        problem: "Onde o consumidor encontra o produto por perto, e com que confiança posso indicar a loja?",
         input: "Produto e endereço.",
         action: "Busque as lojas por distância. Numa loja compatível, clique em “Consultar agora” para confirmar o estoque.",
         output: "Lojas próximas com disponibilidade, distância e a data da informação. Na consulta, o horário da resposta.",
@@ -421,9 +421,9 @@ export const offerPt = {
       {
         id: "mercado", name: "Mercado", kind: "produto",
         problem: "Perdi participação ou perdi venda?",
-        input: "Cesta de produtos, universo de lojas e janela.",
-        action: "Defina a cesta e as lojas comparáveis. Compare o seu produto com a categoria.",
-        output: "Tendência do seu produto e da categoria nas mesmas lojas, e onde só o concorrente tem estoque.",
+        input: "Mercado, Brick e janela.",
+        action: "Escolha o mercado e a janela. Compare o seu laboratório com a soma dos concorrentes nas mesmas lojas.",
+        output: "Participação por laboratório e por produto, vendas estimadas ao longo do tempo e as lojas onde só o concorrente vende.",
         decision: "Onde recuperar espaço.",
         limit: "A venda é estimada. Os dados de concorrentes são agregados e respeitam direitos de uso.",
         href: "/solucoes/inteligencia-pricing"
@@ -441,8 +441,8 @@ export const offerPt = {
       {
         id: "distribuicao", name: "Distribuição", kind: "produto",
         problem: "O furo está no CD, na reposição ou na farmácia?",
-        input: "CD, lojas que ele abastece e produto.",
-        action: "Compare o estoque no CD com a disponibilidade nas lojas, pelo vínculo de abastecimento confirmado.",
+        input: "CD, produto e as lojas da região dele.",
+        action: "Compare o estoque no CD com a disponibilidade nas lojas dentro do raio dele.",
         output: "O CD e as lojas lado a lado, com a cobertura em dias.",
         decision: "Onde conferir pedido, reposição ou remanejamento.",
         limit: "Proximidade geográfica não é vínculo de abastecimento. O padrão é hipótese. Investigue a causa.",

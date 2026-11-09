@@ -69,7 +69,7 @@ export default function Footer() {
 
           <div>
             <a href="/" className="ftr-logo">
-              <img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn Logo" width={394} height={152} loading="lazy" decoding="async" style={{ height: '30px', width: 'auto' }} />
+              <img src="/logo/Dinn_logo_v2_Dark.png" alt="Dinn Logo" width={394} height={152} loading="lazy" decoding="async" style={{ height: '30px', width: 'auto' }} />
             </a>
             <p className="ftr-desc">
               {t('footer.description')}

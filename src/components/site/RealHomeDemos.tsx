@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Boxes, Building2, Calendar, ChevronLeft, ChevronRight, Download, MapPin, Package, Percent, Search, Store, Warehouse, X } from 'lucide-react';
 import { fmt, useDemo, type Def, type DemoProps } from './AppDemos';
 import {
@@ -52,6 +53,10 @@ const SKU_ROWS: SkuRow[] = [
   ['Moderado', 'Algirex comprimido 1g', 'MRD-4797-12', 'Indisponível', 'off', 42, 12, '0 un.', '27 un.'],
   ['Moderado', 'Broncolar xarope 120ml', 'KLD-6505-01', '1–3 un', 'mid', 41, 13, '0 un.', '54 un.'],
 ];
+// VB sugerido, preço e reposição do mesmo SKU, na ordem de SKU_ROWS (painel Detalhes do PDV).
+const SKU_MORE: [string, number | null, string][] = [
+  ['2 un.', 39.9, '3 un.'], ['7 un.', 41.5, '14 un.'], ['4 un.', 189.9, '6 un.'], ['5 un.', 28.9, '8 un.'], ['3 un.', 34.5, '4 un.'], ['4 un.', null, '5 un.'], ['8 un.', 22.9, '9 un.'],
+];
 const WEEKS: [number, number][] = [[15, 8], [22, 8], [29, 8], [5, 9], [12, 9], [19, 9], [26, 9], [3, 10], [10, 10], [17, 10], [24, 10], [31, 10]];
 const RUP_ALL = [27.4, 26.8, 26.1, 26.5, 25.2, 25.9, 26.8, 25.6, 24.9, 24.6, 23.8, 24.6];
 const RUP_ONE = [39.0, 35.4, 33.6, 33.1, 32.5, 29.0, 30.8, 34.4, 31.6, 29.4, 28.7, 26.2];
@@ -83,6 +88,15 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
     ? [{ n: 'Crítico', c: 32, p: 4, col: RED }, { n: 'Alto', c: 129, p: 16, col: ORANGE }, { n: 'Moderado', c: 273, p: 33.9, col: YELLOW }, { n: 'Leve', c: 371, p: 46.1, col: '#22c55e' }]
     : [{ n: 'Crítico', c: 62, p: 5, col: RED }, { n: 'Alto', c: 211, p: 17, col: ORANGE }, { n: 'Moderado', c: 397, p: 32, col: YELLOW }, { n: 'Leve', c: 570, p: 46, col: '#22c55e' }];
   const modal = phase >= 6;
+  // Fase 9: o painel da loja rola para a direita e mostra Giro, VB Sugerido, Preço e Reposição.
+  const hs = useRef<HTMLDivElement>(null);
+  const [shift, setShift] = useState(0);
+  useEffect(() => {
+    const el = hs.current;
+    if (!el || phase < 9) { setShift(0); return; }
+    const id = requestAnimationFrame(() => setShift(Math.max(0, el.scrollWidth - el.clientWidth)));
+    return () => cancelAnimationFrame(id);
+  }, [phase]);
   return (
     <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: o cursor escolhe um produto, a ruptura e a classificação dos PDVs carregam, e o ranking de ruptura por SKU de uma loja abre com a consulta do estoque agora.')}>
       <RPage top={<RTop />} filters={<Filters tg={tg} phase={phase} openAt={1} count={one} />} y={phase >= 5 ? 520 : 0}>
@@ -144,11 +158,12 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
             </div>
             <div className="rl-modal-b">
               <RCard title={t('Ranking de ruptura por SKU')} t={tg('m-tbl')} aside={<span className="rl-aside"><RDrop v="Todos" w={120} /><RDrop v="30 dias" w={110} /><RPager /></span>}>
-                <table className="rl-table">
-                  <thead><tr><RTh>Nível</RTh><RTh>SKU</RTh><RTh>Estoque</RTh><RTh>% Ruptura</RTh><RTh>Parados</RTh><RTh>Congelados</RTh><RTh>Giro</RTh></tr></thead>
+                <div ref={hs} className="rl-hs"><table className="rl-table" style={{ transform: shift ? `translateX(-${shift}px)` : undefined, transition: 'transform 0.9s cubic-bezier(0.65, 0, 0.35, 1)' }}>
+                  <thead><tr><RTh>Nível</RTh><RTh>SKU</RTh><RTh>Estoque</RTh><RTh>% Ruptura</RTh><RTh>Parados</RTh><RTh>Congelados</RTh><RTh>Giro</RTh><RTh>VB Sugerido</RTh><RTh>Preço</RTh><RTh>Reposição</RTh><RTh>Data de corte</RTh></tr></thead>
                   <tbody>
                     {SKU_ROWS.map(([l, n, sku, sv, sk, r, d, cg, g], i) => {
-                      const now = i === 0 && phase >= 8;
+                      const [vb, price, rep] = SKU_MORE[i];
+                      const now = i === 0 && phase === 8;
                       return (
                         <tr key={n} className="rl-in" style={{ animationDelay: `${i * 0.05}s` }}>
                           <td><RBadge lv={l} /></td>
@@ -164,11 +179,12 @@ export function RuptureDemo({ step, def = RUP_DEF }: DemoProps) {
                           <td><RGauge v={r} /></td>
                           <td><RDays d={d} of={30} warn={d > 8} /></td>
                           <td>{qty(t, cg)}</td><td>{qty(t, g)}</td>
+                          <td>{qty(t, vb)}</td><td style={{ whiteSpace: 'nowrap' }}>{price === null ? <span className="rl-dash">--</span> : `R$ ${fmt(price, 2)}`}</td><td>{qty(t, rep)}</td><td>{fdate(lang, 31, 10)}</td>
                         </tr>
                       );
                     })}
                   </tbody>
-                </table>
+                </table></div>
               </RCard>
               <p className="rl-pages"><ChevronLeft size={16} /><b>1</b><span>2</span><ChevronRight size={16} /></p>
             </div>
@@ -186,13 +202,13 @@ const NETS: [string, number, number, number][] = [
   ['BOA', 70, 10, 20], ['NOR', 80, 8, 12], ['LUZ', 35, 30, 35], ['ALM', 62, 20, 18], ['SUL', 72, 14, 14], ['RIO', 30, 25, 45],
 ];
 const HI = 11;
-type TurnRow = [string, string, string, number, number, string, string, string, string, string];
+type TurnRow = [string, string, string, number, number, string, string, string, string, string, number | null, string];
 const TURN_ROWS: TurnRow[] = [
-  ['Drogaria Serrana Batel', 'Drogaria Serrana', 'Leve', 0, 0, '0 un.', '0 un.', '0 un.', 'Curitiba/PR', 'Av. Batel, 1095'],
-  ['Drogarias Aurora Estreito', 'Drogarias Aurora', 'Leve', 0, 5, '0 un.', '7 un.', '1 un.', 'Florianópolis/SC', 'Rua Gen. Liberato Bittencourt, 2445'],
-  ['Farmácias Vitalis Centro', 'Farmácias Vitalis', 'Leve', 1, 33, '3 un.', '13 un.', '2 un.', 'Joinville/SC', 'Rua XV de Novembro, 400'],
-  ['Rede Saúde Mais Água Verde', 'Rede Saúde Mais', 'Leve', 1, 4, '0 un.', '10 un.', '1 un.', 'Curitiba/PR', 'Av. República Argentina, 2050'],
-  ['Rede Farmacore Trindade', 'Rede Farmacore', 'Leve', 0, 20, '1 un.', '7 un.', '1 un.', 'Florianópolis/SC', 'Rua Lauro Linhares, 203'],
+  ['Drogaria Serrana Batel', 'Drogaria Serrana', 'Leve', 0, 0, '0 un.', '0 un.', '0 un.', 'Curitiba/PR', 'Av. Batel, 1095', null, '0 un.'],
+  ['Drogarias Aurora Estreito', 'Drogarias Aurora', 'Leve', 0, 5, '0 un.', '7 un.', '1 un.', 'Florianópolis/SC', 'Rua Gen. Liberato Bittencourt, 2445', 41.5, '2 un.'],
+  ['Farmácias Vitalis Centro', 'Farmácias Vitalis', 'Leve', 1, 33, '3 un.', '13 un.', '2 un.', 'Joinville/SC', 'Rua XV de Novembro, 400', 39.9, '2 un.'],
+  ['Rede Saúde Mais Água Verde', 'Rede Saúde Mais', 'Leve', 1, 4, '0 un.', '10 un.', '1 un.', 'Curitiba/PR', 'Av. República Argentina, 2050', 44.9, '1 un.'],
+  ['Rede Farmacore Trindade', 'Rede Farmacore', 'Leve', 0, 20, '1 un.', '7 un.', '1 un.', 'Florianópolis/SC', 'Rua Lauro Linhares, 203', 42.9, '2 un.'],
 ];
 const SEG = { out: ['#f9b4a1', '#ff6b3d'], idle: ['#fcd79b', '#f8b84e'], turn: ['#c4b2fa', BRAND] };
 
@@ -207,12 +223,12 @@ const TURN_DEF: Def = {
     { shot: 'tbl', z: 1.05, to: 'col-par', click: true, phase: 5, wait: 2600 },
     { shot: 'wide', wait: 1600 },
   ],
-  steps: [{ phase: 1, to: 'stack' }, { phase: 2, to: `bar-${HI}` }, { phase: 3, to: 'st' }, { phase: 5, to: 'col-par' }],
+  steps: [{ phase: 1, to: 'stack' }, { phase: 2, to: `bar-${HI}` }, { phase: 3, to: 'st' }, { phase: 5, to: 'tbl' }],
   final: 5,
 };
 
 export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
-  const { t } = useDemoT();
+  const { t, lang } = useDemoT();
   const { app, phase, cur, tg } = useDemo(def, step);
   const on = phase >= 1;
   const sorted = phase >= 5;
@@ -221,7 +237,7 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
   return (
     <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: a disponibilidade por rede mostra lojas sem estoque, sem vendas e girando; o cursor abre o detalhe de uma rede, escolhe o estoque parado há 30 dias e ordena os PDVs pelos dias parados.')}>
       <RPage top={<RTop />} filters={<Filters tg={tg} phase={phase} count />} y={phase >= 4 ? 448 : 0}>
-        <div className="rl-row">
+        <div className="rl-row" {...tg('top')}>
           <RCard className="grow" title="Disponibilidade nos PDVs por rede" t={tg('stack')} aside={<RDrop v="30 dias" w={120} />}
             sub={t('Somente redes digitalizadas (estoque exato), ordenadas por nº de PDVs.')}>
             <p className="rl-legend"><span><i style={{ background: '#ff6b3d' }} />{t('Sem estoque')}</span><span><i style={{ background: '#f8b84e' }} />{t('Sem vendas')}</span><span><i style={{ background: BRAND }} />{t('Em estoque (girando)')}</span></p>
@@ -263,14 +279,15 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
           <table className="rl-table">
             <thead><tr>
               <RTh sort>PDV</RTh><RTh sort active="up">Nível</RTh><RTh sort>% Ruptura</RTh>
-              <RTh sort active={sorted ? 'down' : undefined} t={tg('col-par')}>Parados</RTh><RTh sort>Congelados</RTh><RTh>Giro</RTh><RTh>VB sugerido</RTh><RTh sort>Localização</RTh><th />
+              <RTh sort active={sorted ? 'down' : undefined} t={tg('col-par')}>Parados</RTh><RTh sort>Congelados</RTh><RTh>Giro</RTh><RTh>VB sugerido</RTh><RTh>Preço</RTh><RTh>Reposição</RTh><RTh sort>Localização</RTh><RTh>Data de corte</RTh><th />
             </tr></thead>
             <tbody key={sorted ? 'sorted' : phase >= 4 ? 'in' : 'out'}>
-              {rows.map(([n, net, l, r, d, cg, g, vb, c, s], i) => (
+              {rows.map(([n, net, l, r, d, cg, g, vb, c, s, price, rep], i) => (
                 <tr key={n} className={phase >= 4 ? 'rl-in' : ''} style={{ animationDelay: `${(sorted ? 0.05 : 0.25) + Math.min(i, 4) * 0.08}s` }}>
                   <PdvCell n={n} net={net} /><td><RBadge lv={l} /></td><td><RGauge v={r} /></td>
                   <td><RDays d={d} of={90} warn={d > 30} on={phase >= 4} /></td><td>{qty(t, cg)}</td><td>{qty(t, g)}</td><td>{qty(t, vb)}</td>
-                  <LocCell c={c} s={s} /><td className="rl-chev"><ChevronRight size={16} /></td>
+                  <td style={{ whiteSpace: 'nowrap' }}>{price === null ? <span className="rl-dash">--</span> : `R$ ${fmt(price, 2)}`}</td><td>{qty(t, rep)}</td>
+                  <LocCell c={c} s={s} /><td>{fdate(lang, 31, 10)}</td><td className="rl-chev"><ChevronRight size={16} /></td>
                 </tr>
               ))}
             </tbody>
@@ -281,51 +298,50 @@ export function TurnDemo({ step, def = TURN_DEF }: DemoProps) {
   );
 }
 
-// ── Preço: preço observado por PDV, ordenado e filtrado por rede ───────────
-type PriceRow = [string, string, string, number, string, 'off' | 'mid' | 'ok', string, string, string];
+// ── Preço: com um produto escolhido, a coluna Preço da tabela de PDVs sai de -- para o valor ──
+// Na Início o preço não ordena e não tem data própria (a data da leitura fica no Localizador).
+type PriceRow = { n: string; net: string; lv: string; r: number; d: number; cg: string; g: string; vb: string; p: number | null; rep: string; c: string; s: string };
 const PRICE_ROWS: PriceRow[] = [
-  ['Drogaria Serrana Ipiranga - Loja 001', 'Drogaria Serrana', 'Crítico', 39.9, 'Indisponível', 'off', '2 un.', 'São Paulo/SP', 'Rua Bom Pastor, 2100'],
-  ['Rede Farmacore Jardim América - Loja 023', 'Rede Farmacore', 'Crítico', 41.9, 'Indisponível', 'off', '1 un.', 'São Paulo/SP', 'Travessa das Acácias, 3575'],
-  ['Farmácias Vitalis Moema', 'Farmácias Vitalis', 'Alto', 36.5, '2–5 un', 'mid', '4 un.', 'São Paulo/SP', 'Av. Ibirapuera, 2100'],
-  ['Drogarias Aurora Centro', 'Drogarias Aurora', 'Alto', 44.5, '1–3 un', 'mid', '5 un.', 'Santo André/SP', 'Rua Cel. Oliveira Lima, 400'],
-  ['Drogaria Serrana Pinheiros - Loja 014', 'Drogaria Serrana', 'Moderado', 37.9, '4–9 un', 'mid', '6 un.', 'São Paulo/SP', 'Rua dos Pinheiros, 870'],
-  ['Rede Saúde Mais Vila Mariana', 'Rede Saúde Mais', 'Moderado', 47.9, '7–19 un', 'ok', '7 un.', 'São Paulo/SP', 'Rua Domingos de Morais, 1450'],
-  ['Drogaria Serrana Mooca - Loja 008', 'Drogaria Serrana', 'Leve', 42.9, '7–19 un', 'ok', '8 un.', 'São Paulo/SP', 'Rua da Mooca, 2360'],
-  ['Drogaria Serrana Vila Madalena - Loja 021', 'Drogaria Serrana', 'Leve', 38.9, '7–19 un', 'ok', '9 un.', 'São Paulo/SP', 'Rua Harmonia, 412'],
-  ['Farmácias Vitalis Perdizes', 'Farmácias Vitalis', 'Moderado', 43.9, '2–5 un', 'mid', '6 un.', 'São Paulo/SP', 'Rua Cardoso de Almeida, 990'],
-  ['Drogaria Serrana Tatuapé - Loja 017', 'Drogaria Serrana', 'Moderado', 40.9, '2–5 un', 'mid', '5 un.', 'São Paulo/SP', 'Rua Tuiuti, 1890'],
-  ['Drogaria Serrana Santana - Loja 011', 'Drogaria Serrana', 'Alto', 41.5, '1–3 un', 'mid', '3 un.', 'São Paulo/SP', 'Rua Voluntários da Pátria, 3120'],
-  ['Drogaria Serrana Lapa - Loja 005', 'Drogaria Serrana', 'Leve', 39.5, '4–9 un', 'mid', '7 un.', 'São Paulo/SP', 'Rua Clélia, 1450'],
+  { n: 'Drogaria Serrana Ipiranga - Loja 001', net: 'Drogaria Serrana', lv: 'Crítico', r: 82, d: 61, cg: '2 un.', g: '9 un.', vb: '1 un.', p: 39.9, rep: '4 un.', c: 'São Paulo/SP', s: 'Rua Bom Pastor, 2100' },
+  { n: 'Rede Farmacore Jardim América - Loja 023', net: 'Rede Farmacore', lv: 'Crítico', r: 76, d: 54, cg: '1 un.', g: '7 un.', vb: '1 un.', p: 41.9, rep: '3 un.', c: 'São Paulo/SP', s: 'Travessa das Acácias, 3575' },
+  { n: 'Farmácias Vitalis Moema', net: 'Farmácias Vitalis', lv: 'Alto', r: 58, d: 33, cg: '4 un.', g: '13 un.', vb: '2 un.', p: 36.5, rep: '2 un.', c: 'São Paulo/SP', s: 'Av. Ibirapuera, 2100' },
+  { n: 'Drogaria Serrana Pinheiros - Loja 014', net: 'Drogaria Serrana', lv: 'Moderado', r: 37, d: 12, cg: '0 un.', g: '21 un.', vb: '3 un.', p: 37.9, rep: '5 un.', c: 'São Paulo/SP', s: 'Rua dos Pinheiros, 870' },
+  { n: 'Drogarias Aurora Centro', net: 'Drogarias Aurora', lv: 'Alto', r: 51, d: 20, cg: '5 un.', g: '6 un.', vb: '1 un.', p: 44.5, rep: '2 un.', c: 'Santo André/SP', s: 'Rua Cel. Oliveira Lima, 400' },
+  { n: 'Drogaria Serrana Mooca - Loja 008', net: 'Drogaria Serrana', lv: 'Leve', r: 4, d: 5, cg: '0 un.', g: '18 un.', vb: '3 un.', p: 42.9, rep: '3 un.', c: 'São Paulo/SP', s: 'Rua da Mooca, 2360' },
+  { n: 'Rede Saúde Mais Vila Mariana', net: 'Rede Saúde Mais', lv: 'Moderado', r: 31, d: 28, cg: '7 un.', g: '0 un.', vb: '0 un.', p: null, rep: '0 un.', c: 'São Paulo/SP', s: 'Rua Domingos de Morais, 1450' },
+  { n: 'Drogaria Serrana Vila Madalena - Loja 021', net: 'Drogaria Serrana', lv: 'Leve', r: 2, d: 3, cg: '0 un.', g: '24 un.', vb: '4 un.', p: 38.9, rep: '4 un.', c: 'São Paulo/SP', s: 'Rua Harmonia, 412' },
 ];
 const CHAINS = ['Drogaria Serrana', 'Rede Farmacore', 'Farmácias Vitalis', 'Drogarias Aurora', 'Rede Saúde Mais'];
 const PRICE_DEF: Def = {
   beats: [
-    // Planos: tela inteira → coluna Preço ordena → filtro de rede → preço loja a loja da rede.
-    { wait: 1200 },
-    { shot: 'tbl', z: 1.15, to: 'col-preco', click: true, phase: 1, wait: 1900 },
-    { shot: 'rede', z: 0.8, to: 'rede', click: true, phase: 2, wait: 600 },
-    { to: 'rede-0', click: true, phase: 3, wait: 500 },
-    { shot: 'tbl', z: 1.1, phase: 4, wait: 1600 },
+    // Planos: tela inteira (sem produto, tudo --) → escolhe o produto → o Preço aparece → filtra a rede → loja a loja.
+    { wait: 1300 },
+    { shot: 'prod', z: 0.8, to: 'prod', click: true, phase: 1, wait: 650 },
+    { to: 'prod-0', click: true, phase: 2, wait: 500, cam: { at: 'tbl', z: 1.05 } },
+    { wait: 2100 },
+    { shot: 'rede', z: 0.8, to: 'rede', click: true, phase: 3, wait: 600 },
+    { to: 'rede-0', click: true, phase: 4, wait: 500 },
+    { shot: 'tbl', z: 1.05, wait: 1500 },
     { to: 'row-0', phase: 5, wait: 1800 },
     { shot: 'wide', wait: 1600 },
   ],
-  steps: [{ phase: 0, to: 'prod' }, { phase: 1, to: 'col-preco' }, { phase: 2, to: 'rede' }, { phase: 5, to: 'row-0' }],
+  steps: [{ phase: 0, to: 'prod' }, { phase: 2, to: 'tbl' }, { phase: 3, to: 'rede' }, { phase: 5, to: 'tbl' }],
   final: 5,
 };
 
 export function PriceDemo2({ step, def = PRICE_DEF }: DemoProps) {
   const { t, lang } = useDemoT();
   const { app, phase, cur, tg } = useDemo(def, step);
-  const sorted = phase >= 1;
+  const chosen = phase >= 2;
   const only = phase >= 4;
-  let rows = sorted ? [...PRICE_ROWS].sort((a, b) => a[3] - b[3]) : PRICE_ROWS;
-  if (only) rows = rows.filter((r) => r[1] === CHAINS[0]);
+  const rows = only ? PRICE_ROWS.filter((r) => r.net === CHAINS[0]) : PRICE_ROWS;
+  const num = (v: string) => (chosen ? qty(t, v) : <span className="rl-dash">--</span>);
   return (
-    <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: a tabela de pontos de venda mostra o preço observado em cada loja; o cursor ordena pelo preço e filtra uma rede.')}>
+    <RFrame app={app} cur={cur} nav="home" label={t('Tela Início do Dinn: com um produto escolhido, a coluna Preço da tabela de pontos de venda mostra o valor de cada loja; o cursor escolhe o produto e filtra uma rede.')}>
       <RPage top={<RTop />} filters={(
         <>
-          <RSelect k="prod" tg={tg} label="Produtos" count={1} />
-          <RSelect k="rede" tg={tg} label="Rede" count={phase >= 3 ? 1 : undefined} open={phase === 2 || phase === 3} items={CHAINS} picked={phase >= 3 ? [0] : []} search="" />
+          <RSelect k="prod" tg={tg} label="Produtos" count={chosen ? 1 : undefined} open={phase === 1} items={PRODS} picked={chosen ? [0] : []} search="" />
+          <RSelect k="rede" tg={tg} label="Rede" count={phase >= 4 ? 1 : undefined} open={phase === 3} items={CHAINS} picked={phase >= 4 ? [0] : []} search="" />
           <RSelect k="uf" tg={tg} label="UF" /><RSelect k="city" tg={tg} label="Cidade" /><RSelect k="brick" tg={tg} label="Brick" w={124} /><RSelect k="all" tg={tg} label="Todos" w={124} />
           <RSave />
         </>
@@ -334,19 +350,21 @@ export function PriceDemo2({ step, def = PRICE_DEF }: DemoProps) {
           <div><h3><Store size={24} /> {t('Pontos de venda')}</h3><p>{only ? t('Total: {n} PDVs da Drogaria Serrana', { n: 64 }) : t('Total: {n} PDVs na sua carteira', { n: 805 })}</p></div>
           <span className="rl-aside"><span className="rl-search"><Search size={16} />{t('Buscar por rede, loja ou CNPJ.')}</span><RDrop v="90 dias" w={150} /><RIconBtn><Download size={16} /></RIconBtn></span>
         </div>
-        <p className="rl-note">{t('Preço observado no canal digital de cada loja, na data de corte. O período abaixo muda a coluna % Ruptura.')}</p>
+        <p className="rl-note">{t('O período abaixo muda a coluna % Ruptura. A coluna Nível usa sempre a janela fixa de 30 dias, com corte no sábado.')}</p>
         <RCard t={tg('tbl')}>
           <table className="rl-table">
             <thead><tr>
-              <RTh sort>PDV</RTh><RTh sort>Nível</RTh><RTh sort active={sorted ? 'up' : undefined} t={tg('col-preco')}>Preço</RTh><RTh>Estoque</RTh><RTh>Giro</RTh><RTh sort>Localização</RTh><RTh>Data de corte</RTh><th />
+              <RTh sort>PDV</RTh><RTh sort>Nível</RTh><RTh sort active="down">% Ruptura</RTh><RTh sort>Parados</RTh><RTh sort>Congelados</RTh><RTh>Giro</RTh><RTh>VB sugerido</RTh><RTh t={tg('col-preco')}>Preço</RTh><RTh>Reposição</RTh><RTh sort>Localização</RTh><RTh>Data de corte</RTh><th />
             </tr></thead>
-            <tbody key={only ? 'rede' : sorted ? 'sorted' : 'all'}>
-              {rows.map(([n, net, l, p, sv, sk, g, c, s], i) => (
-                <tr key={n} className={`rl-in ${phase >= 5 && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${Math.min(i, 4) * 0.08}s` }} {...tg(`row-${i}`)}>
-                  <PdvCell n={n} net={net} /><td><RBadge lv={l} /></td>
-                  <td className="rl-name"><b>R$ {fmt(p, 2)}</b><small>{t('por unidade')}</small></td>
-                  <td><RStock v={sv} k={sk} /></td><td>{qty(t, g)}</td>
-                  <LocCell c={c} s={s} /><td><b style={{ fontWeight: 500 }}>{fdate(lang, 31, 10)}</b></td><td className="rl-chev"><ChevronRight size={16} /></td>
+            <tbody key={only ? 'rede' : 'all'}>
+              {rows.map((r, i) => (
+                <tr key={r.n} className={`rl-in ${phase >= 5 && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${Math.min(i, 4) * 0.08}s` }} {...tg(`row-${i}`)}>
+                  <PdvCell n={r.n} net={r.net} /><td><RBadge lv={r.lv} /></td><td><RGauge v={r.r} /></td>
+                  <td><RDays d={r.d} of={90} warn={r.d > 30} /></td><td>{qty(t, r.cg)}</td>
+                  <td>{num(r.g)}</td><td>{num(r.vb)}</td>
+                  <td style={{ whiteSpace: 'nowrap' }}>{chosen ? (r.p === null ? <span className="rl-dash">--</span> : <b style={{ fontWeight: 500 }}>R$ {fmt(r.p, 2)}</b>) : <span className="rl-dash">--</span>}</td>
+                  <td>{num(r.rep)}</td>
+                  <LocCell c={r.c} s={r.s} /><td>{fdate(lang, 31, 10)}</td><td className="rl-chev"><ChevronRight size={16} /></td>
                 </tr>
               ))}
             </tbody>

@@ -1,6 +1,6 @@
-import { useMemo, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import {
-  ArrowUp, Building2, Calendar, ChartColumn, Check, ChevronDown, CircleHelp, Clock, Download, Factory, Gauge, Globe, Info, Lightbulb,
+  ArrowUp, Building2, Calendar, ChartColumn, FileText, Check, ChevronDown, CircleHelp, Clock, Download, Factory, Gauge, Globe, Info, Lightbulb,
   LoaderCircle, MapPin, Navigation, Package, PanelLeft, Percent, Plus, RefreshCw, Search, Share2, ShieldCheck, SlidersHorizontal, SquarePen, Store,
   Telescope, TrendingDown, TrendingUp, TriangleAlert, Users, Warehouse, Wallet, X,
 } from 'lucide-react';
@@ -68,6 +68,14 @@ const STORES: [string, number, string, string, string, string, string][] = [
   ['Farmácias Vitalis Moema', 56.9, 'Indisponível', 'Av. Ibirapuera, 2100, São Paulo', 'Aberto · Fecha às 22:00', 'Médio', '3–6 un'],
   ['Drogaria Serrana Ipiranga - Loja 001', 59.99, '≥ 6 un', 'Rua Bom Pastor, 2100, São Paulo', 'Fechado · Abre amanhã às 07:00', 'Alto', '7–19 un'],
 ];
+// Restante dos PDV: lojas sem a faixa de tempo real, na ordem de distância. Preço nulo = "--" (sem leitura).
+const REST: [string, number | null, string, string, string, string][] = [
+  ['Drogarias Aurora Centro', null, 'Santo André, Rua Cel. Oliveira Lima, 400', 'Aberto · Fecha às 22:00', 'Baixo', '0–2 un'],
+  ['Rede Saúde Mais Vila Mariana', 36.9, 'Rua Domingos de Morais, 1450, São Paulo', 'Aberto · Fecha às 21:00', 'Alto', '7–19 un'],
+  ['Farmácias Vitalis Perdizes', 44.9, 'Rua Cardoso de Almeida, 990, São Paulo', 'Aberto · Fecha às 22:00', 'Médio', '3–6 un'],
+  ['Drogaria Serrana Mooca - Loja 008', null, 'Rua da Mooca, 2360, São Paulo', 'Aberto · Fecha às 21:00', 'Baixo', '1–3 un'],
+];
+const SORTS = ['Mais próximas', 'Menor preço', 'Maior preço'];
 const SUGS: [string, string][] = [['São Paulo', 'SP'], ['São Paulo de Olivença', 'AM'], ['Rua São Paulo', 'Curitiba - PR'], ['Avenida São Paulo', 'Maringá - PR']];
 const PROD = 'Cefalgin cápsula 400mg';
 
@@ -84,7 +92,12 @@ const LOC_DEF: Def = {
     { shot: 'pin', z: 0.5, to: 'pin', click: true, phase: 7, wait: 1100, cam: { at: 'popup' } },
     { shot: 'p-box', z: 0.9, to: 'p-con', click: true, phase: 8, wait: 1300 },
     { phase: 9, wait: 1600 },
-    { shot: 'popup', wait: 2000 },
+    { shot: 'popup', wait: 1600 },
+    // A lista rola até "Restante dos PDV" e o seletor ordena do menor para o maior preço.
+    { phase: 10, wait: 900, cam: { at: 'rest', z: 1.1 } },
+    { to: 'sort', click: true, phase: 11, wait: 800 },
+    { to: 'sort-1', click: true, phase: 12, wait: 1800, cam: { at: 'rest', z: 1.1 } },
+    { shot: 'wide', wait: 1200 },
   ],
   steps: [{ phase: 3, to: 'f-addr' }, { phase: 6, to: 'pin' }, { phase: 7, to: 'p-box' }, { phase: 9, to: 'p-box' }],
   final: 9,
@@ -108,6 +121,10 @@ function LocatorView({ step, def }: DemoProps) {
   const busy = phase === 5;
   const found = phase >= 6;
   const now = phase >= 9;
+  const scrolled = phase >= 10;
+  const sortOpen = phase === 11;
+  const byPrice = phase >= 12;
+  const rest = byPrice ? [...REST].sort((a, b) => (a[1] === null ? 1 : 0) - (b[1] === null ? 1 : 0) || (a[1] ?? 0) - (b[1] ?? 0)) : REST;
   const yesterday = dateFmt(lang, 2, 11);
   return (
     <RFrame app={app} cur={cur} nav="locator" label={t('Tela Localizar Produtos do Dinn: o cursor informa o produto e a cidade, as farmácias aparecem no mapa e o estoque de uma loja é consultado agora.')}>
@@ -157,11 +174,11 @@ function LocatorView({ step, def }: DemoProps) {
                 </>
               )}
               {found && (
-                <>
-                  <div className="rl-loc-count rl-in"><h4>{t('{n} Farmácias encontradas', { n: 128 })}</h4><p>{t('Produto:')} {PROD}<br />{t('Localização:')} São Paulo, SP</p></div>
+                <div className="rl-resin" style={{ transform: scrolled ? 'translateY(-452px)' : undefined }}>
+                  <div className="rl-loc-count rl-in" {...tg('count')}><h4>{t('{n} Farmácias encontradas', { n: 128 })}</h4><p>{t('Produto:')} {PROD}<br />{t('Localização:')} São Paulo, SP</p></div>
                   <span className="rl-near rl-in"><RefreshCw size={14} />{t('As mais próximas com estoque em tempo real')}</span>
                   {STORES.map(([n, p, q, a, h, lv, rng], i) => (
-                    <div key={n} className={`rl-store rl-in ${phase >= 7 && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${0.1 + i * 0.08}s` }}>
+                    <div key={n} className={`rl-store rl-in ${phase >= 7 && i === 0 ? 'on' : ''}`} style={{ animationDelay: `${0.1 + i * 0.08}s` }} {...tg(`store-${i}`)}>
                       <div className="rl-store-h"><span>{n}</span><b>{brl(p)} <Info size={12} /></b></div>
                       <span className="rl-now"><em>{t('Estoque agora')}</em><u>{i === 0 && now ? unit(lang, '6 un') : q === 'Indisponível' ? t(q) : unit(lang, q)}</u></span>
                       <small><MapPin size={13} />{a}</small>
@@ -169,7 +186,19 @@ function LocatorView({ step, def }: DemoProps) {
                       <div className="rl-store-f"><span>{t('Disponibilidade')} ({t(lv)}):</span><RStock v={unit(lang, rng)} k="mid" /></div>
                     </div>
                   ))}
-                </>
+                  <div className="rl-rest-h" {...tg('rest')}>
+                    <span><FileText size={13} />{t('Restante dos PDV')}</span>
+                    <RSelect k="sort" tg={tg} label={byPrice ? SORTS[1] : SORTS[0]} w={160} open={sortOpen} items={SORTS} picked={[byPrice ? 1 : 0]} />
+                  </div>
+                  {rest.map(([n, p, a, h, lv, rng]) => (
+                    <div key={n} className="rl-store rl-rest" {...tg(`rest-${n}`)}>
+                      <div className="rl-store-h"><span>{n}</span><b>{p === null ? <span className="rl-dash">--</span> : brl(p)} <Info size={12} /></b></div>
+                      <small><MapPin size={13} />{a}</small>
+                      <small><Clock size={13} />{t(h)}</small>
+                      <div className="rl-store-f"><span>{t('Disponibilidade')} ({t(lv)}):</span><RStock v={unit(lang, rng)} k="mid" /></div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </aside>
@@ -183,7 +212,7 @@ function LocatorView({ step, def }: DemoProps) {
                 <span><MapPin size={26} /></span><b>{t('Atualizando Mapa')}</b><small>{t('Carregando estoque dos PDVs da região...')}</small><i />
               </div>
             )}
-            {phase >= 7 && (
+            {phase >= 7 && phase < 10 && (
               <div className="rl-popup" style={{ left: SEL[0] - 215, bottom: MAP_H - SEL[1] + 28 }} {...tg('popup')}>
                 <div className="rl-popup-h"><span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><b>Rede Farmacore Jardim América - Loja 023</b></span><span className="rl-x"><X size={15} /></span></div>
                 <span className="rl-tagpill green" style={{ justifySelf: 'start' }}><Store size={13} />{t('Estoque exato')}<Info size={12} /></span>
@@ -193,7 +222,7 @@ function LocatorView({ step, def }: DemoProps) {
                     <em>{t('ESTOQUE DO PRODUTO')}</em>
                     <b>{unit(lang, now ? '6 un' : '4–9 un')}</b>
                     {now ? <span className="rl-soon" style={{ borderColor: '#c4b5fd' }}>● {t('Consulta feita agora')} · 15:12</span> : <RConsult busy={phase === 8} t={tg('p-con')} />}
-                    <span className="rl-est"><Calendar size={12} />{now ? t('Leitura direta do sistema da loja') : t('Estimativa de ontem, {d}', { d: yesterday })}</span>
+                    {!now && <span className="rl-est"><Calendar size={12} />{t('Estimativa de ontem, {d}', { d: yesterday })}</span>}
                     {!now && <span className="rl-soon">{t('Pode acabar em 5 a 7 dias')}</span>}
                     <span className="rl-price"><b>{brl(58.29)}</b> {t('por unidade')} <Info size={12} /></span>
                   </div>
@@ -219,7 +248,7 @@ function LocatorView({ step, def }: DemoProps) {
 }
 
 // ── Mercado ────────────────────────────────────────────────────────────────
-const MARKETS = ['Analgésicos', 'Antialérgicos', 'Antigripais', 'Gastrointestinal'];
+const MARKETS = ['Mercado Exemplo A', 'Mercado Exemplo B', 'Mercado Exemplo C', 'Mercado Exemplo D'];
 const LABS = [
   { label: 'Minha Empresa', value: 25.5, color: BRAND }, { label: 'Farmoquímica Aliança', value: 22.4, color: SKY },
   { label: 'Bionova Genéricos', value: 17.9, color: AMBER }, { label: 'Grupo Saluspharma', value: 13.4, color: GREEN },
@@ -243,6 +272,20 @@ const MKT_PDV: [string, string, string, number, number][] = [
   ['Drogarias Aurora Jardim Camburi', 'Drogarias Aurora', 'Av. Dante Michelini, 141, Vitória, ES', 160, 483],
   ['Rede Saúde Mais Savassi', 'Rede Saúde Mais', 'Av. Getúlio Vargas, 222, Belo Horizonte, MG', 151, 462],
 ];
+// Participação, acumulado, dias com concorrente, situação e cobertura de cada PDV acima (mesma ordem).
+const MKT_MORE: [string, string, number, string, string][] = [
+  ['0,3%', '0,3%', 88, 'Top 80%', '96,4%'], ['0,3%', '0,6%', 90, 'Top 80%', '96,4%'], ['0,2%', '0,8%', 85, 'Top 80% + Sem meu lab', '100%'],
+  ['0,2%', '1,0%', 80, 'Top 80%', '97,5%'], ['0,2%', '1,2%', 77, 'Top 80%', '88,2%'],
+];
+// Por rede: PDVs, top 80%, sem meu lab, volume, meu lab, concorrentes, participação, cadastradas, com registro, estoque zero, estoque positivo, cobertura.
+const MKT_NET: [string, number, number, number, string, string, string, string, number, number, number, number, number][] = [
+  ['Rede Saúde Mais', 270, 180, 2, '480k', '120k', '360k', '18,5%', 290, 232, 41, 191, 80],
+  ['Rede Farmacore', 620, 510, 3, '1,1m', '310k', '790k', '42,3%', 640, 624, 118, 506, 97.5],
+  ['Drogaria Serrana', 410, 300, 2, '760k', '190k', '570k', '29,2%', 430, 441, 90, 351, 102.6],
+];
+const PctBar = ({ v, d = 1 }: { v: number; d?: number }) => (
+  <span className="rl-days"><b>{fmt(v, d)}%</b><i><u style={{ width: `${Math.min(100, v)}%` }} /></i></span>
+);
 const MKT_DEF: Def = {
   beats: [
     // Planos: tela inteira → filtro de mercado → participação carrega → laboratório em destaque → vendas semana a semana.
@@ -253,7 +296,10 @@ const MKT_DEF: Def = {
     { shot: 'lab', z: 1.05, to: 'lab-0', phase: 4, wait: 2000 },
     { shot: 'wide', phase: 5, wait: 1300 },
     { shot: 'sales', to: 'pt', phase: 6, wait: 2400 },
-    { shot: 'wide', wait: 1600 },
+    { shot: 'pdv', z: 1.0, wait: 1700 },
+    { to: 'seg', click: true, phase: 7, wait: 900, cam: { at: 'net', z: 1.0 } },
+    { phase: 8, wait: 2000 },
+    { shot: 'wide', wait: 1200 },
   ],
   steps: [{ phase: 3, to: 'mkt' }, { phase: 4, to: 'lab-0' }, { phase: 3, to: 'sku' }, { phase: 6, to: 'pt' }],
   final: 6,
@@ -284,9 +330,18 @@ function MarketView({ step, def }: DemoProps) {
   const labs = LABS.map((x) => ({ ...x, label: t(x.label) }));
   const skus = SKUS.map((x) => ({ ...x, label: t(x.label) }));
   const labels = MW.map(([d, m]) => shortFmt(lang, d, m));
+  const byNet = phase >= 7;
+  // Fase 8: a tabela por rede rola para a direita (a coluna Rede fica fixa) e mostra as colunas de cobertura.
+  const hs = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = hs.current;
+    if (!el) return;
+    const id = requestAnimationFrame(() => el.scrollTo({ left: phase >= 8 ? el.scrollWidth : 0, behavior: 'smooth' }));
+    return () => cancelAnimationFrame(id);
+  }, [phase, byNet]);
   return (
     <RFrame app={app} cur={cur} nav="market" label={t('Tela Mercado do Dinn: o cursor escolhe o mercado, a participação por laboratório e por SKU carrega e as vendas estimadas do laboratório e dos concorrentes aparecem semana a semana.')}>
-      <RPage top={<RTop crumb={t('Mercado')} />} y={phase >= 5 ? 420 : 0} filters={(
+      <RPage top={<RTop crumb={t('Mercado')} />} y={phase >= 7 ? 840 : phase >= 5 ? 420 : 0} filters={(
         <>
           <RSelect k="mkt" tg={tg} label={t('Mercado')} count={phase >= 2 ? 1 : undefined} w={190} open={phase === 1} items={MARKETS.map((x) => t(x))} picked={phase >= 2 ? [0] : []} search="" />
           <RSelect k="brick" tg={tg} label="Brick" w={190} />
@@ -318,17 +373,34 @@ function MarketView({ step, def }: DemoProps) {
             series={[{ values: LAB_S, color: BRAND }, { values: COMP_S, color: SKY }]}
             tip={phase >= 6 ? { i: 9, text: <><b>{t('Semana de {d}', { d: shortFmt(lang, 4, 10) })}</b><span><i style={{ background: BRAND }} />{t('Meu laboratório: {n} mil', { n: 54 })}</span><br /><span><i style={{ background: SKY }} />{t('Concorrentes: {n} mil', { n: 153 })}</span></> } : undefined} />
         </RCard>
-        <div className="rl-sect-h"><div><h3><Store size={24} /> {t('PDVs do mercado')}</h3><p>{t('{n} PDVs encontrados', { n: fmt(1512) })}</p></div></div>
-        <div className="rl-aside"><RSeg items={[t('Por PDV'), t('Por rede')]} /><span className="rl-search" style={{ flex: 1 }}><Search size={16} />{t('Buscar por CNPJ, rede ou cidade...')}</span><RDrop v={t('Concentram 80% do volume')} w={240} /><RIconBtn><Download size={16} /></RIconBtn></div>
-        <RCard>
-          <table className="rl-table">
-            <thead><tr><RTh>{t('PDV')}</RTh><RTh>{t('Localização')}</RTh><RTh sort active="down">{t('Volume no mercado')}</RTh><RTh sort>{t('Meu laboratório')}</RTh><RTh sort>{t('Concorrentes')}</RTh></tr></thead>
-            <tbody>
-              {MKT_PDV.map(([n, net, a, lb, c]) => (
-                <tr key={n}><td className="rl-name"><b>{n}</b><small>{net}</small></td><td>{a}</td><td>{fmt(lb + c)}</td><td>{lb}</td><td>{c}</td></tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="rl-sect-h"><div><h3><Store size={24} /> {t('PDVs do mercado')}</h3><p>{byNet ? t('{n} redes encontradas', { n: MKT_NET.length }) : t('{n} PDVs encontrados', { n: fmt(1512) })}</p></div></div>
+        <div className="rl-aside" {...tg('pdv')}><span {...tg('seg')}><RSeg items={[t('Por PDV'), t('Por rede')]} on={byNet ? 1 : 0} /></span>{!byNet && <><span className="rl-search" style={{ flex: 1 }}><Search size={16} />{t('Buscar por CNPJ, rede ou cidade...')}</span><RDrop v={t('Concentram 80% do volume')} w={240} /></>}{byNet && <span style={{ flex: 1 }} />}<RIconBtn><Download size={16} /></RIconBtn></div>
+        <RCard t={tg('net')}>
+          <div ref={hs} className="rl-hs">
+            {!byNet ? (
+              <table className="rl-table">
+                <thead><tr><RTh>{t('PDV')}</RTh><RTh>{t('Localização')}</RTh><RTh sort active="down">{t('Volume no mercado')}</RTh><RTh sort>{t('Meu laboratório')}</RTh><RTh sort>{t('Concorrentes')}</RTh><RTh sort>{t('Participação')}</RTh><RTh>{t('Acumulado')}</RTh><RTh>{t('Situação')}</RTh></tr></thead>
+                <tbody>
+                  {MKT_PDV.map(([n, net, a, lb, c], i) => {
+                    const [part, acc, , st] = MKT_MORE[i];
+                    return (
+                      <tr key={n}><td className="rl-name"><b>{n}</b><small>{net}</small></td><td>{a}</td><td>{fmt(lb + c)}</td><td>{i === 2 ? 0 : lb}</td><td>{i === 2 ? lb + c : c}</td><td>{part}</td><td>{acc}</td>
+                        <td>{st.split(' + ').map((x) => <span key={x} className={`rl-sit ${x === 'Sem meu lab' ? 'out' : ''}`}>{t(x)}</span>)}</td></tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              <table className="rl-table rl-sticky">
+                <thead><tr><RTh>{t('Rede')}</RTh><RTh sort>{t('PDVs no mercado')}</RTh><RTh>{t('PDVs no top 80%')}</RTh><RTh>{t('PDVs sem meu lab')}</RTh><RTh sort>{t('Volume no mercado')}</RTh><RTh>{t('Meu laboratório')}</RTh><RTh>{t('Concorrentes')}</RTh><RTh>{t('Participação')}</RTh><RTh>{t('Cadastradas')}</RTh><RTh>{t('C/ registro')}</RTh><RTh>{t('Estoque zero')}</RTh><RTh>{t('Estoque positivo')}</RTh><RTh sort active="up">{t('Cobertura')}</RTh></tr></thead>
+                <tbody>
+                  {MKT_NET.map(([n, a, b, c, v, ml, cp, pt, cad, reg, z, pos, cov]) => (
+                    <tr key={n}><td className="rl-name"><b>{n}</b></td><td>{a}</td><td>{b}</td><td>{c}</td><td>{v}</td><td>{ml}</td><td>{cp}</td><td>{pt}</td><td>{cad}</td><td>{reg}</td><td>{z}</td><td>{pos}</td><td><PctBar v={cov} /></td></tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </RCard>
       </RPage>
     </RFrame>
@@ -421,7 +493,7 @@ function OpportunitiesView({ step, def }: DemoProps) {
     <RFrame app={app} cur={cur} nav="opps" label={t('Tela Oportunidades do Dinn: o cursor escolhe a pergunta “Onde meu laboratório perde espaço?”, o mapa e os territórios mudam e o detalhe de Santa Catarina abre com as ações recomendadas.')}>
       <RPage top={<RTop crumb={t('Oportunidades')} actions={false} />} y={phase >= 2 ? 236 : 0}>
         <div className="rl-aside" style={{ alignItems: 'flex-end', gap: 12 }}>
-          <span className="rl-fl"><em>{t('Mercado')} <Info size={12} /></em><RDrop v={t('Analgésicos')} w={230} /></span>
+          <span className="rl-fl"><em>{t('Mercado')} <Info size={12} /></em><RDrop v={t('Mercado Exemplo A')} w={230} /></span>
           <span className="rl-fl"><em>{t('Região')} <Info size={12} /></em><RDrop v={t('Todas as regiões')} w={180} /></span>
           <span className="rl-fl"><em>{t('Cidade')} <Info size={12} /></em><span className="rl-sel off" style={{ width: 160 }}>{t('Cidade')}<ChevronDown size={16} /></span></span>
           <span className="rl-fl"><em>{t('Rede')}</em><RDrop v={t('Rede')} w={160} /></span>
@@ -511,7 +583,7 @@ function OpportunitiesView({ step, def }: DemoProps) {
             <p className="rl-explain">{t('O laboratório cresceu +{a}% ({b} → {c} un./sem.), mas o mercado comparável cresceu +{d}% ({e} → {f}). A participação caiu porque outros produtos cresceram mais, não porque as vendas do laboratório diminuíram.', { a: fmt(5.5, 1), b: fmt(2293), c: fmt(2420), d: fmt(14.8, 1), e: fmt(4310), f: fmt(4950) })}</p>
             <div className="rl-acts" {...tg('acts')}>
               <header>
-                <div><h5><JeanOrb size={16} />{t('Ações recomendadas')}</h5><p>{t('Até 5 ações curtas para o seu time, geradas pelo Dinn a partir deste cenário.')}</p></div>
+                <div><h5><JeanOrb size={16} />{t('Ações recomendadas')}</h5><p>{t('Até 5 ações curtas para o seu time, sugeridas pela Jean a partir deste cenário.')}</p></div>
                 {phase >= 5
                   ? <span className="rl-gen line"><RefreshCw size={15} />{t('Gerar de novo')}</span>
                   : <span className="rl-gen" {...tg('gen')}>{phase === 4 ? <LoaderCircle size={15} className="rl-spin" /> : <JeanOrb size={15} />}{phase === 4 ? t('Gerando…') : t('Gerar recomendações')}</span>}
@@ -603,8 +675,7 @@ function DistributionView({ step, def }: DemoProps) {
           </div>
           <div className="rl-dist-side" {...tg('side')}>
             <h5>{t('Quais lojas mostrar')} <Info size={13} /></h5>
-            <RDrop v={t('Proximidade + compra')} w={262} />
-            <p>{t('Nem toda loja compradora aparece: parte dos CNPJs do histórico de compra não está no cadastro da Dinn.')}</p>
+            <RDrop v={t('Por proximidade')} w={262} />
             <h5>{t('Raio da região')} <Info size={13} /></h5>
             <div className="rl-rad"><span>10 km</span><span className={!wide ? 'on' : ''}>30 km</span><span className={wide ? 'on' : ''} {...tg('r50')}>50 km</span></div>
             <h5>{t('Período')}</h5>
@@ -652,7 +723,7 @@ function DistributionView({ step, def }: DemoProps) {
                   <p>{t('Apenas 28% das lojas da região têm o produto, mesmo com giro de {n} un./dia. Ampliar a distribuição pode capturar mais vendas.', { n: fmt(7.6, 1) })}</p>
                 </div>
               </div>
-              <div className="rl-sect-h" style={{ marginTop: 4 }}><h3 style={{ fontSize: 19 }}><Store size={20} /> {t('Lista de PDVs do interesse deste CD')}</h3><p style={{ fontSize: 13 }}><b style={{ color: '#0a0a0a', fontWeight: 500 }}>{t('CD:')}</b> DISTRIBUIDORA PLANALTO DF · {t('{n} lojas', { n: 336 })}</p></div>
+              <div className="rl-sect-h" style={{ marginTop: 4 }} {...tg('dlist')}><h3 style={{ fontSize: 19 }}><Store size={20} /> {t('Lista de PDVs do Interesse deste CD')}</h3><p style={{ fontSize: 13 }}><b style={{ color: '#0a0a0a', fontWeight: 500 }}>{t('CD:')}</b> DISTRIBUIDORA PLANALTO DF · {t('{n} lojas', { n: 336 })}</p></div>
               <table className="rl-table">
                 <thead><tr><RTh sort active="up">{t('PDV')}</RTh><RTh sort>{t('Estoque')}</RTh><RTh>{t('Preço')}</RTh><RTh sort>{t('Giro')}</RTh><RTh sort>{t('Parados')}</RTh></tr></thead>
                 <tbody>

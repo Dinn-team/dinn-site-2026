@@ -333,7 +333,7 @@ export function Frame({
       <motion.div ref={app} className={`dnn-app dd-app ${bare ? 'dd-bare' : ''} ${kind}`} style={{ width: w, height: h, transform: camOn ? camTransform : `scale(${s})` }}>
         {side}
         {!bare && !side && <nav className="dd-side" aria-hidden="true">
-          <img src="/logo/Dinn_logo_v2_Light.svg" alt="" width={34} height={14} />
+          <img src="/logo/Dinn_logo_v2_Dark.png" alt="" width={34} height={14} />
           {NAV.map(({ k, icon: I }) => (
             <span key={k} className={k === nav ? 'on' : ''}><I size={18} /></span>
           ))}

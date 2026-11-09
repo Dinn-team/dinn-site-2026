@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { FeaturePage } from '@/components/site/FeaturesV2';
+import { FeatureDeepPage } from '@/components/features/FeatureDeepPage';
+import { FEATURE_CONTENT } from '@/components/features/content';
 import { JeanPage } from '@/components/site/JeanPage';
 import { pagesPt } from '@/i18n/locales/pt.pages';
 import { FEATURE_SLUGS } from '@/lib/site-map';
@@ -11,10 +12,12 @@ export function getStaticPaths() {
 
 const { slug } = Astro.props;
 const feature = pagesPt.features.items.find((f) => f.id === slug)!;
-// A Jean tem página própria (JeanPage); as outras usam o molde de funcionalidade.
-const meta = slug === 'jean' ? pagesPt.jean.meta : { title: `${feature.name} | Dinn`, description: feature.problem };
+// A Jean tem página própria (JeanPage). As funcionalidades com conteúdo completo usam o molde do
+// Suporte (FeatureDeepPage).
+const deep = FEATURE_CONTENT[slug];
+const meta = slug === 'jean' ? pagesPt.jean.meta : deep ? deep.meta : { title: `${feature.name} | Dinn`, description: feature.problem };
 ---
 
 <Layout title={meta.title} description={meta.description}>
-  {slug === 'jean' ? <JeanPage client:load /> : <FeaturePage slug={slug} client:load />}
+  {slug === 'jean' ? <JeanPage client:load /> : deep ? <FeatureDeepPage c={deep} client:load /> : null}
 </Layout>

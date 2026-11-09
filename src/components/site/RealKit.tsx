@@ -48,7 +48,7 @@ export function RSide({ nav }: { nav: string }) {
   const { t } = useDemoT();
   return (
     <nav className="rl-side" aria-hidden="true">
-      <img src="/logo/Dinn_logo_v2_Light.svg" alt="" width={86} height={34} />
+      <img src="/logo/Dinn_logo_v2_Dark.png" alt="" width={86} height={34} />
       <ul>
         {NAV.map(({ k, icon: I, label }) => (
           <li key={k} className={k === nav ? 'on' : ''}><I size={18} />{t(label)}</li>

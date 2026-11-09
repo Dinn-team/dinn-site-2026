@@ -1,0 +1,113 @@
+/* Páginas de funcionalidade no molde do Suporte (prefixo fx-). Reusa h2-*, tr-*, sp2-* e h2-pin. */
+.fx-hero { padding-bottom: clamp(40px, 5vw, 72px); }
+.fx-note { margin: 14px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--muted-foreground); max-width: 46ch; }
+.fx .h2-actions { margin-top: 24px; }
+
+.fx-sec, .fx .tr-sec { scroll-margin-top: 80px; }
+
+/* Quem usa */
+.fx-who { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 28px; font-size: 15px; color: var(--muted-foreground); }
+.fx-who > span { color: var(--foreground); font-weight: 500; }
+.fx-who ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.fx-who li a { display: inline-flex; align-items: center; gap: 4px; padding: 8px 14px; border-radius: 9999px; background: var(--muted); font-size: 14px; color: var(--foreground); text-decoration: none; transition: background 0.25s; }
+.fx-who li a:hover { background: color-mix(in oklab, var(--primary) 10%, var(--muted)); }
+
+/* Portas: uma tela do produto parada em cada ponto onde a funcionalidade aparece */
+.fx-doors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3.4vw, 48px) clamp(20px, 2.4vw, 32px); }
+.fx-doors li { display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; align-content: start; min-width: 0; }
+.fx-shot { position: relative; min-width: 0; overflow: hidden; border-radius: 16px; background: #08090a center / cover; aspect-ratio: 16 / 10; display: grid; align-items: start; padding: 9% 0 0 7%; }
+.fx-still { width: 100%; min-width: 0; }
+.fx-still .dd-stage { border-radius: 0; }
+.fx-shot .fx-still, .fx-pinshot .fx-still { border-radius: 14px 0 0 0; overflow: hidden; background: #f7f7f8; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 30px 70px -20px rgba(8, 9, 10, 0.6); }
+.fx-doors h3 { margin-top: 12px; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
+.fx-doors p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--muted-foreground); max-width: 56ch; }
+.fx-doors .h2-link { margin-top: 6px; justify-self: start; }
+
+/* Pergunta para a Jean, como texto */
+.fx-ask { align-self: stretch; display: grid; align-content: center; gap: 14px; padding: clamp(20px, 3vw, 40px); background: var(--background); }
+.fx-ask-q { margin: 0; justify-self: start; max-width: 36ch; padding: 14px 18px; border-radius: 18px 18px 18px 4px; background: var(--muted); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.4; color: var(--foreground); }
+.fx-ask-a { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 42ch; }
+
+/* Por dentro */
+.fx-pinshot { padding: 8% 0 0 6%; background: #08090a center / cover; aspect-ratio: 16 / 10; align-self: center; overflow: hidden; border-radius: 16px; }
+.fx-pinshot .sp2-slide { width: 100%; }
+
+/* Como ler: indicador, o que significa, como aparece */
+.fx-read { margin: 0; display: grid; border-top: 1px solid var(--border); }
+.fx-read-row { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: 8px clamp(16px, 3vw, 40px); padding: 20px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.fx-read dt { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; color: var(--foreground); }
+.fx-read dd { margin: 0; font-size: 15px; line-height: 1.55; color: var(--foreground); }
+.fx-read dd.fx-how { color: var(--muted-foreground); font-size: 14px; }
+
+/* Como usar */
+.fx-steps { list-style: none; counter-reset: fx; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.fx-steps li { counter-increment: fx; position: relative; padding-left: 26px; font-size: 15px; line-height: 1.5; color: var(--foreground); }
+.fx-steps li::before { content: counter(fx); position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--muted); font-size: 11px; line-height: 18px; text-align: center; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.is-muted .fx-steps li::before { background: var(--background); }
+.fx .sp2-safety { max-width: 70ch; }
+
+/* Junto com outras funcionalidades */
+.fx-rel { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.fx-rel a { display: grid; align-content: start; gap: 8px; height: 100%; padding: 24px; border-radius: 16px; background: var(--background); text-decoration: none; color: var(--foreground); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.fx-rel a:hover { transform: translateY(-3px); }
+.fx-rel strong { font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
+.fx-rel span { font-size: 15px; line-height: 1.5; color: var(--muted-foreground); }
+.fx-rel em { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-style: normal; font-size: 14px; color: var(--foreground); }
+
+@media (max-width: 1000px) {
+  .fx-doors { grid-template-columns: 1fr; }
+  .fx-read-row { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-rel a { transition: none; }
+  .fx-rel a:hover { transform: none; }
+}
+
+/* Jean em destaque: conversa animada sobre degradê (estilo ElevenLabs) e perguntas de exemplo */
+.fx-jean-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.fx-jean-grid > * { min-width: 0; }
+.fx-jean-copy .h2-sub { margin-top: 16px; max-width: 40ch; font-size: 17px; line-height: 1.55; }
+.fx-jean-label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 14.5px; font-weight: 500; color: var(--foreground); }
+.fx-jean-label .jean-orb { color: var(--primary); }
+.fx-jean-copy .fx-prompts { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 12px; }
+.fx-prompts li { padding: 14px 20px; border-radius: 20px; background: var(--background); font-size: 15.5px; line-height: 1.4; color: var(--foreground); }
+.fx-jean-copy .h2-link { margin-top: 32px; display: inline-flex; }
+
+.jc { position: relative; isolation: isolate; overflow: hidden; border-radius: 24px; min-height: clamp(520px, 62vh, 620px); background-size: cover; background-position: center; color: #fff; }
+.jc::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(8, 9, 10, 0.34); }
+.jc::after { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0.35; mix-blend-mode: overlay; pointer-events: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.jc-feed { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; padding: 40px clamp(20px, 3.4vw, 40px) clamp(24px, 3vw, 36px); overflow: hidden; transition: opacity 0.5s ease; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%); mask-image: linear-gradient(to bottom, transparent 0, #000 22%); }
+.jc-feed.is-out { opacity: 0; }
+.jc-q, .jc-a { margin: 0; animation: jc-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.jc-q { align-self: flex-end; max-width: 78%; padding: 14px 22px; border-radius: 26px 26px 6px 26px; border: 1px solid rgba(255, 255, 255, 0.6); font-size: clamp(15px, 1.3vw, 17px); font-weight: 600; line-height: 1.4; color: #fff; }
+.jc-a { align-self: flex-start; max-width: 84%; padding: 18px 24px; border-radius: 26px 26px 26px 6px; background: var(--background); font-size: clamp(15.5px, 1.3vw, 17px); line-height: 1.55; color: var(--foreground); box-shadow: 0 10px 40px -16px rgba(8, 9, 10, 0.5); }
+.jc-a p { margin: 0; }
+.jc-think { display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--muted-foreground); }
+.jc-dots { display: inline-flex; gap: 4px; }
+.jc-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted-foreground); animation: jc-dot 1s ease-in-out infinite; }
+.jc-dots i:nth-child(2) { animation-delay: 0.15s; }
+.jc-dots i:nth-child(3) { animation-delay: 0.3s; }
+.jc-caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: text-bottom; background: currentColor; animation: jc-blink 1s steps(2) infinite; }
+.jc-caret.is-dark { background: var(--foreground); }
+.jc-card { margin-top: 18px; padding: 14px 16px; border-radius: 16px; background: var(--muted); animation: jc-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.jc-card > b { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--foreground); }
+.jc-card ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.jc-card li { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--muted-foreground); }
+.jc-card li:first-child { border-top: 0; }
+.jc-card li span { min-width: 0; }
+.jc-card li strong { font-weight: 500; font-variant-numeric: tabular-nums; color: var(--foreground); white-space: nowrap; }
+.jc-steps { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 8px; animation: jc-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.jc-steps span { display: inline-flex; align-items: center; gap: 6px; padding: 11px 20px; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.6); font-size: 14px; font-weight: 500; color: #fff; }
+@keyframes jc-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes jc-dot { 0%, 80%, 100% { opacity: 0.3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+@keyframes jc-blink { 50% { opacity: 0; } }
+@media (max-width: 1000px) {
+  .fx-jean-grid { grid-template-columns: 1fr; }
+  .jc { min-height: 540px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jc-q, .jc-a, .jc-card, .jc-steps { animation: none; }
+  .jc-dots i, .jc-caret { animation: none; }
+}
+.fx-doors.is-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .fx-doors.is-3 { grid-template-columns: 1fr; } }

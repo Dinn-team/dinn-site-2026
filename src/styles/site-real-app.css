@@ -584,3 +584,14 @@
 .rs-hint { font-size: 12.5px; color: #71717a; }
 .rl-dlg footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .rl-dlg { animation: none; } }
+.rl-dash { color: var(--rl-mfg); }
+.rl-hs { overflow: hidden; }
+.rl-resin { display: flex; flex-direction: column; gap: 12px; transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1); }
+.rl-rest-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 12px; font-weight: 600; color: #71717a; }
+.rl-rest-h > span { display: inline-flex; align-items: center; gap: 6px; }
+.rl-rest-h .rl-sel-wrap { position: relative; }
+.rl-rest-h .rl-menu { left: auto; right: 0; min-width: 160px; }
+.rl-rest { animation: none; }
+.rl-sit { display: inline-block; margin-right: 6px; padding: 3px 10px; border-radius: 999px; background: #f4f4f5; font-size: 12px; font-weight: 500; color: #3f3f46; white-space: nowrap; }
+.rl-sit.out { background: #fff; box-shadow: inset 0 0 0 1px #d4d4d8; }
+.rl-sticky tr > :first-child { position: sticky; left: 0; z-index: 1; background: #fff; box-shadow: 1px 0 0 var(--rl-line); }

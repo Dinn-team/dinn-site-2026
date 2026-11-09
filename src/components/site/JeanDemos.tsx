@@ -216,7 +216,7 @@ export function JeanSettingsDemo({ step, def = SET_DEF }: DemoProps) {
             </RCard>
             <RCard>
               <div className="jd-conn">
-                <span className="jd-ico jd-logo"><img src="/logo/Dinn_logo_v2_Light.svg" alt="" width={26} height={10} /></span>
+                <span className="jd-ico jd-logo"><img src="/logo/Dinn_logo_v2_Dark.png" alt="" width={26} height={10} /></span>
                 <div><b>Dinn <span className="rl-badge low">{t('Conectado')}</span></b><small>Laboratório Exemplo · {t('Produtos, redes e regiões do seu plano')}</small></div>
                 <span className="rl-gen line">{t('Gerenciar')}</span>
               </div>

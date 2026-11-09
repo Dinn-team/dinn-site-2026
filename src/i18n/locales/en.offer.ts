@@ -368,8 +368,8 @@ export const offerEn = {
       caption: "Illustrative data and names.",
       screens: {
         ruptura: "Home",
-        giro: "Home",
-        preco: "Home",
+        giro: "Home and Locator",
+        preco: "Locator and Home",
         localizador: "Product Locator",
         mercado: "Market",
         oportunidades: "Opportunities",
@@ -383,10 +383,10 @@ export const offerEn = {
         id: "ruptura", name: "Stock-out", kind: "produto",
         problem: "Which product is missing, and where do I start to check?",
         input: "SKU, chain and region.",
-        action: "Select the scope. Dinn shows the period and the denominator of the reading and opens the stores.",
-        output: "Stores sorted by the share of days without stock over the days observed.",
+        action: "Select the scope. Dinn shows the stock-out over time and opens the stores.",
+        output: "Stores sorted by level: Critical, High, Moderate and Low. Level uses the last 30 days.",
         decision: "Which stores to check first.",
-        limit: "Absence is not a confirmed stock-out. Stores that never sold the item are not in the calculation. Estimated stock has a label and a confidence level.",
+        limit: "Absence is not a confirmed stock-out. Data is from the previous day (D-1). Stores that never sold the item are not in the calculation.",
         href: "/solucoes/trade-kam-campo"
       },
       {
@@ -403,15 +403,15 @@ export const offerEn = {
         id: "preco", name: "Price", kind: "produto",
         problem: "At what price is my product in the stores?",
         input: "Product, chain and region.",
-        action: "Select the product. Dinn shows the price observed in each store and sorts the list by price.",
-        output: "Price by store and by chain, with the date of the reading.",
+        action: "Select the product. Dinn shows the price observed in each store. In the Locator, the list sorts by price.",
+        output: "Price by store. The Locator shows the date of the reading.",
         decision: "In which chain or store the price goes out of range.",
         limit: "It is the price observed in the digital channel of the store. Compare only what is comparable.",
         href: "/solucoes/inteligencia-pricing"
       },
       {
         id: "localizador", name: "Product Locator", kind: "produto",
-        problem: "Where can the consumer find the product nearby?",
+        problem: "Where can the consumer find the product nearby, and how far can I trust a store?",
         input: "Product and address.",
         action: "Search the stores by distance. In a compatible store, click “Check now” to confirm the stock.",
         output: "Nearby stores with availability, distance and the date of the information. For a check, the time of the response.",
@@ -422,9 +422,9 @@ export const offerEn = {
       {
         id: "mercado", name: "Market", kind: "produto",
         problem: "Did I lose share or lose sales?",
-        input: "Product basket, store universe and window.",
-        action: "Define the basket and the comparable stores. Compare your product with the category.",
-        output: "Trend of your product and the category in the same stores, and where only the competitor has stock.",
+        input: "Market, Brick and window.",
+        action: "Choose the market and the window. Compare your lab with the sum of the competitors in the same stores.",
+        output: "Share by lab and by product, estimated sales over time and the stores where only the competitor sells.",
         decision: "Where to win back space.",
         limit: "Sales are estimated. Competitor data is aggregated and respects usage rights.",
         href: "/solucoes/inteligencia-pricing"
@@ -442,8 +442,8 @@ export const offerEn = {
       {
         id: "distribuicao", name: "Distribution", kind: "produto",
         problem: "Is the gap at the DC, in replenishment or at the pharmacy?",
-        input: "DC, the stores it supplies and product.",
-        action: "Compare DC stock with store availability, through the confirmed supply link.",
+        input: "DC, product and the stores in its region.",
+        action: "Compare DC stock with store availability inside its radius.",
         output: "The DC and the stores side by side, with coverage in days.",
         decision: "Where to check the order, replenishment or reallocation.",
         limit: "Geographic proximity is not a supply link. The pattern is a hypothesis. Investigate the cause.",

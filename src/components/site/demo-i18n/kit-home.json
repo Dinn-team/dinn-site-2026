@@ -55,6 +55,7 @@
   "Giro": { "en": "Sell-through", "es": "Rotación" },
   "Reposição": { "en": "Restock", "es": "Reposición" },
   "VB sugerido": { "en": "VB suggested", "es": "VB sugerido" },
+  "VB Sugerido": { "en": "VB suggested", "es": "VB sugerido" },
   "Localização": { "en": "Location", "es": "Ubicación" },
   "Data de corte": { "en": "Cutoff date", "es": "Fecha de corte" },
   "Total de PDV": { "en": "Total POS", "es": "Total de PDV" },
@@ -109,8 +110,8 @@
     "en": "Dinn Home screen. Availability by chain shows stores out of stock, with no sales, and selling. The cursor opens one chain, picks 30-day idle stock, and sorts POS by idle days.",
     "es": "Pantalla de Inicio de Dinn. La disponibilidad por red muestra tiendas sin stock, sin ventas y rotando. El cursor abre una red, elige el stock parado de 30 días y ordena los PDV por días parado."
   },
-  "Tela Início do Dinn: a tabela de pontos de venda mostra o preço observado em cada loja; o cursor ordena pelo preço e filtra uma rede.": {
-    "en": "Dinn Home screen. The points-of-sale table shows the price seen in each store. The cursor sorts by price and filters one chain.",
-    "es": "Pantalla de Inicio de Dinn. La tabla de puntos de venta muestra el precio visto en cada tienda. El cursor ordena por precio y filtra una red."
+  "Tela Início do Dinn: com um produto escolhido, a coluna Preço da tabela de pontos de venda mostra o valor de cada loja; o cursor escolhe o produto e filtra uma rede.": {
+    "en": "Dinn Home screen. With one product chosen, the Price column of the points-of-sale table shows the value in each store. The cursor picks the product and filters one chain.",
+    "es": "Pantalla de Inicio de Dinn. Con un producto elegido, la columna Precio de la tabla de puntos de venta muestra el valor de cada tienda. El cursor elige el producto y filtra una red."
   }
 }

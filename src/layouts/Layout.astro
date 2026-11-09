@@ -130,7 +130,9 @@ const enableApolloTracking = import.meta.env.PROD;
 		))}
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
-		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 		{/* Pesos usados pelo H1 do hero (LCP). Sem o preload eles só seriam
 		    descobertos depois que o CSS baixasse e casasse as regras. */}

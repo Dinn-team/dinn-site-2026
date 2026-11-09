@@ -51,7 +51,7 @@ function Sidebar({ active }: { active?: boolean }) {
   const { t } = useDemoT();
   return (
     <aside className="sidebar">
-      <div className="logo"><img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn" /></div>
+      <div className="logo"><img src="/logo/Dinn_logo_v2_Dark.png" alt="Dinn" /></div>
       <nav>
         {NAV.map(({ label, Icon }) => (
           <span key={label} className="nav-item"><Icon className="i" aria-hidden="true" /><span>{t(label)}</span></span>

@@ -368,8 +368,8 @@ export const offerEs = {
       caption: "Datos y nombres ilustrativos.",
       screens: {
         ruptura: "Inicio",
-        giro: "Inicio",
-        preco: "Inicio",
+        giro: "Inicio y Localizador",
+        preco: "Localizador e Inicio",
         localizador: "Localizar Productos",
         mercado: "Mercado",
         oportunidades: "Oportunidades",
@@ -383,10 +383,10 @@ export const offerEs = {
         id: "ruptura", name: "Quiebre", kind: "produto",
         problem: "¿Qué producto falta, y por dónde empiezo a verificar?",
         input: "SKU, cadena y región.",
-        action: "Selecciona el segmento. Dinn muestra el período y el denominador de la lectura y abre las tiendas.",
-        output: "Tiendas ordenadas por la proporción de días sin inventario sobre días observados.",
+        action: "Selecciona el segmento. Dinn muestra el quiebre a lo largo del tiempo y abre las tiendas.",
+        output: "Tiendas ordenadas por nivel: Crítico, Alto, Moderado y Leve. El nivel usa los últimos 30 días.",
         decision: "Qué tiendas verificar primero.",
-        limit: "La ausencia no es un quiebre confirmado. Las tiendas que nunca vendieron el ítem no entran en el cálculo. El inventario estimado aparece con etiqueta y nivel de confianza.",
+        limit: "La ausencia no es un quiebre confirmado. El dato es del día anterior (D-1). Las tiendas que nunca vendieron el ítem no entran en el cálculo.",
         href: "/solucoes/trade-kam-campo"
       },
       {
@@ -403,15 +403,15 @@ export const offerEs = {
         id: "preco", name: "Precio", kind: "produto",
         problem: "¿A qué precio está mi producto en las tiendas?",
         input: "Producto, cadena y región.",
-        action: "Elige el producto. Dinn muestra el precio observado en cada tienda y ordena la lista por precio.",
-        output: "Precio por tienda y por cadena, con la fecha de la lectura.",
+        action: "Elige el producto. Dinn muestra el precio observado en cada tienda. En el Localizador, la lista se ordena por precio.",
+        output: "Precio por tienda. El Localizador muestra la fecha de la lectura.",
         decision: "En qué cadena o tienda el precio sale del rango.",
         limit: "Es el precio observado en el canal digital de la tienda. Compara solo lo que es comparable.",
         href: "/solucoes/inteligencia-pricing"
       },
       {
         id: "localizador", name: "Localizador de Productos", kind: "produto",
-        problem: "¿Dónde encuentra el consumidor el producto cerca?",
+        problem: "¿Dónde encuentra el consumidor el producto cerca, y con qué confianza puedo indicar la tienda?",
         input: "Producto y dirección.",
         action: "Busca las tiendas por distancia. En una tienda compatible, haz clic en “Consultar ahora” para confirmar el inventario.",
         output: "Tiendas cercanas con disponibilidad, distancia y la fecha de la información. En la consulta, la hora de la respuesta.",
@@ -422,9 +422,9 @@ export const offerEs = {
       {
         id: "mercado", name: "Mercado", kind: "produto",
         problem: "¿Perdí participación o perdí venta?",
-        input: "Canasta de productos, universo de tiendas y ventana.",
-        action: "Define la canasta y las tiendas comparables. Compara tu producto con la categoría.",
-        output: "Tendencia de tu producto y de la categoría en las mismas tiendas, y dónde solo el competidor tiene inventario.",
+        input: "Mercado, Brick y ventana.",
+        action: "Elige el mercado y la ventana. Compara tu laboratorio con la suma de los competidores en las mismas tiendas.",
+        output: "Participación por laboratorio y por producto, ventas estimadas a lo largo del tiempo y las tiendas donde solo vende el competidor.",
         decision: "Dónde recuperar espacio.",
         limit: "La venta es estimada. Los datos de competidores están agregados y respetan los derechos de uso.",
         href: "/solucoes/inteligencia-pricing"
@@ -442,8 +442,8 @@ export const offerEs = {
       {
         id: "distribuicao", name: "Distribución", kind: "produto",
         problem: "¿La falla está en el CEDIS, en la reposición o en la farmacia?",
-        input: "CEDIS, tiendas que abastece y producto.",
-        action: "Compara el inventario del CEDIS con la disponibilidad en las tiendas, por el vínculo de abasto confirmado.",
+        input: "CEDIS, producto y las tiendas de su región.",
+        action: "Compara el inventario del CEDIS con la disponibilidad en las tiendas dentro de su radio.",
         output: "El CEDIS y las tiendas lado a lado, con la cobertura en días.",
         decision: "Dónde revisar pedido, reposición o reubicación.",
         limit: "Cercanía geográfica no es vínculo de abasto. El patrón es una hipótesis. Investiga la causa.",

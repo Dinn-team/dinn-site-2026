@@ -71,7 +71,7 @@ export function ConnectionSurface() {
         <div className="map-core">
           <div className="core-orbit" aria-hidden="true" />
           <div className="core-content">
-            <img src="/logo/Dinn_logo_v2_Light.svg" alt="Dinn" width={94} height={36} loading="lazy" decoding="async" />
+            <img src="/logo/Dinn_logo_v2_Dark.png" alt="Dinn" width={94} height={36} loading="lazy" decoding="async" />
             <strong>{core.name}<span>.</span></strong>
             <span>{core.sub}</span>
           </div>
