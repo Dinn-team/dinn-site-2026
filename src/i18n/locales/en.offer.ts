@@ -84,14 +84,14 @@ export const offerEn = {
   realtime: {
     eyebrow: "Real-time stock",
     title: "Need to check now? *Check stock in real time.*",
-    text: "In the Locator, check the availability that compatible stores report at that moment. See the time of the query. Real-time, D-1 and estimated stock are different readings.",
+    text: "In the Locator, Dinn checks the five closest stores to the address in real time. You check the other compatible stores one by one. See the time of the query. Real-time, D-1 and estimated stock are different readings.",
     condition: "Available depending on chain, source and contracted scope. The information may change after the query.",
     sim: "Simulation · sample values",
     mapAria: "Locator map with pharmacies near the consumer's address, colored by stock level.",
     stepsLabel: "From search to guidance",
     steps: [
-      { title: "Locate", text: "Enter the address or area and the radius. Nearby pharmacies show on the map." },
-      { title: "Pick the store", text: "Open a store. The base reading is from yesterday. Only compatible stores have the query." },
+      { title: "Locate", text: "Enter the address or area and the radius. Nearby pharmacies show on the map. Dinn checks the five closest in real time." },
+      { title: "Pick the store", text: "Open a store outside the five closest. The base reading is from yesterday. Only compatible stores have the query." },
       { title: "Check now", text: "Dinn asks the store's source at that moment." },
       { title: "Answer and time", text: "The answer shows the time of the query, apart from yesterday's reading." },
       { title: "Guide", text: "Guide the consumer with what the store reported and when. Share the address." }
@@ -138,12 +138,12 @@ export const offerEn = {
   locator: {
     meta: {
       title: "Locator and real-time stock | Dinn",
-      description: "Query the availability that compatible stores report at that moment. Real-time, D-1 and estimated stock are different readings."
+      description: "Dinn checks the five closest stores in real time. You check the others one by one. Real-time, D-1 and estimated stock are different readings."
     },
     hero: {
       eyebrow: "Dinn Locator",
       title: "Need to check now? *Query real-time stock.*",
-      lead: "In the Locator, query the availability that compatible stores report at that moment. See the time of the query. Real-time, D-1 and estimated stock are different readings."
+      lead: "In the Locator, Dinn checks the five closest stores to the address in real time. You check the other compatible stores one by one. See the time of the query. Real-time, D-1 and estimated stock are different readings."
     },
     scene: { title: "From search to guidance, in five steps" },
     readings: {
@@ -153,13 +153,13 @@ export const offerEn = {
       rows: [
         ["D-1 stock (observed)", "What the source reported the previous day, by store, with the date.", "Daily base, with the date of each reading.", "Prioritize and track a scope."],
         ["Estimated", "Calculated from comparable stores and history when there is no direct response. Always shows a confidence level.", "At the base update.", "Fill a missing direct signal. Confirm before you act."],
-        ["Real time (query)", "The response the store reports to the source at the moment of the query, with the time.", "At the moment you query, one store at a time.", "Confirm availability before you guide someone or visit."]
+        ["Real time (query)", "The response the store reports to the source at the moment of the query, with the time.", "At the moment of the query. Dinn checks the five closest on its own. The others, one store at a time.", "Confirm availability before you guide someone or visit."]
       ]
     },
     when: {
       title: "When to check now",
       items: [
-        { title: "The consumer's call", text: "A patient asks where to find a medicine. Check the nearest store and answer with what it just reported. Do not call store by store." },
+        { title: "The consumer's call", text: "A patient asks where to find a medicine. Search by the address. Dinn already checks the five closest stores in real time. Answer with what they reported. Do not call store by store." },
         { title: "This afternoon's visit", text: "Before you talk to the chain, see what the store reports now. Take today's data to the conversation, not yesterday's." },
         { title: "After restocking", text: "Did the chain agree to a delivery? Check the same store again. See if the product shows in the answer." }
       ]
@@ -177,7 +177,9 @@ export const offerEn = {
     faq: {
       title: "Questions about real-time stock",
       items: [
-        { question: "Does real time show all stores, always updated?", answer: "No. It is an on-demand query. You choose a compatible store and Dinn asks the source at that moment. The base reading stays D-1." },
+        { question: "Does the Locator check stock in real time?", answer: "Yes. Dinn checks the five closest stores to the address in real time. You can check any other compatible store, one by one. The base reading stays D-1." },
+        { question: "Can I check real-time stock outside the Locator?", answer: "Yes. In Stock-out, open a store and click Check now. The answer shows the time. The stock-out base stays D-1." },
+        { question: "Does real time show all stores, always updated?", answer: "No. Dinn checks the five closest stores on its own. You check the other compatible stores one by one. The base reading stays D-1." },
         { question: "Does the response guarantee the product is there?", answer: "No. It is what the source reported at that time. Stock may change later. Tell the consumer this." },
         { question: "Do all chains have real-time query?", answer: "No. It depends on chain, source and contracted scope. We validate the scope with you before we start." },
         { question: "What is the difference from estimated stock?", answer: "Estimated stock is calculated from comparable stores when there is no direct response. The real-time query is the store's own response, with the time." }
@@ -820,7 +822,7 @@ export const offerEn = {
       rows: [
         ["Observed (D-1)", "What the source reported the previous day, by store.", "Daily base, with the date of each reading."],
         ["Estimated", "Stores with no direct response. Uses comparable stores and history, with a confidence level.", "At the base update."],
-        ["Real time", "Compatible stores, by on-demand query.", "At the moment of the query, one store at a time."]
+        ["Real time", "Compatible stores, by on-demand query.", "At the moment of the query. Five closest in the Locator, the others one at a time."]
       ]
     },
     status: {

@@ -87,7 +87,7 @@ export const enUS = {
         },
         method: [
           "Search from the given address. Nearest stores first.",
-          "Stock is observed at the source (D-1) or estimated from comparable stores. Each value has a confidence level.",
+          "The five closest stores are checked in real time. For the others, stock is observed at the source (D-1) or estimated from comparable stores. Each value has a confidence level.",
           "Days of coverage = stock ÷ the store's average daily sell-through.",
           "Ranking uses availability and distance, not lowest price."
         ],
@@ -637,7 +637,7 @@ export const enUS = {
     destinations: ["BI", "Copilot", "Agents", "API"],
     trust: [
       "Observed or estimated, always stated",
-      "D-1 base plus on-demand checks at eligible stores",
+      "D-1 base plus real-time stock checks at eligible stores",
       "Two-factor auth via email · SSO on request",
       "Implementation in up to 30 days after prerequisites and scope are agreed"
     ],
@@ -648,7 +648,7 @@ export const enUS = {
     items: [
       {
         question: "We already use audits like IQVIA and Close-Up. Why would we need Dinn?",
-        answer: "Dinn **does not replace** market audits. It **complements** them. Audits give a reference for planning and consolidated readings, depending on the product. Dinn tracks availability daily (D-1), store by store. It shows **where to act now**, before a stock-out becomes a lost sale. When authorized, you can cross both readings in the same scope."
+        answer: "Dinn **does not replace** market audits. It **complements** them. Audits give a reference for planning and consolidated readings, depending on the product. Dinn tracks availability daily (D-1), store by store, and you check the stock of one store in real time when you need it. It shows **where to act now**, before a stock-out becomes a lost sale. When authorized, you can cross both readings in the same scope."
       },
       {
         question: "Does implementation require a big IT effort?",
@@ -703,8 +703,12 @@ export const enUS = {
         answer: "No. **Coverage and refresh vary by source, product, chain and query**. Each reading states what it covers. Dinn does not confirm causes. It shows evidence and hypotheses, and the team validates them. Product absence is not always a stock-out. Stock at the distribution center does not prove a store is supplied."
       },
       {
+        question: "Is stock real time?",
+        answer: "The base is from the previous day (D-1), with the date of each reading. On top of it, you **check stock in real time**. In the store detail, in Stock-out, click **Check now**. In the Locator, Dinn already checks the **five closest stores** to the address, and you check the others one by one. Each answer shows the time. It works at eligible stores, depending on chain, source and scope."
+      },
+      {
         question: "What is the difference between observed and estimated data?",
-        answer: "**Observed** data is what the source reported directly, with location and time. **Estimated** data comes from comparable stores and history when there is no direct answer, always with a confidence level. **Inferred** data is the reading Dinn draws by combining signals. It is a hypothesis to validate. The base refreshes as D-1. In eligible stores, you can run an on-demand availability check."
+        answer: "**Observed** data is what the source reported directly, with location and time. **Estimated** data comes from comparable stores and history when there is no direct answer, always with a confidence level. **Inferred** data is the reading Dinn draws by combining signals. It is a hypothesis to validate. The base refreshes as D-1. In eligible stores, you also check stock in real time, one store at a time."
       }
     ]
   },

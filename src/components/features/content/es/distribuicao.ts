@@ -112,7 +112,7 @@ export const content: FeatureContent = {
   doesNot: [
     'No prueba que la causa esté en el CEDIS, en la reposición o en la farmacia. La lectura es una hipótesis.',
     'No trata la cercanía como vínculo de abasto.',
-    'No es tiempo real. El dato es D-1.',
+    'No actualiza la base durante el día. El dato es D-1. El inventario de la farmacia ahora viene de Consultar ahora.',
     'No muestra el inventario exacto de una farmacia en el mapa. El popup muestra el nivel.',
     'No crea pedidos, no reubica inventario y no escribe en el sistema del distribuidor.',
     'No cubre todos los distribuidores. La recolección en los CEDIS es reciente y el historial es corto.',
@@ -150,7 +150,7 @@ export const content: FeatureContent = {
     ],
   },
   faq: [
-    { question: '¿Es en tiempo real?', answer: 'No. El dato es D-1. Solo Consultar ahora, en la lista del CEDIS, lee la farmacia en vivo. Vale para tiendas elegibles.' },
+    { question: '¿Es en tiempo real?', answer: 'La base es D-1. Para ver el inventario de una farmacia ahora, usa Consultar ahora en la lista del CEDIS, en el detalle de la tienda o en el Localizador. Vale para tiendas elegibles.' },
     { question: '¿CEDIS en cero significa quiebre?', answer: 'No necesariamente. Quiebre es el CEDIS y las farmacias en cero. Un CEDIS en cero con farmacias abastecidas indica distribución hecha.' },
     { question: '¿La farmacia dentro del radio compra de este CEDIS?', answer: 'No se puede afirmar. Cercanía no es vínculo de abasto. Donde hay historial de compra, usa los modos de compra.' },
     { question: '¿Cómo se calcula la cobertura?', answer: 'Inventario del CEDIS dividido entre la venta diaria estimada de las farmacias del radio. Es una aproximación de la región.' },

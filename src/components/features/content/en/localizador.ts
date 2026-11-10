@@ -1,21 +1,21 @@
 import type { FeatureContent } from '../../types';
 
 // Product Locator (EN). Simplified Technical English. Source: dinn-manager-app/docs/site-reproducao/funcionalidades/localizador.md.
-// Rules: the map and the list are from the previous day (D-1), as a range. Only "Check now" reads the store at that moment.
+// Rules: the map and the list are from the previous day (D-1), as a range. The Locator checks the five closest stores in real time. At the other stores, "Check now" reads the store at that moment, one by one.
 // No export. A chance of stock is not a guarantee.
 export const content: FeatureContent = {
   slug: 'localizador',
   meta: {
     title: 'Product Locator | Dinn',
-    description: 'Find the stores that have the product near any address. See the stock level from the previous day. Check now at a compatible store.',
+    description: 'Find the stores that have the product near any address. Dinn checks the five closest stores in real time. You check the others one by one.',
   },
   hero: {
     title: 'Find the stores that have the product, near any address.',
     sub: 'Enter the product and the address. Dinn shows nearby pharmacies on the map. You see the stock level, the reliability of the data and the date of the reading.',
-    note: 'Yesterday’s data (D-1). Stock now, only when you check.',
+    note: 'Yesterday’s base (D-1). The five closest stores in real time. The others, when you check.',
   },
   steps: [
-    { title: 'Enter the product and the address', text: 'Search for the product by name or SKU. Type the reference address. Choose the radius, from 5 to 50 km.' },
+    { title: 'Enter the product and the address', text: 'Search for the product by name or SKU. Type the reference address. Choose the radius, from 5 to 50 km. Dinn checks the five closest stores in real time.' },
     { title: 'Read the map and the list', text: 'Each pin is a pharmacy, colored by yesterday’s stock level. The list shows the range, reliability, distance and, if contracted, price.' },
     { title: 'Open the store and confirm', text: 'See sell-through, idle stock and the route. At a compatible store, check now and see the time of the response.' },
   ],
@@ -25,7 +25,7 @@ export const content: FeatureContent = {
     items: [
       {
         title: 'The consumer’s call',
-        text: 'A patient asks where to find a product. Search by the patient’s address. Answer with the closest store and the date of the information. Do not call store by store.',
+        text: 'A patient asks where to find a product. Search by the patient’s address. Dinn already checks the five closest stores in real time. Answer with what they reported and the time. Do not call store by store.',
         shot: { screen: 'locator', phase: 6, to: 'map' },
       },
       {
@@ -59,19 +59,19 @@ export const content: FeatureContent = {
       {
         tab: 'Locate',
         title: 'Enter the address and the radius',
-        text: 'Enter the address or area and the radius. Nearby pharmacies show on the map.',
+        text: 'Enter the address or area and the radius. Nearby pharmacies show on the map. Dinn checks the five closest in real time.',
         shot: { screen: 'locator', phase: 3, to: 'form' },
       },
       {
         tab: 'Pick the store',
         title: 'Open a store',
-        text: 'The base reading is from yesterday. Only compatible stores have the check.',
+        text: 'The five closest stores come already checked in real time. For the others, the base reading is from yesterday. Only compatible stores have the check.',
         shot: { screen: 'locator', phase: 7, to: 'popup' },
       },
       {
         tab: 'Check now',
         title: 'Ask the store’s source',
-        text: 'Dinn asks the store’s source at that moment.',
+        text: 'At any other compatible store, click Check now. Dinn asks the store’s source at that moment.',
         shot: { screen: 'locator', phase: 8, to: 'p-box' },
       },
       {
@@ -94,7 +94,7 @@ export const content: FeatureContent = {
     rows: [
       { label: 'Yesterday’s stock (D-1)', text: 'Stock range read on the previous day. It does not show the exact number.', how: 'Shown as 4–9 units, with the date of the estimate.' },
       { label: 'Estimated stock', text: 'Calculated from the history of the store. It always comes with the reliability level.', how: 'Estimated stock tag in the popup.' },
-      { label: 'Live answer', text: 'What the store answered at the click, with the time. Only at a compatible store.', how: 'Shown as 6 units, with Checked now and the time.' },
+      { label: 'Live answer', text: 'What the store answered at that moment, with the time. Dinn does it on its own for the five closest stores. At the others, you click Check now. Only at a compatible store.', how: 'Shown as 6 units, with Checked now and the time.' },
       { label: 'Pin level', text: 'High in green, Medium in amber, Low in red, Unavailable in gray.', how: 'Color of the pin and of the range in the list.' },
       { label: 'Exact or estimated stock', text: 'Exact is the reading of the store’s e-commerce. Estimated is the projection of the model. Both show as a range.', how: 'Green or purple tag at the top of the popup.' },
       { label: 'Reliability', text: 'A, Reliable. B, Verification recommended. It shows how far to trust the store information.', how: 'Stock reliability line in the popup.' },
@@ -106,13 +106,14 @@ export const content: FeatureContent = {
     'Searches for pharmacies within 5 to 50 km of an address, for one product. The default is 5 km.',
     'Shows the level, yesterday’s stock range, reliability, estimated coverage, sell-through and idle days.',
     'Shows the price seen at the store, with the date of the reading, for customers who contracted price.',
-    'At a compatible store, checks the stock now and shows the quantity with the time.',
+    'Checks the stock of the five closest stores to the address in real time and shows the quantity with the time.',
+    'At any other compatible store, checks the stock now, one store at a time, with the Check now button.',
     'Opens the route in Google Maps, copies the phone number, opens the store site and copies the address and link.',
     'Lets a person who checked the store report the real stock, to improve the model.',
   ],
   doesNot: [
     'Does not show the exact number from the previous day. Only range and level.',
-    'Is not real time. The map and the list are from yesterday.',
+    'Does not show all stores in real time. The base of the map and the list is from yesterday. The check at that moment covers the five closest stores and the stores you check.',
     'Does not guarantee that the product is on the shelf.',
     'Does not draw the radius on the map. The radius only limits the search.',
     'Does not check all stores live. It depends on chain, source and contracted scope.',
@@ -127,7 +128,7 @@ export const content: FeatureContent = {
     ],
     analyze: [
       'Prefer Exact stock and reliability A.',
-      'Use Check now before you recommend a store to the consumer.',
+      'Before you recommend a store outside the five closest, use Check now.',
       'Compare price only between stores with a recent reading.',
       'If the stock you saw in the store is different, use Report.',
     ],
@@ -149,7 +150,8 @@ export const content: FeatureContent = {
     ],
   },
   faq: [
-    { question: 'Does the map show stock right now?', answer: 'No. The map and the list are from the previous day (D-1), as a range. Only the Check now button reads the stock at that moment.' },
+    { question: 'Does the map show stock right now?', answer: 'In part. The base of the map and the list is from the previous day (D-1), as a range. Dinn checks the five closest stores to the address in real time. At the other stores, click Check now.' },
+    { question: 'Which stores does Dinn check in real time?', answer: 'The five closest stores to the address. You can check the other stores one by one with the Check now button. It works at compatible stores.' },
     { question: 'Why does the exact number not show?', answer: 'The data from yesterday shows a range. The number comes only in the live check.' },
     { question: 'Does the answer guarantee the product is there?', answer: 'No. Stock can change after the answer. For this reason the screen shows the time.' },
     { question: 'Do all stores have Check now?', answer: 'No. Only stores with an e-commerce reading, according to chain, source and contracted scope.' },

@@ -87,7 +87,7 @@ export const es419 = {
         },
         method: [
           "Búsqueda desde la dirección indicada. Primero las tiendas más cercanas.",
-          "El inventario se observa en la fuente (D-1) o se estima con tiendas comparables. Cada valor tiene un nivel de confianza.",
+          "Las 5 tiendas más cercanas se consultan en tiempo real. En las demás, el inventario se observa en la fuente (D-1) o se estima con tiendas comparables. Cada valor tiene un nivel de confianza.",
           "Cobertura en días = inventario ÷ rotación diaria promedio de la tienda.",
           "El orden usa disponibilidad y cercanía, no el precio más bajo."
         ],
@@ -637,7 +637,7 @@ export const es419 = {
     destinations: ["BI", "Copilot", "Agentes", "API"],
     trust: [
       "Observado o estimado, siempre se indica",
-      "Base D-1 y consulta puntual en tiendas elegibles",
+      "Base D-1 e inventario en tiempo real, bajo consulta, en tiendas elegibles",
       "Doble factor por correo · SSO bajo consulta",
       "Implementación en hasta 30 días tras los prerrequisitos y el alcance acordados"
     ],
@@ -648,7 +648,7 @@ export const es419 = {
     items: [
       {
         question: "Ya usamos auditorías como IQVIA y Close-Up. ¿Por qué necesitaríamos Dinn?",
-        answer: "Dinn **no reemplaza** las auditorías de mercado. Las **complementa**. Las auditorías dan una referencia para la planeación y las lecturas consolidadas, según el producto. Dinn sigue la disponibilidad cada día (D-1), tienda por tienda. Muestra **dónde actuar ahora**, antes de que el faltante se convierta en venta perdida. Con autorización, puedes cruzar ambas lecturas en el mismo alcance."
+        answer: "Dinn **no reemplaza** las auditorías de mercado. Las **complementa**. Las auditorías dan una referencia para la planeación y las lecturas consolidadas, según el producto. Dinn sigue la disponibilidad cada día (D-1), tienda por tienda, y consultas el inventario de una tienda en tiempo real cuando lo necesites. Muestra **dónde actuar ahora**, antes de que el faltante se convierta en venta perdida. Con autorización, puedes cruzar ambas lecturas en el mismo alcance."
       },
       {
         question: "¿La implementación exige un gran esfuerzo de TI?",
@@ -703,8 +703,12 @@ export const es419 = {
         answer: "No. **La cobertura y la actualización varían por fuente, producto, cadena y consulta**. Cada lectura informa qué cubre. Dinn no confirma causas. Muestra evidencias e hipótesis, y el equipo las valida. La ausencia de producto no siempre es desabasto. El inventario en el centro de distribución no prueba que una tienda esté surtida."
       },
       {
+        question: "¿El inventario es en tiempo real?",
+        answer: "La base es del día anterior (D-1), con la fecha de cada lectura. Además, puedes **consultar el inventario en tiempo real**. En el detalle de la tienda, en Quiebre, haz clic en **Consultar ahora**. En el Localizador, Dinn ya consulta en el momento las **5 tiendas más cercanas** a la dirección, y tú consultas las otras una a una. Cada respuesta muestra la hora. Vale para tiendas elegibles, según cadena, fuente y alcance."
+      },
+      {
         question: "¿Cuál es la diferencia entre dato observado y estimado?",
-        answer: "El dato **observado** es lo que la fuente informó directamente, con ubicación y hora. El dato **estimado** viene de tiendas comparables y del historial cuando no hay respuesta directa, siempre con nivel de confianza. El dato **inferido** es la lectura que Dinn obtiene al combinar señales. Es una hipótesis por validar. La base se actualiza en D-1. En tiendas elegibles, puedes pedir una consulta puntual de disponibilidad."
+        answer: "El dato **observado** es lo que la fuente informó directamente, con ubicación y hora. El dato **estimado** viene de tiendas comparables y del historial cuando no hay respuesta directa, siempre con nivel de confianza. El dato **inferido** es la lectura que Dinn obtiene al combinar señales. Es una hipótesis por validar. La base se actualiza en D-1. En tiendas elegibles, también consultas el inventario en tiempo real, tienda por tienda."
       }
     ]
   },

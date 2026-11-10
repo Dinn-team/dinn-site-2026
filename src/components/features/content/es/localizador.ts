@@ -1,21 +1,21 @@
 import type { FeatureContent } from '../../types';
 
 // Localizador de Productos (ES-419). Fuente: dinn-manager-app/docs/site-reproducao/funcionalidades/localizador.md.
-// Reglas: el mapa y la lista son del día anterior (D-1), en rango. Solo "Consultar ahora" lee la tienda en el momento.
+// Reglas: el mapa y la lista son del día anterior (D-1), en rango. El Localizador consulta en tiempo real las 5 tiendas más cercanas. En las otras, "Consultar ahora" lee la tienda en el momento, una a una.
 // Sin exportación. La probabilidad de inventario no es garantía.
 export const content: FeatureContent = {
   slug: 'localizador',
   meta: {
     title: 'Localizador de Productos | Dinn',
-    description: 'Encuentra las tiendas que tienen el producto, cerca de cualquier dirección. Nivel de inventario del día anterior y consulta al momento en tienda compatible.',
+    description: 'Encuentra las tiendas que tienen el producto, cerca de cualquier dirección. Dinn consulta en tiempo real las 5 tiendas más cercanas. Tú consultas las otras una a una.',
   },
   hero: {
     title: 'Encuentra las tiendas que tienen el producto, cerca de cualquier dirección.',
     sub: 'Indica el producto y la dirección. Dinn muestra en el mapa las farmacias cercanas, el nivel de inventario, la fiabilidad de la información y la fecha de la lectura.',
-    note: 'Dato de ayer (D-1). Inventario ahora, solo cuando consultas.',
+    note: 'Base de ayer (D-1). Las 5 tiendas más cercanas, en tiempo real. Las otras, cuando consultas.',
   },
   steps: [
-    { title: 'Indica el producto y la dirección', text: 'Busca el producto por nombre o SKU. Escribe la dirección de referencia. Elige el radio, de 5 a 50 km.' },
+    { title: 'Indica el producto y la dirección', text: 'Busca el producto por nombre o SKU. Escribe la dirección de referencia. Elige el radio, de 5 a 50 km. Dinn consulta en el momento las 5 tiendas más cercanas.' },
     { title: 'Lee el mapa y la lista', text: 'Cada marcador es una farmacia, coloreado por el nivel de inventario de ayer. La lista trae rango, fiabilidad, distancia y, si está contratado, precio.' },
     { title: 'Abre la tienda y confirma', text: 'Mira la rotación, el inventario parado y la ruta. En una tienda compatible, consulta ahora y ve la hora de la respuesta.' },
   ],
@@ -25,7 +25,7 @@ export const content: FeatureContent = {
     items: [
       {
         title: 'La llamada del consumidor',
-        text: 'Un paciente pregunta dónde encontrar un producto. Busca por su dirección. Responde con la tienda más cercana y la fecha de la información. No llames tienda por tienda.',
+        text: 'Un paciente pregunta dónde encontrar un producto. Busca por su dirección. Dinn ya consulta en tiempo real las 5 tiendas más cercanas. Responde con lo que informaron y la hora. No llames tienda por tienda.',
         shot: { screen: 'locator', phase: 6, to: 'map' },
       },
       {
@@ -59,19 +59,19 @@ export const content: FeatureContent = {
       {
         tab: 'Localizar',
         title: 'Indica la dirección y el radio',
-        text: 'Indica la dirección o el área y el radio. Las farmacias cercanas se muestran en el mapa.',
+        text: 'Indica la dirección o el área y el radio. Las farmacias cercanas se muestran en el mapa. Dinn consulta en tiempo real las 5 más cercanas.',
         shot: { screen: 'locator', phase: 3, to: 'form' },
       },
       {
         tab: 'Elegir la tienda',
         title: 'Abre una tienda',
-        text: 'La lectura base es de ayer. Solo las tiendas compatibles tienen la consulta.',
+        text: 'Las 5 tiendas más cercanas ya vienen consultadas en tiempo real. En las otras, la lectura base es de ayer. Solo las tiendas compatibles tienen la consulta.',
         shot: { screen: 'locator', phase: 7, to: 'popup' },
       },
       {
         tab: 'Consultar ahora',
         title: 'Pregunta a la fuente de la tienda',
-        text: 'Dinn le pregunta a la fuente de la tienda en ese momento.',
+        text: 'En cualquier otra tienda compatible, haz clic en Consultar ahora. Dinn le pregunta a la fuente de la tienda en ese momento.',
         shot: { screen: 'locator', phase: 8, to: 'p-box' },
       },
       {
@@ -94,7 +94,7 @@ export const content: FeatureContent = {
     rows: [
       { label: 'Inventario de ayer (D-1)', text: 'Rango de inventario leído el día anterior. No muestra el número exacto.', how: 'Aparece como 4–9 un., con la fecha de la estimación.' },
       { label: 'Inventario estimado', text: 'Calculado con el historial de la tienda. Siempre viene con la fiabilidad.', how: 'Etiqueta Stock estimado en la ficha de la tienda.' },
-      { label: 'Respuesta en vivo', text: 'Lo que la tienda respondió al hacer clic, con la hora. Solo en tienda compatible.', how: 'Aparece como 6 un., con Consulta hecha ahora y la hora.' },
+      { label: 'Respuesta en vivo', text: 'Lo que la tienda respondió en ese momento, con la hora. Dinn lo hace solo en las 5 tiendas más cercanas. En las otras, haces clic en Consultar ahora. Solo en tienda compatible.', how: 'Aparece como 6 un., con Consulta hecha ahora y la hora.' },
       { label: 'Nivel del marcador', text: 'Alto en verde, Medio en ámbar, Bajo en rojo, No disponible en gris.', how: 'Color del marcador y del rango en la lista.' },
       { label: 'Inventario exacto o estimado', text: 'Exacto es la lectura del e-commerce de la tienda. Estimado es la proyección del modelo. Los dos aparecen como rango.', how: 'Etiqueta verde o morada en la parte superior de la ficha.' },
       { label: 'Fiabilidad', text: 'A, Fiable. B, Verificación recomendada. Indica cuánto confiar en la información de la tienda.', how: 'Línea Fiabilidad del stock en la ficha.' },
@@ -106,13 +106,14 @@ export const content: FeatureContent = {
     'Busca farmacias en un radio de 5 a 50 km, con 5 km por defecto, alrededor de una dirección, para un producto.',
     'Muestra el nivel, el rango de inventario de ayer, la fiabilidad, la cobertura estimada, la rotación y los días parado.',
     'Muestra el precio observado en la tienda, con la fecha de la lectura, para quien contrató el precio.',
-    'En una tienda compatible, consulta el inventario al momento y muestra la cantidad con la hora.',
+    'Consulta en tiempo real el inventario de las 5 tiendas más cercanas a la dirección y muestra la cantidad con la hora.',
+    'En cualquier otra tienda compatible, consulta el inventario al momento, una tienda a la vez, con el botón Consultar ahora.',
     'Abre la ruta en Google Maps, copia el teléfono, abre el sitio de la tienda y copia la dirección y el enlace.',
     'Deja que quien verificó la tienda informe el inventario real, para mejorar el modelo.',
   ],
   doesNot: [
     'No muestra el número exacto del día anterior. Solo rango y nivel.',
-    'No es tiempo real. El mapa y la lista son de ayer.',
+    'No muestra todas las tiendas en tiempo real. La base del mapa y de la lista es de ayer. La consulta en el momento cubre las 5 tiendas más cercanas y las tiendas que consultas.',
     'No garantiza que el producto esté en el estante.',
     'No dibuja el radio en el mapa. El radio solo limita la búsqueda.',
     'No consulta todas las tiendas en vivo. Depende de la cadena, la fuente y el alcance contratado.',
@@ -127,7 +128,7 @@ export const content: FeatureContent = {
     ],
     analyze: [
       'Prefiere Stock exacto y fiabilidad A.',
-      'Usa Consultar ahora antes de indicar una tienda al consumidor.',
+      'Antes de indicar una tienda fuera de las 5 más cercanas, usa Consultar ahora.',
       'Compara el precio solo entre tiendas con lectura reciente.',
       'Si el inventario que viste en la tienda es distinto, usa Reportar.',
     ],
@@ -149,7 +150,8 @@ export const content: FeatureContent = {
     ],
   },
   faq: [
-    { question: '¿El mapa muestra el inventario de ahora?', answer: 'No. El mapa y la lista son del día anterior (D-1), en rango. Solo el botón Consultar ahora lee el inventario en ese momento.' },
+    { question: '¿El mapa muestra el inventario de ahora?', answer: 'En parte. La base del mapa y de la lista es del día anterior (D-1), en rango. Dinn consulta en tiempo real las 5 tiendas más cercanas a la dirección. En las otras, haz clic en Consultar ahora.' },
+    { question: '¿Qué tiendas consulta Dinn en tiempo real?', answer: 'Las 5 tiendas más cercanas a la dirección. Puedes consultar las otras tiendas una a una con el botón Consultar ahora. Vale para tiendas compatibles.' },
     { question: '¿Por qué no aparece el número exacto?', answer: 'En el dato de ayer aparece un rango. El número solo viene en la consulta en vivo.' },
     { question: '¿La respuesta garantiza que el producto está ahí?', answer: 'No. El inventario puede cambiar después de la respuesta. Por eso la pantalla muestra la hora.' },
     { question: '¿Todas las tiendas tienen Consultar ahora?', answer: 'No. Solo las tiendas con lectura del e-commerce, según la cadena, la fuente y el alcance contratado.' },

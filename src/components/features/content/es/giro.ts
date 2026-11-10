@@ -115,7 +115,7 @@ export const content: FeatureContent = {
     'No dice el motivo del inventario parado. Puede ser baja demanda, exceso de inventario o falla en la lectura.',
     'No muestra la rotación de varios productos juntos. Rotación, VB sugerido y reposición solo tienen valor con un producto elegido.',
     'No muestra la rotación a lo largo del tiempo en un gráfico de líneas. Hoy son totales por período y el promedio por día en el Localizador.',
-    'No es tiempo real. El dato es del día anterior.',
+    'No actualiza la base durante el día. El dato es del día anterior. Para ver el inventario ahora, usa Consultar ahora en la tienda.',
     'No promete más ventas ni menos inventario parado.',
   ],
   use: {
@@ -158,7 +158,7 @@ export const content: FeatureContent = {
     { question: '¿Qué es el inventario congelado?', answer: 'Son las unidades que quedaron en la misma cantidad durante todo el período.' },
     { question: '¿Cuál es la diferencia entre Atención y Crítico?', answer: 'Atención: hay inventario y el producto no tiene movimiento hace 30 días o más. Crítico: el producto no tuvo movimiento en toda la ventana de 90 días.' },
     { question: '¿La rotación de la ventana emergente es igual a la de la tabla?', answer: 'No. La tabla suma las salidas del período. La ventana muestra el promedio por día de los últimos 30 días. No compares los dos números directo.' },
-    { question: '¿Los datos son en tiempo real?', answer: 'No. Son del día anterior (D-1). Solo la consulta "Consultar ahora" del Localizador es en vivo, en tiendas compatibles.' },
+    { question: '¿Los datos son en tiempo real?', answer: 'La base es del día anterior (D-1). El inventario en tiempo real viene de la consulta Consultar ahora, en el detalle de la tienda en Quiebre y en el Localizador, en tiendas compatibles.' },
     { question: '¿Puedo descargar la rotación?', answer: 'Sí, en la tabla de puntos de venta y en el panel de la tienda, en CSV, Excel, PDF o JSON.' },
   ],
   cta: {

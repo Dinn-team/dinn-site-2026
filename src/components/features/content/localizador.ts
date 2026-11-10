@@ -1,21 +1,21 @@
 import type { FeatureContent } from '../types';
 
 // Localizador de Produtos. Fonte: dinn-manager-app/docs/site-reproducao/funcionalidades/localizador.md (A1 a A10).
-// Regras: o mapa e a lista são do dia anterior (D-1), em faixa. Só "Consultar agora" lê a loja na hora.
+// Regras: o mapa e a lista são do dia anterior (D-1), em faixa. O Localizador consulta as 5 lojas mais próximas em tempo real. Nas outras, "Consultar agora" lê a loja na hora, uma a uma.
 // Sem exportação. Chance de estoque não é garantia.
 export const localizador: FeatureContent = {
   slug: 'localizador',
   meta: {
     title: 'Localizador de Produtos | Dinn',
-    description: 'Encontre as lojas que têm o produto, perto de qualquer endereço. Nível de estoque do dia anterior e consulta na hora em loja compatível.',
+    description: 'Encontre as lojas que têm o produto, perto de qualquer endereço. A Dinn consulta em tempo real as 5 lojas mais próximas e você consulta as outras uma a uma.',
   },
   hero: {
     title: 'Encontre as lojas que têm o produto, perto de qualquer endereço.',
     sub: 'Informe o produto e o endereço. A Dinn mostra no mapa as farmácias ao redor, o nível de estoque, a confiabilidade da informação e a data da leitura.',
-    note: 'Dado de ontem (D-1). Estoque agora, só quando você consulta.',
+    note: 'Base de ontem (D-1). As 5 lojas mais próximas, em tempo real. As outras, quando você consulta.',
   },
   steps: [
-    { title: 'Informe o produto e o endereço', text: 'Busque o produto por nome ou SKU. Digite o endereço de referência. Escolha o raio, de 5 a 50 km.' },
+    { title: 'Informe o produto e o endereço', text: 'Busque o produto por nome ou SKU. Digite o endereço de referência. Escolha o raio, de 5 a 50 km. A Dinn consulta na hora as 5 lojas mais próximas.' },
     { title: 'Leia o mapa e a lista', text: 'Cada pino é uma farmácia, colorido pelo nível de estoque de ontem. A lista traz faixa, confiabilidade, distância e, se contratado, preço.' },
     { title: 'Abra a loja e confirme', text: 'Veja giro, estoque parado e a rota. Em loja compatível, consulte agora e veja o horário da resposta.' },
   ],
@@ -25,7 +25,7 @@ export const localizador: FeatureContent = {
     items: [
       {
         title: 'A ligação do consumidor',
-        text: 'Um paciente pergunta onde achar um produto. Busque pelo endereço dele e responda com a loja mais próxima e a data da informação. Não ligue loja por loja.',
+        text: 'Um paciente pergunta onde achar um produto. Busque pelo endereço dele. A Dinn já consulta as 5 lojas mais próximas em tempo real. Responda com o que elas informaram e o horário. Não ligue loja por loja.',
         shot: { screen: 'locator', phase: 6, to: 'map' },
       },
       {
@@ -59,19 +59,19 @@ export const localizador: FeatureContent = {
       {
         tab: 'Localizar',
         title: 'Informe o endereço e o raio',
-        text: 'Informe o endereço ou a área e o raio. As farmácias próximas aparecem no mapa.',
+        text: 'Informe o endereço ou a área e o raio. As farmácias próximas aparecem no mapa. A Dinn consulta na hora as 5 mais próximas.',
         shot: { screen: 'locator', phase: 3, to: 'form' },
       },
       {
         tab: 'Escolher a loja',
         title: 'Abra uma loja',
-        text: 'A leitura de base é de ontem. Só as lojas compatíveis têm a consulta.',
+        text: 'As 5 lojas mais próximas já vêm consultadas em tempo real. Nas outras, a leitura de base é de ontem. Só as lojas compatíveis têm a consulta.',
         shot: { screen: 'locator', phase: 7, to: 'popup' },
       },
       {
         tab: 'Consultar agora',
         title: 'Pergunte à fonte da loja',
-        text: 'A Dinn pergunta à fonte da loja naquele momento.',
+        text: 'Em qualquer outra loja compatível, clique em Consultar agora. A Dinn pergunta à fonte da loja naquele momento.',
         shot: { screen: 'locator', phase: 8, to: 'p-box' },
       },
       {
@@ -94,7 +94,7 @@ export const localizador: FeatureContent = {
     rows: [
       { label: 'Estoque de ontem (D-1)', text: 'Faixa de estoque lida no dia anterior. Não mostra o número exato.', how: 'Aparece como 4–9 un, com a data da estimativa.' },
       { label: 'Estoque estimado', text: 'Calculado do histórico da loja. Sempre vem com a confiabilidade.', how: 'Etiqueta Estoque estimado no popup.' },
-      { label: 'Resposta ao vivo', text: 'O que a loja respondeu no clique, com o horário. Só em loja compatível.', how: 'Aparece como 6 un, com Consulta feita agora e a hora.' },
+      { label: 'Resposta ao vivo', text: 'O que a loja respondeu na hora, com o horário. A Dinn faz isso sozinha nas 5 lojas mais próximas. Nas outras, você clica em Consultar agora. Só em loja compatível.', how: 'Aparece como 6 un, com Consulta feita agora e a hora.' },
       { label: 'Nível do pino', text: 'Alto em verde, Médio em âmbar, Baixo em vermelho, Indisponível em cinza.', how: 'Cor do pino e da faixa na lista.' },
       { label: 'Estoque exato ou estimado', text: 'Exato é a leitura do e-commerce da loja. Estimado é a projeção do modelo. Os dois aparecem como faixa.', how: 'Etiqueta verde ou roxa no topo do popup.' },
       { label: 'Confiabilidade', text: 'A, Confiável. B, Verificação recomendada. Mede o quanto confiar na informação da loja.', how: 'Linha Confiabilidade do estoque no popup.' },
@@ -106,13 +106,14 @@ export const localizador: FeatureContent = {
     'Busca farmácias num raio de 5 a 50 km, com padrão de 5 km, ao redor de um endereço, para um produto.',
     'Mostra o nível, a faixa de estoque de ontem, a confiabilidade, a cobertura estimada, o giro e os dias parados.',
     'Mostra o preço observado na loja, com a data da leitura, para quem contratou o preço.',
-    'Em loja compatível, consulta o estoque na hora e mostra a quantidade com o horário.',
+    'Consulta em tempo real o estoque das 5 lojas mais próximas do endereço e mostra a quantidade com o horário.',
+    'Em qualquer outra loja compatível, consulta o estoque na hora, uma loja por vez, no botão Consultar agora.',
     'Abre a rota no Google Maps, copia o telefone, abre o site da loja e copia endereço e link.',
     'Deixa quem conferiu a loja informar o estoque real, para melhorar o modelo.',
   ],
   doesNot: [
     'Não mostra o número exato do dia anterior. Só faixa e nível.',
-    'Não é tempo real. O mapa e a lista são de ontem.',
+    'Não mostra todas as lojas em tempo real. A base do mapa e da lista é de ontem. A consulta na hora vale para as 5 mais próximas e para as lojas que você consulta.',
     'Não garante que o produto está na prateleira.',
     'Não desenha o raio no mapa. O raio só limita a busca.',
     'Não consulta todas as lojas ao vivo. Depende de rede, fonte e escopo contratado.',
@@ -127,7 +128,7 @@ export const localizador: FeatureContent = {
     ],
     analyze: [
       'Prefira Estoque exato e confiabilidade A.',
-      'Use Consultar agora antes de indicar uma loja ao consumidor.',
+      'Antes de indicar uma loja fora das 5 mais próximas, use Consultar agora.',
       'Compare o preço só entre lojas com leitura recente.',
       'Se o estoque que você viu na loja for diferente, use Reportar.',
     ],
@@ -149,7 +150,8 @@ export const localizador: FeatureContent = {
     ],
   },
   faq: [
-    { question: 'O mapa mostra o estoque de agora?', answer: 'Não. O mapa e a lista são do dia anterior (D-1), em faixa. Só o botão Consultar agora lê o estoque na hora.' },
+    { question: 'O mapa mostra o estoque de agora?', answer: 'Em parte. A base do mapa e da lista é do dia anterior (D-1), em faixa. A Dinn consulta em tempo real as 5 lojas mais próximas do endereço. Nas outras, clique em Consultar agora.' },
+    { question: 'Quais lojas a Dinn consulta em tempo real?', answer: 'As 5 lojas mais próximas do endereço. Você pode consultar as outras lojas, uma a uma, no botão Consultar agora. Vale para lojas compatíveis.' },
     { question: 'Por que não aparece o número exato?', answer: 'No dado de ontem aparece uma faixa. O número só vem na consulta ao vivo.' },
     { question: 'A resposta garante que o produto está lá?', answer: 'Não. O estoque pode mudar depois da resposta. Por isso a tela mostra o horário.' },
     { question: 'Todas as lojas têm Consultar agora?', answer: 'Não. Só lojas com leitura do e-commerce, conforme rede, fonte e escopo contratado.' },

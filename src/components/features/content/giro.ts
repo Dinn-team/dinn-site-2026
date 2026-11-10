@@ -115,7 +115,7 @@ export const giro: FeatureContent = {
     'Não diz o motivo do estoque parado. Pode ser baixa procura, excesso de estoque ou falha na leitura.',
     'Não mostra o giro de vários produtos juntos. Giro, volume sugerido e reposição só têm valor com um produto escolhido.',
     'Não mostra o giro ao longo do tempo em gráfico de linha. Hoje são totais por período e a média por dia no Localizador.',
-    'Não é tempo real. O dado é do dia anterior.',
+    'Não atualiza a base durante o dia. O dado é do dia anterior. Para ver o estoque agora, use Consultar agora na loja.',
     'Não promete mais venda nem menos estoque parado.',
   ],
   use: {
@@ -158,7 +158,7 @@ export const giro: FeatureContent = {
     { question: 'O que é estoque congelado?', answer: 'São as unidades que ficaram na mesma quantidade durante o período inteiro.' },
     { question: 'Qual a diferença entre Atenção e Crítico?', answer: 'Atenção: há estoque e o produto não tem movimentação há 30 dias ou mais. Crítico: o produto ficou sem se mexer na janela inteira de 90 dias.' },
     { question: 'O giro do popup é igual ao da tabela?', answer: 'Não. A tabela soma as saídas do período. O popup mostra a média por dia dos últimos 30 dias. Não compare os dois números direto.' },
-    { question: 'Os dados são em tempo real?', answer: 'Não. São do dia anterior (D-1). Só a consulta "Consultar agora" do Localizador é ao vivo, em lojas compatíveis.' },
+    { question: 'Os dados são em tempo real?', answer: 'A base é do dia anterior (D-1). O estoque em tempo real vem da consulta Consultar agora, no detalhe da loja na Ruptura e no Localizador, em lojas compatíveis.' },
     { question: 'Posso baixar o giro?', answer: 'Sim, na tabela de pontos de venda e no painel da loja, em CSV, Excel, PDF ou JSON.' },
   ],
   cta: {

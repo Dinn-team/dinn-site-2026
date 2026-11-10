@@ -115,7 +115,7 @@ export const content: FeatureContent = {
     'It does not give the reason for idle stock. The cause can be low demand, excess stock or a stock reading error.',
     'It does not show sell-through for several products together. Sell-through, VB suggested and restock have a value only with one product chosen.',
     'It does not show sell-through over time in a line chart. Today it shows totals by period and the average per day in the Locator.',
-    'It is not real time. The data is from the day before.',
+    'Does not refresh the base during the day. The data is from the day before. To see stock now, use Check now at the store.',
     'It does not promise more sales or less idle stock.',
   ],
   use: {
@@ -158,7 +158,7 @@ export const content: FeatureContent = {
     { question: 'What is frozen stock?', answer: 'It is the units that stayed at the same quantity for the whole period.' },
     { question: 'What is the difference between Attention and Critical?', answer: 'Attention: there is stock and the product has had no movement for 30 days or more. Critical: the product had no movement in the whole 90-day window.' },
     { question: 'Is the sell-through in the pop-up the same as in the table?', answer: 'No. The table adds up the exits of the period. The pop-up shows the average per day in the last 30 days. Do not compare the two numbers directly.' },
-    { question: 'Is the data real time?', answer: 'No. It is from the day before (D-1). Only the "Check now" query in the Locator is live, at compatible stores.' },
+    { question: 'Is the data real time?', answer: 'The base is from the day before (D-1). Real-time stock comes from the Check now query, in the store detail in Stock-out and in the Locator, at compatible stores.' },
     { question: 'Can I download sell-through?', answer: 'Yes, from the points of sale table and the store panel, in CSV, Excel, PDF or JSON.' },
   ],
   cta: {

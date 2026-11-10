@@ -1,17 +1,17 @@
 import type { FeatureContent } from '../../types';
 
 // Quiebre (ES-419). Fuente: dinn-manager-app/docs/site-reproducao/funcionalidades/ruptura.md.
-// Regla: el dato es D-1 y muestra patrones y tendencias. No confirma el quiebre de una tienda en un día.
+// Regla: la base es D-1 y muestra patrones y tendencias. En el detalle de la tienda, Consultar ahora lee el inventario en tiempo real. No confirma el quiebre de una tienda en un día.
 export const content: FeatureContent = {
   slug: 'ruptura',
   meta: {
     title: 'Quiebre | Dinn',
-    description: 'Ve dónde falta el producto y qué tiendas verificar primero. Quiebre por tienda, cadena y región, con el dato del día anterior.',
+    description: 'Ve dónde falta el producto y qué tiendas verificar primero. Quiebre por tienda, cadena y región, con la base del día anterior y el inventario en tiempo real en la tienda.',
   },
   hero: {
     title: '¿Dónde falta el producto? Revisa estas tiendas primero.',
     sub: 'Dinn mide el quiebre en las farmacias de tu cartera, muestra la evolución en el tiempo y ordena las tiendas por gravedad.',
-    note: 'Dato del día anterior (D-1). Sirve para ver patrones y tendencias, no para auditar una farmacia.',
+    note: 'Base del día anterior (D-1) para ver patrones y tendencias. En el detalle de la tienda, consulta el inventario en tiempo real.',
   },
   steps: [
     { title: 'Elige el segmento', text: 'Filtra por producto, cadena, estado, ciudad o Brick. Los filtros valen para todos los gráficos y tablas de la pantalla.' },
@@ -34,7 +34,7 @@ export const content: FeatureContent = {
       },
       {
         title: 'Desde la consulta en la tienda',
-        text: 'En una tienda compatible, el botón Consultar ahora hace una consulta de inventario. Muestra la hora de la respuesta.',
+        text: 'En el detalle de la tienda, haz clic en Consultar ahora. Dinn lee el inventario de esa tienda en tiempo real y muestra la hora de la respuesta. Vale para tiendas compatibles.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -76,7 +76,7 @@ export const content: FeatureContent = {
       {
         tab: 'Tienda',
         title: 'El producto que falta',
-        text: 'Abre la tienda y ve el ranking por SKU, con el rango de inventario y la fecha de la estimación. En una tienda compatible, usa Consultar ahora.',
+        text: 'Abre la tienda y ve el ranking por SKU, con el rango de inventario y la fecha de la estimación. Haz clic en Consultar ahora para ver el inventario en tiempo real.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -99,10 +99,11 @@ export const content: FeatureContent = {
     'Clasifica cada tienda en Crítico, Alto, Moderado o Leve.',
     'Ordena productos, cadenas y tiendas de la más crítica a la menos crítica.',
     'Muestra, en cada tienda, qué productos faltan y si el inventario es exacto o estimado.',
+    'Consulta el inventario de la tienda en tiempo real, en el detalle de la tienda, y muestra la hora de la respuesta.',
     'Exporta las tablas y permite guardar vistas.',
   ],
   doesNot: [
-    'No muestra inventario en tiempo real. El dato es de ayer (D-1).',
+    'No actualiza la base durante el día. La base es D-1. Para ver el inventario ahora, usa Consultar ahora en el detalle de la tienda.',
     'No confirma el quiebre de una tienda en un día. Sirve para ver patrones y tendencias.',
     'No cuenta las tiendas que nunca vendieron el ítem.',
     'No promete menos quiebre ni más ventas.',
@@ -127,23 +128,23 @@ export const content: FeatureContent = {
       'Pregunta a Jean y abre la lista ya filtrada.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
-    note: 'El número puede diferir de lo que ves en la farmacia. El dato es de ayer y parte del inventario es estimado. El valor está en la tendencia.',
+    note: 'El número puede diferir de lo que ves en la farmacia. La base es de ayer y parte del inventario es estimado. Para confirmar una tienda ahora, usa Consultar ahora. El valor de la base está en la tendencia.',
   },
   related: {
     title: 'Junto con otras funcionalidades',
     intro: 'El quiebre muestra dónde falta el producto. Estas funcionalidades ayudan a entender el resto.',
     items: [
       { slug: 'giro', name: 'Rotación', text: 'El inventario que no se mueve es tema de Rotación. Ve los días parado.' },
-      { slug: 'localizador', name: 'Localizador de Productos', text: 'Ve las tiendas cerca de una dirección y consulta el inventario ahora.' },
+      { slug: 'localizador', name: 'Localizador de Productos', text: 'Ve las tiendas cerca de una dirección. Dinn ya consulta en tiempo real las 5 más cercanas.' },
       { slug: 'distribuicao', name: 'Distribución', text: 'Ve si la falta puede empezar en el CEDIS, en la reposición o en la farmacia.' },
       { slug: 'jean', name: 'Jean', text: 'Pregunta qué tiendas están más críticas y abre la lista preparada.' },
     ],
   },
   faq: [
-    { question: '¿El dato es en tiempo real?', answer: 'No. Es del día anterior (D-1), con la fecha arriba de la pantalla. Solo el botón Consultar ahora, en una tienda compatible, hace una consulta en el momento y muestra la hora de la respuesta.' },
+    { question: '¿El dato es en tiempo real?', answer: 'La base es del día anterior (D-1), con la fecha arriba de la pantalla. Pero puedes ver el inventario de una tienda en tiempo real. Abre la tienda y haz clic en Consultar ahora. La respuesta muestra la hora de la consulta. Vale para tiendas compatibles.' },
     { question: '¿Por qué el Nivel no cambia cuando cambio el período de la tabla?', answer: 'Porque el Nivel siempre usa la ventana fija de 30 días, con corte el sábado.' },
     { question: '¿Quiebre de 0% y "sin dato" son lo mismo?', answer: 'No. 0% es un valor medido. "Sin dato" quiere decir que aún no hay medición.' },
-    { question: '¿Por qué el número difiere de lo que vi en la farmacia?', answer: 'El dato es de ayer y parte del inventario es estimado. Usa el número para ver tendencias, no para auditar una tienda.' },
+    { question: '¿Por qué el número difiere de lo que vi en la farmacia?', answer: 'La base es de ayer y parte del inventario es estimado. Para ver el inventario de la tienda ahora, usa Consultar ahora. Usa la base para ver tendencias, no para auditar una tienda.' },
     { question: '¿Aparece una tienda que nunca vendió el producto?', answer: 'No. Las tiendas que nunca vendieron el ítem no entran en el cálculo.' },
     { question: '¿Por qué el gráfico de Disponibilidad no muestra mi cadena?', answer: 'Ese gráfico muestra solo las cadenas con lectura exacta de inventario.' },
     { question: '¿Puedo descargar los datos?', answer: 'Sí. La tabla de tiendas, el ranking por SKU y la lista de productos de la tienda salen en CSV, Excel, PDF o JSON.' },

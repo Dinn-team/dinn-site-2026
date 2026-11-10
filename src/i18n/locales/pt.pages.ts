@@ -237,13 +237,13 @@ export const pagesPt = {
           title: "As cinco farmácias mais próximas do consumidor",
           steps: [
             "Entrada: o endereço do consumidor.",
-            "Leitura: estoque observado (D-1) ou estimado por lojas comparáveis, com a confiança.",
+            "Leitura: as 5 lojas mais próximas são consultadas em tempo real. Nas demais, estoque observado (D-1) ou estimado por lojas comparáveis, com a confiança.",
             "Orientação: disponibilidade e proximidade, não o menor preço.",
             "Padrão: duas lojas sem o produto há uma semana viram pauta de reposição."
           ]
         },
         limits: [
-          "A leitura de base é D-1. Em lojas compatíveis, uma consulta sob demanda roda em tempo real e mostra o horário da resposta.",
+          "A leitura de base é D-1. A Dinn consulta em tempo real as 5 lojas mais próximas e mostra o horário de cada resposta. Nas outras lojas compatíveis, você consulta uma a uma.",
           "Chance de estoque não é garantia. Diga isso ao consumidor.",
           "A cobertura varia por rede e fonte."
         ],
@@ -332,7 +332,7 @@ export const pagesPt = {
         },
         {
           title: "Com que atualização",
-          text: "Base em D-1, com consulta pontual de disponibilidade em lojas elegíveis. Cobertura e atualização variam por fonte, produto, rede e consulta."
+          text: "Base em D-1, com estoque em tempo real sob consulta em lojas elegíveis: no detalhe da loja e no Localizador. Cobertura e atualização variam por fonte, produto, rede e consulta."
         },
         {
           title: "Para onde vão",
@@ -391,7 +391,7 @@ export const pagesPt = {
     coverage: {
       title: "Cobertura e atualização",
       items: [
-        { title: "Frequência", text: "Base em D-1. Em lojas elegíveis, é possível uma consulta pontual de disponibilidade." },
+        { title: "Frequência", text: "Base em D-1. Em lojas elegíveis, você consulta o estoque em tempo real, uma loja por vez. O Localizador consulta as 5 mais próximas sozinho." },
         { title: "Cobertura", text: "Varia por fonte, produto, rede e consulta. Cada leitura informa o que cobre." },
         { title: "Fontes de mercado e internas", text: "Entram quando licença, autorização e escopo estão acordados." }
       ]

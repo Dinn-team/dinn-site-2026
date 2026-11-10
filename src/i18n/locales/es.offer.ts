@@ -84,14 +84,14 @@ export const offerEs = {
   realtime: {
     eyebrow: "Inventario en tiempo real",
     title: "¿Necesitas verificar ahora? *Consulta el inventario en tiempo real.*",
-    text: "En el Localizador, consulta la disponibilidad que informan en ese momento las tiendas compatibles. Mira el horario de la consulta. Tiempo real, D-1 e inventario estimado son lecturas distintas.",
+    text: "En el Localizador, Dinn consulta en tiempo real las 5 tiendas más cercanas a la dirección. Tú consultas las otras tiendas compatibles, una a una. Mira el horario de la consulta. Tiempo real, D-1 e inventario estimado son lecturas distintas.",
     condition: "Disponible según cadena, fuente y alcance contratado. La información puede cambiar después de la consulta.",
     sim: "Simulación · valores de ejemplo",
     mapAria: "Mapa del Localizador con farmacias cercanas a la dirección del consumidor, coloreadas por nivel de inventario.",
     stepsLabel: "De la búsqueda a la orientación",
     steps: [
-      { title: "Localizar", text: "Indica la dirección o el área y el radio. Las farmacias cercanas se muestran en el mapa." },
-      { title: "Elegir la tienda", text: "Abre una tienda. La lectura base es de ayer. Solo las tiendas compatibles tienen la consulta." },
+      { title: "Localizar", text: "Indica la dirección o el área y el radio. Las farmacias cercanas se muestran en el mapa. Dinn consulta en tiempo real las 5 más cercanas." },
+      { title: "Elegir la tienda", text: "Abre una tienda fuera de las 5 más cercanas. La lectura base es de ayer. Solo las tiendas compatibles tienen la consulta." },
       { title: "Consultar ahora", text: "Dinn le pregunta a la fuente de la tienda en ese momento." },
       { title: "Respuesta y horario", text: "La respuesta muestra el horario de la consulta, separada de la lectura de ayer." },
       { title: "Orientar", text: "Orienta al consumidor con lo que la tienda informó y cuándo. Comparte la dirección." }
@@ -138,12 +138,12 @@ export const offerEs = {
   locator: {
     meta: {
       title: "Localizador e inventario en tiempo real | Dinn",
-      description: "Consulta la disponibilidad que informan en ese momento las tiendas compatibles. Tiempo real, D-1 e inventario estimado son lecturas distintas."
+      description: "Dinn consulta en tiempo real las 5 tiendas más cercanas y tú consultas las otras una a una. Tiempo real, D-1 e inventario estimado son lecturas distintas."
     },
     hero: {
       eyebrow: "Dinn Localizador",
       title: "¿Necesitas verificar ahora? *Consulta el inventario en tiempo real.*",
-      lead: "En el Localizador, consulta la disponibilidad que informan en ese momento las tiendas compatibles. Mira la hora de la consulta. Tiempo real, D-1 e inventario estimado son lecturas distintas."
+      lead: "En el Localizador, Dinn consulta en tiempo real las 5 tiendas más cercanas a la dirección. Tú consultas las otras tiendas compatibles, una a una. Mira la hora de la consulta. Tiempo real, D-1 e inventario estimado son lecturas distintas."
     },
     scene: { title: "De la búsqueda a la orientación, en cinco pasos" },
     readings: {
@@ -153,13 +153,13 @@ export const offerEs = {
       rows: [
         ["Inventario D-1 (observado)", "Lo que la fuente informó el día anterior, por tienda, con la fecha.", "Base diaria, con la fecha de cada lectura.", "Priorizar y dar seguimiento a un segmento."],
         ["Estimado", "Calculado a partir de tiendas comparables y del historial cuando no hay respuesta directa. Siempre muestra un nivel de confianza.", "En la actualización de la base.", "Cubrir una señal directa faltante. Confirma antes de actuar."],
-        ["Tiempo real (consulta)", "La respuesta que la tienda informa a la fuente en el momento de la consulta, con la hora.", "En el momento en que consultas, una tienda a la vez.", "Confirmar la disponibilidad antes de orientar a alguien o visitar."]
+        ["Tiempo real (consulta)", "La respuesta que la tienda informa a la fuente en el momento de la consulta, con la hora.", "En el momento de la consulta. Dinn consulta las 5 más cercanas por su cuenta. Las otras, una tienda a la vez.", "Confirmar la disponibilidad antes de orientar a alguien o visitar."]
       ]
     },
     when: {
       title: "Cuándo consultar ahora",
       items: [
-        { title: "La llamada del consumidor", text: "Un paciente pregunta dónde encontrar un medicamento. Consulta la tienda más cercana y responde con lo que acaba de informar. No llames tienda por tienda." },
+        { title: "La llamada del consumidor", text: "Un paciente pregunta dónde encontrar un medicamento. Busca por la dirección. Dinn ya consulta en tiempo real las 5 tiendas más cercanas. Responde con lo que informaron. No llames tienda por tienda." },
         { title: "La visita de esta tarde", text: "Antes de hablar con la cadena, mira lo que la tienda informa ahora. Lleva a la conversación el dato de hoy, no el de ayer." },
         { title: "Después de la reposición", text: "¿La cadena acordó una entrega? Consulta la misma tienda otra vez. Mira si el producto aparece en la respuesta." }
       ]
@@ -177,7 +177,9 @@ export const offerEs = {
     faq: {
       title: "Preguntas sobre inventario en tiempo real",
       items: [
-        { question: "¿Tiempo real muestra todas las tiendas, siempre actualizadas?", answer: "No. Es una consulta bajo demanda. Eliges una tienda compatible y Dinn le pregunta a la fuente en ese momento. La lectura de base sigue en D-1." },
+        { question: "¿El Localizador consulta el inventario en tiempo real?", answer: "Sí. Dinn consulta en tiempo real las 5 tiendas más cercanas a la dirección. Puedes consultar cualquier otra tienda compatible, una a una. La lectura de base sigue en D-1." },
+        { question: "¿Puedo consultar el inventario en tiempo real fuera del Localizador?", answer: "Sí. En Quiebre, abre la tienda y haz clic en Consultar ahora. La respuesta muestra la hora. La base de Quiebre sigue en D-1." },
+        { question: "¿Tiempo real muestra todas las tiendas, siempre actualizadas?", answer: "No. Dinn consulta las 5 tiendas más cercanas por su cuenta. Las otras tiendas compatibles las consultas una a una. La lectura de base sigue en D-1." },
         { question: "¿La respuesta garantiza que el producto está ahí?", answer: "No. Es lo que la fuente informó a esa hora. El inventario puede cambiar después. Díselo al consumidor." },
         { question: "¿Todas las cadenas tienen consulta en tiempo real?", answer: "No. Depende de la cadena, la fuente y el alcance contratado. Validamos el segmento contigo antes de comenzar." },
         { question: "¿Cuál es la diferencia con el inventario estimado?", answer: "El estimado se calcula por tiendas comparables cuando no hay respuesta directa. La consulta en tiempo real es la respuesta de la propia tienda, con la hora." }
@@ -820,7 +822,7 @@ export const offerEs = {
       rows: [
         ["Observado (D-1)", "Lo que la fuente informó el día anterior, por tienda.", "Base diaria, con la fecha de cada lectura."],
         ["Estimado", "Tiendas sin respuesta directa. Usa tiendas comparables y el historial, con nivel de confianza.", "En la actualización de la base."],
-        ["Tiempo real", "Tiendas compatibles, por consulta bajo demanda.", "En el momento de la consulta, una tienda a la vez."]
+        ["Tiempo real", "Tiendas compatibles, por consulta bajo demanda.", "En el momento de la consulta. Las 5 más cercanas en el Localizador, las otras una a una."]
       ]
     },
     status: {

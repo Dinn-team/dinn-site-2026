@@ -112,7 +112,7 @@ export const content: FeatureContent = {
   doesNot: [
     'Does not prove that the cause is at the DC, in replenishment or at the pharmacy. The reading is a hypothesis.',
     'Does not treat proximity as a supply link.',
-    'Is not real time. The data is D-1.',
+    'Does not refresh the base during the day. The data is D-1. The stock of a pharmacy now comes from Check now.',
     'Does not show the exact stock of a pharmacy on the map. The popup shows the level.',
     'Does not create orders, does not reallocate stock and does not write to the distributor system.',
     'Does not cover all distributors. DC data collection is recent and the history is short.',
@@ -150,7 +150,7 @@ export const content: FeatureContent = {
     ],
   },
   faq: [
-    { question: 'Is it real time?', answer: 'No. The data is D-1. Only Check now, in the DC list, reads the pharmacy live. It works for eligible stores.' },
+    { question: 'Is it real time?', answer: 'The base is D-1. To see the stock of a pharmacy now, use Check now in the DC list, in the store detail or in the Locator. It works for eligible stores.' },
     { question: 'Does a DC at zero mean a stock-out?', answer: 'Not always. A stock-out is the DC and the pharmacies at zero. A DC at zero with stocked pharmacies suggests the distribution is done.' },
     { question: 'Does a pharmacy inside the radius buy from this DC?', answer: 'We cannot say. Proximity is not a supply link. Where there is purchase history, use the purchase modes.' },
     { question: 'How is coverage calculated?', answer: 'DC stock divided by the estimated daily sales of the pharmacies in the radius. It is an approximation for the region.' },

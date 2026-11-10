@@ -236,13 +236,13 @@ export const pagesEn = {
           title: "The five pharmacies closest to the consumer",
           steps: [
             "Input: the consumer's address.",
-            "Reading: observed stock (D-1) or stock estimated from comparable stores, with the confidence.",
+            "Reading: Dinn checks the five closest stores in real time. For the others, observed stock (D-1) or stock estimated from comparable stores, with the confidence.",
             "Guidance: availability and proximity, not the lowest price.",
             "Pattern: two stores without the product for a week become a replenishment topic."
           ]
         },
         limits: [
-          "The base reading is D-1. At compatible stores, an on-demand check runs in real time and shows the time of the response.",
+          "The base reading is D-1. Dinn checks the five closest stores in real time and shows the time of each response. At other compatible stores, you check one by one.",
           "A chance of stock is not a guarantee. Tell the consumer.",
           "Coverage varies by chain and source."
         ],
@@ -331,7 +331,7 @@ export const pagesEn = {
         },
         {
           title: "How fresh they are",
-          text: "D-1 base, with on-demand availability checks at eligible stores. Coverage and refresh vary by source, product, chain and query."
+          text: "D-1 base, with real-time stock on demand at eligible stores: in the store detail and in the Locator. Coverage and refresh vary by source, product, chain and query."
         },
         {
           title: "Where they go",
@@ -390,7 +390,7 @@ export const pagesEn = {
     coverage: {
       title: "Coverage and refresh",
       items: [
-        { title: "Frequency", text: "D-1 base. At eligible stores, an on-demand availability check is possible." },
+        { title: "Frequency", text: "D-1 base. At eligible stores, you check stock in real time, one store at a time. The Locator checks the five closest on its own." },
         { title: "Coverage", text: "Varies by source, product, chain and query. Each reading states what it covers." },
         { title: "Market and internal sources", text: "They join when licensing, authorization and scope are agreed." }
       ]

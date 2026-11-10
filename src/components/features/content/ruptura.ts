@@ -1,17 +1,17 @@
 import type { FeatureContent } from '../types';
 
 // Ruptura. Fonte: dinn-manager-app/docs/site-reproducao/funcionalidades/ruptura.md (A1 a A10).
-// Regras: o dado é D-1 e serve para ver padrão e tendência. Não confirma a ruptura de uma loja em um dia.
+// Regras: a base é D-1 e serve para ver padrão e tendência. No detalhe da loja, Consultar agora lê o estoque em tempo real. Não confirma a ruptura de uma loja em um dia.
 export const ruptura: FeatureContent = {
   slug: 'ruptura',
   meta: {
     title: 'Ruptura | Dinn',
-    description: 'Veja onde o produto está em falta e quais lojas verificar primeiro. Ruptura por loja, rede e região, com o dado do dia anterior.',
+    description: 'Veja onde o produto está em falta e quais lojas verificar primeiro. Ruptura por loja, rede e região, com a base do dia anterior e o estoque em tempo real na loja.',
   },
   hero: {
     title: 'Onde falta produto? Veja quais lojas verificar primeiro.',
     sub: 'A Dinn mede a ruptura nas farmácias da sua carteira, mostra a evolução no tempo e ordena as lojas pela gravidade.',
-    note: 'Dado do dia anterior (D-1). Serve para ver padrão e tendência, não para auditar uma farmácia.',
+    note: 'Base do dia anterior (D-1) para ver padrão e tendência. No detalhe da loja, consulte o estoque em tempo real.',
   },
   steps: [
     { title: 'Escolha o recorte', text: 'Filtre por produto, rede, UF, cidade ou Brick. Os filtros valem para todos os gráficos e tabelas da tela.' },
@@ -34,7 +34,7 @@ export const ruptura: FeatureContent = {
       },
       {
         title: 'Pela consulta na loja',
-        text: 'Em loja compatível, o botão Consultar agora faz uma consulta de estoque e mostra o horário da resposta.',
+        text: 'No detalhe da loja, clique em Consultar agora. A Dinn lê o estoque dela em tempo real e mostra o horário da resposta. Vale para lojas compatíveis.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -76,7 +76,7 @@ export const ruptura: FeatureContent = {
       {
         tab: 'Loja',
         title: 'O produto que falta',
-        text: 'Abra a loja e veja o ranking por SKU, com a faixa de estoque e a data da estimativa. Em loja compatível, use Consultar agora.',
+        text: 'Abra a loja e veja o ranking por SKU, com a faixa de estoque e a data da estimativa. Clique em Consultar agora para ver o estoque em tempo real.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -99,10 +99,11 @@ export const ruptura: FeatureContent = {
     'Classifica cada loja em Crítico, Alto, Moderado ou Leve.',
     'Ordena produtos, redes e lojas do mais crítico para o menos crítico.',
     'Mostra, em cada loja, quais produtos faltam e se o estoque é exato ou estimado.',
+    'Consulta o estoque da loja em tempo real, no detalhe da loja, e mostra o horário da resposta.',
     'Exporta as tabelas e guarda visualizações salvas.',
   ],
   doesNot: [
-    'Não mostra estoque em tempo real. O dado é de ontem (D-1).',
+    'Não atualiza a base durante o dia. A base é D-1. Para ver o estoque agora, use Consultar agora no detalhe da loja.',
     'Não confirma a ruptura de uma loja em um dia. Serve para ver padrão e tendência.',
     'Não conta lojas que nunca venderam o item.',
     'Não promete menos ruptura nem mais venda.',
@@ -127,23 +128,23 @@ export const ruptura: FeatureContent = {
       'Pergunte à Jean e abra a lista já filtrada.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
-    note: 'O número pode diferir do que você vê na farmácia. O dado é de ontem e parte do estoque é estimada. O valor está na tendência.',
+    note: 'O número pode diferir do que você vê na farmácia. A base é de ontem e parte do estoque é estimada. Para confirmar uma loja agora, use Consultar agora. O valor da base está na tendência.',
   },
   related: {
     title: 'Junto com outras funcionalidades',
     intro: 'A ruptura mostra onde falta. Estas funcionalidades ajudam a entender o resto.',
     items: [
       { slug: 'giro', name: 'Giro', text: 'Loja com estoque que não se mexe é assunto do Giro. Veja os dias parados.' },
-      { slug: 'localizador', name: 'Localizador de Produtos', text: 'Para ver as lojas perto de um endereço e consultar o estoque agora.' },
+      { slug: 'localizador', name: 'Localizador de Produtos', text: 'Para ver as lojas perto de um endereço. A Dinn já consulta em tempo real as 5 mais próximas.' },
       { slug: 'distribuicao', name: 'Distribuição', text: 'Para ver se a falta pode começar no centro de distribuição, na reposição ou na farmácia.' },
       { slug: 'jean', name: 'Jean', text: 'Pergunte quais lojas estão mais críticas e abra a lista pronta.' },
     ],
   },
   faq: [
-    { question: 'O dado é em tempo real?', answer: 'Não. É do dia anterior (D-1), com a data no topo da tela. Só o botão Consultar agora, em loja compatível, faz uma consulta na hora e mostra o horário da resposta.' },
+    { question: 'O dado é em tempo real?', answer: 'A base é do dia anterior (D-1), com a data no topo da tela. Mas você pode ver o estoque de uma loja em tempo real. Abra a loja e clique em Consultar agora. A resposta mostra o horário da consulta. Vale para lojas compatíveis.' },
     { question: 'Por que o Nível não muda quando troco o período da tabela?', answer: 'Porque o Nível usa sempre a janela fixa de 30 dias, com corte no sábado.' },
     { question: 'Ruptura de 0% e "sem dado" são a mesma coisa?', answer: 'Não. 0% é um valor medido. "Sem dado" quer dizer que ainda não há medição.' },
-    { question: 'Por que o número difere do que vi na farmácia?', answer: 'O dado é de ontem e parte do estoque é estimada. Use o número para ver tendência, não para auditar uma loja.' },
+    { question: 'Por que o número difere do que vi na farmácia?', answer: 'A base é de ontem e parte do estoque é estimada. Para ver o estoque da loja agora, use Consultar agora. Use a base para ver tendência, não para auditar uma loja.' },
     { question: 'Uma loja que nunca vendeu o produto aparece?', answer: 'Não. Lojas que nunca venderam o item não entram no cálculo.' },
     { question: 'Por que o gráfico de Disponibilidade não mostra a minha rede?', answer: 'Esse gráfico mostra só redes com leitura exata de estoque.' },
     { question: 'Posso baixar os dados?', answer: 'Sim. A tabela de lojas, o ranking por SKU e a lista de produtos da loja saem em CSV, Excel, PDF ou JSON.' },

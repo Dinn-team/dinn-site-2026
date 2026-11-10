@@ -112,7 +112,7 @@ export const distribuicao: FeatureContent = {
   doesNot: [
     'Não prova que a causa está no CD, na reposição ou na farmácia. A leitura é hipótese.',
     'Não trata proximidade como vínculo de abastecimento.',
-    'Não é tempo real. O dado é de D-1.',
+    'Não atualiza a base durante o dia. O dado é de D-1. O estoque da farmácia agora vem de Consultar agora.',
     'Não mostra o estoque exato de uma farmácia no mapa. O popup mostra o nível.',
     'Não cria pedido, não faz remanejamento e não escreve no sistema do distribuidor.',
     'Não cobre todos os distribuidores. A coleta nos CDs é recente e o histórico é curto.',
@@ -150,7 +150,7 @@ export const distribuicao: FeatureContent = {
     ],
   },
   faq: [
-    { question: 'É tempo real?', answer: 'Não. O dado é de D-1. Só Consultar agora, na lista do CD, lê a farmácia ao vivo. Vale para lojas elegíveis.' },
+    { question: 'É tempo real?', answer: 'A base é de D-1. Para ver o estoque de uma farmácia agora, use Consultar agora na lista do CD, no detalhe da loja ou no Localizador. Vale para lojas elegíveis.' },
     { question: 'CD zerado quer dizer ruptura?', answer: 'Não necessariamente. Ruptura é o CD e as farmácias zerados. CD zerado com farmácias abastecidas indica distribuição feita.' },
     { question: 'A farmácia dentro do raio compra desse CD?', answer: 'Não dá para afirmar. Proximidade não é vínculo de abastecimento. Onde há histórico de compra, use os modos de compra.' },
     { question: 'Como a cobertura é calculada?', answer: 'Estoque do CD dividido pela venda diária estimada das farmácias do raio. É uma aproximação da região.' },

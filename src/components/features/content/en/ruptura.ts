@@ -1,17 +1,17 @@
 import type { FeatureContent } from '../../types';
 
 // Stock-out (EN). Source: dinn-manager-app/docs/site-reproducao/funcionalidades/ruptura.md.
-// Rule: the data is D-1 and shows patterns and trends. It does not confirm the stock-out of a store on one day.
+// Rule: the base is D-1 and shows patterns and trends. In the store detail, Check now reads stock in real time. It does not confirm the stock-out of a store on one day.
 export const content: FeatureContent = {
   slug: 'ruptura',
   meta: {
     title: 'Stock-out | Dinn',
-    description: 'See where a product is missing and which stores to check first. Stock-out by store, chain and region, with data from the previous day.',
+    description: 'See where a product is missing and which stores to check first. Stock-out by store, chain and region, with the previous-day base and real-time stock at the store.',
   },
   hero: {
     title: 'Where is the product missing? Check these stores first.',
     sub: 'Dinn measures stock-out in the pharmacies of your portfolio. It shows the trend over time and ranks the stores by severity.',
-    note: 'Data from the previous day (D-1). Use it to see patterns and trends, not to audit a pharmacy.',
+    note: 'Base from the previous day (D-1) for patterns and trends. In the store detail, check stock in real time.',
   },
   steps: [
     { title: 'Choose the scope', text: 'Filter by product, chain, state, city or Brick. The filters apply to all charts and tables on the screen.' },
@@ -34,7 +34,7 @@ export const content: FeatureContent = {
       },
       {
         title: 'From a store check',
-        text: 'In a compatible store, the Check now button runs a stock check. It shows the time of the response.',
+        text: 'In the store detail, click Check now. Dinn reads the stock of that store in real time and shows the time of the response. It works at compatible stores.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -76,7 +76,7 @@ export const content: FeatureContent = {
       {
         tab: 'Store',
         title: 'The product that is missing',
-        text: 'Open a store and see the ranking by SKU, with the stock range and the date of the estimate. In a compatible store, use Check now.',
+        text: 'Open a store and see the ranking by SKU, with the stock range and the date of the estimate. Click Check now to see stock in real time.',
         shot: { screen: 'rupture', phase: 8, to: 'm-est-0' },
       },
     ],
@@ -99,10 +99,11 @@ export const content: FeatureContent = {
     'Classifies each store as Critical, High, Moderate or Low.',
     'Ranks products, chains and stores from most critical to least critical.',
     'Shows, in each store, which products are missing and whether the stock is exact or estimated.',
+    'Checks the stock of the store in real time, in the store detail, and shows the time of the response.',
     'Exports the tables and keeps saved views.',
   ],
   doesNot: [
-    'Does not show real-time stock. The data is from yesterday (D-1).',
+    'Does not refresh the base during the day. The base is D-1. To see stock now, use Check now in the store detail.',
     'Does not confirm the stock-out of a store on one day. Use it to see patterns and trends.',
     'Does not count stores that never sold the item.',
     'Does not promise less stock-out or more sales.',
@@ -127,23 +128,23 @@ export const content: FeatureContent = {
       'Ask Jean and open the list already filtered.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
-    note: 'The number can differ from what you see in the pharmacy. The data is from yesterday, and part of the stock is estimated. The value is in the trend.',
+    note: 'The number can differ from what you see in the pharmacy. The base is from yesterday, and part of the stock is estimated. To confirm a store now, use Check now. The value of the base is in the trend.',
   },
   related: {
     title: 'With other features',
     intro: 'Stock-out shows where the product is missing. These features help you understand the rest.',
     items: [
       { slug: 'giro', name: 'Sell-through', text: 'Stores with stock that does not move belong to Sell-through. See the idle days.' },
-      { slug: 'localizador', name: 'Product Locator', text: 'See the stores near an address and check the stock now.' },
+      { slug: 'localizador', name: 'Product Locator', text: 'See the stores near an address. Dinn already checks the five closest in real time.' },
       { slug: 'distribuicao', name: 'Distribution', text: 'See if the gap can start at the distribution center (DC), in restocking or at the pharmacy.' },
       { slug: 'jean', name: 'Jean', text: 'Ask which stores are most critical and open the ready list.' },
     ],
   },
   faq: [
-    { question: 'Is the data real-time?', answer: 'No. It is from the previous day (D-1), with the date at the top of the screen. Only the Check now button, in a compatible store, runs a check at that moment and shows the time of the response.' },
+    { question: 'Is the data real-time?', answer: 'The base is from the previous day (D-1), with the date at the top of the screen. But you can see the stock of a store in real time. Open the store and click Check now. The response shows the time of the query. It works at compatible stores.' },
     { question: 'Why does the Level not change when I change the table period?', answer: 'Because the Level always uses a fixed 30-day window, cut on Saturday.' },
     { question: 'Are 0% stock-out and "no data" the same?', answer: 'No. 0% is a measured value. "No data" means there is no measurement yet.' },
-    { question: 'Why does the number differ from what I saw in the pharmacy?', answer: 'The data is from yesterday, and part of the stock is estimated. Use the number to see trends, not to audit a store.' },
+    { question: 'Why does the number differ from what I saw in the pharmacy?', answer: 'The base is from yesterday, and part of the stock is estimated. To see the stock of the store now, use Check now. Use the base to see trends, not to audit a store.' },
     { question: 'Does a store that never sold the product appear?', answer: 'No. Stores that never sold the item are not in the calculation.' },
     { question: 'Why does the Availability chart not show my chain?', answer: 'This chart shows only chains with an exact stock reading.' },
     { question: 'Can I download the data?', answer: 'Yes. The stores table, the ranking by SKU and the product list of a store export as CSV, Excel, PDF or JSON.' },

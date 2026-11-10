@@ -83,14 +83,14 @@ export const offerPt = {
   realtime: {
     eyebrow: "Estoque em tempo real",
     title: "Precisa verificar agora? *Consulte o estoque em tempo real.*",
-    text: "No Localizador, consulte a disponibilidade que as lojas compatíveis informam naquele momento. Veja o horário da consulta. Tempo real, D-1 e estoque estimado são leituras diferentes.",
+    text: "No Localizador, a Dinn consulta em tempo real as 5 lojas mais próximas do endereço. Você consulta as outras lojas compatíveis, uma a uma. Veja o horário da consulta. Tempo real, D-1 e estoque estimado são leituras diferentes.",
     condition: "Disponível conforme rede, fonte e escopo contratado. A informação pode mudar após a consulta.",
     sim: "Simulação · valores de exemplo",
     mapAria: "Mapa do Localizador com farmácias próximas ao endereço do consumidor, coloridas pelo nível de estoque.",
     stepsLabel: "Da busca à orientação",
     steps: [
-      { title: "Localizar", text: "Informe o endereço ou a área e o raio. As farmácias próximas aparecem no mapa." },
-      { title: "Escolher a loja", text: "Abra uma loja. A leitura de base é de ontem. Só as lojas compatíveis têm a consulta." },
+      { title: "Localizar", text: "Informe o endereço ou a área e o raio. As farmácias próximas aparecem no mapa. A Dinn consulta na hora as 5 mais próximas." },
+      { title: "Escolher a loja", text: "Abra uma loja fora das 5 mais próximas. A leitura de base é de ontem. Só as lojas compatíveis têm a consulta." },
       { title: "Consultar agora", text: "A Dinn pergunta à fonte da loja naquele momento." },
       { title: "Resposta e horário", text: "A resposta mostra o horário da consulta, separada da leitura de ontem." },
       { title: "Orientar", text: "Oriente o consumidor com o que a loja informou e quando. Compartilhe o endereço." }
@@ -137,12 +137,12 @@ export const offerPt = {
   locator: {
     meta: {
       title: "Localizador e estoque em tempo real | Dinn",
-      description: "Consulte a disponibilidade que as lojas compatíveis informam naquele momento. Tempo real, D-1 e estoque estimado são leituras diferentes."
+      description: "A Dinn consulta em tempo real as 5 lojas mais próximas e você consulta as outras uma a uma. Tempo real, D-1 e estoque estimado são leituras diferentes."
     },
     hero: {
       eyebrow: "Dinn Localizador",
       title: "Precisa verificar agora? *Consulte o estoque em tempo real.*",
-      lead: "No Localizador, consulte a disponibilidade que as lojas compatíveis informam naquele momento. Veja o horário da consulta. Tempo real, D-1 e estoque estimado são leituras diferentes."
+      lead: "No Localizador, a Dinn consulta em tempo real as 5 lojas mais próximas do endereço. Você consulta as outras lojas compatíveis, uma a uma. Veja o horário da consulta. Tempo real, D-1 e estoque estimado são leituras diferentes."
     },
     scene: { title: "Da busca à orientação, em cinco passos" },
     readings: {
@@ -152,13 +152,13 @@ export const offerPt = {
       rows: [
         ["Estoque D-1 (observado)", "O que a fonte informou no dia anterior, por loja, com a data.", "Base diária, com a data de cada leitura.", "Priorizar e acompanhar um recorte."],
         ["Estimado", "Calculado a partir de lojas comparáveis e do histórico quando não há resposta direta. Sempre mostra o nível de confiança.", "Na atualização da base.", "Preencher a falta de sinal direto. Confirme antes de agir."],
-        ["Tempo real (consulta)", "A resposta que a loja informa à fonte no momento da consulta, com o horário.", "No momento em que você consulta, uma loja por vez.", "Confirmar a disponibilidade antes de orientar alguém ou visitar."]
+        ["Tempo real (consulta)", "A resposta que a loja informa à fonte no momento da consulta, com o horário.", "No momento da consulta. A Dinn consulta as 5 mais próximas sozinha. As outras, uma por vez.", "Confirmar a disponibilidade antes de orientar alguém ou visitar."]
       ]
     },
     when: {
       title: "Quando consultar agora",
       items: [
-        { title: "A ligação do consumidor", text: "Um paciente pergunta onde achar um remédio. Consulte a loja mais próxima e responda com o que ela acabou de informar. Não ligue loja por loja." },
+        { title: "A ligação do consumidor", text: "Um paciente pergunta onde achar um remédio. Busque pelo endereço. A Dinn já consulta as 5 lojas mais próximas em tempo real. Responda com o que elas informaram. Não ligue loja por loja." },
         { title: "A visita desta tarde", text: "Antes de falar com a rede, veja o que a loja informa agora. Leve à conversa o dado de hoje, não o de ontem." },
         { title: "Depois da reposição", text: "A rede combinou uma entrega? Consulte a mesma loja de novo. Veja se o produto aparece na resposta." }
       ]
@@ -176,7 +176,9 @@ export const offerPt = {
     faq: {
       title: "Perguntas sobre estoque em tempo real",
       items: [
-        { question: "Tempo real mostra todas as lojas, sempre atualizadas?", answer: "Não. É uma consulta sob demanda. Você escolhe uma loja compatível e a Dinn pergunta à fonte naquele momento. A leitura de base continua D-1." },
+        { question: "O Localizador consulta o estoque em tempo real?", answer: "Sim. A Dinn consulta em tempo real as 5 lojas mais próximas do endereço. Você pode consultar qualquer outra loja compatível, uma a uma. A leitura de base continua D-1." },
+        { question: "Posso consultar o estoque em tempo real fora do Localizador?", answer: "Sim. Na Ruptura, abra a loja e clique em Consultar agora. A resposta mostra o horário. A base da Ruptura continua D-1." },
+        { question: "Tempo real mostra todas as lojas, sempre atualizadas?", answer: "Não. A Dinn consulta as 5 lojas mais próximas por conta própria. As outras lojas compatíveis você consulta uma a uma. A leitura de base continua D-1." },
         { question: "A resposta garante que o produto está lá?", answer: "Não. É o que a fonte informou naquele horário. O estoque pode mudar depois. Diga isso ao consumidor." },
         { question: "Todas as redes têm consulta em tempo real?", answer: "Não. Depende de rede, fonte e escopo contratado. Validamos o recorte com você antes de começar." },
         { question: "Qual a diferença para o estoque estimado?", answer: "O estimado é calculado por lojas comparáveis quando não há resposta direta. A consulta em tempo real é a resposta da própria loja, com o horário." }
@@ -819,7 +821,7 @@ export const offerPt = {
       rows: [
         ["Observado (D-1)", "O que a fonte informou no dia anterior, por loja.", "Base diária, com a data de cada leitura."],
         ["Estimado", "Lojas sem resposta direta. Usa lojas comparáveis e o histórico, com nível de confiança.", "Na atualização da base."],
-        ["Tempo real", "Lojas compatíveis, por consulta sob demanda.", "No momento da consulta, uma loja por vez."]
+        ["Tempo real", "Lojas compatíveis, por consulta sob demanda.", "No momento da consulta. As 5 mais próximas no Localizador, as outras uma por vez."]
       ]
     },
     status: {

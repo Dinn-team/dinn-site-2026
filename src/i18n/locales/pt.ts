@@ -87,7 +87,7 @@ export const ptBR = {
         },
         method: [
           "Busca a partir do endereço informado. Lojas mais próximas primeiro.",
-          "O estoque é observado na fonte (D-1) ou estimado por lojas comparáveis. Cada valor tem um nível de confiança.",
+          "As 5 lojas mais próximas são consultadas em tempo real. Nas demais, o estoque é observado na fonte (D-1) ou estimado por lojas comparáveis. Cada valor tem um nível de confiança.",
           "Cobertura em dias = estoque ÷ giro médio diário da loja.",
           "A ordem usa disponibilidade e proximidade, não o menor preço."
         ],
@@ -637,7 +637,7 @@ export const ptBR = {
     destinations: ["BI", "Copilot", "Agentes", "API"],
     trust: [
       "Observado ou estimado, sempre dito",
-      "Base D-1 e consulta pontual em lojas elegíveis",
+      "Base D-1 e estoque em tempo real, sob consulta, em lojas elegíveis",
       "Dois fatores por e-mail · SSO sob consulta",
       "Implantação em até 30 dias após pré-requisitos e escopo acordados"
     ],
@@ -648,7 +648,7 @@ export const ptBR = {
     items: [
       {
         question: "Já usamos auditorias como IQVIA e Close-Up. Por que precisaríamos da Dinn?",
-        answer: "A Dinn **não substitui** as auditorias de mercado. Ela as **complementa**. As auditorias dão referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade todo dia (D-1), loja a loja. Ela mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, você pode cruzar as duas leituras no mesmo recorte."
+        answer: "A Dinn **não substitui** as auditorias de mercado. Ela as **complementa**. As auditorias dão referência para planejamento e leituras consolidadas, conforme o produto contratado. A Dinn acompanha a disponibilidade todo dia (D-1), loja a loja, e você consulta o estoque de uma loja em tempo real quando precisar. Ela mostra **onde agir agora**, antes que a ruptura vire venda perdida. Quando houver autorização, você pode cruzar as duas leituras no mesmo recorte."
       },
       {
         question: "A implantação exige um esforço grande de TI?",
@@ -703,8 +703,12 @@ export const ptBR = {
         answer: "Não. **Cobertura e atualização variam por fonte, produto, rede e consulta**. Cada leitura informa o que cobre. A Dinn não confirma causas. Ela mostra evidências e hipóteses, e o time as valida. Ausência de produto nem sempre é ruptura. Estoque no centro de distribuição não prova que uma loja é abastecida."
       },
       {
+        question: "O estoque é em tempo real?",
+        answer: "A base é do dia anterior (D-1), com a data de cada leitura. Além dela, você **consulta o estoque em tempo real**. No detalhe da loja, em Ruptura, clique em **Consultar agora**. No Localizador, a Dinn já consulta na hora as **5 lojas mais próximas** do endereço, e você consulta as outras uma a uma. Cada resposta mostra o horário. Vale para lojas elegíveis, conforme rede, fonte e escopo."
+      },
+      {
         question: "Qual a diferença entre dado observado e estimado?",
-        answer: "Dado **observado** é o que a fonte informou diretamente, com local e horário. Dado **estimado** vem de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. Dado **inferido** é a leitura que o Dinn tira da combinação de sinais. É uma hipótese a validar. A base atualiza em D-1. Em lojas elegíveis, você pode fazer uma consulta pontual de disponibilidade."
+        answer: "Dado **observado** é o que a fonte informou diretamente, com local e horário. Dado **estimado** vem de lojas comparáveis e do histórico quando não há resposta direta, sempre com nível de confiança. Dado **inferido** é a leitura que o Dinn tira da combinação de sinais. É uma hipótese a validar. A base atualiza em D-1. Em lojas elegíveis, você também consulta o estoque em tempo real, loja a loja."
       }
     ]
   },

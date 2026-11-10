@@ -236,13 +236,13 @@ export const pagesEs = {
           title: "Las cinco farmacias más cercanas al consumidor",
           steps: [
             "Entrada: la dirección del consumidor.",
-            "Lectura: inventario observado (D-1) o estimado por tiendas comparables, con la confianza.",
+            "Lectura: Dinn consulta en tiempo real las 5 tiendas más cercanas. En las demás, inventario observado (D-1) o estimado por tiendas comparables, con la confianza.",
             "Orientación: disponibilidad y cercanía, no el menor precio.",
             "Patrón: dos tiendas sin el producto desde hace una semana pasan a la agenda de reposición."
           ]
         },
         limits: [
-          "La lectura base es D-1. En tiendas compatibles, una consulta bajo demanda corre en tiempo real y muestra la hora de la respuesta.",
+          "La lectura base es D-1. Dinn consulta en tiempo real las 5 tiendas más cercanas y muestra la hora de cada respuesta. En las otras tiendas compatibles, consultas una a una.",
           "Probabilidad de inventario no es garantía. Díselo al consumidor.",
           "La cobertura varía por cadena y por fuente."
         ],
@@ -331,7 +331,7 @@ export const pagesEs = {
         },
         {
           title: "Con qué actualización",
-          text: "Base en D-1, con consulta puntual de disponibilidad en tiendas elegibles. La cobertura y la actualización varían por fuente, producto, cadena y consulta."
+          text: "Base en D-1, con inventario en tiempo real bajo consulta en tiendas elegibles: en el detalle de la tienda y en el Localizador. La cobertura y la actualización varían por fuente, producto, cadena y consulta."
         },
         {
           title: "Adónde van",
@@ -390,7 +390,7 @@ export const pagesEs = {
     coverage: {
       title: "Cobertura y actualización",
       items: [
-        { title: "Frecuencia", text: "Base en D-1. En tiendas elegibles, es posible una consulta puntual de disponibilidad." },
+        { title: "Frecuencia", text: "Base en D-1. En tiendas elegibles, consultas el inventario en tiempo real, una tienda a la vez. El Localizador consulta las 5 más cercanas por su cuenta." },
         { title: "Cobertura", text: "Varía por fuente, producto, cadena y consulta. Cada lectura indica qué cubre." },
         { title: "Fuentes de mercado e internas", text: "Entran cuando se acuerdan licencia, autorización y alcance." }
       ]
