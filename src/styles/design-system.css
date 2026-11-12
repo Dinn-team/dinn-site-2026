@@ -1,9 +1,6 @@
 /* Design system da Dinn — reset, tokens de marca e componentes base.
  *
- * Estava dentro de fonts.css, misturado a 232 KB de fontes em base64.
- * Extraido para ca ao migrar as fontes para arquivos WOFF2: o conteudo e
- * identico e a ordem no cascade foi preservada (global.css importa este
- * arquivo logo apos fonts.css, exatamente onde ele estava antes). */
+ * Tokens de marca e componentes base. As fontes são Inter e Roboto (pacotes @fontsource). */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 

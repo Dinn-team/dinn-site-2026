@@ -5,7 +5,7 @@
 Antes de criar ou mudar qualquer tela, hero ou seção, leia `rules/DESIGN_SYSTEM_V2.md`.
 A home nova (`src/components/home2/*`, `src/styles/home2.css`) é o modelo visual de todo o site.
 Referências de origem: `rules/REFERENCES_UI_UX.md` (Harvey e ElevenLabs).
-`rules/DESIGN_SYSTEM.md` (v1, Britti Sans) está substituído.
+O v1 (Britti Sans) foi removido do repositório em 12/11/2026. A Britti Sans não é mais usada em nenhuma parte do site.
 
 Regras curtas:
 

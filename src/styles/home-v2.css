@@ -1,6 +1,6 @@
 /* ==========================================================================
    Home v2 — base compartilhada e herói
-   Segue rules/DESIGN_SYSTEM.md: Britti Sans, var(--primary) como único roxo de marca
+   Segue rules/DESIGN_SYSTEM_V2.md: Inter e Roboto, var(--primary) como único roxo de marca
    (tons por transparência), #B79EFF para destaque em fundo escuro. Cores de
    nível (vermelho, laranja, amarelo, verde) aparecem só em dado, como no
    Dinn Manager.
@@ -28,7 +28,7 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --paper: #F5F5F7;
 
-  /* Espaçamento entre letras, escolhido por teste lado a lado na Britti Sans:
+  /* Espaçamento entre letras, escolhido por teste lado a lado:
      títulos grandes apertados demais (-0.045em) fazem "rc", "rm" encostarem. */
   --track-display: -0.02em;  /* h1, 48px ou mais */
   --track-title: -0.012em;   /* h2, 28–47px */

@@ -1,6 +1,6 @@
 # Design System v2 — base de toda tela do site
 
-> **Fonte da verdade visual desde 29/10/2026.** Substitui `rules/DESIGN_SYSTEM.md` (v1, Britti Sans).
+> **Fonte da verdade visual desde 29/10/2026.** Substituiu o v1 (Britti Sans), removido do repositório em 12/11/2026.
 > A home nova é o modelo. Toda página, hero e seção nova segue este arquivo.
 > Referências de origem: `rules/REFERENCES_UI_UX.md` (Harvey e ElevenLabs).
 > Código de referência: `src/components/home2/*` e `src/styles/home2.css`.
