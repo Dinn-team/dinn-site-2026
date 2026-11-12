@@ -1,17 +1,17 @@
 import type { Customer } from './types';
 
 export const pt: Customer = {
-  slug: 'marjan',
-  name: 'Marjan',
+  slug: 'ruptura-no-pdv',
+  name: 'Laboratório brasileiro de medicamentos e suplementos',
   sector: 'Indústria farmacêutica',
   hq: 'Brasil',
   useCase: 'Análise de Mercado: ruptura, estoque e execução no PDV',
-  about: 'A Marjan é um laboratório farmacêutico brasileiro. Seu portfólio de medicamentos e suplementos é vendido em farmácias de todo o país.',
-  title: 'Marjan transforma ruptura em ação de campo',
-  summary: 'O Dinn mostra à Marjan o estoque e a ruptura loja a loja. O campo sabe o que atacar primeiro.',
-  metaDescription: 'Com o Dinn, a Marjan vê estoque e ruptura loja a loja. Cerca de 14% do giro potencial não é capturado por ruptura. O campo ganha um mapa do que atacar primeiro.',
+  about: 'O laboratório é brasileiro. Seu portfólio de medicamentos e suplementos é vendido em farmácias de todo o país.',
+  title: 'Laboratório transforma ruptura em ação de campo',
+  summary: 'O Dinn mostra ao laboratório o estoque e a ruptura loja a loja. O campo sabe o que atacar primeiro.',
+  metaDescription: 'Com o Dinn, um laboratório brasileiro vê estoque e ruptura loja a loja. O campo ganha um mapa do que atacar primeiro.',
   metrics: [
-    { value: '≈ 14%', label: 'do giro potencial dos três mercados analisados não foi capturado por ruptura' },
+    { value: '69%', label: 'dos gestores pedem que o Dinn transforme o dado em ação' },
     { value: '47', label: 'gestores cadastrados no Dinn' },
     { value: '78%', label: 'dos gestores sentiriam impacto no dia a dia se o Dinn saísse amanhã' },
     { value: '43%', label: 'dos gestores economizam 30 minutos ou mais por semana' },
@@ -23,8 +23,8 @@ export const pt: Customer = {
   },
   intro: [
     'Os números de venda explicam o passado. Eles não explicam por que o produto não vende hoje.',
-    'Na Marjan, faltava a visão real do PDV. O time sabia que havia ruptura. Não sabia onde, por quantos dias e por qual causa. Sabia que perdia venda, mas não quanto.',
-    'De setembro a novembro de 2025, 47 gestores usaram o Dinn. Ele monitora 79 EANs em mais de 45 mil PDVs e mais de 50 redes. Agora o campo responde com dado se o produto não vende por falta de estoque ou por falta de demanda.',
+    'No laboratório, faltava a visão real do PDV. O time sabia que havia ruptura. Não sabia onde, por quantos dias e por qual causa. Sabia que perdia venda, mas não quanto.',
+    'De setembro a novembro de 2025, 47 gestores usaram o Dinn. Ele monitora mais de 45 mil PDVs e mais de 50 redes. Agora o campo responde com dado se o produto não vende por falta de estoque ou por falta de demanda.',
   ],
   problem: {
     title: 'Ver a ruptura não diz o que fazer',
@@ -44,13 +44,13 @@ export const pt: Customer = {
       { kind: 'screen', screen: 'home', caption: 'Início do Dinn: ruptura por produto, nível dos PDVs e ranking por rede, com o dado do dia anterior (D-1).' },
     ],
     paragraphs: [
-      'Com o Dinn, a Marjan passou a ver o estoque D-1, a ruptura por dia e por loja e a comparação entre redes e lojas vizinhas.',
+      'Com o Dinn, o laboratório passou a ver o estoque D-1, a ruptura por dia e por loja e a comparação entre redes e lojas vizinhas.',
       'A análise cobre o trimestre de 1º de setembro a 30 de novembro de 2025.',
     ],
     bullets: [
-      'Escopo monitorado: 79 EANs, mais de 45 mil PDVs e mais de 50 redes',
-      'Mercados montados: 3, com 30 EANs no total',
-      'Análise de ruptura: os 10 produtos de maior giro da Marjan em redes de grande porte',
+      'Escopo monitorado: mais de 45 mil PDVs e mais de 50 redes',
+      'Mercados montados: 3',
+      'Análise de ruptura: os 10 produtos de maior giro do laboratório em redes de grande porte',
       'Usuários: 47 gestores cadastrados',
     ],
   },
@@ -70,8 +70,8 @@ export const pt: Customer = {
     {
       title: 'Abrir a negociação com dado na mesa',
       paragraphs: [
-        'Um gestor acompanhava uma grande rede com descontos muito altos. Os descontos pressionavam a margem e geravam pedidos de condições adicionais à indústria.',
-        'No painel de Análise de Preço do Dinn, ele viu o preço médio e o desconto médio da rede. Comparou com as outras redes. O desconto estava acima da média das outras redes. Na conversa com a rede, ele usou preço, giro e impacto em ruptura e margem.',
+        'Um gestor acompanhava uma grande rede e precisava de base para a conversa comercial sobre as condições de compra.',
+        'No painel de Análise de Preço do Dinn, ele viu o preço, o giro e a ruptura da rede e comparou com as outras redes. Na conversa comercial com a rede, o gestor usou dados de preço, giro e ruptura.',
       ],
     },
     {
@@ -100,63 +100,61 @@ export const pt: Customer = {
     {
       title: 'Quanto giro a ruptura faz perder',
       viz: [
-        { kind: 'donut', title: 'Perda sobre o giro do mercado', sub: '% do giro potencial dos 3 mercados, set a nov/2025', items: [{ label: 'Restante do giro dos 3 mercados', value: 86 }, { label: 'Perda estimada por ruptura', value: 14 }], center: { value: '≈ 14%', label: 'do giro perdido' }, note: 'Base: giro potencial dos três mercados, Marjan e concorrência.' },
-        { kind: 'bars', as: 'rings', title: 'Perda por mercado', sub: '% do giro, estimativa técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'pills', title: 'Perda por mercado', sub: 'Ordem relativa, estimativa técnica', items: [{ label: 'Mercado A', value: 3, hot: true, display: 'Maior' }, { label: 'Mercado B', value: 2, display: 'Intermediária' }, { label: 'Mercado C', value: 1, display: 'Menor' }] },
       ],
-      paragraphs: ['Nos três principais mercados da Marjan, em redes de grande porte, de setembro a novembro de 2025:'],
+      paragraphs: ['Nos três principais mercados do laboratório, em redes de grande porte, de setembro a novembro de 2025:'],
       tables: [
         {
-          head: ['Indicador', 'Resultado'],
+          head: ['Indicador', 'Leitura'],
           rows: [
-            ['Perda sobre o giro dos 3 mercados', '≈ 14%'],
-            ['Perda por mercado', 'de ≈ 7% a ≈ 27%'],
+            ['Giro potencial não capturado por ruptura', 'Parcela relevante do giro'],
+            ['Perda por mercado', 'Maior em um mercado do que nos outros'],
           ],
         },
       ],
       bullets: [
-        'São cerca de 32 unidades perdidas para cada 100 vendidas',
-        'A perda varia por mercado: ≈ 27% do giro no mercado A, ≈ 20% no B e ≈ 7% no C',
+        'Uma parcela relevante do giro potencial não é capturada por ruptura',
+        'A perda varia por mercado. Ela é maior no mercado A do que nos mercados B e C',
       ],
-      note: 'Como ler os valores: eles são um potencial técnico estimado. O cálculo usa o giro diário nas lojas com estoque e a taxa de ruptura observada. Não são perda real de faturamento. A validação final usa os dados oficiais de venda das redes.',
+      note: 'Como ler os resultados: eles são um potencial técnico estimado. O cálculo usa o giro diário nas lojas com estoque e a taxa de ruptura observada. Não são perda real de faturamento. A validação final usa os dados oficiais de venda das redes.',
     },
     {
       title: 'Os três produtos mais críticos',
       viz: [
-        { kind: 'bars', as: 'columns', title: 'Ruptura média por produto', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Produto A', value: 39.2, hot: true }, { label: 'Produto B', value: 23.4 }, { label: 'Produto C', value: 12.5 }] },
+        { kind: 'bars', as: 'pills', title: 'Ruptura média por produto', sub: 'Ordem relativa', items: [{ label: 'Produto A', value: 3, hot: true, display: 'Maior' }, { label: 'Produto B', value: 2, display: 'Intermediária' }, { label: 'Produto C', value: 1, display: 'Menor' }] },
       ],
       paragraphs: ['Entre os 10 produtos de maior giro, três concentram o maior potencial por indisponibilidade.'],
       tables: [
         {
           head: ['Produto', 'Ruptura média'],
           rows: [
-            ['Produto A', '39,2%'],
-            ['Produto B', '23,4%'],
-            ['Produto C', '12,5%'],
+            ['Produto A', 'Maior'],
+            ['Produto B', 'Intermediária'],
+            ['Produto C', 'Menor'],
           ],
         },
       ],
       bullets: [
-        'O produto A é o mais crítico: em quase 4 de cada 10 dias ele está indisponível',
-        'Nos 10 produtos, a ruptura média ponderada pelo giro foi de ≈ 21%',
+        'O produto A é o mais crítico: ele fica indisponível em uma parcela grande dos dias',
       ],
     },
     {
       title: 'Onde focar: execução por classe de praça',
       viz: [
-        { kind: 'bars', as: 'kpis', title: 'Ruptura atual por classe de praça', sub: '% dos dias sem estoque', unit: '%', items: [{ label: 'Praça A', value: 41, hot: true, display: 'acima de 40%' }, { label: 'Praça B', value: 26, display: '23% a 29%' }, { label: 'Praça C', value: 19, display: 'até 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Ruptura atual por classe de praça', sub: 'Ordem relativa', items: [{ label: 'Praça A', value: 3, hot: true, display: 'Maior' }, { label: 'Praça B', value: 2, display: 'Intermediária' }, { label: 'Praça C', value: 1, display: 'Menor' }] },
       ],
       paragraphs: [
         'Execução. A rede de melhor execução gira bem mais que a média das redes. A diferença mostra o espaço para ganhar com sortimento, abastecimento e ativação comercial.',
-        'Classe de praça. A praça C concentra ≈ 34% do volume dos 10 produtos e tem ruptura abaixo da média (≈ 17%). Ali a prioridade é sortimento, preço e ativação. As praças A e B combinam volume relevante com ruptura acima da média. Nelas, ataque a disponibilidade primeiro.',
+        'Classe de praça. A praça C concentra parte relevante do volume dos 10 produtos e tem ruptura abaixo da média. Ali a prioridade é sortimento, preço e ativação. As praças A e B combinam volume relevante com ruptura acima da média. Nelas, ataque a disponibilidade primeiro.',
         'A tabela mostra a leitura por classe de praça:',
       ],
       tables: [
         {
           head: ['Classe de praça', 'Ruptura atual', 'Prioridade'],
           rows: [
-            ['Praça A', 'acima de 40%', 'Disponibilidade primeiro'],
-            ['Praça B', '23% a 29%', 'Disponibilidade primeiro'],
-            ['Praça C', 'até 19%', 'Sortimento, preço e ativação'],
+            ['Praça A', 'Maior', 'Disponibilidade primeiro'],
+            ['Praça B', 'Intermediária', 'Disponibilidade primeiro'],
+            ['Praça C', 'Menor', 'Sortimento, preço e ativação'],
           ],
         },
       ],
@@ -168,16 +166,16 @@ export const pt: Customer = {
     {
       title: 'Quanto giro vale recuperar',
       viz: [
-        { kind: 'bars', as: 'lollipop', title: 'Giro recuperado por meta', sub: 'pontos percentuais do giro do mercado', items: [{ label: 'Meta realista: de 14% para 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% para 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelência: de 14% para 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Giro recuperado por meta', sub: 'Ordem relativa, sem valor exato', items: [{ label: 'Meta realista', value: 1, display: 'Fatia pequena' }, { label: 'Meta ambiciosa', value: 2, display: 'Fatia média' }, { label: 'Excelência', value: 3, display: 'Fatia maior', hot: true }] },
       ],
-      paragraphs: ['O Dinn simulou três metas. A base é a perda de 14% sobre o giro do mercado.'],
+      paragraphs: ['O Dinn simulou três metas de redução da perda por ruptura. Quanto mais ambiciosa a meta, maior a fatia do giro recuperada.'],
       tables: [
         {
           head: ['Cenário', 'Giro recuperado'],
           rows: [
-            ['A perda cai de 14% para 10% (meta realista)', '+4 p.p. do giro do mercado'],
-            ['A perda cai de 14% para 7% (meta ambiciosa)', '+7 p.p. do giro do mercado'],
-            ['A perda cai de 14% para 5% (excelência)', '+9 p.p. do giro do mercado'],
+            ['Meta realista', 'Uma fatia pequena do giro do mercado'],
+            ['Meta ambiciosa', 'Uma fatia média do giro do mercado'],
+            ['Excelência', 'Uma fatia maior do giro do mercado'],
           ],
         },
       ],
@@ -213,27 +211,27 @@ export const pt: Customer = {
         rows: [
           ['Filtros micro (distrito, setor, brick, cidade)', 'Granularidade avançada com novos filtros de Distrito, Setor e Brick'],
           ['Levar a ação pronta até a farmácia', 'App de Campo, com sugestões em tempo real ao representante'],
-          ['Um assistente que diga onde agir primeiro', 'IA com Next Best Action, que responde "onde devo agir primeiro?" e sugere ações'],
-          ['Que o insight vire execução consistente', 'Governança com grupo patrocinador, KPIs claros e responsáveis definidos'],
+          ['Um assistente que diga onde agir primeiro', 'A Jean, com ação recomendada, responde "onde devo agir primeiro?" e sugere ações'],
+          ['Que a recomendação da Jean vire execução consistente', 'Governança com grupo patrocinador, KPIs claros e responsáveis definidos'],
         ],
       },
     ],
-    note: 'Na Marjan, os próximos passos são tornar o uso semanal um hábito e criar ciclos mensais de plano de ação com acompanhamento de resultados.',
+    note: 'No laboratório, os próximos passos são tornar o uso semanal um hábito e criar ciclos mensais de plano de ação com acompanhamento de resultados.',
   },
 };
 
 export const en: Customer = {
-  slug: 'marjan',
-  name: 'Marjan',
+  slug: 'ruptura-no-pdv',
+  name: 'Brazilian drug and supplement lab',
   sector: 'Pharmaceutical industry',
   hq: 'Brazil',
   useCase: 'Market Analysis: stock-out, stock and in-store execution',
-  about: 'Marjan is a Brazilian pharmaceutical laboratory. It sells its medicines and supplements in pharmacies across the country.',
-  title: 'Marjan turns stock-outs into field action',
-  summary: 'Dinn shows Marjan stock and stock-outs store by store. The field knows what to fix first.',
-  metaDescription: 'With Dinn, Marjan sees stock and stock-outs store by store. About 14% of potential sell-through is lost to stock-outs. The field gets a map of what to fix first.',
+  about: 'The lab is Brazilian. It sells its medicines and supplements in pharmacies across the country.',
+  title: 'A lab turns stock-outs into field action',
+  summary: 'Dinn shows the lab stock and stock-outs store by store. The field knows what to fix first.',
+  metaDescription: 'With Dinn, a Brazilian lab sees stock and stock-outs store by store. The field gets a map of what to fix first.',
   metrics: [
-    { value: '≈ 14%', label: 'of potential sell-through in the three analyzed markets was not captured because of stock-outs' },
+    { value: '69%', label: 'of managers ask Dinn to turn data into action' },
     { value: '47', label: 'managers registered in Dinn' },
     { value: '78%', label: 'of managers would feel the impact in their daily work if Dinn left tomorrow' },
     { value: '43%', label: 'of managers save 30 minutes or more each week' },
@@ -245,8 +243,8 @@ export const en: Customer = {
   },
   intro: [
     'Sales numbers explain the past. They do not explain why a product does not sell today.',
-    'At Marjan, the real view of the store was missing. The team knew stock-outs existed. It did not know where, for how many days, or why. It knew it lost sales, but not how much.',
-    'From September to November 2025, 47 managers used Dinn. It monitors 79 EANs in more than 45,000 stores and more than 50 chains. Now the field uses data to see if a product does not sell because of no stock or no demand.',
+    'At the lab, the real view of the store was missing. The team knew stock-outs existed. It did not know where, for how many days, or why. It knew it lost sales, but not how much.',
+    'From September to November 2025, 47 managers used Dinn. It monitors more than 45,000 stores and more than 50 chains. Now the field uses data to see if a product does not sell because of no stock or no demand.',
   ],
   problem: {
     title: 'Seeing stock-outs does not show what to do',
@@ -266,13 +264,13 @@ export const en: Customer = {
       { kind: 'screen', screen: 'home', caption: 'Dinn home screen: stock-out by product, store level and ranking by chain, with data from the previous day (D-1).' },
     ],
     paragraphs: [
-      'With Dinn, Marjan sees D-1 stock, stock-out by day and by store, and a comparison between chains and nearby stores.',
+      'With Dinn, the lab sees D-1 stock, stock-out by day and by store, and a comparison between chains and nearby stores.',
       'The analysis covers the quarter from September 1 to November 30, 2025.',
     ],
     bullets: [
-      'Monitored scope: 79 EANs, more than 45,000 stores and more than 50 chains',
-      'Markets built: 3, with 30 EANs in total',
-      'Stock-out analysis: the 10 highest sell-through products of Marjan in large chains',
+      'Monitored scope: more than 45,000 stores and more than 50 chains',
+      'Markets built: 3',
+      'Stock-out analysis: the 10 highest sell-through products of the lab in large chains',
       'Users: 47 registered managers',
     ],
   },
@@ -292,8 +290,8 @@ export const en: Customer = {
     {
       title: 'Start the negotiation with data on the table',
       paragraphs: [
-        'A manager followed a large chain with very high discounts. The discounts hurt margin and led to requests for extra terms from the industry.',
-        'In the Dinn Price Analysis panel, he saw the average price and average discount of the chain. He compared them with other chains. The discount was above the average of the other chains. In the talk with the chain, he used price, sell-through and the impact on stock-outs and margin.',
+        'A manager followed a large chain and needed a base for the commercial talk about purchase terms.',
+        'In the Dinn Price Analysis panel, he saw the price, sell-through and stock-outs of the chain and compared them with other chains. In the commercial talk with the chain, the manager used price, sell-through and stock-out data.',
       ],
     },
     {
@@ -322,63 +320,61 @@ export const en: Customer = {
     {
       title: 'How much sell-through stock-outs cost',
       viz: [
-        { kind: 'donut', title: 'Loss over market sell-through', sub: '% of potential sell-through in the 3 markets, Sep to Nov 2025', items: [{ label: 'Rest of the sell-through in the 3 markets', value: 86 }, { label: 'Estimated loss from stock-outs', value: 14 }], center: { value: '≈ 14%', label: 'of sell-through lost' }, note: 'Base: potential sell-through in the three markets, Marjan and competitors.' },
-        { kind: 'bars', as: 'rings', title: 'Loss by market', sub: '% of sell-through, technical estimate', unit: '%', items: [{ label: 'Market A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Market B', value: 20, display: '≈ 20%' }, { label: 'Market C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'pills', title: 'Loss by market', sub: 'Relative order, technical estimate', items: [{ label: 'Market A', value: 3, hot: true, display: 'Highest' }, { label: 'Market B', value: 2, display: 'Intermediate' }, { label: 'Market C', value: 1, display: 'Lowest' }] },
       ],
-      paragraphs: ['In the three main Marjan markets, in large chains, from September to November 2025:'],
+      paragraphs: ['In the three main markets of the lab, in large chains, from September to November 2025:'],
       tables: [
         {
-          head: ['Indicator', 'Result'],
+          head: ['Indicator', 'Reading'],
           rows: [
-            ['Loss over sell-through in the 3 markets', '≈ 14%'],
-            ['Loss by market', 'from ≈ 7% to ≈ 27%'],
+            ['Potential sell-through not captured because of stock-outs', 'A relevant share of sell-through'],
+            ['Loss by market', 'Higher in one market than in the others'],
           ],
         },
       ],
       bullets: [
-        'That is about 32 units lost for every 100 sold',
-        'The loss changes by market: ≈ 27% of sell-through in market A, ≈ 20% in B and ≈ 7% in C',
+        'A relevant share of potential sell-through is not captured because of stock-outs',
+        'The loss changes by market. It is higher in market A than in markets B and C',
       ],
-      note: 'How to read the values: they are an estimated technical potential. The calculation uses daily sell-through in stores with stock and the observed stock-out rate. They are not real revenue loss. Final validation uses the official chain sales data.',
+      note: 'How to read the results: they are an estimated technical potential. The calculation uses daily sell-through in stores with stock and the observed stock-out rate. They are not real revenue loss. Final validation uses the official chain sales data.',
     },
     {
       title: 'The three most critical products',
       viz: [
-        { kind: 'bars', as: 'columns', title: 'Average stock-out by product', sub: '% of days without stock', unit: '%', items: [{ label: 'Product A', value: 39.2, hot: true }, { label: 'Product B', value: 23.4 }, { label: 'Product C', value: 12.5 }] },
+        { kind: 'bars', as: 'pills', title: 'Average stock-out by product', sub: 'Relative order', items: [{ label: 'Product A', value: 3, hot: true, display: 'Highest' }, { label: 'Product B', value: 2, display: 'Intermediate' }, { label: 'Product C', value: 1, display: 'Lowest' }] },
       ],
       paragraphs: ['Among the 10 highest sell-through products, three hold the largest potential from missing availability.'],
       tables: [
         {
           head: ['Product', 'Average stock-out'],
           rows: [
-            ['Product A', '39.2%'],
-            ['Product B', '23.4%'],
-            ['Product C', '12.5%'],
+            ['Product A', 'Highest'],
+            ['Product B', 'Intermediate'],
+            ['Product C', 'Lowest'],
           ],
         },
       ],
       bullets: [
-        'Product A is the most critical: it is unavailable on almost 4 of every 10 days',
-        'Across the 10 products, the average stock-out weighted by sell-through was ≈ 21%',
+        'Product A is the most critical: it is unavailable on a large share of days',
       ],
     },
     {
       title: 'Where to focus: execution by area class',
       viz: [
-        { kind: 'bars', as: 'kpis', title: 'Current stock-out by area class', sub: '% of days without stock', unit: '%', items: [{ label: 'Area A', value: 41, hot: true, display: 'above 40%' }, { label: 'Area B', value: 26, display: '23% to 29%' }, { label: 'Area C', value: 19, display: 'up to 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Current stock-out by area class', sub: 'Relative order', items: [{ label: 'Area A', value: 3, hot: true, display: 'Highest' }, { label: 'Area B', value: 2, display: 'Intermediate' }, { label: 'Area C', value: 1, display: 'Lowest' }] },
       ],
       paragraphs: [
         'Execution. The best-executing chain sells much more than the chain average. The gap shows the room to gain with assortment, supply and commercial activation.',
-        'Area class. Area C holds ≈ 34% of the volume of the 10 products and has a below-average stock-out rate (≈ 17%). There the priority is assortment, price and activation. Areas A and B combine relevant volume with above-average stock-outs. In these areas, fix availability first.',
+        'Area class. Area C holds a relevant part of the volume of the 10 products and has a below-average stock-out rate. There the priority is assortment, price and activation. Areas A and B combine relevant volume with above-average stock-outs. In these areas, fix availability first.',
         'The table shows the reading for each area class:',
       ],
       tables: [
         {
           head: ['Area class', 'Current stock-out', 'Priority'],
           rows: [
-            ['Area A', 'above 40%', 'Availability first'],
-            ['Area B', '23% to 29%', 'Availability first'],
-            ['Area C', 'up to 19%', 'Assortment, price and activation'],
+            ['Area A', 'Highest', 'Availability first'],
+            ['Area B', 'Intermediate', 'Availability first'],
+            ['Area C', 'Lowest', 'Assortment, price and activation'],
           ],
         },
       ],
@@ -390,16 +386,16 @@ export const en: Customer = {
     {
       title: 'How much sell-through is worth recovering',
       viz: [
-        { kind: 'bars', as: 'lollipop', title: 'Sell-through recovered by target', sub: 'percentage points of market sell-through', items: [{ label: 'Realistic target: from 14% to 10%', value: 4, display: '+4 p.p.' }, { label: 'Ambitious target: from 14% to 7%', value: 7, display: '+7 p.p.' }, { label: 'Excellence: from 14% to 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Sell-through recovered by target', sub: 'Relative order, no exact value', items: [{ label: 'Realistic target', value: 1, display: 'Small share' }, { label: 'Ambitious target', value: 2, display: 'Medium share' }, { label: 'Excellence', value: 3, display: 'Larger share', hot: true }] },
       ],
-      paragraphs: ['Dinn simulated three targets. The base is the 14% loss over market sell-through.'],
+      paragraphs: ['Dinn simulated three targets to cut the loss from stock-outs. The more ambitious the target, the larger the share of sell-through recovered.'],
       tables: [
         {
           head: ['Scenario', 'Sell-through recovered'],
           rows: [
-            ['Loss falls from 14% to 10% (realistic target)', '+4 p.p. of market sell-through'],
-            ['Loss falls from 14% to 7% (ambitious target)', '+7 p.p. of market sell-through'],
-            ['Loss falls from 14% to 5% (excellence)', '+9 p.p. of market sell-through'],
+            ['Realistic target', 'A small share of market sell-through'],
+            ['Ambitious target', 'A medium share of market sell-through'],
+            ['Excellence', 'A larger share of market sell-through'],
           ],
         },
       ],
@@ -435,27 +431,27 @@ export const en: Customer = {
         rows: [
           ['Micro filters (district, sector, brick, city)', 'Advanced granularity with new District, Sector and Brick filters'],
           ['Ready-made action in the pharmacy', 'Field App, with real-time suggestions to the sales rep'],
-          ['An assistant that says where to act first', 'AI with Next Best Action, which answers "where should I act first?" and suggests actions'],
-          ['Insight that becomes consistent execution', 'Governance with a sponsor group, clear KPIs and named owners'],
+          ['An assistant that says where to act first', 'Jean, with recommended actions, answers "where should I act first?" and suggests actions'],
+          ['Jean recommendations that become consistent execution', 'Governance with a sponsor group, clear KPIs and named owners'],
         ],
       },
     ],
-    note: 'At Marjan, the next steps are to make weekly use a habit and to set monthly action plan cycles with result tracking.',
+    note: 'At the lab, the next steps are to make weekly use a habit and to set monthly action plan cycles with result tracking.',
   },
 };
 
 export const es: Customer = {
-  slug: 'marjan',
-  name: 'Marjan',
+  slug: 'ruptura-no-pdv',
+  name: 'Laboratorio brasileño de medicamentos y suplementos',
   sector: 'Industria farmacéutica',
   hq: 'Brasil',
   useCase: 'Análisis de Mercado: quiebre de stock, stock y ejecución en la tienda',
-  about: 'Marjan es un laboratorio farmacéutico brasileño. Vende sus medicamentos y suplementos en farmacias de todo el país.',
-  title: 'Marjan convierte quiebres de stock en acción de campo',
-  summary: 'Dinn muestra a Marjan el stock y los quiebres de stock tienda por tienda. El campo sabe qué atacar primero.',
-  metaDescription: 'Con Dinn, Marjan ve el stock y los quiebres de stock tienda por tienda. Cerca de 14% de la rotación potencial se pierde por quiebres. El campo recibe un mapa de qué atacar primero.',
+  about: 'El laboratorio es brasileño. Vende sus medicamentos y suplementos en farmacias de todo el país.',
+  title: 'Laboratorio convierte quiebres en acción de campo',
+  summary: 'Dinn muestra al laboratorio el stock y los quiebres de stock tienda por tienda. El campo sabe qué atacar primero.',
+  metaDescription: 'Con Dinn, un laboratorio brasileño ve el stock y los quiebres de stock tienda por tienda. El campo recibe un mapa de qué atacar primero.',
   metrics: [
-    { value: '≈ 14%', label: 'de la rotación potencial de los tres mercados analizados no se capturó por quiebres de stock' },
+    { value: '69%', label: 'de los gestores piden que Dinn convierta el dato en acción' },
     { value: '47', label: 'gestores registrados en Dinn' },
     { value: '78%', label: 'de los gestores sentirían el impacto en el día a día si Dinn saliera mañana' },
     { value: '43%', label: 'de los gestores ahorran 30 minutos o más por semana' },
@@ -467,8 +463,8 @@ export const es: Customer = {
   },
   intro: [
     'Los números de venta explican el pasado. No explican por qué el producto no se vende hoy.',
-    'En Marjan faltaba la visión real de la tienda. El equipo sabía que había quiebres de stock. No sabía dónde, por cuántos días ni por qué causa. Sabía que perdía ventas, pero no cuánto.',
-    'De septiembre a noviembre de 2025, 47 gestores usaron Dinn. Monitorea 79 EAN en más de 45.000 tiendas y más de 50 cadenas. Ahora el campo usa datos para ver si el producto no se vende por falta de stock o por falta de demanda.',
+    'En el laboratorio faltaba la visión real de la tienda. El equipo sabía que había quiebres de stock. No sabía dónde, por cuántos días ni por qué causa. Sabía que perdía ventas, pero no cuánto.',
+    'De septiembre a noviembre de 2025, 47 gestores usaron Dinn. Monitorea más de 45.000 tiendas y más de 50 cadenas. Ahora el campo usa datos para ver si el producto no se vende por falta de stock o por falta de demanda.',
   ],
   problem: {
     title: 'Ver el quiebre de stock no dice qué hacer',
@@ -488,13 +484,13 @@ export const es: Customer = {
       { kind: 'screen', screen: 'home', caption: 'Inicio de Dinn: quiebre de stock por producto, nivel de las tiendas y ranking por cadena, con el dato del día anterior (D-1).' },
     ],
     paragraphs: [
-      'Con Dinn, Marjan ve el stock D-1, el quiebre por día y por tienda, y la comparación entre cadenas y tiendas vecinas.',
+      'Con Dinn, el laboratorio ve el stock D-1, el quiebre por día y por tienda, y la comparación entre cadenas y tiendas vecinas.',
       'El análisis cubre el trimestre del 1 de septiembre al 30 de noviembre de 2025.',
     ],
     bullets: [
-      'Alcance monitoreado: 79 EAN, más de 45.000 tiendas y más de 50 cadenas',
-      'Mercados armados: 3, con 30 EAN en total',
-      'Análisis de quiebre: los 10 productos de mayor rotación de Marjan en cadenas de gran porte',
+      'Alcance monitoreado: más de 45.000 tiendas y más de 50 cadenas',
+      'Mercados armados: 3',
+      'Análisis de quiebre: los 10 productos de mayor rotación del laboratorio en cadenas de gran porte',
       'Usuarios: 47 gestores registrados',
     ],
   },
@@ -508,14 +504,14 @@ export const es: Customer = {
       ],
       bullets: [
         'Alta rotación y bajo stock o quiebre: reposición, aumento de VB y negociación con la cadena',
-        'Baja rotación y alto stock: visita médica, activación de demanda y foco en recetas',
+        'Baja rotación y alto stock: promoción médica, activación de demanda y foco en recetas',
       ],
     },
     {
       title: 'Abrir la negociación con datos sobre la mesa',
       paragraphs: [
-        'Un gestor seguía una gran cadena con descuentos muy altos. Los descuentos presionaban el margen y generaban pedidos de condiciones adicionales a la industria.',
-        'En el panel de Análisis de Precios de Dinn, vio el precio medio y el descuento medio de la cadena. Los comparó con otras cadenas. El descuento estaba sobre el promedio de las otras cadenas. En la conversación con la cadena, usó precio, rotación e impacto en quiebres de stock y margen.',
+        'Un gestor seguía una gran cadena y necesitaba una base para la conversación comercial sobre las condiciones de compra.',
+        'En el panel de Análisis de Precios de Dinn, vio el precio, la rotación y los quiebres de stock de la cadena y los comparó con otras cadenas. En la conversación comercial con la cadena, el gestor usó datos de precio, rotación y quiebres de stock.',
       ],
     },
     {
@@ -544,63 +540,61 @@ export const es: Customer = {
     {
       title: 'Cuánta rotación hacen perder los quiebres',
       viz: [
-        { kind: 'donut', title: 'Pérdida sobre la rotación del mercado', sub: '% de la rotación potencial de los 3 mercados, sep a nov 2025', items: [{ label: 'Resto de la rotación de los 3 mercados', value: 86 }, { label: 'Pérdida estimada por quiebres', value: 14 }], center: { value: '≈ 14%', label: 'de la rotación perdida' }, note: 'Base: rotación potencial de los tres mercados, Marjan y competencia.' },
-        { kind: 'bars', as: 'rings', title: 'Pérdida por mercado', sub: '% de la rotación, estimación técnica', unit: '%', items: [{ label: 'Mercado A', value: 27, hot: true, display: '≈ 27%' }, { label: 'Mercado B', value: 20, display: '≈ 20%' }, { label: 'Mercado C', value: 7, display: '≈ 7%' }] },
+        { kind: 'bars', as: 'pills', title: 'Pérdida por mercado', sub: 'Orden relativo, estimación técnica', items: [{ label: 'Mercado A', value: 3, hot: true, display: 'Mayor' }, { label: 'Mercado B', value: 2, display: 'Intermedia' }, { label: 'Mercado C', value: 1, display: 'Menor' }] },
       ],
-      paragraphs: ['En los tres mercados principales de Marjan, en cadenas de gran porte, de septiembre a noviembre de 2025:'],
+      paragraphs: ['En los tres mercados principales del laboratorio, en cadenas de gran porte, de septiembre a noviembre de 2025:'],
       tables: [
         {
-          head: ['Indicador', 'Resultado'],
+          head: ['Indicador', 'Lectura'],
           rows: [
-            ['Pérdida sobre la rotación de los 3 mercados', '≈ 14%'],
-            ['Pérdida por mercado', 'de ≈ 7% a ≈ 27%'],
+            ['Rotación potencial no capturada por quiebres', 'Una parte relevante de la rotación'],
+            ['Pérdida por mercado', 'Mayor en un mercado que en los otros'],
           ],
         },
       ],
       bullets: [
-        'Son cerca de 32 unidades perdidas por cada 100 vendidas',
-        'La pérdida cambia por mercado: ≈ 27% de la rotación en el mercado A, ≈ 20% en el B y ≈ 7% en el C',
+        'Una parte relevante de la rotación potencial no se captura por quiebres de stock',
+        'La pérdida cambia por mercado. Es mayor en el mercado A que en los mercados B y C',
       ],
-      note: 'Cómo leer los valores: son un potencial técnico estimado. El cálculo usa la rotación diaria en tiendas con stock y la tasa de quiebre observada. No son pérdida real de facturación. La validación final usa los datos oficiales de venta de las cadenas.',
+      note: 'Cómo leer los resultados: son un potencial técnico estimado. El cálculo usa la rotación diaria en tiendas con stock y la tasa de quiebre observada. No son pérdida real de facturación. La validación final usa los datos oficiales de venta de las cadenas.',
     },
     {
       title: 'Los tres productos más críticos',
       viz: [
-        { kind: 'bars', as: 'columns', title: 'Quiebre medio por producto', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Producto A', value: 39.2, hot: true }, { label: 'Producto B', value: 23.4 }, { label: 'Producto C', value: 12.5 }] },
+        { kind: 'bars', as: 'pills', title: 'Quiebre medio por producto', sub: 'Orden relativo', items: [{ label: 'Producto A', value: 3, hot: true, display: 'Mayor' }, { label: 'Producto B', value: 2, display: 'Intermedio' }, { label: 'Producto C', value: 1, display: 'Menor' }] },
       ],
       paragraphs: ['Entre los 10 productos de mayor rotación, tres concentran el mayor potencial por falta de disponibilidad.'],
       tables: [
         {
           head: ['Producto', 'Quiebre medio'],
           rows: [
-            ['Producto A', '39,2%'],
-            ['Producto B', '23,4%'],
-            ['Producto C', '12,5%'],
+            ['Producto A', 'Mayor'],
+            ['Producto B', 'Intermedio'],
+            ['Producto C', 'Menor'],
           ],
         },
       ],
       bullets: [
-        'El producto A es el más crítico: casi 4 de cada 10 días no está disponible',
-        'En los 10 productos, el quiebre medio ponderado por rotación fue de ≈ 21%',
+        'El producto A es el más crítico: no está disponible en una parte grande de los días',
       ],
     },
     {
       title: 'Dónde enfocar: ejecución por clase de plaza',
       viz: [
-        { kind: 'bars', as: 'kpis', title: 'Quiebre actual por clase de plaza', sub: '% de los días sin stock', unit: '%', items: [{ label: 'Plaza A', value: 41, hot: true, display: 'sobre 40%' }, { label: 'Plaza B', value: 26, display: '23% a 29%' }, { label: 'Plaza C', value: 19, display: 'hasta 19%' }] },
+        { kind: 'bars', as: 'kpis', title: 'Quiebre actual por clase de plaza', sub: 'Orden relativo', items: [{ label: 'Plaza A', value: 3, hot: true, display: 'Mayor' }, { label: 'Plaza B', value: 2, display: 'Intermedio' }, { label: 'Plaza C', value: 1, display: 'Menor' }] },
       ],
       paragraphs: [
         'Ejecución. La cadena de mejor ejecución rota mucho más que el promedio de las cadenas. La diferencia muestra el espacio para ganar con surtido, abastecimiento y activación comercial.',
-        'Clase de plaza. La plaza C concentra ≈ 34% del volumen de los 10 productos y tiene un quiebre bajo el promedio (≈ 17%). Allí la prioridad es surtido, precio y activación. Las plazas A y B combinan volumen relevante con quiebre sobre el promedio. En ellas, ataque la disponibilidad primero.',
+        'Clase de plaza. La plaza C concentra una parte relevante del volumen de los 10 productos y tiene un quiebre bajo el promedio. Allí la prioridad es surtido, precio y activación. Las plazas A y B combinan volumen relevante con quiebre sobre el promedio. En ellas, ataque la disponibilidad primero.',
         'La tabla muestra la lectura por clase de plaza:',
       ],
       tables: [
         {
           head: ['Clase de plaza', 'Quiebre actual', 'Prioridad'],
           rows: [
-            ['Plaza A', 'sobre 40%', 'Disponibilidad primero'],
-            ['Plaza B', '23% a 29%', 'Disponibilidad primero'],
-            ['Plaza C', 'hasta 19%', 'Surtido, precio y activación'],
+            ['Plaza A', 'Mayor', 'Disponibilidad primero'],
+            ['Plaza B', 'Intermedio', 'Disponibilidad primero'],
+            ['Plaza C', 'Menor', 'Surtido, precio y activación'],
           ],
         },
       ],
@@ -612,16 +606,16 @@ export const es: Customer = {
     {
       title: 'Cuánta rotación vale recuperar',
       viz: [
-        { kind: 'bars', as: 'lollipop', title: 'Rotación recuperada por meta', sub: 'puntos porcentuales de la rotación del mercado', items: [{ label: 'Meta realista: de 14% a 10%', value: 4, display: '+4 p.p.' }, { label: 'Meta ambiciosa: de 14% a 7%', value: 7, display: '+7 p.p.' }, { label: 'Excelencia: de 14% a 5%', value: 9, display: '+9 p.p.', hot: true }] },
+        { kind: 'bars', as: 'lollipop', title: 'Rotación recuperada por meta', sub: 'Orden relativo, sin valor exacto', items: [{ label: 'Meta realista', value: 1, display: 'Parte pequeña' }, { label: 'Meta ambiciosa', value: 2, display: 'Parte media' }, { label: 'Excelencia', value: 3, display: 'Parte mayor', hot: true }] },
       ],
-      paragraphs: ['Dinn simuló tres metas. La base es la pérdida de 14% sobre la rotación del mercado.'],
+      paragraphs: ['Dinn simuló tres metas de reducción de la pérdida por quiebres. Cuanto más ambiciosa la meta, mayor la parte de la rotación recuperada.'],
       tables: [
         {
           head: ['Escenario', 'Rotación recuperada'],
           rows: [
-            ['La pérdida baja de 14% a 10% (meta realista)', '+4 p.p. de la rotación del mercado'],
-            ['La pérdida baja de 14% a 7% (meta ambiciosa)', '+7 p.p. de la rotación del mercado'],
-            ['La pérdida baja de 14% a 5% (excelencia)', '+9 p.p. de la rotación del mercado'],
+            ['Meta realista', 'Una parte pequeña de la rotación del mercado'],
+            ['Meta ambiciosa', 'Una parte media de la rotación del mercado'],
+            ['Excelencia', 'Una parte mayor de la rotación del mercado'],
           ],
         },
       ],
@@ -657,11 +651,11 @@ export const es: Customer = {
         rows: [
           ['Filtros micro (distrito, sector, brick, ciudad)', 'Granularidad avanzada con nuevos filtros de Distrito, Sector y Brick'],
           ['Llevar la acción lista hasta la farmacia', 'App de Campo, con sugerencias en tiempo real al representante'],
-          ['Un asistente que diga dónde actuar primero', 'IA con Next Best Action, que responde "¿dónde debo actuar primero?" y sugiere acciones'],
-          ['Que el insight se vuelva ejecución consistente', 'Gobernanza con grupo patrocinador, KPIs claros y responsables definidos'],
+          ['Un asistente que diga dónde actuar primero', 'Jean, con acción recomendada, responde "¿dónde debo actuar primero?" y sugiere acciones'],
+          ['Que la recomendación de Jean se vuelva ejecución consistente', 'Gobernanza con grupo patrocinador, KPIs claros y responsables definidos'],
         ],
       },
     ],
-    note: 'En Marjan, los próximos pasos son hacer del uso semanal un hábito y crear ciclos mensuales de plan de acción con seguimiento de resultados.',
+    note: 'En el laboratorio, los próximos pasos son hacer del uso semanal un hábito y crear ciclos mensuales de plan de acción con seguimiento de resultados.',
   },
 };

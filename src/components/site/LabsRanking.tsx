@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import type { Lab, LogoCredit } from '@/lib/labs-types';
 import { LabLogo, fmtNum } from './LabsParts';
@@ -7,7 +7,7 @@ import { PillBar, Spark } from './ChartKit';
 
 // /laboratorios: ranking dos maiores laboratórios do mundo (por receita) e dos laboratórios com
 // medicamento ativo no Brasil (por registros na Anvisa). Tabela sem bordas laterais: posição,
-// logo com a bandeira do país, nome, se é cliente, gráfico de receita e valor. Ao passar o mouse
+// logo com a bandeira do país, nome, gráfico de receita e valor. Ao passar o mouse
 // sobre a linha aparece o botão de contato, que leva ao formulário com a origem `lab-<slug>`
 // (o HubSpot lê a origem; ver src/lib/links.ts e contact-form.ts). No toque o botão fica visível.
 
@@ -19,7 +19,7 @@ function Row({ lab, max, lang }: { lab: Lab; max: number; lang: string }) {
   const { t } = useTranslation();
   const src = lab.source ? new URL(lab.source).hostname.replace('www.', '') : undefined;
   return (
-    <tr id={lab.slug} className={`${lab.rank <= 3 ? 'is-top' : ''} ${lab.client ? 'is-client' : ''}`}>
+    <tr id={lab.slug} className={lab.rank <= 3 ? 'is-top' : ''}>
       <td className="c-rank">{lab.rank}</td>
       <td className="c-lab">
         <div className="lb-lab">
@@ -27,7 +27,7 @@ function Row({ lab, max, lang }: { lab: Lab; max: number; lang: string }) {
             {lab.logo ? <LabLogo lab={lab} /> : <span className="lb-mono">{initials(lab.name)}</span>}
             <img className="lb-flag" src={`/flags/${lab.cc}.svg`} alt={lab.country} title={lab.country} width={20} height={20} loading="lazy" />
           </span>
-          <span className="lb-name"><span className="lb-name-line"><b>{lab.name}</b>{lab.client && <span className="lb-client-tag"><i />{t('home2.labs.page.clientTag')}</span>}</span><small>{lab.country}</small></span>
+          <span className="lb-name"><span className="lb-name-line"><b>{lab.name}</b></span><small>{lab.country}</small></span>
         </div>
       </td>
       <td className="c-spark">
@@ -43,20 +43,14 @@ function Row({ lab, max, lang }: { lab: Lab; max: number; lang: string }) {
           <span className="lb-val"><b>{lab.regs}</b><small>{t('home2.labs.page.colRegsVal')}</small></span>
         )}
       </td>
-      <td className="c-act">
-        {lab.client && (
-          <a className="lb-act" href={`/clientes/${lab.client}`} aria-label={`${t('home2.labs.client')}: ${lab.name}`} title={t('home2.labs.client') as string}>
-            <ArrowRight size={18} aria-hidden="true" />
-          </a>
-        )}
-      </td>
+      <td className="c-act" />
     </tr>
   );
 }
 
 export function LabsRanking({ labs, credits }: { labs: Lab[]; credits: LogoCredit[] }) {
   const { t, lang } = useTranslation();
-  const [tab, setTab] = useState<'global' | 'brasil' | 'clientes'>('global');
+  const [tab, setTab] = useState<'global' | 'brasil'>('global');
   const [q, setQ] = useState('');
   const [shown, setShown] = useState(PAGE);
   const legal = useRef<HTMLDialogElement>(null);
@@ -64,10 +58,9 @@ export function LabsRanking({ labs, credits }: { labs: Lab[]; credits: LogoCredi
 
   const global = useMemo(() => labs.filter((l) => l.group === 'global'), [labs]);
   const brasil = useMemo(() => labs.filter((l) => l.group === 'brasil'), [labs]);
-  const clientList = useMemo(() => ['lilly', 'sanofi', 'eurofarma', 'libbs', 'marjan'].map((k) => labs.find((l) => l.client === k)).filter(Boolean).map((l, i) => ({ ...(l as Lab), rank: i + 1 })), [labs]);
 
   const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  const base = tab === 'global' ? global : tab === 'brasil' ? brasil : clientList;
+  const base = tab === 'global' ? global : brasil;
   const list = base.filter((l) => !q || norm(l.name).includes(norm(q)));
   const visible = tab === 'brasil' ? list.slice(0, shown) : list;
   const max = brasil[0]?.regs ?? 1;
@@ -81,9 +74,9 @@ export function LabsRanking({ labs, credits }: { labs: Lab[]; credits: LogoCredi
           </div>
           <div className="lb-controls">
             <div className="lb-tabs" role="tablist">
-              {(['global', 'brasil', 'clientes'] as const).map((k) => (
+              {(['global', 'brasil'] as const).map((k) => (
                 <button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>
-                  {k === 'global' ? t('home2.labs.page.tabGlobal') : k === 'brasil' ? t('home2.labs.page.tabBrasil') : t('home2.labs.page.tabClients')}
+                  {k === 'global' ? t('home2.labs.page.tabGlobal') : t('home2.labs.page.tabBrasil')}
                 </button>
               ))}
             </div>
@@ -92,7 +85,7 @@ export function LabsRanking({ labs, credits }: { labs: Lab[]; credits: LogoCredi
               <input type="search" value={q} onChange={(e) => { setQ(e.target.value); setShown(PAGE); }} placeholder={t('home2.labs.page.search') as string} aria-label={t('home2.labs.page.search') as string} />
             </label>
           </div>
-          <p className="lb-table-note">{tab === 'global' ? t('home2.labs.page.globalSub') : tab === 'brasil' ? t('home2.labs.page.brasilSub') : t('home2.labs.page.clientsSub')}</p>
+          <p className="lb-table-note">{tab === 'global' ? t('home2.labs.page.globalSub') : t('home2.labs.page.brasilSub')}</p>
           <table className="lb-table">
             <thead>
               <tr>

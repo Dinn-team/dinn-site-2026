@@ -16,14 +16,8 @@ const CC: Record<string, string> = {
   EUA: 'us', 'Suíça': 'ch', 'Reino Unido': 'gb', 'França': 'fr', Alemanha: 'de', Dinamarca: 'dk', 'Japão': 'jp', Israel: 'il',
   'Canadá': 'ca', 'Bélgica': 'be', Espanha: 'es', Irlanda: 'ie', 'Itália': 'it', 'Índia': 'in', Brasil: 'br',
 };
-// Clientes: logos brancos em public/clientes, pintados com a cor da marca (site oficial de cada um).
-const CLIENTS: Record<string, { color: string; src: string; w: number; h: number }> = {
-  lilly: { color: '#D52B1E', src: '/clientes/lilly-logo-png.png', w: 1631, h: 889 },
-  sanofi: { color: '#7A00E6', src: '/clientes/q5GXskJxl7qrQpg4qttvwnhJI.avif', w: 512, h: 132 },
-  eurofarma: { color: '#00358E', src: '/clientes/2TT34cxYkS2JUU2rklS0yDIU5c.avif', w: 512, h: 92 },
-  libbs: { color: '#23C02E', src: '/clientes/YewE4auu86Zyxd9HTI5pPwyZujk.avif', w: 512, h: 189 },
-  marjan: { color: '#00557C', src: '/clientes/marjanlogo-removebg-preview.png', w: 392, h: 129 },
-};
+// Laboratórios dos cases: só ficam marcados (`client`) para sair da faixa da home. Os cases são
+// anônimos: nenhum logo de cliente é usado e o ranking os trata como qualquer laboratório.
 const clientOf = (slug: string, name: string): string | undefined => {
   if (slug === 'eli-lilly') return 'lilly';
   if (slug === 'sanofi') return 'sanofi';
@@ -44,9 +38,7 @@ export function getLabs(): Lab[] {
   const file = (s: string) => (existsSync(join(dir, `${s}.svg`)) ? `/laboratorios/logos/${s}.svg` : undefined);
   const withClient = (lab: Lab): Lab => {
     const key = clientOf(lab.slug, lab.name);
-    if (!key) return lab;
-    const c = CLIENTS[key];
-    return { ...lab, client: key, logo: c.src, tint: { color: c.color, w: c.w, h: c.h } };
+    return key ? { ...lab, client: key } : lab;
   };
   const g = (global as unknown as G[]).map((x) => withClient({ ...x, group: 'global', cc: CC[x.country] ?? 'un', logo: file(x.slug) }));
   const b = (brasil as unknown as B[]).map((x) => withClient({

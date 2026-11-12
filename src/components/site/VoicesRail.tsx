@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Quote as QuoteIcon, UserRound } from 'lucide-react';
 import type { Quote } from '@/data/customers';
 
+/** Depoimento com autor identificado (nome e foto), quando há consentimento. */
+export type Voice = Quote & { name?: string; photo?: string };
+
 // Depoimentos em faixa horizontal. A rolagem da página fixa a seção e move os cartões de lado,
 // da esquerda para a direita. Ao terminar, a página segue. Ao subir, a faixa volta.
 // Sem movimento (prefers-reduced-motion), a faixa vira uma fileira que rola com o dedo ou o mouse.
-export function VoicesRail({ id, title, voices }: { id: string; title: string; voices: Quote[] }) {
+export function VoicesRail({ id, title, voices }: { id: string; title: string; voices: Voice[] }) {
   const sec = useRef<HTMLElement>(null);
   const view = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLUListElement>(null);
@@ -57,8 +60,10 @@ export function VoicesRail({ id, title, voices }: { id: string; title: string; v
                   <QuoteIcon size={22} aria-hidden="true" strokeWidth={1.6} />
                   <blockquote>{q.text}</blockquote>
                   <figcaption>
-                    <span className="cu3-avatar" aria-hidden="true"><UserRound size={18} strokeWidth={1.8} /></span>
-                    <strong>{q.role}</strong>
+                    {q.photo
+                      ? <img className="cu3-avatar cu3-avatar-photo" src={q.photo} alt="" width={40} height={40} loading="lazy" decoding="async" />
+                      : <span className="cu3-avatar" aria-hidden="true"><UserRound size={18} strokeWidth={1.8} /></span>}
+                    <span>{q.name && <strong>{q.name}</strong>}<small className={q.name ? 'cu3-vrole' : undefined}>{q.name ? q.role : <strong>{q.role}</strong>}</small></span>
                   </figcaption>
                 </figure>
               </li>

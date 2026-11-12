@@ -15,7 +15,7 @@ import type { Lang, Quote, Viz } from './types';
 //  - Descartadas ou sem ação: 45 + 653 + 460 = 1.158
 //  - Buscas de produto no localizador: 2.202 (relatório de uso de 05/11), feitas por 49 pessoas
 //  - Usuários: 6 + 22 + 25 + 49 + 47 = 149, nos quatro cases com contagem de usuários
-//  - Oportunidades: 14 dias do pedido ao painel em produção
+//  - Oportunidades: 9 dias do pedido ao painel em produção (05/10 a 14/10)
 //  - Localizador: de 50 para 1.500 farmácias por consulta
 //  - Uso do Dinn (seção `usage`): relatório de uso de 05/11/2026, período 01/07 a 05/11/2026,
 //    só contas externas. Fonte: dinn-backoffice/docs/relatorios/2026-11-05-relatorio-de-uso-dinn.md
@@ -91,7 +91,7 @@ export const pt: Aggregate = {
       { label: 'Gestores: sentiriam o impacto se o Dinn saísse', value: 78 },
       { label: 'Atendimento e regionais: satisfação no 1º ciclo', value: 67.1, hot: true },
     ], note: 'O menor valor veio do 1º ciclo do atendimento. A dúvida era a confiança no estoque. O Dinn usou o retorno para entregar seis melhorias.' },
-    { kind: 'compare', title: 'Oportunidades: do pedido ao painel no ar', from: { value: 'Dia 0', label: 'o time de um laboratório pede uma análise de Share por território' }, to: { value: '14 dias', label: 'painel de Oportunidades em produção, com ações sugeridas para o KAM' } },
+    { kind: 'compare', title: 'Oportunidades: do pedido ao painel no ar', from: { value: 'Dia 0', label: 'o time de um laboratório pede uma análise de Share por território' }, to: { value: '9 dias', label: 'painel de Oportunidades em produção, com ações sugeridas para o KAM' } },
     { kind: 'compare', title: 'Localizador: farmácias por consulta', from: { value: '50', label: 'limite antes dos novos filtros' }, to: { value: '1.500', label: 'com filtros de raio, estoque e confiabilidade' } },
   ],
   usage: {
@@ -151,7 +151,7 @@ export const pt: Aggregate = {
     { team: 'Campo', what: 'Recebe da Jean ações e recomendações prontas: o que oferecer, a quem atender e em que ordem.', stat: '69% das ações viram trabalho feito' },
     { team: 'Atendimento ao cliente', what: 'Acha a farmácia com o produto antes de ligar, por distância e estoque.', stat: 'Até 1.500 farmácias por consulta' },
     { team: 'Gestão, trade e KAM', what: 'Vê a ruptura loja a loja e compara regiões e redes. Negocia e prioriza a rota com dado na mesa.', stat: '43% dos gestores ganham 30 min ou mais por semana' },
-    { team: 'Estratégia e inteligência', what: 'Usa as Oportunidades para ver onde a categoria cresce e onde o Share do laboratório sobe ou cai, por território.', stat: '14 dias do pedido ao painel em produção' },
+    { team: 'Estratégia e inteligência', what: 'Usa as Oportunidades para ver onde a categoria cresce e onde o Share do laboratório sobe ou cai, por território.', stat: '9 dias do pedido ao painel em produção' },
   ],
   actionsTitle: 'Do dado à ação pronta',
   actionsLead: 'O time não recebe um painel para interpretar. Recebe o próximo passo.',
@@ -160,7 +160,7 @@ export const pt: Aggregate = {
     { title: 'Acompanhamento delegado', text: 'A Jean acompanha produtos e redes, prepara o próximo passo e chama o gestor quando ele precisa decidir.' },
     { title: 'Lista de lojas críticas', text: 'Lojas sem estoque nos últimos 30 dias, em planilha. A rota do time começa pelas mais críticas.' },
     { title: 'Localizador com nota de confiança', text: 'Farmácias por distância e faixa de estoque, com nota A, B ou C de confiabilidade.', stat: 'De 50 a 1.500 farmácias por consulta' },
-    { title: 'Oportunidades que movem o Share', text: 'O Dinn mostra, por território, onde a categoria cresce e o Share do laboratório sobe ou cai. Os sinais de mercado e a ação do campo pesam nesse resultado.', stat: '14 dias do pedido ao painel' },
+    { title: 'Oportunidades que movem o Share', text: 'O Dinn mostra, por território, onde a categoria cresce e o Share do laboratório sobe ou cai. Os sinais de mercado e a ação do campo pesam nesse resultado.', stat: '9 dias do pedido ao painel' },
     { title: 'Avaliação de cada ação', text: 'O time dá uma nota a cada ação da Jean. O Dinn usa a nota para melhorar as próximas recomendações.', stat: '86,8% de notas máximas' },
   ],
   voicesTitle: 'O que dizem quem usa',
@@ -191,7 +191,7 @@ export const en: Aggregate = {
       { label: 'Managers: would feel the impact if Dinn left', value: 78 },
       { label: 'Customer service and regions: first-cycle satisfaction', value: 67.1, hot: true },
     ], note: 'The lowest value came from the first cycle of customer service. The concern was trust in stock data. Dinn used the feedback to deliver six improvements.' },
-    { kind: 'compare', title: 'Opportunities: from request to live dashboard', from: { value: 'Day 0', label: 'a laboratory team asks for a share analysis by territory' }, to: { value: '14 days', label: 'Opportunities dashboard live, with suggested actions for the KAM' } },
+    { kind: 'compare', title: 'Opportunities: from request to live dashboard', from: { value: 'Day 0', label: 'a laboratory team asks for a share analysis by territory' }, to: { value: '9 days', label: 'Opportunities dashboard live, with suggested actions for the KAM' } },
     { kind: 'compare', title: 'Locator: pharmacies per query', from: { value: '50', label: 'limit before the new filters' }, to: { value: '1,500', label: 'with radius, stock and reliability filters' } },
   ],
   usage: {
@@ -251,7 +251,7 @@ export const en: Aggregate = {
     { team: 'Field', what: 'Gets ready actions and recommendations from Jean: what to offer, whom to serve and in what order.', stat: '69% of actions become finished work' },
     { team: 'Customer service', what: 'Finds the pharmacy with the product before calling, by distance and stock.', stat: 'Up to 1,500 pharmacies per query' },
     { team: 'Management, trade and KAM', what: 'Sees stock-outs store by store and compares regions and chains. Negotiates and sets the route with data.', stat: '43% of managers save 30 min or more per week' },
-    { team: 'Strategy and intelligence', what: 'Uses Opportunities to see where the category grows and where the laboratory share rises or falls, by territory.', stat: '14 days from request to live dashboard' },
+    { team: 'Strategy and intelligence', what: 'Uses Opportunities to see where the category grows and where the laboratory share rises or falls, by territory.', stat: '9 days from request to live dashboard' },
   ],
   actionsTitle: 'From data to a ready action',
   actionsLead: 'The team does not get a dashboard to interpret. It gets the next step.',
@@ -260,7 +260,7 @@ export const en: Aggregate = {
     { title: 'Delegated follow-up', text: 'Jean follows products and chains, prepares the next step and calls the manager when a decision is needed.' },
     { title: 'List of critical stores', text: 'Stores with no stock in the last 30 days, in a spreadsheet. The team route starts with the most critical.' },
     { title: 'Locator with a trust grade', text: 'Pharmacies by distance and stock range, with an A, B or C reliability grade.', stat: 'From 50 to 1,500 pharmacies per query' },
-    { title: 'Opportunities that move share', text: 'Dinn shows, by territory, where the category grows and where the laboratory share rises or falls. Market signals and field action both shape that result.', stat: '14 days from request to dashboard' },
+    { title: 'Opportunities that move share', text: 'Dinn shows, by territory, where the category grows and where the laboratory share rises or falls. Market signals and field action both shape that result.', stat: '9 days from request to dashboard' },
     { title: 'Rating of each action', text: 'The team rates each Jean action. Dinn uses the rating to improve the next recommendations.', stat: '86.8% top ratings' },
   ],
   voicesTitle: 'What users say',
@@ -291,7 +291,7 @@ export const es: Aggregate = {
       { label: 'Gestores: sentirían el impacto si Dinn saliera', value: 78 },
       { label: 'Atención y regionales: satisfacción del 1.er ciclo', value: 67.1, hot: true },
     ], note: 'El valor más bajo vino del 1.er ciclo de atención. La duda era la confianza en el stock. Dinn usó el retorno para entregar seis mejoras.' },
-    { kind: 'compare', title: 'Oportunidades: del pedido al panel en producción', from: { value: 'Día 0', label: 'el equipo de un laboratorio pide un análisis de Share por territorio' }, to: { value: '14 días', label: 'panel de Oportunidades en producción, con acciones sugeridas para el KAM' } },
+    { kind: 'compare', title: 'Oportunidades: del pedido al panel en producción', from: { value: 'Día 0', label: 'el equipo de un laboratorio pide un análisis de Share por territorio' }, to: { value: '9 días', label: 'panel de Oportunidades en producción, con acciones sugeridas para el KAM' } },
     { kind: 'compare', title: 'Localizador: farmacias por consulta', from: { value: '50', label: 'límite antes de los nuevos filtros' }, to: { value: '1.500', label: 'con filtros de radio, stock y confiabilidad' } },
   ],
   usage: {
@@ -351,7 +351,7 @@ export const es: Aggregate = {
     { team: 'Campo', what: 'Recibe de Jean acciones y recomendaciones listas: qué ofrecer, a quién atender y en qué orden.', stat: '69% de las acciones se vuelven trabajo hecho' },
     { team: 'Atención al cliente', what: 'Encuentra la farmacia con el producto antes de llamar, por distancia y stock.', stat: 'Hasta 1.500 farmacias por consulta' },
     { team: 'Gestión, trade y KAM', what: 'Ve el quiebre de stock tienda a tienda y compara regiones y cadenas. Negocia y prioriza la ruta con datos.', stat: '43% de los gestores ahorran 30 min o más por semana' },
-    { team: 'Estrategia e inteligencia', what: 'Usa las Oportunidades para ver dónde crece la categoría y dónde sube o baja el Share del laboratorio, por territorio.', stat: '14 días del pedido al panel en producción' },
+    { team: 'Estrategia e inteligencia', what: 'Usa las Oportunidades para ver dónde crece la categoría y dónde sube o baja el Share del laboratorio, por territorio.', stat: '9 días del pedido al panel en producción' },
   ],
   actionsTitle: 'Del dato a la acción lista',
   actionsLead: 'El equipo no recibe un panel para interpretar. Recibe el próximo paso.',
@@ -360,7 +360,7 @@ export const es: Aggregate = {
     { title: 'Seguimiento delegado', text: 'Jean sigue productos y cadenas, prepara el próximo paso y llama al gestor cuando necesita decidir.' },
     { title: 'Lista de tiendas críticas', text: 'Tiendas sin stock en los últimos 30 días, en una planilla. La ruta del equipo empieza por las más críticas.' },
     { title: 'Localizador con nota de confianza', text: 'Farmacias por distancia y rango de stock, con nota A, B o C de confiabilidad.', stat: 'De 50 a 1.500 farmacias por consulta' },
-    { title: 'Oportunidades que mueven el Share', text: 'Dinn muestra, por territorio, dónde crece la categoría y dónde sube o baja el Share del laboratorio. Las señales de mercado y la acción del campo pesan en ese resultado.', stat: '14 días del pedido al panel' },
+    { title: 'Oportunidades que mueven el Share', text: 'Dinn muestra, por territorio, dónde crece la categoría y dónde sube o baja el Share del laboratorio. Las señales de mercado y la acción del campo pesan en ese resultado.', stat: '9 días del pedido al panel' },
     { title: 'Evaluación de cada acción', text: 'El equipo da una nota a cada acción de Jean. Dinn usa la nota para mejorar las próximas recomendaciones.', stat: '86,8% de notas máximas' },
   ],
   voicesTitle: 'Lo que dicen quienes lo usan',

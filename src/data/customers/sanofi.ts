@@ -1,15 +1,15 @@
 import type { Customer } from './types';
 
 export const pt: Customer = {
-  slug: 'sanofi',
-  name: 'Sanofi',
+  slug: 'forca-de-vendas-global',
+  name: 'Farmacêutica global',
   sector: 'Farmacêutica e saúde',
-  hq: 'Paris, França',
-  useCase: 'Next Best Action para a força de vendas em campo',
-  about: 'A Sanofi é uma das maiores empresas globais de saúde e farmacêutica.',
-  title: 'Sanofi leva inteligência de mercado ao campo',
-  summary: 'Em 30 dias, consultores da Sanofi aceitaram 92,7% das recomendações da Jean.',
-  metaDescription: 'Em 30 dias, consultores da Sanofi aceitaram 92,7% das missões geradas pela IA do Dinn, com 90,85% de satisfação e 70,77% de engajamento.',
+  hq: 'Global',
+  useCase: 'Recomendações da Jean para a força de vendas em campo',
+  about: 'Uma das maiores empresas globais de saúde e farmacêutica.',
+  title: 'Laboratório global leva inteligência de mercado ao campo',
+  summary: 'Em 30 dias, consultores do laboratório aceitaram 92,7% das recomendações da Jean.',
+  metaDescription: 'Em 30 dias, consultores de um laboratório global aceitaram 92,7% das recomendações da Jean, com 90,85% de satisfação e 70,77% de engajamento.',
   metrics: [
     { value: '92,7%', label: 'das recomendações da Jean foram acatadas: 573 acatadas e 45 rejeitadas' },
     { value: '90,85%', label: 'de satisfação dos consultores (CSAT médio de 4,54 em 5)' },
@@ -22,44 +22,44 @@ export const pt: Customer = {
     approved: true,
   },
   intro: [
-    'A Sanofi quer crescer com boa execução e diversificar o portfólio nos pontos de venda. Para isso, depende de consultores que visitam farmácias, distribuidores e médicos todos os dias. Os dados nem sempre chegam a eles de forma clara.',
-    'A partir de 30 de julho de 2024, seis consultores de vendas da Sanofi usaram o Dinn por 30 dias. Eles atuam em duas regionais. A pergunta era direta: os consultores seguem as recomendações da IA quando elas aparecem no meio da rotina de campo?',
+    'O laboratório quer crescer com boa execução e diversificar o portfólio nos pontos de venda. Para isso, depende de consultores que visitam farmácias, distribuidores e profissionais de saúde todos os dias. Os dados nem sempre chegam a eles de forma clara.',
+    'Em 2024, seis consultores de vendas do laboratório usaram o Dinn por 30 dias. Eles atuam em duas regionais. A pergunta era direta: os consultores seguem as recomendações da Jean quando elas aparecem no meio da rotina de campo?',
     'Seguiram. E gostaram.',
   ],
   problem: {
     title: 'Dados descentralizados, visitas sem direção',
     viz: [
-      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'Da informação espalhada à missão pronta' },
+      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'Da informação espalhada à recomendação pronta' },
     ],
     paragraphs: [
-      'A Sanofi tinha informação, mas ela estava espalhada. Antes de entrar em cada ponto de venda, o consultor não sabia com clareza o que fazer ali.',
+      'O laboratório tinha informação, mas ela estava espalhada. Antes de entrar em cada ponto de venda, o consultor não sabia com clareza o que fazer ali.',
       'O resultado é conhecido: decisões mal informadas, visitas menos eficazes, desperdício de recurso e oportunidades perdidas.',
-      'A Sanofi precisava de inteligência de mercado aplicada às visitas de campo. Não queria mais um painel para consultar depois. Queria orientação pronta no momento da visita.',
+      'O laboratório precisava de inteligência de mercado aplicada às visitas de campo. Não queria mais um painel para consultar depois. Queria orientação pronta no momento da visita.',
     ],
   },
   solution: {
-    title: 'Missões que dizem o que oferecer, quando e como',
+    title: 'Recomendações que dizem o que oferecer, quando e como',
     viz: [
-      { kind: 'timeline', title: 'Os 30 dias de uso', steps: [{ date: '30/07/2024', label: 'Seis consultores começam a usar o Dinn' }, { date: '26/08/2024', label: 'Melhorias na página de missões, para todos' }, { date: '30/08/2024', label: 'Fim dos 30 dias e leitura dos resultados' }] },
+      { kind: 'timeline', title: 'Os 30 dias de uso', steps: [{ date: 'jul/2024', label: 'Seis consultores começam a usar o Dinn' }, { date: 'ago/2024', label: 'Melhorias na página de recomendações, para todos' }, { date: 'ago/2024', label: 'Fim dos 30 dias e leitura dos resultados' }] },
     ],
     paragraphs: [
-      'O Dinn usa a metodologia Next Best Action (NBA), com inteligência artificial. Ele responde a três perguntas para cada cliente: o que oferecer, quando oferecer e como oferecer. A resposta chega ao consultor em tempo real, em forma de missões.',
-      'A hipótese: os consultores acatam as recomendações da IA se elas forem precisas e relevantes, se forem fáceis de integrar à rotina e se agregarem valor.',
+      'A Jean usa inteligência artificial. Ela responde a três perguntas para cada cliente: o que oferecer, quando oferecer e como oferecer. A resposta chega ao consultor em tempo real, em forma de recomendações.',
+      'A hipótese: os consultores acatam as recomendações da Jean se forem precisas e relevantes, se forem fáceis de integrar à rotina e se agregarem valor.',
     ],
     bullets: [
-      'Período: 30 de julho a 30 de agosto de 2024',
+      'Período: 30 dias, entre julho e agosto de 2024',
       'Participantes: seis consultores de vendas, três da regional A e três da regional B',
       'Fonte de dados: base de vendas do cliente',
-      'Melhoria contínua: em 26 de agosto, a Dinn liberou para todos novas melhorias na página de missões',
-      'Medição: uso da aplicação, missões aceitas e rejeitadas e satisfação (CSAT)',
+      'Melhoria contínua: perto do fim do período, a Dinn liberou para todos novas melhorias na página de recomendações',
+      'Medição: uso da aplicação, recomendações aceitas e rejeitadas e satisfação (CSAT)',
     ],
   },
   stories: [
     {
-      title: 'Missões dizem ao consultor o que fazer',
+      title: 'A Jean diz ao consultor o que fazer',
       paragraphs: [
-        'O consultor abre o Dinn e busca o cliente por nome ou CNPJ (ponto de venda ou médico). Ele encontra as missões do cliente. Cada missão é uma recomendação objetiva. O consultor marca como feita ou descarta.',
-        'Cinco tipos de missão acompanham a rotina de visita:',
+        'O consultor abre o Dinn e busca o cliente por nome ou número fiscal (ponto de venda ou profissional de saúde). Ele encontra as recomendações do cliente. Cada recomendação é objetiva. O consultor marca como feita ou descarta.',
+        'Cinco tipos de recomendação acompanham a rotina de visita:',
       ],
       bullets: [
         'Sugestão de pedido: o que sugerir comprar, com base no histórico do cliente',
@@ -68,36 +68,31 @@ export const pt: Customer = {
         'Tendências e previsões: o que deve crescer no próximo mês, com reforço de estoque quando faz sentido',
         'Preferências e retenção: ações para fidelizar o cliente com base no comportamento de compra',
       ],
-      note: 'Segundo os consultores, as missões deram mais propriedade e confiança na relação com os clientes. Os seis consultores concluíram todas as missões em 78 pontos de venda. Um único consultor concluiu 28 PDVs.',
+      note: 'Segundo os consultores, as recomendações deram mais propriedade e confiança na relação com os clientes. Os seis consultores concluíram todas as recomendações em 78 pontos de venda. Um único consultor concluiu 28 pontos de venda.',
     },
     {
-      title: 'Missões ajustadas ao que o campo aceita',
+      title: 'Recomendações ajustadas ao que o campo aceita',
       viz: [
-        { kind: 'compare', title: 'Aceitação das missões', from: { value: '92,7%', label: 'média de todo o período' }, to: { value: '100%', label: 'depois das melhorias de 26 de agosto' }, note: 'Foram poucos dias e seis usuários depois do ajuste. Leia como sinal, não como regra.' },
+        { kind: 'compare', title: 'Aceitação das recomendações', from: { value: '92,7%', label: 'média de todo o período' }, to: { value: '100%', label: 'depois das melhorias' }, note: 'Foram poucos dias e seis usuários depois do ajuste. Leia como sinal, não como regra.' },
       ],
       paragraphs: [
-        'O time do Dinn acompanhou, semana a semana, quais missões o campo aceitava e quais descartava. Usou esses dados para melhorar o produto.',
+        'O time do Dinn acompanhou, semana a semana, quais recomendações o campo aceitava e quais descartava. Usou esses dados para melhorar o produto.',
       ],
       bullets: [
-        'Mais aceitas: as que ampliam e diversificam o mix e analisam o desempenho de vendas, como Ampliar Mix de Produtos, Análise de Vendas e Positivação de Produtos',
-        'Menos aceitas: as que apontam problema de desempenho, como Produtos com Baixo Desempenho e Analisar Queda de Vendas',
-        'Em 26 de agosto, o Dinn reduziu o número de missões exibidas. Surgiram temas de ação comercial: produtos com desconto, produtos em alta e pacotes promocionais',
-        'Depois das melhorias, os consultores acataram 100% das missões. O engajamento continuou alto: 66 acessos em 27 de agosto e 52 em 28 de agosto',
+        'Mais aceitas: as que ampliam e diversificam o mix e analisam o desempenho de vendas',
+        'Menos aceitas: as que apontam problema de desempenho, como produtos com baixo desempenho e queda de vendas',
+        'Depois das melhorias, o Dinn reduziu o número de recomendações exibidas. Surgiram temas de ação comercial: produtos com desconto, produtos em alta e pacotes promocionais',
+        'Depois das melhorias, os consultores acataram 100% das recomendações. O engajamento continuou alto: 66 acessos no primeiro dia e 52 no segundo',
       ],
     },
     {
-      title: 'Feedback do campo que vira roadmap',
-      paragraphs: ['Os 30 dias de uso também serviram para ouvir os consultores. Quatro pedidos se repetiram. Cada um tem um caminho no Dinn.'],
-      tables: [
-        {
-          head: ['O que os consultores pediram', 'O que o Dinn faz'],
-          rows: [
-            ['Busca de CNPJs mais precisa', 'Filtros inteligentes, em desenvolvimento'],
-            ['Roteiro de visitas para facilitar a execução', 'Planejamento de PDVs do dia, que entra no rollout'],
-            ['Espelhamento de dados do sistema de pedidos do cliente', 'Novas fontes de dados, como o sistema de pedidos do cliente, para direcionar melhor as missões'],
-            ['Exportação em Excel', 'Em investigação: exportação em formatos compatíveis com outros sistemas'],
-          ],
-        },
+      title: 'Feedback do campo orienta o produto',
+      paragraphs: ['Os 30 dias de uso também serviram para ouvir os consultores. Quatro pedidos se repetiram. O Dinn usa esse retorno para priorizar o produto.'],
+      bullets: [
+        'Busca de clientes mais precisa',
+        'Roteiro de visitas para facilitar a execução',
+        'Mais fontes de dados do cliente para direcionar melhor as recomendações',
+        'Exportação dos dados em formatos compatíveis com outros sistemas',
       ],
       quote: {
         text: 'Parabéns a todos os envolvidos no projeto Dinn. Os resultados dos testes são promissores e mostram o potencial dessa inovação para transformar nossa empresa. A dedicação da equipe é inspiradora, e estamos confiantes no impacto positivo que isso trará.',
@@ -110,50 +105,43 @@ export const pt: Customer = {
     {
       title: 'Adoção e satisfação',
       viz: [
-        { kind: 'donut', title: 'Missões do período', sub: 'Acatadas e rejeitadas', items: [{ label: 'Acatadas (573)', value: 573 }, { label: 'Rejeitadas (45)', value: 45 }], center: { value: '92,7%', label: 'acatadas' } },
-        { kind: 'bars', as: 'rings', title: 'Satisfação dos consultores', sub: 'CSAT, nota de 1 a 5, em 17 dias', max: 5, digits: 2, items: [{ label: 'Navegação intuitiva na busca por informações', value: 4.83 }, { label: 'Priorização de clientes', value: 4.67 }, { label: 'Probabilidade de uso contínuo', value: 4.67 }, { label: 'Adequação das informações nas missões', value: 4.0, hot: true }] },
+        { kind: 'donut', title: 'Recomendações do período', sub: 'Acatadas e rejeitadas', items: [{ label: 'Acatadas (573)', value: 573 }, { label: 'Rejeitadas (45)', value: 45 }], center: { value: '92,7%', label: 'acatadas' } },
+        { kind: 'bars', as: 'rings', title: 'Satisfação dos consultores', sub: 'CSAT, nota de 1 a 5, em 17 dias', max: 5, digits: 2, items: [{ label: 'Navegação intuitiva na busca por informações', value: 4.83 }, { label: 'Priorização de clientes', value: 4.67 }, { label: 'Probabilidade de uso contínuo', value: 4.67 }, { label: 'Adequação das informações nas recomendações', value: 4.0, hot: true }] },
       ],
       bullets: [
-        '92,7% das missões acatadas em todo o período: 573 acatadas e 45 rejeitadas',
-        '100% de aceitação depois das melhorias de 26 de agosto (poucos dias e seis usuários)',
-        'Engajamento de 70,77%, com o critério de pelo menos duas visitas à página de listagem de PDVs',
+        '92,7% das recomendações acatadas em todo o período: 573 acatadas e 45 rejeitadas',
+        '100% de aceitação depois das melhorias (poucos dias e seis usuários)',
+        'Engajamento de 70,77%, com o critério de pelo menos duas visitas à página de lista de pontos de venda',
       ],
-      note: 'A adequação das informações teve a menor nota. Na próxima fase, o Dinn inclui dados pedidos pelos usuários, vindos de outros sistemas do cliente.',
+      note: 'A adequação das informações teve a menor nota. O Dinn usa esse resultado para melhorar os dados de cada recomendação.',
     },
     {
-      title: 'O potencial do rollout',
+      title: 'O potencial para toda a equipe',
       paragraphs: ['O potencial abaixo é uma leitura qualitativa. Não é resultado medido nos 30 dias de uso.'],
       bullets: [
-        'Mais vendas por visita, porque o consultor chega ao ponto de venda com a missão pronta',
+        'Mais vendas por visita, porque o consultor chega ao ponto de venda com a recomendação pronta',
         'Menos tempo de preparo em cada visita, porque o Dinn reúne os dados',
         'Espaço para mais visitas por dia na rotina de cada consultor',
       ],
-      note: 'Potencial para o rollout em toda a base de consultores. Não é resultado medido.',
+      note: 'Potencial para toda a base de consultores. Não é resultado medido.',
     },
   ],
   next: {
     title: 'O que vem a seguir',
-    paragraphs: ['A Sanofi caminha para o rollout do App Consultor. O roadmap inclui:'],
-    bullets: [
-      'Planejamento de rotas: rotas de visita geradas pelo Dinn, somadas às regras e prioridades de negócio da Sanofi',
-      'Prevenção de ruptura: o Dinn analisa o histórico de estoque do cliente e prevê o que vai faltar',
-      'Treinamento por documentos: planilhas e arquivos de texto enviados direto ao Dinn, sem integração por API',
-      'Visão do gestor: engajamento e desempenho do time e de cada consultor, top 5 de missões mais realizadas e rejeitadas e visão por regional',
-      'Copiloto Dinn para gestores: notificações acionáveis no WhatsApp, acompanhamento do campo e definição de regras de negócio',
-    ],
+    paragraphs: ['O próximo passo é ampliar o uso da Jean para mais consultores e incluir mais fontes de dados do cliente.'],
   },
 };
 
 export const en: Customer = {
-  slug: 'sanofi',
-  name: 'Sanofi',
+  slug: 'forca-de-vendas-global',
+  name: 'Global pharma company',
   sector: 'Pharma and healthcare',
-  hq: 'Paris, France',
-  useCase: 'Next Best Action for the field sales force',
-  about: 'Sanofi is one of the largest healthcare and pharmaceutical companies in the world.',
-  title: 'Sanofi brings market intelligence to the field',
-  summary: 'In 30 days, Sanofi consultants accepted 92.7% of the recommendations from Jean.',
-  metaDescription: 'In 30 days, Sanofi consultants accepted 92.7% of the missions that Dinn AI generated, with 90.85% satisfaction and 70.77% engagement.',
+  hq: 'Global',
+  useCase: 'Jean recommendations for the field sales force',
+  about: 'One of the largest healthcare and pharmaceutical companies in the world.',
+  title: 'A global pharma company brings market intelligence to the field',
+  summary: 'In 30 days, the company\'s consultants accepted 92.7% of the recommendations from Jean.',
+  metaDescription: 'In 30 days, consultants at a global pharma company accepted 92.7% of the recommendations from Jean, with 90.85% satisfaction and 70.77% engagement.',
   metrics: [
     { value: '92.7%', label: 'of Jean recommendations were accepted: 573 accepted and 45 rejected' },
     { value: '90.85%', label: 'consultant satisfaction (average CSAT of 4.54 out of 5)' },
@@ -166,44 +154,44 @@ export const en: Customer = {
     approved: true,
   },
   intro: [
-    'Sanofi wants to grow with strong execution and diversify its portfolio in stores. To do this, it relies on consultants who visit pharmacies, distributors and doctors every day. The data does not always reach them in a clear form.',
-    'From July 30, 2024, six Sanofi sales consultants used Dinn for 30 days. They work in two regions. The question was direct: do consultants follow the AI recommendations when they appear in the middle of the field routine?',
+    'The company wants to grow with strong execution and diversify its portfolio in stores. To do this, it relies on consultants who visit pharmacies, distributors and health professionals every day. The data does not always reach them in a clear form.',
+    'In 2024, six sales consultants from the company used Dinn for 30 days. They work in two regions. The question was direct: do consultants follow the Jean recommendations when they appear in the middle of the field routine?',
     'They did. And they liked it.',
   ],
   problem: {
     title: 'Scattered data, visits without direction',
     viz: [
-      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'From scattered information to a ready mission' },
+      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'From scattered information to a ready recommendation' },
     ],
     paragraphs: [
-      'Sanofi had information, but it was scattered. Before entering each store, the consultant did not know clearly what to do there.',
+      'The company had information, but it was scattered. Before entering each store, the consultant did not know clearly what to do there.',
       'The result is well known: poorly informed decisions, less effective visits, wasted resources and lost opportunities.',
-      'Sanofi needed market intelligence applied to field visits. It did not want one more dashboard to check later. It wanted guidance ready at the moment of the visit.',
+      'The company needed market intelligence applied to field visits. It did not want one more dashboard to check later. It wanted guidance ready at the moment of the visit.',
     ],
   },
   solution: {
-    title: 'Missions that say what to offer, when and how',
+    title: 'Recommendations that say what to offer, when and how',
     viz: [
-      { kind: 'timeline', title: 'The 30 days of use', steps: [{ date: '30 Jul 2024', label: 'Six consultants start to use Dinn' }, { date: '26 Aug 2024', label: 'Improvements to the missions page, for everyone' }, { date: '30 Aug 2024', label: 'End of the 30 days and review of the results' }] },
+      { kind: 'timeline', title: 'The 30 days of use', steps: [{ date: 'Jul 2024', label: 'Six consultants start to use Dinn' }, { date: 'Aug 2024', label: 'Improvements to the recommendations page, for everyone' }, { date: 'Aug 2024', label: 'End of the 30 days and review of the results' }] },
     ],
     paragraphs: [
-      'Dinn uses the Next Best Action (NBA) method, with artificial intelligence. It answers three questions for each customer: what to offer, when to offer it and how to offer it. The answer reaches the consultant in real time, as missions.',
-      'The hypothesis: consultants accept the AI recommendations if they are accurate and relevant, if they fit the routine and if they add value.',
+      'Jean uses artificial intelligence. It answers three questions for each customer: what to offer, when to offer it and how to offer it. The answer reaches the consultant in real time, as recommendations.',
+      'The hypothesis: consultants accept the Jean recommendations if they are accurate and relevant, if they fit the routine and if they add value.',
     ],
     bullets: [
-      'Period: July 30 to August 30, 2024',
+      'Period: 30 days, between July and August 2024',
       'Participants: six sales consultants, three from region A and three from region B',
       'Data source: the customer sales database',
-      'Continuous improvement: on August 26, Dinn released new improvements to the missions page for everyone',
-      'Measurement: app usage, accepted and rejected missions and satisfaction (CSAT)',
+      'Continuous improvement: near the end of the period, Dinn released new improvements to the recommendations page for everyone',
+      'Measurement: app usage, accepted and rejected recommendations and satisfaction (CSAT)',
     ],
   },
   stories: [
     {
-      title: 'Missions tell the consultant what to do',
+      title: 'Jean tells the consultant what to do',
       paragraphs: [
-        'The consultant opens Dinn and searches for the customer by name or CNPJ (store or doctor). The consultant finds the missions for that customer. Each mission is a clear recommendation. The consultant marks it as done or dismisses it.',
-        'Five types of mission follow the visit routine:',
+        'The consultant opens Dinn and searches for the customer by name or tax ID (store or health professional). The consultant finds the recommendations for that customer. Each recommendation is clear. The consultant marks it as done or dismisses it.',
+        'Five types of recommendation follow the visit routine:',
       ],
       bullets: [
         'Order suggestion: what to suggest buying, based on the customer history',
@@ -212,36 +200,31 @@ export const en: Customer = {
         'Trends and forecasts: what should grow next month, with stock reinforcement when it makes sense',
         'Preferences and retention: actions to keep the customer, based on buying behavior',
       ],
-      note: 'According to the consultants, the missions gave them more authority and confidence with customers. The six consultants completed all missions in 78 stores. One consultant alone completed 28 stores.',
+      note: 'According to the consultants, the recommendations gave them more authority and confidence with customers. The six consultants completed all recommendations in 78 stores. One consultant alone completed 28 stores.',
     },
     {
-      title: 'Missions adjusted to what the field accepts',
+      title: 'Recommendations adjusted to what the field accepts',
       viz: [
-        { kind: 'compare', title: 'Mission acceptance', from: { value: '92.7%', label: 'average for the whole period' }, to: { value: '100%', label: 'after the August 26 improvements' }, note: 'This covers only a few days and six users after the change. Read it as a signal, not as a rule.' },
+        { kind: 'compare', title: 'Recommendation acceptance', from: { value: '92.7%', label: 'average for the whole period' }, to: { value: '100%', label: 'after the improvements' }, note: 'This covers only a few days and six users after the change. Read it as a signal, not as a rule.' },
       ],
       paragraphs: [
-        'The Dinn team tracked, week by week, which missions the field accepted and which it dismissed. The team used this data to improve the product.',
+        'The Dinn team tracked, week by week, which recommendations the field accepted and which it dismissed. The team used this data to improve the product.',
       ],
       bullets: [
-        'Most accepted: missions that expand and diversify the mix and analyze sales performance, such as Expand Product Mix, Sales Analysis and Product Activation',
-        'Least accepted: missions that point to a performance problem, such as Low-Performing Products and Analyze Sales Drop',
-        'On August 26, Dinn reduced the number of missions shown. New commercial action themes appeared: discounted products, trending products and promotional bundles',
-        'After the improvements, consultants accepted 100% of the missions. Engagement stayed high: 66 logins on August 27 and 52 on August 28',
+        'Most accepted: recommendations that expand and diversify the mix and analyze sales performance',
+        'Least accepted: recommendations that point to a performance problem, such as low-performing products and sales drops',
+        'After the improvements, Dinn reduced the number of recommendations shown. New commercial action themes appeared: discounted products, trending products and promotional bundles',
+        'After the improvements, consultants accepted 100% of the recommendations. Engagement stayed high: 66 logins on the first day and 52 on the second',
       ],
     },
     {
-      title: 'Field feedback that becomes roadmap',
-      paragraphs: ['The 30 days of use also let us hear the consultants. Four requests came up again and again. Each one has a path in Dinn.'],
-      tables: [
-        {
-          head: ['What consultants asked for', 'What Dinn does'],
-          rows: [
-            ['More accurate CNPJ search', 'Smart filters, in development'],
-            ['Visit route to ease execution', 'Planning of the day\'s stores, part of the rollout'],
-            ['Mirroring of data from the customer order system', 'New data sources, such as the customer order system, to guide the missions better'],
-            ['Excel export', 'Under review: export in formats compatible with other systems'],
-          ],
-        },
+      title: 'Field feedback guides the product',
+      paragraphs: ['The 30 days of use also let us hear the consultants. Four requests came up again and again. Dinn uses this feedback to set product priorities.'],
+      bullets: [
+        'More accurate customer search',
+        'Visit route to ease execution',
+        'More customer data sources to guide the recommendations better',
+        'Data export in formats compatible with other systems',
       ],
       quote: {
         text: 'Congratulations to everyone involved in the Dinn project. The test results are promising and show the potential of this innovation to transform our company. The dedication of the team is inspiring, and we are confident in the positive impact it will bring.',
@@ -254,50 +237,43 @@ export const en: Customer = {
     {
       title: 'Adoption and satisfaction',
       viz: [
-        { kind: 'donut', title: 'Missions in the period', sub: 'Accepted and rejected', items: [{ label: 'Accepted (573)', value: 573 }, { label: 'Rejected (45)', value: 45 }], center: { value: '92.7%', label: 'accepted' } },
-        { kind: 'bars', as: 'rings', title: 'Consultant satisfaction', sub: 'CSAT, score from 1 to 5, over 17 days', max: 5, digits: 2, items: [{ label: 'Intuitive navigation to find information', value: 4.83 }, { label: 'Customer prioritization', value: 4.67 }, { label: 'Likelihood of continued use', value: 4.67 }, { label: 'Fit of the information in missions', value: 4.0, hot: true }] },
+        { kind: 'donut', title: 'Recommendations in the period', sub: 'Accepted and rejected', items: [{ label: 'Accepted (573)', value: 573 }, { label: 'Rejected (45)', value: 45 }], center: { value: '92.7%', label: 'accepted' } },
+        { kind: 'bars', as: 'rings', title: 'Consultant satisfaction', sub: 'CSAT, score from 1 to 5, over 17 days', max: 5, digits: 2, items: [{ label: 'Intuitive navigation to find information', value: 4.83 }, { label: 'Customer prioritization', value: 4.67 }, { label: 'Likelihood of continued use', value: 4.67 }, { label: 'Fit of the information in recommendations', value: 4.0, hot: true }] },
       ],
       bullets: [
-        '92.7% of missions accepted over the whole period: 573 accepted and 45 rejected',
-        '100% acceptance after the August 26 improvements (a few days and six users)',
+        '92.7% of recommendations accepted over the whole period: 573 accepted and 45 rejected',
+        '100% acceptance after the improvements (a few days and six users)',
         '70.77% engagement, defined as at least two visits to the store list page',
       ],
-      note: 'Fit of the information had the lowest score. In the next phase, Dinn adds data that users asked for, from other customer systems.',
+      note: 'Fit of the information had the lowest score. Dinn uses this result to improve the data in each recommendation.',
     },
     {
-      title: 'The potential of the rollout',
+      title: 'The potential for the whole team',
       paragraphs: ['The potential below is a qualitative view. It is not a result measured in the 30 days of use.'],
       bullets: [
-        'More sales per visit, because the consultant arrives at the store with a ready mission',
+        'More sales per visit, because the consultant arrives at the store with a ready recommendation',
         'Less prep time for each visit, because Dinn gathers the data',
         'Room for more visits per day in each consultant routine',
       ],
-      note: 'Potential for the rollout to the whole consultant base. Not a measured result.',
+      note: 'Potential for the whole consultant base. Not a measured result.',
     },
   ],
   next: {
     title: 'What comes next',
-    paragraphs: ['Sanofi is moving toward the rollout of App Consultor. The roadmap includes:'],
-    bullets: [
-      'Route planning: visit routes that Dinn generates, combined with the business rules and priorities of Sanofi',
-      'Stock-out prevention: Dinn analyzes the customer stock history and predicts what will run out',
-      'Training with documents: spreadsheets and text files sent straight to Dinn, with no API integration',
-      'Manager view: engagement and performance of the team and of each consultant, top 5 most completed and rejected missions, and a view by region',
-      'Dinn Copilot for managers: actionable notifications on WhatsApp, field follow-up and business rule setup',
-    ],
+    paragraphs: ['The next step is to extend the use of Jean to more consultants and add more customer data sources.'],
   },
 };
 
 export const es: Customer = {
-  slug: 'sanofi',
-  name: 'Sanofi',
+  slug: 'forca-de-vendas-global',
+  name: 'Farmacéutica global',
   sector: 'Farmacéutica y salud',
-  hq: 'París, Francia',
-  useCase: 'Next Best Action para la fuerza de ventas en campo',
-  about: 'Sanofi es una de las mayores empresas globales de salud y farmacéutica.',
-  title: 'Sanofi lleva inteligencia de mercado al campo',
-  summary: 'En 30 días, los consultores de Sanofi aceptaron el 92,7% de las recomendaciones de Jean.',
-  metaDescription: 'En 30 días, los consultores de Sanofi aceptaron el 92,7% de las misiones que generó la IA de Dinn, con 90,85% de satisfacción y 70,77% de engagement.',
+  hq: 'Global',
+  useCase: 'Recomendaciones de Jean para la fuerza de ventas en campo',
+  about: 'Una de las mayores empresas globales de salud y farmacéutica.',
+  title: 'Laboratorio global lleva inteligencia de mercado al campo',
+  summary: 'En 30 días, los consultores del laboratorio aceptaron el 92,7% de las recomendaciones de Jean.',
+  metaDescription: 'En 30 días, los consultores de un laboratorio global aceptaron el 92,7% de las recomendaciones de Jean, con 90,85% de satisfacción y 70,77% de engagement.',
   metrics: [
     { value: '92,7%', label: 'de las recomendaciones de Jean fueron aceptadas: 573 aceptadas y 45 rechazadas' },
     { value: '90,85%', label: 'de satisfacción de los consultores (CSAT medio de 4,54 sobre 5)' },
@@ -310,44 +286,44 @@ export const es: Customer = {
     approved: true,
   },
   intro: [
-    'Sanofi quiere crecer con buena ejecución y diversificar el portafolio en los puntos de venta. Para eso, depende de consultores que visitan farmacias, distribuidores y médicos todos los días. Los datos no siempre les llegan de forma clara.',
-    'Desde el 30 de julio de 2024, seis consultores de ventas de Sanofi usaron Dinn por 30 días. Actúan en dos regionales. La pregunta era directa: ¿los consultores siguen las recomendaciones de la IA cuando aparecen en medio de la rutina de campo?',
+    'El laboratorio quiere crecer con buena ejecución y diversificar el portafolio en los puntos de venta. Para eso, depende de consultores que visitan farmacias, distribuidores y profesionales de la salud todos los días. Los datos no siempre les llegan de forma clara.',
+    'En 2024, seis consultores de ventas del laboratorio usaron Dinn por 30 días. Actúan en dos regionales. La pregunta era directa: ¿los consultores siguen las recomendaciones de Jean cuando aparecen en medio de la rutina de campo?',
     'Las siguieron. Y les gustó.',
   ],
   problem: {
     title: 'Datos dispersos, visitas sin dirección',
     viz: [
-      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'De la información dispersa a la misión lista' },
+      { kind: 'art', art: 'launch', g: 'web/lilas-azul', caption: 'De la información dispersa a la recomendación lista' },
     ],
     paragraphs: [
-      'Sanofi tenía información, pero estaba dispersa. Antes de entrar en cada tienda, el consultor no sabía con claridad qué hacer allí.',
+      'El laboratorio tenía información, pero estaba dispersa. Antes de entrar en cada tienda, el consultor no sabía con claridad qué hacer allí.',
       'El resultado es conocido: decisiones mal informadas, visitas menos eficaces, desperdicio de recursos y oportunidades perdidas.',
-      'Sanofi necesitaba inteligencia de mercado aplicada a las visitas de campo. No quería otro panel para consultar después. Quería orientación lista en el momento de la visita.',
+      'El laboratorio necesitaba inteligencia de mercado aplicada a las visitas de campo. No quería otro panel para consultar después. Quería orientación lista en el momento de la visita.',
     ],
   },
   solution: {
-    title: 'Misiones que dicen qué ofrecer, cuándo y cómo',
+    title: 'Recomendaciones que dicen qué ofrecer, cuándo y cómo',
     viz: [
-      { kind: 'timeline', title: 'Los 30 días de uso', steps: [{ date: '30 jul 2024', label: 'Seis consultores empiezan a usar Dinn' }, { date: '26 ago 2024', label: 'Mejoras en la página de misiones, para todos' }, { date: '30 ago 2024', label: 'Fin de los 30 días y lectura de los resultados' }] },
+      { kind: 'timeline', title: 'Los 30 días de uso', steps: [{ date: 'jul 2024', label: 'Seis consultores empiezan a usar Dinn' }, { date: 'ago 2024', label: 'Mejoras en la página de recomendaciones, para todos' }, { date: 'ago 2024', label: 'Fin de los 30 días y lectura de los resultados' }] },
     ],
     paragraphs: [
-      'Dinn usa la metodología Next Best Action (NBA), con inteligencia artificial. Responde tres preguntas para cada cliente: qué ofrecer, cuándo ofrecer y cómo ofrecer. La respuesta llega al consultor en tiempo real, en forma de misiones.',
-      'La hipótesis: los consultores aceptan las recomendaciones de la IA si son precisas y relevantes, si son fáciles de integrar a la rutina y si aportan valor.',
+      'Jean usa inteligencia artificial. Responde tres preguntas para cada cliente: qué ofrecer, cuándo ofrecer y cómo ofrecer. La respuesta llega al consultor en tiempo real, en forma de recomendaciones.',
+      'La hipótesis: los consultores aceptan las recomendaciones de Jean si son precisas y relevantes, si son fáciles de integrar a la rutina y si aportan valor.',
     ],
     bullets: [
-      'Período: del 30 de julio al 30 de agosto de 2024',
+      'Período: 30 días, entre julio y agosto de 2024',
       'Participantes: seis consultores de ventas, tres de la regional A y tres de la regional B',
       'Fuente de datos: base de ventas del cliente',
-      'Mejora continua: el 26 de agosto, Dinn liberó para todos nuevas mejoras en la página de misiones',
-      'Medición: uso de la aplicación, misiones aceptadas y rechazadas y satisfacción (CSAT)',
+      'Mejora continua: cerca del fin del período, Dinn liberó para todos nuevas mejoras en la página de recomendaciones',
+      'Medición: uso de la aplicación, recomendaciones aceptadas y rechazadas y satisfacción (CSAT)',
     ],
   },
   stories: [
     {
-      title: 'Las misiones dicen al consultor qué hacer',
+      title: 'Jean dice al consultor qué hacer',
       paragraphs: [
-        'El consultor abre Dinn y busca al cliente por nombre o CNPJ (tienda o médico). Encuentra las misiones del cliente. Cada misión es una recomendación objetiva. El consultor la marca como hecha o la descarta.',
-        'Cinco tipos de misión acompañan la rutina de visita:',
+        'El consultor abre Dinn y busca al cliente por nombre o número fiscal (tienda o profesional de la salud). Encuentra las recomendaciones del cliente. Cada recomendación es objetiva. El consultor la marca como hecha o la descarta.',
+        'Cinco tipos de recomendación acompañan la rutina de visita:',
       ],
       bullets: [
         'Sugerencia de pedido: qué sugerir comprar, según el historial del cliente',
@@ -356,36 +332,31 @@ export const es: Customer = {
         'Tendencias y previsiones: qué debe crecer el próximo mes, con refuerzo de stock cuando tiene sentido',
         'Preferencias y retención: acciones para fidelizar al cliente según su comportamiento de compra',
       ],
-      note: 'Según los consultores, las misiones dieron más dominio y confianza en la relación con los clientes. Los seis consultores concluyeron todas las misiones en 78 tiendas. Un solo consultor concluyó 28 tiendas.',
+      note: 'Según los consultores, las recomendaciones dieron más dominio y confianza en la relación con los clientes. Los seis consultores concluyeron todas las recomendaciones en 78 tiendas. Un solo consultor concluyó 28 tiendas.',
     },
     {
-      title: 'Misiones ajustadas a lo que el campo acepta',
+      title: 'Recomendaciones ajustadas a lo que el campo acepta',
       viz: [
-        { kind: 'compare', title: 'Aceptación de las misiones', from: { value: '92,7%', label: 'promedio de todo el período' }, to: { value: '100%', label: 'después de las mejoras del 26 de agosto' }, note: 'Fueron pocos días y seis usuarios después del ajuste. Léalo como una señal, no como una regla.' },
+        { kind: 'compare', title: 'Aceptación de las recomendaciones', from: { value: '92,7%', label: 'promedio de todo el período' }, to: { value: '100%', label: 'después de las mejoras' }, note: 'Fueron pocos días y seis usuarios después del ajuste. Léalo como una señal, no como una regla.' },
       ],
       paragraphs: [
-        'El equipo de Dinn siguió, semana a semana, qué misiones el campo aceptaba y cuáles descartaba. Usó esos datos para mejorar el producto.',
+        'El equipo de Dinn siguió, semana a semana, qué recomendaciones el campo aceptaba y cuáles descartaba. Usó esos datos para mejorar el producto.',
       ],
       bullets: [
-        'Más aceptadas: las que amplían y diversifican el mix y analizan el desempeño de ventas, como Ampliar Mix de Productos, Análisis de Ventas y Positivación de Productos',
-        'Menos aceptadas: las que señalan un problema de desempeño, como Productos con Bajo Desempeño y Analizar Caída de Ventas',
-        'El 26 de agosto, Dinn redujo el número de misiones mostradas. Surgieron temas de acción comercial: productos con descuento, productos en alza y paquetes promocionales',
-        'Después de las mejoras, los consultores aceptaron el 100% de las misiones. El engagement siguió alto: 66 accesos el 27 de agosto y 52 el 28 de agosto',
+        'Más aceptadas: las que amplían y diversifican el mix y analizan el desempeño de ventas',
+        'Menos aceptadas: las que señalan un problema de desempeño, como productos con bajo desempeño y caída de ventas',
+        'Después de las mejoras, Dinn redujo el número de recomendaciones mostradas. Surgieron temas de acción comercial: productos con descuento, productos en alza y paquetes promocionales',
+        'Después de las mejoras, los consultores aceptaron el 100% de las recomendaciones. El engagement siguió alto: 66 accesos el primer día y 52 el segundo',
       ],
     },
     {
-      title: 'Feedback del campo que se vuelve roadmap',
-      paragraphs: ['Los 30 días de uso también sirvieron para escuchar a los consultores. Cuatro pedidos se repitieron. Cada uno tiene un camino en Dinn.'],
-      tables: [
-        {
-          head: ['Lo que pidieron los consultores', 'Lo que hace Dinn'],
-          rows: [
-            ['Búsqueda de CNPJ más precisa', 'Filtros inteligentes, en desarrollo'],
-            ['Ruta de visitas para facilitar la ejecución', 'Planificación de las tiendas del día, que entra en el rollout'],
-            ['Espejo de datos del sistema de pedidos del cliente', 'Nuevas fuentes de datos, como el sistema de pedidos del cliente, para orientar mejor las misiones'],
-            ['Exportación a Excel', 'En evaluación: exportación en formatos compatibles con otros sistemas'],
-          ],
-        },
+      title: 'El feedback del campo orienta el producto',
+      paragraphs: ['Los 30 días de uso también sirvieron para escuchar a los consultores. Cuatro pedidos se repitieron. Dinn usa ese feedback para priorizar el producto.'],
+      bullets: [
+        'Búsqueda de clientes más precisa',
+        'Ruta de visitas para facilitar la ejecución',
+        'Más fuentes de datos del cliente para orientar mejor las recomendaciones',
+        'Exportación de los datos en formatos compatibles con otros sistemas',
       ],
       quote: {
         text: 'Felicitaciones a todos los involucrados en el proyecto Dinn. Los resultados de las pruebas son prometedores y muestran el potencial de esta innovación para transformar nuestra empresa. La dedicación del equipo es inspiradora, y confiamos en el impacto positivo que traerá.',
@@ -398,36 +369,29 @@ export const es: Customer = {
     {
       title: 'Adopción y satisfacción',
       viz: [
-        { kind: 'donut', title: 'Misiones del período', sub: 'Aceptadas y rechazadas', items: [{ label: 'Aceptadas (573)', value: 573 }, { label: 'Rechazadas (45)', value: 45 }], center: { value: '92,7%', label: 'aceptadas' } },
-        { kind: 'bars', as: 'rings', title: 'Satisfacción de los consultores', sub: 'CSAT, nota de 1 a 5, en 17 días', max: 5, digits: 2, items: [{ label: 'Navegación intuitiva para buscar información', value: 4.83 }, { label: 'Priorización de clientes', value: 4.67 }, { label: 'Probabilidad de uso continuo', value: 4.67 }, { label: 'Adecuación de la información en las misiones', value: 4.0, hot: true }] },
+        { kind: 'donut', title: 'Recomendaciones del período', sub: 'Aceptadas y rechazadas', items: [{ label: 'Aceptadas (573)', value: 573 }, { label: 'Rechazadas (45)', value: 45 }], center: { value: '92,7%', label: 'aceptadas' } },
+        { kind: 'bars', as: 'rings', title: 'Satisfacción de los consultores', sub: 'CSAT, nota de 1 a 5, en 17 días', max: 5, digits: 2, items: [{ label: 'Navegación intuitiva para buscar información', value: 4.83 }, { label: 'Priorización de clientes', value: 4.67 }, { label: 'Probabilidad de uso continuo', value: 4.67 }, { label: 'Adecuación de la información en las recomendaciones', value: 4.0, hot: true }] },
       ],
       bullets: [
-        '92,7% de las misiones aceptadas en todo el período: 573 aceptadas y 45 rechazadas',
-        '100% de aceptación después de las mejoras del 26 de agosto (pocos días y seis usuarios)',
+        '92,7% de las recomendaciones aceptadas en todo el período: 573 aceptadas y 45 rechazadas',
+        '100% de aceptación después de las mejoras (pocos días y seis usuarios)',
         'Engagement de 70,77%, con el criterio de al menos dos visitas a la página de listado de tiendas',
       ],
-      note: 'La adecuación de la información tuvo la nota más baja. En la próxima fase, Dinn incluye datos que pidieron los usuarios, de otros sistemas del cliente.',
+      note: 'La adecuación de la información tuvo la nota más baja. Dinn usa ese resultado para mejorar los datos de cada recomendación.',
     },
     {
-      title: 'El potencial del rollout',
+      title: 'El potencial para todo el equipo',
       paragraphs: ['El potencial de abajo es una lectura cualitativa. No es un resultado medido en los 30 días de uso.'],
       bullets: [
-        'Más ventas por visita, porque el consultor llega a la tienda con la misión lista',
+        'Más ventas por visita, porque el consultor llega a la tienda con la recomendación lista',
         'Menos tiempo de preparación en cada visita, porque Dinn reúne los datos',
         'Espacio para más visitas por día en la rutina de cada consultor',
       ],
-      note: 'Potencial para el rollout en toda la base de consultores. No es un resultado medido.',
+      note: 'Potencial para toda la base de consultores. No es un resultado medido.',
     },
   ],
   next: {
     title: 'Lo que viene a continuación',
-    paragraphs: ['Sanofi avanza hacia el rollout de App Consultor. El roadmap incluye:'],
-    bullets: [
-      'Planificación de rutas: rutas de visita que genera Dinn, junto con las reglas y prioridades de negocio de Sanofi',
-      'Prevención de quiebre de stock: Dinn analiza el historial de stock del cliente y prevé qué va a faltar',
-      'Entrenamiento con documentos: hojas de cálculo y archivos de texto enviados directo a Dinn, sin integración por API',
-      'Visión del gestor: engagement y desempeño del equipo y de cada consultor, top 5 de misiones más realizadas y rechazadas y vista por regional',
-      'Copiloto Dinn para gestores: notificaciones accionables en WhatsApp, seguimiento del campo y definición de reglas de negocio',
-    ],
+    paragraphs: ['El próximo paso es ampliar el uso de Jean a más consultores y sumar más fuentes de datos del cliente.'],
   },
 };

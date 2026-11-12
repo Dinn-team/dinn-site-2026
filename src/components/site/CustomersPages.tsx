@@ -5,7 +5,6 @@ import { Rich } from '@/lib/rich-text';
 import { contactUrl } from '@/lib/links';
 import { PATHS } from '@/lib/site-map';
 import { brandOf } from '@/lib/client-brand';
-import type { ClientLogo } from '@/lib/clients';
 import { aggregateFor, customerBySlug, type Block, type Customer, type Lang } from '@/data/customers';
 import { ClientCases } from './ClientCases';
 import { LabsRanking } from './LabsRanking';
@@ -13,22 +12,30 @@ import type { Lab, LogoCredit } from '@/lib/labs-types';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { CaseCard, publishedCases } from './CasesPages';
 import { VizGroup } from './CaseViz';
-import { VoicesRail } from './VoicesRail';
+import { VoicesRail, type Voice } from './VoicesRail';
 import { ClosingCard, H2Head } from './PageShell';
 
 // /clientes (lista) e /clientes/<slug> (página de cada cliente), no Design System v2.
 // O conteúdo de cada cliente vive em src/data/customers.ts. Os idiomas EN e ES usam
 // o texto em português por enquanto; os rótulos da interface já são traduzidos.
 
-const brandStyle = (name: string) => {
-  const b = brandOf(name);
+const brandStyle = (slug: string) => {
+  const b = brandOf(slug);
   return { ['--g' as string]: `url(/gradients/${b.g}.avif)`, ['--f' as string]: b.filter };
 };
 
 // ── Lista de clientes ──────────────────────────────────────────────────────
-export function CustomersIndex({ logos: _logos, labs, credits }: { logos: ClientLogo[]; labs: Lab[]; credits: LogoCredit[] }) {
+export function CustomersIndex({ labs, credits }: { labs: Lab[]; credits: LogoCredit[] }) {
   const { t, lang } = useTranslation();
   const agg = aggregateFor(lang as Lang);
+  // Depoimentos reais, com nome e foto: são os únicos lugares do site com nome de cliente (há consentimento).
+  const voices: Voice[] = [0, 1, 2, 3].map((i) => ({
+    text: t(`testimonials.items.${i}.quote`) as string,
+    role: t(`testimonials.items.${i}.designation`) as string,
+    name: t(`testimonials.items.${i}.name`) as string,
+    photo: t(`testimonials.items.${i}.src`) as string,
+    approved: true,
+  }));
   const metaTitle = t('clients.meta.title') as string;
   useEffect(() => {
     document.title = metaTitle;
@@ -129,11 +136,11 @@ export function CustomersIndex({ logos: _logos, labs, credits }: { logos: Client
         </div>
       </section>
 
-      <VoicesRail id="cu3-voices" title={agg.voicesTitle} voices={agg.voices} />
+      <VoicesRail id="cu3-voices" title={t('testimonials.title') as string} voices={voices} />
 
       <LabsRanking labs={labs} credits={credits} />
 
-      <ClientCases labs={labs} title={agg.opensTitle} />
+      <ClientCases title={agg.opensTitle} />
 
       <section className="h2-section cu3-cases" aria-labelledby="cu3-cases">
         <div className="h2-wrap">
@@ -217,7 +224,7 @@ function Section({ title, id, blocks, alt }: { title: string; id: string; blocks
   );
 }
 
-export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: ClientLogo[]; labs: Lab[] }) {
+export function CustomerDetail({ slug }: { slug: string }) {
   const { t, lang } = useTranslation();
   const c: Customer | undefined = customerBySlug(slug, lang as Lang);
   // O título da aba acompanha o idioma (o HTML do servidor sai em português).
@@ -225,7 +232,6 @@ export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: Cli
     if (c) document.title = `${c.title} | Dinn`;
   }, [c?.title]);
   if (!c) return null;
-  const logo = logos.find((l) => l.name === c.name);
   const quote = c.quote?.approved ? c.quote : undefined;
   const facts: [string, string][] = [
     [t('clients.page.company') as string, c.about],
@@ -248,10 +254,10 @@ export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: Cli
               </div>
             </div>
           </div>
-          <div className="h2-media cu3-media" style={{ ...brandStyle(c.name), backgroundImage: 'none' }}>
+          <div className="h2-media cu3-media" style={{ ...brandStyle(c.slug), backgroundImage: 'none' }}>
             <span className="cu3-media-bg" aria-hidden="true" />
             <span className="h2-cust-shade" aria-hidden="true" />
-            {logo && <img className="cu3-media-logo" src={logo.src} alt={c.name} width={logo.width} height={logo.height} />}
+            <span className="cu3-media-label">{c.name}</span>
           </div>
         </div>
       </header>
@@ -278,7 +284,7 @@ export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: Cli
               <li key={m.value + m.label}><strong>{m.value}</strong><span>{m.label}</span></li>
             ))}
           </ul>
-          {quote && <QuoteCard q={quote} brand={c.name} />}
+          {quote && <QuoteCard q={quote} brand={c.slug} />}
         </div>
       </section>
 
@@ -297,7 +303,7 @@ export function CustomerDetail({ slug, logos, labs }: { slug: string; logos: Cli
         secondary={{ label: t('clients.page.back') as string, href: PATHS.customers }}
       />
 
-      <ClientCases labs={labs} exclude={slug} title={t('clients.page.more') as string} />
+      <ClientCases exclude={slug} title={t('clients.page.more') as string} />
       <ChatWidget2 />
     </div>
   );

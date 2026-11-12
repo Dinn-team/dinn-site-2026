@@ -2,27 +2,22 @@
 import Layout from '@/layouts/Layout.astro';
 import { CustomerDetail } from '@/components/site/CustomersPages';
 import { customers } from '@/data/customers';
-import { getLabs } from '@/lib/labs';
-import { getClientLogos } from '@/lib/clients';
 
 // Cada cliente de src/data/customers.ts ganha a sua página em /clientes/<slug>.
 export function getStaticPaths() {
   return customers.map((c) => ({
     params: { slug: c.slug },
-    props: { slug: c.slug, title: c.title, description: c.metaDescription, name: c.name },
+    props: { slug: c.slug, title: c.title, description: c.metaDescription },
   }));
 }
 
-const { slug, title, description, name } = Astro.props;
-const labs = getLabs();
-const logos = getClientLogos();
+const { slug, title, description } = Astro.props;
 const site = Astro.site ?? new URL('https://dinn.ai');
 const article = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: title,
   description,
-  about: { '@type': 'Organization', name },
   inLanguage: 'pt-BR',
   author: { '@type': 'Organization', name: 'Dinn' },
   publisher: { '@type': 'Organization', name: 'Dinn', url: site.href },
@@ -30,5 +25,5 @@ const article = {
 ---
 
 <Layout title={`${title} | Dinn`} description={description} type="article" jsonLd={article}>
-  <CustomerDetail slug={slug} logos={logos} labs={labs} client:load />
+  <CustomerDetail slug={slug} client:load />
 </Layout>

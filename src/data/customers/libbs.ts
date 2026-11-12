@@ -1,19 +1,19 @@
 import type { Customer } from './types';
 
 export const pt: Customer = {
-  slug: 'libbs',
-  name: 'Libbs',
+  slug: 'localizador-para-sac',
+  name: 'Farmacêutica brasileira de medicamentos de marca',
   sector: 'Indústria farmacêutica',
-  hq: 'São Paulo, Brasil',
+  hq: 'Brasil',
   useCase: 'Localizador de produtos para o SAC, análise de ruptura e estoque parado para o campo e a gestão',
-  about: 'A Libbs é uma farmacêutica brasileira. Ela vende seus medicamentos de marca em farmácias de todo o país.',
-  title: 'Libbs localiza produto e age sobre a ruptura',
-  summary: 'SAC, campo e gestão da Libbs passaram a localizar produto, ler estoque parado e priorizar pontos de venda com o Dinn.',
-  metaDescription: 'Em 5 meses, SAC, campo e gestão da Libbs passaram a localizar produto, ler estoque parado e priorizar PDVs com o Dinn. A perda estimada por estoque zero nos produtos foco é de cerca de 15% das unidades vendidas.',
+  about: 'O laboratório é uma farmacêutica brasileira. Ele vende seus medicamentos de marca em farmácias de todo o país.',
+  title: 'Um laboratório localiza produto e age sobre a ruptura',
+  summary: 'SAC, campo e gestão do laboratório passaram a localizar produto, ler estoque parado e priorizar lojas com o Dinn.',
+  metaDescription: 'SAC, campo e gestão de um laboratório passaram a localizar produto, ler estoque parado e priorizar lojas com o Dinn. Veja o uso e as melhorias.',
   metrics: [
-    { value: '49', label: 'usuários buscaram produtos no Localizador, em 2.627 buscas (contagem por produto)' },
+    { value: '49', label: 'usuários buscaram produtos no Localizador, em 2.627 buscas por produto' },
     { value: 'De 50 a 1.500', label: 'farmácias por consulta, depois dos novos filtros de raio, estoque e confiabilidade' },
-    { value: '≈ 15%', label: 'de perda estimada por estoque zero, sobre as unidades vendidas nos produtos foco, em 2 meses' },
+    { value: '3,35 de 5', label: 'nota média de satisfação no 1º ciclo, com 17 respostas' },
     { value: '6', label: 'melhorias feitas com base no feedback dos usuários no 1º ciclo' },
   ],
   quote: {
@@ -23,8 +23,8 @@ export const pt: Customer = {
   },
   intro: [
     'Todo laboratório conhece o problema. O paciente chama o SAC, o consultor visita a farmácia, e ninguém sabe se o produto está na prateleira agora.',
-    'Na Libbs, a pergunta era direta. Onde o paciente encontra o produto perto dele? Em quais lojas o produto está parado ou zerado? O SAC ligava para farmácias uma a uma. O campo e a gestão olhavam vendas passadas, sem ver o estoque do ponto de venda.',
-    'A partir de junho de 2026, a Libbs passou a usar o Dinn no SAC, nas regionais de campo e na gestão.',
+    'No laboratório, a pergunta era direta. Onde o paciente encontra o produto perto dele? Em quais lojas o produto está parado ou zerado? O SAC ligava para farmácias uma a uma. O campo e a gestão olhavam vendas passadas, sem ver o estoque da loja.',
+    'A partir de junho de 2026, o laboratório passou a usar o Dinn no SAC, nas regionais de campo e na gestão.',
   ],
   problem: {
     title: 'Venda passada não mostra a falta de hoje',
@@ -49,11 +49,11 @@ export const pt: Customer = {
       'A tela mostra, para cada loja, giro, dias sem movimentação, preço observado e um índice de confiabilidade com notas A, B e C.',
     ],
     bullets: [
-      'Apresentação da plataforma: 8 de junho de 2026',
-      'Treinamento geral e início do uso em campo: 19 de junho de 2026',
-      'Fase 1: 50 acessos, 10 para o SAC e 40 para as regionais',
-      'Fontes: estoque diário D-1, preços, base de PDVs e produtos enviados pela Libbs',
-      'Medição: buscas e usuários no Localizador, reports de divergência, formulário de satisfação e reuniões semanais',
+      'Apresentação da plataforma: 8 de junho de 2026.',
+      'Treinamento geral e início do uso em campo: 19 de junho de 2026.',
+      'Fase 1: 50 acessos, 10 para o SAC e 40 para as regionais.',
+      'Fontes: estoque diário D-1, preços, base de lojas e produtos enviados pelo laboratório.',
+      'Medição: buscas e usuários no Localizador, reports de divergência, formulário de satisfação e reuniões semanais.',
     ],
   },
   stories: [
@@ -61,7 +61,7 @@ export const pt: Customer = {
       title: 'O SAC indica a farmácia sem ligar antes',
       paragraphs: [
         'O atendente busca o produto e informa o endereço ou o CEP do paciente. Ele filtra por raio (a partir de 5 km), estoque e nota de confiabilidade. O Dinn devolve as farmácias ordenadas por distância, com o estoque de cada uma.',
-        'Em 24 de julho, o time do SAC apontou o ganho com o filtro de raio. Ele indica com mais assertividade as farmácias mais próximas do cliente. Na Imersão do SAC, em 9 de outubro, uma analista contou que localiza as farmácias no Dinn antes de pegar o telefone.',
+        'Em 24 de julho, o time do SAC apontou o ganho com o filtro de raio. O filtro indica, com mais precisão, as farmácias mais próximas do cliente. Em uma reunião de SAC, em 9 de outubro, uma analista contou que localiza as farmácias no Dinn antes de pegar o telefone.',
         'A meta para o SAC foi reduzir as pendências geradas por busca de produto.',
       ],
       quote: {
@@ -86,7 +86,7 @@ export const pt: Customer = {
       title: 'A gestão leva o dado para a diretoria',
       paragraphs: [
         'Um gestor usou a plataforma para comparar canais de venda de um grupo de produtos cuja situação o time tinha dificuldade de explicar. Ele apresentou o estudo à diretoria.',
-        'Na mesma reunião, o gestor pediu uma visão por faixas de estoque parado (30, 60 e 90 dias), para priorizar regionais e lojas críticas. Pediu também uma visão de lançamentos. Ela deve acompanhar o produto do centro de distribuição até as lojas.',
+        'Na mesma reunião, o gestor discutiu como agrupar as lojas por faixas de estoque parado (30, 60 e 90 dias), para priorizar regionais e lojas críticas.',
       ],
     },
     {
@@ -101,7 +101,7 @@ export const pt: Customer = {
         {
           head: ['O que o cliente apontou', 'O que o Dinn fez'],
           rows: [
-            ['Confiança no estoque', 'Status do PDV e índice de qualidade visíveis no cartão da farmácia, notas A, B e C e nova versão do modelo preditivo'],
+            ['Confiança no estoque', 'Status da loja e índice de qualidade visíveis no cartão da farmácia, notas A, B e C e nova versão do modelo preditivo'],
             ['Poucas farmácias na lista (limite de 50)', 'Limite removido, com filtros por raio, estoque e confiabilidade. A lista passou a trazer até 1.500 farmácias'],
             ['Telas em branco na análise de mercado', 'Correção aplicada e nova versão do painel em desenvolvimento'],
             ['Base cadastral de lojas', 'Cobertura ampliada junto com a evolução do Localizador'],
@@ -121,32 +121,23 @@ export const pt: Customer = {
     {
       title: 'Uso do Localizador',
       viz: [
-        { kind: 'line', title: 'Usuários por semana', sub: 'Localizador, produtos Libbs', labels: ['29/06', '06/07', '27/07', '31/08', '07/09', '05/10', '19/10'], series: [{ name: 'Usuários', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', as: 'columns', title: 'Buscas por semana', sub: 'Localizador, produtos Libbs', items: [{ label: '29/06', value: 223 }, { label: '06/07', value: 275, hot: true }, { label: '27/07', value: 93 }, { label: '31/08', value: 152 }, { label: '07/09', value: 78 }, { label: '05/10', value: 135 }, { label: '19/10', value: 197 }] },
+        { kind: 'line', title: 'Usuários por semana', sub: 'Localizador, produtos do laboratório', labels: ['29/06', '06/07', '27/07', '31/08', '07/09', '05/10', '19/10'], series: [{ name: 'Usuários', values: [29, 33, 15, 16, 11, 27, 15] }] },
+        { kind: 'bars', as: 'columns', title: 'Buscas por semana', sub: 'Localizador, produtos do laboratório', items: [{ label: '29/06', value: 223 }, { label: '06/07', value: 275, hot: true }, { label: '27/07', value: 93 }, { label: '31/08', value: 152 }, { label: '07/09', value: 78 }, { label: '05/10', value: 135 }, { label: '19/10', value: 197 }] },
       ],
-      paragraphs: ['O uso foi forte no lançamento, caiu no segundo semestre e subiu de novo em outubro. A alta veio depois de agendas com o campo e o SAC e da Imersão de 9 de outubro.'],
-      note: 'Contagem por produto, sem separar por empresa. A captura de buscas começa em 29 de junho. Em 15 de outubro, o time resumiu: o volume de usuários, de logins e de telas acessadas aumentou, e o time está usando.',
+      paragraphs: ['O uso foi forte no lançamento, caiu no segundo semestre e subiu de novo em outubro. A alta veio depois de reuniões com o campo e o SAC e de uma reunião de SAC em 9 de outubro.'],
+      note: 'Contagem por produto. A captura de buscas começa em 29 de junho. Em 15 de outubro, o time resumiu: o volume de usuários, de logins e de telas acessadas aumentou, e o time está usando.',
     },
     {
       title: 'Tamanho da ruptura nos produtos foco',
-      viz: [
-        { kind: 'bars', as: 'rings', title: 'Unidades vendidas e perdidas', sub: 'Set e out/2026, estimativa técnica, base 100%', max: 100, items: [{ label: 'Vendidas nos pares PDV e produto', value: 100, display: '100%' }, { label: 'Potencialmente não vendidas por estoque zero', value: 15, display: '≈ 15%', hot: true }], note: 'A perda estimada é de cerca de 15% sobre as unidades vendidas. É potencial técnico, não faturamento perdido.' },
-      ],
-      paragraphs: ['Esta análise cobre o grupo de produtos mais buscados e citados pelo time em setembro e outubro de 2026. Ela inclui só pares PDV e produto com venda regular (pelo menos 6 unidades em 60 dias).'],
-      tables: [
-        {
-          head: ['Indicador (set e out/2026)', 'Resultado'],
-          rows: [
-            ['Unidades vendidas nesses pares', 'Base: 100%'],
-            ['Unidades potencialmente não vendidas por estoque zero', '≈ 15% da base'],
-          ],
-        },
+      paragraphs: [
+        'Esta análise cobre o grupo de produtos mais buscados e citados pelo time em setembro e outubro de 2026. Ela inclui só pares loja e produto com venda regular.',
+        'Uma parte relevante das unidades vendidas nesses produtos se perdeu por estoque zero.',
       ],
       bullets: [
-        'Os grupos de produtos de alto giro têm menos dias zerados, mas movimentam volume alto. Por isso concentram boa parte do potencial',
-        'Nos grupos com pior disponibilidade, mais de um terço dos dias-loja tem estoque zero',
+        'Os grupos de produtos de alto giro têm menos dias zerados, mas movimentam volume alto. Por isso concentram boa parte do potencial.',
+        'Nos grupos com pior disponibilidade, uma parte grande dos dias-loja tem estoque zero.',
       ],
-      note: 'Leitura segura. Esse percentual é um potencial técnico estimado. As vendas vêm da movimentação de estoque nas lojas. Não é perda real de faturamento. A validação final usa o sell-out oficial do cliente.',
+      note: 'Leitura segura. Essa perda é um potencial técnico estimado. As vendas vêm da movimentação de estoque nas lojas. Não é perda real de faturamento. A validação final usa o sell-out oficial do cliente.',
     },
     {
       title: 'Como os usuários avaliam o Dinn hoje',
@@ -169,37 +160,25 @@ export const pt: Customer = {
   ],
   next: {
     title: 'O que vem a seguir',
-    paragraphs: ['A Libbs ajuda a definir o roadmap do Dinn.'],
-    tables: [
-      {
-        head: ['O que a Libbs pediu', 'O que está no plano'],
-        rows: [
-          ['Saber se o estoque mostrado é confiável', 'Notas A, B e C, índice de qualidade e consulta em tempo real em lojas digitalizadas'],
-          ['Separar ruptura na loja de falta no centro de distribuição', 'Funcionalidade de distribuidores'],
-          ['Faixas de estoque parado (30, 60 e 90 dias) e alertas de preço', 'Visão gerencial de estoque e de preço praticado'],
-          ['Acompanhar lançamentos', 'Visão de lançamentos, do centro de distribuição às lojas'],
-          ['Perguntar ao sistema onde agir primeiro', 'Dinn Insights, assistente em linguagem natural'],
-        ],
-      },
-    ],
-    note: 'Pela Libbs, os próximos passos são tornar o uso semanal uma rotina, acompanhar a redução das pendências do SAC e apresentar os resultados à diretoria. A diretoria decide a expansão.',
+    paragraphs: ['O Dinn continua a ajustar a plataforma com o feedback dos usuários.'],
+    note: 'Os próximos passos do laboratório são tornar o uso semanal uma rotina e acompanhar a redução das pendências do SAC.',
   },
 };
 
 export const en: Customer = {
-  slug: 'libbs',
-  name: 'Libbs',
+  slug: 'localizador-para-sac',
+  name: 'Brazilian branded-drug pharma company',
   sector: 'Pharmaceutical industry',
-  hq: 'São Paulo, Brazil',
+  hq: 'Brazil',
   useCase: 'Product Locator for customer service (SAC), stock-out and stalled stock analysis for the field team and management',
-  about: 'Libbs is a Brazilian pharmaceutical company. It sells its branded medicines in pharmacies across the country.',
-  title: 'Libbs finds products and acts on stock-outs',
-  summary: 'Libbs SAC, field team and management now find products, read stalled stock and rank stores with Dinn.',
-  metaDescription: 'In 5 months, Libbs SAC, field team and management started to find products, read stalled stock and rank stores with Dinn. The estimated loss from zero stock in focus products is about 15% of units sold.',
+  about: 'The laboratory is a Brazilian pharmaceutical company. It sells its branded medicines in pharmacies across the country.',
+  title: 'A laboratory finds products and acts on stock-outs',
+  summary: 'The laboratory’s SAC, field team and management now find products, read stalled stock and rank stores with Dinn.',
+  metaDescription: 'A laboratory’s SAC, field team and management now find products, read stalled stock and rank stores with Dinn. See the use and the improvements.',
   metrics: [
-    { value: '49', label: 'users searched for products in the Product Locator, in 2,627 searches (count per product)' },
+    { value: '49', label: 'users searched for products in the Product Locator, in 2,627 searches per product' },
     { value: 'From 50 to 1,500', label: 'pharmacies per query, after the new radius, stock and reliability filters' },
-    { value: '≈ 15%', label: 'of estimated loss from zero stock, on units sold in focus products, in 2 months' },
+    { value: '3.35 of 5', label: 'average satisfaction score in the first cycle, from 17 responses' },
     { value: '6', label: 'improvements made from user feedback in the first cycle' },
   ],
   quote: {
@@ -209,8 +188,8 @@ export const en: Customer = {
   },
   intro: [
     'Every laboratory knows the problem. The patient calls SAC, the consultant visits the pharmacy, and nobody knows if the product is on the shelf now.',
-    'At Libbs, the question was direct. Where does the patient find the product near them? In which stores is the product stalled or at zero? SAC called pharmacies one by one. The field team and management looked at past sales, with no view of store stock.',
-    'Since June 2026, Libbs uses Dinn in SAC, in the regional field teams and in management.',
+    'At the laboratory, the question was direct. Where does the patient find the product near them? In which stores is the product stalled or at zero? SAC called pharmacies one by one. The field team and management looked at past sales, with no view of store stock.',
+    'Since June 2026, the laboratory uses Dinn in SAC, in the regional field teams and in management.',
   ],
   problem: {
     title: 'Past sales do not show today’s gaps',
@@ -235,11 +214,11 @@ export const en: Customer = {
       'For each store, the screen shows sell-through, days without movement, observed price and a reliability index with grades A, B and C.',
     ],
     bullets: [
-      'Platform presentation: June 8, 2026',
-      'General training and start of field use: June 19, 2026',
-      'Phase 1: 50 accesses, 10 for SAC and 40 for the regional teams',
-      'Sources: daily D-1 stock, prices, and the store and product base sent by Libbs',
-      'Measurement: searches and users in the Product Locator, discrepancy reports, satisfaction form and weekly meetings',
+      'Platform presentation: June 8, 2026.',
+      'General training and start of field use: June 19, 2026.',
+      'Phase 1: 50 accesses, 10 for SAC and 40 for the regional teams.',
+      'Sources: daily D-1 stock, prices, and the store and product base sent by the laboratory.',
+      'Measurement: searches and users in the Product Locator, discrepancy reports, satisfaction form and weekly meetings.',
     ],
   },
   stories: [
@@ -247,7 +226,7 @@ export const en: Customer = {
       title: 'SAC names the right pharmacy without calling',
       paragraphs: [
         'The agent searches for the product and enters the patient’s address or postal code (CEP). The agent filters by radius (from 5 km), stock and reliability grade. Dinn returns the pharmacies sorted by distance, with the stock of each one.',
-        'On July 24, the SAC team named the gain from the radius filter. It names the pharmacies nearest to the customer with more accuracy. At the SAC Immersion on October 9, an analyst said she finds the pharmacies in Dinn before she picks up the phone.',
+        'On July 24, the SAC team named the gain from the radius filter. The filter names the pharmacies nearest to the customer more accurately. At a SAC meeting on October 9, an analyst said she finds the pharmacies in Dinn before she picks up the phone.',
         'The goal for SAC was to reduce the open cases caused by product searches.',
       ],
       quote: {
@@ -272,7 +251,7 @@ export const en: Customer = {
       title: 'Management takes the data to the board',
       paragraphs: [
         'A manager used the platform to compare sales channels for a group of products whose situation the team found hard to explain. He presented the study to the board.',
-        'In the same meeting, the manager asked for a view by ranges of stalled stock (30, 60 and 90 days), to rank regional teams and critical stores. He also asked for a launch view. It must follow the product from the distribution center to the stores.',
+        'In the same meeting, the manager discussed how to group stores by ranges of stalled stock (30, 60 and 90 days), to rank regional teams and critical stores.',
       ],
     },
     {
@@ -307,32 +286,23 @@ export const en: Customer = {
     {
       title: 'Product Locator use',
       viz: [
-        { kind: 'line', title: 'Users per week', sub: 'Product Locator, Libbs products', labels: ['29 Jun', '6 Jul', '27 Jul', '31 Aug', '7 Sep', '5 Oct', '19 Oct'], series: [{ name: 'Users', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', as: 'columns', title: 'Searches per week', sub: 'Product Locator, Libbs products', items: [{ label: '29 Jun', value: 223 }, { label: '6 Jul', value: 275, hot: true }, { label: '27 Jul', value: 93 }, { label: '31 Aug', value: 152 }, { label: '7 Sep', value: 78 }, { label: '5 Oct', value: 135 }, { label: '19 Oct', value: 197 }] },
+        { kind: 'line', title: 'Users per week', sub: 'Product Locator, laboratory products', labels: ['29 Jun', '6 Jul', '27 Jul', '31 Aug', '7 Sep', '5 Oct', '19 Oct'], series: [{ name: 'Users', values: [29, 33, 15, 16, 11, 27, 15] }] },
+        { kind: 'bars', as: 'columns', title: 'Searches per week', sub: 'Product Locator, laboratory products', items: [{ label: '29 Jun', value: 223 }, { label: '6 Jul', value: 275, hot: true }, { label: '27 Jul', value: 93 }, { label: '31 Aug', value: 152 }, { label: '7 Sep', value: 78 }, { label: '5 Oct', value: 135 }, { label: '19 Oct', value: 197 }] },
       ],
-      paragraphs: ['Use was strong at launch, fell in the second half of the year and rose again in October. The rise came after sessions with the field team and SAC, and after the October 9 Immersion.'],
-      note: 'Count per product, not split by company. Search capture starts on June 29. On October 15, the team summarized: the volume of users, logins and screens viewed grew, and the team is using it.',
+      paragraphs: ['Use was strong at launch, fell in the second half of the year and rose again in October. The rise came after sessions with the field team and SAC, and after a SAC meeting on October 9.'],
+      note: 'Count per product. Search capture starts on June 29. On October 15, the team summarized: the volume of users, logins and screens viewed grew, and the team is using it.',
     },
     {
       title: 'Size of stock-outs in focus products',
-      viz: [
-        { kind: 'bars', as: 'rings', title: 'Units sold and lost', sub: 'Sep and Oct 2026, technical estimate, base 100%', max: 100, items: [{ label: 'Sold in store and product pairs', value: 100, display: '100%' }, { label: 'Potentially not sold because of zero stock', value: 15, display: '≈ 15%', hot: true }], note: 'The estimated loss is about 15% of the units sold. It is technical potential, not lost revenue.' },
-      ],
-      paragraphs: ['This analysis covers the group of products most searched for and cited by the team in September and October 2026. It includes only store and product pairs with regular sales (at least 6 units in 60 days).'],
-      tables: [
-        {
-          head: ['Indicator (Sep and Oct 2026)', 'Result'],
-          rows: [
-            ['Units sold in these pairs', 'Base: 100%'],
-            ['Units potentially not sold because of zero stock', '≈ 15% of the base'],
-          ],
-        },
+      paragraphs: [
+        'This analysis covers the group of products most searched for and cited by the team in September and October 2026. It includes only store and product pairs with regular sales.',
+        'A relevant share of the units sold in these products was lost because of zero stock.',
       ],
       bullets: [
-        'High sell-through product groups have fewer days at zero, but they move high volume. So they hold a large part of the potential',
-        'In the groups with the worst availability, more than one third of store-days have zero stock',
+        'High sell-through product groups have fewer days at zero, but they move high volume. So they hold a large part of the potential.',
+        'In the groups with the worst availability, a large share of store-days has zero stock.',
       ],
-      note: 'Safe reading. This percentage is an estimated technical potential. Sales come from stock movement in the stores. It is not real revenue loss. Final validation uses the official sell-out of the customer.',
+      note: 'Safe reading. This loss is an estimated technical potential. Sales come from stock movement in the stores. It is not real revenue loss. Final validation uses the official sell-out of the customer.',
     },
     {
       title: 'How users rate Dinn today',
@@ -355,37 +325,25 @@ export const en: Customer = {
   ],
   next: {
     title: 'What comes next',
-    paragraphs: ['Libbs helps to set the Dinn roadmap.'],
-    tables: [
-      {
-        head: ['What Libbs asked for', 'What is in the plan'],
-        rows: [
-          ['Know if the stock shown is reliable', 'Grades A, B and C, quality index and real-time check in digitized stores'],
-          ['Separate a stock-out in the store from a gap in the distribution center', 'Distributor feature'],
-          ['Stalled stock ranges (30, 60 and 90 days) and price alerts', 'Management view of stock and of the price charged'],
-          ['Follow launches', 'Launch view, from the distribution center to the stores'],
-          ['Ask the system where to act first', 'Dinn Insights, an assistant that answers in natural language'],
-        ],
-      },
-    ],
-    note: 'For Libbs, the next steps are to make weekly use a routine, track the drop in SAC open cases and present the results to the board. The board decides on the expansion.',
+    paragraphs: ['Dinn keeps adjusting the platform with user feedback.'],
+    note: 'The next steps for the laboratory are to make weekly use a routine and track the drop in SAC open cases.',
   },
 };
 
 export const es: Customer = {
-  slug: 'libbs',
-  name: 'Libbs',
+  slug: 'localizador-para-sac',
+  name: 'Farmacéutica brasileña de medicamentos de marca',
   sector: 'Industria farmacéutica',
-  hq: 'São Paulo, Brasil',
+  hq: 'Brasil',
   useCase: 'Localizador de productos para atención al cliente (SAC), análisis de quiebre y stock detenido para el campo y la gestión',
-  about: 'Libbs es una farmacéutica brasileña. Vende sus medicamentos de marca en farmacias de todo el país.',
-  title: 'Libbs localiza producto y actúa sobre el quiebre',
-  summary: 'El SAC, el campo y la gestión de Libbs ahora localizan producto, leen el stock detenido y priorizan tiendas con Dinn.',
-  metaDescription: 'En 5 meses, el SAC, el campo y la gestión de Libbs empezaron a localizar producto, leer el stock detenido y priorizar tiendas con Dinn. La pérdida estimada por stock cero en los productos foco es de cerca de 15% de las unidades vendidas.',
+  about: 'El laboratorio es una farmacéutica brasileña. Vende sus medicamentos de marca en farmacias de todo el país.',
+  title: 'Un laboratorio localiza producto y actúa sobre el quiebre',
+  summary: 'El SAC, el campo y la gestión del laboratorio ahora localizan producto, leen el stock detenido y priorizan tiendas con Dinn.',
+  metaDescription: 'El SAC, el campo y la gestión de un laboratorio ahora localizan producto, leen el stock detenido y priorizan tiendas con Dinn. Vea el uso y las mejoras.',
   metrics: [
-    { value: '49', label: 'usuarios buscaron productos en el Localizador de productos, en 2.627 búsquedas (conteo por producto)' },
+    { value: '49', label: 'usuarios buscaron productos en el Localizador de productos, en 2.627 búsquedas por producto' },
     { value: 'De 50 a 1.500', label: 'farmacias por consulta, después de los nuevos filtros de radio, stock y confiabilidad' },
-    { value: '≈ 15%', label: 'de pérdida estimada por stock cero, sobre las unidades vendidas en los productos foco, en 2 meses' },
+    { value: '3,35 de 5', label: 'nota media de satisfacción en el 1.er ciclo, con 17 respuestas' },
     { value: '6', label: 'mejoras hechas con base en el feedback de los usuarios en el 1.er ciclo' },
   ],
   quote: {
@@ -395,8 +353,8 @@ export const es: Customer = {
   },
   intro: [
     'Todo laboratorio conoce el problema. El paciente llama al SAC, el consultor visita la farmacia, y nadie sabe si el producto está en el estante ahora.',
-    'En Libbs, la pregunta era directa. ¿Dónde encuentra el paciente el producto cerca de él? ¿En qué tiendas el producto está detenido o en cero? El SAC llamaba a las farmacias una por una. El campo y la gestión miraban ventas pasadas, sin ver el stock de la tienda.',
-    'Desde junio de 2026, Libbs usa Dinn en el SAC, en las regionales de campo y en la gestión.',
+    'En el laboratorio, la pregunta era directa. ¿Dónde encuentra el paciente el producto cerca de él? ¿En qué tiendas el producto está detenido o en cero? El SAC llamaba a las farmacias una por una. El campo y la gestión miraban ventas pasadas, sin ver el stock de la tienda.',
+    'Desde junio de 2026, el laboratorio usa Dinn en el SAC, en las regionales de campo y en la gestión.',
   ],
   problem: {
     title: 'La venta pasada no muestra el quiebre actual',
@@ -421,11 +379,11 @@ export const es: Customer = {
       'Para cada tienda, la pantalla muestra rotación, días sin movimiento, precio observado y un índice de confiabilidad con notas A, B y C.',
     ],
     bullets: [
-      'Presentación de la plataforma: 8 de junio de 2026',
-      'Capacitación general e inicio del uso en campo: 19 de junio de 2026',
-      'Fase 1: 50 accesos, 10 para el SAC y 40 para las regionales',
-      'Fuentes: stock diario D-1, precios, y la base de tiendas y productos enviada por Libbs',
-      'Medición: búsquedas y usuarios en el Localizador de productos, reportes de divergencia, formulario de satisfacción y reuniones semanales',
+      'Presentación de la plataforma: 8 de junio de 2026.',
+      'Capacitación general e inicio del uso en campo: 19 de junio de 2026.',
+      'Fase 1: 50 accesos, 10 para el SAC y 40 para las regionales.',
+      'Fuentes: stock diario D-1, precios, y la base de tiendas y productos enviada por el laboratorio.',
+      'Medición: búsquedas y usuarios en el Localizador de productos, reportes de divergencia, formulario de satisfacción y reuniones semanales.',
     ],
   },
   stories: [
@@ -433,7 +391,7 @@ export const es: Customer = {
       title: 'El SAC indica la farmacia sin llamar antes',
       paragraphs: [
         'El agente busca el producto e informa la dirección o el código postal (CEP) del paciente. El agente filtra por radio (desde 5 km), stock y nota de confiabilidad. Dinn devuelve las farmacias ordenadas por distancia, con el stock de cada una.',
-        'El 24 de julio, el equipo del SAC señaló la ventaja del filtro de radio. Indica con más precisión las farmacias más cercanas al cliente. En la Inmersión del SAC, el 9 de octubre, una analista contó que localiza las farmacias en Dinn antes de tomar el teléfono.',
+        'El 24 de julio, el equipo del SAC señaló la ventaja del filtro de radio. El filtro indica con más precisión las farmacias más cercanas al cliente. En una reunión del SAC, el 9 de octubre, una analista contó que localiza las farmacias en Dinn antes de tomar el teléfono.',
         'La meta para el SAC fue reducir los casos abiertos causados por la búsqueda de producto.',
       ],
       quote: {
@@ -458,7 +416,7 @@ export const es: Customer = {
       title: 'La gestión lleva el dato a la dirección',
       paragraphs: [
         'Un gestor usó la plataforma para comparar canales de venta de un grupo de productos cuya situación el equipo tenía dificultad para explicar. Presentó el estudio a la dirección.',
-        'En la misma reunión, el gestor pidió una vista por rangos de stock detenido (30, 60 y 90 días), para priorizar regionales y tiendas críticas. También pidió una vista de lanzamientos. Debe seguir el producto desde el centro de distribución hasta las tiendas.',
+        'En la misma reunión, el gestor discutió cómo agrupar las tiendas por rangos de stock detenido (30, 60 y 90 días), para priorizar regionales y tiendas críticas.',
       ],
     },
     {
@@ -493,32 +451,23 @@ export const es: Customer = {
     {
       title: 'Uso del Localizador de productos',
       viz: [
-        { kind: 'line', title: 'Usuarios por semana', sub: 'Localizador de productos, productos Libbs', labels: ['29 jun', '6 jul', '27 jul', '31 ago', '7 sep', '5 oct', '19 oct'], series: [{ name: 'Usuarios', values: [29, 33, 15, 16, 11, 27, 15] }] },
-        { kind: 'bars', as: 'columns', title: 'Búsquedas por semana', sub: 'Localizador de productos, productos Libbs', items: [{ label: '29 jun', value: 223 }, { label: '6 jul', value: 275, hot: true }, { label: '27 jul', value: 93 }, { label: '31 ago', value: 152 }, { label: '7 sep', value: 78 }, { label: '5 oct', value: 135 }, { label: '19 oct', value: 197 }] },
+        { kind: 'line', title: 'Usuarios por semana', sub: 'Localizador de productos, productos del laboratorio', labels: ['29 jun', '6 jul', '27 jul', '31 ago', '7 sep', '5 oct', '19 oct'], series: [{ name: 'Usuarios', values: [29, 33, 15, 16, 11, 27, 15] }] },
+        { kind: 'bars', as: 'columns', title: 'Búsquedas por semana', sub: 'Localizador de productos, productos del laboratorio', items: [{ label: '29 jun', value: 223 }, { label: '6 jul', value: 275, hot: true }, { label: '27 jul', value: 93 }, { label: '31 ago', value: 152 }, { label: '7 sep', value: 78 }, { label: '5 oct', value: 135 }, { label: '19 oct', value: 197 }] },
       ],
-      paragraphs: ['El uso fue fuerte en el lanzamiento, cayó en el segundo semestre y subió de nuevo en octubre. La subida vino después de sesiones con el campo y el SAC y de la Inmersión del 9 de octubre.'],
-      note: 'Conteo por producto, sin separar por empresa. La captura de búsquedas empieza el 29 de junio. El 15 de octubre, el equipo resumió: el volumen de usuarios, de inicios de sesión y de pantallas vistas aumentó, y el equipo lo está usando.',
+      paragraphs: ['El uso fue fuerte en el lanzamiento, cayó en el segundo semestre y subió de nuevo en octubre. La subida vino después de sesiones con el campo y el SAC y de una reunión del SAC el 9 de octubre.'],
+      note: 'Conteo por producto. La captura de búsquedas empieza el 29 de junio. El 15 de octubre, el equipo resumió: el volumen de usuarios, de inicios de sesión y de pantallas vistas aumentó, y el equipo lo está usando.',
     },
     {
       title: 'Tamaño del quiebre en los productos foco',
-      viz: [
-        { kind: 'bars', as: 'rings', title: 'Unidades vendidas y perdidas', sub: 'Sep y oct de 2026, estimación técnica, base 100%', max: 100, items: [{ label: 'Vendidas en los pares tienda y producto', value: 100, display: '100%' }, { label: 'Potencialmente no vendidas por stock cero', value: 15, display: '≈ 15%', hot: true }], note: 'La pérdida estimada es de cerca de 15% sobre las unidades vendidas. Es potencial técnico, no facturación perdida.' },
-      ],
-      paragraphs: ['Este análisis cubre el grupo de productos más buscados y citados por el equipo en septiembre y octubre de 2026. Incluye solo pares tienda y producto con venta regular (al menos 6 unidades en 60 días).'],
-      tables: [
-        {
-          head: ['Indicador (sep y oct de 2026)', 'Resultado'],
-          rows: [
-            ['Unidades vendidas en estos pares', 'Base: 100%'],
-            ['Unidades potencialmente no vendidas por stock cero', '≈ 15% de la base'],
-          ],
-        },
+      paragraphs: [
+        'Este análisis cubre el grupo de productos más buscados y citados por el equipo en septiembre y octubre de 2026. Incluye solo pares tienda y producto con venta regular.',
+        'Una parte relevante de las unidades vendidas en estos productos se perdió por stock cero.',
       ],
       bullets: [
-        'Los grupos de productos de alta rotación tienen menos días en cero, pero mueven un volumen alto. Por eso concentran buena parte del potencial',
-        'En los grupos con peor disponibilidad, más de un tercio de los días-tienda tiene stock cero',
+        'Los grupos de productos de alta rotación tienen menos días en cero, pero mueven un volumen alto. Por eso concentran buena parte del potencial.',
+        'En los grupos con peor disponibilidad, una parte grande de los días-tienda tiene stock cero.',
       ],
-      note: 'Lectura segura. Este porcentaje es un potencial técnico estimado. Las ventas vienen del movimiento de stock en las tiendas. No es una pérdida real de facturación. La validación final usa el sell-out oficial del cliente.',
+      note: 'Lectura segura. Esta pérdida es un potencial técnico estimado. Las ventas vienen del movimiento de stock en las tiendas. No es una pérdida real de facturación. La validación final usa el sell-out oficial del cliente.',
     },
     {
       title: 'Cómo evalúan hoy los usuarios a Dinn',
@@ -541,19 +490,7 @@ export const es: Customer = {
   ],
   next: {
     title: 'Qué viene a continuación',
-    paragraphs: ['Libbs ayuda a definir el roadmap de Dinn.'],
-    tables: [
-      {
-        head: ['Lo que Libbs pidió', 'Lo que está en el plan'],
-        rows: [
-          ['Saber si el stock mostrado es confiable', 'Notas A, B y C, índice de calidad y consulta en tiempo real en tiendas digitalizadas'],
-          ['Separar el quiebre en la tienda de la falta en el centro de distribución', 'Función de distribuidores'],
-          ['Rangos de stock detenido (30, 60 y 90 días) y alertas de precio', 'Vista de gestión del stock y del precio practicado'],
-          ['Seguir los lanzamientos', 'Vista de lanzamientos, del centro de distribución a las tiendas'],
-          ['Preguntar al sistema dónde actuar primero', 'Dinn Insights, un asistente en lenguaje natural'],
-        ],
-      },
-    ],
-    note: 'Por parte de Libbs, los próximos pasos son hacer del uso semanal una rutina, seguir la baja de los casos abiertos del SAC y presentar los resultados a la dirección. La dirección decide la expansión.',
+    paragraphs: ['Dinn sigue ajustando la plataforma con el feedback de los usuarios.'],
+    note: 'Los próximos pasos del laboratorio son hacer del uso semanal una rutina y seguir la baja de los casos abiertos del SAC.',
   },
 };

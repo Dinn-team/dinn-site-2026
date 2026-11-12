@@ -22,15 +22,15 @@
 .lb-tile-in .lb-logo, .lb-tile-in .lb-word { max-height: 42px; max-width: 80%; }
 .lb-client { position: relative; width: calc(var(--h) * 4.4); }
 .lb-client:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -18px rgba(10, 10, 10, .3); }
-.lb-client > a { height: 100%; display: grid; grid-template-columns: minmax(64px, 30%) minmax(0, 1fr); align-items: center; gap: 20px; padding: 16px 40px 16px 24px; color: inherit; }
+.lb-client > a { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; gap: 8px; padding: 14px 44px 14px 22px; color: inherit; }
 .lb-client .lb-mask { height: auto; width: 100%; max-height: 40px; }
 .lb-stat { display: grid; gap: 3px; min-width: 0; }
 .lb-stat b { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 1.8vw, 24px); letter-spacing: -0.02em; line-height: 1; color: var(--foreground); }
-.lb-stat small { font-size: 12px; line-height: 1.35; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lb-stat small { font-size: 12px; line-height: 1.35; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .lb-go { position: absolute; top: 12px; right: 14px; color: var(--muted-foreground); transition: transform .4s cubic-bezier(.16, 1, .3, 1), color .3s; }
 .lb-client:hover .lb-go { transform: translate(2px, -2px); color: var(--foreground); }
 .lb-home-more { text-align: center; margin: clamp(24px, 3vw, 36px) 0 0; }
-@media (max-width: 760px) { .lb-marquee { --h: 84px; gap: 10px; } .lb-tile { margin-right: 10px; } .lb-client > a { grid-template-columns: 1fr; gap: 6px; align-content: center; } .lb-client .lb-mask { max-height: 24px; width: auto; } }
+@media (max-width: 760px) { .lb-marquee { --h: 84px; gap: 10px; } .lb-tile { margin-right: 10px; } .lb-client > a { gap: 4px; padding: 10px 36px 10px 16px; } }
 @media (prefers-reduced-motion: reduce) {
   .lb-lane { overflow-x: auto; scrollbar-width: none; }
   .lb-track { animation: none; }
@@ -125,6 +125,9 @@
 .lb-clients li:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -18px rgba(10, 10, 10, .18); }
 .lb-clients a { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 24px 26px; color: inherit; }
 .lb-clients .lb-mask { width: 150px; height: 34px; aspect-ratio: auto; -webkit-mask-position: left center; mask-position: left center; }
+/* Perfil do laboratório no lugar do logo: os cases são anônimos */
+.lb-anon { display: block; max-width: 28ch; font-size: 13.5px; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; color: var(--foreground); }
+.lb-client .lb-anon { font-size: 12px; line-height: 1.25; max-width: none; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .lb-gain { display: grid; gap: 6px; max-width: 30ch; }
 .lb-gain b { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1; letter-spacing: -0.025em; color: var(--foreground); }
 .lb-clients li.is-wide .lb-gain b { font-size: clamp(28px, 2.6vw, 36px); }

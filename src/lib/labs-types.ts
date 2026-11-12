@@ -21,9 +21,9 @@ export type Lab = {
 export type LogoCredit = { name: string; title: string; page: string; license: string };
 
 /** Os 5 clientes e os maiores laboratórios com logo, 20 no total, na ordem da faixa da home. */
-export function homeLabs(labs: Lab[]): { clients: Lab[]; others: Lab[] } {
-  const order = ['lilly', 'sanofi', 'eurofarma', 'libbs', 'marjan'];
-  const clients = order.map((k) => labs.find((l) => l.client === k)).filter(Boolean) as Lab[];
-  const others = labs.filter((l) => l.group === 'global' && !l.client && l.logo).slice(0, 20 - clients.length);
-  return { clients, others };
+export function homeLabs(labs: Lab[]): { others: Lab[] } {
+  // Os laboratórios dos cases (client) ficam fora da faixa: os cartões de caso são anônimos
+  // e um logo ao lado deles ligaria o caso ao nome.
+  const others = labs.filter((l) => l.group === 'global' && !l.client && l.logo).slice(0, 15);
+  return { others };
 }
