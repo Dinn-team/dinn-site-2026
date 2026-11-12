@@ -8,8 +8,16 @@ import { newFeatureLinks } from "@/components/ui/nav-header";
 
 type Col = { title: string; links: [string, string][] };
 
+// Páginas legais por idioma (as três versões existem em src/pages).
+const LEGAL = {
+  pt: { terms: '/termos-de-uso', privacy: '/politicas-de-privacidade', support: '/suporte' },
+  en: { terms: '/en/terms-of-use', privacy: '/en/privacy-policy', support: '/en/support' },
+  es: { terms: '/es/terminos-de-uso', privacy: '/es/politica-de-privacidad', support: '/es/soporte' },
+} as const;
+
 export default function Footer() {
   const { t, lang } = useTranslation();
+  const legal = LEGAL[lang as keyof typeof LEGAL] ?? LEGAL.pt;
   const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
 
   const columns: Col[] = [
@@ -52,10 +60,10 @@ export default function Footer() {
     {
       title: t('footer.sectionLegal') as string,
       links: [
-        [t('footer.termos') as string, '/termos-de-uso'],
-        [t('footer.privacidade') as string, '/politicas-de-privacidade'],
-        [t('footer.cookies') as string, '/politicas-de-privacidade#cookies'],
-        [t('footer.suporte') as string, '/suporte'],
+        [t('footer.termos') as string, legal.terms],
+        [t('footer.privacidade') as string, legal.privacy],
+        [t('footer.cookies') as string, `${legal.privacy}#cookies`],
+        [t('footer.suporte') as string, legal.support],
       ],
     },
   ];
@@ -89,7 +97,7 @@ export default function Footer() {
               <p className="ftr-title">{col.title}</p>
               <ul className="ftr-links">
                 {col.links.map(([label, href]) => (
-                  <li key={`${href}-${label}`}><a href={href}>{label}</a></li>
+                  <li key={`${href}-${label}`}><a href={href} {...(href.endsWith('#cookies') ? { 'data-cookie-settings': '' } : {})}>{label}</a></li>
                 ))}
               </ul>
             </nav>

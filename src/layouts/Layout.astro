@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CookieConsent from '@/components/CookieConsent.astro';
 import { HTML_LANG, OG_LOCALE, type Lang } from '@/i18n/routes';
 
 interface Props {
@@ -136,10 +137,6 @@ const enableApolloTracking = import.meta.env.PROD;
 		<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-		{/* Pesos usados pelo H1 do hero (LCP). Sem o preload eles só seriam
-		    descobertos depois que o CSS baixasse e casasse as regras. */}
-		<link rel="preload" href="/fonts/BrittiSans-Bold.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/BrittiSans-LightItalic.woff2" as="font" type="font/woff2" crossorigin />
 
 		<!-- Open Graph -->
 		<meta property="og:type" content={type} />
@@ -163,27 +160,9 @@ const enableApolloTracking = import.meta.env.PROD;
 			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 		))}
 
-		{enableAnalytics && (
-			<>
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
-				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-				{/* set:html em vez de define:vars: o define:vars envolve o script num
-				    IIFE, o que deixaria gtag fora do escopo global e faria qualquer
-				    gtag('event', ...) posterior estourar ReferenceError. */}
-				<script is:inline set:html={`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', '${GA_ID}');
-`}></script>
-			</>
-		)}
-
-		{enableApolloTracking && (
-			<script is:inline set:html={`
-function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"${APOLLO_TRACKER_ID}"})},document.head.appendChild(o)}initApollo();
-`}></script>
+		{/* GA4 e Apollo só carregam depois do aceite no banner de cookies (CookieConsent.astro). */}
+		{(enableAnalytics || enableApolloTracking) && (
+			<script is:inline set:html={`window.__dinnTrackers=${JSON.stringify({ ga: enableAnalytics ? GA_ID : null, apollo: enableApolloTracking ? APOLLO_TRACKER_ID : null })};`}></script>
 		)}
 	</head>
 	<body style="background-color: var(--foreground); color: var(--foreground); margin: 0; padding: 0; overflow-x: clip;">
@@ -193,6 +172,7 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 			<slot />
 		</main>
 		<Footer client:load />
+		<CookieConsent />
 	
 <script is:inline>
 	// O link "Pular para o conteúdo" acompanha o idioma escolhido (o <html lang> muda no cliente).

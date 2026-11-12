@@ -1,0 +1,177 @@
+---
+// Banner de cookies (LGPD). Sobe de baixo da página. Os rastreadores (GA4 e Apollo) só carregam
+// depois do aceite. "Recusar" e "Aceitar" têm o mesmo peso. A escolha fica no navegador por 12 meses
+// (localStorage, chave `dinn-consent`). Qualquer elemento com `data-cookie-settings` reabre o banner
+// (o link "Cookies" do rodapé). Sem JavaScript, o banner não aparece e nenhum rastreador carrega.
+// Textos em PT, EN e ES (STE). O idioma segue o <html lang>, que muda no cliente.
+// A lista de rastreadores vem de `window.__dinnTrackers`, definida no Layout só em produção.
+const T = {
+  'pt-BR': {
+    title: 'Cookies neste site',
+    body: 'Usamos cookies de análise para ver como as pessoas usam o site. Também usamos uma ferramenta que identifica as empresas que visitam. Só carregamos se você aceitar.',
+    accept: 'Aceitar',
+    reject: 'Recusar',
+    policy: 'Política de privacidade',
+    href: '/politicas-de-privacidade#cookies',
+  },
+  en: {
+    title: 'Cookies on this site',
+    body: 'We use analytics cookies to see how people use the site. We also use a tool that identifies the companies that visit. We load them only if you accept.',
+    accept: 'Accept',
+    reject: 'Reject',
+    policy: 'Privacy policy',
+    href: '/en/privacy-policy#cookies',
+  },
+  'es-419': {
+    title: 'Cookies en este sitio',
+    body: 'Usamos cookies de análisis para ver cómo las personas usan el sitio. También usamos una herramienta que identifica las empresas que visitan. Solo las cargamos si aceptas.',
+    accept: 'Aceptar',
+    reject: 'Rechazar',
+    policy: 'Política de privacidad',
+    href: '/es/politica-de-privacidad#cookies',
+  },
+};
+---
+
+<div id="cookie-consent" class="cc" role="region" aria-labelledby="cc-title" hidden>
+  <div class="cc-body">
+    <p id="cc-title" class="cc-title" data-cc="title">{T['pt-BR'].title}</p>
+    <p class="cc-text"><span data-cc="body">{T['pt-BR'].body}</span> <a data-cc="policy" href={T['pt-BR'].href}>{T['pt-BR'].policy}</a></p>
+  </div>
+  <div class="cc-actions">
+    <button type="button" class="btn btn-outline cc-btn" data-cc="reject">{T['pt-BR'].reject}</button>
+    <button type="button" class="btn btn-primary cc-btn" data-cc="accept">{T['pt-BR'].accept}</button>
+  </div>
+</div>
+
+<style is:global>
+  .cc {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 90;
+    margin: 0 auto;
+    max-width: 880px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 24px;
+    background: var(--background);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 18px 48px -20px rgba(10, 10, 10, 0.35);
+    transform: translateY(calc(100% + 32px));
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  .cc[hidden] { display: none; }
+  .cc.is-open { transform: translateY(0); opacity: 1; }
+  .cc-body { display: grid; gap: 6px; min-width: 0; }
+  .cc-title { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--foreground); }
+  .cc-text { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 58ch; }
+  .cc-text a { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .cc-actions { display: flex; flex: none; gap: 10px; }
+  .cc-btn { min-width: 112px; justify-content: center; }
+  @media (max-width: 640px) {
+    .cc { flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; left: 12px; right: 12px; bottom: 12px; }
+    .cc-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cc { transform: none; transition: opacity 0.2s ease; }
+  }
+</style>
+
+<script is:inline define:vars={{ T }}>
+  (function () {
+    var KEY = 'dinn-consent';
+    var MAX_AGE = 365 * 24 * 60 * 60 * 1000;
+    var box = document.getElementById('cookie-consent');
+    if (!box) return;
+
+    function read() {
+      try {
+        var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (v && (v.analytics === true || v.analytics === false) && Date.now() - v.ts < MAX_AGE) return v;
+      } catch (e) {}
+      return null;
+    }
+    function write(analytics) {
+      try { localStorage.setItem(KEY, JSON.stringify({ v: 1, analytics: analytics, ts: Date.now() })); } catch (e) {}
+    }
+
+    var loaded = false;
+    function loadTrackers() {
+      var cfg = window.__dinnTrackers;
+      if (loaded || !cfg) return;
+      loaded = true;
+      if (cfg.ga) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.ga;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', cfg.ga);
+      }
+      if (cfg.apollo) {
+        var a = document.createElement('script');
+        a.async = true;
+        a.defer = true;
+        a.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + Math.random().toString(36).substring(7);
+        a.onload = function () { window.trackingFunctions.onLoad({ appId: cfg.apollo }); };
+        document.head.appendChild(a);
+      }
+    }
+
+    function text() {
+      var lang = document.documentElement.lang;
+      var t = T[lang] || T['pt-BR'];
+      var map = { title: t.title, body: t.body, policy: t.policy, accept: t.accept, reject: t.reject };
+      Object.keys(map).forEach(function (k) {
+        var el = box.querySelector('[data-cc="' + k + '"]');
+        if (el) el.textContent = map[k];
+      });
+      var link = box.querySelector('[data-cc="policy"]');
+      if (link) link.setAttribute('href', t.href);
+    }
+
+    var timer = 0;
+    function open() {
+      text();
+      box.hidden = false;
+      clearTimeout(timer);
+      // Força o navegador a calcular o estado fechado antes de animar a subida.
+      void box.offsetWidth;
+      box.classList.add('is-open');
+    }
+    function close() {
+      box.classList.remove('is-open');
+      clearTimeout(timer);
+      timer = setTimeout(function () { box.hidden = true; }, 700);
+    }
+
+    box.querySelector('[data-cc="accept"]').addEventListener('click', function () { write(true); close(); loadTrackers(); });
+    box.querySelector('[data-cc="reject"]').addEventListener('click', function () { write(false); close(); });
+    box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    new MutationObserver(text).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+    // O link "Cookies" do rodapé reabre o banner para mudar a escolha.
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest('[data-cookie-settings]') : null;
+      if (!el) return;
+      e.preventDefault();
+      open();
+      var first = box.querySelector('[data-cc="reject"]');
+      if (first) setTimeout(function () { first.focus(); }, 50);
+    });
+
+    var saved = read();
+    if (saved && saved.analytics) loadTrackers();
+    if (!saved) setTimeout(open, 800);
+  })();
+</script>
