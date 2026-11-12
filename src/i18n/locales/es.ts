@@ -672,7 +672,7 @@ export const es419 = {
       },
       {
         question: "¿Cómo sigue Dinn el inventario sin depender de nuestras bases?",
-        answer: "Agentes consultan los canales digitales de las farmacias y registran lo que informa cada fuente, con ubicación y hora. Este es el **dato observado**. Cuando no hay respuesta directa, Dinn **estima** a partir de tiendas comparables y del historial, con nivel de confianza. Cada registro indica cómo lo obtuvo Dinn."
+        answer: "Dinn registra lo que informa cada fuente digital de las farmacias, con ubicación y hora. Este es el **dato observado**. Cuando no hay respuesta directa, Dinn **estima** a partir de tiendas comparables y del historial, con nivel de confianza. Cada registro muestra la fuente y la fecha."
       },
       {
         question: "¿Los datos diarios no van a sobrecargar al equipo de campo?",

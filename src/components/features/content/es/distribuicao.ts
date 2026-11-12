@@ -12,7 +12,7 @@ export const content: FeatureContent = {
   hero: {
     title: '¿La falla está en el CEDIS, en la reposición o en la farmacia?',
     sub: 'Compara el inventario del distribuidor con la disponibilidad en las farmacias de la región. Ve la cobertura en días y decide dónde revisar primero.',
-    note: 'Dato del día anterior (D-1). La lectura es una hipótesis. Tú confirmas la causa.',
+    note: 'Funcionalidad en piloto. Dato del día anterior (D-1). La lectura es una hipótesis. Tú confirmas la causa.',
   },
   steps: [
     { title: 'Elige el distribuidor y el producto', text: 'Filtra por distribuidor, CEDIS y un producto. Cadena, Estado y Ciudad acotan las farmacias.' },

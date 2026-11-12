@@ -672,7 +672,7 @@ export const ptBR = {
       },
       {
         question: "Como a Dinn acompanha o estoque sem depender das nossas bases?",
-        answer: "Agentes consultam os canais digitais das farmácias e registram o que cada fonte informa, com local e horário. Esse é o **dado observado**. Quando não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro diz como a Dinn o obteve."
+        answer: "A Dinn registra o que cada fonte digital das farmácias informa, com local e horário. Esse é o **dado observado**. Quando não há resposta direta, a Dinn **estima** a partir de lojas comparáveis e do histórico, com nível de confiança. Cada registro mostra a fonte e a data."
       },
       {
         question: "Dados diários não vão sobrecarregar o time de campo?",

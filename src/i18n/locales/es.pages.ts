@@ -327,7 +327,7 @@ export const pagesEs = {
       items: [
         {
           title: "De dónde vienen las señales",
-          text: "De fuentes digitales de las farmacias, consultadas por agentes. Con autorización, también de datos de mercado (IQVIA / Close-Up) y datos internos (ERP y CRM)."
+          text: "De fuentes digitales de las farmacias. Con autorización, también de datos de mercado (IQVIA / Close-Up) y datos internos (ERP y CRM)."
         },
         {
           title: "Con qué actualización",

@@ -328,7 +328,7 @@ export const pagesPt = {
       items: [
         {
           title: "De onde vêm os sinais",
-          text: "De fontes digitais das farmácias, consultadas por agentes. Com autorização, também de mercado (IQVIA / Close-Up) e de dados internos (ERP e CRM)."
+          text: "De fontes digitais das farmácias. Com autorização, também de mercado (IQVIA / Close-Up) e de dados internos (ERP e CRM)."
         },
         {
           title: "Com que atualização",

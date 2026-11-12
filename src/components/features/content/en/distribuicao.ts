@@ -12,7 +12,7 @@ export const content: FeatureContent = {
   hero: {
     title: 'Is the gap at the DC, in replenishment or at the pharmacy?',
     sub: 'Compare distributor stock with availability at pharmacies in the region. See coverage in days and decide where to check first.',
-    note: 'Data from the previous day (D-1). The reading is a hypothesis. You confirm the cause.',
+    note: 'This feature is in pilot. Data from the previous day (D-1). The reading is a hypothesis. You confirm the cause.',
   },
   steps: [
     { title: 'Choose the distributor and the product', text: 'Filter by distributor, DC and one product. Chain, State and City narrow down the pharmacies.' },

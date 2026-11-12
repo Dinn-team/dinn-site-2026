@@ -672,7 +672,7 @@ export const enUS = {
       },
       {
         question: "How does Dinn track stock without depending on our databases?",
-        answer: "Agents query pharmacy digital channels and record what each source reports, with location and time. This is **observed data**. When there is no direct answer, Dinn **estimates** from comparable stores and history, with a confidence level. Every record states how Dinn got it."
+        answer: "Dinn records what each pharmacy digital source reports, with location and time. This is **observed data**. When there is no direct answer, Dinn **estimates** from comparable stores and history, with a confidence level. Every record shows the source and the date."
       },
       {
         question: "Won't daily data overload the field team?",

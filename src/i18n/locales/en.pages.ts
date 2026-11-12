@@ -327,7 +327,7 @@ export const pagesEn = {
       items: [
         {
           title: "Where the signals come from",
-          text: "From pharmacies' digital sources, queried by agents. With authorization, also from market data (IQVIA / Close-Up) and internal data (ERP and CRM)."
+          text: "From pharmacies' digital sources. With authorization, also from market data (IQVIA / Close-Up) and internal data (ERP and CRM)."
         },
         {
           title: "How fresh they are",

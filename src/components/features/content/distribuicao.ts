@@ -12,7 +12,7 @@ export const distribuicao: FeatureContent = {
   hero: {
     title: 'O furo está no CD, na reposição ou na farmácia?',
     sub: 'Compare o estoque do distribuidor com a disponibilidade nas farmácias da região. Veja a cobertura em dias e decida onde conferir primeiro.',
-    note: 'Dado do dia anterior (D-1). A leitura é uma hipótese. Você confirma a causa.',
+    note: 'Funcionalidade em piloto. Dado do dia anterior (D-1). A leitura é uma hipótese. Você confirma a causa.',
   },
   steps: [
     { title: 'Escolha o distribuidor e o produto', text: 'Filtre por distribuidor, CD e um produto. Rede, Estado e Cidade recortam as farmácias.' },
