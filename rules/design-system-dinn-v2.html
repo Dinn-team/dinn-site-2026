@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinn Design System v2</title>
+<meta name="description" content="Design System v2 da Dinn: site (branch redesign) e vídeos institucionais V7. Tokens, tipografia, componentes, gráficos, movimento e vídeo.">
+<link rel="icon" href="../public/logo/Icon-Dinn-v2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   Dinn Design System v2 — página de referência
+   Fonte: rules/DESIGN_SYSTEM_V2.md, rules/charts-tokens.css,
+   skill motion-de-produto e vídeo institucional V7.
+   Esta página segue o próprio sistema: título em uma cor, Roboto 400,
+   botão com texto branco, neutro por padrão, sem tag de status.
+   ===================================================================== */
+:root{
+  --background:#fff; --foreground:#0a0a0a; --card:#fff;
+  --muted:#f5f5f5; --muted-foreground:#636363; --border:#e5e5e5;
+  --primary:#7008e7; --primary-hov:#5b06bd; --primary-foreground:#fff;
+  --brand-ink:#08090a; --brand-lime:#e4f222; --brand-orange:#fd673e; --brand-ref:#5130e9;
+  --chart-1:#7008e7; --chart-2:#c9aaf7; --chart-3:#08090a; --chart-4:#e4f222; --chart-5:#fd673e;
+  --chart-deep:#3d0a82; --chart-soft:#e1d0fb; --chart-track:#f1ebfc;
+  --chart-2-line:#a97ff0; --chart-5-line:#ee5a2f;
+  --tip-bg:#fff; --tip-fg:#08090a; --tip-mut:#7a788a; --tip-bd:#e6e3ef;
+  --tip-sh:0 14px 34px -12px rgb(60 20 120/.28),0 2px 6px rgb(20 10 40/.06);
+  --chart-grid:#eeedf4; --chart-muted:#7a788a; --chart-avg:#4a4856;
+  --font:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --font-display:'Roboto',ui-sans-serif,system-ui,sans-serif;
+  --radius:.625rem; --gutter:clamp(24px,4vw,56px); --pad:clamp(72px,9vw,120px);
+  --ease-out-expo:cubic-bezier(.16,1,.3,1); --ease-spring:cubic-bezier(.175,.885,.32,1.275);
+}
+:root[data-theme="dark"]{
+  --background:#0a0a0a; --foreground:#fafafa; --card:#171717;
+  --muted:#1f1f1f; --muted-foreground:#a3a3a3; --border:rgb(255 255 255/.1);
+  --primary:#9558f7; --primary-hov:#a574f9;
+  --chart-1:#9558f7; --chart-2:#cdb3fa; --chart-3:#f4f3fa; --chart-deep:#5a2fb0; --chart-soft:#3a2b66; --chart-track:#241d38;
+  --chart-2-line:#a98af0; --chart-5-line:#fd673e;
+  --tip-bg:#2b2738; --tip-fg:#fff; --tip-mut:#aaa7b9; --tip-bd:rgb(255 255 255/.08); --tip-sh:0 14px 34px -10px rgb(0 0 0/.5);
+  --chart-grid:#221f2c; --chart-muted:#8d899f; --chart-avg:#bab7c9;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--background);color:var(--foreground);line-height:1.5;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em}
+code{background:var(--muted);padding:2px 6px;border-radius:6px}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
+
+.wrap{width:100%;max-width:1472px;margin:0 auto;padding:0 var(--gutter)}
+section.sec{padding:var(--pad) 0;scroll-margin-top:72px}
+section.sec.alt{background:var(--muted)}
+.head{margin-bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.title{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.4vw,48px);line-height:1.1;letter-spacing:-.02em}
+.sub{font-size:16px;color:var(--muted-foreground);margin-top:12px;max-width:52ch}
+.h3{font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2vw,28px);letter-spacing:-.015em;line-height:1.15;margin:56px 0 20px}
+.h3:first-child{margin-top:0}
+.note{font-size:14px;color:var(--muted-foreground);max-width:70ch}
+.src{font-size:13px;color:var(--muted-foreground);margin-top:16px}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+
+/* header global (igual ao do site: barra inteira, fio fino, sem pílula) */
+.header{position:fixed;inset:0 0 auto;z-index:1000;height:72px;background:color-mix(in srgb,var(--background) 94%,transparent);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border-bottom:1px solid color-mix(in srgb,var(--foreground) 8%,transparent)}
+.header .wrap{height:100%;display:flex;align-items:center;gap:20px}
+.header img{height:28px;width:auto}
+.header nav{display:flex;gap:4px;margin-left:8px;overflow:auto;scrollbar-width:none}
+.header nav::-webkit-scrollbar{display:none}
+.header nav a{font-size:13px;color:var(--muted-foreground);padding:7px 9px;border-radius:9999px;white-space:nowrap;transition:color .2s,background .2s}
+.header nav a:hover{color:var(--foreground)}
+.header nav a.on{color:var(--foreground);background:var(--muted)}
+.header .sp{flex:1}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--background);border-radius:9999px;padding:8px 16px;font-size:14px;cursor:pointer;transition:border-color .2s}
+.pill:hover{border-color:var(--primary)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-weight:600;font-size:14px;border-radius:9999px;padding:11px 22px;border:1.5px solid transparent;cursor:pointer;transition:background .18s,border-color .18s}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:var(--primary-hov);border-color:var(--primary-hov)}
+.btn-outline{background:transparent;color:var(--foreground);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--foreground)}
+.btn-ghost{background:transparent;color:var(--muted-foreground)}
+.btn-ghost:hover{background:var(--muted);color:var(--foreground)}
+.btn-sm{padding:7px 16px;font-size:12px}.btn-lg{padding:14px 32px;font-size:16px}
+.link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500}
+.link:hover{color:var(--primary)}
+
+/* hero */
+.hero{padding:clamp(120px,14vw,168px) 0 var(--pad)}
+.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(36px,5vw,76px);line-height:1.04;letter-spacing:-.03em;max-width:14ch}
+.hero p{font-size:clamp(17px,1.5vw,22px);line-height:1.4;max-width:34ch}
+.hero .actions{display:flex;gap:24px;align-items:center;margin-top:32px;flex-wrap:wrap}
+.media{position:relative;margin-top:clamp(48px,6vw,80px);border-radius:12px;overflow:hidden;aspect-ratio:16/8.2;background:#1b1535 url(../public/gradients/web/roxo-noite.avif) center/cover;display:grid;place-items:center;padding:clamp(20px,5vw,72px)}
+.media::before,.grain::before{content:'';position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.media .stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,48px);width:100%;color:#fff}
+.media .stats b{display:block;font-family:var(--font-display);font-weight:400;font-size:clamp(36px,5vw,72px);letter-spacing:-.03em;line-height:1}
+.media .stats span{display:block;margin-top:10px;font-size:14px;opacity:.82;max-width:22ch}
+
+/* índice lateral (padrão .tr-index) */
+.idx{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:900;display:grid;gap:10px}
+.idx a{position:relative;display:block;width:14px;height:2px;border-radius:2px;background:color-mix(in srgb,var(--foreground) 30%,transparent);transition:width .25s,background .25s;margin-left:auto}
+.idx a.on{width:26px;background:var(--primary)}
+.idx a span{position:absolute;right:34px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;background:var(--foreground);color:var(--background);padding:3px 9px;border-radius:9999px;opacity:0;pointer-events:none;transition:opacity .2s}
+.idx a:hover span{opacity:1}
+@media(max-width:1100px){.idx{display:none}}
+
+/* princípios */
+.prin{counter-reset:p;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border)}
+.prin li{counter-increment:p;padding:28px 28px 28px 0;border-bottom:1px solid var(--border);display:grid;gap:6px;align-content:start}
+.prin li:not(:nth-child(3n+1)){padding-left:28px;border-left:1px solid var(--border)}
+.prin b{font-size:18px;font-weight:500;letter-spacing:-.01em}
+.prin span{font-size:15px;color:var(--muted-foreground)}
+
+/* swatches */
+.sw{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--background);cursor:pointer;text-align:left;transition:transform .2s,border-color .2s;display:block;width:100%}
+.sw:hover{transform:translateY(-2px);border-color:var(--primary)}
+.sw i{display:block;height:92px;border-bottom:1px solid var(--border)}
+.sw div{padding:12px 14px 14px;display:grid;gap:2px}
+.sw b{font-size:14px;font-weight:500}.sw small{font-size:12px;color:var(--muted-foreground)}
+.sw.tall i{height:140px}
+.copied{position:fixed;left:50%;bottom:28px;translate:-50% 20px;opacity:0;background:var(--foreground);color:var(--background);padding:10px 18px;border-radius:9999px;font-size:14px;z-index:2000;transition:all .25s var(--ease-out-expo);pointer-events:none}
+.copied.on{opacity:1;translate:-50% 0}
+
+/* tabelas */
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{font-weight:500;text-align:left;color:var(--muted-foreground);font-size:13px;padding:10px 16px 10px 0;border-bottom:1px solid var(--border)}
+.tbl td{padding:14px 16px 14px 0;border-bottom:1px solid var(--border);vertical-align:top}
+.tbl td:first-child{font-weight:500;white-space:nowrap}
+.tbl-wrap{overflow-x:auto}
+
+/* tipografia */
+.type-row{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.type-row small{font-size:13px;color:var(--muted-foreground);line-height:1.5}
+.t-hero{font-family:var(--font-display);font-weight:400;font-size:clamp(36px,5vw,76px);line-height:1.04;letter-spacing:-.03em}
+.t-h2{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.4vw,48px);line-height:1.1;letter-spacing:-.02em}
+.t-card{font-size:20px;font-weight:500;letter-spacing:-.01em}
+
+/* gradientes */
+.gr{display:grid;gap:10px}
+.gr i{display:block;aspect-ratio:16/10;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.gr i::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,var(--shade,0))}
+.gr b{font-size:14px;font-weight:500}.gr small{font-size:12px;color:var(--muted-foreground);display:block;line-height:1.35}
+.gr.dark i{--shade:.4}
+.layer-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.layer-demo div{aspect-ratio:16/9;border-radius:12px;background:url(../public/gradients/g00.avif) center/cover;position:relative;display:grid;place-items:center;color:#fff;font-size:18px;font-weight:500;overflow:hidden}
+.layer-demo div::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,var(--s))}
+.layer-demo span{position:relative}
+
+/* cards de padrão */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.cust{display:grid;gap:14px;align-content:start}
+.cust-art{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background-size:cover;background-position:center;display:grid;place-items:center}
+.cust-art::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.cust-art img{position:relative;height:28px;width:auto}
+.cust-name{font-size:20px;font-weight:500;letter-spacing:-.01em}
+.cust-go{font-size:14px;color:var(--muted-foreground);display:inline-flex;gap:6px}
+.cust:hover .cust-go{color:var(--primary)}
+.area{position:relative;background:var(--muted);border-radius:16px;padding:28px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}
+.area:hover{background:color-mix(in srgb,var(--muted) 94%,var(--foreground))}
+.area .art{flex:1;display:grid;place-items:center;color:var(--foreground)}
+.area .art svg{width:min(100%,260px)}
+.area b{font-size:18px;font-weight:500;letter-spacing:-.01em;display:block}
+.area span.p{font-size:16px;color:var(--muted-foreground);max-width:30ch;display:block;margin-top:4px}
+.sec.alt .area{background:var(--background)}
+.res{position:relative;display:flex;align-items:flex-end;aspect-ratio:4/4.6;border-radius:16px;overflow:hidden;background-size:cover;background-position:center;padding:24px;color:#fff}
+.res::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.35))}
+.res div{position:relative;display:grid;gap:6px}.res b{font-size:20px;font-weight:500}.res span{font-size:14px;opacity:.85}
+
+.tabs{display:inline-flex;gap:2px;padding:4px;border-radius:9999px;border:1px solid var(--border);background:var(--muted)}
+.tabs button{border:0;background:none;cursor:pointer;font-size:15px;padding:8px 20px;border-radius:9999px;color:var(--muted-foreground);transition:all .2s}
+.tabs button.on{background:var(--background);color:var(--foreground);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.chip{display:inline-flex;align-items:center;font-size:14px;padding:8px 16px;border-radius:9999px;border:1px solid var(--border);background:var(--background);cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--primary)}
+.chip[aria-pressed=true]{background:var(--primary);border-color:var(--primary);color:#fff}
+.msg{max-width:92%;padding:12px 16px;border-radius:16px;font-size:15px;line-height:1.5;margin-bottom:10px}
+.msg.bot{background:var(--muted);border-top-left-radius:4px}
+.sec.alt .msg.bot{background:var(--background)}
+.msg.user{background:var(--primary);color:#fff;margin-left:auto;width:fit-content;border-top-right-radius:4px}
+.qchip{display:block;width:100%;text-align:left;font-size:14px;padding:10px 14px;border-radius:16px;border:1px solid var(--border);background:var(--background);cursor:pointer;margin-top:8px;transition:all .2s}
+.qchip:hover{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 5%,var(--background))}
+.input{width:100%;font:inherit;font-size:15px;padding:12px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--background);color:var(--foreground);outline:none;transition:border-color .15s}
+.input:focus{border-color:var(--primary)}
+.fio{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.fio>div{padding:24px 24px 24px 0;border-bottom:1px solid var(--border)}
+.fio>div:not(:nth-child(3n+1)){padding-left:24px;border-left:1px solid var(--border)}
+.fio b{display:block;font-size:18px;font-weight:500;margin-bottom:6px}.fio span{font-size:15px;color:var(--muted-foreground)}
+.dont{display:grid;gap:10px}
+.dont li{position:relative;font-size:15px;padding:14px 0 14px 24px;border-bottom:1px solid var(--border)}
+.dont li::before{content:'';position:absolute;left:0;top:25px;width:10px;height:2px;background:var(--brand-orange);border-radius:2px}
+.do li::before{background:var(--primary)}
+
+/* wireframes de seção */
+.wf{border:1px solid var(--border);border-radius:16px;background:var(--background);padding:18px;display:grid;gap:12px}
+.wf .bar{height:8px;border-radius:4px;background:var(--border)}
+.wf .bar.d{background:var(--foreground);height:12px;width:60%}
+.wf .box{border-radius:8px;background:var(--muted);min-height:70px}
+.wf .row{display:grid;gap:8px;grid-template-columns:repeat(var(--c,3),1fr)}
+.wf .grd{background:url(../public/gradients/g08.avif) center/cover;border-radius:8px;min-height:70px}
+.wf small{font-size:12px;color:var(--muted-foreground)}
+.pat b{font-size:17px;font-weight:500;display:block;margin:14px 0 4px}.pat span{font-size:14px;color:var(--muted-foreground);display:block}
+
+/* ilustração iso */
+.il{width:100%;overflow:visible}
+.il *{vector-effect:non-scaling-stroke}
+.il .f{fill:var(--background);stroke:var(--foreground);stroke-width:1;stroke-linejoin:round}
+.il .g{fill:none;stroke:var(--foreground);stroke-width:1;stroke-dasharray:2 3;opacity:.55}
+.il .p{fill:var(--primary);stroke:var(--primary);stroke-width:1}
+.il .l{transition:transform .7s var(--ease-out-expo)}
+.il-host:hover .l1,.il-host.is-hover .l1{transform:translateY(-34px)}
+.il-host:hover .l2,.il-host.is-hover .l2{transform:translateY(-68px)}
+
+/* gráficos */
+.chartcard{border:1px solid var(--border);border-radius:28px;padding:24px;background:var(--card);position:relative}
+.chartcard h4{font-size:16px;font-weight:500}.chartcard p{font-size:13px;color:var(--chart-muted)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.leg{display:inline-flex;align-items:center;gap:8px;font-size:13px;border:1px solid var(--border);background:var(--background);border-radius:9999px;padding:5px 12px;cursor:pointer}
+.leg[aria-pressed=false]{opacity:.45}
+.leg svg{width:22px;height:8px}
+.tip{position:absolute;pointer-events:none;background:var(--tip-bg);color:var(--tip-fg);border:1px solid var(--tip-bd);box-shadow:var(--tip-sh);border-radius:14px;padding:10px 14px;font-size:13px;min-width:150px;opacity:0;transition:opacity .15s;z-index:5}
+.tip b{display:block;font-weight:500;margin-bottom:4px}
+.tip div{display:flex;justify-content:space-between;gap:14px;color:var(--tip-mut)}.tip div em{font-style:normal;color:var(--tip-fg)}
+.kpi{border:1px solid var(--border);border-radius:28px;padding:22px;background:var(--card);display:grid;gap:6px}
+.kpi small{font-size:13px;color:var(--muted-foreground)}
+.kpi b{font-family:var(--font-display);font-weight:400;font-size:40px;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi em{font-style:normal;font-size:12px;font-weight:600;border-radius:9999px;padding:3px 10px;width:fit-content;background:var(--chart-4);color:var(--brand-ink)}
+.kpi.hl{border:0;color:#fff;background-size:cover;background-position:center;min-height:170px;align-content:end}
+.kpi.hl small{color:rgba(255,255,255,.8)}
+.kpi.hl.lime,.kpi.hl.peach{color:var(--brand-ink)}.kpi.hl.lime small,.kpi.hl.peach small{color:rgba(8,9,10,.7)}
+.kpi.hl.lime em,.kpi.hl.peach em{background:var(--brand-ink);color:#fff}
+.kpi.hl.lime{background-image:url(../public/gradients/g10.avif)}
+.kpi.hl.peach{background-image:url(../public/gradients/web/pessego.avif)}
+.kpi.hl.purple{background-image:url(../public/gradients/web/roxo-noite.avif)}
+.sphere{aspect-ratio:1;border-radius:50%;background-size:cover;background-position:center;display:grid;place-items:center;font-family:var(--font-display);font-size:22px;color:#fff}
+.sphere.light{color:var(--brand-ink)}
+
+/* movimento */
+.ease{display:grid;grid-template-columns:200px 1fr auto;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--border)}
+.ease b{font-weight:500;font-size:15px;display:block}.ease small{font-size:12px;color:var(--muted-foreground)}
+.track{position:relative;height:36px;border-radius:9999px;background:var(--muted)}
+.sec.alt .track{background:var(--background)}
+.dot{position:absolute;left:4px;top:4px;width:28px;height:28px;border-radius:50%;background:var(--primary)}
+.demo{border:1px solid var(--border);border-radius:16px;padding:24px;background:var(--card);display:grid;gap:14px;align-content:start;min-height:230px}
+.demo h4{font-size:16px;font-weight:500}.demo p{font-size:13px;color:var(--muted-foreground)}
+.demo .stage{flex:1;display:grid;place-items:center;min-height:100px}
+.big-num{font-family:var(--font-display);font-size:64px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.stag li{padding:10px 14px;border-radius:12px;background:var(--muted);font-size:14px;margin-bottom:6px;opacity:0}
+.press{transition:transform .12s}.press:active{transform:scale(.94)}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--foreground);vertical-align:-.15em;animation:blink 1.06s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.drift{width:160px;height:100px;border-radius:12px;background:url(../public/gradients/g08.avif) center/cover;animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.035) translate(-1.5%,-1%)}}
+
+/* tela do produto + cursor em arco */
+.app{position:relative;border-radius:14px;overflow:hidden;background:#f7f7f8;color:#18181b;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 40px 90px -40px rgba(8,9,10,.7);aspect-ratio:16/10;display:grid;grid-template-columns:20% 1fr;font-size:12px}
+.app aside{background:#fafafa;border-right:1px solid #e4e4e7;padding:14px 10px;display:grid;gap:6px;align-content:start}
+.app aside img{height:16px;width:auto;margin-bottom:10px}
+.app aside span{padding:6px 8px;border-radius:8px;color:#71717a}.app aside span.on{background:#f1eefe;color:#5130e9;font-weight:500}
+.app main{padding:14px;display:grid;gap:10px;align-content:start}
+.app .k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.app .k div{background:#fff;border:1px solid #e4e4e7;border-radius:10px;padding:10px}
+.app .k small{color:#71717a;display:block}.app .k b{font-size:20px;font-weight:500}
+.app .bars{background:#fff;border:1px solid #e4e4e7;border-radius:10px;padding:10px;display:flex;align-items:flex-end;gap:6px;height:90px}
+.app .bars i{flex:1;background:#5130e9;border-radius:4px 4px 0 0;transform-origin:bottom;transform:scaleY(0)}
+.app .btn5{background:#5130e9;color:#fff;border-radius:9999px;padding:6px 14px;width:fit-content;font-weight:600}
+.cur-x{position:absolute;left:0;top:0;width:30px;height:30px;z-index:4;pointer-events:none}
+.cur-y{width:30px;height:30px}
+.ripple{position:absolute;width:30px;height:30px;border-radius:50%;border:2px solid #5130e9;opacity:0;z-index:3}
+
+/* VÍDEO — quadros 1920x1080 em unidades de contêiner (1cqw = 19,2 px no vídeo) */
+.vf{position:relative;container-type:inline-size;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--brand-ink);isolation:isolate}
+.vf .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2}
+.vf.grain::before{z-index:-1;opacity:.12}
+.vf .t{position:absolute;left:0;right:0;top:7cqw;text-align:center;color:#fff;font-family:var(--font-display);font-weight:400;font-size:4.2cqw;letter-spacing:-.03em;line-height:1.1}
+.vf .t b{font-weight:700}
+.vf .dotl{display:inline-flex;align-items:center;gap:.7cqw;font-family:var(--font);font-size:1.45cqw;color:rgba(255,255,255,.8)}
+.vf .dotl i{width:.62cqw;height:.62cqw;border-radius:50%;background:var(--brand-lime)}
+.vf .cap{position:absolute;left:50%;bottom:3.3cqw;transform:translateX(-50%);max-width:68cqw;padding:.6cqw 1.45cqw;border-radius:.95cqw;background:rgba(8,9,10,.78);color:#fff;font-weight:500;font-size:2cqw;line-height:1.3;text-align:center;white-space:nowrap}
+.vf .cap span{opacity:.5}.vf .cap span.on{opacity:1}
+.vf .foot{position:absolute;right:2cqw;bottom:1.45cqw;font-size:.85cqw;padding:.2cqw .65cqw;border-radius:9999px;background:rgba(8,9,10,.35);color:rgba(255,255,255,.75)}
+.vf .num{position:absolute;left:8cqw;top:50%;translate:0 -50%;color:#fff}
+.vf .num b{display:block;font-family:var(--font-display);font-weight:400;font-size:11cqw;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.vf .num span{display:block;font-size:2.4cqw;color:rgba(255,255,255,.85);margin-top:.6cqw}
+.vf .num span b{display:inline;font-family:var(--font);font-size:inherit;font-weight:700;letter-spacing:0}
+.vf .dots{position:absolute;right:6cqw;top:50%;translate:0 -50%;display:grid;gap:1.1cqw;width:36cqw}
+.vf .dots div{display:grid;grid-template-columns:7cqw 1fr;align-items:center;gap:1cqw;font-size:1cqw;color:rgba(255,255,255,.7)}
+.vf .dots div.hot{color:#fff;font-weight:600}
+.vf .dots p{display:flex;gap:.34cqw;flex-wrap:nowrap}
+.vf .dots p i{width:1cqw;height:1cqw;border-radius:50%;border:1px solid rgba(255,255,255,.35);flex:none}
+.vf .dots div.hot p i{background:var(--brand-lime);border-color:var(--brand-lime);opacity:0;transform:scale(.4)}
+.vf .win{position:absolute;left:14cqw;right:14cqw;top:14cqw;bottom:7.5cqw;border-radius:1.4cqw;background:#fff;overflow:hidden;box-shadow:0 4cqw 9cqw -4cqw rgba(8,9,10,.7)}
+.vf .win .tb{height:2.6cqw;border-bottom:1px solid #e4e4e7;display:flex;align-items:center;gap:.5cqw;padding:0 1.2cqw;font-size:.95cqw;color:#71717a;font-family:var(--font)}
+.vf .win .row{display:grid;grid-template-columns:1fr 6cqw 6cqw 8cqw;gap:1cqw;padding:.85cqw 1.6cqw;border-bottom:1px solid #f0f0f2;font-size:1.05cqw;color:#18181b;font-family:var(--font)}
+.vf .win .row small{display:block;color:#71717a;font-size:.8cqw}
+.vf .win .row em{font-style:normal;color:#dc2626;font-weight:600}
+.vf.white{background:#fff}
+.vf .logo{position:absolute;left:14cqw;top:50%;translate:0 -50%;height:11cqw}
+.vf .tag{position:absolute;right:11cqw;top:50%;translate:0 -50%;font-size:1.45cqw;color:var(--brand-ink);max-width:12cqw;line-height:1.4}
+.safe{position:absolute;inset:0;pointer-events:none;z-index:6;display:none}
+.safe.on{display:block}
+.safe i{position:absolute;border:1.5px dashed var(--brand-lime)}
+.safe i.a{inset:5%}.safe i.b{inset:10%;border-color:var(--brand-orange)}
+.safe em{position:absolute;font-style:normal;font-size:.9cqw;color:#fff;background:rgba(8,9,10,.7);padding:.1cqw .5cqw;border-radius:9999px}
+.vlabel{font-size:13px;color:var(--muted-foreground);margin-top:10px}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stack{display:flex;height:44px;border-radius:9999px;overflow:hidden;border:1px solid var(--border)}
+.stack i{display:block;height:100%}
+.stage-logo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stage-logo div{border-radius:16px;padding:48px 32px;display:grid;place-items:center;border:1px solid var(--border)}
+.stage-logo img{height:48px;width:auto}
+.foot-end{padding:48px 0 80px;border-top:1px solid var(--border);font-size:14px;color:var(--muted-foreground)}
+.foot-end .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:28px;align-items:start}
+  .g3,.g4,.g5,.g6{grid-template-columns:repeat(2,1fr)}
+  .prin,.fio,.layer-demo,.spec,.stage-logo{grid-template-columns:1fr}
+  .prin li,.prin li:not(:nth-child(3n+1)),.fio>div,.fio>div:not(:nth-child(3n+1)){padding-left:0;border-left:0}
+  .type-row{grid-template-columns:1fr;gap:8px}
+  .ease{grid-template-columns:1fr;gap:8px}
+  .media .stats{grid-template-columns:repeat(2,1fr)}
+  .head{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:640px){
+  .g2,.g3,.g4,.g5,.g6{grid-template-columns:1fr}
+  .header nav{display:none}
+  .vf .cap{white-space:normal;font-size:2.6cqw}
+  .media{aspect-ratio:4/5}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap">
+    <a href="#topo" aria-label="Dinn"><img id="logoHdr" src="../public/logo/Dinn_logo_v2_Dark.png" alt="Dinn"></a>
+    <nav id="nav" aria-label="Seções">
+      <a href="#principios">Princípios</a><a href="#cores">Cores</a><a href="#tipografia">Tipografia</a>
+      <a href="#layout">Layout</a><a href="#gradientes">Degradês</a><a href="#componentes">Componentes</a>
+      <a href="#secoes">Seções</a><a href="#ilustracao">Ilustração</a><a href="#graficos">Gráficos</a>
+      <a href="#movimento">Movimento</a><a href="#video">Vídeo V7</a><a href="#marca">Marca</a><a href="#regras">Regras</a>
+    </nav>
+    <span class="sp"></span>
+    <button class="pill" id="themeBtn" aria-pressed="false">Tema escuro</button>
+  </div>
+</header>
+
+<nav class="idx" id="idx" aria-hidden="true"></nav>
+<div class="copied" id="copied" role="status">Copiado</div>
+
+<main id="topo">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <h1>Design System v2 da Dinn</h1>
+      <div>
+        <p>Um sistema para o site, a plataforma e os vídeos. Uma marca, uma linguagem, um movimento.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#cores">Ver tokens</a>
+          <a class="link" href="#video">Vídeo institucional V7 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="media" role="img" aria-label="Resumo do sistema em quatro números">
+      <div class="stats">
+        <div><b>5</b><span>cores de marca e de gráfico, sempre na mesma ordem</span></div>
+        <div><b>2</b><span>fontes: Roboto nos títulos, Inter no texto</span></div>
+        <div><b>24</b><span>degradês prontos, com camada escura sob texto branco</span></div>
+        <div><b>30</b><span>quadros por segundo na interface do vídeo V7</span></div>
+      </div>
+    </div>
+    <p class="src" style="margin-top:20px">Fonte: <code>rules/DESIGN_SYSTEM_V2.md</code> (site, branch <code>redesign</code>), <code>rules/charts-tokens.css</code>, skill <code>motion-de-produto</code> e o vídeo V7.1 (79 s). Atualizado em 16/11/2026.</p>
+  </div>
+</section>
+
+<!-- ============ PRINCÍPIOS ============ -->
+<section class="sec alt" id="principios" data-n="Princípios">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Nove princípios</h2><p class="sub">Valem para o site, o app e o vídeo. Quando uma tela duvida, volta aqui.</p></div></div>
+    <ul class="prin">
+      <li><b>1. Menos é mais</b><span>Uma ideia por seção. Título curto, uma frase de apoio, uma ação.</span></li>
+      <li><b>2. Imagem manda, texto apoia</b><span>Mostre o produto. O texto fica curto e cinza.</span></li>
+      <li><b>3. Uma cor de título</b><span>Todo título usa <code>--foreground</code>. Sem destaque roxo e sem duas cores.</span></li>
+      <li><b>4. Botão com texto branco</b><span>Nunca preto sobre roxo. Nunca roxo e preto juntos no mesmo botão.</span></li>
+      <li><b>5. Branco sobre cor</b><span>Fundo com degradê ou foto leva camada escura de 35 a 70 % e texto branco.</span></li>
+      <li><b>6. Sem tag de status</b><span>Nada de "Beta", "Novo" ou "Em breve" na interface do site.</span></li>
+      <li><b>7. Cor só no conteúdo</b><span>A interface é neutra. A cor vem dos degradês e do botão principal.</span></li>
+      <li><b>8. Respiro</b><span>Seções com muito espaço. Nada encostado.</span></li>
+      <li><b>9. Texto em STE</b><span>ASD-STE100: frase curta, voz ativa, um termo por conceito.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CORES ============ -->
+<section class="sec" id="cores" data-n="Cores">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Cores e tokens</h2><p class="sub">Use sempre o token, nunca o hex solto. Clique em uma cor para copiar o valor.</p></div></div>
+
+    <h3 class="h3">Tema (shadcn, preset <code>b1hriBA3cW</code>)</h3>
+    <div class="grid g6">
+      <button class="sw" data-copy="--background"><i style="background:var(--background)"></i><div><b>--background</b><small>Fundo da página</small></div></button>
+      <button class="sw" data-copy="--muted"><i style="background:var(--muted)"></i><div><b>--muted</b><small>Superfície, seção alternada</small></div></button>
+      <button class="sw" data-copy="--foreground"><i style="background:var(--foreground)"></i><div><b>--foreground</b><small>Texto e títulos</small></div></button>
+      <button class="sw" data-copy="--muted-foreground"><i style="background:var(--muted-foreground)"></i><div><b>--muted-foreground</b><small>Texto secundário</small></div></button>
+      <button class="sw" data-copy="--border"><i style="background:var(--border)"></i><div><b>--border</b><small>Fio de 1 px</small></div></button>
+      <button class="sw" data-copy="--primary"><i style="background:var(--primary)"></i><div><b>--primary</b><small>Marca, botão principal</small></div></button>
+    </div>
+    <p class="note" style="margin-top:20px">Texto sobre <code>--primary</code> e sobre imagem escura é sempre <code>#fff</code>. Derivados do roxo só por <code>color-mix</code> com transparência. Aliases antigos (<code>--bg-page</code>, <code>--text-primary</code>, <code>--brand</code>) funcionam, mas não entram em código novo.</p>
+
+    <h3 class="h3">Paleta da marca (identidade, seção 10.1)</h3>
+    <div class="grid g4">
+      <button class="sw tall" data-copy="#08090A"><i style="background:var(--brand-ink)"></i><div><b>Preto da marca</b><small>#08090A · --brand-ink</small><small>Palco escuro, texto sobre cor clara</small></div></button>
+      <button class="sw tall" data-copy="#5130E9"><i style="background:var(--brand-ref)"></i><div><b>Roxo Dinn (referência)</b><small>#5130E9</small><small>Valor da marca. Vale no vídeo V7 e dentro das telas do produto</small></div></button>
+      <button class="sw tall" data-copy="#E4F222"><i style="background:var(--brand-lime)"></i><div><b>Verde-limão</b><small>#E4F222 · --brand-lime</small><small>Apoio: confirmação, passo ativo, pico. Texto sobre ele é preto</small></div></button>
+      <button class="sw tall" data-copy="#FD673E"><i style="background:var(--brand-orange)"></i><div><b>Laranja</b><small>#FD673E · --brand-orange</small><small>Apoio: calor, alerta, ruptura, convite</small></div></button>
+    </div>
+    <div style="margin-top:28px">
+      <p class="note" style="margin-bottom:10px">Proporção de cor em tela e no vídeo: base neutra acima de 90 %, roxo abaixo de 10 %, limão e laranja só em pontos pequenos.</p>
+      <div class="stack" role="img" aria-label="92 por cento neutro, 5 por cento roxo, 2 por cento limão, 1 por cento laranja"><i style="width:92%;background:var(--muted)"></i><i style="width:5%;background:var(--primary)"></i><i style="width:2%;background:var(--brand-lime)"></i><i style="width:1%;background:var(--brand-orange)"></i></div>
+    </div>
+    <div class="card" style="margin-top:28px;display:grid;gap:6px">
+      <b style="font-weight:500">Decisão aberta: dois roxos</b>
+      <span class="note">O token <code>--primary</code> do site vale hoje <code>#7008E7</code> (oklch 0,491 0,27 292,6). A referência da marca é <code>#5130E9</code>. O vídeo V7 usa <code>#5130E9</code>, por decisão do owner. O Design System do app fixa <code>#5625F2</code>. Trocar o token muda o site inteiro. A decisão é do Renan.</span>
+    </div>
+
+    <h3 class="h3">Cores de gráfico (<code>rules/charts-tokens.css</code>)</h3>
+    <div class="grid g5">
+      <button class="sw" data-copy="#7008e7"><i style="background:var(--chart-1)"></i><div><b>--chart-1</b><small>Roxo · série principal</small></div></button>
+      <button class="sw" data-copy="#c9aaf7"><i style="background:var(--chart-2)"></i><div><b>--chart-2</b><small>Lilás · preenchimento</small></div></button>
+      <button class="sw" data-copy="#08090a"><i style="background:var(--chart-3)"></i><div><b>--chart-3</b><small>Preto · contraste</small></div></button>
+      <button class="sw" data-copy="#e4f222"><i style="background:var(--chart-4)"></i><div><b>--chart-4</b><small>Lime · pico e ganho</small></div></button>
+      <button class="sw" data-copy="#fd673e"><i style="background:var(--chart-5)"></i><div><b>--chart-5</b><small>Laranja · ruptura e queda</small></div></button>
+    </div>
+    <div class="grid g5" style="margin-top:20px">
+      <button class="sw" data-copy="#3d0a82"><i style="background:var(--chart-deep)"></i><div><b>--chart-deep</b><small>Subtom escuro do roxo</small></div></button>
+      <button class="sw" data-copy="#e1d0fb"><i style="background:var(--chart-soft)"></i><div><b>--chart-soft</b><small>Subtom claro</small></div></button>
+      <button class="sw" data-copy="#f1ebfc"><i style="background:var(--chart-track)"></i><div><b>--chart-track</b><small>Fundo de trilha</small></div></button>
+      <button class="sw" data-copy="#a97ff0"><i style="background:var(--chart-2-line)"></i><div><b>--chart-2-line</b><small>Lilás em linha fina</small></div></button>
+      <button class="sw" data-copy="#ee5a2f"><i style="background:var(--chart-5-line)"></i><div><b>--chart-5-line</b><small>Laranja em linha fina · 3,4:1</small></div></button>
+    </div>
+
+    <h3 class="h3">Cores de status do produto</h3>
+    <p class="note" style="margin-bottom:16px">Verde, amarelo, vermelho e cinza são do produto. Entram só dentro da tela real do Dinn, nunca como cor de marca.</p>
+    <div class="grid g4">
+      <div class="sw" style="cursor:default"><i style="background:#10b981"></i><div><b>Disponível</b><small>#10B981</small></div></div>
+      <div class="sw" style="cursor:default"><i style="background:#f59e0b"></i><div><b>Atenção</b><small>#F59E0B</small></div></div>
+      <div class="sw" style="cursor:default"><i style="background:#ef4444"></i><div><b>Crítico</b><small>#EF4444</small></div></div>
+      <div class="sw" style="cursor:default"><i style="background:#9ca3af"></i><div><b>Sem dado</b><small>#9CA3AF</small></div></div>
+    </div>
+
+    <h3 class="h3">Contraste</h3>
+    <p class="note">Lilás, lime e laranja ficam abaixo de 3:1 no branco. Use em preenchimento, com legenda ou rótulo ao lado. Linha fina usa <code>--chart-2-line</code> e <code>--chart-5-line</code>. Texto de eixo e legenda usa cinza ou preto, nunca a cor da série. Meta mínima de texto: WCAG AA (4,5:1).</p>
+  </div>
+</section>
+
+<!-- ============ TIPOGRAFIA ============ -->
+<section class="sec alt" id="tipografia" data-n="Tipografia">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Tipografia</h2><p class="sub">Roboto nos títulos, peso 400, tracking negativo. Inter no texto e na interface.</p></div></div>
+    <div class="type-row"><small>H1 do hero<br><code>clamp(36px, 5vw, 76px)</code><br>entrelinha 1,04 · até 3 linhas</small><div class="t-hero">Sinal vira ação comercial</div></div>
+    <div class="type-row"><small>H2 de seção<br><code>clamp(30px, 3.4vw, 48px)</code><br>entrelinha 1,1</small><div class="t-h2">Veja onde falta produto hoje</div></div>
+    <div class="type-row"><small>Nome de card<br>17 a 22 px · peso 500</small><div class="t-card">Rede Farmacore · Drogaria Serrana</div></div>
+    <div class="type-row"><small>Subtítulo de seção<br>16 px · <code>--muted-foreground</code> · até 46 ch</small><div style="font-size:16px;color:var(--muted-foreground);max-width:46ch">A Dinn mostra de onde vem cada número, de quando ele é e quem o vê.</div></div>
+    <div class="type-row"><small>Texto de apoio e link<br>14 a 15 px</small><div style="font-size:15px">Saiba mais →&nbsp;&nbsp;<span style="color:var(--muted-foreground)">Dados de ontem (D-1)</span></div></div>
+    <div class="type-row"><small>Número<br>Roboto 400 · <code>tabular-nums</code></small><div class="t-hero" style="font-variant-numeric:tabular-nums">52,4%</div></div>
+    <p class="note" style="margin-top:24px">Regras: título alinhado à esquerda, em uma cor só. O destaque <code>*assim*</code> dos dicionários não muda cor, peso nem estilo. Rótulos em caixa normal, sem eyebrow em caixa alta e sem numeração decorativa. Corpo a partir de 16 px. Britti Sans foi removida do site em 12/11/2026.</p>
+
+    <h3 class="h3">Escala no vídeo (1920 × 1080)</h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Elemento</th><th>Tamanho</th><th>Regra</th></tr>
+      <tr><td>Título de cena</td><td>72 a 120 px (vertical) · cerca de 80 px no horizontal do V7</td><td>Roboto 400, 3 a 5 palavras, no máximo 7</td></tr>
+      <tr><td>Número em destaque</td><td>cerca de 210 px</td><td>Roboto 400, <code>tabular-nums</code>, termina no valor exato</td></tr>
+      <tr><td>Legenda queimada</td><td>38 px · peso 500</td><td>Inter, fundo <code>rgba(8,9,10,.78)</code>, raio 18 px, até 7 palavras por bloco</td></tr>
+      <tr><td>Texto mínimo</td><td>28 px (horizontal) · 40 px (vertical)</td><td>Leitura no celular</td></tr>
+      <tr><td>Tempo de leitura</td><td>0,6 s + 0,28 s por palavra</td><td>Título de 5 palavras fica 2,0 s na tela</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ LAYOUT ============ -->
+<section class="sec" id="layout" data-n="Layout">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Layout, raio e espaço</h2><p class="sub">Container largo, seções com respiro, fundo alternado.</p></div></div>
+    <div class="grid g3">
+      <div class="card"><b style="font-weight:500">Container <code>.h2-wrap</code></b><p class="note" style="margin-top:6px">Largura máxima 1472 px. Lateral <code>clamp(24px, 4vw, 56px)</code>.</p></div>
+      <div class="card"><b style="font-weight:500">Seção <code>.h2-section</code></b><p class="note" style="margin-top:6px">Padding vertical <code>clamp(72px, 9vw, 120px)</code>. Alterne <code>--background</code> e <code>--muted</code>.</p></div>
+      <div class="card"><b style="font-weight:500">Cabeçalho <code>.h2-head</code></b><p class="note" style="margin-top:6px">Título e ação. Use <code>.is-stack</code> para título e subtítulo. Não centralize.</p></div>
+    </div>
+
+    <h3 class="h3">Raios</h3>
+    <div class="grid g5">
+      <div style="display:grid;gap:8px"><div style="height:88px;border:1px solid var(--foreground);border-radius:calc(var(--radius)*.6)"></div><b style="font-size:14px;font-weight:500">sm · 0,6 × raio</b></div>
+      <div style="display:grid;gap:8px"><div style="height:88px;border:1px solid var(--foreground);border-radius:var(--radius)"></div><b style="font-size:14px;font-weight:500">base · 0,625 rem (botão do tema)</b></div>
+      <div style="display:grid;gap:8px"><div style="height:88px;border:1px solid var(--foreground);border-radius:16px"></div><b style="font-size:14px;font-weight:500">card · 16 px</b></div>
+      <div style="display:grid;gap:8px"><div style="height:88px;border:1px solid var(--foreground);border-radius:24px"></div><b style="font-size:14px;font-weight:500">mídia grande · 12 a 24 px</b></div>
+      <div style="display:grid;gap:8px"><div style="height:88px;border:1px solid var(--foreground);border-radius:28px"></div><b style="font-size:14px;font-weight:500">cartão de gráfico · 28 px</b></div>
+    </div>
+
+    <h3 class="h3">Espaçamento (escala de 4 px)</h3>
+    <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <script>[4,8,12,16,20,24,32,40,48,64,80].forEach(n=>document.write(`<div style="display:grid;gap:6px;justify-items:center"><i style="display:block;width:${n}px;height:${n}px;background:var(--primary);border-radius:4px"></i><small style="font-size:12px;color:var(--muted-foreground)">${n}</small></div>`))</script>
+    </div>
+
+    <h3 class="h3">Responsivo</h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Ponto</th><th>Comportamento</th></tr>
+      <tr><td>≤ 1024 px</td><td>Hero em 1 coluna. Grades em 2 colunas. Índice lateral some abaixo de 1100 px.</td></tr>
+      <tr><td>≤ 640 px</td><td>1 coluna. Setas de carrossel somem (rolagem por toque). Blocos vazios do showcase somem.</td></tr>
+      <tr><td>Chat</td><td>Largura <code>min(400px, 100vw − 32px)</code>, altura <code>min(620px, 100dvh − 96px)</code>.</td></tr>
+      <tr><td>Movimento</td><td>Respeite <code>prefers-reduced-motion</code>: mostre só o estado final.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ GRADIENTES ============ -->
+<section class="sec alt" id="gradientes" data-n="Degradês">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Biblioteca de degradês</h2><p class="sub">Os degradês dão a cor da marca. Texto branco só sobre degradê escuro com camada de 30 a 45 %.</p></div></div>
+
+    <h3 class="h3">Originais <code>public/gradients/g00…g11</code></h3>
+    <div class="grid g6" id="gOrig"></div>
+
+    <h3 class="h3">Cópias web de 1920 px <code>public/gradients/web/</code></h3>
+    <p class="note" style="margin-bottom:16px">Não use os <code>*-unsplash.avif</code> da pasta raiz. Eles pesam até 4 MB. Use sempre as cópias web.</p>
+    <div class="grid g6" id="gWeb"></div>
+
+    <h3 class="h3">Camada escura sob texto</h3>
+    <div class="layer-demo">
+      <div style="--s:0"><span>0 % · ilegível</span></div>
+      <div style="--s:.4"><span>40 % · padrão em cards</span></div>
+      <div style="--s:.7"><span>70 % · texto longo</span></div>
+    </div>
+
+    <h3 class="h3">Gradiente por página (seção 6.1)</h3>
+    <div class="tbl-wrap"><table class="tbl" id="gPage"><tr><th>Página</th><th>Degradê</th><th>Reação</th></tr></table></div>
+    <p class="note" style="margin-top:16px">Para texto escuro (fechamento, cartão claro) use <code>g10</code>, <code>g03</code> ou <code>lilas-azul</code>. Para texto branco use os <code>*-noite</code> e <code>grafite</code>.</p>
+  </div>
+</section>
+
+<!-- ============ COMPONENTES ============ -->
+<section class="sec" id="componentes" data-n="Componentes">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Componentes base</h2><p class="sub">Poucos, simples e iguais em todas as páginas.</p></div></div>
+
+    <h3 class="h3">Botão e link</h3>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <button class="btn btn-primary btn-lg press">Falar com a Dinn</button>
+      <button class="btn btn-primary press">Ver a plataforma</button>
+      <button class="btn btn-primary btn-sm press">Saiba mais</button>
+      <button class="btn btn-outline press">Secundário</button>
+      <button class="btn btn-ghost press">Fantasma</button>
+      <a class="link" href="#componentes">Ver casos →</a>
+    </div>
+    <p class="note" style="margin-top:14px">Primário: fundo <code>--primary</code>, texto <code>#fff</code>, formato pílula, 13 a 16 px, peso 600. Todo botão de entrada leva a <code>/contato</code>. A Dinn é B2B enterprise: não linke login nem <code>app.dinn.ai</code>. Clique em um botão para ver o aperto de 0,12 s.</p>
+
+    <h3 class="h3">Abas, filtro e chip</h3>
+    <div style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+      <div class="tabs" id="tabs"><button class="on">Trade</button><button>Supply</button><button>SAC</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="chips"><button class="chip" aria-pressed="true">Produto A</button><button class="chip" aria-pressed="false">São Paulo</button><button class="chip" aria-pressed="false">Últimos 7 dias</button></div>
+    </div>
+    <p class="note" style="margin-top:14px">Aba: pílula com borda <code>--border</code>, ativa com fundo <code>--background</code> e sombra leve. Filtro e chip ativo: roxo com texto branco, nunca preto.</p>
+
+    <h3 class="h3">Cards</h3>
+    <div class="grid g3">
+      <a class="cust" href="#componentes"><div class="cust-art" style="background-image:url(../public/gradients/g00.avif)"><img src="../public/logo/Dinn_logo_v2_Light.png" alt=""></div><div class="cust-name">Card de cliente</div><span class="cust-go">Ver caso →</span></a>
+      <div class="area" style="min-height:250px"><div class="art"><svg class="il" viewBox="0 0 120 84" aria-hidden="true"><polygon class="f" points="60,10 100,32 60,54 20,32"/><polygon class="f" points="20,32 60,54 60,66 20,44"/><polygon class="f" points="100,32 60,54 60,66 100,44"/><circle class="p" cx="60" cy="32" r="3"/></svg></div><div><b>Card de área</b><span class="p">Uma frase de promessa. Fundo cinza claro.</span></div></div>
+      <div class="res" style="background-image:url(../public/gradients/web/roxo-noite.avif)"><div><b>Card de recurso</b><span>Gradiente, camada escura e texto branco.</span></div></div>
+    </div>
+
+    <h3 class="h3">Chat flutuante (substitui FAQ)</h3>
+    <div class="grid g2" style="align-items:start">
+      <div class="card" style="max-width:440px">
+        <div class="msg bot">Oi. Sobre o que você quer saber?</div>
+        <div class="msg user">Como a Dinn mostra ruptura?</div>
+        <div class="msg bot">A Dinn mostra lojas sem estoque, com dado de ontem (D-1).</div>
+        <button class="qchip">Quais dados a Dinn usa?</button><button class="qchip">Como falar com a equipe?</button>
+      </div>
+      <div style="display:grid;gap:14px;max-width:440px">
+        <label style="font-size:14px;font-weight:500">Campo de texto<input class="input" placeholder="Seu e-mail de trabalho" style="margin-top:6px"></label>
+        <p class="note">Mensagem do bot: fundo <code>--muted</code>, raio 16 (canto superior esquerdo 4). Mensagem da pessoa: roxo com texto branco. Chip de pergunta: pílula de raio 16 com borda.</p>
+      </div>
+    </div>
+
+    <h3 class="h3">Colunas com fio fino</h3>
+    <div class="fio"><div><b>Observado</b><span>Dado direto da fonte. Linha cheia.</span></div><div><b>Estimado</b><span>Calculado a partir de outros dados. Linha tracejada.</span></div><div><b>Inferido</b><span>Leitura do modelo. Mostre o limite.</span></div></div>
+    <p class="note" style="margin-top:14px">Itens paralelos (planos, tipos de sinal) ficam em colunas separadas por fio de 1 px. No celular viram cartões.</p>
+
+    <h3 class="h3">Índice da página</h3>
+    <p class="note">Traços fixos na borda direita desta página. O da seção atual fica maior e roxo. O nome aparece ao passar o mouse. Use em páginas com 4 ou mais seções. Some abaixo de 1100 px.</p>
+  </div>
+</section>
+
+<!-- ============ PADRÕES DE SEÇÃO ============ -->
+<section class="sec alt" id="secoes" data-n="Seções">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Padrões de seção</h2><p class="sub">Copie um destes. Se faltar, crie na mesma linguagem e registre aqui.</p></div></div>
+    <div class="grid g3">
+      <div class="pat"><div class="wf"><div class="row" style="--c:2"><div class="bar d"></div><div class="bar"></div></div><div class="grd" style="min-height:90px"></div></div><b>Hero</b><span>Título à esquerda, apoio à direita. Mídia larga com textura. 1 botão e 1 link.</span></div>
+      <div class="pat"><div class="wf"><div class="bar d"></div><div class="row"><div class="grd"></div><div class="grd"></div><div class="grd"></div></div></div><b>Card de cliente</b><span>Degradê, camada preta de 40 %, logo branca, nome, link. 3 visíveis, o resto em carrossel.</span></div>
+      <div class="pat"><div class="wf"><div class="row" style="--c:2;grid-template-columns:.6fr 1fr"><div style="display:grid;gap:6px"><div class="bar d" style="width:80%"></div><div class="bar"></div><div class="bar"></div></div><div class="grd" style="min-height:96px"></div></div></div><b>Lista + imagem (fixada)</b><span>A rolagem percorre os itens, 70 vh cada. O ativo abre 1 frase e "Saiba mais".</span></div>
+      <div class="pat"><div class="wf"><div class="row"><div class="box"></div><div class="box"></div><div class="box"></div></div></div><b>Cards de área</b><span>Ilustração isométrica em linha fina, nome e 1 frase. Fundo <code>--muted</code>.</span></div>
+      <div class="pat"><div class="wf"><div class="bar d" style="margin:0 auto;width:40%"></div><div class="row" style="--c:3;width:50%;margin:0 auto"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><div class="row"><div class="grd"></div><div class="grd"></div><div class="grd"></div></div></div><b>Showcase com abas</b><span>Até 3 abas em pílula. 5 posições fixas, tudo visível em uma tela.</span></div>
+      <div class="pat"><div class="wf"><div class="row" style="--c:4"><div class="grd"></div><div class="grd"></div><div class="grd"></div><div class="grd"></div></div></div><b>Cards de recurso</b><span>4 cards com degradê e camada escura. Texto branco.</span></div>
+    </div>
+
+    <h3 class="h3">Telas animadas do produto</h3>
+    <p class="note" style="max-width:80ch">Toda tela do produto no site usa <code>ProductScreen</code> com uma tela de <code>FEATURE_DEMO</code> ou <code>AREA_DEMO</code>. A janela vaza para a direita e para baixo, com o canto superior esquerdo arredondado, sobre um degradê escuro. As telas vêm do app real, com dados fictícios, dado de ontem (D-1) e a legenda "Dados e nomes ilustrativos". Nunca desenhe elemento que não existe no produto. Sem anel nem contorno roxo no passo ativo: o cursor aponta o alvo.</p>
+  </div>
+</section>
+
+<!-- ============ ILUSTRAÇÃO ============ -->
+<section class="sec" id="ilustracao" data-n="Ilustração">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Ilustração em linha</h2><p class="sub">Desenho isométrico de 1 px. Um único detalhe em roxo. Movimento só no hover.</p></div></div>
+    <div class="grid g3">
+      <div class="area il-host" id="ilHost" style="min-height:360px">
+        <div class="art">
+          <svg class="il" viewBox="0 0 144 100" aria-label="Camadas que se abrem no hover">
+            <g class="g"><line x1="72" y1="92" x2="72" y2="8"/></g>
+            <g class="l l0"><polygon class="f" points="72,62 112,82 72,102 32,82"/></g>
+            <g class="l l1"><polygon class="f" points="72,42 112,62 72,82 32,62"/></g>
+            <g class="l l2"><polygon class="f" points="72,22 112,42 72,62 32,42"/><circle class="p" cx="72" cy="42" r="3.2"/></g>
+          </svg>
+        </div>
+        <div><b>Passe o mouse</b><span class="p">As camadas abrem. O cartão inteiro dispara o movimento.</span></div>
+      </div>
+      <div style="grid-column:span 2;display:grid;gap:16px;align-content:center">
+        <ul class="dont do">
+          <li>Linha de <b>1 px</b> que não engrossa com a escala (<code>vector-effect: non-scaling-stroke</code>).</li>
+          <li>Faces na cor do fundo (<code>--background</code>), traço em <code>--foreground</code>, guias pontilhadas.</li>
+          <li><b>Um único detalhe</b> em <code>--primary</code>. Linha cheia é dado direto. Linha tracejada é estimado ou inferido.</li>
+          <li>Proporção 1,44:1. Cada peça define o seu <code>viewBox</code> com 20 % de folga.</li>
+          <li>Movimento só no hover do cartão (<code>.il-host</code>). Respeita <code>prefers-reduced-motion</code>. <code>.is-hover</code> força o estado em teste e toque.</li>
+          <li>Desenhe do mais longe (x + y menor) para o mais perto, com <code>Box</code>, <code>Line3</code> e <code>Poly3</code> de <code>src/components/illustrations/iso.tsx</code>.</li>
+        </ul>
+        <p class="note">Peças atuais: Recursos (<code>IlBlog</code>, <code>IlCases</code>, <code>IlChangelog</code>, <code>IlLayers</code>), Pesquisas, Planos, Confiança, Sobre e as seis áreas da home (Pricing, Trade, Supply, SAC, Lançamento, Governança). O ícone da Jean é sempre o <code>JeanOrb</code>, a grade de pontos que pulsa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRÁFICOS ============ -->
+<section class="sec alt" id="graficos" data-n="Gráficos">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Gráficos</h2><p class="sub">Curvas e cantos redondos. Cor e traço identificam o produto. O roxo manda.</p></div></div>
+    <p class="note" style="margin-bottom:28px">Biblioteca completa de 22 gráficos em <code>rules/biblioteca-graficos.html</code>. Abaixo, os cinco padrões mais usados, com dados de exemplo.</p>
+
+    <div class="grid g2" style="align-items:start">
+      <div class="chartcard" id="cLine">
+        <h4>Comparador de séries (opção A)</h4>
+        <p>% de ruptura, últimos 14 dias · dados de exemplo</p>
+        <div class="legend" role="group" aria-label="Séries">
+          <button class="leg" aria-pressed="true" data-s="0"><svg viewBox="0 0 22 8"><line x1="0" y1="4" x2="22" y2="4" stroke="var(--chart-1)" stroke-width="2.5" stroke-linecap="round"/></svg>Produto A</button>
+          <button class="leg" aria-pressed="true" data-s="1"><svg viewBox="0 0 22 8"><line x1="0" y1="4" x2="22" y2="4" stroke="var(--chart-5-line)" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/></svg>Produto B</button>
+          <span class="leg" style="cursor:default"><svg viewBox="0 0 22 8"><line x1="1" y1="4" x2="21" y2="4" stroke="var(--chart-avg)" stroke-width="2" stroke-dasharray="1 4" stroke-linecap="round"/></svg>Média da carteira (sempre visível)</span>
+        </div>
+        <svg id="lineSvg" viewBox="0 0 560 250" role="img" aria-label="Produto A termina em 24,1%, Produto B em 18,4% e a média em 15,2%"></svg>
+        <div class="tip" id="lineTip"></div>
+      </div>
+      <div style="display:grid;gap:20px">
+        <div class="chartcard">
+          <h4>Barras em pílula</h4><p>Itens comparados. Cor segue a série, nunca o ranking.</p>
+          <svg id="pillSvg" viewBox="0 0 560 150" role="img" aria-label="Cinco redes: Alfa 52, Beta 31, Gama 24, Delta 17, Outras 9"></svg>
+        </div>
+        <div class="chartcard" style="display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center">
+          <svg id="donut" viewBox="0 0 120 120" role="img" aria-label="Rosca: 52 por cento roxo, 31 lilás, 17 preto"></svg>
+          <div><h4>Rosca</h4><p>Parte do todo. Arco com ponta redonda.</p>
+            <div style="display:grid;gap:6px;margin-top:10px;font-size:13px"><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--chart-1);margin-right:8px"></i>Rede Alfa · 52%</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--chart-2);margin-right:8px"></i>Rede Beta · 31%</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--chart-3);margin-right:8px"></i>Outras · 17%</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h3">Indicadores</h3>
+    <div class="grid g4">
+      <div class="kpi"><small>Lojas sem estoque</small><b data-count="1284">0</b><em>+3,2 p.p.</em></div>
+      <div class="kpi hl purple"><small>% de ruptura</small><b data-count="24.1" data-dec="1">0</b><em>pico</em></div>
+      <div class="kpi hl lime"><small>Cobertura</small><b data-count="86">0</b><em>ganho</em></div>
+      <div class="kpi hl peach"><small>Dias sem estoque</small><b data-count="11">0</b><em>queda</em></div>
+    </div>
+    <p class="note" style="margin-top:14px">Um cartão em destaque por tela. Roxo: <code>roxo-noite</code>, texto branco, selo lime. Lime: <code>g10</code>, texto preto, selo preto. Laranja: <code>pessego</code>. Roxo escuro: <code>roxo-noite</code>, parte escura.</p>
+
+    <h3 class="h3">Esferas</h3>
+    <div class="grid g6" style="max-width:760px">
+      <div class="sphere" style="background-image:url(../public/gradients/web/roxo-noite.avif)">38</div>
+      <div class="sphere" style="background-image:url(../public/gradients/web/roxo-noite.avif);background-position:90% 90%">24</div>
+      <div class="sphere" style="background-image:url(../public/gradients/web/grafite.avif)">17</div>
+      <div class="sphere light" style="background-image:url(../public/gradients/web/lilas-azul.avif)">12</div>
+      <div class="sphere light" style="background-image:url(../public/gradients/g10.avif)">9</div>
+      <div class="sphere light" style="background-image:url(../public/gradients/web/pessego.avif)">6</div>
+    </div>
+
+    <h3 class="h3">Regras</h3>
+    <div class="grid g2">
+      <ul class="dont do">
+        <li><b>Ordem fixa das séries:</b> roxo, lilás, preto, lime, laranja. Mais de cinco viram "Outros".</li>
+        <li><b>Cor e traço identificam o produto:</b> roxo contínuo, laranja tracejado. O gráfico não depende só de cor.</li>
+        <li><b>A média da carteira é pontilhada</b> e fica sempre visível. Não existe botão para ocultar.</li>
+        <li><b>Só a série em foco recebe preenchimento,</b> com linhas verticais que somem para baixo.</li>
+        <li>Linha de 2,5 px com ponta redonda. Barra com topo arredondado ou pílula. Grade leve.</li>
+      </ul>
+      <ul class="dont do">
+        <li>Tooltip branco no tema claro e escuro no tema escuro. Raio 14 px, borda fina, sombra suave. Cada linha mostra a diferença contra a média.</li>
+        <li>Não escreva número em todo ponto. Rotule a ponta da linha ou o item em destaque.</li>
+        <li>Com duas séries ou mais, mostre legenda de botões com <code>aria-pressed</code>.</li>
+        <li>Acessibilidade: <code>aria-label</code> com o último ponto, setas percorrem os dias, <code>Esc</code> fecha o tooltip, botão "Table view" e resumo em texto.</li>
+        <li>Movimento: linhas se desenham, barras crescem, uma vez só, em menos de 1,2 s.</li>
+      </ul>
+    </div>
+    <p class="src">No código: <code>ChartKit.tsx</code> (SVG puro), <code>site-charts.css</code> e <code>charts-tokens.css</code>. O porte para <code>ChartContainer</code> do shadcn (Recharts) ainda não foi feito.</p>
+  </div>
+</section>
+
+<!-- ============ MOVIMENTO ============ -->
+<section class="sec" id="movimento" data-n="Movimento">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Movimento</h2><p class="sub">Cada adjetivo vira número. Mesma linguagem no site e no vídeo (skill <code>motion-de-produto</code>).</p></div><button class="btn btn-primary" id="replayAll">Rodar todas as demos</button></div>
+
+    <h3 class="h3">Curvas</h3>
+    <div id="eases"></div>
+    <p class="note" style="margin-top:16px">Número, dado e gráfico <b>nunca</b> usam mola. Use <code>outExpo</code>. Linear só em laço contínuo (rotação, grão).</p>
+
+    <h3 class="h3">Tempos de referência</h3>
+    <div class="grid g4" id="demos">
+      <div class="demo"><h4>Revelação padrão</h4><div class="stage"><div id="dReveal" class="card" style="padding:14px 20px;font-size:15px">Sobe 24 px e aparece</div></div><p>0,6 s · 18 quadros · <code>outExpo</code></p></div>
+      <div class="demo"><h4>Contador de número</h4><div class="stage"><div class="big-num"><span id="dNum">0</span>%</div></div><p>0,8 a 1,4 s · <code>outExpo</code> · termina no valor exato e segura 1 s</p></div>
+      <div class="demo"><h4>Lista escalonada</h4><div class="stage" style="place-items:start stretch"><ul class="stag" id="dStag"><li>Rede Alfa Bela Vista</li><li>Rede Alfa Moema</li><li>Rede Alfa Pinheiros</li><li>Rede Alfa Santana</li></ul></div><p>60 a 100 ms entre itens · até 5 itens</p></div>
+      <div class="demo"><h4>Chip que pousa</h4><div class="stage"><span class="chip" id="dPop" style="opacity:0">Visita do ciclo</span></div><p>0,3 s · mola do DS (0,175, 0,885, 0,32, 1,275)</p></div>
+      <div class="demo"><h4>Digitação</h4><div class="stage"><div style="font-size:16px"><span id="dType"></span><span class="caret"></span></div></div><p>18 a 28 caracteres por segundo · cursor pisca em ciclo de 1,06 s</p></div>
+      <div class="demo"><h4>Deriva de câmera</h4><div class="stage"><div class="drift"></div></div><p>Escala de 1,00 a 1,035 (vídeo: até 1,04). A câmera nunca para.</p></div>
+      <div class="demo"><h4>Clique</h4><div class="stage"><button class="btn btn-primary press">Clique aqui</button></div><p>Aperta e solta em 0,12 s, escala 0,94 a 1,00</p></div>
+      <div class="demo"><h4>Corte em movimento</h4><div class="stage"><div id="dCut" style="width:160px;height:70px;border-radius:12px;background:var(--muted);display:grid;place-items:center;font-size:14px">Tela A</div></div><p>A tela velha sobe e desfoca (0,45 s). A nova sobe do desfoque (0,9 s).</p></div>
+    </div>
+
+    <h3 class="h3">Tela do produto com cursor em arco</h3>
+    <div class="grid g2" style="align-items:center">
+      <div style="background:url(../public/gradients/web/roxo-noite.avif) center/cover;border-radius:16px;padding:7% 0 0 9%;position:relative;overflow:hidden" id="appStage">
+        <div class="app" id="app">
+          <aside><img src="../public/logo/Dinn_logo_v2_Dark.png" alt=""><span class="on">Início</span><span>Ruptura</span><span>Localizar produto</span><span>Mercado</span></aside>
+          <main>
+            <div class="k"><div><small>Lojas sem estoque</small><b>1.284</b></div><div><small>% de ruptura</small><b>24,1%</b></div><div><small>Cobertura</small><b>86%</b></div></div>
+            <div class="bars" id="appBars"><i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:86%"></i><i style="height:64%"></i></div>
+            <div class="btn5" id="appBtn">Consultar agora</div>
+          </main>
+          <div class="ripple" id="rip"></div>
+          <div class="cur-x" id="curx"><div class="cur-y" id="cury"><svg width="30" height="30" viewBox="0 0 24 24" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))"><path d="M3 2l7.5 19 2.6-7.9L21 10.5z" fill="#08090a" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+        </div>
+      </div>
+      <ul class="dont do">
+        <li><b>Câmera por planos.</b> Abre a tela inteira por 1 a 2 s. Depois vai à região em 0,6 a 0,9 s, curva <code>inOut</code>.</li>
+        <li><b>Cursor em arco</b> de 0,45 a 0,8 s. A ponta fica no ponto clicado. Seta clássica de 30 px.</li>
+        <li><b>Clique</b> aperta e solta, com anel no alvo (<code>demo-ripple</code>). Nunca um <code>scale</code> no cursor.</li>
+        <li><b>Números e gráficos</b> em <code>outExpo</code>. Menus, janelas e pinos entram com a mola do DS.</li>
+        <li>Com "reduzir movimento" ligado, mostre só o estado final.</li>
+      </ul>
+    </div>
+
+    <h3 class="h3">Tabela de números</h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Elemento</th><th>Duração</th><th>Quadros a 30 fps</th></tr>
+      <tr><td>Entrada de chip ou cartão pequeno</td><td>0,2 a 0,3 s</td><td>6 a 9</td></tr>
+      <tr><td>Painel lateral entra</td><td>0,3 a 0,45 s</td><td>9 a 14</td></tr>
+      <tr><td>Zoom à região da interface</td><td>0,6 a 0,9 s</td><td>18 a 27</td></tr>
+      <tr><td>Cursor de um ponto a outro</td><td>0,5 a 0,8 s</td><td>15 a 24</td></tr>
+      <tr><td>Resposta da tela após o clique</td><td>0,1 a 0,25 s</td><td>3 a 8</td></tr>
+      <tr><td>Barra ou linha de gráfico cresce</td><td>0,6 a 0,9 s</td><td>18 a 27</td></tr>
+      <tr><td>Linha SVG se desenha</td><td>0,5 a 1,0 s</td><td>15 a 30</td></tr>
+      <tr><td>Respiro depois do resultado principal</td><td>mínimo 1,0 s</td><td>30</td></tr>
+      <tr><td>Logo final sozinho, só com a música</td><td>1,4 s</td><td>42</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ VÍDEO V7 ============ -->
+<section class="sec alt" id="video" data-n="Vídeo V7">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Vídeo institucional V7</h2><p class="sub">"Um dia com o Dinn". Mesma marca do site, no formato de vídeo. Versão atual no herói da home: V7.1, 79 s.</p></div>
+      <label class="pill" style="gap:10px"><input type="checkbox" id="safeToggle"> Mostrar área segura</label></div>
+
+    <div class="grid g2">
+      <div>
+        <div class="vf grain" id="vfA"><div class="bg" style="background-image:url(../public/gradients/web/roxo-noite.avif)"></div>
+          <div class="t">Foi só <b>uma loja</b>?</div>
+          <div class="cap" id="vfCap"></div><div class="foot">Dados e nomes ilustrativos.</div>
+          <div class="safe"><i class="a"></i><i class="b"></i><em style="left:5.4%;top:5.5%">90 % · elementos</em><em style="left:10.4%;top:10.6%">80 % · texto-chave</em></div>
+        </div>
+        <p class="vlabel"><b>Promessa.</b> Palco roxo-noite com grão, título Roboto 400 e legenda queimada palavra a palavra.</p>
+      </div>
+      <div>
+        <div class="vf grain" id="vfB"><div class="bg" style="background-image:url(../public/gradients/web/roxo-noite.avif)"></div>
+          <div class="num"><span class="dotl"><i></i>Lojas sem o Produto A · São Paulo</span><b id="vfNum">0%</b><span>estão na <b>Rede Alfa</b></span></div>
+          <div class="dots" id="vfDots"></div>
+          <div class="foot">Dados e nomes ilustrativos.</div>
+        </div>
+        <p class="vlabel"><b>Número vira gesto.</b> Contador em <code>outExpo</code> até o valor exato. Pontos lime marcam o pico.</p>
+      </div>
+      <div>
+        <div class="vf grain"><div class="bg" style="background-image:url(../public/gradients/web/roxo-noite.avif)"></div>
+          <div class="t" style="top:3.2cqw;font-size:3.2cqw">A resposta já traz a <b>lista de lojas</b>.</div>
+          <div class="win" style="top:10cqw">
+            <div class="tb">Lojas da Rede Alfa com falta do Produto A · São Paulo</div>
+            <div class="row"><div>1 · Rede Alfa Bela Vista<small>11 dias sem estoque</small></div><em>+19,6 p.p.</em><span>31,2%</span><span>47,8%</span></div>
+            <div class="row"><div>2 · Rede Alfa Moema<small>13 dias sem estoque</small></div><em>+12,6 p.p.</em><span>28,4%</span><span>41,0%</span></div>
+            <div class="row"><div>3 · Rede Alfa Pinheiros<small>5 dias sem estoque</small></div><em>+10,2 p.p.</em><span>22,3%</span><span>32,5%</span></div>
+          </div>
+          <div class="foot">Dado de 02/11 · estimado</div>
+        </div>
+        <p class="vlabel"><b>Recorte a interface.</b> A janela branca flutua sobre o degradê. Fonte e frescor do dado ficam visíveis.</p>
+      </div>
+      <div>
+        <div class="vf white"><img class="logo" src="../public/logo/Dinn_logo_v2_Dark.png" alt="Dinn"><div class="tag">Transforme sinais em ação comercial.</div></div>
+        <p class="vlabel"><b>Fechamento.</b> Logo escuro sozinho sobre branco, 1,4 s, só com a música.</p>
+      </div>
+    </div>
+
+    <h3 class="h3">Ficha de linguagem de movimento</h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Decisão</th><th>Valor na Dinn</th></tr>
+      <tr><td>Formato</td><td>1920 × 1080, 30 fps. Vertical: 1080 × 1920.</td></tr>
+      <tr><td>Área segura</td><td>Elementos em 90 %. Texto-chave em 80 %.</td></tr>
+      <tr><td>Mundo</td><td>Degradê do site (<code>web/roxo-noite</code> e outros) ou fundo neutro limpo. Grão fino de 4 a 8 % em fundo escuro.</td></tr>
+      <tr><td>Cadência</td><td>Interface em todos os quadros (30). Sem "em dois" sem decisão do Alex.</td></tr>
+      <tr><td>Corte</td><td>1 a cada 2,5 a 4 s. Virada de ato na pausa da voz. Corte seco, em movimento, sem dissolução.</td></tr>
+      <tr><td>Câmera</td><td>Deriva de 1,00 a 1,04. Zoom à região em 0,6 a 0,9 s.</td></tr>
+      <tr><td>Tipografia</td><td>Roboto 400 no título, 3 a 5 palavras. Inter no texto.</td></tr>
+      <tr><td>Cor</td><td>Neutro acima de 90 %. Roxo abaixo de 10 %. Limão e laranja só nos picos.</td></tr>
+      <tr><td>Transição</td><td>0,2 a 0,4 s, com os easings do Design System. Cena nova entra 0,4 s sobre a anterior.</td></tr>
+      <tr><td>Som</td><td>Mapa de emoção. Música 10 dB abaixo da voz. Ataque até 0,3 s depois do corte.</td></tr>
+      <tr><td>Tempo</td><td>Um <code>timeline.json</code> único alimenta animação e som.</td></tr>
+    </table></div>
+
+    <h3 class="h3">Janela do produto dentro do vídeo</h3>
+    <div class="grid g3">
+      <div class="card"><b style="font-weight:500">Referência 1440 × 900</b><p class="note" style="margin-top:6px">Menu lateral de 256 px, barra do topo de 64 px. Fundo <code>#FFFFFF</code>, superfície <code>#F4F4F5</code>, borda <code>#E4E4E7</code>, texto <code>#18181B</code>.</p></div>
+      <div class="card"><b style="font-weight:500">Roxo único dentro da tela</b><p class="note" style="margin-top:6px"><code>#5130E9</code>, suave <code>#F1EEFE</code>, borda <code>#CFC6FA</code>. O vídeo usa um roxo só.</p></div>
+      <div class="card"><b style="font-weight:500">Rodapé obrigatório</b><p class="note" style="margin-top:6px">"Dados e nomes ilustrativos." Dado com data (D-1) e marca de observado ou estimado.</p></div>
+    </div>
+
+    <h3 class="h3">Regras do vídeo</h3>
+    <div class="grid g2">
+      <ul class="dont do">
+        <li><b>Uma promessa por vídeo,</b> em até 12 palavras. Toda cena a prova ou sai.</li>
+        <li><b>Mostre o mecanismo.</b> Cada cena tem ação, resposta e resultado.</li>
+        <li><b>Um foco por vez.</b> No máximo um elemento novo por batida. Lista entra com 60 a 100 ms de intervalo, até 5 itens.</li>
+        <li><b>Prova com cena específica:</b> uma pessoa, uma tarefa, um resultado, com o papel confirmado no brief.</li>
+        <li><b>Mostre a fonte e o frescor do dado.</b> D-1, nunca "tempo real".</li>
+        <li><b>Código anima, imagem real mostra.</b> Pessoa e ambiente são filmagem real. Tela de produto nunca sai de IA.</li>
+      </ul>
+      <ul class="dont">
+        <li>Efeito 3D, malha de gradiente, esfera flutuante, cérebro digital, circuito azul, robô ou mascote.</li>
+        <li>Função não lançada mostrada como pronta. Número inventado em tela.</li>
+        <li>Logo, nome ou embalagem de terceiro sem autorização registrada.</li>
+        <li>Pessoa posada olhando para a lente. Equipe aplaudindo em volta do notebook.</li>
+        <li>Dissolução entre cenas. Cena sem mudança por mais de 2 s.</li>
+        <li>Texto branco sem camada escura sobre degradê claro. Contraste abaixo de 4,5:1.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:28px;display:grid;gap:6px">
+      <b style="font-weight:500">A conferir entre site e vídeo</b>
+      <span class="note">Nos quadros do V7.1, palavras-chave do título aparecem em peso mais forte (por exemplo "uma loja"). No site, o título usa um peso só. Confirme com o Alex se o vídeo mantém esse destaque. O Design System do site manda no site.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARCA ============ -->
+<section class="sec" id="marca" data-n="Marca">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Logo e marca</h2><p class="sub">Logo escuro sobre fundo claro. Logo claro sobre fundo escuro.</p></div></div>
+    <div class="stage-logo">
+      <div style="background:var(--background);border-color:var(--border)"><img src="../public/logo/Dinn_logo_v2_Dark.png" alt="Logo Dinn escuro"></div>
+      <div style="background:var(--brand-ink)"><img src="../public/logo/Dinn_logo_v2_Light.png" alt="Logo Dinn claro"></div>
+    </div>
+    <div class="grid g4" style="margin-top:24px">
+      <div class="card"><b style="font-weight:500">Menu</b><p class="note">28 px de altura</p></div>
+      <div class="card"><b style="font-weight:500">Rodapé</b><p class="note">30 px de altura</p></div>
+      <div class="card"><b style="font-weight:500">Sobre mídia</b><p class="note">26 px de altura</p></div>
+      <div class="card" style="display:flex;gap:14px;align-items:center"><img src="../public/logo/Icon-Dinn-v2.png" alt="" style="height:36px;width:auto"><div><b style="font-weight:500">Ícone</b><p class="note">favicon 64 e 32 px</p></div></div>
+    </div>
+    <p class="note" style="margin-top:20px">Use os PNGs de <code>public/logo/</code> (8 KB). Os SVGs novos têm 12 MB, com imagem embutida: não use no site. No vídeo, use o SVG oficial. Nunca recolora, gire ou estique o logo. Dentro da tela do produto, o vídeo mostra o logo antigo do app, porque é o que o produto mostra hoje.</p>
+  </div>
+</section>
+
+<!-- ============ REGRAS ============ -->
+<section class="sec alt" id="regras" data-n="Regras">
+  <div class="wrap">
+    <div class="head"><div><h2 class="title">Texto, regras e checklist</h2><p class="sub">Todo texto de interface, site e vídeo segue o ASD-STE100.</p></div></div>
+    <div class="grid g2">
+      <div>
+        <h3 class="h3">Texto em STE</h3>
+        <ul class="dont do">
+          <li>Frase curta: até 20 palavras em instrução e 25 em descrição. Um assunto por frase.</li>
+          <li>Voz ativa e tempo simples. Verbos concretos: use, mostre, envie, veja.</li>
+          <li>Um termo por conceito: <i>signal</i>, <i>stock-out</i>, <i>sell-through</i>, <i>coverage</i>, <i>source</i>, <i>refresh</i>.</li>
+          <li>Título com até 8 palavras. Botão com 1 a 3 palavras, verbo no início.</li>
+          <li>Sem adjetivo de vendedor, sem metáfora, sem "tempo real" sem dado.</li>
+          <li>EN primeiro. PT e ES com a mesma estrutura e o mesmo tamanho.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h3">O que não fazer</h3>
+        <ul class="dont">
+          <li>Hero escuro com cena animada que não vem do produto.</li>
+          <li>Borda pesada, sombra forte, selo, texto longo ao lado de imagem.</li>
+          <li>Duas cores no mesmo título. Destaque roxo em palavra.</li>
+          <li>Botão com texto preto. Texto branco sobre fundo claro.</li>
+          <li>Hex solto no código. Britti Sans. Tag "Beta", "Novo", "Em breve".</li>
+          <li>Selo de piloto ou de teste: tudo no site é apresentado como entregue.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="h3">Checklist antes de entregar uma tela</h3>
+    <div class="grid g2">
+      <ul class="dont do">
+        <li>Título em 1 cor, até 3 linhas no hero.</li>
+        <li>Botões com texto branco.</li>
+        <li>Texto branco só sobre fundo escuro ou camada escura.</li>
+        <li>Nenhuma tag de status.</li>
+        <li>Tokens do tema, sem hex solto.</li>
+      </ul>
+      <ul class="dont do">
+        <li>Texto em STE nos 3 idiomas (EN, PT, ES).</li>
+        <li>Desktop, tablet e mobile conferidos.</li>
+        <li>Movimento respeita "reduzir movimento".</li>
+        <li><code>pnpm build</code> passa.</li>
+        <li>Vídeo: cada elemento tem origem declarada (código, filmagem ou Alex) e a revisão de movimento tem prova em número ou quadro.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot-end">
+  <div class="wrap">
+    <span>Dinn Design System v2 · site (branch <code>redesign</code>) e vídeo institucional V7 · 16/11/2026</span>
+    <span>Fonte da verdade: <code>rules/DESIGN_SYSTEM_V2.md</code></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ease = { out: 'cubic-bezier(.16,1,.3,1)', inOut: 'cubic-bezier(.65,0,.35,1)', spring: 'cubic-bezier(.175,.885,.32,1.275)', inn: 'cubic-bezier(.55,0,1,.45)', eo: 'cubic-bezier(0,0,.2,1)' };
+  const outExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+  /* tema */
+  const root = document.documentElement, tbtn = $('#themeBtn'), logo = $('#logoHdr');
+  tbtn.onclick = () => {
+    const d = root.dataset.theme !== 'dark';
+    root.dataset.theme = d ? 'dark' : 'light';
+    tbtn.setAttribute('aria-pressed', d); tbtn.textContent = d ? 'Tema claro' : 'Tema escuro';
+    logo.src = d ? '../public/logo/Dinn_logo_v2_Light.png' : '../public/logo/Dinn_logo_v2_Dark.png';
+  };
+
+  /* copiar */
+  const toast = $('#copied');
+  const cssVar = n => getComputedStyle(root).getPropertyValue(n).trim();
+  $$('.sw[data-copy]').forEach(b => b.onclick = () => {
+    const v = b.dataset.copy; const txt = v.startsWith('--') ? `var(${v})` : v;
+    try { navigator.clipboard.writeText(txt); } catch (e) {}
+    toast.textContent = 'Copiado: ' + txt; toast.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove('on'), 1600);
+  });
+
+  /* índice + nav */
+  const secs = $$('section.sec'), idx = $('#idx'), links = $$('#nav a');
+  secs.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `<span>${s.dataset.n}</span>`; idx.appendChild(a); });
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const i = secs.indexOf(e.target);
+    $$('a', idx).forEach((a, k) => a.classList.toggle('on', k === i));
+    links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => io.observe(s));
+
+  /* degradês */
+  const mk = (arr, host, dark) => arr.forEach(([f, n, d]) => { const el = document.createElement('div'); el.className = 'gr' + (dark ? ' dark' : ''); el.innerHTML = `<i style="background-image:url(../public/gradients/${f}.avif)"></i><b>${n}</b><small>${d}</small>`; host.appendChild(el); });
+  mk([['g00','g00','Roxo · home e marca'],['g02','g02','Reserva'],['g03','g03','Creme e lilás'],['g04','g04','Reserva'],['g05','g05','Reserva'],['g06','g06','Verde-água e lilás'],['g07','g07','Laranja e amarelo'],['g08','g08','Violeta e rosa'],['g09','g09','Rosa e laranja'],['g10','g10','Amarelo e azul-claro'],['g11','g11','Azul e violeta']], $('#gOrig'));
+  mk([['web/roxo-noite','roxo-noite','Preço, inteligência · palco escuro'],['web/verde-noite','verde-noite','Supply, calma · palco escuro'],['web/laranja-noite','laranja-noite','SAC, calor · palco escuro'],['web/azul-noite','azul-noite','Trade, tecnologia'],['web/vinho-noite','vinho-noite','Marketing, lançamento'],['web/grafite','grafite','TI, dados, governança'],['web/lilas-azul','lilas-azul','Fundo claro atrás de ilustração'],['web/azul-claro','azul-claro','Fundo claro'],['web/pessego','pessego','Fundo claro quente, fechamento'],['web/laranja-bolha','laranja-bolha','Fundo claro quente'],['web/rosa-fluxo','rosa-fluxo','Reserva · revise o contraste'],['web/arco','arco','Reserva · revise o contraste'],['web/rubro','rubro','Reserva · vinho · revise o contraste']], $('#gWeb'));
+  [['Home','g00 roxo','Marca, ambição'],['Contato','g07 laranja e amarelo','Calor, convite à ação'],['Confiança','g06 verde-água e lilás','Calma, segurança'],['Plataforma','g11 azul e violeta','Tecnologia'],['Soluções','g08 violeta e rosa','Variedade'],['Sobre','g11 azul e violeta','Seriedade, instituição'],['Clientes','g09 rosa e laranja','Pessoas, prova'],['Planos','g09 rosa e laranja','Decisão, valor'],['Recursos','g03 creme e lilás','Leitura, calma'],['Pesquisas','g10 amarelo e azul-claro','Curiosidade']].forEach(r => $('#gPage').insertAdjacentHTML('beforeend', `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`));
+
+  /* abas e chips */
+  $$('#tabs button').forEach(b => b.onclick = () => { $$('#tabs button').forEach(x => x.classList.toggle('on', x === b)); });
+  $$('#chips .chip').forEach(c => c.onclick = () => c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'));
+
+  /* ilustração: toque */
+  const il = $('#ilHost'); il.addEventListener('click', () => il.classList.toggle('is-hover'));
+
+  /* ---- gráficos ---- */
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (n, a = {}, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const sm = pts => { let d = `M${pts[0][0]},${pts[0][1]}`; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2; d += ` C${mx},${y0} ${mx},${y1} ${x1},${y1}`; } return d; };
+  const days = 14, A = [14,15,13,16,18,17,19,21,20,22,21,23,24,24.1], B = [9,10,11,10,12,13,12,14,16,15,17,18,18.2,18.4], M = Array(days).fill(0).map((_, i) => 12 + i * .24);
+  const W = 560, H = 250, L = 34, R = 20, T = 14, Bm = 28, mxv = 28;
+  const X = i => L + (W - L - R) * i / (days - 1), Y = v => T + (H - T - Bm) * (1 - v / mxv);
+  const svg = $('#lineSvg'); const gid = 'gArea';
+  const defs = el('defs', {}, svg); const lg = el('linearGradient', { id: gid, x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
+  el('stop', { offset: '0', 'stop-color': 'var(--chart-1)', 'stop-opacity': .28 }, lg); el('stop', { offset: '1', 'stop-color': 'var(--chart-1)', 'stop-opacity': 0 }, lg);
+  [0, 7, 14, 21, 28].forEach(v => { el('line', { x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: 'var(--chart-grid)', 'stroke-width': 1 }, svg); const t = el('text', { x: L - 8, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--chart-muted)' }, svg); t.textContent = v + '%'; });
+  [0, 4, 8, 13].forEach(i => { const t = el('text', { x: X(i), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--chart-muted)' }, svg); t.textContent = 'D-' + (days - 1 - i); });
+  const pa = pt => pt.map((v, i) => [X(i), Y(v)]);
+  const area = el('path', { d: sm(pa(A)) + ` L${X(days - 1)},${Y(0)} L${X(0)},${Y(0)} Z`, fill: `url(#${gid})` }, svg);
+  const sA = el('path', { d: sm(pa(A)), fill: 'none', stroke: 'var(--chart-1)', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+  const sB = el('path', { d: sm(pa(B)), fill: 'none', stroke: 'var(--chart-5-line)', 'stroke-width': 2.5, 'stroke-dasharray': '6 5', 'stroke-linecap': 'round' }, svg);
+  const sM = el('path', { d: sm(pa(M)), fill: 'none', stroke: 'var(--chart-avg)', 'stroke-width': 2, 'stroke-dasharray': '1 5', 'stroke-linecap': 'round' }, svg);
+  const lbl = (txt, y, col) => { const t = el('text', { x: W - R + 2, y, 'font-size': 11, fill: 'var(--foreground)' }, svg); t.textContent = txt; };
+  const guide = el('line', { y1: T, y2: H - Bm, stroke: 'var(--foreground)', 'stroke-width': 1, opacity: 0 }, svg);
+  const dA = el('circle', { r: 4.5, fill: 'var(--background)', stroke: 'var(--chart-1)', 'stroke-width': 2.5, opacity: 0 }, svg);
+  const dB = el('circle', { r: 4.5, fill: 'var(--background)', stroke: 'var(--chart-5-line)', 'stroke-width': 2.5, opacity: 0 }, svg);
+  const hit = el('rect', { x: L, y: T, width: W - L - R, height: H - T - Bm, fill: 'transparent' }, svg);
+  const tip = $('#lineTip'), card = $('#cLine'); const on = [true, true];
+  const draw = (p, d = 1100) => { if (reduce) return; const len = p.getTotalLength(); const dash = p.getAttribute('stroke-dasharray'); if (!dash) { p.style.strokeDasharray = len; p.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: d, easing: ease.out, fill: 'backwards' }); } else p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: d, easing: ease.out, fill: 'backwards' }); };
+  const drawAll = () => { [sA, sB, sM].forEach(p => draw(p)); if (!reduce) area.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1100, easing: ease.out, fill: 'backwards' }); };
+  const move = e => {
+    const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * W;
+    const i = Math.max(0, Math.min(days - 1, Math.round((x - L) / ((W - L - R) / (days - 1)))));
+    guide.setAttribute('x1', X(i)); guide.setAttribute('x2', X(i)); guide.setAttribute('opacity', .35);
+    dA.setAttribute('cx', X(i)); dA.setAttribute('cy', Y(A[i])); dA.setAttribute('opacity', on[0] ? 1 : 0);
+    dB.setAttribute('cx', X(i)); dB.setAttribute('cy', Y(B[i])); dB.setAttribute('opacity', on[1] ? 1 : 0);
+    const f = v => (v >= 0 ? '+' : '') + v.toFixed(1).replace('.', ',') + ' p.p.';
+    tip.innerHTML = `<b>D-${days - 1 - i}</b>` + (on[0] ? `<div><span>Produto A</span><em>${A[i].toFixed(1).replace('.', ',')}% · ${f(A[i] - M[i])}</em></div>` : '') + (on[1] ? `<div><span>Produto B</span><em>${B[i].toFixed(1).replace('.', ',')}% · ${f(B[i] - M[i])}</em></div>` : '') + `<div><span>Média</span><em>${M[i].toFixed(1).replace('.', ',')}%</em></div>`;
+    const cr = card.getBoundingClientRect(); let left = e.clientX - cr.left + 16; if (left > cr.width - 190) left = e.clientX - cr.left - 180;
+    tip.style.left = left + 'px'; tip.style.top = (e.clientY - cr.top - 20) + 'px'; tip.style.opacity = 1;
+  };
+  hit.addEventListener('pointermove', move); hit.addEventListener('pointerleave', () => { tip.style.opacity = 0; guide.setAttribute('opacity', 0); dA.setAttribute('opacity', 0); dB.setAttribute('opacity', 0); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { tip.style.opacity = 0; } });
+  $$('.leg[data-s]', card).forEach(b => b.onclick = () => { const s = +b.dataset.s, v = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', v); on[s] = v; (s ? sB : sA).style.opacity = v ? 1 : .0; if (!s) area.style.opacity = v ? 1 : 0; });
+
+  /* pílulas */
+  const ps = $('#pillSvg'); const rows = [['Alfa', 52, 'var(--chart-1)'], ['Beta', 31, 'var(--chart-2)'], ['Gama', 24, 'var(--chart-3)'], ['Delta', 17, 'var(--chart-4)'], ['Outras', 9, 'var(--chart-5)']];
+  const bars = rows.map(([n, v, c], i) => { const y = 8 + i * 28; const t = el('text', { x: 0, y: y + 14, 'font-size': 12, fill: 'var(--chart-muted)' }, ps); t.textContent = 'Rede ' + n; el('rect', { x: 78, y, width: 440, height: 18, rx: 9, fill: 'var(--chart-track)' }, ps); const w = 440 * v / 60; const b = el('rect', { x: 78, y, width: w, height: 18, rx: 9, fill: c, stroke: v < 25 && i !== 2 ? 'none' : 'none' }, ps); b._w = w; const l = el('text', { x: 78 + w + 8, y: y + 14, 'font-size': 12, fill: 'var(--foreground)' }, ps); l.textContent = v; return b; });
+  const growBars = () => bars.forEach((b, i) => { if (reduce) return; b.animate([{ width: '0px' }, { width: b._w + 'px' }], { duration: 900, delay: i * 80, easing: ease.out, fill: 'backwards' }); });
+
+  /* rosca */
+  const ds = $('#donut'); const parts = [[52, 'var(--chart-1)'], [31, 'var(--chart-2)'], [17, 'var(--chart-3)']]; const r = 46, C = 2 * Math.PI * r; let acc = 0; const arcs = [];
+  el('circle', { cx: 60, cy: 60, r, fill: 'none', stroke: 'var(--chart-track)', 'stroke-width': 14 }, ds);
+  parts.forEach(([v, c]) => { const len = C * v / 100 - 6; const a = el('circle', { cx: 60, cy: 60, r, fill: 'none', stroke: c, 'stroke-width': 14, 'stroke-linecap': 'round', 'stroke-dasharray': `${len} ${C}`, 'stroke-dashoffset': -(C * acc / 100 + 3), transform: 'rotate(-90 60 60)' }, ds); a._len = len; arcs.push(a); acc += v; });
+  const t = el('text', { x: 60, y: 66, 'text-anchor': 'middle', 'font-size': 20, 'font-family': 'Roboto', fill: 'var(--foreground)' }, ds); t.textContent = '52%';
+  const growDonut = () => arcs.forEach((a, i) => { if (reduce) return; a.animate([{ strokeDasharray: `0 ${C}` }, { strokeDasharray: `${a._len} ${C}` }], { duration: 900, delay: i * 120, easing: ease.out, fill: 'backwards' }); });
+
+  /* contadores */
+  const count = (e, to, dec = 0, dur = 1200) => { if (reduce) { e.textContent = to.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }); return; } const t0 = performance.now(); const step = t => { const k = Math.min(1, (t - t0) / dur); e.textContent = (to * outExpo(k)).toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
+  const kpis = () => $$('.kpi b[data-count]').forEach(b => count(b, +b.dataset.count, +(b.dataset.dec || 0), 1200));
+  const chartIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { drawAll(); growBars(); growDonut(); kpis(); chartIO.disconnect(); } }), { threshold: .25 });
+  chartIO.observe($('#cLine'));
+
+  /* ---- movimento ---- */
+  const E = $('#eases');
+  [['ease-out · entrada', ease.eo, '0,2 s · desacelera ao chegar', 700], ['outExpo · peça grande e número', ease.out, '0,16 · 1 · 0,3 · 1', 1000], ['inOut · câmera e deslocamento longo', ease.inOut, '0,65 · 0 · 0,35 · 1', 900], ['mola · chip, badge, botão', ease.spring, '0,175 · 0,885 · 0,32 · 1,275 · 0,3 s', 700], ['ease-in · saída', ease.inn, '0,15 a 0,2 s · acelera ao sair', 700]].forEach(([n, c, d, ms]) => {
+    const row = document.createElement('div'); row.className = 'ease'; row.innerHTML = `<div><b>${n}</b><small>${d}</small></div><div class="track"><i class="dot"></i></div><button class="btn btn-outline btn-sm">Rodar</button>`; E.appendChild(row);
+    const dot = $('.dot', row), tr = $('.track', row);
+    const run = () => { if (reduce) return; const dist = tr.clientWidth - 36; dot.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${dist}px)` }], { duration: ms, easing: c, fill: 'forwards' }).finished.then(() => setTimeout(() => dot.getAnimations().forEach(a => a.cancel()), 500)); };
+    $('button', row).onclick = run; row._run = run;
+  });
+
+  const typeTxt = 'Quais lojas estão sem o Produto A em São Paulo?';
+  const demos = {
+    reveal() { const e = $('#dReveal'); if (reduce) return; e.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: ease.out, fill: 'backwards' }); },
+    num() { count($('#dNum'), 52, 0, 1200); },
+    stag() { $$('#dStag li').forEach((li, i) => { li.style.opacity = 1; if (reduce) return; li.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 360, delay: i * 80, easing: ease.out, fill: 'backwards' }); }); },
+    pop() { const e = $('#dPop'); e.style.opacity = 1; if (reduce) return; e.animate([{ opacity: 0, transform: 'scale(.85)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 300, easing: ease.spring, fill: 'backwards' }); },
+    type() { const e = $('#dType'); if (reduce) { e.textContent = typeTxt; return; } e.textContent = ''; let i = 0; clearInterval(e._t); e._t = setInterval(() => { e.textContent = typeTxt.slice(0, ++i); if (i >= typeTxt.length) clearInterval(e._t); }, 1000 / 22); },
+    cut() { const e = $('#dCut'); if (reduce) return; e.animate([{ opacity: 1, transform: 'none', filter: 'none' }, { opacity: 0, transform: 'translateY(-3%) scale(.985)', filter: 'blur(8px)' }], { duration: 450, easing: ease.inn, fill: 'forwards' }).finished.then(() => { e.textContent = e.textContent === 'Tela A' ? 'Tela B' : 'Tela A'; e.getAnimations().forEach(a => a.cancel()); e.animate([{ opacity: 0, transform: 'translateY(4%) scale(1.03)', filter: 'blur(10px)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 900, easing: ease.out }); }); }
+  };
+  const runDemos = () => { Object.values(demos).forEach(f => f()); $$('.ease').forEach(r => r._run()); };
+  $('#replayAll').onclick = runDemos;
+  const demoIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { runDemos(); demoIO.disconnect(); } }), { threshold: .2 });
+  demoIO.observe($('#demos'));
+  const appIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { appRun(); appIO.disconnect(); } }), { threshold: .4 });
+  appIO.observe($('#appStage'));
+  $$('#demos .demo').forEach((d, i) => d.addEventListener('click', e => { if (e.target.closest('button')) return; Object.values(demos)[i] && Object.values(demos)[i](); }));
+
+  /* tela do produto com cursor em arco */
+  let appTimer;
+  function appRun() {
+    const app = $('#app'), cx = $('#curx'), cy = $('#cury'), btn = $('#appBtn'), rip = $('#rip'), bars = $$('#appBars i');
+    bars.forEach(b => b.style.transform = reduce ? 'none' : 'scaleY(0)');
+    if (reduce) return;
+    const rb = app.getBoundingClientRect(), bb = btn.getBoundingClientRect();
+    const tx = bb.left - rb.left + 16, ty = bb.top - rb.top + 8;
+    const x0 = rb.width * .55, y0 = rb.height * .85, dur = 800;
+    bars.forEach((b, i) => b.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 800, delay: 200 + i * 70, easing: ease.out, fill: 'forwards' }));
+    /* arco: x e y com curvas diferentes */
+    const ax = cx.animate([{ transform: `translateX(${x0}px)` }, { transform: `translateX(${tx}px)` }], { duration: dur, delay: 900, easing: ease.out, fill: 'both' });
+    cy.animate([{ transform: `translateY(${y0}px)` }, { transform: `translateY(${ty}px)` }], { duration: dur, delay: 900, easing: 'cubic-bezier(.45,0,.15,1)', fill: 'both' });
+    cx.style.left = '0'; cx.style.top = '0';
+    ax.finished.then(() => {
+      btn.animate([{ transform: 'scale(1)' }, { transform: 'scale(.94)' }, { transform: 'scale(1)' }], { duration: 120 });
+      rip.style.left = (tx - 4) + 'px'; rip.style.top = (ty - 4) + 'px';
+      rip.animate([{ opacity: .9, transform: 'scale(.4)' }, { opacity: 0, transform: 'scale(1.8)' }], { duration: 600, easing: ease.out });
+      clearTimeout(appTimer); appTimer = setTimeout(appRun, 4200);
+    });
+  }
+  /* o cursor usa um wrapper em duas camadas; garante posição inicial */
+  $('#curx').style.willChange = 'transform';
+
+  /* ---- vídeo ---- */
+  $('#safeToggle').onchange = e => $$('.safe').forEach(s => s.classList.toggle('on', e.target.checked));
+  const words = 'A resposta já traz a lista de lojas.'.split(' ');
+  const cap = $('#vfCap'); cap.innerHTML = words.map(w => `<span>${w}</span>`).join(' ');
+  let capT; const capRun = () => { const sp = $$('span', cap); sp.forEach(s => s.classList.toggle('on', reduce)); if (reduce) return; let i = 0; clearInterval(capT); capT = setInterval(() => { if (i < sp.length) sp[i++].classList.add('on'); else { clearInterval(capT); setTimeout(capRun, 2500); } }, 320); };
+  const dots = $('#vfDots'); [['Rede Alfa', 26, true], ['Rede Beta', 9], ['Rede Gama', 7], ['Rede Delta', 5], ['Outras', 4]].forEach(([n, c, hot]) => { const d = document.createElement('div'); if (hot) d.className = 'hot'; d.innerHTML = `<span>${n}</span><p>${Array(c).fill('<i></i>').join('')}</p>`; dots.appendChild(d); });
+  const vfRun = () => {
+    const n = $('#vfNum'); const hot = $$('.hot i', dots);
+    if (reduce) { n.textContent = '52%'; hot.forEach(i => { i.style.opacity = 1; i.style.transform = 'none'; }); return; }
+    const t0 = performance.now(), dur = 1300; const step = t => { const k = Math.min(1, (t - t0) / dur); n.textContent = Math.round(52 * outExpo(k)) + '%'; if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step);
+    hot.forEach((i, k) => i.animate([{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 300, delay: 200 + k * 35, easing: ease.spring, fill: 'forwards' }));
+  };
+  const vio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { capRun(); vfRun(); setInterval(vfRun, 6000); vio.disconnect(); } }), { threshold: .3 });
+  vio.observe($('#vfA'));
+})();
+</script>
+</body>
+</html>
