@@ -1,7 +1,8 @@
 // Agenda de demonstração no HubSpot. Único lugar com essa URL: todos os botões
 // "Solicitar demo" do site apontam para cá.
-export const DEMO_URL =
-  'https://meetings.hubspot.com/eduardo-fonseca?uuid=eeff79af-d416-4635-a673-4c678359d1b4';
+// Portal da Dinn na região EU1 (meetings-eu1), o mesmo da main. Sem nome nem
+// e-mail na URL: dado pessoal não vai em parâmetro de link.
+export const DEMO_URL = 'https://meetings-eu1.hubspot.com/eduardo-fonseca';
 
 // Porta de entrada de todo pedido de contato ou demonstração: o formulário em
 // /contato, primeira camada do funil (estágio "Captado"). A agenda acima passa

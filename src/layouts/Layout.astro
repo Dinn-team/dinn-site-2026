@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { HTML_LANG, OG_LOCALE, type Lang } from '@/i18n/routes';
+import { HUBSPOT_PORTAL_ID } from '@/lib/contact-form';
 
 interface Props {
 	title?: string;
@@ -108,6 +109,10 @@ const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 // única por página, então só um tracker roda: o da conta que executa.
 const APOLLO_TRACKER_ID = '663123272a6e2c030219f444';
 const enableApolloTracking = import.meta.env.PROD;
+
+// HubSpot (portal da Dinn, EU1): cookie de visita para ligar o formulário /contato
+// ao histórico de páginas. Mesmo racional: só produção e só depois do aceite.
+const enableHubspotTracking = import.meta.env.PROD && Boolean(HUBSPOT_PORTAL_ID);
 ---
 
 <!doctype html>
@@ -160,9 +165,9 @@ const enableApolloTracking = import.meta.env.PROD;
 			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 		))}
 
-		{/* GA4 e Apollo só carregam depois do aceite no banner de cookies (CookieConsent.astro). */}
-		{(enableAnalytics || enableApolloTracking) && (
-			<script is:inline set:html={`window.__dinnTrackers=${JSON.stringify({ ga: enableAnalytics ? GA_ID : null, apollo: enableApolloTracking ? APOLLO_TRACKER_ID : null })};`}></script>
+		{/* GA4, Apollo e HubSpot só carregam depois do aceite no banner de cookies (CookieConsent.astro). */}
+		{(enableAnalytics || enableApolloTracking || enableHubspotTracking) && (
+			<script is:inline set:html={`window.__dinnTrackers=${JSON.stringify({ ga: enableAnalytics ? GA_ID : null, apollo: enableApolloTracking ? APOLLO_TRACKER_ID : null, hubspot: enableHubspotTracking ? HUBSPOT_PORTAL_ID : null })};`}></script>
 		)}
 	</head>
 	<body style="background-color: var(--foreground); color: var(--foreground); margin: 0; padding: 0; overflow-x: clip;">
