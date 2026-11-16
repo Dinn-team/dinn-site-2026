@@ -6,14 +6,15 @@ import { contactUrl } from '@/lib/links';
 import { PATHS } from '@/lib/site-map';
 import { gradUrl } from '@/components/site/area-theme';
 
-// Vídeo institucional "Um dia com o Dinn" (v4.1, render de 06/11/2026, 2 min 55 s).
-// O arquivo em public/video é uma versão leve (1600 px, H.264) do render em
-// wt-davinci-skill-motion (05-build-v3/out/um-dia-com-o-dinn-v4.1.mp4). Para trocar o vídeo, gere de novo com ffmpeg:
-//   ffmpeg -i render.mp4 -vf scale=1600:-2 -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k public/video/dinn-institucional.mp4
-export const HERO_VIDEO_SRC = '/video/dinn-institucional.mp4';
+// Vídeo institucional "Um dia com o Dinn" (corte v7.1, render de 16/11/2026, 1 min 19 s, trilha Chicago).
+// O arquivo em public/video é uma versão leve (1600 px, H.264, 10,5 MB) do render em
+// wt-davinci-skill-motion (05-build-v7-corte/out/um-dia-com-o-dinn-v7.1-corte.mp4). Para trocar o vídeo, gere de novo
+// com ffmpeg e use um nome de arquivo novo, para o navegador e a CDN não servirem o vídeo antigo do cache:
+//   ffmpeg -i render.mp4 -vf scale=1600:-2 -c:v libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k public/video/dinn-institucional-v7-1.mp4
+export const HERO_VIDEO_SRC = '/video/dinn-institucional-v7-1.mp4';
 
 // Prévia sem som que roda em repetição antes do play, como a miniatura do YouTube.
-// São três takes de tela do produto tirados do próprio vídeo: Localizador (82,5–91,5 s),
+// São três takes de tela do produto tirados do vídeo anterior (v4.1, sem legenda): Localizador (82,5–91,5 s),
 // filtro na tela Início (41,5–45,5 s) e mapa de Oportunidades (118–121,5 s), com fusão de 0,4 s.
 // 1280 px, sem áudio, ~1,4 MB. O pôster é o quadro de 4 s da prévia.
 export const HERO_PREVIEW_SRC = '/video/dinn-institucional-previa.mp4';
