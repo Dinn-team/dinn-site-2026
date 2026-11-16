@@ -119,7 +119,21 @@ export function readUtm(search: string): Utm {
   };
 }
 
-export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri: string; utm: Utm; consentText: string }) {
+/** Cookie de visita do HubSpot (`hubspotutk`). Só existe depois do aceite do
+ *  banner de cookies, quando o script de rastreio do HubSpot carrega. Liga o
+ *  envio ao histórico de páginas da pessoa ("como chegou"). */
+export function readHutk(): string {
+  if (typeof document === 'undefined') return '';
+  const pair = document.cookie.split(';').map((c) => c.trim()).find((c) => c.startsWith('hubspotutk='));
+  if (!pair) return '';
+  try {
+    return decodeURIComponent(pair.slice('hubspotutk='.length));
+  } catch {
+    return '';
+  }
+}
+
+export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri: string; utm: Utm; consentText: string; hutk?: string }) {
   const fields: { name: string; value: string }[] = [
     { name: FIELDS.email, value: values.email.trim().toLowerCase() },
     { name: FIELDS.company, value: values.company.trim() },
@@ -127,7 +141,8 @@ export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri
     { name: FIELDS.origin, value: ORIGIN_VALUE },
     { name: FIELDS.language, value: ctx.lang },
   ];
-  // papel e decisão são opcionais: só seguem quando a pessoa escolheu
+  // papel e decisão são obrigatórios na tela (`validate`); o nome é o único
+  // campo de identificação opcional (spec de captura, fase 2)
   if (values.role) fields.push({ name: FIELDS.role, value: values.role });
   if (values.decision) fields.push({ name: FIELDS.decision, value: values.decision });
   if (values.interest) fields.push({ name: FIELDS.interest, value: values.interest });
@@ -145,7 +160,7 @@ export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri
   return {
     submittedAt: Date.now(),
     fields,
-    context: { pageUri: ctx.pageUri, pageName: 'Contato | Dinn' },
+    context: { ...(ctx.hutk ? { hutk: ctx.hutk } : {}), pageUri: ctx.pageUri, pageName: 'Contato | Dinn' },
     legalConsentOptions: {
       consent: { consentToProcess: true, text: ctx.consentText },
     },

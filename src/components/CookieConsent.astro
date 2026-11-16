@@ -125,6 +125,16 @@ const T = {
         a.onload = function () { window.trackingFunctions.onLoad({ appId: cfg.apollo }); };
         document.head.appendChild(a);
       }
+      if (cfg.hubspot) {
+        // Rastreio do HubSpot (cookie hubspotutk): liga o envio do /contato ao
+        // histórico de páginas. Região EU1. Só depois do aceite.
+        var h = document.createElement('script');
+        h.id = 'hs-script-loader';
+        h.async = true;
+        h.defer = true;
+        h.src = 'https://js-eu1.hs-scripts.com/' + cfg.hubspot + '.js';
+        document.head.appendChild(h);
+      }
     }
 
     function text() {

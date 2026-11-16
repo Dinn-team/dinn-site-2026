@@ -6,6 +6,7 @@ import { DEMO_URL } from '@/lib/links';
 import { Select, type SelectOption } from '@/components/ui/Select';
 import {
   buildPayload,
+  readHutk,
   interestFromSearch,
   isPersonalEmail,
   isValidEmail,
@@ -76,7 +77,6 @@ export function ContactPage() {
     const er: Errors = {};
     const choice = t('contact.errors.requiredChoice') as string;
     // na ordem em que aparecem na tela: o primeiro erro recebe o foco
-    if (!values.name.trim()) er.name = t('contact.errors.required') as string;
     if (!values.company.trim()) er.company = t('contact.errors.required') as string;
     if (!values.email.trim()) er.email = t('contact.errors.required') as string;
     else if (!isValidEmail(values.email)) er.email = t('contact.errors.emailInvalid') as string;
@@ -126,8 +126,21 @@ export function ContactPage() {
       pageUri: window.location.href.split('#')[0].split('?')[0],
       utm,
       consentText,
+      hutk: readHutk(),
     });
     const result = await submitToHubSpot(payload);
+    if (result.ok) {
+      // Evento de conversão no GA4. Só existe `gtag` depois do aceite do banner
+      // de cookies. Sem e-mail, nome nem texto do lead: só canal e origem.
+      const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+      w.gtag?.('event', 'generate_lead', {
+        form: 'contato',
+        lead_interest: values.interest,
+        lead_channel: [utm.source || 'site', utm.medium || 'organic'].join('/'),
+        lead_campaign: utm.campaign || undefined,
+        lead_content: utm.content || undefined,
+      });
+    }
     setStatus(result.ok ? 'done' : 'error');
   };
 
@@ -182,7 +195,7 @@ export function ContactPage() {
 
                 <div className="ct-row">
                   <div className="ct-field">
-                    <label htmlFor="ct-name">{t('contact.form.name')}</label>
+                    <label htmlFor="ct-name">{t('contact.form.name')} <span className="ct-optional">{t('contact.form.optional')}</span></label>
                     <input
                       id="ct-name"
                       type="text"
