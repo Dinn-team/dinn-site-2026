@@ -178,6 +178,12 @@ const enableHubspotTracking = import.meta.env.PROD && Boolean(HUBSPOT_PORTAL_ID)
 		</main>
 		<Footer client:load />
 		<CookieConsent />
+		{/* Jornada até o /contato (lib/journey.ts): anota a página só com o aceite de cookies. */}
+		<script>
+			import { recordVisit } from '@/lib/journey';
+			recordVisit();
+			window.addEventListener('dinn:consent-accepted', recordVisit);
+		</script>
 	
 <script is:inline>
 	// O link "Pular para o conteúdo" acompanha o idioma escolhido (o <html lang> muda no cliente).

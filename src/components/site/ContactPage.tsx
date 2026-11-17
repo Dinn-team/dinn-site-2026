@@ -10,10 +10,10 @@ import {
   interestFromSearch,
   isPersonalEmail,
   isValidEmail,
-  readUtm,
   submitToHubSpot,
   type ContactValues,
 } from '@/lib/contact-form';
+import { originFields, readJourney } from '@/lib/journey';
 
 type Errors = Partial<Record<'name' | 'email' | 'company' | 'role' | 'decision' | 'interest' | 'plan' | 'features' | 'consent', string>>;
 type Status = 'idle' | 'sending' | 'done' | 'error';
@@ -107,7 +107,15 @@ export function ContactPage() {
       return;
     }
     setStatus('sending');
-    const utm = readUtm(window.location.search);
+    // Origem: o UTM da URL atual e, se a pessoa navegou antes (e aceitou os cookies), o do
+    // primeiro toque. A jornada leva a primeira página, a anterior e o domínio de quem indicou.
+    const origin = originFields(readJourney(), {
+      path: window.location.pathname,
+      search: window.location.search,
+      referrer: document.referrer,
+      host: window.location.host,
+    });
+    const utm = { ...origin.campaign };
     // Página do próprio site de onde a pessoa veio ("fechamento@/plataforma").
     // Referrer de outro domínio (LinkedIn, buscador) não entra aqui: esse
     // vem pelos utm_* do link.
@@ -127,6 +135,7 @@ export function ContactPage() {
       utm,
       consentText,
       hutk: readHutk(),
+      journey: origin,
     });
     const result = await submitToHubSpot(payload);
     if (result.ok) {
