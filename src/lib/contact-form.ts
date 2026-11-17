@@ -26,6 +26,11 @@ export const FIELDS = {
   campaign: 'dinn_campanha_origem',
   content: 'dinn_conteudo_origem',
   language: 'dinn_idioma_contato',
+  // Jornada até o formulário (17/11/2026). Propriedades de texto do contato; precisam existir
+  // no HubSpot e estar no formulário. Alimentam o gráfico de origens do Orion.
+  firstPage: 'dinn_primeira_pagina',
+  previousPage: 'dinn_pagina_anterior',
+  referrerHost: 'dinn_referrer_origem',
   // Perfil do pedido (rodada de 15/10/2026): o que a pessoa quer contratar.
   // Propriedades a criar no HubSpot e a incluir no formulário; enquanto não
   // existirem, o envio segue com os campos antigos (ver `buildPayload`).
@@ -105,6 +110,8 @@ export type ContactValues = {
 };
 
 type Utm = { source: string; medium: string; campaign: string; content: string };
+/** Jornada até o formulário (`originFields` em journey.ts). */
+type Journey = { firstPage: string; previousPage: string; referrerHost: string };
 
 /** Lê os parâmetros UTM da URL atual (convenção da spec: site, linkedin, newsletter…). */
 export function readUtm(search: string): Utm {
@@ -133,7 +140,7 @@ export function readHutk(): string {
   }
 }
 
-export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri: string; utm: Utm; consentText: string; hutk?: string }) {
+export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri: string; utm: Utm; consentText: string; hutk?: string; journey?: Journey }) {
   const fields: { name: string; value: string }[] = [
     { name: FIELDS.email, value: values.email.trim().toLowerCase() },
     { name: FIELDS.company, value: values.company.trim() },
@@ -156,6 +163,9 @@ export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri
   fields.push({ name: FIELDS.channel, value: channel });
   if (ctx.utm.campaign) fields.push({ name: FIELDS.campaign, value: ctx.utm.campaign });
   if (ctx.utm.content) fields.push({ name: FIELDS.content, value: ctx.utm.content });
+  if (ctx.journey?.firstPage) fields.push({ name: FIELDS.firstPage, value: ctx.journey.firstPage });
+  if (ctx.journey?.previousPage) fields.push({ name: FIELDS.previousPage, value: ctx.journey.previousPage });
+  if (ctx.journey?.referrerHost) fields.push({ name: FIELDS.referrerHost, value: ctx.journey.referrerHost });
 
   return {
     submittedAt: Date.now(),

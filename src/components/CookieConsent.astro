@@ -164,7 +164,7 @@ const T = {
       timer = setTimeout(function () { box.hidden = true; }, 700);
     }
 
-    box.querySelector('[data-cc="accept"]').addEventListener('click', function () { write(true); close(); loadTrackers(); });
+    box.querySelector('[data-cc="accept"]').addEventListener('click', function () { write(true); close(); loadTrackers(); window.dispatchEvent(new Event('dinn:consent-accepted')); });
     box.querySelector('[data-cc="reject"]').addEventListener('click', function () { write(false); close(); });
     box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
