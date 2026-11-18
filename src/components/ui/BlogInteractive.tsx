@@ -30,11 +30,13 @@ interface BlogInteractiveProps {
   posts: BlogPost[];
   lang: Lang;
   labels: BlogLabels;
+  /** Link para a lista de apresentações; só vem quando existe alguma. */
+  presentationsLink?: { href: string; label: string };
 }
 
 const ITEMS_PER_PAGE = 7; // 1 featured + 6 in the grid
 
-export default function BlogInteractive({ posts, lang, labels }: BlogInteractiveProps) {
+export default function BlogInteractive({ posts, lang, labels, presentationsLink }: BlogInteractiveProps) {
   // Valor salvo no Sanity ("Estoque" ou "estoque") → nome no idioma da página.
   const categoryName = (value?: string) =>
     value ? labels.categories[categoryKey(value)] ?? value : labels.defaultCategory;
@@ -112,6 +114,11 @@ export default function BlogInteractive({ posts, lang, labels }: BlogInteractive
                   }}
                 />
               </label>
+              {presentationsLink && (
+                <a className="h2-link bg-deck-link" href={presentationsLink.href}>
+                  {presentationsLink.label} →
+                </a>
+              )}
             </div>
           </div>
           {allCategories.length > 2 && (

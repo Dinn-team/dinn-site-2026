@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "@/i18n/useTranslation";
-import { blogPath, type Lang } from "@/i18n/routes";
+import { blogPath, presentationsPath, type Lang } from "@/i18n/routes";
 import { featurePath } from "@/lib/site-map";
 
 type NavItem = {
@@ -69,6 +69,7 @@ export function getSubmenu(menu: NavMenu | undefined, t: (key: string) => any, l
     return {
       items: [
         { href: blogPath(lang), label: L("nav.blog") },
+        { href: presentationsPath(lang), label: L("nav.presentations") },
         { href: "/recursos/casos", label: L("nav.cases") },
         { href: "/recursos/changelog", label: L("nav.changelog") },
         { href: "/comparativos", label: L("menu.compare") },

@@ -5,7 +5,8 @@ import Layout from '@/layouts/Layout.astro';
 import BlogInteractive from '@/components/ui/BlogInteractive';
 import { urlFor } from '@/sanity/lib/client';
 import { blogLabels, getPosts } from '@/lib/blog';
-import { blogPath, LANGS, type Lang } from '@/i18n/routes';
+import { blogPath, LANGS, presentationsPath, type Lang } from '@/i18n/routes';
+import { getPresentations, presentationLabels } from '@/lib/presentations';
 
 interface Props {
   lang: Lang;
@@ -40,6 +41,13 @@ const mappedPosts = posts.map((post) => ({
   categories: post.categories || [],
 }));
 
+// O link para as apresentações só aparece quando existe alguma.
+const presentations = await getPresentations(lang);
+const presentationsLink =
+  presentations.length > 0
+    ? { href: presentationsPath(lang), label: presentationLabels(lang).name }
+    : undefined;
+
 const blog = blogLabels(lang);
 const labels = {
   heroTitle: blog.heroTitle,
@@ -60,5 +68,5 @@ const labels = {
   alternates={LANGS.map((code) => ({ lang: code, href: blogPath(code) }))}
   langRoute
 >
-    <BlogInteractive client:load posts={mappedPosts} lang={lang} labels={labels} />
+    <BlogInteractive client:load posts={mappedPosts} lang={lang} labels={labels} presentationsLink={presentationsLink} />
 </Layout>

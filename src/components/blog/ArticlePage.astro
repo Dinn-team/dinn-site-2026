@@ -7,7 +7,7 @@ import Layout from '@/layouts/Layout.astro';
 import { urlFor } from '@/sanity/lib/client';
 import ArticleBody from '@/components/blog/ArticleBody';
 import { DynamicIslandTOC } from '@/components/ui/dynamic-island-toc';
-import { articlePath, blogPath, HTML_LANG, type Lang } from '@/i18n/routes';
+import { articlePath, blogPath, HTML_LANG, presentationPath, type Lang } from '@/i18n/routes';
 import { contactUrl } from '@/lib/links';
 import {
   articleAlternates,
@@ -18,6 +18,7 @@ import {
   formatPostDate,
   type BlogPostData,
 } from '@/lib/blog';
+import { hasPresentation, presentationLabels } from '@/lib/presentations';
 
 interface Props {
   post: BlogPostData;
@@ -27,6 +28,8 @@ interface Props {
 
 const { post, lang, recommended } = Astro.props;
 const labels = blogLabels(lang);
+const deck = presentationLabels(lang);
+const withDeck = hasPresentation(post);
 
 const TITLE_SUFFIX: Record<Lang, string> = { pt: 'Blog Dinn', en: 'Dinn Blog', es: 'Blog de Dinn' };
 
@@ -129,6 +132,16 @@ const articleSchema = {
     </header>
 
     <div class="h2-wrap ap-main">
+      {withDeck && (
+        <aside class="ap-deck" aria-labelledby="ap-deck-title">
+          <div>
+            <h2 id="ap-deck-title" class="ap-deck-title">{deck.articleBlockTitle}</h2>
+            <p class="ap-deck-text">{deck.articleBlockText}</p>
+          </div>
+          <a href={presentationPath(lang, post.slug.current)} class="btn btn-primary">{deck.viewDeck}</a>
+        </aside>
+      )}
+
       <div class="bp-body ap-body">
         {post.body && <ArticleBody value={post.body} />}
       </div>
