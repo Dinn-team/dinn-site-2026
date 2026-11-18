@@ -39,7 +39,7 @@ export const FEATURE_AREAS: Record<string, string[] | 'all'> = {
   oportunidades: ['inteligencia-pricing', 'trade-kam-campo'],
   distribuicao: ['supply-distribuicao'],
   suporte: ['sac-customer-experience'],
-  jean: ['trade-kam-campo', 'inteligencia-pricing', 'ti-dados-governanca'],
+  dinn: ['trade-kam-campo', 'inteligencia-pricing', 'ti-dados-governanca'],
   conecta: ['ti-dados-governanca'],
 };
 // Primeira área da funcionalidade: dá o degradê. Quem todos usam fica no roxo da marca.

@@ -71,7 +71,7 @@ export const offerPt = {
         { label: "Mercado", text: "Leia concorrência e cobertura por região e rede.", href: "/funcionalidades/mercado" },
         { label: "Oportunidades", text: "Veja onde agir primeiro. Cada uma mostra fonte e limites.", href: "/funcionalidades/oportunidades" },
         { label: "Distribuição", text: "Cruze o estoque do distribuidor com a disponibilidade nas lojas.", href: "/funcionalidades/distribuicao" },
-        { label: "Jean", text: "Delegue acompanhamentos. A Jean prepara o trabalho e chama você quando precisa decidir.", href: "/funcionalidades/jean" },
+        { label: "Dinn", text: "Delegue acompanhamentos. O Dinn prepara o trabalho e chama você quando precisa decidir.", href: "/funcionalidades/dinn" },
         { label: "Dinn Conecta", text: "Leve os dados da Dinn ao seu BI, à sua IA e às suas integrações.", href: "/produtos/conecta" }
       ]
     },
@@ -192,19 +192,19 @@ export const offerPt = {
   },
 
   // ── Funcionalidades ───────────────────────────────────────────────────────
-  jean: {
+  dinn: {
     meta: {
-      title: "Jean | Dinn",
-      description: "A Jean é a assistente do Dinn. Ela acompanha o seu trabalho, prepara o próximo passo e chama você quando precisa de uma decisão."
+      title: "Pergunte ao Dinn | Dinn",
+      description: "O Dinn acompanha o seu trabalho, prepara o próximo passo e chama você quando precisa de uma decisão."
     },
     hero: {
-      title: "Jean, a assistente do seu trabalho",
-      lead: "Conte o que você quer acompanhar. A Jean usa os dados do Dinn e as ferramentas que você liberar. Ela prepara o trabalho e chama você quando precisa de uma decisão."
+      title: "Dinn, o assistente do seu trabalho",
+      lead: "Conte o que você quer acompanhar. O Dinn usa os dados da plataforma e as ferramentas que você liberar. Ele prepara o trabalho e chama você quando precisa de uma decisão."
     },
     ask: {
       title: "Delegue como você pediria a alguém do time",
-      quote: "Jean, acompanha a disponibilidade destes produtos nas redes que eu cuido. Antes das minhas reuniões, prepara os pontos importantes e me chama no WhatsApp quando eu precisar decidir alguma coisa.",
-      note: "A Jean confirma o objetivo, o recorte e as permissões antes de começar. Ela só pergunta o que falta."
+      quote: "Dinn, acompanha a disponibilidade destes produtos nas redes que eu cuido. Antes das minhas reuniões, prepara os pontos importantes e me chama no WhatsApp quando eu precisar decidir alguma coisa.",
+      note: "O Dinn confirma o objetivo, o recorte e as permissões antes de começar. Ele só pergunta o que falta."
     },
     ways: {
       title: "Três formas de delegar",
@@ -224,7 +224,7 @@ export const offerPt = {
       ]
     },
     how: {
-      title: "Como a Jean trabalha",
+      title: "Como o Dinn trabalha",
       lead: "Role a página. Cada passo mostra a tela no ponto certo.",
       steps: [
         {
@@ -233,38 +233,38 @@ export const offerPt = {
         },
         {
           label: "Confirme o combinado",
-          text: "A Jean confirma objetivo, produtos, redes, fontes, canal e ações autorizadas."
+          text: "O Dinn confirma objetivo, produtos, redes, fontes, canal e ações autorizadas."
         },
         {
-          label: "A Jean acompanha",
-          text: "Ela lê os dados, as mensagens e os compromissos que você liberou."
+          label: "O Dinn acompanha",
+          text: "Ele lê os dados, as mensagens e os compromissos que você liberou."
         },
         {
-          label: "A Jean prepara o próximo passo",
-          text: "Ela vê o que mudou e prepara um resumo, um rascunho ou uma análise."
+          label: "O Dinn prepara o próximo passo",
+          text: "Ele vê o que mudou e prepara um resumo, um rascunho ou uma análise."
         },
         {
-          label: "A Jean chama você",
-          text: "Se precisa de uma decisão, ela chama você no portal ou no WhatsApp, com o contexto."
+          label: "O Dinn chama você",
+          text: "Se precisa de uma decisão, ele chama você no portal ou no WhatsApp, com o contexto."
         },
         {
-          label: "A Jean registra e continua",
-          text: "Ela registra o resultado e continua o acompanhamento. Ela não repete o que já fez."
+          label: "O Dinn registra e continua",
+          text: "Ele registra o resultado e continua o acompanhamento. Ele não repete o que já fez."
         }
       ]
     },
     activities: {
-      title: "Atividades: o trabalho da Jean em um lugar",
-      lead: "Cada item mostra o objetivo, o que a Jean fez, as fontes, o resultado e o próximo passo.",
+      title: "Atividades: o trabalho do Dinn em um lugar",
+      lead: "Cada item mostra o objetivo, o que o Dinn fez, as fontes, o resultado e o próximo passo.",
       items: [
         "O que precisa de mim?",
-        "O que a Jean está acompanhando?",
+        "O que o Dinn está acompanhando?",
         "O que já foi entregue?"
       ]
     },
     settings: {
-      title: "Você controla a Jean nas configurações",
-      lead: "Conecte as ferramentas, escolha os canais e defina até onde a Jean pode agir. Você pode revogar um acesso a qualquer momento.",
+      title: "Você controla o Dinn nas configurações",
+      lead: "Conecte as ferramentas, escolha os canais e defina até onde o Dinn pode agir. Você pode revogar um acesso a qualquer momento.",
       items: [
         {
           title: "Conexões",
@@ -272,28 +272,28 @@ export const offerPt = {
         },
         {
           title: "Canais",
-          text: "Converse no portal ou no WhatsApp, com o número da Jean. A Jean não lê as suas outras conversas."
+          text: "Converse no portal ou no WhatsApp, com o número do Dinn. O Dinn não lê as suas outras conversas."
         },
         {
           title: "Autonomia",
-          text: "Para cada tipo de ação, defina o que a Jean faz sozinha e o que ela pede para você aprovar."
+          text: "Para cada tipo de ação, defina o que o Dinn faz sozinho e o que ele pede para você aprovar."
         },
         {
           title: "Atenção",
-          text: "Escolha horário, canal e frequência. Diga “me avisa só se piorar” e a Jean ajusta o acompanhamento."
+          text: "Escolha horário, canal e frequência. Diga “me avisa só se piorar” e o Dinn ajusta o acompanhamento."
         }
       ]
     },
     whatsapp: {
       title: "Continue no WhatsApp",
-      lead: "A Jean envia o trabalho pronto e espera a sua resposta. A mesma tarefa continua no portal, com o mesmo histórico.",
+      lead: "O Dinn envia o trabalho pronto e espera a sua resposta. A mesma tarefa continua no portal, com o mesmo histórico.",
       note: "Responder “sim” no WhatsApp aprova só o pedido daquela mensagem."
     },
     autonomy: {
-      title: "Até onde a Jean pode ir",
+      title: "Até onde o Dinn pode ir",
       cols: [
         "Ação",
-        "O que a Jean faz"
+        "O que o Dinn faz"
       ],
       rows: [
         [
@@ -315,14 +315,14 @@ export const offerPt = {
       ]
     },
     limits: {
-      title: "Limites da Jean",
+      title: "Limites do Dinn",
       items: [
-        "A Jean mostra a data dos dados. Uma base D-1 não é monitoramento em tempo real.",
-        "A Jean separa fato de hipótese e diz quando falta informação.",
+        "O Dinn mostra a data dos dados. Uma base D-1 não é monitoramento em tempo real.",
+        "O Dinn separa fato de hipótese e diz quando falta informação.",
         "Sem dado não significa que o problema foi resolvido.",
-        "A Jean usa só as métricas do seu plano. Se faltar uma funcionalidade, ela diz qual.",
+        "O Dinn usa só as métricas do seu plano. Se faltar uma funcionalidade, ele diz qual.",
         "Conectar o e-mail não libera indicador fora do plano. Contratar o Dinn não libera a sua caixa de entrada.",
-        "Instruções dentro de e-mails ou documentos não mudam as permissões da Jean.",
+        "Instruções dentro de e-mails ou documentos não mudam as permissões do Dinn.",
         "O conteúdo pessoal conectado não fica visível para outros usuários do laboratório."
       ]
     }
@@ -375,7 +375,7 @@ export const offerPt = {
         mercado: "Mercado",
         oportunidades: "Oportunidades",
         distribuicao: "Distribuição",
-        jean: "Jean e Atividades",
+        dinn: "Dinn e Atividades",
         conecta: "Exportações e Conexões"
       }
     },
@@ -451,13 +451,13 @@ export const offerPt = {
         href: "/solucoes/supply-distribuicao"
       },
       {
-        id: "jean", name: "Jean", kind: "interface",
+        id: "dinn", name: "Dinn", kind: "interface",
         problem: "Quero delegar o acompanhamento do meu trabalho.",
         input: "Um pedido em português e as ferramentas que você conectou.",
-        action: "Peça à Jean. Ela confirma o combinado, acompanha os dados e prepara o próximo passo.",
+        action: "Peça ao Dinn. Ele confirma o combinado, acompanha os dados e prepara o próximo passo.",
         output: "Resumos, rascunhos e análises prontos para revisar, no portal ou no WhatsApp.",
         decision: "O que aprovar, ajustar ou acompanhar.",
-        limit: "A Jean age só dentro do combinado e das permissões. Ações externas pedem aprovação, exceto com autorização prévia.",
+        limit: "O Dinn age só dentro do combinado e das permissões. Ações externas pedem aprovação, exceto com autorização prévia.",
         href: "/plataforma"
       },
       {
@@ -1058,7 +1058,7 @@ export const offerPt = {
         { value: "historico", label: "Histórico e visões salvas" },
         { value: "giro_preco", label: "Giro, preço e concorrência" },
         { value: "distribuicao", label: "Distribuição" },
-        { value: "insights", label: "Insights" },
+        { value: "insights", label: "Dinn" },
         { value: "alertas", label: "Alertas e rotinas" },
         { value: "exportacoes", label: "Exportações, API e MCP" }
       ]
@@ -1083,7 +1083,7 @@ export const offerPt = {
   aboutMore: {
     map: { aria: "Ligação entre Joinville, no Brasil, e Valência, na Espanha.", brazil: "Brasil", spain: "Espanha", label: "Duas cidades, um só time" },
     how: {
-      title: "Como a Dinn trabalha",
+      title: "Como o Dinn trabalha",
       intro: "Do sinal solto à ação registrada, sempre com origem, data e limite."
     },
     stats: {

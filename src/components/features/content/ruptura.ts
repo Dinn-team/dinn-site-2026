@@ -16,7 +16,7 @@ export const ruptura: FeatureContent = {
   steps: [
     { title: 'Escolha o recorte', text: 'Filtre por produto, rede, UF, cidade ou Brick. Os filtros valem para todos os gráficos e tabelas da tela.' },
     { title: 'Leia a ruptura', text: 'Veja a evolução no gráfico, quantas lojas estão em cada nível e quais produtos e redes falham mais.' },
-    { title: 'Abra a loja e aja', text: 'Clique em uma loja para ver, produto por produto, o que falta nela. Baixe a lista em Excel ou pergunte à Jean.' },
+    { title: 'Abra a loja e aja', text: 'Clique em uma loja para ver, produto por produto, o que falta nela. Baixe a lista em Excel ou pergunte ao Dinn.' },
   ],
   doors: {
     title: 'Onde a ruptura aparece',
@@ -39,8 +39,8 @@ export const ruptura: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Pergunte à Jean, em português, quais lojas estão mais críticas. Depois abra a lista pronta na Início.',
+  dinn: {
+    lead: 'Pergunte ao Dinn, em português, quais lojas estão mais críticas. Depois abra a lista pronta na Início.',
     prompts: ['Quais são os 10 PDVs mais críticos em ruptura?', 'A ruptura de Cefalgin está melhorando?', 'Em quais redes falta mais produto?'],
     turns: [
       { q: 'Quais PDVs estão mais críticos em ruptura?', a: 'Há 32 PDVs no nível Crítico. Estes são os três primeiros.',
@@ -119,13 +119,13 @@ export const ruptura: FeatureContent = {
     analyze: [
       'Meu lançamento está faltando? Filtre o produto, use 30 dias e a visão Semanal. No ranking por rede, veja quem concentra a falta. Na tabela de lojas, ordene por Nível e leve Crítico e Alto ao campo.',
       'Onde mando a equipe de campo? Escolha a UF, a cidade ou o Brick. Ordene as lojas por Nível, abra as primeiras e veja os produtos que faltam. Baixe em Excel.',
-      'A situação está melhorando? Compare 30 e 90 dias no gráfico. Veja o card de níveis e volte na semana seguinte. Ou pergunte à Jean.',
+      'A situação está melhorando? Compare 30 e 90 dias no gráfico. Veja o card de níveis e volte na semana seguinte. Ou pergunte ao Dinn.',
       'Falta produto ou falta giro? Em Disponibilidade por rede, compare Sem estoque com Sem vendas. No card de Estoque Parado, veja os dias parados.',
     ],
     extract: [
       'Use o botão Baixar da tabela de pontos de venda, do ranking por SKU ou da loja.',
       'Salve o recorte em Visualizações salvas para voltar com um clique.',
-      'Pergunte à Jean e abra a lista já filtrada.',
+      'Pergunte ao Dinn e abra a lista já filtrada.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'O número pode diferir do que você vê na farmácia. A base é de ontem e parte do estoque é estimada. Para confirmar uma loja agora, use Consultar agora. O valor da base está na tendência.',
@@ -137,7 +137,7 @@ export const ruptura: FeatureContent = {
       { slug: 'giro', name: 'Giro', text: 'Loja com estoque que não se mexe é assunto do Giro. Veja os dias parados.' },
       { slug: 'localizador', name: 'Localizador de Produtos', text: 'Para ver as lojas perto de um endereço. A Dinn já consulta em tempo real as 5 mais próximas.' },
       { slug: 'distribuicao', name: 'Distribuição', text: 'Para ver se a falta pode começar no centro de distribuição, na reposição ou na farmácia.' },
-      { slug: 'jean', name: 'Jean', text: 'Pergunte quais lojas estão mais críticas e abra a lista pronta.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pergunte quais lojas estão mais críticas e abra a lista pronta.' },
     ],
   },
   faq: [

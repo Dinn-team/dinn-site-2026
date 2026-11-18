@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactElement } from 'react';
 import type { Def, DemoProps } from '@/components/site/AppDemos';
 import { ProductScreen } from '@/components/site/ProductScreen';
 import { PriceDemo2, RuptureDemo, TurnDemo } from '@/components/site/RealHomeDemos';
-import { DistributionDemo2, JeanDemo2, LocatorDemo2, MarketDemo2, OpportunitiesDemo2 } from '@/components/site/RealMapDemos';
+import { DistributionDemo2, DinnDemo2, LocatorDemo2, MarketDemo2, OpportunitiesDemo2 } from '@/components/site/RealMapDemos';
 import type { ScreenKey, Shot } from './types';
 
 type Demo = (p: DemoProps) => ReactElement;
@@ -15,7 +15,7 @@ const SCREENS: Record<ScreenKey, Demo> = {
   market: MarketDemo2,
   opps: OpportunitiesDemo2,
   dist: DistributionDemo2,
-  jean: JeanDemo2,
+  dinn: DinnDemo2,
 };
 
 /** Roteiro de uma tela parada: vai direto à fase e enquadra o alvo (modo passo da demo). */

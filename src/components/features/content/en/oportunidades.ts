@@ -17,7 +17,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Select the question and the scope', text: 'Set the market, region, chain and period of 7, 30, 60 or 90 days. Then select one of three questions.' },
     { title: 'Read the map and the territories', text: 'Each state gets a signal. The table sorts the territories and shows the base of each number.' },
-    { title: 'Open the detail and investigate', text: 'See chains, stores, competitors, history and projection. Ask Jean for up to 5 short actions.' },
+    { title: 'Open the detail and investigate', text: 'See chains, stores, competitors, history and projection. Ask Dinn for up to 5 short actions.' },
   ],
   doors: {
     title: 'Where do you want to look?',
@@ -40,8 +40,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Jean already knows the scope of the screen. Ask who gained share and ask for actions.',
+  dinn: {
+    lead: 'Dinn already knows the scope of the screen. Ask who gained share and ask for actions.',
     prompts: ['Which competing brands gained share in Santa Catarina?', 'In which chains in Santa Catarina does this happen?', 'What actions do you recommend for Santa Catarina?'],
     turns: [
       { q: 'Who gained share in Santa Catarina?', a: 'Farmoquímica Aliança, in the last 4 weeks. The change for Bionova Genéricos is inside the 1.3 pp margin.',
@@ -77,7 +77,7 @@ export const content: FeatureContent = {
       {
         tab: 'Actions',
         title: 'Up to 5 short actions',
-        text: 'Jean reads the scenario and suggests actions. They are suggestions. They do not become tasks.',
+        text: 'Dinn reads the scenario and suggests actions. They are suggestions. They do not become tasks.',
         shot: { screen: 'opps', phase: 5, to: 'acts' },
       },
     ],
@@ -145,7 +145,7 @@ export const content: FeatureContent = {
       { slug: 'mercado', name: 'Market', text: 'See share by lab and the stores where only the competitor sells.' },
       { slug: 'ruptura', name: 'Stock-out', text: 'See if the loss of share comes from a missing product.' },
       { slug: 'distribuicao', name: 'Distribution', text: 'See if the gap is in the DC or in restocking in that region.' },
-      { slug: 'jean', name: 'Jean', text: 'Ask who gained share and ask for up to 5 short actions.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Ask who gained share and ask for up to 5 short actions.' },
     ],
   },
   faq: [

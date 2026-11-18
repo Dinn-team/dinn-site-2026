@@ -45,8 +45,8 @@ export const distribuicao: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'A Jean sabe em que tela você está e quais filtros estão ativos. Peça uma leitura em português.',
+  dinn: {
+    lead: 'O Dinn sabe em que tela você está e quais filtros estão ativos. Peça uma leitura em português.',
     prompts: ['Quais farmácias da região de Brasília estão sem Cefalgin?', 'Quantas farmácias de Brasília estão com Cefalgin em nível baixo?', 'Onde estou com ruptura perto do CD?'],
     turns: [
       { q: 'Quais farmácias de Brasília estão sem Cefalgin?', a: '41 das 336 farmácias no raio de 30 km estão sem Cefalgin.',
@@ -137,7 +137,7 @@ export const distribuicao: FeatureContent = {
       'O mapa, o gráfico e os cartões não têm exportação própria.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
-    note: 'A Jean sabe em que tela você está e quais filtros estão ativos. Peça uma leitura em português.',
+    note: 'O Dinn sabe em que tela você está e quais filtros estão ativos. Peça uma leitura em português.',
   },
   related: {
     title: 'Junto com outras funcionalidades',

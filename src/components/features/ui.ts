@@ -6,14 +6,14 @@ import type { Language } from '@/i18n/store';
 
 export type FeatureUi = {
   pageNav: string;
-  nav: { como: string; jean: string; onde: string; dentro: string; ler: string; faz: string; usar: string; junto: string; duvidas: string };
+  nav: { como: string; dinn: string; onde: string; dentro: string; ler: string; faz: string; usar: string; junto: string; duvidas: string };
   seeHow: string;
   illustrative: string;
   howTitle: string;
   whoUses: string;
-  jeanLabel: string;
-  jeanTitle: string;
-  jeanLink: string;
+  dinnLabel: string;
+  dinnTitle: string;
+  dinnLink: string;
   thinking: string;
   querying: string;
   srQuestion: string;
@@ -31,18 +31,18 @@ export type FeatureUi = {
 export const UI: Record<Language, FeatureUi> = {
   pt: {
     pageNav: 'Nesta página',
-    nav: { como: 'Como funciona', jean: 'Pergunte à Jean', onde: 'Onde aparece', dentro: 'Por dentro', ler: 'Como ler', faz: 'O que faz e não faz', usar: 'Como usar', junto: 'Junto com outras', duvidas: 'Dúvidas' },
+    nav: { como: 'Como funciona', dinn: 'Pergunte ao Dinn', onde: 'Onde aparece', dentro: 'Por dentro', ler: 'Como ler', faz: 'O que faz e não faz', usar: 'Como usar', junto: 'Junto com outras', duvidas: 'Dúvidas' },
     seeHow: 'Ver como funciona →',
     illustrative: 'Dados e nomes ilustrativos.',
     howTitle: 'Como funciona',
     whoUses: 'Quem usa',
-    jeanLabel: 'Jean, a assistente da Dinn',
-    jeanTitle: 'Pergunte à Jean',
-    jeanLink: 'Conheça a Jean',
+    dinnLabel: 'Dinn, o assistente da plataforma',
+    dinnTitle: 'Pergunte ao Dinn',
+    dinnLink: 'Conheça o Dinn',
     thinking: 'Pensando',
     querying: 'Consultando os dados',
     srQuestion: 'Pergunta:',
-    srAnswer: 'Resposta da Jean:',
+    srAnswer: 'Resposta do Dinn:',
     doesTitle: 'O que faz e o que não faz',
     does: 'Faz',
     doesNot: 'Não faz',
@@ -54,18 +54,18 @@ export const UI: Record<Language, FeatureUi> = {
   },
   en: {
     pageNav: 'On this page',
-    nav: { como: 'How it works', jean: 'Ask Jean', onde: 'Where it appears', dentro: 'Inside', ler: 'How to read', faz: 'What it does', usar: 'How to use', junto: 'Related features', duvidas: 'FAQ' },
+    nav: { como: 'How it works', dinn: 'Ask Dinn', onde: 'Where it appears', dentro: 'Inside', ler: 'How to read', faz: 'What it does', usar: 'How to use', junto: 'Related features', duvidas: 'FAQ' },
     seeHow: 'See how it works →',
     illustrative: 'Illustrative data and names.',
     howTitle: 'How it works',
     whoUses: 'Who uses it',
-    jeanLabel: 'Jean, the Dinn assistant',
-    jeanTitle: 'Ask Jean',
-    jeanLink: 'Meet Jean',
+    dinnLabel: 'Dinn, the platform assistant',
+    dinnTitle: 'Ask Dinn',
+    dinnLink: 'Meet Dinn',
     thinking: 'Thinking',
     querying: 'Checking the data',
     srQuestion: 'Question:',
-    srAnswer: 'Jean answers:',
+    srAnswer: 'Dinn answers:',
     doesTitle: 'What it does and does not do',
     does: 'Does',
     doesNot: 'Does not',
@@ -77,18 +77,18 @@ export const UI: Record<Language, FeatureUi> = {
   },
   es: {
     pageNav: 'En esta página',
-    nav: { como: 'Cómo funciona', jean: 'Pregunta a Jean', onde: 'Dónde aparece', dentro: 'Por dentro', ler: 'Cómo leer', faz: 'Qué hace y qué no', usar: 'Cómo usar', junto: 'Funciones relacionadas', duvidas: 'Preguntas' },
+    nav: { como: 'Cómo funciona', dinn: 'Pregunta a Dinn', onde: 'Dónde aparece', dentro: 'Por dentro', ler: 'Cómo leer', faz: 'Qué hace y qué no', usar: 'Cómo usar', junto: 'Funciones relacionadas', duvidas: 'Preguntas' },
     seeHow: 'Ver cómo funciona →',
     illustrative: 'Datos y nombres ilustrativos.',
     howTitle: 'Cómo funciona',
     whoUses: 'Quién la usa',
-    jeanLabel: 'Jean, la asistente de Dinn',
-    jeanTitle: 'Pregunta a Jean',
-    jeanLink: 'Conoce a Jean',
+    dinnLabel: 'Dinn, el asistente de la plataforma',
+    dinnTitle: 'Pregunta a Dinn',
+    dinnLink: 'Conoce a Dinn',
     thinking: 'Pensando',
     querying: 'Consultando los datos',
     srQuestion: 'Pregunta:',
-    srAnswer: 'Respuesta de Jean:',
+    srAnswer: 'Respuesta de Dinn:',
     doesTitle: 'Qué hace y qué no hace',
     does: 'Hace',
     doesNot: 'No hace',

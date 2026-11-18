@@ -16,7 +16,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Choose the scope', text: 'Filter by product, chain, state, city or Brick. The filters apply to all charts and tables on the screen.' },
     { title: 'Read the stock-out', text: 'See the trend in the chart. See how many stores are at each level. See which products and chains miss the most.' },
-    { title: 'Open a store and act', text: 'Click a store to see what is missing there, product by product. Download the list in Excel or ask Jean.' },
+    { title: 'Open a store and act', text: 'Click a store to see what is missing there, product by product. Download the list in Excel or ask Dinn.' },
   ],
   doors: {
     title: 'Where stock-out appears',
@@ -39,8 +39,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Ask Jean which stores are most critical. Then open the ready list on Home.',
+  dinn: {
+    lead: 'Ask Dinn which stores are most critical. Then open the ready list on Home.',
     prompts: ['What are the 10 most critical stores for stock-out?', 'Is the Cefalgin stock-out getting better?', 'Which chains miss the most product?'],
     turns: [
       { q: 'Which stores are most critical for stock-out?', a: 'There are 32 stores at Critical level. These are the first three.',
@@ -119,13 +119,13 @@ export const content: FeatureContent = {
     analyze: [
       'Is my launch missing? Filter the product. Use 30 days and the Weekly view. In the ranking by chain, see who has most of the gaps. In the stores table, sort by Level and take Critical and High stores to the field.',
       'Where do I send the field team? Choose the state, the city or the Brick. Sort the stores by Level. Open the first stores and see the missing products. Download in Excel.',
-      'Is the situation getting better? Compare 30 and 90 days in the chart. See the level card and come back the next week. Or ask Jean.',
+      'Is the situation getting better? Compare 30 and 90 days in the chart. See the level card and come back the next week. Or ask Dinn.',
       'Is the product missing, or is it not moving? In Availability at POS by chain, compare Out of stock with No sales. In the Idle stock level card, see the idle days.',
     ],
     extract: [
       'Use the Download button in the points-of-sale table, in the ranking by SKU or in the store panel.',
       'Save the scope in Saved views to come back with one click.',
-      'Ask Jean and open the list already filtered.',
+      'Ask Dinn and open the list already filtered.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'The number can differ from what you see in the pharmacy. The base is from yesterday, and part of the stock is estimated. To confirm a store now, use Check now. The value of the base is in the trend.',
@@ -137,7 +137,7 @@ export const content: FeatureContent = {
       { slug: 'giro', name: 'Sell-through', text: 'Stores with stock that does not move belong to Sell-through. See the idle days.' },
       { slug: 'localizador', name: 'Product Locator', text: 'See the stores near an address. Dinn already checks the five closest in real time.' },
       { slug: 'distribuicao', name: 'Distribution', text: 'See if the gap can start at the distribution center (DC), in restocking or at the pharmacy.' },
-      { slug: 'jean', name: 'Jean', text: 'Ask which stores are most critical and open the ready list.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Ask which stores are most critical and open the ready list.' },
     ],
   },
   faq: [

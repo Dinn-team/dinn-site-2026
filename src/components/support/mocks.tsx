@@ -4,7 +4,7 @@ import {
   Lock, MapPin, Plus, Send, Store, Target, TrendingUp, TriangleAlert, Truck, UsersRound, X,
 } from 'lucide-react';
 import { goodRequest, zoeKey } from './content';
-import { JeanOrb } from '@/components/site/JeanOrb';
+import { DinnOrb } from '@/components/site/DinnOrb';
 import { useDemoT } from '@/components/site/demoI18n';
 
 // Maquetes do portal (Suporte), reproduzindo as réplicas de
@@ -44,7 +44,7 @@ const NAV = [
   { label: 'Mercado', Icon: TrendingUp },
   { label: 'Oportunidades', Icon: Target },
   { label: 'Distribuição', Icon: Truck },
-  { label: 'Jean', Icon: ({ className }: { className?: string }) => <JeanOrb size={18} className={className} /> },
+  { label: 'Dinn', Icon: ({ className }: { className?: string }) => <DinnOrb size={18} className={className} /> },
 ];
 
 function Sidebar({ active }: { active?: boolean }) {
@@ -97,14 +97,14 @@ export const TABS: { id: TabId; label: string; count: number; dot?: boolean }[] 
 const TICKETS: Record<TabId, { code: string; tone: string; status: string; subject: string; when: string; unread?: boolean }[]> = {
   andamento: [
     { code: 'SAU-0037', tone: 'blue', status: 'Em atendimento', subject: 'Dúvida sobre ruptura do produto no PDV', when: 'Última atividade ontem' },
-    { code: 'SAU-0040', tone: 'brand', status: 'Com a equipe Dinn', subject: 'Preciso liberar Dinn Insights para outro usuário', when: 'Última atividade há 3 horas' },
+    { code: 'SAU-0040', tone: 'brand', status: 'Com a equipe Dinn', subject: 'Preciso liberar Dinn para outro usuário', when: 'Última atividade há 3 horas' },
   ],
   aguardando: [
     { code: 'SAU-0042', tone: 'amber', status: 'Aguardando sua resposta', subject: 'Estoque do PDV não atualiza', when: 'Última atividade há 5 minutos', unread: true },
   ],
   encerrados: [
     { code: 'SAU-0031', tone: 'grey', status: 'Encerrado', subject: 'Dúvida sobre ruptura', when: 'Última atividade em 12 de outubro' },
-    { code: 'SAU-0028', tone: 'green', status: 'Resolvido', subject: 'Acesso ao Dinn Insights', when: 'Última atividade em 8 de outubro' },
+    { code: 'SAU-0028', tone: 'green', status: 'Resolvido', subject: 'Acesso ao Dinn', when: 'Última atividade em 8 de outubro' },
   ],
 };
 
@@ -264,7 +264,7 @@ export function ConversationScreen({ variant = 'zoe' }: { variant?: 'zoe' | 'tea
             <span className="code" style={{ fontSize: 14 }}>{team ? 'SAU-0040' : 'SAU-0042'}</span>
             <Badge tone={team ? 'brand' : 'blue'}>{team ? 'Com a equipe Dinn' : 'Em atendimento'}</Badge>
           </div>
-          <h1 className="conv-title">{team ? t('Preciso liberar Dinn Insights para outro usuário') : t('Estoque do PDV não atualiza')}</h1>
+          <h1 className="conv-title">{team ? t('Preciso liberar Dinn para outro usuário') : t('Estoque do PDV não atualiza')}</h1>
         </div>
         <span className="btn outline sm"><CircleX className="i" aria-hidden="true" />{t('Encerrar pedido')}</span>
       </div>
@@ -274,7 +274,7 @@ export function ConversationScreen({ variant = 'zoe' }: { variant?: 'zoe' | 'tea
           {team ? (
             <>
               <div className="day">{t('29 de outubro de 2026')}</div>
-              <div className="msg mine"><div className="bubble mine"><p className="who"><b>{t('Você')}</b><time>14:20</time></p><p className="text">{t('Preciso liberar o Dinn Insights para a Maria.')}</p><p className="receipt read"><CheckCheck className="i" aria-hidden="true" /><span>{t('Lida')}</span></p></div></div>
+              <div className="msg mine"><div className="bubble mine"><p className="who"><b>{t('Você')}</b><time>14:20</time></p><p className="text">{t('Preciso liberar o Dinn para a Maria.')}</p><p className="receipt read"><CheckCheck className="i" aria-hidden="true" /><span>{t('Lida')}</span></p></div></div>
               <div className="msg"><ZoeAvatar /><div className="bubble"><p className="who"><b>Zoe</b><time>14:21</time></p><p className="text">{t('Entendi, obrigada. Alterar acesso precisa de uma pessoa da equipe. Encaminhei seu pedido com todo o contexto para eles.')}</p></div></div>
               <p className="day">{t('Pedido encaminhado à equipe Dinn')}</p>
               <div className="msg"><span className="team-avatar"><UsersRound className="i" aria-hidden="true" /></span><div className="bubble team"><p className="who"><b>{t('Equipe Dinn')}</b><time>15:02</time></p><p className="text">{t('Oi! Já liberamos o acesso. Pode conferir e nos dizer se apareceu?')}</p></div></div>

@@ -72,7 +72,7 @@ export const offerEn = {
         { label: "Market", text: "Read competition and coverage by region and chain.", href: "/funcionalidades/mercado" },
         { label: "Opportunities", text: "See where to act first. Each one shows source and limits.", href: "/funcionalidades/oportunidades" },
         { label: "Distribution", text: "Cross distributor stock with store availability to find the gap.", href: "/funcionalidades/distribuicao" },
-        { label: "Jean", text: "Delegate follow-ups. Jean prepares the work and calls you when you need to decide.", href: "/funcionalidades/jean" },
+        { label: "Dinn", text: "Delegate follow-ups. Dinn prepares the work and calls you when you need to decide.", href: "/funcionalidades/dinn" },
         { label: "Dinn Conecta", text: "Send Dinn data to your BI, your AI and your integrations.", href: "/produtos/conecta" }
       ]
     },
@@ -193,19 +193,19 @@ export const offerEn = {
   },
 
   // ── Features ──────────────────────────────────────────────────────────────
-  jean: {
+  dinn: {
     meta: {
-      title: "Jean | Dinn",
-      description: "Jean is the Dinn assistant. She follows your work, prepares the next step and calls you when you need to decide."
+      title: "Ask Dinn | Dinn",
+      description: "Dinn follows your work, prepares the next step and calls you when you need to decide."
     },
     hero: {
-      title: "Jean, the assistant for your work",
-      lead: "Tell Jean what you want to follow. She uses Dinn data and the tools you allow. She prepares the work and calls you when you need to decide."
+      title: "Dinn, the assistant for your work",
+      lead: "Tell Dinn what you want to follow. Dinn uses your platform data and the tools you allow. Dinn prepares the work and calls you when you need to decide."
     },
     ask: {
       title: "Delegate as you would to a colleague",
-      quote: "Jean, follow the availability of these products in the chains I manage. Before my meetings, prepare the main points and call me on WhatsApp when I need to decide something.",
-      note: "Jean confirms the goal, the scope and the permissions before she starts. She asks only what is missing."
+      quote: "Dinn, follow the availability of these products in the chains I manage. Before my meetings, prepare the main points and call me on WhatsApp when I need to decide something.",
+      note: "Dinn confirms the goal, the scope and the permissions before it starts. It asks only what is missing."
     },
     ways: {
       title: "Three ways to delegate",
@@ -225,7 +225,7 @@ export const offerEn = {
       ]
     },
     how: {
-      title: "How Jean works",
+      title: "How Dinn works",
       lead: "Scroll the page. Each step shows the screen at the right point.",
       steps: [
         {
@@ -234,38 +234,38 @@ export const offerEn = {
         },
         {
           label: "Confirm the agreement",
-          text: "Jean confirms the goal, products, chains, sources, channel and allowed actions."
+          text: "Dinn confirms the goal, products, chains, sources, channel and allowed actions."
         },
         {
-          label: "Jean follows",
-          text: "She reads the data, messages and meetings that you allowed."
+          label: "Dinn follows",
+          text: "Dinn reads the data, messages and meetings that you allowed."
         },
         {
-          label: "Jean prepares the next step",
-          text: "She sees what changed and prepares a summary, a draft or an analysis."
+          label: "Dinn prepares the next step",
+          text: "Dinn sees what changed and prepares a summary, a draft or an analysis."
         },
         {
-          label: "Jean calls you",
-          text: "When she needs a decision, she calls you in the portal or on WhatsApp, with the context."
+          label: "Dinn calls you",
+          text: "When Dinn needs a decision, it calls you in the portal or on WhatsApp, with the context."
         },
         {
-          label: "Jean records and continues",
-          text: "She records the result and continues to follow. She does not repeat what she already did."
+          label: "Dinn records and continues",
+          text: "Dinn records the result and continues to follow. It does not repeat what it already did."
         }
       ]
     },
     activities: {
-      title: "Activities: Jean’s work in one place",
-      lead: "Each item shows the goal, what Jean did, the sources, the result and the next step.",
+      title: "Activities: Dinn’s work in one place",
+      lead: "Each item shows the goal, what Dinn did, the sources, the result and the next step.",
       items: [
         "What needs me?",
-        "What is Jean following?",
+        "What is Dinn following?",
         "What is already delivered?"
       ]
     },
     settings: {
-      title: "You control Jean in the settings",
-      lead: "Connect the tools, select the channels and set how far Jean can go. You can revoke access at any time.",
+      title: "You control Dinn in the settings",
+      lead: "Connect the tools, select the channels and set how far Dinn can go. You can revoke access at any time.",
       items: [
         {
           title: "Connections",
@@ -273,28 +273,28 @@ export const offerEn = {
         },
         {
           title: "Channels",
-          text: "Talk in the portal or on WhatsApp, with the Jean number. Jean does not read your other conversations."
+          text: "Talk in the portal or on WhatsApp, with the Dinn number. Dinn does not read your other conversations."
         },
         {
           title: "Autonomy",
-          text: "For each type of action, set what Jean does alone and what she asks you to approve."
+          text: "For each type of action, set what Dinn does alone and what it asks you to approve."
         },
         {
           title: "Attention",
-          text: "Select the time, channel and frequency. Say “tell me only if it gets worse” and Jean changes the follow-up."
+          text: "Select the time, channel and frequency. Say “tell me only if it gets worse” and Dinn changes the follow-up."
         }
       ]
     },
     whatsapp: {
       title: "Continue on WhatsApp",
-      lead: "Jean sends the finished work and waits for your reply. The same task continues in the portal, with the same history.",
+      lead: "Dinn sends the finished work and waits for your reply. The same task continues in the portal, with the same history.",
       note: "A “yes” on WhatsApp approves only the request in that message."
     },
     autonomy: {
-      title: "How far Jean can go",
+      title: "How far Dinn can go",
       cols: [
         "Action",
-        "What Jean does"
+        "What Dinn does"
       ],
       rows: [
         [
@@ -316,14 +316,14 @@ export const offerEn = {
       ]
     },
     limits: {
-      title: "Jean’s limits",
+      title: "Dinn’s limits",
       items: [
-        "Jean shows the date of the data. A D-1 base is not real-time monitoring.",
-        "Jean separates fact from hypothesis and says when information is missing.",
+        "Dinn shows the date of the data. A D-1 base is not real-time monitoring.",
+        "Dinn separates fact from hypothesis and says when information is missing.",
         "No data does not mean that the problem is solved.",
-        "Jean uses only the metrics in your plan. When a feature is missing, she says which one.",
+        "Dinn uses only the metrics in your plan. When a feature is missing, it says which one.",
         "A connected email does not give access to indicators outside the plan. A Dinn contract does not give access to your inbox.",
-        "Instructions inside emails or documents do not change Jean’s permissions.",
+        "Instructions inside emails or documents do not change Dinn’s permissions.",
         "Your connected personal content is not visible to other users of the laboratory."
       ]
     }
@@ -376,7 +376,7 @@ export const offerEn = {
         mercado: "Market",
         oportunidades: "Opportunities",
         distribuicao: "Distribution",
-        jean: "Jean and Activities",
+        dinn: "Dinn and Activities",
         conecta: "Exports and Connections"
       }
     },
@@ -452,13 +452,13 @@ export const offerEn = {
         href: "/solucoes/supply-distribuicao"
       },
       {
-        id: "jean", name: "Jean", kind: "interface",
+        id: "dinn", name: "Dinn", kind: "interface",
         problem: "I want to delegate the follow-up of my work.",
         input: "A request in plain English and the tools you connected.",
-        action: "Ask Jean. She confirms the agreement, follows the data and prepares the next step.",
+        action: "Ask Dinn. She confirms the agreement, follows the data and prepares the next step.",
         output: "Summaries, drafts and analyses ready for review, in the portal or on WhatsApp.",
         decision: "What to approve, change or follow.",
-        limit: "Jean acts only within the agreement and the permissions. External actions need approval, unless you gave prior approval.",
+        limit: "Dinn acts only within the agreement and the permissions. External actions need approval, unless you gave prior approval.",
         href: "/plataforma"
       },
       {
@@ -1059,7 +1059,7 @@ export const offerEn = {
         { value: "historico", label: "History and saved views" },
         { value: "giro_preco", label: "Sell-through, price and competition" },
         { value: "distribuicao", label: "Distribution" },
-        { value: "insights", label: "Insights" },
+        { value: "insights", label: "Dinn" },
         { value: "alertas", label: "Alerts and routines" },
         { value: "exportacoes", label: "Exports, API and MCP" }
       ]

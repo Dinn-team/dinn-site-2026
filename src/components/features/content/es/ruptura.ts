@@ -16,7 +16,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Elige el segmento', text: 'Filtra por producto, cadena, estado, ciudad o Brick. Los filtros valen para todos los gráficos y tablas de la pantalla.' },
     { title: 'Lee el quiebre', text: 'Ve la evolución en el gráfico. Ve cuántas tiendas hay en cada nivel. Ve qué productos y cadenas fallan más.' },
-    { title: 'Abre la tienda y actúa', text: 'Haz clic en una tienda para ver qué falta en ella, producto por producto. Descarga la lista en Excel o pregunta a Jean.' },
+    { title: 'Abre la tienda y actúa', text: 'Haz clic en una tienda para ver qué falta en ella, producto por producto. Descarga la lista en Excel o pregunta a Dinn.' },
   ],
   doors: {
     title: 'Dónde aparece el quiebre',
@@ -39,8 +39,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Pregunta a Jean qué tiendas están más críticas. Después abre la lista preparada en Inicio.',
+  dinn: {
+    lead: 'Pregunta a Dinn qué tiendas están más críticas. Después abre la lista preparada en Inicio.',
     prompts: ['¿Cuáles son las 10 tiendas más críticas en quiebre?', '¿Está mejorando el quiebre de Cefalgin?', '¿En qué cadenas falta más producto?'],
     turns: [
       { q: '¿Qué tiendas están más críticas en quiebre?', a: 'Hay 32 tiendas en el nivel Crítico. Estas son las tres primeras.',
@@ -119,13 +119,13 @@ export const content: FeatureContent = {
     analyze: [
       '¿Mi lanzamiento está faltando? Filtra el producto. Usa 30 días y la vista Semanal. En el ranking por cadena, ve quién concentra la falta. En la tabla de tiendas, ordena por Nivel y lleva las tiendas Crítico y Alto al campo.',
       '¿Adónde envío al equipo de campo? Elige el estado, la ciudad o el Brick. Ordena las tiendas por Nivel. Abre las primeras y ve los productos que faltan. Descarga en Excel.',
-      '¿La situación está mejorando? Compara 30 y 90 días en el gráfico. Ve la tarjeta de niveles y vuelve la semana siguiente. O pregunta a Jean.',
+      '¿La situación está mejorando? Compara 30 y 90 días en el gráfico. Ve la tarjeta de niveles y vuelve la semana siguiente. O pregunta a Dinn.',
       '¿Falta el producto o no se mueve? En Disponibilidad en PDV por red, compara Sin stock con Sin ventas. En la tarjeta Nivel de stock parado, ve los días parado.',
     ],
     extract: [
       'Usa el botón Descargar de la tabla de puntos de venta, del ranking por SKU o del panel de la tienda.',
       'Guarda el segmento en Vistas guardadas para volver con un clic.',
-      'Pregunta a Jean y abre la lista ya filtrada.',
+      'Pregunta a Dinn y abre la lista ya filtrada.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'El número puede diferir de lo que ves en la farmacia. La base es de ayer y parte del inventario es estimado. Para confirmar una tienda ahora, usa Consultar ahora. El valor de la base está en la tendencia.',
@@ -137,7 +137,7 @@ export const content: FeatureContent = {
       { slug: 'giro', name: 'Rotación', text: 'El inventario que no se mueve es tema de Rotación. Ve los días parado.' },
       { slug: 'localizador', name: 'Localizador de Productos', text: 'Ve las tiendas cerca de una dirección. Dinn ya consulta en tiempo real las 5 más cercanas.' },
       { slug: 'distribuicao', name: 'Distribución', text: 'Ve si la falta puede empezar en el CEDIS, en la reposición o en la farmacia.' },
-      { slug: 'jean', name: 'Jean', text: 'Pregunta qué tiendas están más críticas y abre la lista preparada.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pregunta qué tiendas están más críticas y abre la lista preparada.' },
     ],
   },
   faq: [

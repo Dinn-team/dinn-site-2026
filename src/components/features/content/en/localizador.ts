@@ -40,8 +40,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Ask for the product and the city. Jean opens the Locator already filled in.',
+  dinn: {
+    lead: 'Ask for the product and the city. Dinn opens the Locator already filled in.',
     prompts: ['Where can I find Cefalgin cápsula 400mg in São Paulo?', 'Which pharmacies in Campinas have Cefalgin in stock?', 'Can I confirm if there is still stock now?'],
     turns: [
       { q: 'Where can I find Cefalgin in São Paulo?', a: 'There are 128 pharmacies within 5 km. These had stock in yesterday’s reading.',

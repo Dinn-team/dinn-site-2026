@@ -16,7 +16,7 @@ export const giro: FeatureContent = {
   steps: [
     { title: 'Escolha o produto e a janela', text: 'Filtre por produto, rede, UF, cidade ou Brick e escolha 7, 30 ou 90 dias. O giro por loja aparece quando há um produto escolhido.' },
     { title: 'Veja quem gira e quem está parado', text: 'Compare as redes pela disponibilidade. Veja quantas lojas estão paradas há 7, 30, 60 ou 90 dias. Ordene as lojas pelos dias parados.' },
-    { title: 'Abra a loja e investigue', text: 'Clique em uma loja para ver o giro, os dias parados e o estoque congelado de cada produto. Baixe a lista ou pergunte à Jean.' },
+    { title: 'Abra a loja e investigue', text: 'Clique em uma loja para ver o giro, os dias parados e o estoque congelado de cada produto. Baixe a lista ou pergunte ao Dinn.' },
   ],
   doors: {
     title: 'Onde o giro aparece',
@@ -46,8 +46,8 @@ export const giro: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Pergunte à Jean onde o estoque está parado. Ela abre a lista direto na Início.',
+  dinn: {
+    lead: 'Pergunte ao Dinn onde o estoque está parado. Ele abre a lista direto na Início.',
     prompts: ['Onde estou com mais estoque congelado no recorte atual?', 'Quais PDVs concentram mais estoque congelado?', 'Quantos dias de estoque tenho de Cefalgin em São Paulo?'],
     turns: [
       { q: 'Onde estou com mais estoque congelado?', a: 'Estas três redes têm mais estoque congelado. Abra a lista na Início, já filtrada.',
@@ -135,7 +135,7 @@ export const giro: FeatureContent = {
       'Use o botão Baixar da tabela de pontos de venda. O arquivo leva todas as lojas do recorte.',
       'O painel da loja também tem Baixar, com a lista de produtos daquela loja.',
       'Salve o recorte em Visualizações salvas para voltar com um clique.',
-      'Pergunte à Jean e peça os dados em tabela. O Localizador não tem botão de baixar.',
+      'Pergunte ao Dinn e peça os dados em tabela. O Localizador não tem botão de baixar.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'Giro e estoque parado são alerta para investigar. A diferença entre dois números pode vir do período, da loja ou da leitura do estoque.',

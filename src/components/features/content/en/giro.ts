@@ -16,7 +16,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Choose the product and the window', text: 'Filter by product, chain, state, city or Brick. Choose 7, 30 or 90 days. Sell-through by store shows when you choose one product.' },
     { title: 'See what moves and what is idle', text: 'Compare chains by availability. See how many stores are idle for 7, 30, 60 or 90 days. Sort the stores by idle days.' },
-    { title: 'Open a store and investigate', text: 'Click a store to see sell-through, idle days and frozen stock for each product. Download the list or ask Jean.' },
+    { title: 'Open a store and investigate', text: 'Click a store to see sell-through, idle days and frozen stock for each product. Download the list or ask Dinn.' },
   ],
   doors: {
     title: 'Where sell-through shows',
@@ -46,8 +46,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Ask Jean where stock is idle. She opens the list on Home.',
+  dinn: {
+    lead: 'Ask Dinn where stock is idle. Dinn opens the list on Home.',
     prompts: ['Where do I have the most frozen stock in the current scope?', 'Which stores hold the most frozen stock?', 'How many days of Cefalgin stock do I have in São Paulo?'],
     turns: [
       { q: 'Where do I have the most frozen stock?', a: 'These three chains have the most frozen stock. Open the list on Home, already filtered.',
@@ -135,7 +135,7 @@ export const content: FeatureContent = {
       'Use the Download button in the points of sale table. The file has all stores in the scope.',
       'The store panel also has Download, with the list of products of that store.',
       'Save the scope in Saved views to return to it with one click.',
-      'Ask Jean and request the data in a table. The Locator has no download button.',
+      'Ask Dinn and request the data in a table. The Locator has no download button.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'Sell-through and idle stock are alerts to check. The difference between two numbers can come from the period, the store or the stock reading.',

@@ -299,9 +299,9 @@
   "en": "Distribution",
   "es": "Distribución"
  },
- "Jean": {
-  "en": "Jean",
-  "es": "Jean"
+ "Dinn": {
+  "en": "Dinn",
+  "es": "Dinn"
  },
  "Nome da pessoa": {
   "en": "User name",
@@ -323,9 +323,9 @@
   "en": "With the Dinn team",
   "es": "Con el equipo Dinn"
  },
- "Preciso liberar Dinn Insights para outro usuário": {
-  "en": "I need to give another user access to Dinn Insights",
-  "es": "Necesito dar acceso a Dinn Insights a otro usuario"
+ "Preciso liberar Dinn para outro usuário": {
+  "en": "I need to give another user access to Dinn",
+  "es": "Necesito dar acceso a Dinn a otro usuario"
  },
  "Encerrado": {
   "en": "Closed",
@@ -339,9 +339,9 @@
   "en": "Question about stock-out",
   "es": "Duda sobre ruptura"
  },
- "Acesso ao Dinn Insights": {
-  "en": "Access to Dinn Insights",
-  "es": "Acceso a Dinn Insights"
+ "Acesso ao Dinn": {
+  "en": "Access to Dinn",
+  "es": "Acceso a Dinn"
  },
  "Enviamos junto com o pedido": {
   "en": "We send with the request",
@@ -375,9 +375,9 @@
   "en": "Your request went to the Dinn team. They reply here.",
   "es": "Tu solicitud se envió al equipo Dinn. Ellos responden aquí."
  },
- "Preciso liberar o Dinn Insights para a Maria.": {
-  "en": "I need to give Maria access to Dinn Insights.",
-  "es": "Necesito dar acceso a Dinn Insights a María."
+ "Preciso liberar o Dinn para a Maria.": {
+  "en": "I need to give Maria access to Dinn.",
+  "es": "Necesito dar acceso a Dinn a María."
  },
  "Entendi, obrigada. Alterar acesso precisa de uma pessoa da equipe. Encaminhei seu pedido com todo o contexto para eles.": {
   "en": "Understood, thank you. A person on the team must change access. I sent your request to them with the full context.",

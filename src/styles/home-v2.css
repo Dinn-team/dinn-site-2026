@@ -4,7 +4,7 @@
    (tons por transparência), #B79EFF para destaque em fundo escuro. Cores de
    nível (vermelho, laranja, amarelo, verde) aparecem só em dado, como no
    Dinn Manager.
-   Seções: herói (aqui) → casos de uso (home-teams.css) → Dinn Insights
+   Seções: herói (aqui) → casos de uso (home-teams.css) → Dinn
    (home-insights.css) → manifesto, por dentro, entrega e chamada final
    (home-story.css).
    ========================================================================== */
@@ -75,7 +75,7 @@
 
 /* ── Herói ──────────────────────────────────────────────────────────────
    Provisório: título, uma frase e dois botões sobre a rede neural. A
-   conversa com o Dinn mudou para a seção Dinn Insights. */
+   conversa com o Dinn mudou para a seção Dinn. */
 .dh {
   /* A cena (1672×941) ocupa o topo; o texto começa abaixo da esteira, já sobre
      o rio e as árvores. --u é "1 px da imagem" na largura atual. */

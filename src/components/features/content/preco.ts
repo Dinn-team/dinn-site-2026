@@ -57,7 +57,7 @@ export const preco: FeatureContent = {
       },
     ],
   },
-  jean: {
+  dinn: {
     lead: 'Pergunte como o preço varia entre as redes. A resposta pode vir em tabela.',
     prompts: ['Como o preço de Cefalgin varia entre as redes?', 'Quais lojas estão sem preço?', 'Qual é o menor preço de Cefalgin em São Paulo?'],
     turns: [
@@ -142,7 +142,7 @@ export const preco: FeatureContent = {
       'Na Início, use o botão Baixar. O arquivo traz a coluna Preço (R$). Loja sem preço sai com a célula vazia.',
       'O Localizador não exporta. O botão Compartilhar copia endereço e link, não o preço.',
       'Salve o recorte em Visualizações salvas para voltar com um clique.',
-      'Pergunte à Jean e peça a resposta em tabela.',
+      'Pergunte ao Dinn e peça a resposta em tabela.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'O Preço é uma observação. A Dinn não diz qual deveria ser o preço nem se a loja está certa.',
@@ -154,7 +154,7 @@ export const preco: FeatureContent = {
       { slug: 'localizador', name: 'Localizador de Produtos', text: 'É onde o preço aparece com a data da leitura e a ordenação.' },
       { slug: 'giro', name: 'Giro', text: 'Na tabela da Início, o preço fica ao lado do giro e da reposição.' },
       { slug: 'ruptura', name: 'Ruptura', text: 'Veja se a loja tem o produto antes de comparar o preço.' },
-      { slug: 'jean', name: 'Jean', text: 'Pergunte como o preço varia entre redes. A resposta pode vir em tabela.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pergunte como o preço varia entre redes. A resposta pode vir em tabela.' },
     ],
   },
   faq: [

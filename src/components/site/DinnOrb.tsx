@@ -1,6 +1,6 @@
-// Ícone da Jean: a grade de pontos que pulsa. É o mesmo desenho do Orion e do
+// Ícone do Dinn: a grade de pontos que pulsa. É o mesmo desenho do Orion e do
 // Dinn Manager (classe `insights-orb` lá). Use sempre este componente para a
-// Jean: não troque por Sparkles, Brain ou outro ícone da biblioteca.
+// Dinn: não troque por Sparkles, Brain ou outro ícone da biblioteca.
 // Cada ponto tem o atraso de animação do original, então a onda sai do centro.
 
 const DOTS: [number, number, number][] = [
@@ -12,9 +12,9 @@ const DOTS: [number, number, number][] = [
   [12, 21.6, -0.71],
 ];
 
-export function JeanOrb({ size = 24, className = '' }: { size?: number | string; className?: string }) {
+export function DinnOrb({ size = 24, className = '' }: { size?: number | string; className?: string }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={`jean-orb ${className}`.trim()} style={{ flex: 'none' }}>
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={`dinn-orb ${className}`.trim()} style={{ flex: 'none' }}>
       {DOTS.map(([cx, cy, delay]) => (
         <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="1.1" style={{ animationDelay: `${delay}s` }} />
       ))}
@@ -23,4 +23,4 @@ export function JeanOrb({ size = 24, className = '' }: { size?: number | string;
 }
 
 /** Para listas de ícones que esperam um componente com a prop `size` (menu lateral). */
-export const JeanOrbIcon = ({ size = 18 }: { size?: number | string }) => <JeanOrb size={size} />;
+export const DinnOrbIcon = ({ size = 18 }: { size?: number | string }) => <DinnOrb size={size} />;

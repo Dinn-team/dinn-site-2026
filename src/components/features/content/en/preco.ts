@@ -56,7 +56,7 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
+  dinn: {
     lead: "Ask how the price varies between chains. The answer can come as a table.",
     prompts: ["How does the price of Cefalgin vary between chains?", "Which stores have no price?", "What is the lowest price of Cefalgin in São Paulo?"],
     turns: [
@@ -141,7 +141,7 @@ export const content: FeatureContent = {
       "In Home, use the Download button. The file has the Price (R$) column. A store with no price has an empty cell.",
       "The Locator does not export. The Share button copies the address and the link, not the price.",
       "Save the view in Saved views to come back with one click.",
-      "Ask Jean and request the answer in a table.",
+      "Ask Dinn and request the answer in a table.",
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: "Price is an observation. Dinn does not say what the price should be or whether the store is right.",
@@ -153,7 +153,7 @@ export const content: FeatureContent = {
       { slug: 'localizador', name: "Product Locator", text: "This is where the price shows with the date of the reading and the sort order." },
       { slug: 'giro', name: "Sell-through", text: "In the Home table, the price sits next to sell-through and restock." },
       { slug: 'ruptura', name: "Stock-out", text: "Check that the store has the product before you compare the price." },
-      { slug: 'jean', name: "Jean", text: "Ask how the price varies between chains. The answer can come as a table." },
+      { slug: 'dinn', name: "Dinn", text: "Ask how the price varies between chains. The answer can come as a table." },
     ],
   },
   faq: [

@@ -56,7 +56,7 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
+  dinn: {
     lead: "Pregunta cómo varía el precio entre las cadenas. La respuesta puede venir en tabla.",
     prompts: ["¿Cómo varía el precio de Cefalgin entre las cadenas?", "¿Qué tiendas están sin precio?", "¿Cuál es el menor precio de Cefalgin en São Paulo?"],
     turns: [
@@ -141,7 +141,7 @@ export const content: FeatureContent = {
       "En Inicio, usa el botón Descargar. El archivo trae la columna Precio (R$). Una tienda sin precio sale con la celda vacía.",
       "El Localizador no exporta. El botón Compartir copia la dirección y el enlace, no el precio.",
       "Guarda el recorte en Vistas guardadas para volver con un clic.",
-      "Pregunta a Jean y pide la respuesta en tabla.",
+      "Pregunta a Dinn y pide la respuesta en tabla.",
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: "El Precio es una observación. Dinn no dice cuál debería ser el precio ni si la tienda está en lo correcto.",
@@ -153,7 +153,7 @@ export const content: FeatureContent = {
       { slug: 'localizador', name: "Localizador de Productos", text: "Es donde el precio aparece con la fecha de la lectura y el orden." },
       { slug: 'giro', name: "Rotación", text: "En la tabla de Inicio, el precio está junto a la rotación y la reposición." },
       { slug: 'ruptura', name: "Quiebre", text: "Revisa que la tienda tenga el producto antes de comparar el precio." },
-      { slug: 'jean', name: "Jean", text: "Pregunta cómo varía el precio entre cadenas. La respuesta puede venir en tabla." },
+      { slug: 'dinn', name: "Dinn", text: "Pregunta cómo varía el precio entre cadenas. La respuesta puede venir en tabla." },
     ],
   },
   faq: [

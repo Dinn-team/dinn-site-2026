@@ -1,18 +1,18 @@
 import { ArrowUp, Check, CheckCheck, ChevronRight, FileText, Lock, Mail, PanelLeft, Plus, SquarePen, X } from 'lucide-react';
 import { useDemoT } from './demoI18n';
-import { JeanOrb, JeanOrbIcon } from './JeanOrb';
+import { DinnOrb, DinnOrbIcon } from './DinnOrb';
 import { Frame, useDemo, type Def, type DemoProps } from './AppDemos';
 import { RCard, RFrame, RPage, RSeg } from './RealKit';
 
-// Telas da Jean, animadas com o mesmo motor de AppDemos.tsx e desenhadas com o
+// Telas do Dinn, animadas com o mesmo motor de AppDemos.tsx e desenhadas com o
 // kit fiel ao app (RealKit.tsx + site-real-app.css). Base: a spec de negócio
-// "Dinn Atividades e Jean" (30/10/2026) e o plano de Atividades: a pessoa delega
+// "Atividades e Dinn" (30/10/2026) e o plano de Atividades: a pessoa delega
 // um acompanhamento, confirma o combinado, controla conexões e autonomia nas
 // configurações, vê o trabalho em Atividades e conversa pelo WhatsApp com o
-// número da Jean. Dados e nomes fictícios. Não há print real destas telas.
+// número do Dinn. Dados e nomes fictícios. Não há print real destas telas.
 //
 // O texto-fonte fica em português. Tudo que aparece na tela passa por `t()`,
-// que traduz pelo dicionário demo-i18n/jean.json. Datas e horas usam marcadores
+// que traduz pelo dicionário demo-i18n/dinn.json. Datas e horas usam marcadores
 // ({d0511}, {t0942}) para sair no formato de cada idioma.
 
 const MON = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -39,13 +39,13 @@ function useJ() {
   return { t, V, lang, typedText };
 }
 
-/** Barra do topo no desenho do app: caminho da página e atalho da Jean. */
+/** Barra do topo no desenho do app: caminho da página e atalho do Dinn. */
 function JTop({ crumb, sub, t }: { crumb: string; sub?: string; t: (s: string) => string }) {
   return (
     <header className="rl-top">
       <PanelLeft size={18} className="rl-top-ico" />
       <p className="rl-crumb"><span>{t('Início')}</span><ChevronRight size={14} /><b>{crumb}</b>{sub && <small>{sub}</small>}</p>
-      <span className="rl-top-r"><span className="rl-pill rl-pill-jean"><JeanOrbIcon size={15} />Jean</span></span>
+      <span className="rl-top-r"><span className="rl-pill rl-pill-dinn"><DinnOrbIcon size={15} />Dinn</span></span>
     </header>
   );
 }
@@ -84,12 +84,12 @@ const CHAT_DEF: Def = {
   final: 4,
 };
 
-export function JeanChatDemo({ step, def = CHAT_DEF }: DemoProps) {
+export function DinnChatDemo({ step, def = CHAT_DEF }: DemoProps) {
   const { app, phase, typed, cur, tg } = useDemo(def, step);
   const { t, typedText } = useJ();
   const q = phase >= 2 ? '' : typedText(typed.q, ASK) ?? (phase >= 1 ? t(ASK) : '');
   return (
-    <RFrame app={app} cur={cur} nav="jean" label={t('Tela da Jean: a pessoa pede um acompanhamento, a Jean mostra o combinado com objetivo, recorte, fontes, canal e ações autorizadas, e a pessoa ativa.')}>
+    <RFrame app={app} cur={cur} nav="dinn" label={t('Tela do Dinn: a pessoa pede um acompanhamento, o Dinn mostra o combinado com objetivo, recorte, fontes, canal e ações autorizadas, e a pessoa ativa.')}>
       <div className="rl-page">
         <header className="rl-top"><PanelLeft size={18} className="rl-top-ico" /></header>
         <div className="rl-chat">
@@ -107,7 +107,7 @@ export function JeanChatDemo({ step, def = CHAT_DEF }: DemoProps) {
             <div className="rl-log">
               {phase < 2 ? (
                 <div className="jd-hello">
-                  <JeanOrb size={42} />
+                  <DinnOrb size={42} />
                   <b>{t('Olá, Ana. O que você quer que eu acompanhe?')}</b>
                   <span>{t('Para começar')}</span>
                   <ul className="jd-sug">
@@ -119,10 +119,10 @@ export function JeanChatDemo({ step, def = CHAT_DEF }: DemoProps) {
               ) : (
                 <>
                   <p className="rl-u rl-in">{t(ASK)}</p>
-                  {phase === 2 && <p className="rl-think rl-in"><JeanOrb size={18} />{t('Entendendo o pedido')}<i /><i /><i /></p>}
+                  {phase === 2 && <p className="rl-think rl-in"><DinnOrb size={18} />{t('Entendendo o pedido')}<i /><i /><i /></p>}
                   {phase >= 3 && (
                     <div className="rl-b rl-in">
-                      <span><JeanOrb size={18} /></span>
+                      <span><DinnOrb size={18} /></span>
                       <div>
                         <p>{t('Entendi. Confira o combinado antes de eu começar.')}</p>
                         <div className="rl-bcard rl-deal" {...tg('deal')}>
@@ -145,10 +145,10 @@ export function JeanChatDemo({ step, def = CHAT_DEF }: DemoProps) {
               )}
             </div>
             <div className="rl-composer" {...tg('composer')}>
-              <span className={q ? '' : 'ph'}>{q || t('Peça um acompanhamento, uma rotina ou um relatório…')}</span>
+              <span className={q ? '' : 'ph'}>{q || t('Pergunte ao Dinn ou peça um acompanhamento, uma rotina ou um relatório…')}</span>
               <div><Plus size={18} /><i className={q ? 'ready' : ''} {...tg('send')}><ArrowUp size={17} /></i></div>
             </div>
-            <p className="rl-disc">{t('A Jean pode errar. Verifique os dados importantes.')}</p>
+            <p className="rl-disc">{t('O Dinn pode errar. Verifique os dados importantes.')}</p>
           </div>
         </div>
       </div>
@@ -183,14 +183,14 @@ const SET_DEF: Def = {
   final: 4,
 };
 
-export function JeanSettingsDemo({ step, def = SET_DEF }: DemoProps) {
+export function DinnSettingsDemo({ step, def = SET_DEF }: DemoProps) {
   const { app, phase, cur, tg } = useDemo(def, step);
   const { t } = useJ();
   const auto = phase >= 4;
   const ms = phase >= 3;
   const scope = 'Ler e-mails dos acompanhamentos · Ver calendário';
   return (
-    <RFrame app={app} cur={cur} nav="jean" h={720} label={t('Configurações da Jean: a pessoa conecta a conta Microsoft escolhendo os acessos e depois define, por tipo de ação, o que a Jean faz sozinha e o que pede aprovação.')}>
+    <RFrame app={app} cur={cur} nav="dinn" h={720} label={t('Configurações do Dinn: a pessoa conecta a conta Microsoft escolhendo os acessos e depois define, por tipo de ação, o que o Dinn faz sozinho e o que pede aprovação.')}>
       <RPage
         top={<JTop crumb={t('Configurações')} sub={t('Conexões, canais e autonomia')} t={t} />}
         filters={<RSeg items={[t('Conexões'), t('Canais'), t('Autonomia')]} on={auto ? 2 : 0} t={(i) => (i === 2 ? tg('tab-auto') : {})} />}
@@ -225,7 +225,7 @@ export function JeanSettingsDemo({ step, def = SET_DEF }: DemoProps) {
           </div>
         ) : (
           <div className="jd-stack rl-in" {...tg('auto')}>
-            <RCard title={t('O que a Jean faz em cada ação')} sub={t('Defina por tipo de ação o que ela faz sozinha e o que pede aprovação.')}>
+            <RCard title={t('O que o Dinn faz em cada ação')} sub={t('Defina por tipo de ação o que o Dinn faz sozinho e o que pede aprovação.')}>
               <div className="jd-auto">
                 {AUTO.map(([label, v, locked]) => (
                   <div key={label} className="jd-auto-row">
@@ -248,14 +248,14 @@ export function JeanSettingsDemo({ step, def = SET_DEF }: DemoProps) {
           <div className="rl-veil" />
           <div className="jd-consent rl-in" {...tg('consent')}>
             <header><b>{t('Conectar Outlook e calendário Microsoft')}</b><X size={18} /></header>
-            <p className="jd-muted">{t('Escolha o que a Jean pode acessar nesta conta.')}</p>
+            <p className="jd-muted">{t('Escolha o que o Dinn pode acessar nesta conta.')}</p>
             <ul className="jd-perms">
               {PERMS.map(([label, on], i) => {
                 const checked = on || (i === 2 && phase >= 2);
                 return (
                   <li key={label} {...tg(`perm-${i}`)}>
                     <i className={checked ? 'on' : ''}>{checked && <Check size={12} strokeWidth={3} />}</i>
-                    <span>{t(label)}{i === 3 && <small>{t('Sem isso, a Jean pede aprovação antes de enviar ou alterar.')}</small>}</span>
+                    <span>{t(label)}{i === 3 && <small>{t('Sem isso, o Dinn pede aprovação antes de enviar ou alterar.')}</small>}</span>
                   </li>
                 );
               })}
@@ -299,7 +299,7 @@ const ACT_DEF: Def = {
 
 const chipClass = (c: Chip) => (c === 'need' ? 'rl-badge mod' : c === 'ok' ? 'rl-badge low' : 'rl-badge jd-run');
 
-export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
+export function DinnActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
   const { app, phase, cur, tg } = useDemo(def, step);
   const { t, V } = useJ();
   const tab = phase >= 6 ? 'done' : phase >= 4 ? 'run' : 'need';
@@ -308,9 +308,9 @@ export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
   const sel = phase === 2 || phase === 3 ? 'item-a' : phase === 5 ? 'item-m' : phase >= 6 ? 'item-e' : '';
   const tabs = [`${t('Precisa de você')} ${need.length}`, `${t('Em andamento')} 3`, t('Concluído')];
   return (
-    <RFrame app={app} cur={cur} nav="jean" h={720} label={t('Tela Atividades: a pessoa aprova um e-mail preparado pela Jean, vê a reunião que ela está preparando e o histórico do que já foi entregue.')}>
+    <RFrame app={app} cur={cur} nav="dinn" h={720} label={t('Tela Atividades: a pessoa aprova um e-mail preparado pelo Dinn, vê a reunião que o Dinn está preparando e o histórico do que já foi entregue.')}>
       <RPage
-        top={<JTop crumb={t('Atividades')} sub={t('O trabalho da Jean')} t={t} />}
+        top={<JTop crumb={t('Atividades')} sub={t('O trabalho do Dinn')} t={t} />}
         filters={<RSeg items={tabs} on={tab === 'need' ? 0 : tab === 'run' ? 1 : 2} t={(i) => (i === 1 ? tg('tab-run') : i === 2 ? tg('tab-done') : {})} />}
       >
         <div className="jd-act">
@@ -329,7 +329,7 @@ export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
             {(phase === 2 || phase === 3) && (
               <div className="rl-in jd-pane">
                 <h4>{t('Aprovar e-mail para a Rede Alfa')}</h4>
-                <p className="jd-muted">{t('A Jean viu que a resposta sobre a reposição não chegou. Ela preparou uma cobrança.')}</p>
+                <p className="jd-muted">{t('O Dinn viu que a resposta sobre a reposição não chegou. Ele preparou uma cobrança.')}</p>
                 <div className="jd-mail">
                   <p><em>{t('Para')}</em>compras@redealfa.exemplo</p>
                   <p><em>{t('Assunto')}</em>{t('Reposição do {pa}')}</p>
@@ -347,7 +347,7 @@ export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
                 <h4>{t('Reunião com a Rede Beta, {d0511} {h10}')}</h4>
                 <dl className="jd-kv">
                   <div><dt>{t('Objetivo')}</dt><dd>{t('Preparar os pontos da reunião')}</dd></div>
-                  <div><dt>{t('O que a Jean fez')}</dt><dd>{t('Leu 3 e-mails da conversa com a Rede Beta. Consultou a disponibilidade em 140 lojas (D-1, {dy0211}). Achou 1 pendência no último e-mail.')}</dd></div>
+                  <div><dt>{t('O que o Dinn fez')}</dt><dd>{t('Leu 3 e-mails da conversa com a Rede Beta. Consultou a disponibilidade em 140 lojas (D-1, {dy0211}). Achou 1 pendência no último e-mail.')}</dd></div>
                   <div><dt>{t('Resultado')}</dt><dd>{t('Resumo pronto para revisar')}</dd></div>
                   <div><dt>{t('Próximo passo')}</dt><dd>{t('Enviar o resumo no WhatsApp, 1 h antes da reunião')}</dd></div>
                 </dl>
@@ -358,7 +358,7 @@ export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
               <div className="rl-in jd-pane" {...tg('timeline')}>
                 <h4>{t('E-mail para a Rede Alfa')}</h4>
                 <ol className="jd-line">
-                  <li><b>{V.t0830}</b>{t('A Jean viu a pendência sem resposta')}</li>
+                  <li><b>{V.t0830}</b>{t('O Dinn viu a pendência sem resposta')}</li>
                   <li><b>{V.t0831}</b>{t('Rascunho pronto para aprovação')}</li>
                   <li><b>{V.t0941}</b>{t('Ana aprovou o envio')}</li>
                   <li><b>{V.t0942}</b>{t('E-mail enviado pela conta da Ana')}</li>
@@ -374,7 +374,7 @@ export function JeanActivitiesDemo({ step, def = ACT_DEF }: DemoProps) {
   );
 }
 
-// ── WhatsApp: a conversa com o número da Jean e o mesmo histórico no portal ──
+// ── WhatsApp: a conversa com o número do Dinn e o mesmo histórico no portal ──
 const WA_DEF: Def = {
   beats: [
     { phase: 1, wait: 2400 },
@@ -395,14 +395,14 @@ const SYNC: [number, string, string][] = [
   [6, '{t0942}', 'E-mail enviado pela conta da Ana'],
 ];
 
-export function JeanWhatsAppDemo({ step, def = WA_DEF }: DemoProps) {
+export function DinnWhatsAppDemo({ step, def = WA_DEF }: DemoProps) {
   const { app, phase, cur, tg } = useDemo(def, step);
   const { t, V } = useJ();
   return (
-    <Frame app={app} h={560} nav="none" bare kind="rl-app" cur={cur} label={t('Conversa no WhatsApp com o número da Jean: ela envia os pontos da reunião, prepara um e-mail e pede aprovação. Ao lado, o mesmo histórico aparece em Atividades.')}>
+    <Frame app={app} h={560} nav="none" bare kind="rl-app" cur={cur} label={t('Conversa no WhatsApp com o número do Dinn: ele envia os pontos da reunião, prepara um e-mail e pede aprovação. Ao lado, o mesmo histórico aparece em Atividades.')}>
       <div className="jd-wa-stage">
         <div className="jd-phone">
-          <header><span className="jd-wa-av">J</span><span><b>Jean</b><small>Dinn</small></span></header>
+          <header><span className="jd-wa-av">D</span><span><b>Dinn</b><small>{t('Assistente')}</small></span></header>
           <div className="jd-wa-log">
             {phase >= 1 && (
               <div className="jd-in rl-in">

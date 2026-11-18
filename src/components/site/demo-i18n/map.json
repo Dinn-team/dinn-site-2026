@@ -178,7 +178,7 @@
     "es": "El laboratorio creció +{a}% ({b} → {c} un./sem.). El mercado comparable creció +{d}% ({e} → {f}). La participación cayó porque otros productos crecieron más. Las ventas del laboratorio no bajaron."
   },
   "Ações recomendadas": { "en": "Recommended actions", "es": "Acciones recomendadas" },
-  "Até 5 ações curtas para o seu time, sugeridas pela Jean a partir deste cenário.": { "en": "Up to 5 short actions for your team, suggested by Jean from this scenario.", "es": "Hasta 5 acciones cortas para su equipo, generadas por Dinn a partir de este escenario." },
+  "Até 5 ações curtas para o seu time, sugeridas pelo Dinn a partir deste cenário.": { "en": "Up to 5 short actions for your team, suggested by Dinn from this scenario.", "es": "Hasta 5 acciones cortas para su equipo, generadas por Dinn a partir de este escenario." },
   "Gerar de novo": { "en": "Generate again", "es": "Generar de nuevo" },
   "Gerando…": { "en": "Generating…", "es": "Generando…" },
   "Gerar recomendações": { "en": "Generate recommendations", "es": "Generar recomendaciones" },
@@ -254,9 +254,9 @@
   "Estoque": { "en": "Stock", "es": "Stock" },
   "Parados": { "en": "Idle", "es": "Parados" },
 
-  "Tela da Jean no Dinn: a pessoa pergunta onde a ruptura mais piorou, a Jean responde com as cidades, o recorte e a data, e depois aceita acompanhar o tema toda semana.": {
-    "en": "Jean screen in Dinn: the user asks where stock-outs got worse, Jean answers with the cities, the scope and the date, and then agrees to track the topic every week.",
-    "es": "Pantalla de Jean en Dinn: la persona pregunta dónde empeoró más el quiebre de stock, Jean responde con las ciudades, el recorte y la fecha, y luego acepta seguir el tema cada semana."
+  "Tela do Dinn: a pessoa pergunta onde a ruptura mais piorou, o Dinn responde com as cidades, o recorte e a data, e depois aceita acompanhar o tema toda semana.": {
+    "en": "Dinn screen: the user asks where stock-outs got worse, Dinn answers with the cities, the scope and the date, and then agrees to track the topic every week.",
+    "es": "Pantalla de Dinn: la persona pregunta dónde empeoró más el quiebre de stock, Dinn responde con las ciudades, el recorte y la fecha, y luego acepta seguir el tema cada semana."
   },
   "Em quais cidades a ruptura de Cefalgin cápsula 400mg mais piorou nas últimas 4 semanas?": {
     "en": "In which cities did stock-outs of Cefalgin cápsula 400mg get worse the most in the last 4 weeks?",
@@ -281,7 +281,7 @@
   "Evolução da ruptura em 90 dias": { "en": "Stock-out trend over 90 days", "es": "Evolución del quiebre en 90 días" },
   "Quem ganhou participação no PR": { "en": "Who gained share in PR", "es": "Quién ganó participación en PR" },
   "Olá, Ana. O que você quer saber?": { "en": "Hi, Ana. What do you want to know?", "es": "Hola, Ana. ¿Qué quiere saber?" },
-  "Pergunte sobre estoque, ruptura, preço, mercado e distribuição.": { "en": "Ask about stock, stock-outs, price, market and distribution.", "es": "Pregunte sobre stock, quiebres, precio, mercado y distribución." },
+  "Pergunte ao Dinn sobre estoque, ruptura, preço, mercado e distribuição.": { "en": "Ask Dinn about stock, stock-outs, price, market and distribution.", "es": "Pregunta a Dinn sobre stock, quiebres, precio, mercado y distribución." },
   "Consultando os dados": { "en": "Checking the data", "es": "Consultando los datos" },
   "Produtos encontrados": { "en": "Products found", "es": "Productos encontrados" },
   "Onde a ruptura mais piorou · cidades · {a} × {b}": { "en": "Where stock-outs got worse · cities · {a} vs {b}", "es": "Dónde empeoró más el quiebre · ciudades · {a} × {b}" },

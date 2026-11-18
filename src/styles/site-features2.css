@@ -56,7 +56,7 @@
 .fd-pos { color: #047857; }
 .dd-drawer.fd-wide { width: 360px; }
 
-/* Dinn Insights */
+/* Dinn */
 .fd-chat { position: relative; height: 100%; display: flex; flex-direction: column; gap: 12px; padding: 8px 40px 0; }
 .fd-chat-hello { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
 .fd-chat-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: color-mix(in oklab, var(--a-brand) 10%, white); color: var(--a-brand); font-size: 12.5px; font-weight: 600; }

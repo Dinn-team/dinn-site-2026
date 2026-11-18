@@ -26,7 +26,7 @@ export const home2Es = {
         { id: "mercado", name: "Mercado", text: "Compara tu laboratorio con los competidores en las mismas tiendas." },
         { id: "oportunidades", name: "Oportunidades", text: "Ve dónde la categoría crece y pierdes espacio." },
         { id: "distribuicao", name: "Distribución", text: "Cruza el stock del distribuidor con la disponibilidad en las tiendas." },
-        { id: "jean", name: "Jean", text: "Delega seguimientos. Jean prepara el trabajo y te llama cuando necesitas decidir." },
+        { id: "dinn", name: "Dinn", text: "Delega seguimientos. Dinn prepara el trabajo y te llama cuando necesitas decidir." },
         { id: "conecta", name: "Dinn Conecta", text: "Lleva los datos de Dinn a tu BI, a tu IA y a tus integraciones." },
         { id: "suporte", name: "Soporte", text: "Pide ayuda dentro de la plataforma. Zoe responde y el equipo de Dinn interviene cuando hace falta." }
       ]
@@ -55,7 +55,7 @@ export const home2Es = {
     },
     labs: {
       "title": "Marcas que Dinn puede atender",
-      "lead": "Nuestros clientes muestran el resultado de su caso.",
+      "lead": "Laboratorios clientes y lo que cambió para ellos.",
       "all": "Ver todos",
       "client": "Ver el caso",
       "page": {

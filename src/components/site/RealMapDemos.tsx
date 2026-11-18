@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import type { Language } from '@/i18n/store';
 import { fmt, useDemo, type Def, type DemoProps } from './AppDemos';
-import { JeanOrb } from './JeanOrb';
+import { DinnOrb } from './DinnOrb';
 import { localizeDef, useDemoT } from './demoI18n';
 import {
   AMBER, BRAND, Count, GREEN, GREY, RArea, RCard, RConsult, RDays, RDonut, RDrop, RFrame, RIconBtn, RKpi, RPage, RPin, RReport, RSave,
@@ -15,7 +15,7 @@ import {
 import { BR_PATH, GEO_H, GEO_LABELS, GEO_W, SA_PATH, UF_POS, inside, proj } from './RealGeo';
 
 // Telas fiéis ao app do Dinn (prints de nov/2026): Localizar Produtos,
-// Mercado, Oportunidades, Distribuição e Jean. Mapas desenhados por nós
+// Mercado, Oportunidades, Distribuição e Dinn. Mapas desenhados por nós
 // (scripts/gen-app-maps.mjs e RealGeo.ts). Dados fictícios.
 // Idioma: texto-fonte em PT, traduzido por t() com o dicionário demo-i18n/map.json.
 
@@ -583,10 +583,10 @@ function OpportunitiesView({ step, def }: DemoProps) {
             <p className="rl-explain">{t('O laboratório cresceu +{a}% ({b} → {c} un./sem.), mas o mercado comparável cresceu +{d}% ({e} → {f}). A participação caiu porque outros produtos cresceram mais, não porque as vendas do laboratório diminuíram.', { a: fmt(5.5, 1), b: fmt(2293), c: fmt(2420), d: fmt(14.8, 1), e: fmt(4310), f: fmt(4950) })}</p>
             <div className="rl-acts" {...tg('acts')}>
               <header>
-                <div><h5><JeanOrb size={16} />{t('Ações recomendadas')}</h5><p>{t('Até 5 ações curtas para o seu time, sugeridas pela Jean a partir deste cenário.')}</p></div>
+                <div><h5><DinnOrb size={16} />{t('Ações recomendadas')}</h5><p>{t('Até 5 ações curtas para o seu time, sugeridas pelo Dinn a partir deste cenário.')}</p></div>
                 {phase >= 5
                   ? <span className="rl-gen line"><RefreshCw size={15} />{t('Gerar de novo')}</span>
-                  : <span className="rl-gen" {...tg('gen')}>{phase === 4 ? <LoaderCircle size={15} className="rl-spin" /> : <JeanOrb size={15} />}{phase === 4 ? t('Gerando…') : t('Gerar recomendações')}</span>}
+                  : <span className="rl-gen" {...tg('gen')}>{phase === 4 ? <LoaderCircle size={15} className="rl-spin" /> : <DinnOrb size={15} />}{phase === 4 ? t('Gerando…') : t('Gerar recomendações')}</span>}
               </header>
               {phase === 4 && <div className="rl-skel"><i style={{ width: '40%' }} /><i style={{ width: '90%' }} /><i style={{ width: '75%' }} /></div>}
               {phase >= 5 && (
@@ -744,7 +744,7 @@ function DistributionView({ step, def }: DemoProps) {
   );
 }
 
-// ── Jean (conversa) ────────────────────────────────────────────────────────
+// ── Dinn (conversa) ────────────────────────────────────────────────────────
 const JQ1 = 'Em quais cidades a ruptura de Cefalgin cápsula 400mg mais piorou nas últimas 4 semanas?';
 const JQ2 = 'Acompanha isso toda segunda e me chama no WhatsApp se alguma cidade passar de 40%.';
 // cidade, ruptura antes, depois, PDVs, variação em p.p.
@@ -758,7 +758,7 @@ const CONVS: [string, string[]][] = [
   ['Últimos 7 dias', ['Ganhadores de participação no Sul', 'Estoque de Alergimax em Campinas', 'Preço do Gastrolev por rede']],
   ['Mais antigas', ['Mudanças recentes no Brasil', 'Redes com maior ruptura em SP', 'Cobertura dos CDs do Centro-Oeste', 'Evolução da ruptura em 90 dias', 'Quem ganhou participação no PR']],
 ];
-const JEAN_DEF: Def = {
+const DINN_DEF: Def = {
   beats: [
     // Planos: tela inteira → caixa de pergunta → resposta com o ranking → pedido de acompanhamento → combinado ativo.
     { wait: 1300 },
@@ -777,20 +777,20 @@ const JEAN_DEF: Def = {
   final: 9,
 };
 
-export function JeanDemo2({ step, def = JEAN_DEF }: DemoProps) {
+export function DinnDemo2({ step, def = DINN_DEF }: DemoProps) {
   const l = useLocalDef(def);
-  return <JeanView key={l.lang} step={step} def={l.def} />;
+  return <DinnView key={l.lang} step={step} def={l.def} />;
 }
 
-function JeanView({ step, def }: DemoProps) {
+function DinnView({ step, def }: DemoProps) {
   const { t, lang } = useDemoT();
   const { app, phase, typed, cur, tg } = useDemo(def!, step);
   const q = phase < 2 ? typed.q ?? (phase >= 1 ? t(JQ1) : '') : phase >= 5 && phase < 7 ? typed.q2 ?? (phase === 6 ? t(JQ2) : '') : '';
   const sd = (d: number, m: number) => shortFmt(lang, d, m);
   const pct = (n: number) => `${fmt(n, 1)}%`;
-  const think = () => <p className="rl-think rl-in"><JeanOrb size={18} />{t('Consultando os dados')}<i /><i /><i /></p>;
+  const think = () => <p className="rl-think rl-in"><DinnOrb size={18} />{t('Consultando os dados')}<i /><i /><i /></p>;
   return (
-    <RFrame app={app} cur={cur} nav="jean" label={t('Tela da Jean no Dinn: a pessoa pergunta onde a ruptura mais piorou, a Jean responde com as cidades, o recorte e a data, e depois aceita acompanhar o tema toda semana.')}>
+    <RFrame app={app} cur={cur} nav="dinn" label={t('Tela do Dinn: a pessoa pergunta onde a ruptura mais piorou, o Dinn responde com as cidades, o recorte e a data, e depois aceita acompanhar o tema toda semana.')}>
       <div className="rl-page">
         <header className="rl-top"><PanelLeft size={18} className="rl-top-ico" /></header>
         <div className="rl-chat">
@@ -808,16 +808,16 @@ function JeanView({ step, def }: DemoProps) {
             <div className="rl-log" {...tg('log')}>
               {phase < 2 && (
                 <div style={{ margin: 'auto 0', display: 'grid', justifyItems: 'center', gap: 10, textAlign: 'center' }}>
-                  <JeanOrb size={42} />
+                  <DinnOrb size={42} />
                   <b style={{ fontSize: 22, fontWeight: 500 }}>{t('Olá, Ana. O que você quer saber?')}</b>
-                  <span style={{ fontSize: 14, color: '#737373' }}>{t('Pergunte sobre estoque, ruptura, preço, mercado e distribuição.')}</span>
+                  <span style={{ fontSize: 14, color: '#737373' }}>{t('Pergunte ao Dinn sobre estoque, ruptura, preço, mercado e distribuição.')}</span>
                 </div>
               )}
               {phase >= 2 && <p className="rl-u rl-in">{t(JQ1)}</p>}
               {phase === 2 && think()}
               {phase >= 3 && (
                 <div className="rl-b rl-in">
-                  <span><JeanOrb size={18} /></span>
+                  <span><DinnOrb size={18} /></span>
                   <div>
                     <div className="rl-bcard">
                       <header>{t('Produtos encontrados')}</header>
@@ -846,7 +846,7 @@ function JeanView({ step, def }: DemoProps) {
               {phase === 7 && think()}
               {phase >= 8 && (
                 <div className="rl-b rl-in">
-                  <span><JeanOrb size={18} /></span>
+                  <span><DinnOrb size={18} /></span>
                   <div>
                     <p>{t('Combinado. Confira antes de eu começar.')}</p>
                     <div className="rl-bcard rl-deal" {...tg('deal')}>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowUpRight, Check, X } from 'lucide-react';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
 import { ClosingCard, H2Head } from '@/components/site/PageShell';
-import { JeanOrb } from '@/components/site/JeanOrb';
+import { DinnOrb } from '@/components/site/DinnOrb';
 import { FEATURE_DEMO } from '@/components/site/FeatureDemos';
 import { FEATURE_AREAS } from '@/components/site/FeaturesV2';
 import { ProductScreen } from '@/components/site/ProductScreen';
@@ -12,7 +12,7 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { contactUrl } from '@/lib/links';
 import { areaPath, featurePath, PATHS } from '@/lib/site-map';
 import { featureGrad } from './gradients';
-import { JeanChat } from './JeanChat';
+import { DinnChat } from './DinnChat';
 import { PinStages } from './PinStages';
 import { UI } from './ui';
 import { ShotView } from './shots';
@@ -39,8 +39,8 @@ function useLangContent(pt: FeatureContent, lang: string): FeatureContent {
   return c;
 }
 
-const NAV_IDS = ['como-funciona', 'jean', 'onde-aparece', 'por-dentro', 'como-ler', 'faz-e-nao-faz', 'como-usar', 'junto-com', 'duvidas'] as const;
-const NAV_KEYS = ['como', 'jean', 'onde', 'dentro', 'ler', 'faz', 'usar', 'junto', 'duvidas'] as const;
+const NAV_IDS = ['como-funciona', 'dinn', 'onde-aparece', 'por-dentro', 'como-ler', 'faz-e-nao-faz', 'como-usar', 'junto-com', 'duvidas'] as const;
+const NAV_KEYS = ['como', 'dinn', 'onde', 'dentro', 'ler', 'faz', 'usar', 'junto', 'duvidas'] as const;
 
 export function FeatureDeepPage({ c: pt }: { c: FeatureContent }) {
   const { t, lang } = useTranslation();
@@ -138,19 +138,19 @@ export function FeatureDeepPage({ c: pt }: { c: FeatureContent }) {
           </div>
         </section>
 
-        {/* 2. A Jean: a conversa em destaque */}
-        <section id="jean" className="h2-section is-muted tr-sec fx-jean" aria-labelledby="fx-jean">
-          <div className="h2-wrap fx-jean-grid">
-            <div className="fx-jean-copy">
-              <span className="fx-jean-label"><JeanOrb size={20} />{ui.jeanLabel}</span>
-              <h2 id="fx-jean" className="h2-title">{ui.jeanTitle}</h2>
-              <p className="h2-sub">{c.jean.lead}</p>
+        {/* 2. O Dinn: a conversa em destaque */}
+        <section id="dinn" className="h2-section is-muted tr-sec fx-dinn" aria-labelledby="fx-dinn">
+          <div className="h2-wrap fx-dinn-grid">
+            <div className="fx-dinn-copy">
+              <span className="fx-dinn-label"><DinnOrb size={20} />{ui.dinnLabel}</span>
+              <h2 id="fx-dinn" className="h2-title">{ui.dinnTitle}</h2>
+              <p className="h2-sub">{c.dinn.lead}</p>
               <ul className="fx-prompts">
-                {c.jean.prompts.map((q) => <li key={q}>{q}</li>)}
+                {c.dinn.prompts.map((q) => <li key={q}>{q}</li>)}
               </ul>
-              <a className="h2-link" href={featurePath('jean')}>{ui.jeanLink} <ArrowRight size={15} aria-hidden="true" /></a>
+              <a className="h2-link" href={featurePath('dinn')}>{ui.dinnLink} <ArrowRight size={15} aria-hidden="true" /></a>
             </div>
-            <JeanChat turns={c.jean.turns} ui={ui} bg={gradUrl(featureGrad(c.slug, 'jean'))} />
+            <DinnChat turns={c.dinn.turns} ui={ui} bg={gradUrl(featureGrad(c.slug, 'dinn'))} />
           </div>
         </section>
 

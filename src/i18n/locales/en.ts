@@ -14,7 +14,7 @@ export const enUS = {
     resourcesAll: "See all",
     trust: "Trust",
     resources: "Resources",
-    ask: "Dinn Insights",
+    ask: "Dinn",
     teams: "Use cases",
     inside: "How it works",
     delivery: "Where it delivers",
@@ -34,7 +34,7 @@ export const enUS = {
     secondary: "See Dinn for your area"
   },
   insights: {
-    eyebrow: "Dinn Insights",
+    eyebrow: "Dinn",
     title: "What do you want to know about *stock-outs and sell-out*?",
     intro: "Chat with Dinn's AI. Ask in plain English. Get the number, scope, date and method."
   },
@@ -594,7 +594,7 @@ export const enUS = {
         title: "Sends the reading to the team that acts.",
         desc: "Delivers the reading to the responsible team or tool: platform, conversation, your BI or your AI.",
         example: "The list goes to the account KAM and the team Copilot, with source and date.",
-        chips: ["Dinn Manager", "Dinn Insights", "Your AI", "BI & API"]
+        chips: ["Dinn Manager", "Dinn", "Your AI", "BI & API"]
       },
       {
         name: "Learns",
@@ -618,7 +618,7 @@ export const enUS = {
         desc: "Priorities and context for management and commercial execution: stock-outs, stalled stock, distribution and market in one scope."
       },
       {
-        tag: "Dinn Insights",
+        tag: "Dinn",
         title: "A conversation",
         desc: "Explore and interpret signals. Ask in plain English. Get the number, scope, date and whether it is observed or estimated."
       },

@@ -17,7 +17,7 @@ export const oportunidades: FeatureContent = {
   steps: [
     { title: 'Escolha a pergunta e o recorte', text: 'Defina mercado, região, rede e período de 7, 30, 60 ou 90 dias. Depois escolha uma entre três perguntas.' },
     { title: 'Leia o mapa e os territórios', text: 'Cada estado ganha um sinal. A tabela ordena os territórios e mostra a base de cada número.' },
-    { title: 'Abra o detalhe e investigue', text: 'Veja redes, lojas, concorrência, histórico e projeção. Peça até 5 ações curtas à Jean.' },
+    { title: 'Abra o detalhe e investigue', text: 'Veja redes, lojas, concorrência, histórico e projeção. Peça até 5 ações curtas ao Dinn.' },
   ],
   doors: {
     title: 'Para onde você quer olhar?',
@@ -40,8 +40,8 @@ export const oportunidades: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'A Jean já sabe o recorte da tela. Pergunte quem ganhou espaço e peça ações.',
+  dinn: {
+    lead: 'O Dinn já sabe o recorte da tela. Pergunte quem ganhou espaço e peça ações.',
     prompts: ['Quais marcas concorrentes ganharam espaço em Santa Catarina?', 'Isso acontece em quais redes de Santa Catarina?', 'Que ações você recomenda para Santa Catarina?'],
     turns: [
       { q: 'Quem ganhou espaço em Santa Catarina?', a: 'A Farmoquímica Aliança, nas últimas 4 semanas. A variação da Bionova Genéricos cabe na margem de 1,3 p.p.',
@@ -77,7 +77,7 @@ export const oportunidades: FeatureContent = {
       {
         tab: 'Ações',
         title: 'Até 5 ações curtas',
-        text: 'A Jean lê o cenário e sugere ações. São sugestões, não viram tarefa.',
+        text: 'O Dinn lê o cenário e sugere ações. São sugestões, não viram tarefa.',
         shot: { screen: 'opps', phase: 5, to: 'acts' },
       },
     ],
@@ -145,7 +145,7 @@ export const oportunidades: FeatureContent = {
       { slug: 'mercado', name: 'Mercado', text: 'Para ver a participação por laboratório e as lojas onde só o concorrente vende.' },
       { slug: 'ruptura', name: 'Ruptura', text: 'Para ver se a perda de espaço vem de produto em falta.' },
       { slug: 'distribuicao', name: 'Distribuição', text: 'Para ver se o problema está no CD ou na reposição daquela região.' },
-      { slug: 'jean', name: 'Jean', text: 'Pergunte quem ganhou participação e peça até 5 ações curtas.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pergunte quem ganhou participação e peça até 5 ações curtas.' },
     ],
   },
   faq: [

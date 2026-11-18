@@ -40,8 +40,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Jean opens with your Market view. Ask who gained share.',
+  dinn: {
+    lead: 'Dinn opens with your Market view. Ask who gained share.',
     prompts: ['Who gained share in Brazil?', 'What changed in the last quarter in Brazil?', 'Who are the largest labs in the market?'],
     turns: [
       { q: 'Who gained share in Brazil?', a: 'Today your lab has the largest share, with 25.5% of estimated sales.',
@@ -135,7 +135,7 @@ export const content: FeatureContent = {
       'Use the download button next to the table filters, by store or by chain.',
       'The file has all rows of the current filter, with no pages. The names are mercado-pdvs and mercado-redes, with the date.',
       'The Excel file is an .xls. Excel can show a format warning when it opens.',
-      'Ask Jean who gained share or what changed in the last quarter. She receives your view.',
+      'Ask Dinn who gained share or what changed in the last quarter. Dinn receives your view.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'This reading is a signal to investigate. It is not proof. The share change, with its margin, is in Opportunities.',
@@ -147,7 +147,7 @@ export const content: FeatureContent = {
       { slug: 'oportunidades', name: 'Opportunities', text: 'To see the share change by state, city and Brick.' },
       { slug: 'preco', name: 'Price', text: 'To compare the price of your product between stores.' },
       { slug: 'ruptura', name: 'Stock-out', text: 'To check if the drop comes from a missing product.' },
-      { slug: 'jean', name: 'Jean', text: 'Ask what changed in your market and get the summary.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Ask what changed in your market and get the summary.' },
     ],
   },
   faq: [

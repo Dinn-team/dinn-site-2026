@@ -3,7 +3,7 @@ import { useTranslation } from '@/i18n/useTranslation';
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
 import { animate, motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Check, ChevronDown, House, LifeBuoy, Map as MapIcon, MapPin, ChartPie, Truck } from 'lucide-react';
-import { JeanOrbIcon } from './JeanOrb';
+import { DinnOrbIcon } from './DinnOrb';
 
 // Telas do Dinn animadas, para as páginas de solução. Base: o briefing em
 // dinn-manager-app/docs/site-reproducao (screens/*.json). Só telas em produção:
@@ -198,7 +198,7 @@ export function useDemo(def: Def, step?: number) {
 // ── Moldura: escala, menu lateral e cursor ─────────────────────────────────
 const NAV = [
   { k: 'home', icon: House, label: 'Início' },
-  { k: 'insights', icon: JeanOrbIcon, label: 'Jean' },
+  { k: 'insights', icon: DinnOrbIcon, label: 'Dinn' },
   { k: 'market', icon: ChartPie, label: 'Mercado' },
   { k: 'opps', icon: MapIcon, label: 'Oportunidades' },
   { k: 'locator', icon: MapPin, label: 'Localizar Produtos' },

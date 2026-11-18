@@ -57,7 +57,7 @@ export const pt: Customer = {
       'Onde a minha marca perde participação?',
       'Onde há espaço para expandir?',
     ],
-    note: 'O painel sugere ações para o KAM com regras fixas. Nenhuma IA inventa número. Sinal fraco não vira tarefa. A Jean complementa o painel. O usuário pergunta em linguagem natural e recebe a resposta com os dados da empresa.',
+    note: 'O painel sugere ações para o KAM com regras fixas. Nenhuma IA inventa número. Sinal fraco não vira tarefa. O Dinn complementa o painel. O usuário pergunta em linguagem natural e recebe a resposta com os dados da empresa.',
   },
   stories: [
     {
@@ -137,7 +137,7 @@ export const pt: Customer = {
         rows: [
           ['Visão de mercado por estado, rede e cidade', 'Painel de Oportunidades'],
           ['Ações sugeridas para o KAM', 'Três regras fixas, sem número inventado por IA'],
-          ['Pergunta em linguagem natural sobre os dados da empresa', 'A Jean responde com os dados da empresa'],
+          ['Pergunta em linguagem natural sobre os dados da empresa', 'O Dinn responde com os dados da empresa'],
           ['Fechamentos mensais, em vez de só o dado diário', 'Primeira entrega do fechamento mensal feita em outubro'],
         ],
       },
@@ -203,7 +203,7 @@ export const en: Customer = {
       'Where is my brand losing share?',
       'Where is there room to expand?',
     ],
-    note: 'The panel suggests actions for the KAM with fixed rules. No AI invents a number. A weak signal does not become a task. Jean complements the panel. The user asks in natural language and gets the answer with company data.',
+    note: 'The panel suggests actions for the KAM with fixed rules. No AI invents a number. A weak signal does not become a task. Dinn complements the panel. The user asks in natural language and gets the answer with company data.',
   },
   stories: [
     {
@@ -283,7 +283,7 @@ export const en: Customer = {
         rows: [
           ['A market view by state, chain and city', 'Opportunities Panel'],
           ['Suggested actions for the KAM', 'Three fixed rules, with no number invented by AI'],
-          ['Questions in natural language about company data', 'Jean answers with company data'],
+          ['Questions in natural language about company data', 'Dinn answers with company data'],
           ['Monthly closings, not only daily data', 'First monthly closing delivered in October'],
         ],
       },
@@ -349,7 +349,7 @@ export const es: Customer = {
       '¿Dónde pierde participación mi marca?',
       '¿Dónde hay espacio para expandir?',
     ],
-    note: 'El panel sugiere acciones al KAM con reglas fijas. Ninguna IA inventa números. Una señal débil no se convierte en tarea. Jean complementa el panel. El usuario pregunta en lenguaje natural y recibe la respuesta con los datos de la empresa.',
+    note: 'El panel sugiere acciones al KAM con reglas fijas. Ninguna IA inventa números. Una señal débil no se convierte en tarea. Dinn complementa el panel. El usuario pregunta en lenguaje natural y recibe la respuesta con los datos de la empresa.',
   },
   stories: [
     {
@@ -429,7 +429,7 @@ export const es: Customer = {
         rows: [
           ['Vista de mercado por estado, cadena y ciudad', 'Panel de Oportunidades'],
           ['Acciones sugeridas para el KAM', 'Tres reglas fijas, sin número inventado por IA'],
-          ['Preguntas en lenguaje natural sobre los datos de la empresa', 'Jean responde con los datos de la empresa'],
+          ['Preguntas en lenguaje natural sobre los datos de la empresa', 'Dinn responde con los datos de la empresa'],
           ['Cierres mensuales, en vez de solo el dato diario', 'Primera entrega del cierre mensual hecha en octubre'],
         ],
       },

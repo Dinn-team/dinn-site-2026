@@ -17,7 +17,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Elige la pregunta y el recorte', text: 'Define mercado, región, cadena y período de 7, 30, 60 o 90 días. Luego elige una de las tres preguntas.' },
     { title: 'Lee el mapa y los territorios', text: 'Cada estado recibe una señal. La tabla ordena los territorios y muestra la base de cada número.' },
-    { title: 'Abre el detalle e investiga', text: 'Ve cadenas, tiendas, competencia, historial y proyección. Pide a Jean hasta 5 acciones cortas.' },
+    { title: 'Abre el detalle e investiga', text: 'Ve cadenas, tiendas, competencia, historial y proyección. Pide a Dinn hasta 5 acciones cortas.' },
   ],
   doors: {
     title: '¿Hacia dónde quieres mirar?',
@@ -40,8 +40,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Jean ya conoce el recorte de la pantalla. Pregunta quién ganó espacio y pide acciones.',
+  dinn: {
+    lead: 'Dinn ya conoce el recorte de la pantalla. Pregunta quién ganó espacio y pide acciones.',
     prompts: ['¿Qué marcas competidoras ganaron espacio en Santa Catarina?', '¿En qué cadenas de Santa Catarina ocurre esto?', '¿Qué acciones recomiendas para Santa Catarina?'],
     turns: [
       { q: '¿Quién ganó espacio en Santa Catarina?', a: 'Farmoquímica Aliança, en las últimas 4 semanas. La variación de Bionova Genéricos cabe en el margen de 1,3 p.p.',
@@ -77,7 +77,7 @@ export const content: FeatureContent = {
       {
         tab: 'Acciones',
         title: 'Hasta 5 acciones cortas',
-        text: 'Jean lee el escenario y sugiere acciones. Son sugerencias. No se convierten en tareas.',
+        text: 'Dinn lee el escenario y sugiere acciones. Son sugerencias. No se convierten en tareas.',
         shot: { screen: 'opps', phase: 5, to: 'acts' },
       },
     ],
@@ -145,7 +145,7 @@ export const content: FeatureContent = {
       { slug: 'mercado', name: 'Mercado', text: 'Para ver la participación por laboratorio y las tiendas donde solo vende la competencia.' },
       { slug: 'ruptura', name: 'Quiebre', text: 'Para ver si la pérdida de espacio viene de un producto faltante.' },
       { slug: 'distribuicao', name: 'Distribución', text: 'Para ver si el problema está en el CEDIS o en la reposición de esa región.' },
-      { slug: 'jean', name: 'Jean', text: 'Pregunta quién ganó participación y pide hasta 5 acciones cortas.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pregunta quién ganó participación y pide hasta 5 acciones cortas.' },
     ],
   },
   faq: [

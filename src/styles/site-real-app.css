@@ -35,7 +35,7 @@
 .rl-crumb svg { color: var(--rl-mfg); }
 .rl-top-r { margin-left: auto; display: flex; gap: 8px; }
 .rl-pill { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--rl-line); background: #fff; font-size: 13.5px; font-weight: 500; }
-.rl-pill-jean { color: var(--a-brand); border-color: color-mix(in oklab, var(--a-brand) 28%, white); }
+.rl-pill-dinn { color: var(--a-brand); border-color: color-mix(in oklab, var(--a-brand) 28%, white); }
 .rl-bulb { color: #f5b301; }
 .rl-filters { flex: none; position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 14px 20px; background: #fcfcfc; }
 .rl-viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; }
@@ -423,7 +423,7 @@
 .rl-read b { display: block; margin: 6px 0 4px; font-size: 14px; font-weight: 600; line-height: 1.35; }
 .rl-read p { margin: 0; font-size: 12.5px; line-height: 1.45; color: #3f3f46; }
 
-/* Jean (chat) */
+/* Dinn (chat) */
 .rl-chat { display: grid; grid-template-columns: 300px minmax(0, 1fr); height: 100%; min-height: 0; background: #fff; }
 .rl-convs { display: flex; flex-direction: column; gap: 10px; padding: 16px 14px; border-right: 1px solid var(--rl-line); overflow: hidden; }
 .rl-newc { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rl-line); font-size: 14.5px; font-weight: 500; }

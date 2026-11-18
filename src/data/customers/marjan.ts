@@ -211,8 +211,8 @@ export const pt: Customer = {
         rows: [
           ['Filtros micro (distrito, setor, brick, cidade)', 'Granularidade avançada com novos filtros de Distrito, Setor e Brick'],
           ['Levar a ação pronta até a farmácia', 'App de Campo, com sugestões em tempo real ao representante'],
-          ['Um assistente que diga onde agir primeiro', 'A Jean, com ação recomendada, responde "onde devo agir primeiro?" e sugere ações'],
-          ['Que a recomendação da Jean vire execução consistente', 'Governança com grupo patrocinador, KPIs claros e responsáveis definidos'],
+          ['Um assistente que diga onde agir primeiro', 'O Dinn, com ação recomendada, responde "onde devo agir primeiro?" e sugere ações'],
+          ['Que a recomendação do Dinn vire execução consistente', 'Governança com grupo patrocinador, KPIs claros e responsáveis definidos'],
         ],
       },
     ],
@@ -431,8 +431,8 @@ export const en: Customer = {
         rows: [
           ['Micro filters (district, sector, brick, city)', 'Advanced granularity with new District, Sector and Brick filters'],
           ['Ready-made action in the pharmacy', 'Field App, with real-time suggestions to the sales rep'],
-          ['An assistant that says where to act first', 'Jean, with recommended actions, answers "where should I act first?" and suggests actions'],
-          ['Jean recommendations that become consistent execution', 'Governance with a sponsor group, clear KPIs and named owners'],
+          ['An assistant that says where to act first', 'Dinn, with recommended actions, answers "where should I act first?" and suggests actions'],
+          ['Dinn recommendations that become consistent execution', 'Governance with a sponsor group, clear KPIs and named owners'],
         ],
       },
     ],
@@ -651,8 +651,8 @@ export const es: Customer = {
         rows: [
           ['Filtros micro (distrito, sector, brick, ciudad)', 'Granularidad avanzada con nuevos filtros de Distrito, Sector y Brick'],
           ['Llevar la acción lista hasta la farmacia', 'App de Campo, con sugerencias en tiempo real al representante'],
-          ['Un asistente que diga dónde actuar primero', 'Jean, con acción recomendada, responde "¿dónde debo actuar primero?" y sugiere acciones'],
-          ['Que la recomendación de Jean se vuelva ejecución consistente', 'Gobernanza con grupo patrocinador, KPIs claros y responsables definidos'],
+          ['Un asistente que diga dónde actuar primero', 'Dinn, con acción recomendada, responde "¿dónde debo actuar primero?" y sugiere acciones'],
+          ['Que la recomendación de Dinn se vuelva ejecución consistente', 'Gobernanza con grupo patrocinador, KPIs claros y responsables definidos'],
         ],
       },
     ],

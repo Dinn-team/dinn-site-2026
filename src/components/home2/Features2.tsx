@@ -23,7 +23,7 @@ const GRADIENTS = ['web/roxo-noite', 'web/verde-noite', 'web/laranja-noite', 'we
 // DA = proporção da maquete: 940 ÷ altura (h) da Frame da tela.
 const DA: Record<string, number> = {
   ruptura: 1.6, giro: 1.6, preco: 1.6, localizador: 1.6, mercado: 1.6,
-  oportunidades: 1.6, distribuicao: 1.6, jean: 1.6, conecta: 940 / 520, suporte: 1.6,
+  oportunidades: 1.6, distribuicao: 1.6, dinn: 1.6, conecta: 940 / 520, suporte: 1.6,
 };
 // Tempo da troca entre telas: a que sai some enquanto a nova entra.
 const SWAP_MS = 750;

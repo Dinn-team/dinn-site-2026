@@ -45,8 +45,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Jean knows which screen you are on and which filters are active. Ask for a reading in plain language.',
+  dinn: {
+    lead: 'Dinn knows which screen you are on and which filters are active. Ask for a reading in plain language.',
     prompts: ['Which pharmacies in the Brasília region are out of Cefalgin?', 'How many pharmacies in Brasília have low stock of Cefalgin?', 'Where do I have stock-outs near the DC?'],
     turns: [
       { q: 'Which pharmacies in Brasília are out of Cefalgin?', a: '41 of the 336 pharmacies within 30 km are out of Cefalgin.',
@@ -137,7 +137,7 @@ export const content: FeatureContent = {
       'The map, the chart and the cards have no export of their own.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
-    note: 'Jean knows which screen you are on and which filters are active. Ask for a reading in plain language.',
+    note: 'Dinn knows which screen you are on and which filters are active. Ask for a reading in plain language.',
   },
   related: {
     title: 'Together with other features',

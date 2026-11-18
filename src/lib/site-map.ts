@@ -51,13 +51,13 @@ export const FEATURE_SLUGS = [
   'mercado',
   'oportunidades',
   'distribuicao',
-  'jean',
+  'dinn',
 ] as const;
 
 // Nomes antigos (páginas e links de antes de 03/11/2026) que apontam para uma das nove.
 export const FEATURE_ALIAS: Record<string, string> = {
   disponibilidade: 'ruptura', estimado: 'ruptura', historico: 'ruptura', 'giro-preco': 'giro', 'tempo-real': 'localizador',
-  insights: 'jean', activities: 'jean', priorizacao: 'jean', alertas: 'jean', exportacoes: 'conecta',
+  insights: 'dinn', activities: 'dinn', priorizacao: 'dinn', alertas: 'dinn', exportacoes: 'conecta',
 };
 
 export const featurePath = (slug: string) => {

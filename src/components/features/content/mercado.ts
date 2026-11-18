@@ -40,8 +40,8 @@ export const mercado: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'A Jean abre com o seu recorte de Mercado. Pergunte quem ganhou participação.',
+  dinn: {
+    lead: 'O Dinn abre com o seu recorte de Mercado. Pergunte quem ganhou participação.',
     prompts: ['Quem ganhou participação no Brasil?', 'O que mudou no último trimestre no Brasil?', 'Quem são os maiores laboratórios do mercado?'],
     turns: [
       { q: 'Quem ganhou participação no Brasil?', a: 'Hoje o seu laboratório tem a maior fatia, com 25,5% das vendas estimadas.',
@@ -135,7 +135,7 @@ export const mercado: FeatureContent = {
       'Use o botão de download ao lado dos filtros da tabela, por PDV ou por rede.',
       'O arquivo leva todas as linhas do filtro atual, sem paginar. Os nomes são mercado-pdvs e mercado-redes, com a data.',
       'O arquivo Excel é um .xls. O Excel pode avisar sobre o formato ao abrir.',
-      'Pergunte à Jean quem ganhou participação ou o que mudou no último trimestre. Ela recebe o seu recorte.',
+      'Pergunte ao Dinn quem ganhou participação ou o que mudou no último trimestre. Ele recebe o seu recorte.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'Esta leitura é um sinal para investigar. Não é prova. A variação de participação, com margem, fica em Oportunidades.',
@@ -147,7 +147,7 @@ export const mercado: FeatureContent = {
       { slug: 'oportunidades', name: 'Oportunidades', text: 'Para ver a variação de participação por estado, cidade e Brick.' },
       { slug: 'preco', name: 'Preço', text: 'Para comparar o preço do seu produto entre as lojas.' },
       { slug: 'ruptura', name: 'Ruptura', text: 'Para ver se a queda vem de produto em falta.' },
-      { slug: 'jean', name: 'Jean', text: 'Pergunte o que mudou no seu mercado e receba o resumo.' },
+      { slug: 'dinn', name: 'Dinn', text: 'Pergunte o que mudou no seu mercado e receba o resumo.' },
     ],
   },
   faq: [

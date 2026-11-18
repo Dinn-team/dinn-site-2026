@@ -16,7 +16,7 @@ export const content: FeatureContent = {
   steps: [
     { title: 'Elige el producto y la ventana', text: 'Filtra por producto, red, estado, ciudad o Brick. Elige 7, 30 o 90 días. La rotación por tienda aparece cuando hay un producto elegido.' },
     { title: 'Mira qué rota y qué está parado', text: 'Compara las cadenas por disponibilidad. Mira cuántas tiendas están paradas hace 7, 30, 60 o 90 días. Ordena las tiendas por días parado.' },
-    { title: 'Abre la tienda e investiga', text: 'Haz clic en una tienda para ver la rotación, los días parado y el inventario congelado de cada producto. Descarga la lista o pregunta a Jean.' },
+    { title: 'Abre la tienda e investiga', text: 'Haz clic en una tienda para ver la rotación, los días parado y el inventario congelado de cada producto. Descarga la lista o pregunta a Dinn.' },
   ],
   doors: {
     title: 'Dónde aparece la rotación',
@@ -46,8 +46,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Pregunta a Jean dónde está parado el inventario. Ella abre la lista directo en Inicio.',
+  dinn: {
+    lead: 'Pregunta a Dinn dónde está parado el inventario. Dinn abre la lista directo en Inicio.',
     prompts: ['¿Dónde tengo más inventario congelado en el segmento actual?', '¿Qué tiendas concentran más inventario congelado?', '¿Cuántos días de inventario tengo de Cefalgin en São Paulo?'],
     turns: [
       { q: '¿Dónde tengo más inventario congelado?', a: 'Estas tres cadenas tienen más inventario congelado. Abre la lista en Inicio, ya filtrada.',
@@ -135,7 +135,7 @@ export const content: FeatureContent = {
       'Usa el botón Descargar de la tabla de puntos de venta. El archivo incluye todas las tiendas del segmento.',
       'El panel de la tienda también tiene Descargar, con la lista de productos de esa tienda.',
       'Guarda el segmento en Visualizaciones guardadas para volver con un clic.',
-      'Pregunta a Jean y pide los datos en tabla. El Localizador no tiene botón de descarga.',
+      'Pregunta a Dinn y pide los datos en tabla. El Localizador no tiene botón de descarga.',
     ],
     formats: ['CSV', 'Excel (XLS)', 'PDF', 'JSON'],
     note: 'La rotación y el inventario parado son alertas para investigar. La diferencia entre dos números puede venir del período, de la tienda o de la lectura del inventario.',

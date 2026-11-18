@@ -34,8 +34,10 @@ export default defineConfig({
     '/funcionalidades/historico': '/funcionalidades/ruptura',
     '/funcionalidades/giro-preco': '/funcionalidades/giro',
     '/funcionalidades/tempo-real': '/funcionalidades/localizador',
-    '/funcionalidades/insights': '/funcionalidades/jean',
-    '/funcionalidades/priorizacao': '/funcionalidades/jean',
+    // A funcionalidade Jean passou a se chamar Dinn (17/11/2026)
+    '/funcionalidades/jean': '/funcionalidades/dinn',
+    '/funcionalidades/insights': '/funcionalidades/dinn',
+    '/funcionalidades/priorizacao': '/funcionalidades/dinn',
     '/funcionalidades/exportacoes': '/produtos/conecta',
   },
 

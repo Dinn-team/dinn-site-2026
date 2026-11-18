@@ -1,8 +1,8 @@
-/* Jean: telas (JeanDemos.tsx, prefixo jd-) e página (JeanPage.tsx, prefixo jn-).
+/* Dinn: telas (DinnDemos.tsx, prefixo jd-) e página (DinnPage.tsx, prefixo jn-).
    Base das telas: site-app-demos.css, site-features2.css e site-case-viz.css. */
 
 /* ---- Telas ----
-   Desenhadas com o kit do app (RealKit.tsx, site-real-app.css). Aqui ficam só as peças próprias da Jean. */
+   Desenhadas com o kit do app (RealKit.tsx, site-real-app.css). Aqui ficam só as peças próprias do Dinn. */
 .dnn-app.dd-app.dd-bare { grid-template-columns: minmax(0, 1fr); }
 .jd-muted { margin: 0; font-size: 13px; color: var(--rl-mfg); line-height: 1.45; }
 .jd-note { display: flex; align-items: center; gap: 8px; margin: 2px 4px 0; font-size: 13px; color: var(--rl-mfg); }
@@ -140,13 +140,13 @@
   .jn-table td:first-child { width: auto; }
 }
 
-/* ---- Ícone da Jean (JeanOrb.tsx): a grade de pontos pulsa a partir do centro ---- */
-.jean-orb { color: var(--a-brand, #5625f2); overflow: visible; }
-.jean-orb circle { transform-box: fill-box; transform-origin: center; animation: jean-orb 1.6s ease-in-out infinite; }
-@keyframes jean-orb {
+/* ---- Ícone do Dinn (DinnOrb.tsx): a grade de pontos pulsa a partir do centro ---- */
+.dinn-orb { color: var(--a-brand, #5625f2); overflow: visible; }
+.dinn-orb circle { transform-box: fill-box; transform-origin: center; animation: dinn-orb 1.6s ease-in-out infinite; }
+@keyframes dinn-orb {
   0%, 100% { opacity: .28; transform: scale(.55); }
   50% { opacity: 1; transform: scale(1.15); }
 }
-@media (prefers-reduced-motion: reduce) { .jean-orb circle { animation: none; opacity: .85; transform: none; } }
-.fd-chat-badge .jean-orb { color: currentColor; }
-.dd-side .jean-orb, .nav-item .jean-orb { color: inherit; }
+@media (prefers-reduced-motion: reduce) { .dinn-orb circle { animation: none; opacity: .85; transform: none; } }
+.fd-chat-badge .dinn-orb { color: currentColor; }
+.dd-side .dinn-orb, .nav-item .dinn-orb { color: inherit; }

@@ -11,13 +11,13 @@ import { ClosingCard, H2Head } from './PageShell';
 import { StageSteps, type StageStep } from './StageSteps';
 import type { DemoProps } from './AppDemos';
 import { ProductScreen } from './ProductScreen';
-import { JeanDemo2 } from './RealMapDemos';
-import { JeanActivitiesDemo, JeanChatDemo, JeanSettingsDemo, JeanWhatsAppDemo } from './JeanDemos';
+import { DinnDemo2 } from './RealMapDemos';
+import { DinnActivitiesDemo, DinnChatDemo, DinnSettingsDemo, DinnWhatsAppDemo } from './DinnDemos';
 import { FeatureTile, type Feature } from './FeaturesV2';
 import { gradUrl, plain } from './area-theme';
 
-// Página da Jean (/funcionalidades/jean). Base: a spec de negócio "Dinn
-// Atividades e Jean" (30/10/2026) e o plano de Atividades. A Jean recebe um
+// Página do Dinn (/funcionalidades/dinn). Base: a spec de negócio "Atividades
+// e Dinn" (30/10/2026) e o plano de Atividades. O Dinn recebe um
 // acompanhamento, confirma o combinado, trabalha com as ferramentas que a
 // pessoa conectou e chama a pessoa quando precisa de uma decisão.
 
@@ -32,19 +32,19 @@ const reveal = (i = 0) => ({
 type Way = { name: string; example: string };
 type Info = { title: string; text: string };
 
-// Uma tela por passo de "Como a Jean trabalha" (modo passo).
+// Uma tela por passo de "Como o Dinn trabalha" (modo passo).
 const HOW_SCREENS: { Demo: (p: DemoProps) => ReactElement; step: number }[] = [
-  { Demo: JeanSettingsDemo, step: 0 },
-  { Demo: JeanChatDemo, step: 1 },
-  { Demo: JeanActivitiesDemo, step: 1 },
-  { Demo: JeanActivitiesDemo, step: 2 },
-  { Demo: JeanWhatsAppDemo, step: 1 },
-  { Demo: JeanActivitiesDemo, step: 3 },
+  { Demo: DinnSettingsDemo, step: 0 },
+  { Demo: DinnChatDemo, step: 1 },
+  { Demo: DinnActivitiesDemo, step: 1 },
+  { Demo: DinnActivitiesDemo, step: 2 },
+  { Demo: DinnWhatsAppDemo, step: 1 },
+  { Demo: DinnActivitiesDemo, step: 3 },
 ];
 
 function HowStage() {
   const { t } = useTranslation();
-  const steps = (t('jean.how.steps') as StageStep[]) ?? [];
+  const steps = (t('dinn.how.steps') as StageStep[]) ?? [];
   const ref = useRef<HTMLElement>(null);
   const [scroll, setScroll] = useState(0);
   const [intro, setIntro] = useState(0);
@@ -77,9 +77,9 @@ function HowStage() {
         <div className="as-glow" aria-hidden="true" />
         <div className="wrap as-grid">
           <div className="as-copy">
-            <h2 id="jn-how" className="as-title">{t('jean.how.title')}</h2>
-            <p className="as-lead">{t('jean.how.lead')}</p>
-            <StageSteps steps={steps} active={active} onGo={(i) => scrollToStage(ref.current, i, n)} label={t('jean.how.title') as string} />
+            <h2 id="jn-how" className="as-title">{t('dinn.how.title')}</h2>
+            <p className="as-lead">{t('dinn.how.lead')}</p>
+            <StageSteps steps={steps} active={active} onGo={(i) => scrollToStage(ref.current, i, n)} label={t('dinn.how.title') as string} />
           </div>
           <div className="as-scene">
             <div className="as-scene-frame">
@@ -93,32 +93,32 @@ function HowStage() {
   );
 }
 
-export function JeanPage() {
+export function DinnPage() {
   const { t } = useTranslation();
-  const ways = (t('jean.ways.items') as Way[]) ?? [];
-  const questions = (t('jean.activities.items') as string[]) ?? [];
-  const settings = (t('jean.settings.items') as Info[]) ?? [];
-  const autonomy = t('jean.autonomy') as unknown as { title: string; cols: string[]; rows: string[][] };
-  const limits = (t('jean.limits.items') as string[]) ?? [];
+  const ways = (t('dinn.ways.items') as Way[]) ?? [];
+  const questions = (t('dinn.activities.items') as string[]) ?? [];
+  const settings = (t('dinn.settings.items') as Info[]) ?? [];
+  const autonomy = t('dinn.autonomy') as unknown as { title: string; cols: string[]; rows: string[][] };
+  const limits = (t('dinn.limits.items') as string[]) ?? [];
   const features = (t('features.items') as Feature[]) ?? [];
-  const others = features.filter((f) => f.id !== 'jean').slice(0, 3);
+  const others = features.filter((f) => f.id !== 'dinn').slice(0, 3);
 
   return (
     <div className="h2 cs3-page sl2 ft2 jn">
       <header className="h2-hero">
         <div className="h2-wrap">
           <div className="h2-hero-grid">
-            <h1 className="h2-hero-title">{plain(t('jean.hero.title') as string)}</h1>
+            <h1 className="h2-hero-title">{plain(t('dinn.hero.title') as string)}</h1>
             <div className="h2-hero-side">
-              <p className="h2-hero-sub">{t('jean.hero.lead')}</p>
+              <p className="h2-hero-sub">{t('dinn.hero.lead')}</p>
               <div className="h2-actions">
-                <a className="btn btn-primary" href={contactUrl('funcionalidade-jean')}>{t('pageCta.button')}</a>
+                <a className="btn btn-primary" href={contactUrl('funcionalidade-dinn')}>{t('pageCta.button')}</a>
                 <a className="h2-link" href={PATHS.features}>{t('features.page.back')} <ArrowRight size={15} aria-hidden="true" /></a>
               </div>
             </div>
           </div>
           <div className="h2-media sl2-media" style={{ backgroundImage: gradUrl('web/roxo-noite') }}>
-            <div className="sl2-screen"><ProductScreen demo={JeanDemo2} /></div>
+            <div className="sl2-screen"><ProductScreen demo={DinnDemo2} /></div>
           </div>
           <p className="ft2-caption">{t('features.page.caption')}</p>
         </div>
@@ -126,10 +126,10 @@ export function JeanPage() {
 
       <section className="h2-section jn-ask" aria-labelledby="jn-ask">
         <div className="h2-wrap">
-          <H2Head id="jn-ask" title={t('jean.ask.title') as string} />
-          <blockquote className="jn-quote">“{t('jean.ask.quote')}”</blockquote>
-          <p className="jn-note">{t('jean.ask.note')}</p>
-          <h3 className="sl2-label sl2-label-gap">{t('jean.ways.title')}</h3>
+          <H2Head id="jn-ask" title={t('dinn.ask.title') as string} />
+          <blockquote className="jn-quote">“{t('dinn.ask.quote')}”</blockquote>
+          <p className="jn-note">{t('dinn.ask.note')}</p>
+          <h3 className="sl2-label sl2-label-gap">{t('dinn.ways.title')}</h3>
           <ul className="jn-ways">
             {ways.map((w, i) => (
               <motion.li key={w.name} {...reveal(i)}>
@@ -146,12 +146,12 @@ export function JeanPage() {
       <section className="h2-section" aria-labelledby="jn-act">
         <div className="h2-wrap jn-split">
           <motion.div className="jn-copy" {...reveal(0)}>
-            <h2 id="jn-act" className="h2-title">{t('jean.activities.title')}</h2>
-            <p className="jn-lead">{t('jean.activities.lead')}</p>
+            <h2 id="jn-act" className="h2-title">{t('dinn.activities.title')}</h2>
+            <p className="jn-lead">{t('dinn.activities.lead')}</p>
             <ul className="jn-qs">{questions.map((q) => <li key={q}>{q}</li>)}</ul>
           </motion.div>
           <motion.div className="jn-media" style={{ backgroundImage: gradUrl('web/azul-noite') }} {...reveal(1)}>
-            <div className="jn-screen"><JeanActivitiesDemo /></div>
+            <div className="jn-screen"><DinnActivitiesDemo /></div>
           </motion.div>
         </div>
       </section>
@@ -160,11 +160,11 @@ export function JeanPage() {
         <div className="h2-wrap">
           <div className="jn-split is-flip">
             <motion.div className="jn-copy" {...reveal(0)}>
-              <h2 id="jn-set" className="h2-title">{t('jean.settings.title')}</h2>
-              <p className="jn-lead">{t('jean.settings.lead')}</p>
+              <h2 id="jn-set" className="h2-title">{t('dinn.settings.title')}</h2>
+              <p className="jn-lead">{t('dinn.settings.lead')}</p>
             </motion.div>
             <motion.div className="jn-media" style={{ backgroundImage: gradUrl('web/grafite') }} {...reveal(1)}>
-              <div className="jn-screen"><JeanSettingsDemo /></div>
+              <div className="jn-screen"><DinnSettingsDemo /></div>
             </motion.div>
           </div>
           <ul className="pf2-cols">
@@ -181,12 +181,12 @@ export function JeanPage() {
       <section className="h2-section" aria-labelledby="jn-wa">
         <div className="h2-wrap jn-split">
           <motion.div className="jn-copy" {...reveal(0)}>
-            <h2 id="jn-wa" className="h2-title">{t('jean.whatsapp.title')}</h2>
-            <p className="jn-lead">{t('jean.whatsapp.lead')}</p>
-            <p className="jn-note">{t('jean.whatsapp.note')}</p>
+            <h2 id="jn-wa" className="h2-title">{t('dinn.whatsapp.title')}</h2>
+            <p className="jn-lead">{t('dinn.whatsapp.lead')}</p>
+            <p className="jn-note">{t('dinn.whatsapp.note')}</p>
           </motion.div>
           <motion.div className="jn-media" style={{ backgroundImage: gradUrl('web/verde-noite') }} {...reveal(1)}>
-            <div className="jn-screen"><JeanWhatsAppDemo /></div>
+            <div className="jn-screen"><DinnWhatsAppDemo /></div>
           </motion.div>
         </div>
       </section>
@@ -208,7 +208,7 @@ export function JeanPage() {
       <section className="h2-section sl2-read" aria-labelledby="jn-limits">
         <div className="h2-wrap sl2-read-grid">
           <div>
-            <h2 id="jn-limits" className="h2-title">{t('jean.limits.title')}</h2>
+            <h2 id="jn-limits" className="h2-title">{t('dinn.limits.title')}</h2>
             <a className="h2-link sl2-trust" href={PATHS.trust}>{t('solutions.page.trustCta')} <ArrowRight size={15} aria-hidden="true" /></a>
           </div>
           <ul className="sl2-limits">
@@ -233,7 +233,7 @@ export function JeanPage() {
         title={t('features.cta.title') as string}
         desc={t('features.cta.desc') as string}
         button={t('features.cta.button') as string}
-        origin="funcionalidade-jean"
+        origin="funcionalidade-dinn"
         gradient="web/lilas-azul"
         secondary={{ label: t('features.page.back') as string, href: PATHS.features }}
       />

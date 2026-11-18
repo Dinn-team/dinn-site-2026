@@ -1,16 +1,16 @@
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
-import { gainFor } from '@/data/client-gains';
+import { impactFor } from '@/data/client-gains';
+import { CLIENT_LOGOS } from '@/lib/clients';
 import { homeLabs, type Lab } from '@/lib/labs-types';
 import { LabLogo } from '@/components/site/LabsParts';
 
 // "Quem a Dinn pode atender": três fileiras de cartões claros que rolam de lado sozinhas, em
 // sentidos alternados, no modelo da faixa de confiança da Clay. Cinco clientes (com um dado
 // do caso ou uma citação aprovada) e os maiores laboratórios do ranking, 20 no total.
-// Só os cartões de caso têm link (para o case anônimo). Os logos não são clicáveis.
-// Os cases são anônimos: o cartão mostra o perfil do laboratório, sem nome nem logo de cliente.
-// Cada cartão de caso mostra o mesmo número e a mesma frase do cartão em /clientes.
-// "Ver todos" leva ao topo de /clientes, para o time ver os resultados gerais.
+// Os cartões de cliente mostram o logo e uma frase de impacto, sem número (decisão de 16/11/2026).
+// Todos levam ao topo de /clientes, e não à página de cada case. Os logos de laboratório não são clicáveis.
+// "Ver todos" também leva ao topo de /clientes.
 // Sem movimento (prefers-reduced-motion), as fileiras ficam paradas e rolam com o dedo ou o mouse.
 // Fileiras: número = quantos logos; texto = cartão de cliente. Cada fileira roda em seu ritmo.
 const ROWS: { items: (number | string)[]; s: number; rev?: boolean }[] = [
@@ -38,13 +38,20 @@ export function QuemAtende2({ labs }: { labs: Lab[] }) {
       const { lab } = tile;
       return <li className="lb-tile"><span className="lb-tile-in" role="img" aria-label={lab.name}><LabLogo lab={lab} /></span></li>;
     }
-    // Mesmo número e mesma frase do cartão em /clientes (src/data/client-gains.ts).
-    const g = gainFor(tile.key, lang)!;
+    // Logo do cliente pintado com a cor da marca, sobre o fundo branco dos demais logos, com uma frase de impacto sem número.
+    // O cartão leva ao topo de /clientes, não à página do case.
+    const logo = CLIENT_LOGOS[tile.key];
+    const impact = impactFor(tile.key, lang)!;
     return (
       <li className="lb-tile lb-client">
-        <a href={`/clientes/${g.slug}`} tabIndex={hidden ? -1 : undefined} aria-label={`${g.label}: ${g.num} ${g.text}`}>
-          <span className="lb-anon">{g.label}</span>
-          <span className="lb-stat"><b>{g.num}</b><small>{g.text}</small></span>
+        <a href="/clientes" tabIndex={hidden ? -1 : undefined} aria-label={`${logo.name}: ${impact}`}>
+          <span
+            className="lb-client-logo"
+            role="img"
+            aria-hidden="true"
+            style={{ ['--m' as string]: `url(${logo.src})`, ['--c' as string]: logo.color, ['--r' as string]: logo.width / logo.height }}
+          />
+          <span className="lb-impact">{impact}</span>
           <ArrowRight className="lb-go" size={16} aria-hidden="true" />
         </a>
       </li>

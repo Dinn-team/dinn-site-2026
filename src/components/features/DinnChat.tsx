@@ -3,10 +3,10 @@ import { ArrowUpRight } from 'lucide-react';
 import type { FeatureUi } from './ui';
 import type { ChatTurn } from './types';
 
-// Conversa animada com a Jean, no estilo do chat da ElevenLabs: as mensagens fluem sobre um degradê,
-// a pergunta é digitada, a Jean pensa, consulta os dados e escreve a resposta. Depois vêm o cartão com
+// Conversa animada com o Dinn, no estilo do chat da ElevenLabs: as mensagens fluem sobre um degradê,
+// a pergunta é digitada, o Dinn pensa, consulta os dados e escreve a resposta. Depois vêm o cartão com
 // o resultado, a data do dado e o botão do próximo passo, como no chat do Dinn. Roda em laço.
-// Dados fictícios. A Jean só lê dados e nunca altera nada.
+// Dados fictícios. O Dinn só lê dados e nunca altera nada.
 
 type Item =
   | { k: 'q'; text: string }
@@ -24,7 +24,7 @@ const finalItems = (turns: ChatTurn[]): Item[] =>
     ...(t.steps ? ([{ k: 'steps', labels: t.steps }] as Item[]) : []),
   ]);
 
-export function JeanChat({ turns, bg, ui }: { turns: ChatTurn[]; bg: string; ui: FeatureUi }) {
+export function DinnChat({ turns, bg, ui }: { turns: ChatTurn[]; bg: string; ui: FeatureUi }) {
   const box = useRef<HTMLDivElement>(null);
   const [items, setItems] = useState<Item[]>(() => finalItems(turns));
   const [fade, setFade] = useState(false);
@@ -59,12 +59,12 @@ export function JeanChat({ turns, bg, ui }: { turns: ChatTurn[]; bg: string; ui:
             await sleep(24 + (i % 4) * 7);
           }
           await sleep(380);
-          // 2. A Jean pensa e consulta os dados.
+          // 2. O Dinn pensa e consulta os dados.
           push({ k: 'think', text: ui.thinking });
           await sleep(800);
           last({ k: 'think', text: ui.querying });
           await sleep(1100);
-          // 3. A Jean escreve a resposta.
+          // 3. O Dinn escreve a resposta.
           last({ k: 'a', text: '', turn: t, full: false });
           for (let i = 2; i <= t.a.length + 1; i += 2) {
             last({ k: 'a', text: t.a.slice(0, i), turn: t, full: false });

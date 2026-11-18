@@ -447,9 +447,9 @@
         "es": "De 60% a 45% de share: lo que la caída estaba dejando sobre la mesa"
       },
       "summary": {
-        "pt": "A queda era visível; as oportunidades, não. Com Oportunidades e o Dinn Insights, o time passou a ver o que aconteceu, onde recuperar espaço e o que fazer em cada cidade e em cada estado.",
-        "en": "The drop was visible; the opportunities were not. With Opportunities and Dinn Insights, the team started to see what happened, where to win back space, and what to do in each city and each state.",
-        "es": "La caída era visible; las oportunidades, no. Con Oportunidades y Dinn Insights, el equipo pasó a ver qué ocurrió, dónde recuperar espacio y qué hacer en cada ciudad y en cada estado."
+        "pt": "A queda era visível; as oportunidades, não. Com Oportunidades e o Dinn, o time passou a ver o que aconteceu, onde recuperar espaço e o que fazer em cada cidade e em cada estado.",
+        "en": "The drop was visible; the opportunities were not. With Opportunities and Dinn, the team started to see what happened, where to win back space, and what to do in each city and each state.",
+        "es": "La caída era visible; las oportunidades, no. Con Oportunidades y Dinn, el equipo pasó a ver qué ocurrió, dónde recuperar espacio y qué hacer en cada ciudad y en cada estado."
       },
       "problem": {
         "quote": {
@@ -478,14 +478,14 @@
         },
         {
           "title": {
-            "pt": "Perguntou ao Dinn Insights",
-            "en": "Asked Dinn Insights",
-            "es": "Le preguntó a Dinn Insights"
+            "pt": "Perguntou ao Dinn",
+            "en": "Asked Dinn",
+            "es": "Le preguntó a Dinn"
           },
           "text": {
-            "pt": "Com o Insights ligado ao histórico das análises de mercado, o time pergunta em linguagem natural e recebe a resposta na hora, com o recorte da tela.",
-            "en": "With Insights connected to the history of market analyses, the team asks in natural language and gets an immediate answer, scoped to what is on the screen.",
-            "es": "Con Insights conectado al historial de los análisis de mercado, el equipo pregunta en lenguaje natural y recibe la respuesta de inmediato, con el recorte de la pantalla."
+            "pt": "Com o Dinn ligado ao histórico das análises de mercado, o time pergunta em linguagem natural e recebe a resposta na hora, com o recorte da tela.",
+            "en": "With Dinn connected to the history of market analyses, the team asks in natural language and gets an immediate answer, scoped to what is on the screen.",
+            "es": "Con Dinn conectado al historial de los análisis de mercado, el equipo pregunta en lenguaje natural y recibe la respuesta de inmediato, con el recorte de la pantalla."
           }
         },
         {

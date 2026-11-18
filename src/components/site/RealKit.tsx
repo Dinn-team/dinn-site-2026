@@ -4,7 +4,7 @@ import {
   LifeBuoy, Lightbulb, LoaderCircle, PanelLeft, RefreshCw, Search, Target, TriangleAlert,
 } from 'lucide-react';
 import { Frame, fmt, reduced } from './AppDemos';
-import { JeanOrbIcon } from './JeanOrb';
+import { DinnOrbIcon } from './DinnOrb';
 import { demoLocale, useDemoT } from './demoI18n';
 import type { Language } from '@/i18n/store';
 
@@ -37,7 +37,7 @@ export const GREY = '#9ca3af';
 // ── Moldura ────────────────────────────────────────────────────────────────
 const NAV = [
   { k: 'home', icon: House, label: 'Início' },
-  { k: 'jean', icon: JeanOrbIcon, label: 'Jean' },
+  { k: 'dinn', icon: DinnOrbIcon, label: 'Dinn' },
   { k: 'market', icon: ChartPie, label: 'Mercado' },
   { k: 'opps', icon: Target, label: 'Oportunidades' },
   { k: 'locator', icon: Search, label: 'Localizar Produtos' },
@@ -85,7 +85,7 @@ export function RTop({ crumb, sub, actions = true }: { crumb?: string; sub?: str
         <p className="rl-hello"><b>{t('Olá, Ana.')}</b><small>{sub ? t(sub) : t('Atualizado em {d} (D-1)', { d: fdate(lang, 3, 11) })}</small></p>
       )}
       <span className="rl-top-r">
-        <span className="rl-pill rl-pill-jean"><JeanOrbIcon size={15} />Jean</span>
+        <span className="rl-pill rl-pill-dinn"><DinnOrbIcon size={15} />Dinn</span>
         {actions && <><span className="rl-pill"><Bookmark size={15} />{t('Ver')}</span><span className="rl-pill"><Lightbulb size={15} className="rl-bulb" />{t('Boa prática')}</span></>}
       </span>
     </header>

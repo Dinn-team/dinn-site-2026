@@ -1,4 +1,8 @@
 {
+  "Assistente": {
+    "en": "Assistant",
+    "es": "Asistente"
+  },
   "Início": {
     "en": "Home",
     "es": "Inicio"
@@ -55,13 +59,13 @@
     "en": "Start tracking",
     "es": "Activar seguimiento"
   },
-  "Peça um acompanhamento, uma rotina ou um relatório…": {
-    "en": "Ask for a tracking task, a routine or a report…",
-    "es": "Pide un seguimiento, una rutina o un informe…"
+  "Pergunte ao Dinn ou peça um acompanhamento, uma rotina ou um relatório…": {
+    "en": "Ask Dinn or request a tracking task, a routine or a report…",
+    "es": "Pregunta a Dinn o pide un seguimiento, una rutina o un informe…"
   },
-  "A Jean pode errar. Verifique os dados importantes.": {
-    "en": "Jean can make mistakes. Check important data.",
-    "es": "Jean puede equivocarse. Verifica los datos importantes."
+  "O Dinn pode errar. Verifique os dados importantes.": {
+    "en": "Dinn can make mistakes. Check important data.",
+    "es": "Dinn puede equivocarse. Verifica los datos importantes."
   },
   "Acompanha a disponibilidade destes produtos nas minhas redes. Antes das reuniões, prepara os pontos e me chama no WhatsApp.": {
     "en": "Track the availability of these products in my networks. Before meetings, prepare the key points and message me on WhatsApp.",
@@ -151,13 +155,13 @@
     "en": "Availability by region",
     "es": "Disponibilidad por región"
   },
-  "Tela da Jean: a pessoa pede um acompanhamento, a Jean mostra o combinado com objetivo, recorte, fontes, canal e ações autorizadas, e a pessoa ativa.": {
-    "en": "Jean screen: the user asks for a tracking task. Jean shows the plan with goal, scope, sources, channel and allowed actions. The user starts it.",
-    "es": "Pantalla de Jean: la persona pide un seguimiento. Jean muestra el acuerdo con objetivo, alcance, fuentes, canal y acciones autorizadas. La persona lo activa."
+  "Tela do Dinn: a pessoa pede um acompanhamento, o Dinn mostra o combinado com objetivo, recorte, fontes, canal e ações autorizadas, e a pessoa ativa.": {
+    "en": "Dinn screen: the user asks for a tracking task. Dinn shows the plan with goal, scope, sources, channel and allowed actions. The user starts it.",
+    "es": "Pantalla de Dinn: la persona pide un seguimiento. Dinn muestra el acuerdo con objetivo, alcance, fuentes, canal y acciones autorizadas. La persona lo activa."
   },
-  "Configurações da Jean: a pessoa conecta a conta Microsoft escolhendo os acessos e depois define, por tipo de ação, o que a Jean faz sozinha e o que pede aprovação.": {
-    "en": "Jean settings: the user connects a Microsoft account and picks the access. Then the user sets, for each type of action, what Jean does alone and what needs approval.",
-    "es": "Configuración de Jean: la persona conecta la cuenta Microsoft y elige los accesos. Luego define, por tipo de acción, qué hace Jean sola y qué pide aprobación."
+  "Configurações do Dinn: a pessoa conecta a conta Microsoft escolhendo os acessos e depois define, por tipo de ação, o que o Dinn faz sozinho e o que pede aprovação.": {
+    "en": "Dinn settings: the user connects a Microsoft account and picks the access. Then the user sets, for each type of action, what Dinn does alone and what needs approval.",
+    "es": "Configuración de Dinn: la persona conecta la cuenta Microsoft y elige los accesos. Luego define, por tipo de acción, qué hace Dinn sola y qué pide aprobación."
   },
   "Configurações": {
     "en": "Settings",
@@ -219,12 +223,12 @@
     "en": "You can remove each access at any time. Connecting an account does not allow every action in it.",
     "es": "Puedes revocar cada acceso en cualquier momento. Conectar una cuenta no autoriza cualquier acción en ella."
   },
-  "O que a Jean faz em cada ação": {
-    "en": "What Jean does for each action",
-    "es": "Qué hace Jean en cada acción"
+  "O que o Dinn faz em cada ação": {
+    "en": "What Dinn does for each action",
+    "es": "Qué hace Dinn en cada acción"
   },
-  "Defina por tipo de ação o que ela faz sozinha e o que pede aprovação.": {
-    "en": "Set, for each type of action, what Jean does alone and what needs approval.",
+  "Defina por tipo de ação o que o Dinn faz sozinho e o que pede aprovação.": {
+    "en": "Set, for each type of action, what Dinn does alone and what needs approval.",
     "es": "Define, por tipo de acción, qué hace sola y qué pide aprobación."
   },
   "Consultar fontes e analisar": {
@@ -267,9 +271,9 @@
     "en": "Connect Outlook and Microsoft Calendar",
     "es": "Conectar Outlook y calendario de Microsoft"
   },
-  "Escolha o que a Jean pode acessar nesta conta.": {
-    "en": "Choose what Jean can access in this account.",
-    "es": "Elige a qué puede acceder Jean en esta cuenta."
+  "Escolha o que o Dinn pode acessar nesta conta.": {
+    "en": "Choose what Dinn can access in this account.",
+    "es": "Elige a qué puede acceder Dinn en esta cuenta."
   },
   "Ler e-mails ligados aos acompanhamentos": {
     "en": "Read emails linked to tracking tasks",
@@ -287,9 +291,9 @@
     "en": "Send email and change appointments without asking",
     "es": "Enviar correos y cambiar compromisos sin pedir"
   },
-  "Sem isso, a Jean pede aprovação antes de enviar ou alterar.": {
-    "en": "Without this, Jean asks for approval before it sends or changes anything.",
-    "es": "Sin esto, Jean pide aprobación antes de enviar o cambiar."
+  "Sem isso, o Dinn pede aprovação antes de enviar ou alterar.": {
+    "en": "Without this, Dinn asks for approval before it sends or changes anything.",
+    "es": "Sin esto, Dinn pide aprobación antes de enviar o cambiar."
   },
   "Cancelar": {
     "en": "Cancel",
@@ -311,17 +315,17 @@
     "en": "Done",
     "es": "Concluido"
   },
-  "Tela Atividades: a pessoa aprova um e-mail preparado pela Jean, vê a reunião que ela está preparando e o histórico do que já foi entregue.": {
-    "en": "Activities screen: the user approves an email that Jean prepared, sees the meeting Jean is preparing, and sees the history of delivered work.",
-    "es": "Pantalla Actividades: la persona aprueba un correo que preparó Jean, ve la reunión que Jean prepara y el historial de lo entregado."
+  "Tela Atividades: a pessoa aprova um e-mail preparado pelo Dinn, vê a reunião que o Dinn está preparando e o histórico do que já foi entregue.": {
+    "en": "Activities screen: the user approves an email that Dinn prepared, sees the meeting Dinn is preparing, and sees the history of delivered work.",
+    "es": "Pantalla Actividades: la persona aprueba un correo que preparó Dinn, ve la reunión que Dinn prepara y el historial de lo entregado."
   },
   "Atividades": {
     "en": "Activities",
     "es": "Actividades"
   },
-  "O trabalho da Jean": {
-    "en": "Jean's work",
-    "es": "El trabajo de Jean"
+  "O trabalho do Dinn": {
+    "en": "Dinn's work",
+    "es": "El trabajo de Dinn"
   },
   "Aprovar e-mail para a Rede Alfa": {
     "en": "Approve email to Rede Alfa",
@@ -391,9 +395,9 @@
     "en": "Delivered {d0311} · {h8}",
     "es": "Entregado {d0311} · {h8}"
   },
-  "A Jean viu que a resposta sobre a reposição não chegou. Ela preparou uma cobrança.": {
-    "en": "Jean saw that the reply about restock did not arrive. Jean prepared a follow-up.",
-    "es": "Jean vio que la respuesta sobre la reposición no llegó. Preparó un recordatorio."
+  "O Dinn viu que a resposta sobre a reposição não chegou. Ele preparou uma cobrança.": {
+    "en": "Dinn saw that the reply about restock did not arrive. Dinn prepared a follow-up.",
+    "es": "Dinn vio que la respuesta sobre la reposición no llegó. Preparó un recordatorio."
   },
   "Para": {
     "en": "To",
@@ -431,9 +435,9 @@
     "en": "Prepare the key points for the meeting",
     "es": "Preparar los puntos de la reunión"
   },
-  "O que a Jean fez": {
-    "en": "What Jean did",
-    "es": "Qué hizo Jean"
+  "O que o Dinn fez": {
+    "en": "What Dinn did",
+    "es": "Qué hizo Dinn"
   },
   "Leu 3 e-mails da conversa com a Rede Beta. Consultou a disponibilidade em 140 lojas (D-1, {dy0211}). Achou 1 pendência no último e-mail.": {
     "en": "Read 3 emails from the thread with Rede Beta. Checked availability in 140 stores (D-1, {dy0211}). Found 1 open item in the last email.",
@@ -455,9 +459,9 @@
     "en": "Send the summary on WhatsApp 1 hour before the meeting",
     "es": "Enviar el resumen por WhatsApp 1 h antes de la reunión"
   },
-  "A Jean viu a pendência sem resposta": {
-    "en": "Jean saw the open item with no reply",
-    "es": "Jean vio el pendiente sin respuesta"
+  "O Dinn viu a pendência sem resposta": {
+    "en": "Dinn saw the open item with no reply",
+    "es": "Dinn vio el pendiente sin respuesta"
   },
   "Rascunho pronto para aprovação": {
     "en": "Draft ready for approval",
@@ -483,9 +487,9 @@
     "en": "Select an activity.",
     "es": "Selecciona una actividad."
   },
-  "Conversa no WhatsApp com o número da Jean: ela envia os pontos da reunião, prepara um e-mail e pede aprovação. Ao lado, o mesmo histórico aparece em Atividades.": {
-    "en": "WhatsApp chat with Jean's number: Jean sends the key points of the meeting, prepares an email and asks for approval. Next to it, the same history shows in Activities.",
-    "es": "Conversación de WhatsApp con el número de Jean: envía los puntos de la reunión, prepara un correo y pide aprobación. Al lado, el mismo historial aparece en Actividades."
+  "Conversa no WhatsApp com o número do Dinn: ele envia os pontos da reunião, prepara um e-mail e pede aprovação. Ao lado, o mesmo histórico aparece em Atividades.": {
+    "en": "WhatsApp chat with Dinn's number: Dinn sends the key points of the meeting, prepares an email and asks for approval. Next to it, the same history shows in Activities.",
+    "es": "Conversación de WhatsApp con el número de Dinn: envía los puntos de la reunión, prepara un correo y pide aprobación. Al lado, el mismo historial aparece en Actividades."
   },
   "Bom dia, Ana. Preparei os pontos da reunião com a Rede Beta, hoje às {h10}. Achei uma pendência no último e-mail e uma queda de disponibilidade em 12 lojas. Quer revisar?": {
     "en": "Good morning, Ana. I prepared the key points for today's meeting with Rede Beta at {h10}. I found one open item in the last email and an availability drop in 12 stores. Do you want to review?",

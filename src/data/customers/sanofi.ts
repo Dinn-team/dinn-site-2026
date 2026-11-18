@@ -5,13 +5,13 @@ export const pt: Customer = {
   name: 'Farmacêutica global',
   sector: 'Farmacêutica e saúde',
   hq: 'Global',
-  useCase: 'Recomendações da Jean para a força de vendas em campo',
+  useCase: 'Recomendações do Dinn para a força de vendas em campo',
   about: 'Uma das maiores empresas globais de saúde e farmacêutica.',
   title: 'Laboratório global leva inteligência de mercado ao campo',
-  summary: 'Em 30 dias, consultores do laboratório aceitaram 92,7% das recomendações da Jean.',
-  metaDescription: 'Em 30 dias, consultores de um laboratório global aceitaram 92,7% das recomendações da Jean, com 90,85% de satisfação e 70,77% de engajamento.',
+  summary: 'Em 30 dias, consultores do laboratório aceitaram 92,7% das recomendações do Dinn.',
+  metaDescription: 'Em 30 dias, consultores de um laboratório global aceitaram 92,7% das recomendações do Dinn, com 90,85% de satisfação e 70,77% de engajamento.',
   metrics: [
-    { value: '92,7%', label: 'das recomendações da Jean foram acatadas: 573 acatadas e 45 rejeitadas' },
+    { value: '92,7%', label: 'das recomendações do Dinn foram acatadas: 573 acatadas e 45 rejeitadas' },
     { value: '90,85%', label: 'de satisfação dos consultores (CSAT médio de 4,54 em 5)' },
     { value: '~20', label: 'acessos por dia, por consultor, em média' },
     { value: '78', label: 'pontos de venda com todas as recomendações concluídas pelos seis consultores' },
@@ -23,7 +23,7 @@ export const pt: Customer = {
   },
   intro: [
     'O laboratório quer crescer com boa execução e diversificar o portfólio nos pontos de venda. Para isso, depende de consultores que visitam farmácias, distribuidores e profissionais de saúde todos os dias. Os dados nem sempre chegam a eles de forma clara.',
-    'Em 2024, seis consultores de vendas do laboratório usaram o Dinn por 30 dias. Eles atuam em duas regionais. A pergunta era direta: os consultores seguem as recomendações da Jean quando elas aparecem no meio da rotina de campo?',
+    'Em 2024, seis consultores de vendas do laboratório usaram o Dinn por 30 dias. Eles atuam em duas regionais. A pergunta era direta: os consultores seguem as recomendações do Dinn quando elas aparecem no meio da rotina de campo?',
     'Seguiram. E gostaram.',
   ],
   problem: {
@@ -43,8 +43,8 @@ export const pt: Customer = {
       { kind: 'timeline', title: 'Os 30 dias de uso', steps: [{ date: 'jul/2024', label: 'Seis consultores começam a usar o Dinn' }, { date: 'ago/2024', label: 'Melhorias na página de recomendações, para todos' }, { date: 'ago/2024', label: 'Fim dos 30 dias e leitura dos resultados' }] },
     ],
     paragraphs: [
-      'A Jean usa inteligência artificial. Ela responde a três perguntas para cada cliente: o que oferecer, quando oferecer e como oferecer. A resposta chega ao consultor em tempo real, em forma de recomendações.',
-      'A hipótese: os consultores acatam as recomendações da Jean se forem precisas e relevantes, se forem fáceis de integrar à rotina e se agregarem valor.',
+      'O Dinn usa inteligência artificial. Ele responde a três perguntas para cada cliente: o que oferecer, quando oferecer e como oferecer. A resposta chega ao consultor em tempo real, em forma de recomendações.',
+      'A hipótese: os consultores acatam as recomendações do Dinn se forem precisas e relevantes, se forem fáceis de integrar à rotina e se agregarem valor.',
     ],
     bullets: [
       'Período: 30 dias, entre julho e agosto de 2024',
@@ -56,7 +56,7 @@ export const pt: Customer = {
   },
   stories: [
     {
-      title: 'A Jean diz ao consultor o que fazer',
+      title: 'O Dinn diz ao consultor o que fazer',
       paragraphs: [
         'O consultor abre o Dinn e busca o cliente por nome ou número fiscal (ponto de venda ou profissional de saúde). Ele encontra as recomendações do cliente. Cada recomendação é objetiva. O consultor marca como feita ou descarta.',
         'Cinco tipos de recomendação acompanham a rotina de visita:',
@@ -128,7 +128,7 @@ export const pt: Customer = {
   ],
   next: {
     title: 'O que vem a seguir',
-    paragraphs: ['O próximo passo é ampliar o uso da Jean para mais consultores e incluir mais fontes de dados do cliente.'],
+    paragraphs: ['O próximo passo é ampliar o uso do Dinn para mais consultores e incluir mais fontes de dados do cliente.'],
   },
 };
 
@@ -137,13 +137,13 @@ export const en: Customer = {
   name: 'Global pharma company',
   sector: 'Pharma and healthcare',
   hq: 'Global',
-  useCase: 'Jean recommendations for the field sales force',
+  useCase: 'Dinn recommendations for the field sales force',
   about: 'One of the largest healthcare and pharmaceutical companies in the world.',
   title: 'A global pharma company brings market intelligence to the field',
-  summary: 'In 30 days, the company\'s consultants accepted 92.7% of the recommendations from Jean.',
-  metaDescription: 'In 30 days, consultants at a global pharma company accepted 92.7% of the recommendations from Jean, with 90.85% satisfaction and 70.77% engagement.',
+  summary: 'In 30 days, the company\'s consultants accepted 92.7% of the recommendations from Dinn.',
+  metaDescription: 'In 30 days, consultants at a global pharma company accepted 92.7% of the recommendations from Dinn, with 90.85% satisfaction and 70.77% engagement.',
   metrics: [
-    { value: '92.7%', label: 'of Jean recommendations were accepted: 573 accepted and 45 rejected' },
+    { value: '92.7%', label: 'of Dinn recommendations were accepted: 573 accepted and 45 rejected' },
     { value: '90.85%', label: 'consultant satisfaction (average CSAT of 4.54 out of 5)' },
     { value: '~20', label: 'logins per day, per consultant, on average' },
     { value: '78', label: 'stores where the six consultants completed all recommendations' },
@@ -155,7 +155,7 @@ export const en: Customer = {
   },
   intro: [
     'The company wants to grow with strong execution and diversify its portfolio in stores. To do this, it relies on consultants who visit pharmacies, distributors and health professionals every day. The data does not always reach them in a clear form.',
-    'In 2024, six sales consultants from the company used Dinn for 30 days. They work in two regions. The question was direct: do consultants follow the Jean recommendations when they appear in the middle of the field routine?',
+    'In 2024, six sales consultants from the company used Dinn for 30 days. They work in two regions. The question was direct: do consultants follow the Dinn recommendations when they appear in the middle of the field routine?',
     'They did. And they liked it.',
   ],
   problem: {
@@ -175,8 +175,8 @@ export const en: Customer = {
       { kind: 'timeline', title: 'The 30 days of use', steps: [{ date: 'Jul 2024', label: 'Six consultants start to use Dinn' }, { date: 'Aug 2024', label: 'Improvements to the recommendations page, for everyone' }, { date: 'Aug 2024', label: 'End of the 30 days and review of the results' }] },
     ],
     paragraphs: [
-      'Jean uses artificial intelligence. It answers three questions for each customer: what to offer, when to offer it and how to offer it. The answer reaches the consultant in real time, as recommendations.',
-      'The hypothesis: consultants accept the Jean recommendations if they are accurate and relevant, if they fit the routine and if they add value.',
+      'Dinn uses artificial intelligence. It answers three questions for each customer: what to offer, when to offer it and how to offer it. The answer reaches the consultant in real time, as recommendations.',
+      'The hypothesis: consultants accept the Dinn recommendations if they are accurate and relevant, if they fit the routine and if they add value.',
     ],
     bullets: [
       'Period: 30 days, between July and August 2024',
@@ -188,7 +188,7 @@ export const en: Customer = {
   },
   stories: [
     {
-      title: 'Jean tells the consultant what to do',
+      title: 'Dinn tells the consultant what to do',
       paragraphs: [
         'The consultant opens Dinn and searches for the customer by name or tax ID (store or health professional). The consultant finds the recommendations for that customer. Each recommendation is clear. The consultant marks it as done or dismisses it.',
         'Five types of recommendation follow the visit routine:',
@@ -260,7 +260,7 @@ export const en: Customer = {
   ],
   next: {
     title: 'What comes next',
-    paragraphs: ['The next step is to extend the use of Jean to more consultants and add more customer data sources.'],
+    paragraphs: ['The next step is to extend the use of Dinn to more consultants and add more customer data sources.'],
   },
 };
 
@@ -269,13 +269,13 @@ export const es: Customer = {
   name: 'Farmacéutica global',
   sector: 'Farmacéutica y salud',
   hq: 'Global',
-  useCase: 'Recomendaciones de Jean para la fuerza de ventas en campo',
+  useCase: 'Recomendaciones de Dinn para la fuerza de ventas en campo',
   about: 'Una de las mayores empresas globales de salud y farmacéutica.',
   title: 'Laboratorio global lleva inteligencia de mercado al campo',
-  summary: 'En 30 días, los consultores del laboratorio aceptaron el 92,7% de las recomendaciones de Jean.',
-  metaDescription: 'En 30 días, los consultores de un laboratorio global aceptaron el 92,7% de las recomendaciones de Jean, con 90,85% de satisfacción y 70,77% de engagement.',
+  summary: 'En 30 días, los consultores del laboratorio aceptaron el 92,7% de las recomendaciones de Dinn.',
+  metaDescription: 'En 30 días, los consultores de un laboratorio global aceptaron el 92,7% de las recomendaciones de Dinn, con 90,85% de satisfacción y 70,77% de engagement.',
   metrics: [
-    { value: '92,7%', label: 'de las recomendaciones de Jean fueron aceptadas: 573 aceptadas y 45 rechazadas' },
+    { value: '92,7%', label: 'de las recomendaciones de Dinn fueron aceptadas: 573 aceptadas y 45 rechazadas' },
     { value: '90,85%', label: 'de satisfacción de los consultores (CSAT medio de 4,54 sobre 5)' },
     { value: '~20', label: 'accesos por día, por consultor, en promedio' },
     { value: '78', label: 'tiendas con todas las recomendaciones concluidas por los seis consultores' },
@@ -287,7 +287,7 @@ export const es: Customer = {
   },
   intro: [
     'El laboratorio quiere crecer con buena ejecución y diversificar el portafolio en los puntos de venta. Para eso, depende de consultores que visitan farmacias, distribuidores y profesionales de la salud todos los días. Los datos no siempre les llegan de forma clara.',
-    'En 2024, seis consultores de ventas del laboratorio usaron Dinn por 30 días. Actúan en dos regionales. La pregunta era directa: ¿los consultores siguen las recomendaciones de Jean cuando aparecen en medio de la rutina de campo?',
+    'En 2024, seis consultores de ventas del laboratorio usaron Dinn por 30 días. Actúan en dos regionales. La pregunta era directa: ¿los consultores siguen las recomendaciones de Dinn cuando aparecen en medio de la rutina de campo?',
     'Las siguieron. Y les gustó.',
   ],
   problem: {
@@ -307,8 +307,8 @@ export const es: Customer = {
       { kind: 'timeline', title: 'Los 30 días de uso', steps: [{ date: 'jul 2024', label: 'Seis consultores empiezan a usar Dinn' }, { date: 'ago 2024', label: 'Mejoras en la página de recomendaciones, para todos' }, { date: 'ago 2024', label: 'Fin de los 30 días y lectura de los resultados' }] },
     ],
     paragraphs: [
-      'Jean usa inteligencia artificial. Responde tres preguntas para cada cliente: qué ofrecer, cuándo ofrecer y cómo ofrecer. La respuesta llega al consultor en tiempo real, en forma de recomendaciones.',
-      'La hipótesis: los consultores aceptan las recomendaciones de Jean si son precisas y relevantes, si son fáciles de integrar a la rutina y si aportan valor.',
+      'Dinn usa inteligencia artificial. Responde tres preguntas para cada cliente: qué ofrecer, cuándo ofrecer y cómo ofrecer. La respuesta llega al consultor en tiempo real, en forma de recomendaciones.',
+      'La hipótesis: los consultores aceptan las recomendaciones de Dinn si son precisas y relevantes, si son fáciles de integrar a la rutina y si aportan valor.',
     ],
     bullets: [
       'Período: 30 días, entre julio y agosto de 2024',
@@ -320,7 +320,7 @@ export const es: Customer = {
   },
   stories: [
     {
-      title: 'Jean dice al consultor qué hacer',
+      title: 'Dinn dice al consultor qué hacer',
       paragraphs: [
         'El consultor abre Dinn y busca al cliente por nombre o número fiscal (tienda o profesional de la salud). Encuentra las recomendaciones del cliente. Cada recomendación es objetiva. El consultor la marca como hecha o la descarta.',
         'Cinco tipos de recomendación acompañan la rutina de visita:',
@@ -392,6 +392,6 @@ export const es: Customer = {
   ],
   next: {
     title: 'Lo que viene a continuación',
-    paragraphs: ['El próximo paso es ampliar el uso de Jean a más consultores y sumar más fuentes de datos del cliente.'],
+    paragraphs: ['El próximo paso es ampliar el uso de Dinn a más consultores y sumar más fuentes de datos del cliente.'],
   },
 };

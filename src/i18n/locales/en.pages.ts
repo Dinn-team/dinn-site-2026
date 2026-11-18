@@ -506,7 +506,7 @@ export const pagesEn = {
       weighing: "Price weighing on the decision", negotiated: "Price negotiated with the chain"
     },
     "share-opps": {
-      title: "Share from 60% to 45%, losses by state and city actions from Insights",
+      title: "Share from 60% to 45%, losses by state and city actions from Dinn",
       share: "Share", from: "60%", to: "45%", states: "Losses by state", opps: "Opportunities",
       city: "City", state: "State", action: "Action", ask: "Where can I win space back?", answer: "Actions by city and state"
     }
@@ -660,7 +660,7 @@ export const pagesEn = {
 
   areaVisuals: {
     uiKicker: "How it appears in Dinn",
-    answerKicker: "The example, as Dinn Insights answers it",
+    answerKicker: "The example, as Dinn answers it",
     provenanceTitle: "What each data point says about itself",
     connections: {
       app: "Connections and access",

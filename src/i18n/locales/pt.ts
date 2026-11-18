@@ -14,7 +14,7 @@ export const ptBR = {
     resourcesAll: "Ver tudo",
     trust: "Confiança",
     resources: "Recursos",
-    ask: "Dinn Insights",
+    ask: "Dinn",
     teams: "Casos de uso",
     inside: "Como funciona",
     delivery: "Onde entrega",
@@ -34,7 +34,7 @@ export const ptBR = {
     secondary: "Veja a Dinn para a sua área"
   },
   insights: {
-    eyebrow: "Dinn Insights",
+    eyebrow: "Dinn",
     title: "O que você quer saber sobre *ruptura de estoque e sell-out*?",
     intro: "Converse com a IA do Dinn. Pergunte em português. Receba o número, o recorte, a data e o método."
   },
@@ -594,7 +594,7 @@ export const ptBR = {
         title: "Envia a leitura ao time que age.",
         desc: "Entrega a leitura à equipe ou à ferramenta responsável: plataforma, conversa, seu BI ou sua IA.",
         example: "A lista vai ao KAM da conta e ao Copilot do time, com fonte e data.",
-        chips: ["Dinn Manager", "Dinn Insights", "Sua IA", "BI e API"]
+        chips: ["Dinn Manager", "Dinn", "Sua IA", "BI e API"]
       },
       {
         name: "Aprende",
@@ -618,7 +618,7 @@ export const ptBR = {
         desc: "Prioridades e contexto para a gestão e a execução comercial: ruptura, estoque parado, distribuição e mercado no mesmo recorte."
       },
       {
-        tag: "Dinn Insights",
+        tag: "Dinn",
         title: "Uma conversa",
         desc: "Explore e interprete os sinais. Pergunte em português. Receba o número, o recorte, a data e se é observado ou estimado."
       },

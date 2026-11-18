@@ -14,7 +14,7 @@ export const es419 = {
     resourcesAll: "Ver todo",
     trust: "Confianza",
     resources: "Recursos",
-    ask: "Dinn Insights",
+    ask: "Dinn",
     teams: "Casos de uso",
     inside: "Cómo funciona",
     delivery: "Dónde entrega",
@@ -34,7 +34,7 @@ export const es419 = {
     secondary: "Ve Dinn para tu área"
   },
   insights: {
-    eyebrow: "Dinn Insights",
+    eyebrow: "Dinn",
     title: "¿Qué quieres saber sobre *desabasto y sell-out*?",
     intro: "Chatea con la IA de Dinn. Pregunta en español. Recibe la cifra, el alcance, la fecha y el método."
   },
@@ -594,7 +594,7 @@ export const es419 = {
         title: "Envía la lectura al equipo que actúa.",
         desc: "Entrega la lectura al equipo o a la herramienta responsable: plataforma, conversación, tu BI o tu IA.",
         example: "La lista va al KAM de la cuenta y al Copilot del equipo, con fuente y fecha.",
-        chips: ["Dinn Manager", "Dinn Insights", "Tu IA", "BI y API"]
+        chips: ["Dinn Manager", "Dinn", "Tu IA", "BI y API"]
       },
       {
         name: "Aprende",
@@ -618,7 +618,7 @@ export const es419 = {
         desc: "Prioridades y contexto para la gestión y la ejecución comercial: desabasto, inventario detenido, distribución y mercado en el mismo alcance."
       },
       {
-        tag: "Dinn Insights",
+        tag: "Dinn",
         title: "Una conversación",
         desc: "Explora e interpreta señales. Pregunta en español. Recibe el número, el alcance, la fecha y si es observado o estimado."
       },

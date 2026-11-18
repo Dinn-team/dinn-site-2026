@@ -6,11 +6,11 @@ import type { Lang, Quote, Viz } from './types';
 // concorrente ou de pessoa nesta página. Os depoimentos são anônimos.
 // Regra de 05/11/2026 (vocabulário): o site não usa mais "Next Best Action", "missão",
 // "tarefa de NBA", visita médica nem revisão de carteira. As ações e recomendações vêm da
-// Jean. O trabalho de mercado, de visita e de território fica em "Oportunidades", que
+// Dinn. O trabalho de mercado, de visita e de território fica em "Oportunidades", que
 // mostra como o mercado e a ação do campo mudam o Share do laboratório.
 //
 // Contas (conferir antes de mudar):
-//  - Ações recomendadas pela Jean: 618 (573 acatadas + 45 rejeitadas) + 3.121 = 3.739
+//  - Ações recomendadas pelo Dinn: 618 (573 acatadas + 45 rejeitadas) + 3.121 = 3.739
 //  - Acatadas ou concluídas: 573 + 2.008 = 2.581, ou 69,0% de 3.739
 //  - Descartadas ou sem ação: 45 + 653 + 460 = 1.158
 //  - Buscas de produto no localizador: 2.202 (relatório de uso de 05/11), feitas por 49 pessoas
@@ -22,7 +22,7 @@ import type { Lang, Quote, Viz } from './types';
 //    (e a etapa 8). Regras: sem nome de produto, laboratório ou rede. Não publicar a taxa de
 //    estoque zero, a perda estimada nem a acurácia dos reports: são dados sensíveis do cliente.
 //    Regra de 05/11/2026: nunca mostrar a quantidade de usuários. Use só percentual das pessoas que
-//    usaram o Dinn. "Insights" no relatório vira "Jean" no site.
+//    usaram o Dinn. "Insights" no relatório é o Dinn no site.
 //    O uso prova adoção. Não prova venda. Não escreva que o Dinn "causou" ganho de venda.
 
 export type AggTeam = { team: string; what: string; stat: string };
@@ -72,19 +72,19 @@ const voicesEs: Quote[] = [
 export const pt: Aggregate = {
   eyebrow: 'Resultados somados',
   stats: [
-    { value: '3.739', label: 'ações recomendadas pela Jean para consultores e gestores' },
+    { value: '3.739', label: 'ações recomendadas pelo Dinn para consultores e gestores' },
     { value: '69%', label: 'das ações acatadas ou concluídas pelos times (2.581)' },
     { value: '2.202', label: 'buscas de produto no Localizador, em 23 estados' },
     { value: '83%', label: 'das pessoas que usaram o Dinn buscaram produtos no Localizador' },
   ],
   statsNote: 'Soma dos casos de laboratórios que usam o Dinn. Medem o uso do Dinn, não a venda. Os nomes dos laboratórios ficam preservados.',
   chartsTitle: 'Onde o Dinn muda o dia a dia',
-  chartsLead: 'Os gráficos somam os casos. Mostram como os times usam as ações da Jean, o Localizador e as Oportunidades, e como avaliam o Dinn.',
+  chartsLead: 'Os gráficos somam os casos. Mostram como os times usam as ações do Dinn, o Localizador e as Oportunidades, e como avaliam o Dinn.',
   viz: [
-    { kind: 'donut', title: 'O que os times fazem com as ações da Jean', sub: 'Ações recomendadas, soma dos casos', items: [
+    { kind: 'donut', title: 'O que os times fazem com as ações do Dinn', sub: 'Ações recomendadas, soma dos casos', items: [
       { label: 'Acatadas ou concluídas', value: 2581 },
       { label: 'Descartadas ou sem ação', value: 1158 },
-    ], center: { value: '69%', label: 'viram ação' }, note: 'O descarte também é dado. Ele mostra à Jean o que o campo considera irrelevante.' },
+    ], center: { value: '69%', label: 'viram ação' }, note: 'O descarte também é dado. Ele mostra ao Dinn o que o campo considera irrelevante.' },
     { kind: 'bars', as: 'rings', title: 'Satisfação por time', sub: 'Percentual, na medida de cada caso', unit: '%', digits: 1, max: 100, items: [
       { label: 'Consultores de campo: satisfação (CSAT)', value: 90.85 },
       { label: 'Time de campo: avaliações das ações com 5 estrelas', value: 86.8 },
@@ -115,10 +115,10 @@ export const pt: Aggregate = {
     ], note: 'Outubro é o mês mais forte: 81% das pessoas usaram o Dinn.' },
     { kind: 'bars', as: 'kpis', title: 'O Dinn responde', sub: 'Taxa de resposta por função', unit: '%', digits: 1, max: 100, items: [
       { label: 'Buscas de produto concluídas', value: 99.5 },
-      { label: 'Perguntas à Jean respondidas', value: 98 },
+      { label: 'Perguntas ao Dinn respondidas', value: 98 },
       { label: 'Consultas em tempo real com resposta válida', value: 89.1 },
       { label: 'Convites de correção de estoque respondidos', value: 86 },
-    ], note: 'A Jean responde em 8 segundos, na mediana.' },
+    ], note: 'O Dinn responde em 8 segundos, na mediana.' },
     { kind: 'line', title: 'Consultas de estoque em tempo real por semana', sub: 'Consultas manuais e automáticas, de 31/08 a 02/11', labels: ['31/08','07/09','14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11*'], series: [{ name: 'Consultas', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'Passam de 29 a 41 por semana em setembro para 295 a 618 em outubro. Desde 16/09 o sistema também consulta sozinho: são 2.274 das 2.628. As outras 354 vêm de pedidos das pessoas.' },
     { kind: 'bars', as: 'lollipop', title: 'Quantas pessoas usam cada função', sub: 'Percentual das pessoas que usaram o Dinn', unit: '%', digits: 0, max: 100, items: [
       { label: 'Buscar produto', value: 83, group: 'Busca' },
@@ -129,9 +129,9 @@ export const pt: Aggregate = {
       { label: 'Filtros do painel', value: 53, group: 'Busca' },
       { label: 'Consulta manual em tempo real', value: 41, group: 'Tempo real' },
       { label: 'Rota no mapa até a farmácia', value: 34, group: 'Busca' },
-      { label: 'Pergunta à Jean', value: 22, group: 'Jean e correção' },
-      { label: 'Correção de estoque enviada', value: 19, group: 'Jean e correção' },
-    ], note: 'Tempo real, filtros e Jean entraram entre setembro e outubro. As taxas dessas funções ainda são parciais.' },
+      { label: 'Pergunta ao Dinn', value: 22, group: 'Dinn e correção' },
+      { label: 'Correção de estoque enviada', value: 19, group: 'Dinn e correção' },
+    ], note: 'Tempo real, filtros e Dinn entraram entre setembro e outubro. As taxas dessas funções ainda são parciais.' },
     { kind: 'bars', as: 'hexmap', title: 'Onde as pessoas buscam', sub: 'Percentual das buscas, por estado. 23 estados no total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
@@ -146,9 +146,9 @@ export const pt: Aggregate = {
     ],
   },
   teamsTitle: 'O que cada time ganha',
-  teamsLead: 'A Jean e as Oportunidades transformam o mesmo dado em uma ação diferente para cada atuação.',
+  teamsLead: 'O Dinn e as Oportunidades transformam o mesmo dado em uma ação diferente para cada atuação.',
   teams: [
-    { team: 'Campo', what: 'Recebe da Jean ações e recomendações prontas: o que oferecer, a quem atender e em que ordem.', stat: '69% das ações viram trabalho feito' },
+    { team: 'Campo', what: 'Recebe do Dinn ações e recomendações prontas: o que oferecer, a quem atender e em que ordem.', stat: '69% das ações viram trabalho feito' },
     { team: 'Atendimento ao cliente', what: 'Acha a farmácia com o produto antes de ligar, por distância e estoque.', stat: 'Até 1.500 farmácias por consulta' },
     { team: 'Gestão, trade e KAM', what: 'Vê a ruptura loja a loja e compara regiões e redes. Negocia e prioriza a rota com dado na mesa.', stat: '43% dos gestores ganham 30 min ou mais por semana' },
     { team: 'Estratégia e inteligência', what: 'Usa as Oportunidades para ver onde a categoria cresce e onde o Share do laboratório sobe ou cai, por território.', stat: '9 dias do pedido ao painel em produção' },
@@ -156,12 +156,12 @@ export const pt: Aggregate = {
   actionsTitle: 'Do dado à ação pronta',
   actionsLead: 'O time não recebe um painel para interpretar. Recebe o próximo passo.',
   actions: [
-    { title: 'Ação recomendada pela Jean', text: 'A Jean diz o que oferecer, quando e como, com base nos dados do Dinn. O consultor executa ou descarta.', stat: '92,7% das ações acatadas em um caso' },
-    { title: 'Acompanhamento delegado', text: 'A Jean acompanha produtos e redes, prepara o próximo passo e chama o gestor quando ele precisa decidir.' },
+    { title: 'Ação recomendada pelo Dinn', text: 'O Dinn diz o que oferecer, quando e como, com base nos dados do Dinn. O consultor executa ou descarta.', stat: '92,7% das ações acatadas em um caso' },
+    { title: 'Acompanhamento delegado', text: 'O Dinn acompanha produtos e redes, prepara o próximo passo e chama o gestor quando ele precisa decidir.' },
     { title: 'Lista de lojas críticas', text: 'Lojas sem estoque nos últimos 30 dias, em planilha. A rota do time começa pelas mais críticas.' },
     { title: 'Localizador com nota de confiança', text: 'Farmácias por distância e faixa de estoque, com nota A, B ou C de confiabilidade.', stat: 'De 50 a 1.500 farmácias por consulta' },
     { title: 'Oportunidades que movem o Share', text: 'O Dinn mostra, por território, onde a categoria cresce e o Share do laboratório sobe ou cai. Os sinais de mercado e a ação do campo pesam nesse resultado.', stat: '9 dias do pedido ao painel' },
-    { title: 'Avaliação de cada ação', text: 'O time dá uma nota a cada ação da Jean. O Dinn usa a nota para melhorar as próximas recomendações.', stat: '86,8% de notas máximas' },
+    { title: 'Avaliação de cada ação', text: 'O time dá uma nota a cada ação do Dinn. O Dinn usa a nota para melhorar as próximas recomendações.', stat: '86,8% de notas máximas' },
   ],
   voicesTitle: 'O que dizem quem usa',
   voices: voicesPt,
@@ -172,19 +172,19 @@ export const pt: Aggregate = {
 export const en: Aggregate = {
   eyebrow: 'Combined results',
   stats: [
-    { value: '3,739', label: 'actions recommended by Jean to consultants and managers' },
+    { value: '3,739', label: 'actions recommended by Dinn to consultants and managers' },
     { value: '69%', label: 'of actions accepted or completed by the teams (2,581)' },
     { value: '2,202', label: 'product searches in the Locator, in 23 states' },
     { value: '83%', label: 'of the people who used Dinn searched for products in the Locator' },
   ],
   statsNote: 'Sum of cases from laboratories that use Dinn. They measure Dinn usage, not sales. Laboratory names stay private.',
   chartsTitle: 'Where Dinn changes the daily routine',
-  chartsLead: 'The charts add up the cases. They show how teams use Jean actions, the Locator and Opportunities, and how they rate Dinn.',
+  chartsLead: 'The charts add up the cases. They show how teams use Dinn actions, the Locator and Opportunities, and how they rate Dinn.',
   viz: [
-    { kind: 'donut', title: 'What teams do with Jean actions', sub: 'Recommended actions, sum of cases', items: [
+    { kind: 'donut', title: 'What teams do with Dinn actions', sub: 'Recommended actions, sum of cases', items: [
       { label: 'Accepted or completed', value: 2581 },
       { label: 'Dismissed or no action', value: 1158 },
-    ], center: { value: '69%', label: 'become action' }, note: 'Dismissals are data too. They show Jean what the field considers irrelevant.' },
+    ], center: { value: '69%', label: 'become action' }, note: 'Dismissals are data too. They show Dinn what the field considers irrelevant.' },
     { kind: 'bars', as: 'rings', title: 'Satisfaction by team', sub: 'Percent, with the measure of each case', unit: '%', digits: 1, max: 100, items: [
       { label: 'Field consultants: satisfaction (CSAT)', value: 90.85 },
       { label: 'Field team: action ratings with 5 stars', value: 86.8 },
@@ -215,10 +215,10 @@ export const en: Aggregate = {
     ], note: 'October is the strongest month: 81% of people used Dinn.' },
     { kind: 'bars', as: 'kpis', title: 'Dinn responds', sub: 'Response rate by function', unit: '%', digits: 1, max: 100, items: [
       { label: 'Product searches completed', value: 99.5 },
-      { label: 'Jean questions answered', value: 98 },
+      { label: 'Dinn questions answered', value: 98 },
       { label: 'Real-time queries with a valid answer', value: 89.1 },
       { label: 'Stock correction invitations answered', value: 86 },
-    ], note: 'Jean answers in 8 seconds, on median.' },
+    ], note: 'Dinn answers in 8 seconds, on median.' },
     { kind: 'line', title: 'Real-time stock queries per week', sub: 'Manual and automatic queries, August 31 to November 2', labels: ['31 Aug','7 Sep','14 Sep','21 Sep','28 Sep','5 Oct','12 Oct','19 Oct','26 Oct','2 Nov*'], series: [{ name: 'Queries', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'They go from 29 to 41 per week in September to 295 to 618 in October. Since Sep 16 the system also queries on its own: 2,274 of the 2,628. The other 354 come from people.' },
     { kind: 'bars', as: 'lollipop', title: 'How many people use each function', sub: 'Percent of the people who used Dinn', unit: '%', digits: 0, max: 100, items: [
       { label: 'Search for a product', value: 83, group: 'Search' },
@@ -229,9 +229,9 @@ export const en: Aggregate = {
       { label: 'Dashboard filters', value: 53, group: 'Search' },
       { label: 'Manual real-time query', value: 41, group: 'Real time' },
       { label: 'Map route to the pharmacy', value: 34, group: 'Search' },
-      { label: 'Question to Jean', value: 22, group: 'Jean and correction' },
-      { label: 'Stock correction sent', value: 19, group: 'Jean and correction' },
-    ], note: 'Real time, filters and Jean launched between September and October. Their rates are still partial.' },
+      { label: 'Question to Dinn', value: 22, group: 'Dinn and correction' },
+      { label: 'Stock correction sent', value: 19, group: 'Dinn and correction' },
+    ], note: 'Real time, filters and Dinn launched between September and October. Their rates are still partial.' },
     { kind: 'bars', as: 'hexmap', title: 'Where people search', sub: 'Percent of searches, by state. 23 states in total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
@@ -246,9 +246,9 @@ export const en: Aggregate = {
     ],
   },
   teamsTitle: 'What each team gets',
-  teamsLead: 'Jean and Opportunities turn the same data into a different action for each role.',
+  teamsLead: 'Dinn and Opportunities turn the same data into a different action for each role.',
   teams: [
-    { team: 'Field', what: 'Gets ready actions and recommendations from Jean: what to offer, whom to serve and in what order.', stat: '69% of actions become finished work' },
+    { team: 'Field', what: 'Gets ready actions and recommendations from Dinn: what to offer, whom to serve and in what order.', stat: '69% of actions become finished work' },
     { team: 'Customer service', what: 'Finds the pharmacy with the product before calling, by distance and stock.', stat: 'Up to 1,500 pharmacies per query' },
     { team: 'Management, trade and KAM', what: 'Sees stock-outs store by store and compares regions and chains. Negotiates and sets the route with data.', stat: '43% of managers save 30 min or more per week' },
     { team: 'Strategy and intelligence', what: 'Uses Opportunities to see where the category grows and where the laboratory share rises or falls, by territory.', stat: '9 days from request to live dashboard' },
@@ -256,12 +256,12 @@ export const en: Aggregate = {
   actionsTitle: 'From data to a ready action',
   actionsLead: 'The team does not get a dashboard to interpret. It gets the next step.',
   actions: [
-    { title: 'Action recommended by Jean', text: 'Jean says what to offer, when and how, based on Dinn data. The consultant acts or dismisses it.', stat: '92.7% of actions accepted in one case' },
-    { title: 'Delegated follow-up', text: 'Jean follows products and chains, prepares the next step and calls the manager when a decision is needed.' },
+    { title: 'Action recommended by Dinn', text: 'Dinn says what to offer, when and how, based on Dinn data. The consultant acts or dismisses it.', stat: '92.7% of actions accepted in one case' },
+    { title: 'Delegated follow-up', text: 'Dinn follows products and chains, prepares the next step and calls the manager when a decision is needed.' },
     { title: 'List of critical stores', text: 'Stores with no stock in the last 30 days, in a spreadsheet. The team route starts with the most critical.' },
     { title: 'Locator with a trust grade', text: 'Pharmacies by distance and stock range, with an A, B or C reliability grade.', stat: 'From 50 to 1,500 pharmacies per query' },
     { title: 'Opportunities that move share', text: 'Dinn shows, by territory, where the category grows and where the laboratory share rises or falls. Market signals and field action both shape that result.', stat: '9 days from request to dashboard' },
-    { title: 'Rating of each action', text: 'The team rates each Jean action. Dinn uses the rating to improve the next recommendations.', stat: '86.8% top ratings' },
+    { title: 'Rating of each action', text: 'The team rates each Dinn action. Dinn uses the rating to improve the next recommendations.', stat: '86.8% top ratings' },
   ],
   voicesTitle: 'What users say',
   voices: voicesEn,
@@ -272,19 +272,19 @@ export const en: Aggregate = {
 export const es: Aggregate = {
   eyebrow: 'Resultados sumados',
   stats: [
-    { value: '3.739', label: 'acciones recomendadas por Jean a consultores y gestores' },
+    { value: '3.739', label: 'acciones recomendadas por Dinn a consultores y gestores' },
     { value: '69%', label: 'de las acciones aceptadas o completadas por los equipos (2.581)' },
     { value: '2.202', label: 'búsquedas de producto en el Localizador, en 23 estados' },
     { value: '83%', label: 'de las personas que usaron Dinn buscaron productos en el Localizador' },
   ],
   statsNote: 'Suma de los casos de laboratorios que usan Dinn. Miden el uso de Dinn. Los nombres de los laboratorios quedan reservados.',
   chartsTitle: 'Dónde Dinn cambia el día a día',
-  chartsLead: 'Los gráficos suman los casos. Muestran cómo los equipos usan las acciones de Jean, el Localizador y las Oportunidades, y cómo evalúan Dinn.',
+  chartsLead: 'Los gráficos suman los casos. Muestran cómo los equipos usan las acciones de Dinn, el Localizador y las Oportunidades, y cómo evalúan Dinn.',
   viz: [
-    { kind: 'donut', title: 'Qué hacen los equipos con las acciones de Jean', sub: 'Acciones recomendadas, suma de los casos', items: [
+    { kind: 'donut', title: 'Qué hacen los equipos con las acciones de Dinn', sub: 'Acciones recomendadas, suma de los casos', items: [
       { label: 'Aceptadas o completadas', value: 2581 },
       { label: 'Descartadas o sin acción', value: 1158 },
-    ], center: { value: '69%', label: 'se vuelven acción' }, note: 'El descarte también es un dato. Muestra a Jean lo que el campo considera irrelevante.' },
+    ], center: { value: '69%', label: 'se vuelven acción' }, note: 'El descarte también es un dato. Muestra a Dinn lo que el campo considera irrelevante.' },
     { kind: 'bars', as: 'rings', title: 'Satisfacción por equipo', sub: 'Porcentaje, con la medida de cada caso', unit: '%', digits: 1, max: 100, items: [
       { label: 'Consultores de campo: satisfacción (CSAT)', value: 90.85 },
       { label: 'Equipo de campo: evaluaciones de las acciones con 5 estrellas', value: 86.8 },
@@ -315,10 +315,10 @@ export const es: Aggregate = {
     ], note: 'Octubre es el mes más fuerte: 81% de las personas usaron Dinn.' },
     { kind: 'bars', as: 'kpis', title: 'Dinn responde', sub: 'Tasa de respuesta por función', unit: '%', digits: 1, max: 100, items: [
       { label: 'Búsquedas de producto concluidas', value: 99.5 },
-      { label: 'Preguntas a Jean respondidas', value: 98 },
+      { label: 'Preguntas a Dinn respondidas', value: 98 },
       { label: 'Consultas en tiempo real con respuesta válida', value: 89.1 },
       { label: 'Invitaciones de corrección de stock respondidas', value: 86 },
-    ], note: 'Jean responde en 8 segundos, en la mediana.' },
+    ], note: 'Dinn responde en 8 segundos, en la mediana.' },
     { kind: 'line', title: 'Consultas de stock en tiempo real por semana', sub: 'Consultas manuales y automáticas, del 31/08 al 02/11', labels: ['31/08','07/09','14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11*'], series: [{ name: 'Consultas', values: [41,29,74,202,291,424,448,295,618,206] }], digits: 0, note: 'Pasan de 29 a 41 por semana en septiembre a 295 a 618 en octubre. Desde el 16/09 el sistema también consulta solo: son 2.274 de las 2.628. Las otras 354 vienen de pedidos de las personas.' },
     { kind: 'bars', as: 'lollipop', title: 'Cuántas personas usan cada función', sub: 'Porcentaje de las personas que usaron Dinn', unit: '%', digits: 0, max: 100, items: [
       { label: 'Buscar producto', value: 83, group: 'Búsqueda' },
@@ -329,9 +329,9 @@ export const es: Aggregate = {
       { label: 'Filtros del panel', value: 53, group: 'Búsqueda' },
       { label: 'Consulta manual en tiempo real', value: 41, group: 'Tiempo real' },
       { label: 'Ruta en el mapa hasta la farmacia', value: 34, group: 'Búsqueda' },
-      { label: 'Pregunta a Jean', value: 22, group: 'Jean y corrección' },
-      { label: 'Corrección de stock enviada', value: 19, group: 'Jean y corrección' },
-    ], note: 'Tiempo real, filtros y Jean entraron entre septiembre y octubre. Las tasas de estas funciones aún son parciales.' },
+      { label: 'Pregunta a Dinn', value: 22, group: 'Dinn y corrección' },
+      { label: 'Corrección de stock enviada', value: 19, group: 'Dinn y corrección' },
+    ], note: 'Tiempo real, filtros y Dinn entraron entre septiembre y octubre. Las tasas de estas funciones aún son parciales.' },
     { kind: 'bars', as: 'hexmap', title: 'Dónde buscan las personas', sub: 'Porcentaje de las búsquedas, por estado. 23 estados en total', unit: '%', digits: 1, max: 40, items: [
       { label: 'SP', value: 34.1 },
       { label: 'BA', value: 11.1 },
@@ -346,9 +346,9 @@ export const es: Aggregate = {
     ],
   },
   teamsTitle: 'Qué gana cada equipo',
-  teamsLead: 'Jean y las Oportunidades convierten el mismo dato en una acción distinta para cada actuación.',
+  teamsLead: 'Dinn y las Oportunidades convierten el mismo dato en una acción distinta para cada actuación.',
   teams: [
-    { team: 'Campo', what: 'Recibe de Jean acciones y recomendaciones listas: qué ofrecer, a quién atender y en qué orden.', stat: '69% de las acciones se vuelven trabajo hecho' },
+    { team: 'Campo', what: 'Recibe de Dinn acciones y recomendaciones listas: qué ofrecer, a quién atender y en qué orden.', stat: '69% de las acciones se vuelven trabajo hecho' },
     { team: 'Atención al cliente', what: 'Encuentra la farmacia con el producto antes de llamar, por distancia y stock.', stat: 'Hasta 1.500 farmacias por consulta' },
     { team: 'Gestión, trade y KAM', what: 'Ve el quiebre de stock tienda a tienda y compara regiones y cadenas. Negocia y prioriza la ruta con datos.', stat: '43% de los gestores ahorran 30 min o más por semana' },
     { team: 'Estrategia e inteligencia', what: 'Usa las Oportunidades para ver dónde crece la categoría y dónde sube o baja el Share del laboratorio, por territorio.', stat: '9 días del pedido al panel en producción' },
@@ -356,12 +356,12 @@ export const es: Aggregate = {
   actionsTitle: 'Del dato a la acción lista',
   actionsLead: 'El equipo no recibe un panel para interpretar. Recibe el próximo paso.',
   actions: [
-    { title: 'Acción recomendada por Jean', text: 'Jean dice qué ofrecer, cuándo y cómo, con base en los datos de Dinn. El consultor ejecuta o descarta.', stat: '92,7% de las acciones aceptadas en un caso' },
-    { title: 'Seguimiento delegado', text: 'Jean sigue productos y cadenas, prepara el próximo paso y llama al gestor cuando necesita decidir.' },
+    { title: 'Acción recomendada por Dinn', text: 'Dinn dice qué ofrecer, cuándo y cómo, con base en los datos de Dinn. El consultor ejecuta o descarta.', stat: '92,7% de las acciones aceptadas en un caso' },
+    { title: 'Seguimiento delegado', text: 'Dinn sigue productos y cadenas, prepara el próximo paso y llama al gestor cuando necesita decidir.' },
     { title: 'Lista de tiendas críticas', text: 'Tiendas sin stock en los últimos 30 días, en una planilla. La ruta del equipo empieza por las más críticas.' },
     { title: 'Localizador con nota de confianza', text: 'Farmacias por distancia y rango de stock, con nota A, B o C de confiabilidad.', stat: 'De 50 a 1.500 farmacias por consulta' },
     { title: 'Oportunidades que mueven el Share', text: 'Dinn muestra, por territorio, dónde crece la categoría y dónde sube o baja el Share del laboratorio. Las señales de mercado y la acción del campo pesan en ese resultado.', stat: '9 días del pedido al panel' },
-    { title: 'Evaluación de cada acción', text: 'El equipo da una nota a cada acción de Jean. Dinn usa la nota para mejorar las próximas recomendaciones.', stat: '86,8% de notas máximas' },
+    { title: 'Evaluación de cada acción', text: 'El equipo da una nota a cada acción de Dinn. Dinn usa la nota para mejorar las próximas recomendaciones.', stat: '86,8% de notas máximas' },
   ],
   voicesTitle: 'Lo que dicen quienes lo usan',
   voices: voicesEs,

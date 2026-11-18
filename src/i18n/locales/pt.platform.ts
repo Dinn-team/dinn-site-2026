@@ -40,7 +40,7 @@ export const platformVizPt = {
   },
   insights: {
     you: "Você",
-    answerFrom: "Dinn Insights",
+    answerFrom: "Dinn",
     scope: "Recorte",
     date: "Data",
     method: "Método",

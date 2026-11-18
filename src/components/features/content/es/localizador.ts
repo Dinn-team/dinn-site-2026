@@ -40,8 +40,8 @@ export const content: FeatureContent = {
       },
     ],
   },
-  jean: {
-    lead: 'Pide el producto y la ciudad. Jean abre el Localizador ya completado.',
+  dinn: {
+    lead: 'Pide el producto y la ciudad. Dinn abre el Localizador ya completado.',
     prompts: ['¿Dónde encuentro Cefalgin cápsula 400mg en São Paulo?', '¿Qué farmacias de Campinas tienen Cefalgin en inventario?', '¿Puedo confirmar si todavía hay inventario ahora?'],
     turns: [
       { q: '¿Dónde encuentro Cefalgin en São Paulo?', a: 'Hay 128 farmacias en un radio de 5 km. Estas tenían inventario en la lectura de ayer.',

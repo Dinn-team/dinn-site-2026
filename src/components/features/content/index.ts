@@ -7,7 +7,7 @@ import { oportunidades } from './oportunidades';
 import { preco } from './preco';
 import { ruptura } from './ruptura';
 
-/** Funcionalidades com página completa (molde do Suporte). A Jean tem página própria (JeanPage). */
+/** Funcionalidades com página completa (molde do Suporte). O Dinn tem página própria (DinnPage). */
 export const FEATURE_CONTENT: Record<string, FeatureContent> = {
   ruptura,
   giro,

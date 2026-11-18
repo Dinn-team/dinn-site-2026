@@ -5,7 +5,7 @@
 
 const PALETTE = ['web/roxo-noite', 'web/azul-noite', 'web/verde-noite', 'web/laranja-noite', 'web/vinho-noite', 'web/grafite', 'g11', 'g08'] as const;
 const ORDER = ['ruptura', 'giro', 'preco', 'localizador', 'mercado', 'oportunidades', 'distribuicao'];
-const START = { door: 0, stage: 4, hero: 7, jean: 5 } as const;
+const START = { door: 0, stage: 4, hero: 7, dinn: 5 } as const;
 
 export type GradKind = keyof typeof START;
 

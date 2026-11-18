@@ -4,7 +4,7 @@ import { getLanguage, type Language } from '@/i18n/store';
 import type { Def } from './AppDemos';
 
 // Idioma das telas de demonstração do produto (RealKit, RealHomeDemos, RealMapDemos,
-// RealSupportDemo, JeanDemos e src/components/support). O texto-fonte fica em português
+// RealSupportDemo, DinnDemos e src/components/support). O texto-fonte fica em português
 // dentro do componente. Cada texto vai por `t('texto em português')`, que procura a
 // tradução em src/components/site/demo-i18n/*.json. Texto sem tradução volta em português.
 // Confira as chaves com `node scripts/check-demo-i18n.mjs`.
