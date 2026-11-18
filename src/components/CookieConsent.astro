@@ -33,19 +33,19 @@ const T = {
 };
 ---
 
-<div id="cookie-consent" class="cc" role="region" aria-labelledby="cc-title" hidden>
-  <div class="cc-body">
-    <p id="cc-title" class="cc-title" data-cc="title">{T['pt-BR'].title}</p>
-    <p class="cc-text"><span data-cc="body">{T['pt-BR'].body}</span> <a data-cc="policy" href={T['pt-BR'].href}>{T['pt-BR'].policy}</a></p>
+<div id="cookie-consent" class="ckb" role="region" aria-labelledby="ckb-title" hidden>
+  <div class="ckb-body">
+    <p id="ckb-title" class="ckb-title" data-cc="title">{T['pt-BR'].title}</p>
+    <p class="ckb-text"><span data-cc="body">{T['pt-BR'].body}</span> <a data-cc="policy" href={T['pt-BR'].href}>{T['pt-BR'].policy}</a></p>
   </div>
-  <div class="cc-actions">
-    <button type="button" class="btn btn-outline cc-btn" data-cc="reject">{T['pt-BR'].reject}</button>
-    <button type="button" class="btn btn-primary cc-btn" data-cc="accept">{T['pt-BR'].accept}</button>
+  <div class="ckb-actions">
+    <button type="button" class="btn btn-outline ckb-btn" data-cc="reject">{T['pt-BR'].reject}</button>
+    <button type="button" class="btn btn-primary ckb-btn" data-cc="accept">{T['pt-BR'].accept}</button>
   </div>
 </div>
 
 <style is:global>
-  .cc {
+  .ckb {
     position: fixed;
     left: 16px;
     right: 16px;
@@ -67,20 +67,20 @@ const T = {
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   }
-  .cc[hidden] { display: none; }
-  .cc.is-open { transform: translateY(0); opacity: 1; }
-  .cc-body { display: grid; gap: 6px; min-width: 0; }
-  .cc-title { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--foreground); }
-  .cc-text { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 58ch; }
-  .cc-text a { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
-  .cc-actions { display: flex; flex: none; gap: 10px; }
-  .cc-btn { min-width: 112px; justify-content: center; }
+  .ckb[hidden] { display: none; }
+  .ckb.is-open { transform: translateY(0); opacity: 1; }
+  .ckb-body { display: grid; gap: 6px; min-width: 0; }
+  .ckb-title { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--foreground); }
+  .ckb-text { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 58ch; }
+  .ckb-text a { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .ckb-actions { display: flex; flex: none; gap: 10px; }
+  .ckb-btn { min-width: 112px; justify-content: center; }
   @media (max-width: 640px) {
-    .cc { flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; left: 12px; right: 12px; bottom: 12px; }
-    .cc-actions { display: grid; grid-template-columns: 1fr 1fr; }
+    .ckb { flex-direction: column; align-items: stretch; gap: 16px; padding: 18px; left: 12px; right: 12px; bottom: 12px; }
+    .ckb-actions { display: grid; grid-template-columns: 1fr 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cc { transform: none; transition: opacity 0.2s ease; }
+    .ckb { transform: none; transition: opacity 0.2s ease; }
   }
 </style>
 
