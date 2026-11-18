@@ -75,10 +75,7 @@
 
 .pr-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.82); transition: color 0.2s; }
 .pr-back:hover { color: #fff; }
-.pr-bar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 40px; margin: 12px 0 clamp(12px, 1.4vw, 20px); }
-.pr-bar-text { flex: 1 1 420px; min-width: 0; }
-.pr-band .pr-meta { margin-bottom: 10px; color: rgba(255, 255, 255, 0.74); }
-.pr-title { margin: 0; max-width: 34ch; font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; color: #fff; }
+.pr-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin: 0 0 clamp(8px, 1vw, 14px); }
 .pr-bar-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .pr-dl { padding: 12px 20px; font-size: 14px; }
 .pr-dl.is-ghost { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.34); color: #fff; }
@@ -86,7 +83,7 @@
 .pr-dl:focus-visible, .pr-back:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 9999px; }
 
 /* ---- Carrossel ---- */
-.pr-deck { --sw: min(88vw, max(640px, min(1120px, calc((100svh - 400px) * 16 / 9)))); --gap: clamp(12px, 1.8vw, 28px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; outline: none; }
+.pr-deck { --sw: min(88vw, max(640px, min(1240px, calc((100svh - 330px) * 16 / 9)))); --gap: clamp(12px, 1.8vw, 28px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; outline: none; }
 .pr-deck:fullscreen, .pr-deck.is-expanded { --sw: min(94vw, max(280px, calc((100svh - 160px) * 16 / 9))); align-content: center; padding: 12px 0; background: linear-gradient(rgba(8, 9, 10, 0.72), rgba(8, 9, 10, 0.72)), var(--pr-g) center / cover, var(--brand-ink); }
 /* Sem tela cheia nativa: o carrossel cobre a janela inteira. */
 .pr-deck.is-expanded { position: fixed; inset: 0; z-index: 100000; overflow: auto; }
@@ -178,7 +175,7 @@
 
 @media (max-width: 1000px) {
   .pr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pr-deck { --sw: min(90vw, max(640px, min(1120px, calc((100svh - 400px) * 16 / 9)))); }
+  .pr-deck { --sw: min(90vw, max(640px, min(1240px, calc((100svh - 330px) * 16 / 9)))); }
 }
 @media (max-width: 900px) {
   .is-secao .pr-slide-in, .is-sumario .pr-slide-in { row-gap: calc(var(--u) * 2.4); }
