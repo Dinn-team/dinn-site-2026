@@ -20,6 +20,7 @@ export const ptBR = {
     delivery: "Onde entrega",
     customers: "Clientes",
     blog: "Blog",
+    presentations: "Apresentações",
     cta: "Solicitar demo",
     openMenu: "Abrir menu",
     languageLabel: "Idioma",
@@ -954,5 +955,30 @@ export const ptBR = {
       estrategia: "Estratégia",
       tecnologia: "Tecnologia"
     }
+  },
+  presentations: {
+    name: "Apresentações",
+    metaTitle: "Apresentações | Dinn",
+    metaDescription: "Apresentações dos artigos do blog da Dinn. Leia os pontos principais de cada artigo em poucos slides.",
+    heroTitle: "Artigos da Dinn em slides",
+    heroLead: "Cada apresentação traz os pontos principais de um artigo do blog. Você lê em poucos minutos.",
+    breadcrumbHome: "Início",
+    titleSuffix: "Apresentação Dinn",
+    slides: "slides",
+    viewDeck: "Ver apresentação",
+    readArticle: "Ler o artigo",
+    fullArticle: "Ler o artigo completo",
+    backToList: "Todas as apresentações",
+    others: "Outras apresentações",
+    emptyTitle: "Nenhuma apresentação ainda",
+    emptyDesc: "As apresentações aparecem aqui quando forem publicadas. Enquanto isso, leia os artigos do blog.",
+    emptyCta: "Ir para o blog",
+    deckLabel: "Apresentação de slides",
+    slideOf: "Slide {n} de {total}",
+    prev: "Slide anterior",
+    next: "Próximo slide",
+    goTo: "Ir para o slide {n}",
+    articleBlockTitle: "Veja a apresentação deste artigo",
+    articleBlockText: "Leia os pontos principais em poucos slides."
   }
 };

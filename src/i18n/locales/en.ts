@@ -20,6 +20,7 @@ export const enUS = {
     delivery: "Where it delivers",
     customers: "Customers",
     blog: "Blog",
+    presentations: "Presentations",
     cta: "Request demo",
     openMenu: "Open menu",
     languageLabel: "Language",
@@ -954,5 +955,30 @@ export const enUS = {
       estrategia: "Strategy",
       tecnologia: "Technology"
     }
+  },
+  presentations: {
+    name: "Presentations",
+    metaTitle: "Presentations | Dinn",
+    metaDescription: "Slide decks of the Dinn blog articles. Read the key points of each article in a few slides.",
+    heroTitle: "Dinn articles as slide decks",
+    heroLead: "Each deck gives the key points of one blog article. You read it in a few minutes.",
+    breadcrumbHome: "Home",
+    titleSuffix: "Dinn presentation",
+    slides: "slides",
+    viewDeck: "View presentation",
+    readArticle: "Read the article",
+    fullArticle: "Read the full article",
+    backToList: "All presentations",
+    others: "Other presentations",
+    emptyTitle: "No presentations yet",
+    emptyDesc: "Decks appear here when we publish them. Read the blog articles in the meantime.",
+    emptyCta: "Go to the blog",
+    deckLabel: "Slide deck",
+    slideOf: "Slide {n} of {total}",
+    prev: "Previous slide",
+    next: "Next slide",
+    goTo: "Go to slide {n}",
+    articleBlockTitle: "See the presentation of this article",
+    articleBlockText: "Read the key points in a few slides."
   }
 };
