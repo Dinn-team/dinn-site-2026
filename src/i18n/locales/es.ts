@@ -20,6 +20,7 @@ export const es419 = {
     delivery: "Dónde entrega",
     customers: "Clientes",
     blog: "Blog",
+    presentations: "Presentaciones",
     cta: "Solicitar demo",
     openMenu: "Abrir menú",
     languageLabel: "Idioma",
@@ -954,5 +955,30 @@ export const es419 = {
       estrategia: "Estrategia",
       tecnologia: "Tecnología"
     }
+  },
+  presentations: {
+    name: "Presentaciones",
+    metaTitle: "Presentaciones | Dinn",
+    metaDescription: "Presentaciones de los artículos del blog de Dinn. Lee los puntos principales de cada artículo en pocas diapositivas.",
+    heroTitle: "Artículos de Dinn en diapositivas",
+    heroLead: "Cada presentación reúne los puntos principales de un artículo del blog. La lees en pocos minutos.",
+    breadcrumbHome: "Inicio",
+    titleSuffix: "Presentación de Dinn",
+    slides: "diapositivas",
+    viewDeck: "Ver presentación",
+    readArticle: "Leer el artículo",
+    fullArticle: "Leer el artículo completo",
+    backToList: "Todas las presentaciones",
+    others: "Otras presentaciones",
+    emptyTitle: "Aún no hay presentaciones",
+    emptyDesc: "Las presentaciones aparecen aquí cuando se publican. Mientras tanto, lee los artículos del blog.",
+    emptyCta: "Ir al blog",
+    deckLabel: "Presentación de diapositivas",
+    slideOf: "Diapositiva {n} de {total}",
+    prev: "Diapositiva anterior",
+    next: "Siguiente diapositiva",
+    goTo: "Ir a la diapositiva {n}",
+    articleBlockTitle: "Mira la presentación de este artículo",
+    articleBlockText: "Lee los puntos principales en pocas diapositivas."
   }
 };

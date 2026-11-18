@@ -8,6 +8,7 @@ import { enUS } from '@/i18n/locales/en';
 import { es419 } from '@/i18n/locales/es';
 import { cleanPostBody, cleanPostText } from '@/lib/blog-clean';
 import { articlePath, blogPath, categoryKey, DATE_LOCALE, LANGS, type Lang } from '@/i18n/routes';
+import type { PresentationData } from '@/lib/presentations';
 
 type Blog = typeof ptBR.blog;
 
@@ -30,6 +31,8 @@ export function categoryLabel(lang: Lang, value: string): string {
 export interface PostAlternate {
   language: Lang;
   slug: string;
+  /** A versão irmã tem apresentação (2 slides ou mais). */
+  hasPresentation?: boolean;
 }
 
 export interface BlogPostData {
@@ -46,6 +49,7 @@ export interface BlogPostData {
   language: Lang;
   translationKey: string;
   body?: any[];
+  presentation?: PresentationData | null;
   alternates?: PostAlternate[];
 }
 

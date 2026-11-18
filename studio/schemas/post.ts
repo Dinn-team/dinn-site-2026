@@ -182,6 +182,68 @@ export default defineType({
                 },
             ],
         }),
+        defineField({
+            name: 'presentation',
+            title: 'Apresentação',
+            type: 'object',
+            description:
+                'Slides gerados deste artigo. Com 2 slides ou mais, o site publica a apresentação com o mesmo slug do artigo.',
+            options: { collapsible: true, collapsed: true },
+            fields: [
+                defineField({
+                    name: 'generatedAt',
+                    title: 'Gerada em',
+                    type: 'datetime',
+                }),
+                defineField({
+                    name: 'slides',
+                    title: 'Slides',
+                    type: 'array',
+                    of: [
+                        {
+                            type: 'object',
+                            name: 'slide',
+                            title: 'Slide',
+                            fields: [
+                                defineField({
+                                    name: 'kind',
+                                    title: 'Tipo',
+                                    type: 'string',
+                                    options: {
+                                        list: [
+                                            { title: 'Capa', value: 'capa' },
+                                            { title: 'Sumário', value: 'sumario' },
+                                            { title: 'Seção', value: 'secao' },
+                                            { title: 'Citação', value: 'citacao' },
+                                        ],
+                                        layout: 'radio',
+                                    },
+                                    initialValue: 'secao',
+                                    validation: (Rule) => Rule.required(),
+                                }),
+                                defineField({
+                                    name: 'title',
+                                    title: 'Título',
+                                    type: 'string',
+                                    validation: (Rule) => Rule.required(),
+                                }),
+                                defineField({
+                                    name: 'body',
+                                    title: 'Texto',
+                                    type: 'text',
+                                    rows: 6,
+                                    description:
+                                        'Markdown simples: parágrafos separados por linha em branco, itens de lista com "- " e **negrito**. Na citação, a frase sem aspas. Sem HTML, link nem imagem.',
+                                }),
+                            ],
+                            preview: {
+                                select: { title: 'title', subtitle: 'kind' },
+                            },
+                        },
+                    ],
+                }),
+            ],
+        }),
     ],
     preview: {
         select: {

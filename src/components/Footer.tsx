@@ -1,6 +1,6 @@
 import { useTranslation } from "@/i18n/useTranslation";
 import { contactUrl } from "@/lib/links";
-import { blogPath } from "@/i18n/routes";
+import { blogPath, presentationsPath } from "@/i18n/routes";
 import { newFeatureLinks } from "@/components/ui/nav-header";
 
 // Rodapé com as mesmas colunas do menu do topo: Plataforma, Soluções,
@@ -41,6 +41,7 @@ export default function Footer() {
       title: t('nav.resources') as string,
       links: [
         [t('nav.blog') as string, blogPath(lang)],
+        [t('nav.presentations') as string, presentationsPath(lang)],
         [t('nav.cases') as string, '/recursos/casos'],
         [t('nav.changelog') as string, '/recursos/changelog'],
         [t('menu.compare') as string, '/comparativos'],
