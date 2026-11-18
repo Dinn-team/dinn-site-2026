@@ -35,6 +35,10 @@ interface BlogInteractiveProps {
 }
 
 const ITEMS_PER_PAGE = 7; // 1 featured + 6 in the grid
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80';
+
+/** Composição do cartão pela posição na grade de 3 colunas: muda a cada linha. */
+const cardVariant = (index: number) => (['a', 'c', 'b'] as const)[(index + Math.floor(index / 3)) % 3];
 
 export default function BlogInteractive({ posts, lang, labels, presentationsLink }: BlogInteractiveProps) {
   // Valor salvo no Sanity ("Estoque" ou "estoque") → nome no idioma da página.
@@ -167,23 +171,51 @@ export default function BlogInteractive({ posts, lang, labels, presentationsLink
               )}
 
               {gridPosts.length > 0 && (
-                <ul className="bg-grid">
-                  {gridPosts.map((post) => (
-                    <li key={post._id}>
-                      <a href={articlePath(lang, post.slug.current)} className="bg-card">
-                        <span className="bg-img">
-                          <img
-                            src={post.imageUrl || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'}
-                            alt={post.title}
-                            loading="lazy"
-                          />
-                        </span>
-                        <span className="bg-meta"><span>{categoryName(post.categories?.[0])}</span><span>{formatDate(post.publishedAt)}</span></span>
-                        <h3>{post.title}</h3>
-                        <span className="bg-excerpt">{post.excerpt}</span>
-                      </a>
-                    </li>
-                  ))}
+                <ul className="pr-grid">
+                  {gridPosts.map((post, index) => {
+                    const variant = cardVariant(index);
+                    const href = articlePath(lang, post.slug.current);
+                    const image = post.imageUrl || FALLBACK_IMAGE;
+                    const [firstCategory, ...otherCategories] = post.categories ?? [];
+                    const date = <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>;
+                    return (
+                      <li key={post._id}>
+                        <article className={`pr-card is-${variant} is-photo`}>
+                          {variant === 'a' && <img className="pr-card-bg" src={image} alt="" loading="lazy" />}
+                          {variant === 'c' && (
+                            <span className="pr-thumb" aria-hidden="true">
+                              <img src={image} alt="" loading="lazy" />
+                            </span>
+                          )}
+
+                          <div className="pr-card-top">
+                            <span className="pr-card-kind">{categoryName(firstCategory)}</span>
+                            {variant === 'c' ? date : <span className="pr-card-dot" aria-hidden="true"></span>}
+                          </div>
+
+                          <h3 className="pr-card-title">
+                            <a href={href} className="pr-card-main">{post.title}</a>
+                          </h3>
+
+                          {variant === 'b' && (
+                            <span className="pr-thumb" aria-hidden="true">
+                              <img src={image} alt="" loading="lazy" />
+                            </span>
+                          )}
+                          {variant === 'c' && post.excerpt && <p className="pr-card-excerpt">{post.excerpt}</p>}
+
+                          {(variant !== 'c' || otherCategories.length > 0) && (
+                            <ul className="pr-chips">
+                              {otherCategories.slice(0, 2).map((category) => (
+                                <li key={category}>{categoryName(category)}</li>
+                              ))}
+                              {variant !== 'c' && <li className="is-count">{date}</li>}
+                            </ul>
+                          )}
+                        </article>
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
             </motion.div>

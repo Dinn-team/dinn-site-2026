@@ -3,7 +3,7 @@
 //   /apresentacoes   /en/presentations   /es/presentaciones
 import Layout from '@/layouts/Layout.astro';
 import PresentationCard from '@/components/blog/PresentationCard.astro';
-import { getPresentations, presentationLabels } from '@/lib/presentations';
+import { cardVariant, getPresentations, presentationLabels } from '@/lib/presentations';
 import { blogPath, HTML_LANG, LANGS, presentationPath, presentationsPath, type Lang } from '@/i18n/routes';
 
 interface Props {
@@ -80,10 +80,10 @@ const jsonLd = [
           <a href={blogPath(lang)} class="btn btn-primary">{labels.emptyCta}</a>
         </div>
       ) : (
-        <ul class="bg-grid pr-grid">
+        <ul class="pr-grid">
           {posts.map((post, i) => (
             <li>
-              <PresentationCard post={post} lang={lang} eager={i < 3} />
+              <PresentationCard post={post} lang={lang} variant={cardVariant(i)} />
             </li>
           ))}
         </ul>

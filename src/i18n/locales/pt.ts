@@ -979,6 +979,11 @@ export const ptBR = {
     next: "Próximo slide",
     goTo: "Ir para o slide {n}",
     articleBlockTitle: "Veja a apresentação deste artigo",
-    articleBlockText: "Leia os pontos principais em poucos slides."
+    articleBlockText: "Leia os pontos principais em poucos slides.",
+    deckKind: "Apresentação",
+    downloadPdf: "Baixar PDF",
+    downloadPptx: "Baixar PPTX",
+    fullscreen: "Tela cheia",
+    exitFullscreen: "Sair da tela cheia"
   }
 };

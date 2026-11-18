@@ -55,6 +55,11 @@ export function presentationPath(lang: Lang, slug: string): string {
   return `${PREFIX[lang]}/${PRESENTATIONS_SEGMENT[lang]}/${slug}/`;
 }
 
+/** Arquivo para baixar: /apresentacoes/<slug>.pdf ou .pptx (gerado no build). */
+export function presentationFilePath(lang: Lang, slug: string, format: 'pdf' | 'pptx'): string {
+  return `${PREFIX[lang]}/${PRESENTATIONS_SEGMENT[lang]}/${slug}.${format}`;
+}
+
 // Artigos antigos guardam a categoria como texto em português ("Estoque").
 // Novos usam uma chave estável ("estoque"); o nome exibido vem do dicionário.
 const LEGACY_CATEGORY: Record<string, string> = {

@@ -979,6 +979,11 @@ export const enUS = {
     next: "Next slide",
     goTo: "Go to slide {n}",
     articleBlockTitle: "See the presentation of this article",
-    articleBlockText: "Read the key points in a few slides."
+    articleBlockText: "Read the key points in a few slides.",
+    deckKind: "Presentation",
+    downloadPdf: "Download PDF",
+    downloadPptx: "Download PPTX",
+    fullscreen: "Full screen",
+    exitFullscreen: "Exit full screen"
   }
 };
