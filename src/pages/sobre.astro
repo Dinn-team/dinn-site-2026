@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { AboutPage } from '@/components/site/AboutPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { getLabs } from '@/lib/labs';
+import { getCityPhotos } from '@/lib/city-photos';
+
+const { title, description } = pagesPt.about.meta;
+const labs = getLabs();
+// Fotos em public/cidades (ver src/lib/city-photos.ts); sem arquivo, vale o degradê.
+const photos = getCityPhotos();
+---
+
+<Layout title={title} description={description}>
+  <AboutPage labs={labs} photos={photos} client:load />
+</Layout>

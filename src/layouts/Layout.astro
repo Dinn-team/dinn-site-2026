@@ -2,7 +2,9 @@
 import '@/styles/global.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CookieConsent from '@/components/CookieConsent.astro';
 import { HTML_LANG, OG_LOCALE, type Lang } from '@/i18n/routes';
+import { HUBSPOT_PORTAL_ID } from '@/lib/contact-form';
 
 interface Props {
 	title?: string;
@@ -33,8 +35,8 @@ interface Props {
 }
 
 const {
-	title = "Dinn - Inteligência de Dados para Farmácias",
-	description = "Transforme dados em decisões estratégicas para sua farmácia. Gestão de estoque, monitoramento de preços, localização de produtos e muito mais.",
+	title = "Dinn | Inteligência comercial para o canal farmacêutico",
+	description = "IA para o mercado farma: a Dinn organiza sinais de disponibilidade, giro e preço do canal, mostra origem, data e limites e ajuda o time a decidir onde agir.",
 	image = '/og-image.png',
 	type = 'website',
 	noindex = false,
@@ -75,14 +77,20 @@ const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
 	"name": "Dinn",
-	"description": "Inteligência de Dados para Farmácias",
+	"description": "Inteligência comercial para o canal farmacêutico: transforma sinais de disponibilidade, giro e preço em ação comercial, com origem, data e limites explícitos",
 	"url": site.href,
 	"logo": new URL('/logo.png', site).href,
 	"foundingDate": "2023",
-	"founders": [{
-		"@type": "Organization",
-		"name": "DiWE Ventures Studio"
-	}]
+	"legalName": "Dinn Tecnologia Ltda.",
+	"taxID": "57.639.944/0001-20",
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": "Rua Dona Francisca, 8300, Bloco Ágora, sala 5, Distrito Industrial",
+		"addressLocality": "Joinville",
+		"addressRegion": "SC",
+		"postalCode": "89219-600",
+		"addressCountry": "BR"
+	}
 };
 
 const schemas = [organizationSchema, ...(jsonLd ? [jsonLd].flat() : [])];
@@ -101,6 +109,10 @@ const enableAnalytics = import.meta.env.PROD && Boolean(GA_ID);
 // única por página, então só um tracker roda: o da conta que executa.
 const APOLLO_TRACKER_ID = '663123272a6e2c030219f444';
 const enableApolloTracking = import.meta.env.PROD;
+
+// HubSpot (portal da Dinn, EU1): cookie de visita para ligar o formulário /contato
+// ao histórico de páginas. Mesmo racional: só produção e só depois do aceite.
+const enableHubspotTracking = import.meta.env.PROD && Boolean(HUBSPOT_PORTAL_ID);
 ---
 
 <!doctype html>
@@ -126,12 +138,10 @@ const enableApolloTracking = import.meta.env.PROD;
 		))}
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
-		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-		{/* Pesos usados pelo H1 do hero (LCP). Sem o preload eles só seriam
-		    descobertos depois que o CSS baixasse e casasse as regras. */}
-		<link rel="preload" href="/fonts/BrittiSans-Bold.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/BrittiSans-LightItalic.woff2" as="font" type="font/woff2" crossorigin />
 
 		<!-- Open Graph -->
 		<meta property="og:type" content={type} />
@@ -155,34 +165,37 @@ const enableApolloTracking = import.meta.env.PROD;
 			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 		))}
 
-		{enableAnalytics && (
-			<>
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
-				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-				{/* set:html em vez de define:vars: o define:vars envolve o script num
-				    IIFE, o que deixaria gtag fora do escopo global e faria qualquer
-				    gtag('event', ...) posterior estourar ReferenceError. */}
-				<script is:inline set:html={`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', '${GA_ID}');
-`}></script>
-			</>
-		)}
-
-		{enableApolloTracking && (
-			<script is:inline set:html={`
-function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"${APOLLO_TRACKER_ID}"})},document.head.appendChild(o)}initApollo();
-`}></script>
+		{/* GA4, Apollo e HubSpot só carregam depois do aceite no banner de cookies (CookieConsent.astro). */}
+		{(enableAnalytics || enableApolloTracking || enableHubspotTracking) && (
+			<script is:inline set:html={`window.__dinnTrackers=${JSON.stringify({ ga: enableAnalytics ? GA_ID : null, apollo: enableApolloTracking ? APOLLO_TRACKER_ID : null, hubspot: enableHubspotTracking ? HUBSPOT_PORTAL_ID : null })};`}></script>
 		)}
 	</head>
-	<body style="background-color: #1F2328; color: #1F2328; margin: 0; padding: 0; overflow-x: clip;">
+	<body style="background-color: var(--foreground); color: var(--foreground); margin: 0; padding: 0; overflow-x: clip;">
+		<a class="skip-link" href="#conteudo" id="skip-link">Pular para o conteúdo</a>
 		<Header client:load />
-		<main>
+		<main id="conteudo" tabindex="-1">
 			<slot />
 		</main>
 		<Footer client:load />
-	</body>
+		<CookieConsent />
+		{/* Jornada até o /contato (lib/journey.ts): anota a página só com o aceite de cookies. */}
+		<script>
+			import { recordVisit } from '@/lib/journey';
+			recordVisit();
+			window.addEventListener('dinn:consent-accepted', recordVisit);
+		</script>
+	
+<script is:inline>
+	// O link "Pular para o conteúdo" acompanha o idioma escolhido (o <html lang> muda no cliente).
+	(function () {
+		var T = { 'pt-BR': 'Pular para o conteúdo', en: 'Skip to content', 'es-419': 'Saltar al contenido' };
+		function sync() {
+			var a = document.getElementById('skip-link');
+			if (a) a.textContent = T[document.documentElement.lang] || T['pt-BR'];
+		}
+		sync();
+		new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+	})();
+</script>
+</body>
 </html>

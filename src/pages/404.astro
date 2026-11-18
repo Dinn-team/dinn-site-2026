@@ -1,0 +1,80 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+// Página 404 no padrão da home (Design System v2): título à esquerda, texto e botão à direita
+// e uma faixa com o degradê da marca. A Vercel serve este arquivo para qualquer endereço que não existe.
+// O texto segue o idioma do <html lang> (muda no cliente), em PT, EN e ES.
+const T = {
+  'pt-BR': {
+    title: 'Não achamos esta página',
+    sub: 'O endereço pode ter mudado ou não existe. Volte ao início ou veja o que a Dinn faz.',
+    home: 'Ir para o início',
+    features: 'Ver funcionalidades',
+    contact: 'Falar com a Dinn',
+  },
+  en: {
+    title: 'We could not find this page',
+    sub: 'The address may have changed or may not exist. Go back to the home page or see what Dinn does.',
+    home: 'Go to home',
+    features: 'See features',
+    contact: 'Talk to Dinn',
+  },
+  'es-419': {
+    title: 'No encontramos esta página',
+    sub: 'La dirección puede haber cambiado o no existir. Vuelve al inicio o mira lo que hace Dinn.',
+    home: 'Ir al inicio',
+    features: 'Ver funcionalidades',
+    contact: 'Hablar con Dinn',
+  },
+};
+const pt = T['pt-BR'];
+---
+
+<Layout
+  title="Página não encontrada | Dinn"
+  description="Esta página não existe ou mudou de endereço. Volte ao início da Dinn."
+  noindex
+>
+  <div class="h2 nf">
+    <header class="h2-hero">
+      <div class="h2-wrap">
+        <div class="h2-hero-grid">
+          <h1 class="h2-hero-title" data-nf="title">{pt.title}</h1>
+          <div class="h2-hero-side">
+            <p class="h2-hero-sub" data-nf="sub">{pt.sub}</p>
+            <div class="h2-actions">
+              <a class="btn btn-primary" href="/" data-nf="home">{pt.home}</a>
+              <a class="h2-link" href="/funcionalidades"><span data-nf="features">{pt.features}</span> <span aria-hidden="true">→</span></a>
+              <a class="h2-link" href="/contato" data-nf="contact">{pt.contact}</a>
+            </div>
+          </div>
+        </div>
+        <div class="h2-media nf-media" aria-hidden="true">
+          <span class="nf-shade"></span>
+          <span class="nf-code">404</span>
+        </div>
+      </div>
+    </header>
+  </div>
+</Layout>
+
+<style is:global>
+  .nf .nf-media { aspect-ratio: 16 / 6; background: #0b0a14 url('/gradients/web/roxo-noite.avif') center / cover; display: grid; place-items: center; }
+  .nf .nf-shade { position: absolute; inset: 0; background: rgba(8, 9, 10, 0.25); }
+  .nf .nf-code { position: relative; font-family: var(--font-display); font-weight: 400; font-size: clamp(88px, 18vw, 240px); line-height: 1; letter-spacing: -0.04em; color: #fff; font-variant-numeric: tabular-nums; }
+  @media (max-width: 760px) { .nf .nf-media { aspect-ratio: 4 / 3; } }
+</style>
+
+<script is:inline define:vars={{ T }}>
+  (function () {
+    function sync() {
+      var t = T[document.documentElement.lang] || T['pt-BR'];
+      Object.keys(t).forEach(function (k) {
+        var el = document.querySelector('[data-nf="' + k + '"]');
+        if (el) el.textContent = t[k];
+      });
+    }
+    sync();
+    new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  })();
+</script>

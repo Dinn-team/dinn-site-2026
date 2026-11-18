@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { SlideTabs } from '@/components/ui/nav-header';
+import MobileMenu from '@/components/MobileMenu';
 import { useTranslation } from '@/i18n/useTranslation';
-import { blogPath } from '@/i18n/routes';
 import { setLanguage, Language } from '@/i18n/store';
+import { contactUrl } from '@/lib/links';
 
 // Globe / translate icon (lucide-style inline SVG)
 function GlobeIcon({ color }: { color: string }) {
@@ -24,9 +25,11 @@ function GlobeIcon({ color }: { color: string }) {
 }
 
 export default function Header() {
-  const [isLightBg, setIsLightBg] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  // O menu fica sempre sobre a barra de vidro clara: versão escura do logo e do texto.
+  // Antes ele detectava a cor do fundo e nascia branco, e piscava ao carregar.
+  const isLightBg = true;
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   
   const { t, lang } = useTranslation();
 
@@ -38,83 +41,69 @@ export default function Header() {
 
   const currentLangObj = languages.find(l => l.code === lang) || languages[0];
 
+  // Descer = o visitante quer ler: o menu se recolhe com um movimento curto.
+  // Subir = procura o topo ou o menu: ele volta. No topo da página, sempre visível.
   useEffect(() => {
-    let ticking = false;
+    let last = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const delta = y - last;
+      if (y < 80) setHidden(false);
+      else if (delta > 6) setHidden(true);
+      else if (delta < -6) setHidden(false);
+      if (Math.abs(delta) > 6) last = y;
+    };
     const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const header = document.querySelector('header');
-          const originalPointerEvents = header ? header.style.pointerEvents : '';
-          if (header) header.style.pointerEvents = 'none';
-
-          const el = document.elementFromPoint(window.innerWidth / 2, 36);
-          
-          if (header) header.style.pointerEvents = originalPointerEvents;
-
-          if (el) {
-            let currentEl = el as HTMLElement | null;
-            let bg = 'rgba(0, 0, 0, 0)';
-            while (currentEl && currentEl !== document.documentElement) {
-              const style = window.getComputedStyle(currentEl);
-              bg = style.backgroundColor;
-              if (bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' && bg !== '') break;
-              currentEl = currentEl.parentElement;
-            }
-            const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-            if (match) {
-              const r = parseInt(match[1], 10);
-              const g = parseInt(match[2], 10);
-              const b = parseInt(match[3], 10);
-              const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-              setIsLightBg(brightness >= 128);
-            } else {
-              setIsLightBg(window.scrollY > 20);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (!raf) raf = window.requestAnimationFrame(update);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    setTimeout(onScroll, 100);
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
-  const iconColor = isLightBg ? '#6B7280' : 'rgba(255,255,255,0.7)';
+  // Com a lista de idiomas aberta o menu não some.
+  const hideHeader = hidden && !langDropdownOpen;
+
+  const iconColor = '#374151';
 
   return (
-    <header className={`header ${isLightBg ? 'scrolled' : ''}`}>
+    <header className={`header scrolled ${hideHeader ? 'is-hidden' : ''}`}>
       <div className="wrap">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="header-bar flex items-center justify-between">
 
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 shrink-0">
             {/* Logo do topo: fetchPriority alta e sem lazy — está acima da
                 dobra e é um dos primeiros elementos que o visitante vê. */}
             <img
-              src={isLightBg ? '/Logo_Dinn_Cinza.svg' : '/Logo_Dinn_Branca.svg'}
+              src={isLightBg ? '/logo/Dinn_logo_v2_Dark.png' : '/logo/Dinn_logo_v2_Light.png'}
               alt="Dinn"
-              width={1805}
-              height={681}
+              width={394}
+              height={152}
               fetchPriority="high"
-              className="h-8 w-auto"
+              className="h-7 w-auto"
             />
           </a>
 
           {/* Desktop Nav — Sliding Tabs */}
-          <nav className="hidden md:flex items-center">
+          <nav className="hidden lg:flex items-center">
             <SlideTabs scrolled={isLightBg} />
           </nav>
 
           {/* Right side: Globe + CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Language Selector */}
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                aria-label="Idioma"
-                title="Trocar idioma"
+                aria-haspopup="listbox"
+                aria-expanded={langDropdownOpen}
+                aria-label={t('nav.languageLabel')}
+                title={t('nav.languageLabel')}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -122,14 +111,14 @@ export default function Header() {
                   padding: '0 12px',
                   height: '36px',
                   borderRadius: '9999px',
-                  background: isLightBg ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.1)',
-                  border: isLightBg ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.15)',
+                  background: '#fff',
+                  border: '1px solid rgba(8,9,10,0.14)',
                   cursor: 'pointer',
                   transition: 'background 0.2s',
                   gap: '6px'
                 }}
               >
-                <span style={{ fontSize: '16px' }}>{currentLangObj.flag}</span>
+                <GlobeIcon color={iconColor} />
                 <span style={{ fontSize: '13px', fontWeight: 600, color: iconColor }}>{currentLangObj.code.toUpperCase()}</span>
               </button>
               
@@ -155,62 +144,22 @@ export default function Header() {
                       onClick={() => { setLanguage(l.code); setLangDropdownOpen(false); }}
                       className="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 rounded-md text-[14px] font-medium text-gray-800 text-left"
                     >
-                      <span>{l.flag}</span>
                       <span>{l.label}</span>
                     </button>
                   ))}
                 </div>
               )}
             </div>
+
+            <a href={contactUrl('menu')} className="btn btn-primary">
+              {t('nav.cta')}
+            </a>
           </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden p-2 rounded-lg"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Abrir menu"
-          >
-            <div className="flex flex-col gap-[5px]">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className={`block w-6 h-0.5 rounded-full transition-colors ${isLightBg ? 'bg-[#1F2328]' : 'bg-white'}`}
-                />
-              ))}
-            </div>
-          </button>
+          {/* Menu de tablet e celular (<1024px): botão + painel em tela cheia */}
+          <MobileMenu isLightBg={isLightBg} />
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-[#E5E7EB] shadow-lg">
-          <div className="wrap py-6 flex flex-col gap-4">
-            <a href="/" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.home')}</a>
-            <a href="#solucoes" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.solutions')}</a>
-            <a href="#casos-de-uso" className="text-[16px] font-semibold text-[#1F2328]">{t('nav.useCases')}</a>
-            <a href={blogPath(lang)} className="text-[16px] font-semibold text-[#1F2328]">{t('nav.blog')}</a>
-            
-            <hr className="border-[#E5E7EB] my-2" />
-            
-            <div className="flex flex-col gap-3">
-              <span className="text-[12px] font-medium text-gray-400 uppercase tracking-wider">{t('nav.language')}</span>
-              <div className="flex gap-4">
-                {languages.map(l => (
-                  <button
-                    key={l.code}
-                    onClick={() => { setLanguage(l.code); setMobileOpen(false); }}
-                    className={`flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-md ${lang === l.code ? 'bg-[#F3F4F6] text-[#1F2328]' : 'text-gray-500'}`}
-                  >
-                    <span>{l.flag}</span>
-                    <span>{l.code.toUpperCase()}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

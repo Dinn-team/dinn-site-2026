@@ -9,6 +9,18 @@
       "autoPort": true
     },
     {
+      "name": "dinn-site-astro",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["astro", "dev", "--port", "4321"],
+      "port": 4321
+    },
+    {
+      "name": "dinn-site-node",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/astro/bin/astro.mjs", "dev", "--port", "4321"],
+      "port": 4321
+    },
+    {
       "name": "dinn-site-preview",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["run", "preview", "--", "--port", "4322"],

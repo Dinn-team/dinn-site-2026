@@ -10,7 +10,15 @@ const listeners: Set<Listener> = new Set();
 
 const isClient = typeof window !== 'undefined';
 
+// O <html lang> acompanha o idioma escolhido: leitores de tela trocam de voz
+// e buscadores entendem o idioma do texto exibido.
+const HTML_LANG: Record<Language, string> = { pt: 'pt-BR', en: 'en', es: 'es-419' };
+function syncHtmlLang() {
+  if (isClient) document.documentElement.lang = HTML_LANG[currentLanguage];
+}
+
 function notify() {
+  syncHtmlLang();
   listeners.forEach((listener) => listener(currentLanguage));
 }
 

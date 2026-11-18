@@ -1,0 +1,1745 @@
+[
+ {
+  "slug": "johnson-johnson-janssen",
+  "name": "Johnson & Johnson (Janssen)",
+  "country": "EUA",
+  "group": "global",
+  "rank": 1,
+  "revenueBn": 94.19,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Johnson & Johnson",
+  "logoFile": "Johnson and Johnson Logo.svg",
+  "series": [
+   [
+    2016,
+    71.89
+   ],
+   [
+    2017,
+    76.5
+   ],
+   [
+    2018,
+    81.6
+   ],
+   [
+    2019,
+    82.06
+   ],
+   [
+    2020,
+    82.59
+   ],
+   [
+    2021,
+    93.78
+   ],
+   [
+    2022,
+    79.99
+   ],
+   [
+    2023,
+    85.16
+   ],
+   [
+    2024,
+    88.82
+   ],
+   [
+    2025,
+    94.19
+   ]
+  ]
+ },
+ {
+  "slug": "roche",
+  "name": "Roche",
+  "country": "Suíça",
+  "group": "global",
+  "rank": 2,
+  "revenueBn": 80.31,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Roche",
+  "series": [
+   [
+    2016,
+    50.11
+   ],
+   [
+    2017,
+    57.37
+   ],
+   [
+    2018,
+    56.86
+   ],
+   [
+    2019,
+    63.85
+   ],
+   [
+    2020,
+    62.99
+   ],
+   [
+    2021,
+    67.83
+   ],
+   [
+    2022,
+    69.77
+   ],
+   [
+    2023,
+    68.48
+   ],
+   [
+    2024,
+    66.42
+   ],
+   [
+    2025,
+    80.31
+   ]
+  ]
+ },
+ {
+  "slug": "eli-lilly",
+  "name": "Eli Lilly",
+  "country": "EUA",
+  "group": "global",
+  "rank": 3,
+  "revenueBn": 65.18,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Eli Lilly and Company",
+  "logoFile": "Eli Lilly and Company.svg",
+  "client": "lilly",
+  "clientLogo": "/clientes/lilly-logo-png.png",
+  "series": [
+   [
+    2016,
+    21.22
+   ],
+   [
+    2017,
+    22.9
+   ],
+   [
+    2018,
+    21.49
+   ],
+   [
+    2019,
+    22.32
+   ],
+   [
+    2020,
+    24.54
+   ],
+   [
+    2021,
+    28.32
+   ],
+   [
+    2022,
+    28.54
+   ],
+   [
+    2023,
+    34.12
+   ],
+   [
+    2024,
+    45.03
+   ],
+   [
+    2025,
+    65.18
+   ]
+  ]
+ },
+ {
+  "slug": "msd-merck-co",
+  "name": "MSD (Merck & Co.)",
+  "country": "EUA",
+  "group": "global",
+  "rank": 4,
+  "revenueBn": 65.01,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Merck & Co",
+  "series": [
+   [
+    2016,
+    39.8
+   ],
+   [
+    2017,
+    40.1
+   ],
+   [
+    2018,
+    42.3
+   ],
+   [
+    2019,
+    46.84
+   ],
+   [
+    2020,
+    41.52
+   ],
+   [
+    2021,
+    48.7
+   ],
+   [
+    2022,
+    59.28
+   ],
+   [
+    2023,
+    60.12
+   ],
+   [
+    2024,
+    64.17
+   ],
+   [
+    2025,
+    65.01
+   ]
+  ]
+ },
+ {
+  "slug": "pfizer",
+  "name": "Pfizer",
+  "country": "EUA",
+  "group": "global",
+  "rank": 5,
+  "revenueBn": 62.58,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Pfizer",
+  "series": [
+   [
+    2016,
+    52.82
+   ],
+   [
+    2017,
+    52.54
+   ],
+   [
+    2018,
+    40.83
+   ],
+   [
+    2019,
+    41.17
+   ],
+   [
+    2020,
+    41.91
+   ],
+   [
+    2021,
+    81.29
+   ],
+   [
+    2022,
+    100.33
+   ],
+   [
+    2023,
+    59.55
+   ],
+   [
+    2024,
+    63.63
+   ],
+   [
+    2025,
+    62.58
+   ]
+  ]
+ },
+ {
+  "slug": "abbvie",
+  "name": "AbbVie",
+  "country": "EUA",
+  "group": "global",
+  "rank": 6,
+  "revenueBn": 61.16,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "AbbVie",
+  "series": [
+   [
+    2016,
+    25.56
+   ],
+   [
+    2017,
+    28.22
+   ],
+   [
+    2018,
+    32.75
+   ],
+   [
+    2019,
+    33.27
+   ],
+   [
+    2020,
+    45.8
+   ],
+   [
+    2021,
+    56.2
+   ],
+   [
+    2022,
+    58.05
+   ],
+   [
+    2023,
+    54.32
+   ],
+   [
+    2024,
+    56.33
+   ],
+   [
+    2025,
+    61.16
+   ]
+  ]
+ },
+ {
+  "slug": "astrazeneca",
+  "name": "AstraZeneca",
+  "country": "Reino Unido",
+  "group": "global",
+  "rank": 7,
+  "revenueBn": 58.74,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "AstraZeneca",
+  "series": [
+   [
+    2016,
+    23
+   ],
+   [
+    2017,
+    22.47
+   ],
+   [
+    2018,
+    22.09
+   ],
+   [
+    2019,
+    24.38
+   ],
+   [
+    2020,
+    26.62
+   ],
+   [
+    2021,
+    37.42
+   ],
+   [
+    2022,
+    44.35
+   ],
+   [
+    2023,
+    45.81
+   ],
+   [
+    2024,
+    54.07
+   ],
+   [
+    2025,
+    58.74
+   ]
+  ]
+ },
+ {
+  "slug": "novartis",
+  "name": "Novartis",
+  "country": "Suíça",
+  "group": "global",
+  "rank": 8,
+  "revenueBn": 54.53,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Novartis",
+  "series": [
+   [
+    2016,
+    48.52
+   ],
+   [
+    2017,
+    49.11
+   ],
+   [
+    2018,
+    44.75
+   ],
+   [
+    2019,
+    47.45
+   ],
+   [
+    2020,
+    48.66
+   ],
+   [
+    2021,
+    51.63
+   ],
+   [
+    2022,
+    50.55
+   ],
+   [
+    2023,
+    45.44
+   ],
+   [
+    2024,
+    50.32
+   ],
+   [
+    2025,
+    54.53
+   ]
+  ]
+ },
+ {
+  "slug": "sanofi",
+  "name": "Sanofi",
+  "country": "França",
+  "group": "global",
+  "rank": 9,
+  "revenueBn": 52.15,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Sanofi",
+  "client": "sanofi",
+  "clientLogo": "/clientes/q5GXskJxl7qrQpg4qttvwnhJI.avif",
+  "series": [
+   [
+    2016,
+    36.57
+   ],
+   [
+    2017,
+    42.91
+   ],
+   [
+    2018,
+    39.07
+   ],
+   [
+    2019,
+    39.28
+   ],
+   [
+    2020,
+    41.27
+   ],
+   [
+    2021,
+    43.24
+   ],
+   [
+    2022,
+    46.86
+   ],
+   [
+    2023,
+    46.84
+   ],
+   [
+    2024,
+    42.68
+   ],
+   [
+    2025,
+    52.15
+   ]
+  ]
+ },
+ {
+  "slug": "bayer",
+  "name": "Bayer",
+  "country": "Alemanha",
+  "group": "global",
+  "rank": 10,
+  "revenueBn": 49.56,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Bayer",
+  "logoFile": "Logo Bayer.svg",
+  "series": [
+   [
+    2016,
+    25.27
+   ],
+   [
+    2017,
+    37.94
+   ],
+   [
+    2018,
+    45.06
+   ],
+   [
+    2019,
+    48.02
+   ],
+   [
+    2020,
+    47.4
+   ],
+   [
+    2021,
+    49.46
+   ],
+   [
+    2022,
+    53.88
+   ],
+   [
+    2023,
+    51.72
+   ],
+   [
+    2024,
+    51.07
+   ],
+   [
+    2025,
+    49.56
+   ]
+  ]
+ },
+ {
+  "slug": "novo-nordisk",
+  "name": "Novo Nordisk",
+  "country": "Dinamarca",
+  "group": "global",
+  "rank": 11,
+  "revenueBn": 48.86,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Novo Nordisk",
+  "series": [
+   [
+    2016,
+    16.61
+   ],
+   [
+    2017,
+    18.77
+   ],
+   [
+    2018,
+    6.99
+   ],
+   [
+    2019,
+    18.3
+   ],
+   [
+    2020,
+    19.52
+   ],
+   [
+    2021,
+    21.66
+   ],
+   [
+    2022,
+    25.46
+   ],
+   [
+    2023,
+    33.83
+   ],
+   [
+    2024,
+    40.52
+   ],
+   [
+    2025,
+    48.86
+   ]
+  ]
+ },
+ {
+  "slug": "bristol-myers-squibb",
+  "name": "Bristol Myers Squibb",
+  "country": "EUA",
+  "group": "global",
+  "rank": 12,
+  "revenueBn": 48.19,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Bristol Myers Squibb",
+  "series": [
+   [
+    2016,
+    19.43
+   ],
+   [
+    2017,
+    20.8
+   ],
+   [
+    2018,
+    22.56
+   ],
+   [
+    2019,
+    26.15
+   ],
+   [
+    2020,
+    42.52
+   ],
+   [
+    2021,
+    46.39
+   ],
+   [
+    2022,
+    46.16
+   ],
+   [
+    2023,
+    45.01
+   ],
+   [
+    2024,
+    48.3
+   ],
+   [
+    2025,
+    48.19
+   ]
+  ]
+ },
+ {
+  "slug": "gsk",
+  "name": "GSK",
+  "country": "Reino Unido",
+  "group": "global",
+  "rank": 13,
+  "revenueBn": 44.59,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "GSK",
+  "series": [
+   [
+    2016,
+    34.79
+   ],
+   [
+    2017,
+    42.05
+   ],
+   [
+    2018,
+    43.14
+   ],
+   [
+    2019,
+    43.92
+   ],
+   [
+    2020,
+    46.17
+   ],
+   [
+    2021,
+    46.91
+   ],
+   [
+    2022,
+    36.14
+   ],
+   [
+    2023,
+    38.63
+   ],
+   [
+    2024,
+    39.28
+   ],
+   [
+    2025,
+    44.59
+   ]
+  ]
+ },
+ {
+  "slug": "abbott",
+  "name": "Abbott",
+  "country": "EUA",
+  "group": "global",
+  "rank": 14,
+  "revenueBn": 44.33,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Abbott Laboratories",
+  "series": [
+   [
+    2016,
+    20.85
+   ],
+   [
+    2017,
+    27.39
+   ],
+   [
+    2018,
+    30.6
+   ],
+   [
+    2019,
+    31.9
+   ],
+   [
+    2020,
+    34.61
+   ],
+   [
+    2021,
+    43.08
+   ],
+   [
+    2022,
+    43.65
+   ],
+   [
+    2023,
+    40.11
+   ],
+   [
+    2024,
+    41.95
+   ],
+   [
+    2025,
+    44.33
+   ]
+  ]
+ },
+ {
+  "slug": "amgen",
+  "name": "Amgen",
+  "country": "EUA",
+  "group": "global",
+  "rank": 15,
+  "revenueBn": 36.75,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Amgen",
+  "logoFile": "Amgen.svg",
+  "series": [
+   [
+    2016,
+    22.99
+   ],
+   [
+    2017,
+    22.8
+   ],
+   [
+    2018,
+    23.7
+   ],
+   [
+    2019,
+    23.4
+   ],
+   [
+    2020,
+    25.42
+   ],
+   [
+    2021,
+    25.98
+   ],
+   [
+    2022,
+    26.32
+   ],
+   [
+    2023,
+    28.19
+   ],
+   [
+    2024,
+    33.42
+   ],
+   [
+    2025,
+    36.75
+   ]
+  ]
+ },
+ {
+  "slug": "boehringer-ingelheim",
+  "name": "Boehringer Ingelheim",
+  "country": "Alemanha",
+  "group": "global",
+  "rank": 16,
+  "revenueBn": 32.47,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Boehringer Ingelheim",
+  "series": [
+   [
+    2016,
+    16.41
+   ],
+   [
+    2017,
+    17.54
+   ],
+   [
+    2018,
+    21.67
+   ],
+   [
+    2019,
+    21.75
+   ],
+   [
+    2020,
+    22.4
+   ],
+   [
+    2021,
+    22.5
+   ],
+   [
+    2022,
+    25.9
+   ],
+   [
+    2023,
+    27.7
+   ],
+   [
+    2024,
+    29.37
+   ]
+  ]
+ },
+ {
+  "slug": "gilead-sciences",
+  "name": "Gilead Sciences",
+  "country": "EUA",
+  "group": "global",
+  "rank": 17,
+  "revenueBn": 29.44,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Gilead Sciences",
+  "series": [
+   [
+    2016,
+    30.39
+   ],
+   [
+    2017,
+    25.7
+   ],
+   [
+    2018,
+    22.13
+   ],
+   [
+    2019,
+    22.45
+   ],
+   [
+    2020,
+    24.69
+   ],
+   [
+    2021,
+    27.31
+   ],
+   [
+    2022,
+    27.28
+   ],
+   [
+    2023,
+    27.12
+   ],
+   [
+    2024,
+    28.75
+   ],
+   [
+    2025,
+    29.44
+   ]
+  ]
+ },
+ {
+  "slug": "takeda",
+  "name": "Takeda",
+  "country": "Japão",
+  "group": "global",
+  "rank": 18,
+  "revenueBn": 29.32,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Takeda Pharmaceutical",
+  "logoFile": "Takeda Pharmaceutical Company logo.svg",
+  "series": [
+   [
+    2016,
+    15.96
+   ],
+   [
+    2017,
+    16.7
+   ],
+   [
+    2018,
+    19.1
+   ],
+   [
+    2019,
+    31.17
+   ],
+   [
+    2020,
+    27.76
+   ],
+   [
+    2021,
+    29.31
+   ],
+   [
+    2022,
+    30.34
+   ],
+   [
+    2023,
+    30.24
+   ],
+   [
+    2024,
+    29.31
+   ]
+  ]
+ },
+ {
+  "slug": "teva",
+  "name": "Teva",
+  "country": "Israel",
+  "group": "global",
+  "rank": 19,
+  "revenueBn": 17.26,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Teva Pharmaceutical",
+  "series": [
+   [
+    2016,
+    21.9
+   ],
+   [
+    2017,
+    22.4
+   ],
+   [
+    2018,
+    18.9
+   ],
+   [
+    2019,
+    16.89
+   ],
+   [
+    2020,
+    16.66
+   ],
+   [
+    2021,
+    15.88
+   ],
+   [
+    2022,
+    14.93
+   ],
+   [
+    2023,
+    15.85
+   ],
+   [
+    2024,
+    16.54
+   ],
+   [
+    2025,
+    17.26
+   ]
+  ]
+ },
+ {
+  "slug": "otsuka",
+  "name": "Otsuka",
+  "country": "Japão",
+  "group": "global",
+  "rank": 20,
+  "revenueBn": 15.78,
+  "year": 2024,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Otsuka Pharmaceutical",
+  "logoFile": "Otsuka Holdings logo.svg",
+  "series": [
+   [
+    2016,
+    9.29
+   ],
+   [
+    2017,
+    9.64
+   ],
+   [
+    2018,
+    10.04
+   ],
+   [
+    2019,
+    10.85
+   ],
+   [
+    2020,
+    11.06
+   ],
+   [
+    2021,
+    11.65
+   ],
+   [
+    2022,
+    13.05
+   ],
+   [
+    2023,
+    14.23
+   ],
+   [
+    2024,
+    15.78
+   ]
+  ]
+ },
+ {
+  "slug": "kenvue",
+  "name": "Kenvue",
+  "country": "EUA",
+  "group": "global",
+  "rank": 21,
+  "revenueBn": 15.12,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Kenvue",
+  "series": [
+   [
+    2018,
+    14.95
+   ],
+   [
+    2019,
+    15.44
+   ],
+   [
+    2020,
+    15.46
+   ],
+   [
+    2021,
+    15.12
+   ]
+  ]
+ },
+ {
+  "slug": "haleon",
+  "name": "Haleon",
+  "country": "Reino Unido",
+  "group": "global",
+  "rank": 22,
+  "revenueBn": 15.01,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Haleon",
+  "logoFile": "Haleon.svg",
+  "series": [
+   [
+    2018,
+    11.77
+   ],
+   [
+    2019,
+    13.14
+   ],
+   [
+    2020,
+    14.29
+   ],
+   [
+    2021,
+    14.15
+   ],
+   [
+    2022,
+    15.01
+   ]
+  ]
+ },
+ {
+  "slug": "viatris",
+  "name": "Viatris",
+  "country": "EUA",
+  "group": "global",
+  "rank": 23,
+  "revenueBn": 14.3,
+  "year": 2025,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Viatris",
+  "logoFile": "Viatris.svg",
+  "series": [
+   [
+    2018,
+    11.95
+   ],
+   [
+    2019,
+    17.81
+   ],
+   [
+    2020,
+    16.22
+   ],
+   [
+    2021,
+    15.43
+   ],
+   [
+    2022,
+    14.69
+   ],
+   [
+    2023,
+    14.3
+   ]
+  ]
+ },
+ {
+  "slug": "astellas",
+  "name": "Astellas",
+  "country": "Japão",
+  "group": "global",
+  "rank": 24,
+  "revenueBn": 12.68,
+  "year": 2024,
+  "source": "https://en.wikipedia.org/wiki/List_of_largest_biomedical_companies_by_revenue",
+  "logoQuery": "Astellas Pharma",
+  "series": [
+   [
+    2016,
+    12.63
+   ],
+   [
+    2017,
+    12.07
+   ],
+   [
+    2018,
+    12.27
+   ],
+   [
+    2019,
+    11.29
+   ],
+   [
+    2020,
+    10.85
+   ],
+   [
+    2021,
+    10.08
+   ],
+   [
+    2022,
+    10.87
+   ],
+   [
+    2023,
+    10.54
+   ],
+   [
+    2024,
+    12.68
+   ]
+  ]
+ },
+ {
+  "slug": "daiichi-sankyo",
+  "name": "Daiichi Sankyo",
+  "country": "Japão",
+  "group": "global",
+  "rank": 25,
+  "revenueBn": 12.07,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Daiichi Sankyo",
+  "series": [
+   [
+    2016,
+    6.28
+   ],
+   [
+    2017,
+    6.31
+   ],
+   [
+    2018,
+    6.11
+   ],
+   [
+    2019,
+    6.45
+   ],
+   [
+    2020,
+    6.33
+   ],
+   [
+    2021,
+    6.87
+   ],
+   [
+    2022,
+    8.4
+   ],
+   [
+    2023,
+    10.52
+   ],
+   [
+    2024,
+    12.51
+   ]
+  ]
+ },
+ {
+  "slug": "bausch-health",
+  "name": "Bausch Health",
+  "country": "Canadá",
+  "group": "global",
+  "rank": 26,
+  "revenueBn": 10.16,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Bausch Health",
+  "series": [
+   [
+    2024,
+    9.52
+   ],
+   [
+    2025,
+    10.16
+   ]
+  ]
+ },
+ {
+  "slug": "biogen",
+  "name": "Biogen",
+  "country": "EUA",
+  "group": "global",
+  "rank": 27,
+  "revenueBn": 9.89,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Biogen",
+  "series": [
+   [
+    2024,
+    9.68
+   ],
+   [
+    2025,
+    9.89
+   ]
+  ]
+ },
+ {
+  "slug": "ucb",
+  "name": "UCB",
+  "country": "Bélgica",
+  "group": "global",
+  "rank": 28,
+  "revenueBn": 9.06,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "UCB",
+  "series": [
+   [
+    2024,
+    7.2
+   ],
+   [
+    2025,
+    9.06
+   ]
+  ]
+ },
+ {
+  "slug": "grifols",
+  "name": "Grifols",
+  "country": "Espanha",
+  "group": "global",
+  "rank": 29,
+  "revenueBn": 8.8,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Grifols",
+  "logoFile": "Grifols.svg",
+  "series": [
+   [
+    2024,
+    8.44
+   ],
+   [
+    2025,
+    8.8
+   ]
+  ]
+ },
+ {
+  "slug": "servier",
+  "name": "Servier",
+  "country": "França",
+  "group": "global",
+  "rank": 30,
+  "revenueBn": 8.03,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Servier",
+  "series": [
+   [
+    2024,
+    6.91
+   ],
+   [
+    2025,
+    8.03
+   ]
+  ]
+ },
+ {
+  "slug": "organon",
+  "name": "Organon",
+  "country": "EUA",
+  "group": "global",
+  "rank": 31,
+  "revenueBn": 6.22,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Organon",
+  "series": [
+   [
+    2024,
+    6.41
+   ],
+   [
+    2025,
+    6.22
+   ]
+  ]
+ },
+ {
+  "slug": "sun-pharma",
+  "name": "Sun Pharma",
+  "country": "Índia",
+  "group": "global",
+  "rank": 32,
+  "revenueBn": 6.06,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Sun Pharmaceutical",
+  "series": [
+   [
+    2024,
+    5.54
+   ],
+   [
+    2025,
+    6.06
+   ]
+  ]
+ },
+ {
+  "slug": "eisai",
+  "name": "Eisai",
+  "country": "Japão",
+  "group": "global",
+  "rank": 33,
+  "revenueBn": 5.28,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Eisai",
+  "logoFile": "Ēzai-Logo.svg",
+  "series": [
+   [
+    2024,
+    5.05
+   ],
+   [
+    2025,
+    5.28
+   ]
+  ]
+ },
+ {
+  "slug": "galderma",
+  "name": "Galderma",
+  "country": "Suíça",
+  "group": "global",
+  "rank": 34,
+  "revenueBn": 5.21,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Galderma",
+  "series": [
+   [
+    2024,
+    4.41
+   ],
+   [
+    2025,
+    5.21
+   ]
+  ]
+ },
+ {
+  "slug": "ipsen",
+  "name": "Ipsen",
+  "country": "França",
+  "group": "global",
+  "rank": 35,
+  "revenueBn": 4.3,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Ipsen",
+  "series": [
+   [
+    2024,
+    3.98
+   ],
+   [
+    2025,
+    4.3
+   ]
+  ]
+ },
+ {
+  "slug": "stada",
+  "name": "STADA",
+  "country": "Alemanha",
+  "group": "global",
+  "rank": 36,
+  "revenueBn": 4.3,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Stada",
+  "series": [
+   [
+    2024,
+    4.06
+   ],
+   [
+    2025,
+    4.3
+   ]
+  ]
+ },
+ {
+  "slug": "perrigo",
+  "name": "Perrigo",
+  "country": "Irlanda",
+  "group": "global",
+  "rank": 37,
+  "revenueBn": 4.25,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Perrigo",
+  "series": [
+   [
+    2024,
+    4.37
+   ],
+   [
+    2025,
+    4.25
+   ]
+  ]
+ },
+ {
+  "slug": "chiesi",
+  "name": "Chiesi",
+  "country": "Itália",
+  "group": "global",
+  "rank": 38,
+  "revenueBn": 4.24,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Chiesi Farmaceutici",
+  "series": [
+   [
+    2024,
+    3.99
+   ],
+   [
+    2025,
+    4.24
+   ]
+  ]
+ },
+ {
+  "slug": "lundbeck",
+  "name": "Lundbeck",
+  "country": "Dinamarca",
+  "group": "global",
+  "rank": 39,
+  "revenueBn": 3.94,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Lundbeck",
+  "series": [
+   [
+    2024,
+    3.52
+   ],
+   [
+    2025,
+    3.94
+   ]
+  ]
+ },
+ {
+  "slug": "pierre-fabre",
+  "name": "Pierre Fabre",
+  "country": "França",
+  "group": "global",
+  "rank": 40,
+  "revenueBn": 3.74,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Pierre Fabre",
+  "series": [
+   [
+    2024,
+    3.58
+   ],
+   [
+    2025,
+    3.74
+   ]
+  ]
+ },
+ {
+  "slug": "aurobindo",
+  "name": "Aurobindo",
+  "country": "Índia",
+  "group": "global",
+  "rank": 41,
+  "revenueBn": 3.59,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Aurobindo Pharma",
+  "series": [
+   [
+    2024,
+    3.28
+   ],
+   [
+    2025,
+    3.59
+   ]
+  ]
+ },
+ {
+  "slug": "hikma",
+  "name": "Hikma",
+  "country": "Reino Unido",
+  "group": "global",
+  "rank": 42,
+  "revenueBn": 3.35,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Hikma Pharmaceuticals",
+  "series": [
+   [
+    2024,
+    3.13
+   ],
+   [
+    2025,
+    3.35
+   ]
+  ]
+ },
+ {
+  "slug": "cipla",
+  "name": "Cipla",
+  "country": "Índia",
+  "group": "global",
+  "rank": 43,
+  "revenueBn": 3.15,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Cipla",
+  "series": [
+   [
+    2024,
+    2.94
+   ],
+   [
+    2025,
+    3.15
+   ]
+  ]
+ },
+ {
+  "slug": "recordati",
+  "name": "Recordati",
+  "country": "Itália",
+  "group": "global",
+  "rank": 44,
+  "revenueBn": 3.06,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Recordati",
+  "logoFile": "Recordati.svg",
+  "series": [
+   [
+    2024,
+    2.74
+   ],
+   [
+    2025,
+    3.06
+   ]
+  ]
+ },
+ {
+  "slug": "ferring",
+  "name": "Ferring",
+  "country": "Suíça",
+  "group": "global",
+  "rank": 45,
+  "revenueBn": 2.95,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Ferring Pharmaceuticals",
+  "series": [
+   [
+    2024,
+    2.75
+   ],
+   [
+    2025,
+    2.95
+   ]
+  ]
+ },
+ {
+  "slug": "dr-reddy-s",
+  "name": "Dr. Reddy's",
+  "country": "Índia",
+  "group": "global",
+  "rank": 46,
+  "revenueBn": 2.68,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Dr. Reddy's Laboratories",
+  "series": [
+   [
+    2024,
+    2.26
+   ],
+   [
+    2025,
+    2.68
+   ]
+  ]
+ },
+ {
+  "slug": "lupin",
+  "name": "Lupin",
+  "country": "Índia",
+  "group": "global",
+  "rank": 47,
+  "revenueBn": 2.55,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Lupin Limited",
+  "series": [
+   [
+    2024,
+    2.24
+   ],
+   [
+    2025,
+    2.55
+   ]
+  ]
+ },
+ {
+  "slug": "zydus",
+  "name": "Zydus",
+  "country": "Índia",
+  "group": "global",
+  "rank": 48,
+  "revenueBn": 1.76,
+  "year": 2025,
+  "source": "https://www.chemanalyst.com/ChemAnalyst/PharmaCompanies",
+  "logoQuery": "Zydus Lifesciences",
+  "series": [
+   [
+    2024,
+    1.33
+   ],
+   [
+    2025,
+    1.76
+   ]
+  ]
+ }
+]

@@ -1,27 +1,30 @@
 import { useState } from 'react';
 import { useTranslation } from "@/i18n/useTranslation";
+import { Rich } from "@/lib/rich-text";
 
-export default function FAQ() {
+type Item = { question: string; answer: string };
+
+export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: Item[]; title?: string; id?: string } = {}) {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const items = Array.from({ length: 11 }).map((_, i) => ({
-    question: t(`faq.items.${i}.question`),
-    answer: t(`faq.items.${i}.answer`),
-  }));
+  const items = itemsProp ?? ((t('faq.items') as Item[]) ?? []);
 
   return (
-    <section style={{ padding: '96px 0', background: '#ffffff' }}>
+    <section id={id} style={{ padding: '96px 0', background: '#ffffff', scrollMarginTop: '40px' }}>
       <div className="wrap">
         <h2 style={{
-          fontSize: 'clamp(28px, 4vw, 44px)',
-          fontWeight: 800,
-          color: '#1F2328',
+          fontSize: 'var(--t-h2)',
+          fontWeight: 600,
+          color: '#2A2F36',
           textAlign: 'center',
-          marginBottom: '56px',
-          letterSpacing: '-0.02em',
+          maxWidth: '760px',
+          margin: '0 auto 48px',
+          lineHeight: 1.18,
+          letterSpacing: '-0.012em',
+          textWrap: 'balance',
         }}>
-          {t('faq.title')}
+          {title ?? t('faq.title')}
         </h2>
 
         <div style={{ maxWidth: '760px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -29,10 +32,10 @@ export default function FAQ() {
             const isOpen = openIndex === i;
             return (
               <div
-                key={i}
+                key={item.question}
                 style={{
                   background: '#fff',
-                  border: `1.5px solid ${isOpen ? '#5625F2' : '#E5E7EB'}`,
+                  border: `1.5px solid ${isOpen ? 'var(--primary)' : '#E5E7EB'}`,
                   borderRadius: '12px',
                   overflow: 'hidden',
                   boxShadow: isOpen ? '0 4px 20px rgba(86,37,242,0.08)' : 'none',
@@ -58,7 +61,7 @@ export default function FAQ() {
                   <span style={{
                     fontSize: '16px',
                     fontWeight: 600,
-                    color: isOpen ? '#5625F2' : '#1F2328',
+                    color: isOpen ? 'var(--primary)' : 'var(--foreground)',
                     lineHeight: 1.4,
                     transition: 'color 0.2s',
                   }}>
@@ -79,7 +82,7 @@ export default function FAQ() {
                       width="16" height="16" viewBox="0 0 24 24" fill="none"
                       style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }}
                     >
-                      <path d="M6 9l6 6 6-6" stroke={isOpen ? '#5625F2' : '#6B7280'} strokeWidth="2" strokeLinecap="round" />
+                      <path d="M6 9l6 6 6-6" stroke={isOpen ? 'var(--primary)' : '#6B7280'} strokeWidth="2" strokeLinecap="round" />
                     </svg>
                   </div>
                 </button>
@@ -90,14 +93,14 @@ export default function FAQ() {
                   transition: 'grid-template-rows 0.25s ease',
                 }}>
                   <div style={{ overflow: 'hidden' }}>
-                    <p style={{
+                    <p className="faq-answer" style={{
                       padding: '0 24px 20px',
                       fontSize: '15px',
                       color: '#6B7280',
                       lineHeight: 1.7,
                       margin: 0,
                     }}>
-                      {item.answer}
+                      <Rich text={item.answer} />
                     </p>
                   </div>
                 </div>

@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ContactPage } from '@/components/site/ContactPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.contact.meta;
+---
+
+<Layout title={title} description={description}>
+  <ContactPage client:load />
+</Layout>

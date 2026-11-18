@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { LocatorPage } from '@/components/site/offer/OfferPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.locator.meta;
+---
+
+<Layout title={title} description={description}>
+  <LocatorPage client:load />
+</Layout>

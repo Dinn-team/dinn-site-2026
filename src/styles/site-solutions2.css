@@ -1,0 +1,79 @@
+/* Soluções (página principal e página de cada área) no Design System v2.
+   Padrão em rules/DESIGN_SYSTEM_V2.md, seção 10. O palco de rolagem reaproveita
+   as regras de .cs3-page (site-cases2.css). */
+
+.h2 .sl2-title { font-size: clamp(30px, 3.8vw, 56px); line-height: 1.08; max-width: none; }
+.sl2-label { margin: 0 0 12px; font-size: 14px; line-height: 1.4; color: var(--muted-foreground); }
+.sl2-label-gap { margin-top: clamp(32px, 4vw, 56px); }
+
+/* ---- Mídia do topo ---- */
+.h2 .sl2-media { position: relative; aspect-ratio: auto; max-height: 640px; align-items: end; padding: clamp(24px, 5vw, 72px) clamp(16px, 5vw, 72px) 0; }
+.sl2-media::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 10, 0.3); pointer-events: none; }
+.sl2-media > * { position: relative; z-index: 1; }
+.sl2-screen { width: min(100%, 940px); border-radius: 14px 14px 0 0; overflow: hidden; background: var(--background); box-shadow: 0 -12px 60px -20px rgba(8, 9, 10, 0.5); }
+
+
+/* ---- Pergunta e decisões ---- */
+.sl2-question { background-color: var(--muted); }
+.sl2-quote { max-width: 24ch; font-size: clamp(28px, 3.2vw, 46px); }
+.sl2-decisions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.sl2-decisions li { display: grid; align-content: start; gap: 20px; padding: 28px; border-radius: 16px; background: var(--background); }
+.sl2-decisions p { margin: 0; font-size: 18px; line-height: 1.45; letter-spacing: -0.005em; }
+
+/* ---- Resposta e limites ---- */
+.sl2-read { background-color: var(--background); }
+.sl2-read-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 5vw, 96px); align-items: start; }
+.sl2-read-grid > * { min-width: 0; }
+.sl2-limits { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.sl2-limits li { position: relative; padding: 18px 0 18px 28px; border-top: 1px solid var(--border); font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+.sl2-limits li:last-child { border-bottom: 1px solid var(--border); }
+.sl2-limits li::before { content: ''; position: absolute; left: 4px; top: 26px; width: 8px; height: 8px; border-radius: 50%; background: var(--brand-orange); }
+.sl2-trust { margin-top: 24px; }
+
+.sl2-cases { background-color: var(--muted); }
+.sl2-cases .cs3-card { background: var(--background); }
+.sl2-cases + .h2-areas { background-color: var(--background); }
+
+/* ---- Página principal ---- */
+.sl2-areas { background-color: var(--background); }
+.sl2-goals { background-color: var(--muted); }
+.sl2-rows { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--border); }
+.sl2-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 24px; align-items: center; gap: clamp(16px, 3vw, 48px); padding: 24px 0; border-top: 1px solid var(--border); color: var(--foreground); transition: padding .3s cubic-bezier(.22, 1, .36, 1); }
+.sl2-row-name { font-size: clamp(18px, 1.6vw, 22px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
+.sl2-row-text { font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+.sl2-row-go { color: var(--muted-foreground); transition: transform .3s cubic-bezier(.22, 1, .36, 1), color .2s; }
+.sl2-row:hover { padding-left: 12px; }
+.sl2-row:hover .sl2-row-go { transform: translateX(4px); color: var(--primary); }
+
+.sl2-feats { background-color: var(--background); }
+.sl2-feat-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.sl2-feat-grid li { display: flex; }
+.sl2-feat { display: flex; flex-direction: column; gap: 10px; width: 100%; padding: 28px; border-radius: 16px; background: var(--muted); color: var(--foreground); transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.sl2-feat:hover { transform: translateY(-4px); }
+.sl2-feat:hover .h2-link { color: var(--primary); }
+.sl2-feat-name { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+.sl2-feat-text { font-size: 16px; line-height: 1.5; color: var(--muted-foreground); max-width: 34ch; }
+.sl2-feat .h2-link { margin-top: auto; padding-top: 12px; }
+.sl2-more { margin: 40px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 16px; color: var(--muted-foreground); }
+
+@media (max-width: 1024px) {
+  .sl2-decisions, .sl2-feat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sl2-read-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .h2 .sl2-media { padding: 16px 16px 0; }
+  .sl2-decisions, .sl2-feat-grid { grid-template-columns: 1fr; }
+  .sl2-row { grid-template-columns: minmax(0, 1fr) 24px; }
+  .sl2-row-text { grid-column: 1; grid-row: 2; }
+  .sl2-row-go { grid-column: 2; grid-row: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+}
+
+
+/* ---- Palco: a tela do Dinn ocupa mais espaço que o texto ---- */
+.sl2 .wrap.as-grid { max-width: 1400px; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); }
+.sl2 .as-scene-frame { padding: 12px 12px 28px; }
+.sl2 .as-progress { left: 24px; right: 24px; bottom: 12px; }
+@media (max-width: 1024px) { .sl2 .wrap.as-grid { grid-template-columns: 1fr; } }
+.sl2 .as-scene-frame .dd-stage { border-radius: 12px; }

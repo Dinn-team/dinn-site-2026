@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { FeaturesHub } from '@/components/site/FeaturesV2';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.features.meta;
+---
+
+<Layout title={title} description={description}>
+  <FeaturesHub client:load />
+</Layout>

@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { PlatformPageV2 } from '@/components/site/PlatformV2';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.platform.meta;
+---
+
+<Layout title={title} description={description}>
+  <PlatformPageV2 client:load />
+</Layout>

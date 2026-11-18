@@ -6,7 +6,9 @@ import { articlesByLanguageQuery, postsByLanguageQuery } from '@/sanity/lib/quer
 import { ptBR } from '@/i18n/locales/pt';
 import { enUS } from '@/i18n/locales/en';
 import { es419 } from '@/i18n/locales/es';
+import { cleanPostBody, cleanPostText } from '@/lib/blog-clean';
 import { articlePath, blogPath, categoryKey, DATE_LOCALE, LANGS, type Lang } from '@/i18n/routes';
+import type { PresentationData } from '@/lib/presentations';
 
 type Blog = typeof ptBR.blog;
 
@@ -29,6 +31,8 @@ export function categoryLabel(lang: Lang, value: string): string {
 export interface PostAlternate {
   language: Lang;
   slug: string;
+  /** A versão irmã tem apresentação (2 slides ou mais). */
+  hasPresentation?: boolean;
 }
 
 export interface BlogPostData {
@@ -45,6 +49,7 @@ export interface BlogPostData {
   language: Lang;
   translationKey: string;
   body?: any[];
+  presentation?: PresentationData | null;
   alternates?: PostAlternate[];
 }
 
@@ -53,7 +58,9 @@ export interface BlogPostData {
 // todos os artigos. Em desenvolvimento seguimos com lista vazia.
 async function fetchPosts(query: string, lang: Lang): Promise<BlogPostData[]> {
   try {
-    return (await client.fetch(query, { lang })) ?? [];
+    const posts: BlogPostData[] = (await client.fetch(query, { lang })) ?? [];
+    // Tira rótulos internos de roadmap do texto (ver blog-clean.ts).
+    return posts.map((p) => ({ ...p, excerpt: p.excerpt ? cleanPostText(p.excerpt) : p.excerpt, body: cleanPostBody(p.body) }));
   } catch (error) {
     if (import.meta.env.PROD) throw error;
     console.error(`Erro ao buscar artigos (${lang}):`, error);

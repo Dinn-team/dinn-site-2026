@@ -1,0 +1,93 @@
+---
+// Lista de apresentações, compartilhada pelas três rotas de idioma:
+//   /apresentacoes   /en/presentations   /es/presentaciones
+import Layout from '@/layouts/Layout.astro';
+import PresentationCard from '@/components/blog/PresentationCard.astro';
+import { getPresentations, presentationLabels } from '@/lib/presentations';
+import { blogPath, HTML_LANG, LANGS, presentationPath, presentationsPath, type Lang } from '@/i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const labels = presentationLabels(lang);
+const posts = await getPresentations(lang);
+const empty = posts.length === 0;
+
+const site = Astro.site ?? new URL('https://dinn.ai');
+const listUrl = new URL(presentationsPath(lang), site).href;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: labels.name,
+    description: labels.metaDescription,
+    inLanguage: HTML_LANG[lang],
+    url: listUrl,
+    ...(empty
+      ? {}
+      : {
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: posts.map((post, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              url: new URL(presentationPath(lang, post.slug.current), site).href,
+              name: post.title,
+            })),
+          },
+        }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: labels.breadcrumbHome, item: new URL('/', site).href },
+      { '@type': 'ListItem', position: 2, name: labels.name, item: listUrl },
+    ],
+  },
+];
+---
+
+<Layout
+  title={labels.metaTitle}
+  description={labels.metaDescription}
+  lang={lang}
+  alternates={LANGS.map((code) => ({ lang: code, href: presentationsPath(code) }))}
+  langRoute
+  jsonLd={jsonLd}
+  noindex={empty}
+>
+  <div class="h2 pr">
+    <header class="h2-hero bg-hero">
+      <div class="h2-wrap">
+        <div class="h2-hero-grid">
+          <h1 class="h2-hero-title">{labels.heroTitle}</h1>
+          <div class="h2-hero-side">
+            <p class="h2-hero-sub">{labels.heroLead}</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="h2-wrap bg-body">
+      {empty ? (
+        <div class="bg-empty">
+          <h2>{labels.emptyTitle}</h2>
+          <p>{labels.emptyDesc}</p>
+          <a href={blogPath(lang)} class="btn btn-primary">{labels.emptyCta}</a>
+        </div>
+      ) : (
+        <ul class="bg-grid pr-grid">
+          {posts.map((post, i) => (
+            <li>
+              <PresentationCard post={post} lang={lang} eager={i < 3} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</Layout>

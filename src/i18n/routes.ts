@@ -5,6 +5,12 @@
 //   EN  /en/blog/     /en/articles/<slug>/
 //   ES  /es/blog/     /es/articles/<slug>/
 //
+// As apresentações (slides gerados dos artigos) seguem o mesmo padrão, com o
+// mesmo slug do artigo:
+//   PT  /apresentacoes/    /apresentacoes/<slug>/
+//   EN  /en/presentations/ /en/presentations/<slug>/
+//   ES  /es/presentaciones/ /es/presentaciones/<slug>/
+//
 // PT é o idioma padrão e fica sem prefixo, como o resto do site.
 
 export type Lang = 'pt' | 'en' | 'es';
@@ -33,6 +39,20 @@ export function blogPath(lang: Lang): string {
 
 export function articlePath(lang: Lang, slug: string): string {
   return `${PREFIX[lang]}/articles/${slug}/`;
+}
+
+const PRESENTATIONS_SEGMENT: Record<Lang, string> = {
+  pt: 'apresentacoes',
+  en: 'presentations',
+  es: 'presentaciones',
+};
+
+export function presentationsPath(lang: Lang): string {
+  return `${PREFIX[lang]}/${PRESENTATIONS_SEGMENT[lang]}/`;
+}
+
+export function presentationPath(lang: Lang, slug: string): string {
+  return `${PREFIX[lang]}/${PRESENTATIONS_SEGMENT[lang]}/${slug}/`;
 }
 
 // Artigos antigos guardam a categoria como texto em português ("Estoque").

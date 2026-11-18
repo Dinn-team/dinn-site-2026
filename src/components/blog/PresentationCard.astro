@@ -1,0 +1,39 @@
+---
+// Cartão de apresentação: a lista e o fim da página de apresentação usam o mesmo.
+// O cartão inteiro leva à apresentação (link no título, esticado por CSS). O
+// link do artigo é separado, para não aninhar um link dentro de outro.
+import { urlFor } from '@/sanity/lib/client';
+import { articlePath, presentationPath, type Lang } from '@/i18n/routes';
+import { formatPostDate } from '@/lib/blog';
+import { presentationLabels, type PresentationPost } from '@/lib/presentations';
+
+interface Props {
+  post: PresentationPost;
+  lang: Lang;
+  /** Primeiro cartão da página: imagem sem carregamento tardio. */
+  eager?: boolean;
+}
+
+const { post, lang, eager = false } = Astro.props;
+const labels = presentationLabels(lang);
+const cover = post.coverImage ? urlFor(post.coverImage).width(640).height(400).fit('crop').url() : null;
+---
+
+<article class="pr-card">
+  {cover ? (
+    <span class="bg-img pr-card-img">
+      <img src={cover} alt="" width="640" height="400" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    </span>
+  ) : (
+    <span class="bg-img pr-card-img pr-card-fallback" aria-hidden="true"></span>
+  )}
+  <p class="pr-meta">
+    <time datetime={post.publishedAt}>{formatPostDate(lang, post.publishedAt)}</time>
+    <span>{post.slides.length} {labels.slides}</span>
+  </p>
+  <h3>
+    <a href={presentationPath(lang, post.slug.current)} class="pr-card-main">{post.title}</a>
+  </h3>
+  {post.excerpt && <p class="pr-card-excerpt">{post.excerpt}</p>}
+  <a href={articlePath(lang, post.slug.current)} class="h2-link pr-card-article">{labels.readArticle} →</a>
+</article>

@@ -1,0 +1,29 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { CaseDetail } from '@/components/site/CasesPages';
+import data from '@/data/cases.json';
+
+// Cada caso publicado em src/data/cases.json ganha a sua página.
+export function getStaticPaths() {
+  return data.cases
+    .filter((c) => c.status === 'published')
+    .map((c) => ({ params: { slug: c.slug }, props: { slug: c.slug, title: c.title.pt, summary: c.summary.pt, date: c.date } }));
+}
+
+const { slug, title, summary, date } = Astro.props;
+const site = Astro.site ?? new URL('https://dinn.ai');
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: summary,
+  inLanguage: 'pt-BR',
+  dateModified: date,
+  author: { '@type': 'Organization', name: 'Dinn' },
+  publisher: { '@type': 'Organization', name: 'Dinn', url: site.href },
+};
+---
+
+<Layout title={`${title} | Dinn`} description={summary} type="article" jsonLd={article}>
+  <CaseDetail slug={slug} client:load />
+</Layout>

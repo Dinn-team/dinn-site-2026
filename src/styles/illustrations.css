@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Ilustrações em linha da Dinn (src/components/illustrations).
+   Linha de 1 px que não engrossa com a escala, faces na cor do fundo, guias
+   pontilhadas e um único detalhe em --primary. O movimento começa quando o
+   cartão com a classe .il-host recebe o mouse.
+   ========================================================================== */
+.il { display: block; width: 100%; height: auto; overflow: visible; color: var(--foreground); }
+.il * { vector-effect: non-scaling-stroke; }
+.il-face { fill: var(--il-fill, var(--background)); stroke: currentColor; stroke-width: 1; stroke-linejoin: round; }
+.il-line { fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; opacity: 0.5; }
+.il-guide { fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-dasharray: 1 4; opacity: 0.6; }
+.il-accent { fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.il-accent-face { fill: color-mix(in oklab, var(--primary) 14%, var(--background)); stroke: var(--primary); }
+
+/* Movimento */
+.il-layer, .il-plate, .il-src, .il-out { transition: translate 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.il-layer { translate: 0 calc(var(--y, 0px) + var(--ex, 0px)); }
+:is(.il-host:hover, .il-host.is-hover) .il-layer { --ex: calc(var(--i) * -5px); }
+.il-cut { stroke-dasharray: 3 3; }
+.il-plate { transition-delay: calc(var(--i) * 28ms); }
+:is(.il-host:hover, .il-host.is-hover) .il-plate { translate: calc(var(--i) * 4.33px) calc(var(--i) * 2.5px); }
+:is(.il-host:hover, .il-host.is-hover) .il-src { translate: var(--tx) var(--ty); }
+.il-flow { stroke-dasharray: 2 5; }
+:is(.il-host:hover, .il-host.is-hover) .il-flow { animation: il-dash 1s linear infinite; }
+.il-out { transition-delay: calc(var(--i) * 60ms); }
+:is(.il-host:hover, .il-host.is-hover) .il-out { translate: 0 calc(-4px - var(--i) * 3px); }
+@keyframes il-dash { to { stroke-dashoffset: -14; } }
+@media (prefers-reduced-motion: reduce) {
+  .il-layer, .il-plate, .il-src, .il-out { transition: none; }
+  :is(.il-host:hover, .il-host.is-hover) .il-flow { animation: none; }
+}
+
+/* MCP, Dinn Conecta, Pesquisas e fontes, Implantação */
+.il-drop, .il-plug, .il-lens, .il-tile-a, .il-tile-b, .il-step, .il-flag { transition: translate 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+:is(.il-host:hover, .il-host.is-hover) .il-drop { translate: 0 26px; }
+:is(.il-host:hover, .il-host.is-hover) .il-plug { translate: var(--tx) var(--ty); }
+.il-lens { translate: 0 0; }
+:is(.il-host:hover, .il-host.is-hover) .il-lens { translate: var(--tx) var(--ty); }
+.il-tile-a { translate: 0 -9px; }
+:is(.il-host:hover, .il-host.is-hover) .il-tile-a { translate: 0 0; }
+.il-tile-b { translate: 0 0; }
+:is(.il-host:hover, .il-host.is-hover) .il-tile-b { translate: 0 -9px; }
+.il-tile-a .il-face, .il-tile-b .il-face { transition: fill 0.5s, stroke 0.5s; }
+:is(.il-host:hover, .il-host.is-hover) .il-tile-a .il-face { fill: var(--background); stroke: currentColor; }
+:is(.il-host:hover, .il-host.is-hover) .il-tile-b .il-face:last-of-type { fill: color-mix(in oklab, var(--primary) 14%, var(--background)); stroke: var(--primary); }
+.il-step { transition-delay: calc(var(--i) * 50ms); }
+:is(.il-host:hover, .il-host.is-hover) .il-step { translate: 0 calc(-3px - var(--i) * 3px); }
+:is(.il-host:hover, .il-host.is-hover) .il-flag { translate: 0 -12px; }
+@media (prefers-reduced-motion: reduce) {
+  .il-drop, .il-plug, .il-lens, .il-tile-a, .il-tile-b, .il-step, .il-flag { transition: none; }
+}
+
+/* Áreas da home */
+.il-bar, .il-pin, .il-crate, .il-msg, .il-rocket, .il-scan { transition: translate 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.il-bar { transition-delay: calc(var(--i) * 45ms); }
+:is(.il-host:hover, .il-host.is-hover) .il-bar { translate: 0 calc(-5px - var(--i) * 2px); }
+:is(.il-host:hover, .il-host.is-hover) .il-pin { translate: 0 -10px; }
+:is(.il-host:hover, .il-host.is-hover) .il-crate { translate: 52px 30px; }
+:is(.il-host:hover, .il-host.is-hover) .il-msg { translate: 0 -12px; }
+:is(.il-host:hover, .il-host.is-hover) .il-rocket { translate: 0 -18px; }
+:is(.il-host:hover, .il-host.is-hover) .il-scan { translate: 0 -44px; }
+@media (prefers-reduced-motion: reduce) {
+  .il-bar, .il-pin, .il-crate, .il-msg, .il-rocket, .il-scan { transition: none; }
+}
+
+/* Sobre: contato, suporte, privacidade */
+.il-travel, .il-ticket, .il-shackle { transition: translate 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+:is(.il-host:hover, .il-host.is-hover) .il-travel { translate: 61px 35px; }
+:is(.il-host:hover, .il-host.is-hover) .il-ticket { translate: var(--tx) var(--ty); }
+.il-shackle { translate: 0 -7px; }
+:is(.il-host:hover, .il-host.is-hover) .il-shackle { translate: 0 0; }
+@media (prefers-reduced-motion: reduce) { .il-travel, .il-ticket, .il-shackle { transition: none; } }
+
+/* Confiança: observado, estimado, inferido. Tracejado = não é dado direto. */
+.il-dashed { fill: transparent; stroke-dasharray: 4 3; transition: fill 0.6s ease; }
+.il-dashed.il-accent-face { stroke: var(--primary); }
+:is(.il-host:hover, .il-host.is-hover) .il-dashed { fill: color-mix(in oklab, var(--primary) 8%, var(--background)); }
+.il-rec, .il-est-src, .il-sig, .il-hyp { transition: translate 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+:is(.il-host:hover, .il-host.is-hover) .il-rec { translate: -9px -9px; }
+:is(.il-host:hover, .il-host.is-hover) .il-est-src { translate: 10px 6px; }
+.il-sig { transition-delay: calc(var(--i) * 40ms); }
+:is(.il-host:hover, .il-host.is-hover) .il-sig { translate: 0 calc(var(--i) * 10px); }
+:is(.il-host:hover, .il-host.is-hover) .il-hyp { translate: 0 20px; }
+@media (prefers-reduced-motion: reduce) { .il-dashed, .il-rec, .il-est-src, .il-sig, .il-hyp { transition: none; } }
+
+/* Recursos */
+.il-feed { transition: translate 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+:is(.il-host:hover, .il-host.is-hover) .il-feed { translate: calc(var(--d) * 10px) 0; }
+@media (prefers-reduced-motion: reduce) { .il-feed { transition: none; } }

@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { FeatureDeepPage } from '@/components/features/FeatureDeepPage';
+import { FEATURE_CONTENT } from '@/components/features/content';
+import { DinnPage } from '@/components/site/DinnPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { FEATURE_SLUGS } from '@/lib/site-map';
+
+export function getStaticPaths() {
+  return FEATURE_SLUGS.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const feature = pagesPt.features.items.find((f) => f.id === slug)!;
+// O Dinn tem página própria (DinnPage). As funcionalidades com conteúdo completo usam o molde do
+// Suporte (FeatureDeepPage).
+const deep = FEATURE_CONTENT[slug];
+const meta = slug === 'dinn' ? pagesPt.dinn.meta : deep ? deep.meta : { title: `${feature.name} | Dinn`, description: feature.problem };
+---
+
+<Layout title={meta.title} description={meta.description}>
+  {slug === 'dinn' ? <DinnPage client:load /> : deep ? <FeatureDeepPage c={deep} client:load /> : null}
+</Layout>

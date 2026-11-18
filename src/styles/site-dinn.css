@@ -1,0 +1,152 @@
+/* Dinn: telas (DinnDemos.tsx, prefixo jd-) e página (DinnPage.tsx, prefixo jn-).
+   Base das telas: site-app-demos.css, site-features2.css e site-case-viz.css. */
+
+/* ---- Telas ----
+   Desenhadas com o kit do app (RealKit.tsx, site-real-app.css). Aqui ficam só as peças próprias do Dinn. */
+.dnn-app.dd-app.dd-bare { grid-template-columns: minmax(0, 1fr); }
+.jd-muted { margin: 0; font-size: 13px; color: var(--rl-mfg); line-height: 1.45; }
+.jd-note { display: flex; align-items: center; gap: 8px; margin: 2px 4px 0; font-size: 13px; color: var(--rl-mfg); }
+.jd-stack { display: grid; gap: 12px; align-content: start; }
+.rl-badge.jd-run { background: var(--rl-lilac); color: var(--a-brand); }
+
+/* Chat: boas-vindas e sugestões */
+.jd-hello { margin: auto 0; display: grid; justify-items: center; gap: 10px; text-align: center; color: var(--a-brand); }
+.jd-hello b { font-size: 22px; font-weight: 500; color: var(--rl-fg); }
+.jd-hello > span { font-size: 14px; color: var(--rl-mfg); }
+.jd-sug { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 8px; justify-items: center; }
+.jd-sug li { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--rl-line); background: #fff; font-size: 13.5px; color: var(--rl-fg); }
+
+/* Configurações */
+.jd-conn { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px; }
+.jd-conn b { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; }
+.jd-conn small { display: block; margin-top: 3px; font-size: 13px; color: var(--rl-mfg); line-height: 1.4; }
+.jd-ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--rl-lilac); color: var(--a-brand); font-size: 16px; font-weight: 600; }
+.jd-ico.jd-logo { background: #fff; border: 1px solid var(--rl-line); }
+.jd-ico img { max-width: none; }
+.jd-auto { display: grid; }
+.jd-auto-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 12px 0; border-top: 1px solid var(--rl-line); font-size: 14px; }
+.jd-auto-row:first-child { border-top: 0; }
+.jd-auto-row .rl-seg i { display: inline-flex; align-items: center; gap: 5px; }
+.jd-consent { position: absolute; z-index: 8; left: 50%; top: 46%; width: 480px; transform: translate(-50%, -50%); display: grid; gap: 12px; padding: 22px; border-radius: 26px; background: #fff; box-shadow: 0 30px 80px rgba(10, 10, 10, .22), 0 0 0 1px rgba(10, 10, 10, .05); }
+.jd-consent header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.jd-consent header b { font-size: 17px; font-weight: 500; }
+.jd-consent footer { display: flex; justify-content: flex-end; gap: 8px; }
+.jd-perms { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.jd-perms li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; padding: 11px 14px; border-radius: 16px; border: 1px solid var(--rl-line); font-size: 14px; }
+.jd-perms i { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; border: 1px solid #d4d4d8; background: #fff; color: #fff; transition: background .25s, border-color .25s; }
+.jd-perms i.on { background: var(--a-brand); border-color: var(--a-brand); }
+.jd-perms small { display: block; margin-top: 2px; font-size: 12.5px; color: var(--rl-mfg); }
+
+/* Atividades */
+.jd-act { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 14px; min-height: 500px; align-items: stretch; }
+.rl-card.jd-listcard { padding: 8px; }
+.jd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.jd-list li { display: grid; justify-items: start; gap: 4px; padding: 12px 14px; border-radius: 16px; transition: background .25s; }
+.jd-list li.on { background: var(--rl-soft); }
+.jd-list b { font-size: 14.5px; font-weight: 500; }
+.jd-list small { font-size: 13px; color: var(--rl-mfg); }
+.jd-list .rl-badge { margin-top: 2px; font-size: 12px; }
+.rl-card.jd-detail { overflow: hidden; }
+.jd-pane { display: grid; gap: 14px; }
+.jd-pane h4 { margin: 0; font-size: 18px; font-weight: 500; }
+.jd-pane p { margin: 0; }
+.jd-empty { margin: 0; padding: 40px 0; text-align: center; font-size: 14px; color: var(--rl-mfg); }
+.jd-mail { display: grid; gap: 8px; padding: 16px; border-radius: 18px; border: 1px solid var(--rl-line); background: #fafafa; font-size: 13.5px; }
+.jd-mail em { font-style: normal; display: inline-block; width: 64px; color: var(--rl-mfg); }
+.jd-mail-body { margin-top: 4px !important; line-height: 1.55; }
+.jd-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.jd-sent { display: inline-flex; align-items: center; gap: 6px; justify-self: start; }
+.jd-kv { margin: 0; display: grid; }
+.jd-kv > div { display: grid; grid-template-columns: 130px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--rl-line); font-size: 13.5px; line-height: 1.5; }
+.jd-kv > div:first-child { border-top: 0; }
+.jd-kv dt { color: var(--rl-mfg); }
+.jd-kv dd { margin: 0; }
+.jd-scope { display: flex; flex-wrap: wrap; gap: 6px; }
+.jd-scope span { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 11px; border-radius: 999px; border: 1px solid var(--rl-line); background: #fff; font-size: 12.5px; color: #52525b; }
+.jd-line { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.jd-line li { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 10px; padding: 9px 0 9px 20px; font-size: 13.5px; }
+.jd-line li::before { content: ''; position: absolute; left: 3px; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: var(--a-brand); }
+.jd-line li::after { content: ''; position: absolute; left: 7px; top: 25px; bottom: -6px; width: 1px; background: var(--rl-line); }
+.jd-line li:last-child::after { display: none; }
+.jd-line li.is-next::before { background: #fff; box-shadow: inset 0 0 0 2px var(--a-brand); }
+.jd-line b { font-weight: 500; color: var(--rl-mfg); font-variant-numeric: tabular-nums; }
+
+/* WhatsApp: o celular mantém o desenho do chat; a moldura e o painel seguem o app */
+.jd-wa-stage { height: 100%; display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 32px; align-items: center; padding: 20px 36px; background: #fafafa; }
+.jd-phone { height: 520px; display: flex; flex-direction: column; border-radius: 34px; overflow: hidden; background: #efeae2; box-shadow: 0 0 0 8px #111, 0 24px 50px rgba(10, 10, 10, 0.25); }
+.jd-phone header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: #075e54; color: #fff; }
+.jd-phone header b { display: block; font-size: 14px; }
+.jd-phone header small { font-size: 11px; opacity: .8; }
+.jd-wa-av { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--a-brand); font-weight: 700; }
+.jd-wa-log { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 12px; overflow: hidden; }
+.jd-in, .jd-out { position: relative; max-width: 86%; padding: 8px 10px 16px; border-radius: 12px; font-size: 12.5px; line-height: 1.4; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); }
+.jd-in { align-self: flex-start; background: #fff; border-top-left-radius: 4px; }
+.jd-out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 4px; }
+.jd-in p, .jd-out p { margin: 0; }
+.jd-in time, .jd-out time { position: absolute; right: 8px; bottom: 3px; font-size: 10px; color: #667781; }
+.jd-wa-card { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding: 8px; border-radius: 8px; background: #f0f2f5; font-weight: 500; }
+.jd-wa-btns { display: grid; gap: 4px; margin-top: 6px; }
+.jd-wa-btns span { padding: 7px; border-radius: 8px; background: #f0f2f5; text-align: center; color: #027eb5; font-weight: 600; }
+.jd-typing { display: flex; gap: 4px; padding: 12px 14px; }
+.jd-typing i { width: 6px; height: 6px; border-radius: 50%; background: #8696a0; animation: fd-dot 1s ease-in-out infinite; }
+.jd-typing i:nth-child(2) { animation-delay: .15s; }
+.jd-typing i:nth-child(3) { animation-delay: .3s; }
+.rl-card.jd-sync { display: grid; gap: 10px; align-content: start; padding: 24px; }
+.jd-sync h4 { margin: 0; font-size: 19px; font-weight: 500; }
+.jd-sync .rl-badge { justify-self: start; }
+
+@media (prefers-reduced-motion: reduce) { .jd-typing i { animation: none; } }
+
+/* ---- Página ---- */
+.jn-ask { background-color: var(--muted); }
+.jn-quote { margin: 0; max-width: 62ch; font-family: var(--font-display, Roboto, Inter, sans-serif); font-weight: 400; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.4; letter-spacing: -0.015em; }
+.jn-note { margin: 20px 0 0; font-size: 16px; color: var(--muted-foreground); }
+.jn-ways { list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.jn-ways li { display: grid; align-content: start; gap: 12px; padding: 28px; border-radius: 16px; background: var(--background); }
+.jn-ways b { font-size: 18px; font-weight: 500; }
+.jn-ways p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+
+.jn-split { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); gap: clamp(28px, 4vw, 72px); align-items: center; }
+.jn-split.is-flip { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+.jn-split.is-flip .jn-copy { order: 2; }
+.jn-copy { display: grid; gap: 16px; justify-items: start; }
+.jn-copy .h2-title { margin: 0; }
+.jn-lead { margin: 0; font-size: 18px; line-height: 1.5; color: var(--muted-foreground); max-width: 40ch; }
+.jn-qs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
+.jn-qs li { display: flex; align-items: center; gap: 12px; font-size: 18px; }
+.jn-qs li::before { content: ''; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--brand-lime); box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand-lime) 30%, transparent); }
+.jn-media { position: relative; display: flex; align-items: flex-end; justify-content: center; padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 40px) 0; border-radius: 20px; overflow: hidden; background-size: cover; background-position: center; }
+.jn-media::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 10, 0.3); pointer-events: none; }
+.jn-media > * { position: relative; z-index: 1; }
+.jn-screen { width: 100%; border-radius: 12px 12px 0 0; overflow: hidden; background: var(--background); }
+
+.jn-settings { background-color: var(--muted); }
+.jn-settings .pf2-cols { margin-top: clamp(32px, 4vw, 56px); }
+
+.jn-table-wrap { overflow-x: auto; }
+.jn-table { width: 100%; border-collapse: collapse; font-size: 17px; }
+.jn-table th { text-align: left; font-size: 14px; font-weight: 500; color: var(--muted-foreground); padding: 0 16px 14px 0; }
+.jn-table td { padding: 20px 16px 20px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.45; }
+.jn-table td:first-child { width: 45%; font-weight: 500; }
+.jn-table tr:last-child td { border-bottom: 1px solid var(--border); }
+
+@media (max-width: 1024px) {
+  .jn-ways { grid-template-columns: minmax(0, 1fr); }
+  .jn-split, .jn-split.is-flip { grid-template-columns: minmax(0, 1fr); }
+  .jn-split.is-flip .jn-copy { order: 0; }
+}
+@media (max-width: 640px) {
+  .jn-media { padding: 16px 16px 0; }
+  .jn-table td:first-child { width: auto; }
+}
+
+/* ---- Ícone do Dinn (DinnOrb.tsx): a grade de pontos pulsa a partir do centro ---- */
+.dinn-orb { color: var(--a-brand, #5625f2); overflow: visible; }
+.dinn-orb circle { transform-box: fill-box; transform-origin: center; animation: dinn-orb 1.6s ease-in-out infinite; }
+@keyframes dinn-orb {
+  0%, 100% { opacity: .28; transform: scale(.55); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) { .dinn-orb circle { animation: none; opacity: .85; transform: none; } }
+.fd-chat-badge .dinn-orb { color: currentColor; }
+.dd-side .dinn-orb, .nav-item .dinn-orb { color: inherit; }

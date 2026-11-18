@@ -26,6 +26,19 @@ export default defineConfig({
 
   redirects: {
     '/blog/[slug]': '/articles/[slug]',
+    // O ranking de laboratórios mora em /clientes (05/11/2026)
+    '/laboratorios': '/clientes#ranking',
+    // Funcionalidades que viraram parte das nove (03/11/2026)
+    '/funcionalidades/disponibilidade': '/funcionalidades/ruptura',
+    '/funcionalidades/estimado': '/funcionalidades/ruptura',
+    '/funcionalidades/historico': '/funcionalidades/ruptura',
+    '/funcionalidades/giro-preco': '/funcionalidades/giro',
+    '/funcionalidades/tempo-real': '/funcionalidades/localizador',
+    // A funcionalidade Jean passou a se chamar Dinn (17/11/2026)
+    '/funcionalidades/jean': '/funcionalidades/dinn',
+    '/funcionalidades/insights': '/funcionalidades/dinn',
+    '/funcionalidades/priorizacao': '/funcionalidades/dinn',
+    '/funcionalidades/exportacoes': '/produtos/conecta',
   },
 
   vite: {

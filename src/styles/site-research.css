@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Pesquisas: reaproveita a estrutura dos Planos (site-plans.css, prefixo pl-).
+   Gradiente da página: g10 (amarelo e azul-claro), claro, então o texto sobre
+   ele é escuro. Prefixo rs-.
+   ========================================================================== */
+.rs-grid { grid-template-columns: minmax(0, 0.7fr) repeat(4, minmax(0, 1fr)); }
+.rs-card { min-height: 300px; padding-top: 12px; }
+.rs-art { display: block; margin: 0 -4px auto; }
+.rs-card h3 { margin-top: 8px; }
+.rs-grid .pl-list li { grid-template-columns: 16px 1fr; }
+
+/* Resultado e fechamento em degradê claro, com texto escuro */
+.rs-result, .rs-closing-card { background: #f6e27a url(/gradients/g10.avif) center / cover; color: var(--foreground); }
+.rs-result::before, .rs-closing-card::before { display: none; }
+.rs-result .pl-result-empty, .rs-result .pl-result-kicker, .rs-result li, .rs-closing-card h2, .rs-closing-card p { color: var(--foreground); }
+.rs-result .pl-result-kicker { color: color-mix(in oklab, var(--foreground) 70%, transparent); margin-top: 18px; }
+.rs-result .pl-result-kicker:first-child { margin-top: 0; }
+.rs-result ul { margin: 10px 0 4px; }
+.rs-result .rs-agree { display: flex; flex-wrap: wrap; gap: 6px; }
+.rs-agree li { display: block; padding: 6px 12px; border-radius: 9999px; background: rgba(255, 255, 255, 0.55); font-size: 13.5px; }
+.rs-result .pl-result-btn { background: var(--primary); color: #fff !important; }
+.rs-closing-card .h2-actions { margin-top: 0; }
+
+/* O que saber: lista numerada */
+.rs-limits { list-style: none; margin: 0; padding: 0; display: grid; }
+.rs-limits li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 22px 0; border-top: 1px solid var(--border); }
+.rs-limits li:last-child { border-bottom: 1px solid var(--border); }
+.rs-limits p { font-size: 18px; line-height: 1.45; letter-spacing: -0.01em; color: var(--foreground); max-width: 54ch; }
+
+@media (max-width: 1200px) {
+  .rs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rs-grid .pl-lead { grid-column: 1 / -1; }
+  .rs-grid .pl-col:nth-child(even) { border-left: 0; padding-left: 0; }
+  .rs-grid .pl-col:nth-child(odd) { border-left: 1px solid var(--border); padding-left: 20px; }
+  .rs-grid .pl-col:nth-child(n + 4) { border-top: 1px solid var(--border); }
+}
+@media (max-width: 860px) {
+  .rs-grid { grid-template-columns: 1fr; }
+  .rs-grid .pl-col, .rs-grid .pl-col:nth-child(2) { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
+  .rs-grid .pl-col:nth-child(2) { border-top: 0; }
+  .rs-card { min-height: 190px; }
+}
+@media (max-width: 640px) {
+  .rs-limits li { grid-template-columns: 40px 1fr; }
+}

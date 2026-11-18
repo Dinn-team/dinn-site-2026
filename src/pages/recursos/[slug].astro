@@ -1,0 +1,30 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { GuidePage } from '@/components/site/ResourcesPages';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+import { GUIDE_SLUGS } from '@/lib/site-map';
+
+export function getStaticPaths() {
+  return GUIDE_SLUGS.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const guide = pagesPt.resources.guide.slugs[slug];
+const site = Astro.site ?? new URL('https://dinn.ai');
+
+// Data de atualização fica em um só lugar: a mesma do texto exibido.
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.meta.description,
+  inLanguage: 'pt-BR',
+  dateModified: '2026-10-14',
+  author: { '@type': 'Organization', name: 'Dinn' },
+  publisher: { '@type': 'Organization', name: 'Dinn', url: site.href },
+};
+---
+
+<Layout title={guide.meta.title} description={guide.meta.description} type="article" jsonLd={article}>
+  <GuidePage slug={slug} client:load />
+</Layout>

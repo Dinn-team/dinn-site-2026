@@ -1,146 +1,144 @@
 import { useTranslation } from "@/i18n/useTranslation";
-import { blogPath } from "@/i18n/routes";
-import { DEMO_URL } from "@/lib/links";
+import { contactUrl } from "@/lib/links";
+import { blogPath, presentationsPath } from "@/i18n/routes";
+import { newFeatureLinks } from "@/components/ui/nav-header";
+
+// Rodapé com as mesmas colunas do menu do topo: Plataforma, Soluções,
+// Recursos, A Dinn (com Planos e Clientes) e Legal.
+
+type Col = { title: string; links: [string, string][] };
+
+// Páginas legais por idioma (as três versões existem em src/pages).
+const LEGAL = {
+  pt: { terms: '/termos-de-uso', privacy: '/politicas-de-privacidade', support: '/suporte' },
+  en: { terms: '/en/terms-of-use', privacy: '/en/privacy-policy', support: '/en/support' },
+  es: { terms: '/es/terminos-de-uso', privacy: '/es/politica-de-privacidad', support: '/es/soporte' },
+} as const;
 
 export default function Footer() {
   const { t, lang } = useTranslation();
+  const legal = LEGAL[lang as keyof typeof LEGAL] ?? LEGAL.pt;
+  const areas = (t('solutions.items') as { slug: string; name: string }[]) ?? [];
+
+  const columns: Col[] = [
+    {
+      title: t('menu.platform') as string,
+      links: [
+        [t('menu.platformOverview') as string, '/plataforma'],
+        [t('menu.features') as string, '/funcionalidades'],
+        ...newFeatureLinks(t).map((l): [string, string] => [l.label, l.href]),
+        [t('menu.coverage') as string, '/cobertura'],
+      ],
+    },
+    {
+      title: t('footer.sectionSolutions') as string,
+      links: [
+        ...areas.map((a): [string, string] => [a.name, `/solucoes/${a.slug}`]),
+        [t('menu.solutionsAll') as string, '/solucoes'],
+      ],
+    },
+    {
+      title: t('nav.resources') as string,
+      links: [
+        [t('nav.blog') as string, blogPath(lang)],
+        [t('nav.presentations') as string, presentationsPath(lang)],
+        [t('nav.cases') as string, '/recursos/casos'],
+        [t('nav.changelog') as string, '/recursos/changelog'],
+        [t('menu.compare') as string, '/comparativos'],
+      ],
+    },
+    {
+      title: t('footer.sectionA') as string,
+      links: [
+        [t('menu.about') as string, '/sobre'],
+        [t('menu.plansOverview') as string, '/planos'],
+        [t('nav.customers') as string, '/clientes'],
+        [t('menu.research') as string, '/pesquisas'],
+        [t('menu.trust') as string, '/confianca'],
+        [t('contact.navLabel') as string, '/contato'],
+      ],
+    },
+    {
+      title: t('footer.sectionLegal') as string,
+      links: [
+        [t('footer.termos') as string, legal.terms],
+        [t('footer.privacidade') as string, legal.privacy],
+        [t('footer.cookies') as string, `${legal.privacy}#cookies`],
+        [t('footer.suporte') as string, legal.support],
+      ],
+    },
+  ];
 
   return (
-    <footer style={{ background: '#ffffff', borderTop: '1px solid #E5E7EB' }}>
-      <div className="wrap" style={{ paddingTop: '64px', paddingBottom: '48px' }}>
+    <footer style={{ background: 'var(--muted)' }}>
+      <div className="wrap ftr" style={{ paddingTop: '72px', paddingBottom: '64px' }}>
 
-        {/* Main grid: brand + 4 columns */}
-        <div className="footer-grid" style={{
-          display: 'grid',
-          gap: '40px',
-          marginBottom: '48px',
-          alignItems: 'start',
-        }}>
+        {/* Marca + cinco colunas */}
+        <div className="footer-grid">
 
-          {/* Brand */}
           <div>
-            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
-              <img src="/Logo_Dinn_Cinza.svg" alt="Dinn Logo" width={1807} height={676} loading="lazy" decoding="async" style={{ height: '36px', width: 'auto' }} />
+            <a href="/" className="ftr-logo">
+              <img src="/logo/Dinn_logo_v2_Dark.png" alt="Dinn Logo" width={394} height={152} loading="lazy" decoding="async" style={{ height: '30px', width: 'auto' }} />
             </a>
-            <p style={{ fontSize: '14px', color: '#9CA3AF', lineHeight: 1.7, margin: 0 }}>
+            <p className="ftr-desc">
               {t('footer.description')}
             </p>
-          </div>
-
-          {/* A Dinn */}
-          <div>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
-              {t('footer.sectionA')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[[t('nav.home'), '/'], [t('nav.blog'), blogPath(lang)]].map(([label, href]) => (
-                <a key={`${href}-${label}`} href={href}
-                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-
-
-          {/* Legal */}
-          <div>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9CA3AF', margin: '0 0 16px' }}>
-              {t('footer.sectionLegal')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[
-                [t('footer.termos'), '/termos-de-uso'],
-                [t('footer.privacidade'), '/politicas-de-privacidade'],
-                [t('footer.cookies'), '/politicas-de-privacidade#cookies'],
-                [t('footer.suporte'), '/suporte'],
-              ].map(([label, href]) => (
-                <a key={`${href}-${label}`} href={href}
-                  style={{ fontSize: '15px', color: '#6B7280', textDecoration: 'none', fontWeight: 500 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#5625F2'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#6B7280'; }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Mini CTA */}
-          <div style={{
-            background: '#F8F9FA',
-            border: '1px solid #E5E7EB',
-            borderRadius: '14px',
-            padding: '24px',
-          }}>
-            <p style={{ fontWeight: 700, fontSize: '15px', color: '#1F2328', margin: '0 0 6px' }}>
-              {t('footer.ctaTitle')}
-            </p>
-            <p style={{ fontSize: '13px', color: '#9CA3AF', lineHeight: 1.6, margin: '0 0 18px' }}>
-              {t('footer.ctaDesc')}
-            </p>
-            <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
+            <a href={contactUrl('rodape')} className="btn btn-primary">
               {t('footer.ctaButton')}
             </a>
+            <address className="ftr-company">
+              <strong>{t('footer.legalName')}</strong>
+              <span>CNPJ {t('footer.cnpj')}</span>
+              <span>{t('footer.address')}</span>
+            </address>
           </div>
+
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <p className="ftr-title">{col.title}</p>
+              <ul className="ftr-links">
+                {col.links.map(([label, href]) => (
+                  <li key={`${href}-${label}`}><a href={href} {...(href.endsWith('#cookies') ? { 'data-cookie-settings': '' } : {})}>{label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
-        {/* Bottom bar */}
-        <div style={{
-          borderTop: '1px solid #F3F4F6',
-          paddingTop: '24px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '12px',
-        }}>
-          <p style={{ fontSize: '13px', color: '#9CA3AF', margin: 0 }}>
-            {t('footer.rights')}
-          </p>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: '#F3F4F6',
-            border: '1px solid #E5E7EB',
-            padding: '4px 12px',
-            borderRadius: '999px',
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            color: '#6B7280',
-          }}>
-            {t('footer.launch')}
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5625F2', display: 'inline-block' }} />
-          </div>
+      </div>
+
+      <div className="ftr-bar">
+        <div className="wrap ftr-bar-in">
+          <p>{t('footer.rights')}</p>
+          <p>{t('footer.cities')}</p>
         </div>
       </div>
 
-      {/* Responsive mobile styles */}
       <style>{`
-        .footer-grid {
-          grid-template-columns: 2.5fr 1fr 1.5fr 2fr;
+        .ftr .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(5, 1fr); gap: 48px 40px; align-items: start; }
+        .ftr-logo { display: inline-flex; margin-bottom: 20px; }
+        .ftr-desc { font-size: 15px; line-height: 1.6; color: var(--muted-foreground); max-width: 30ch; margin: 0 0 24px; }
+        .ftr-title { font-size: 16px; font-weight: 600; line-height: 1.3; color: var(--foreground); margin: 0 0 20px; }
+        .ftr-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+        .ftr-links a { font-size: 15px; font-weight: 400; line-height: 1.4; color: var(--muted-foreground); text-decoration: none; transition: color .2s; }
+        .ftr-links a:hover { color: var(--primary); }
+        .ftr-company { display: grid; gap: 4px; margin-top: 40px; font-style: normal; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); max-width: 30ch; }
+        .ftr-company strong { font-weight: 500; color: var(--foreground); }
+        .ftr-bar { background: color-mix(in oklab, var(--muted) 94%, var(--foreground)); }
+        .ftr-bar-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 20px; padding-bottom: 20px; }
+        .ftr-bar-in p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); }
+        /* O botão "Dúvidas?" fica fixo no canto direito e cobria o texto da direita. Reserva o espaço dele. */
+        @media (min-width: 761px) { .ftr-bar .ftr-bar-in { padding-right: 232px; } }
+        @media (max-width: 760px) { .ftr-bar .ftr-bar-in { padding-bottom: 88px; } }
+        @media (max-width: 1100px) {
+          .ftr .footer-grid { grid-template-columns: repeat(3, 1fr); }
+          .ftr .footer-grid > div:first-child { grid-column: 1 / -1; }
         }
-        @media (max-width: 1024px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr;
-          }
+        @media (max-width: 720px) {
+          .ftr .footer-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 640px) {
-          .footer-grid {
-            grid-template-columns: 1fr;
-          }
+        @media (max-width: 480px) {
+          .ftr .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </footer>

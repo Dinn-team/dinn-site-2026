@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ConectaPage } from '@/components/site/offer/ConectaPage';
+import { pagesPt } from '@/i18n/locales/pt.pages';
+
+const { title, description } = pagesPt.conecta.meta;
+---
+
+<Layout title={title} description={description}>
+  <ConectaPage client:load />
+</Layout>

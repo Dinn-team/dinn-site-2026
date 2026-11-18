@@ -1,0 +1,85 @@
+/* Casos de uso (galeria e página de cada caso) no Design System v2.
+   Identidade: roxo (--primary) manda; verde-limão e laranja entram como apoio.
+   Padrão em rules/DESIGN_SYSTEM_V2.md, seção 10. */
+
+/* ---- Cartão de caso ---- */
+.cs3-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.cs3-card { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 12px 12px 24px; border-radius: 20px; background: var(--muted); color: var(--foreground); transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.cs3-card > :not(.cs3-art) { padding: 0 12px; }
+.cs3-card:hover { transform: translateY(-4px); }
+.cs3-art { display: grid; place-items: center; aspect-ratio: 4 / 3; margin-bottom: 10px; border-radius: 14px; overflow: hidden; background-size: cover; background-position: center; }
+.cs3-art .il { width: 76%; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.cs3-card:hover .cs3-art .il { transform: scale(1.05); }
+.cs3-kind { font-size: 14px; color: var(--muted-foreground); }
+.cs3-name { font-size: 20px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; }
+.cs3-text { font-size: 16px; line-height: 1.5; color: var(--muted-foreground); max-width: 38ch; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.cs3-meta { font-size: 14px; color: var(--muted-foreground); }
+.cs3-card .h2-link { margin-top: auto; padding-top: 12px; }
+.cs3-card:hover .h2-link { color: var(--primary); }
+
+/* ---- Página de um caso ---- */
+.h2 .cs3-title { font-size: clamp(30px, 3.6vw, 54px); line-height: 1.08; max-width: none; }
+.cs3-by { margin: 16px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted-foreground); }
+.cs3-media { aspect-ratio: 16 / 7; }
+.cs3-panel { width: min(100%, 520px); padding: clamp(20px, 3vw, 36px); border-radius: 20px; background: var(--background); display: grid; place-items: center; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.cs3-media:hover .cs3-panel { transform: translateY(-6px); }
+
+.cs3-problem, .cs3-more { background-color: var(--muted); }
+.cs3-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.cs3-solo { max-width: 70ch; }
+.cs3-quote { margin: 0; display: grid; gap: 24px; padding: clamp(28px, 3vw, 48px); border-radius: 24px; color: #fff; background-color: #08090a; background-size: cover; background-position: center; box-shadow: inset 0 0 0 999px rgba(8, 9, 10, 0.3); }
+.cs3-quote blockquote { margin: 0; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.4; }
+.cs3-quote figcaption { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.cs3-quote figcaption > span:last-child { display: grid; gap: 2px; }
+.cs3-quote strong { font-weight: 500; }
+.cs3-quote em { font-style: normal; opacity: 0.75; }
+.cs3-avatar { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--brand-lime); color: var(--brand-ink); font-weight: 600; }
+.cs3-problem-text { margin: 0; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; color: var(--foreground); }
+
+/* Palco da rolagem: preto da marca sobre o degradê escuro do caso. */
+.cs3-page .as { height: 280vh; background: #08090a var(--cs-g) center / cover; box-shadow: inset 0 0 0 9999px rgba(8, 9, 10, 0.45); }
+.cs3-page .as-glow { display: none; }
+.cs3-page .as-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.4vw, 48px); }
+.cs3-page .as-lead, .cs3-page .as-step-body { font-size: 16px; }
+.cs3-page .as-scene-frame { border: 0; border-radius: 24px; padding: clamp(16px, 2.4vw, 32px) clamp(16px, 2.4vw, 32px) 36px; background: var(--background); box-shadow: none; }
+.cs3-page .as-steps li.is-on { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.3); }
+.cs3-page .as-step-n { background: rgba(255, 255, 255, 0.16); }
+.cs3-page .as-steps li.is-on .as-step-n { background: var(--brand-lime); color: var(--brand-ink); }
+.cs3-page .as-progress { left: 32px; right: 32px; bottom: 16px; height: 2px; background: color-mix(in oklab, var(--foreground) 12%, transparent); }
+.cs3-page .as-progress i { background: var(--primary); }
+
+.cs3-solution { background-color: var(--background); }
+.cs3-sol-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.cs3-sol-text { margin: 20px 0 0; font-size: 18px; line-height: 1.55; color: var(--muted-foreground); max-width: 56ch; }
+.cs3-sol-quote { margin: 32px 0 0; padding: 24px 28px; border-radius: 16px; background: var(--muted); }
+.cs3-sol-quote p { margin: 0; font-size: 18px; line-height: 1.5; }
+.cs3-sol-quote footer { margin-top: 12px; font-size: 14px; color: var(--muted-foreground); }
+.cs3-out-title { margin: 0 0 20px; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+.cs3-out { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.cs3-out li { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border-radius: 16px; background: var(--muted); font-size: 16px; line-height: 1.5; }
+.cs3-out-check { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-lime); color: var(--brand-ink); }
+.cs3-area { margin-top: 24px; }
+
+@media (max-width: 1024px) {
+  .cs3-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs3-split, .cs3-sol-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .cs3-grid { grid-template-columns: 1fr; }
+  .cs3-media { aspect-ratio: 4 / 3; }
+  .cs3-page .as { height: 240vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs3-card, .cs3-art .il, .cs3-panel { transition: none; }
+  .cs3-card:hover, .cs3-media:hover .cs3-panel { transform: none; }
+}
+
+/* Cenas isométricas dos casos: mesma linguagem de illustrations.css. */
+.cs-iso { max-height: calc(100svh - 240px); }
+.cs-iso .il-face { transition: fill 0.4s ease; }
+.il-ok-face { fill: color-mix(in oklab, var(--brand-lime) 80%, var(--background)); }
+.il-warn-face { fill: color-mix(in oklab, var(--brand-orange) 38%, var(--background)); }
+.il-glass { fill: color-mix(in oklab, var(--foreground) 4%, transparent); }
+.cs-iso .il-flow { animation: il-dash 1s linear infinite; }
+.cs-num { font-family: var(--font); font-size: 13px; font-weight: 600; fill: var(--foreground); }
+@media (prefers-reduced-motion: reduce) { .cs-iso .il-flow { animation: none; } }
