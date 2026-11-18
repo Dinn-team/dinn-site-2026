@@ -119,6 +119,16 @@ Produtos parados representam capital imobilizado...
 Com as ferramentas certas, a gestão de estoque se torna...
 ```
 
+## 🖼️ Apresentação do artigo (slides)
+
+Cada post pode ter o campo **Apresentação**: a data de geração e uma lista de slides (tipo, título e texto). Com 2 slides ou mais, o site publica a apresentação com o mesmo slug do artigo:
+
+- PT: `/apresentacoes/<slug>/`
+- EN: `/en/presentations/<slug>/`
+- ES: `/es/presentaciones/<slug>/`
+
+O texto do slide é Markdown simples: parágrafos separados por linha em branco, itens de lista com `- ` e `**negrito**`. Na citação, escreva a frase sem aspas. Não use HTML, link nem imagem. O artigo ganha o bloco "Veja a apresentação deste artigo" e a apresentação leva de volta ao artigo.
+
 ## 🚀 Deploy do Studio
 
 Para fazer deploy do Sanity Studio:
