@@ -1,0 +1,17 @@
+---
+import PresentationPage from '@/components/blog/PresentationPage.astro';
+import { getPresentations } from '@/lib/presentations';
+
+// Apresentações em PT. Mesmo slug do artigo na rota de artigos.
+export async function getStaticPaths() {
+  const posts = await getPresentations('pt');
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
+    props: { post, others: posts.filter((p) => p._id !== post._id).slice(0, 3) },
+  }));
+}
+
+const { post, others } = Astro.props;
+---
+
+<PresentationPage post={post} lang="pt" others={others} />

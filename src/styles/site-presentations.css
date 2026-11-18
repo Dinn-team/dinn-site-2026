@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Apresentações: lista, página de uma apresentação (deck de slides) e o bloco
+   que o artigo mostra. Padrão v2: título em uma cor, botão com texto branco,
+   cor só no conteúdo (gradientes da marca com camada escura sob texto branco).
+   Classes: pr-* (apresentação) e ap-deck (bloco no artigo).
+   ========================================================================== */
+
+/* Linha de meta: categoria, nº de slides e data. Caixa normal, sem eyebrow. */
+.pr-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; margin: 0 0 16px; font-size: 13px; line-height: 1.4; color: var(--muted-foreground); }
+.pr-meta > * + *::before { content: ''; display: inline-block; width: 3px; height: 3px; margin-right: 14px; border-radius: 50%; background: currentColor; vertical-align: middle; opacity: 0.6; }
+
+.pr-stage { padding-bottom: clamp(48px, 6vw, 88px); }
+.pr-after { margin: 20px 0 0; }
+
+/* ---- Deck ---- */
+.pr-deck { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.pr-deck:focus-visible { outline: 2px solid var(--primary); outline-offset: 8px; border-radius: 28px; }
+.pr-viewport { overflow: clip; border-radius: 24px; touch-action: pan-y; }
+.pr-track { display: flex; align-items: stretch; }
+.pr-track.is-animated { transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+
+.pr-slide { scroll-margin-top: 96px; position: relative; isolation: isolate; flex: 0 0 100%; min-width: 0; display: flex; flex-direction: column; justify-content: center; min-height: clamp(420px, 42vw, 620px); padding: clamp(28px, 5vw, 72px); overflow: hidden; background: var(--muted); color: var(--foreground); }
+.pr-slide-in { width: 100%; max-width: 1100px; display: grid; gap: clamp(16px, 2.4vw, 32px); }
+.pr-slide-title { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 3.2vw, 46px); line-height: 1.08; letter-spacing: -0.025em; text-wrap: balance; color: inherit; max-width: 22ch; }
+.pr-slide-body { font-size: clamp(16px, 1.35vw, 19px); line-height: 1.55; color: color-mix(in oklab, currentColor 88%, transparent); }
+.pr-slide-body p { margin: 0 0 0.9em; }
+.pr-slide-body p:last-child, .pr-slide-body ul:last-child { margin-bottom: 0; }
+.pr-slide-body ul { margin: 0 0 0.9em; }
+.pr-slide-body li { position: relative; margin: 0 0 0.7em; padding-left: 22px; }
+.pr-slide-body li:last-child { margin-bottom: 0; }
+.pr-slide-body li::before { content: ''; position: absolute; left: 0; top: 0.68em; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+.pr-slide-body strong { font-weight: 600; color: inherit; }
+
+/* Título à esquerda, texto à direita (padrão do hero da home). */
+.is-secao .pr-slide-in, .is-sumario .pr-slide-in { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+
+/* Capa e citação: gradiente da marca, camada escura (40 % e 55 %), texto branco. */
+.is-capa, .is-citacao { color: #fff; background: var(--brand-ink) var(--pr-g) center / cover; padding-bottom: clamp(76px, 8vw, 116px); }
+.is-capa::before, .is-citacao::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, 0.4); }
+.is-citacao::before { background: rgba(0, 0, 0, 0.55); }
+.pr-slide-logo { position: absolute; left: clamp(28px, 5vw, 72px); bottom: clamp(24px, 3.5vw, 44px); width: auto; height: 26px; opacity: 0.92; }
+
+.is-capa .pr-slide-title { font-size: clamp(32px, 5vw, 68px); line-height: 1.04; letter-spacing: -0.03em; max-width: 18ch; }
+.is-capa .pr-slide-body { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.45; max-width: 44ch; }
+
+/* Sumário: degradê claro, texto escuro, itens em linhas com fio fino. */
+.is-sumario { background: color-mix(in oklab, var(--primary) 10%, var(--background)) var(--pr-g) center / cover; }
+.is-sumario .pr-slide-body ul { margin: 0; border-bottom: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent); }
+.is-sumario .pr-slide-body li { margin: 0; padding: 14px 0; border-top: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent); font-size: clamp(17px, 1.6vw, 22px); line-height: 1.35; color: var(--foreground); }
+.is-sumario .pr-slide-body li::before { content: none; }
+
+/* Citação: a frase em tamanho grande; o título vira o rótulo pequeno acima. */
+.is-citacao .pr-slide-in { max-width: 980px; gap: 20px; }
+.is-citacao .pr-slide-title { font-family: var(--font); font-size: 15px; font-weight: 500; line-height: 1.4; letter-spacing: 0; max-width: none; opacity: 0.88; }
+.is-citacao blockquote.pr-slide-body { margin: 0; padding: 0; border: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 3.4vw, 48px); line-height: 1.18; letter-spacing: -0.02em; color: #fff; quotes: '\201C' '\201D'; text-wrap: balance; }
+.is-citacao blockquote p:first-child::before { content: open-quote; }
+.is-citacao blockquote p:last-child::after { content: close-quote; }
+
+/* ---- Controles ---- */
+.pr-controls { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
+.pr-count { margin: 0; min-width: 52px; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--muted-foreground); }
+.pr-segs { flex: 1; display: flex; gap: 4px; min-width: 0; }
+.pr-seg { position: relative; flex: 1 1 0; min-width: 6px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
+.pr-seg::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 3px; background: var(--border); transition: background 0.25s; }
+.pr-seg:hover::before { background: color-mix(in oklab, var(--foreground) 45%, transparent); }
+.pr-seg.is-past::before { background: color-mix(in oklab, var(--foreground) 38%, transparent); }
+.pr-seg.is-on::before { background: var(--primary); }
+.pr-seg:focus-visible, .pr-arrows button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 6px; }
+.pr-arrows { display: flex; gap: 8px; }
+.pr-arrows button { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); background: var(--background); color: var(--foreground); cursor: pointer; transition: border-color 0.2s, color 0.2s, opacity 0.2s; }
+.pr-arrows button:hover:not([aria-disabled='true']) { border-color: var(--primary); color: var(--primary); }
+.pr-arrows button[aria-disabled='true'] { opacity: 0.35; cursor: default; }
+.pr-arrows button:focus-visible { border-radius: 50%; }
+
+/* ---- Cartões (lista e "Outras apresentações") ---- */
+.pr-card { position: relative; display: grid; gap: 12px; align-content: start; height: 100%; }
+.pr-card-img { aspect-ratio: 16 / 10; }
+.pr-card-fallback { background: var(--muted) url(/gradients/web/roxo-noite.avif) center / cover; }
+.pr-card:hover .pr-card-img img { transform: scale(1.04); }
+.pr-card .pr-meta { margin: 4px 0 0; }
+.pr-card h3 { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: var(--foreground); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s; }
+.pr-card:hover h3 { color: var(--primary); }
+.pr-card-main::after { content: ''; position: absolute; inset: 0; }
+.pr-card-main:focus-visible { outline: none; }
+.pr-card-main:focus-visible::after { outline: 2px solid var(--primary); outline-offset: 6px; border-radius: 16px; }
+.pr-card-excerpt { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--muted-foreground); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pr-card-article { position: relative; z-index: 1; justify-self: start; margin-top: 2px; }
+.pr .bg-empty h2 { font-size: 20px; font-weight: 500; color: var(--foreground); }
+.pr .bg-empty .btn { margin-top: 12px; }
+
+/* ---- Bloco no artigo: "Veja a apresentação deste artigo" ---- */
+.ap-deck { max-width: 720px; margin: clamp(32px, 4vw, 48px) auto 0; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; border-radius: 16px; background: var(--muted); }
+.ap-deck-title { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: var(--foreground); }
+.ap-deck-text { margin: 4px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--muted-foreground); }
+
+@media (max-width: 900px) {
+  .is-secao .pr-slide-in, .is-sumario .pr-slide-in { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 640px) {
+  .pr-slide { min-height: 440px; padding: 28px 24px; }
+  .is-capa, .is-citacao { padding-bottom: 84px; }
+  .pr-slide-logo { left: 24px; bottom: 28px; }
+  .pr-controls { gap: 12px; }
+  .pr-count { min-width: 44px; }
+  .ap-deck { padding: 18px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-track.is-animated, .pr-card-img img, .pr-seg::before { transition: none; }
+  .pr-card:hover .pr-card-img img { transform: none; }
+}
+/* Sem JavaScript: os slides ficam empilhados e legíveis, sem controles. */
+@media (scripting: none) {
+  .pr-viewport { overflow: visible; }
+  .pr-track { display: grid; gap: 16px; transform: none !important; }
+  .pr-slide { border-radius: 20px; }
+  .pr-controls { display: none; }
+}
+
+/* Link do blog para as apresentações, abaixo da busca. */
+.bg-deck-link { margin-top: 16px; }
