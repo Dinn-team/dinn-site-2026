@@ -1,39 +1,58 @@
 ---
 // Cartão de apresentação: a lista e o fim da página de apresentação usam o mesmo.
-// O cartão inteiro leva à apresentação (link no título, esticado por CSS). O
-// link do artigo é separado, para não aninhar um link dentro de outro.
-import { urlFor } from '@/sanity/lib/client';
-import { articlePath, presentationPath, type Lang } from '@/i18n/routes';
-import { formatPostDate } from '@/lib/blog';
-import { presentationLabels, type PresentationPost } from '@/lib/presentations';
+// O cartão inteiro leva à apresentação (link no título, esticado por CSS).
+//
+// Três composições, para a lista não parecer a grade do blog:
+//   a  o cartão é a própria capa (degradê da apresentação, título grande em branco)
+//   b  cartão claro: título grande e, embaixo, a miniatura da capa
+//   c  cartão claro: miniatura no topo, depois data e título
+// No lugar da foto do artigo, a miniatura usa o degradê da apresentação.
+import { presentationPath, type Lang } from '@/i18n/routes';
+import { categoryLabel, formatPostDate } from '@/lib/blog';
+import { gradientSrc, presentationLabels, type CardVariant, type PresentationPost } from '@/lib/presentations';
 
 interface Props {
   post: PresentationPost;
   lang: Lang;
-  /** Primeiro cartão da página: imagem sem carregamento tardio. */
-  eager?: boolean;
+  variant?: CardVariant;
 }
 
-const { post, lang, eager = false } = Astro.props;
+const { post, lang, variant = 'a' } = Astro.props;
 const labels = presentationLabels(lang);
-const cover = post.coverImage ? urlFor(post.coverImage).width(640).height(400).fit('crop').url() : null;
+const chips = (post.categories ?? []).slice(0, 2).map((category) => categoryLabel(lang, category));
+const slidesText = `${post.slides.length} ${labels.slides}`;
+const gradient = gradientSrc(post.gradient);
 ---
 
-<article class="pr-card">
-  {cover ? (
-    <span class="bg-img pr-card-img">
-      <img src={cover} alt="" width="640" height="400" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+<article class={`pr-card is-${variant}`} style={`--pr-g: url(${gradient})`}>
+  {variant === 'c' && (
+    <span class="pr-thumb" aria-hidden="true">
+      <span class="pr-badge">{slidesText}</span>
     </span>
-  ) : (
-    <span class="bg-img pr-card-img pr-card-fallback" aria-hidden="true"></span>
   )}
-  <p class="pr-meta">
-    <time datetime={post.publishedAt}>{formatPostDate(lang, post.publishedAt)}</time>
-    <span>{post.slides.length} {labels.slides}</span>
-  </p>
-  <h3>
+
+  <div class="pr-card-top">
+    <span class="pr-card-kind">{labels.deckKind}</span>
+    {variant === 'c' ? (
+      <time datetime={post.publishedAt}>{formatPostDate(lang, post.publishedAt)}</time>
+    ) : (
+      <span class="pr-card-dot" aria-hidden="true"></span>
+    )}
+  </div>
+
+  <h3 class="pr-card-title">
     <a href={presentationPath(lang, post.slug.current)} class="pr-card-main">{post.title}</a>
   </h3>
-  {post.excerpt && <p class="pr-card-excerpt">{post.excerpt}</p>}
-  <a href={articlePath(lang, post.slug.current)} class="h2-link pr-card-article">{labels.readArticle} →</a>
+
+  {variant === 'b' && (
+    <span class="pr-thumb" aria-hidden="true">
+      <span class="pr-badge">{slidesText}</span>
+    </span>
+  )}
+
+  <ul class="pr-chips">
+    {chips.map((chip) => <li>{chip}</li>)}
+    {variant === 'a' && <li class="is-count">{slidesText}</li>}
+    {variant === 'b' && <li class="is-count"><time datetime={post.publishedAt}>{formatPostDate(lang, post.publishedAt)}</time></li>}
+  </ul>
 </article>

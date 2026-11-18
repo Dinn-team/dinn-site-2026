@@ -166,8 +166,53 @@ export function hasPresentation(post: Pick<BlogPostData, 'presentation'>): boole
   return deckSlides(post.presentation).length >= MIN_SLIDES;
 }
 
+/**
+ * Degradês da marca para a capa, o cartão e a citação de cada apresentação.
+ * Todos são escuros o bastante para texto branco sob uma camada escura.
+ * A ordem alterna cor quente e cor fria, para vizinhos não se parecerem.
+ */
+export const DECK_GRADIENTS = [
+  'roxo-noite',
+  'laranja-noite',
+  'verde-noite',
+  'azul-noite',
+  'vinho-noite',
+  'grafite',
+  'rubro',
+] as const;
+
+export type DeckGradient = (typeof DECK_GRADIENTS)[number];
+
+/** Caminho público (AVIF, 1920 px) de um degradê da apresentação. */
+export function gradientSrc(name: DeckGradient | 'g03'): string {
+  return name === 'g03' ? '/gradients/g03.avif' : `/gradients/web/${name}.avif`;
+}
+
+export type CardVariant = 'a' | 'b' | 'c';
+
+/** Composição do cartão pela posição na grade de 3 colunas: muda a cada linha. */
+export function cardVariant(index: number): CardVariant {
+  return (['a', 'c', 'b'] as const)[(index + Math.floor(index / 3)) % 3];
+}
+
 export interface PresentationPost extends BlogPostData {
   slides: DeckSlide[];
+  /** Degradê próprio da apresentação (capa, cartão e citação). */
+  gradient: DeckGradient;
+}
+
+/**
+ * Cada apresentação ganha um degradê pela ordem de publicação (a mais antiga
+ * primeiro). Uma apresentação nova entra no fim da fila e não muda a cor das
+ * outras. Em ordem de publicação, vizinhos sempre têm degradês diferentes.
+ */
+function assignGradients<T extends { slug: { current: string }; publishedAt: string }>(
+  posts: T[],
+): Map<string, DeckGradient> {
+  const oldestFirst = [...posts].sort(
+    (a, b) => a.publishedAt.localeCompare(b.publishedAt) || a.slug.current.localeCompare(b.slug.current),
+  );
+  return new Map(oldestFirst.map((post, i) => [post.slug.current, DECK_GRADIENTS[i % DECK_GRADIENTS.length]]));
 }
 
 // Mesmo critério do blog: no build de produção, falha de rede derruba o build
@@ -181,13 +226,15 @@ export async function getPresentations(lang: Lang): Promise<PresentationPost[]> 
     console.error(`Erro ao buscar apresentações (${lang}):`, error);
     return [];
   }
-  return posts
+  const decks = posts
     .map((post) => ({
       ...post,
       excerpt: post.excerpt ? cleanPostText(post.excerpt) : post.excerpt,
       slides: deckSlides(post.presentation),
     }))
     .filter((post) => post.slides.length >= MIN_SLIDES);
+  const gradients = assignGradients(decks);
+  return decks.map((post) => ({ ...post, gradient: gradients.get(post.slug.current) ?? DECK_GRADIENTS[0] }));
 }
 
 /**
