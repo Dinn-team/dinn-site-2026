@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-14",
-  "reviewedUntil": "2026-09-30",
+  "updatedAt": "2026-11-19",
+  "reviewedUntil": "2026-10-15",
   "note": "Camada de tratamento: cada item é a reescrita editorial de uma publicação em produção (branch main). 'status' controla a exibição: published aparece no site; draft fica oculto até revisão. 'source' é interno e nunca é exibido. 'reviewedUntil' marca até quando as publicações já foram avaliadas (tratadas ou descartadas por serem internas). Atualize com: node scripts/changelog-sync.mjs --write",
   "entries": [
     {
@@ -407,6 +407,43 @@
       "source": {
         "repo": "dinn-manager-app",
         "pr": 84
+      }
+    },
+    {
+      "id": "dinn-site-2026-11-1-blog-agora-disponivel-em-portugues-ingle",
+      "date": "2026-10-15",
+      "area": "site",
+      "status": "published",
+      "title": {
+        "pt": "Blog agora disponível em português, inglês e espanhol",
+        "en": "Blog now available in Portuguese, English, and Spanish",
+        "es": "Blog ahora disponible en portugués, inglés y español"
+      },
+      "summary": {
+        "pt": "Agora você pode explorar os conteúdos do nosso blog em português, inglês e espanhol, com navegação fluida entre os idiomas. O seletor de idioma direciona você diretamente para a versão correspondente de cada artigo.",
+        "en": "You can now explore our blog articles in Portuguese, English, and Spanish, with smooth navigation across languages. The language selector guides you directly to the corresponding version of each post.",
+        "es": "Ahora puede explorar los contenidos de nuestro blog en portugués, inglés y español, con una navegación fluida entre idiomas. El selector de idioma lo dirige directamente a la versión correspondiente de cada artículo."
+      },
+      "highlights": {
+        "pt": [
+          "Páginas e links próprios para cada idioma",
+          "Alternância direta entre as versões traduzidas do mesmo artigo",
+          "Categorias e menus exibidos no idioma selecionado"
+        ],
+        "en": [
+          "Dedicated links and pages for each language",
+          "Seamless switching between translated versions of the same article",
+          "Categories and menus displayed in the selected language"
+        ],
+        "es": [
+          "Páginas y enlaces específicos para cada idioma",
+          "Cambio directo entre las versiones traducidas del mismo artículo",
+          "Categorías y menús adaptados al idioma seleccionado"
+        ]
+      },
+      "source": {
+        "repo": "dinn-site-2026",
+        "pr": 11
       }
     }
   ]
