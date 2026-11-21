@@ -979,6 +979,11 @@ export const es419 = {
     next: "Siguiente diapositiva",
     goTo: "Ir a la diapositiva {n}",
     articleBlockTitle: "Mira la presentación de este artículo",
-    articleBlockText: "Lee los puntos principales en pocas diapositivas."
+    articleBlockText: "Lee los puntos principales en pocas diapositivas.",
+    deckKind: "Presentación",
+    downloadPdf: "Descargar PDF",
+    downloadPptx: "Descargar PPTX",
+    fullscreen: "Pantalla completa",
+    exitFullscreen: "Salir de pantalla completa"
   }
 };

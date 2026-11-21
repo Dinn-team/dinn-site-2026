@@ -7,10 +7,12 @@ import Layout from '@/layouts/Layout.astro';
 import PresentationDeck from '@/components/blog/PresentationDeck';
 import PresentationCard from '@/components/blog/PresentationCard.astro';
 import { urlFor } from '@/sanity/lib/client';
-import { articlePath, HTML_LANG, presentationPath, presentationsPath, type Lang } from '@/i18n/routes';
+import { articlePath, HTML_LANG, presentationFilePath, presentationPath, presentationsPath, type Lang } from '@/i18n/routes';
 import { contactUrl } from '@/lib/links';
 import { blogLabels, categoryLabel, formatPostDate } from '@/lib/blog';
 import {
+  cardVariant,
+  gradientSrc,
   presentationAlternates,
   presentationFallbacks,
   presentationLabels,
@@ -92,7 +94,13 @@ const deckLabels = {
   prev: labels.prev,
   next: labels.next,
   goTo: labels.goTo,
+  fullscreen: labels.fullscreen,
+  exitFullscreen: labels.exitFullscreen,
 };
+
+const gradient = gradientSrc(post.gradient);
+const pdfPath = presentationFilePath(lang, slug, 'pdf');
+const pptxPath = presentationFilePath(lang, slug, 'pptx');
 ---
 
 <Layout
@@ -107,33 +115,35 @@ const deckLabels = {
   langFallbacks={presentationFallbacks()}
 >
   <div class="h2 pr">
-    <header class="h2-hero ap-hero">
+    {/* Palco: o carrossel de slides vem logo abaixo do menu, sem bloco de título de artigo. */}
+    <section class="pr-band" style={`--pr-g: url(${gradient})`} aria-labelledby="pr-title">
       <div class="h2-wrap">
-        <a href={presentationsPath(lang)} class="h2-link ap-back">← {labels.backToList}</a>
-        <div class="h2-hero-grid">
-          <div>
-            <p class="pr-meta">
-              {post.categories && post.categories.length > 0 && <span>{categoryLabel(lang, post.categories[0])}</span>}
-              <span>{post.slides.length} {labels.slides}</span>
-              <time datetime={post.publishedAt}>{formatPostDate(lang, post.publishedAt)}</time>
-            </p>
-            <h1 class="ap-title">{post.title}</h1>
-          </div>
-          <div class="h2-hero-side">
-            {post.excerpt && <p class="h2-hero-sub">{post.excerpt}</p>}
-            <div class="h2-actions">
-              <a href={articlePath(lang, slug)} class="btn btn-primary">{labels.fullArticle}</a>
-            </div>
+        {/* O título fica só para leitores de tela e buscadores: a capa já mostra o título. */}
+        <h1 id="pr-title" class="sr-only">{post.title}</h1>
+        <div class="pr-bar">
+          <a href={presentationsPath(lang)} class="pr-back">← {labels.backToList}</a>
+          <div class="pr-bar-actions">
+            <a href={pdfPath} download={`dinn-${slug}.pdf`} class="btn btn-primary pr-dl">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3" /><path d="m7 10 5 5 5-5" /><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /></svg>
+              {labels.downloadPdf}
+            </a>
+            <a href={pptxPath} download={`dinn-${slug}.pptx`} class="btn pr-dl is-ghost">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3" /><path d="m7 10 5 5 5-5" /><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /></svg>
+              {labels.downloadPptx}
+            </a>
           </div>
         </div>
       </div>
-    </header>
+      <PresentationDeck client:load slides={post.slides} labels={deckLabels} gradient={gradient} />
+    </section>
 
-    <div class="h2-wrap pr-stage">
-      <PresentationDeck client:load slides={post.slides} labels={deckLabels} />
-      <p class="pr-after">
-        <a href={articlePath(lang, slug)} class="h2-link">{labels.fullArticle} →</a>
-      </p>
+    <div class="h2-wrap">
+      <div class={`pr-about${post.excerpt ? '' : ' is-solo'}`}>
+        {post.excerpt && <p class="pr-about-lead">{post.excerpt}</p>}
+        <div class="h2-actions">
+          <a href={articlePath(lang, slug)} class="btn btn-primary">{labels.fullArticle}</a>
+        </div>
+      </div>
     </div>
 
     <div class="h2-wrap">
@@ -151,10 +161,10 @@ const deckLabels = {
       {others.length > 0 && (
         <section class="ap-rec" aria-labelledby="pr-others-title">
           <h2 id="pr-others-title" class="h2-title">{labels.others}</h2>
-          <ul class="bg-grid pr-grid">
-            {others.map((other) => (
+          <ul class="pr-grid">
+            {others.map((other, i) => (
               <li>
-                <PresentationCard post={other} lang={lang} />
+                <PresentationCard post={other} lang={lang} variant={cardVariant(i)} />
               </li>
             ))}
           </ul>
