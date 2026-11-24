@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { ArrowRight, CheckCircle2, Download, X } from 'lucide-react';
 import { Select, type SelectOption } from '@/components/ui/Select';
 import {
@@ -109,11 +109,11 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
   const set = (key: keyof StudyLeadValues) => (e: { target: { value: string } }) =>
     setValues((v) => ({ ...v, [key]: e.target.value }));
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async () => {
     if (!valid || status === 'sending') return;
-    // Robô: campo isca preenchido ou envio em menos de 3 s. Nada vai ao HubSpot.
-    if (trap || Date.now() - openedAt.current < 3000) {
+    // Robô: campo isca preenchido ou envio em menos de 1,5 s (gente com preenchimento
+    // automático do navegador leva mais que isso, porque ainda escolhe a função). Nada vai ao HubSpot.
+    if (trap || Date.now() - openedAt.current < 1500) {
       setStatus('done');
       return;
     }
@@ -156,6 +156,15 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
 
   const showEmailError = emailTouched && Boolean(emailMsg);
 
+  // Enter num campo de texto envia, como num formulário comum.
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const el = e.target as HTMLElement;
+    if (e.key === 'Enter' && el.tagName === 'INPUT' && (el as HTMLInputElement).type !== 'radio') {
+      e.preventDefault();
+      void onSubmit();
+    }
+  };
+
   return (
     <dialog
       ref={dialogRef}
@@ -184,7 +193,10 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
             </div>
           </div>
         ) : (
-          <form onSubmit={onSubmit} noValidate>
+          // Sem <form> de propósito: a captura automática de formulários do HubSpot (script de
+          // rastreio) intercepta todo <form> e o envio dela fazia o HubSpot ignorar o nosso, que
+          // leva a empresa, a função e a marca de origem. O envio aqui é só o da API.
+          <div className="sm-dl-form" role="form" aria-labelledby="sm-dl-title" onKeyDown={onKeyDown}>
             <h2 id="sm-dl-title" className="ct-form-title">{labels.title}</h2>
             <p className="ct-form-lead">{labels.lead}</p>
 
@@ -249,14 +261,14 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
               <p className="ct-error ct-error-box" role="alert">{labels.error}</p>
             )}
 
-            <button type="submit" className="btn btn-primary btn-lg ct-submit" disabled={!valid || status === 'sending'}>
+            <button type="button" onClick={() => void onSubmit()} className="btn btn-primary btn-lg ct-submit" disabled={!valid || status === 'sending'}>
               {status === 'sending' ? labels.sending : labels.submit}
               {status !== 'sending' && <ArrowRight size={18} aria-hidden="true" />}
             </button>
 
             {/* Texto fixo do dicionário do site (com o link da política), não vem do visitante. */}
             <p className="sm-dl-consent" dangerouslySetInnerHTML={{ __html: labels.consent }} />
-          </form>
+          </div>
         )}
       </div>
     </dialog>
