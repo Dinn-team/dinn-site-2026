@@ -1,0 +1,49 @@
+---
+// Cartão de estudo: a lista e o fim da página de um estudo usam o mesmo.
+// Segue as três composições dos cartões de apresentação (pr-card a, b, c), com
+// a capa do estudo (página 1 do PDF) como folha sobre o degradê do estudo.
+import { studyPath, type Lang } from '@/i18n/routes';
+import type { CardVariant } from '@/lib/presentations';
+import { formatStudyDate, studyGradient, studyLabels, type Study } from '@/lib/studies';
+
+interface Props {
+  study: Study;
+  lang: Lang;
+  variant?: CardVariant;
+}
+
+const { study, lang, variant = 'a' } = Astro.props;
+const labels = studyLabels(lang);
+const text = study.langs[lang];
+const pagesText = `${text.pages} ${labels.pages}`;
+const date = formatStudyDate(lang, study.publishedAt);
+---
+
+<article class={`pr-card sm-card is-${variant}`} style={`--pr-g: url(${studyGradient(study)})`}>
+  {variant === 'c' && (
+    <span class="pr-thumb sm-thumb" aria-hidden="true">
+      <img src={text.cover} alt="" width="560" height="792" loading="lazy" decoding="async" />
+    </span>
+  )}
+
+  <div class="pr-card-top">
+    <span class="pr-card-kind">{labels.kind}</span>
+    {variant === 'c' ? <time datetime={study.publishedAt}>{date}</time> : <span class="pr-card-dot" aria-hidden="true"></span>}
+  </div>
+
+  <h3 class="pr-card-title">
+    <a href={studyPath(lang, study.slug)} class="pr-card-main">{text.title}</a>
+  </h3>
+
+  {variant === 'b' && (
+    <span class="pr-thumb sm-thumb" aria-hidden="true">
+      <img src={text.cover} alt="" width="560" height="792" loading="lazy" decoding="async" />
+    </span>
+  )}
+
+  <ul class="pr-chips">
+    <li>{pagesText}</li>
+    <li>{labels.languages}</li>
+    {variant !== 'c' && <li class="is-count"><time datetime={study.publishedAt}>{date}</time></li>}
+  </ul>
+</article>

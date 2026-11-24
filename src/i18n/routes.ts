@@ -80,3 +80,22 @@ const LEGACY_CATEGORY: Record<string, string> = {
 export function categoryKey(value: string): string {
   return LEGACY_CATEGORY[value.trim().toLowerCase()] ?? value;
 }
+
+// Relatórios e estudos de mercado (pesquisas da Inteligência de Mercado, vindas do Orion).
+// O slug é o mesmo nos três idiomas:
+//   PT  /recursos/estudos-de-mercado/        /recursos/estudos-de-mercado/<slug>/
+//   EN  /en/resources/market-studies/        /en/resources/market-studies/<slug>/
+//   ES  /es/recursos/estudios-de-mercado/    /es/recursos/estudios-de-mercado/<slug>/
+const STUDIES_SEGMENT: Record<Lang, string> = {
+  pt: 'recursos/estudos-de-mercado',
+  en: 'resources/market-studies',
+  es: 'recursos/estudios-de-mercado',
+};
+
+export function studiesPath(lang: Lang): string {
+  return `${PREFIX[lang]}/${STUDIES_SEGMENT[lang]}/`;
+}
+
+export function studyPath(lang: Lang, slug: string): string {
+  return `${PREFIX[lang]}/${STUDIES_SEGMENT[lang]}/${slug}/`;
+}

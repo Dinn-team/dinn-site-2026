@@ -4,4 +4,7 @@ Allow: /
 # Formulário interno — sem valor de busca
 Disallow: /feedback-pt
 
+# Estudos de mercado completos: baixados pelo formulário da página de cada estudo
+Disallow: /estudos/arquivos/
+
 Sitemap: https://dinn.ai/sitemap-index.xml

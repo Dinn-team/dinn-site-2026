@@ -1,0 +1,117 @@
+---
+// Lista de relatórios e estudos de mercado, compartilhada pelas três rotas de idioma:
+//   /recursos/estudos-de-mercado   /en/resources/market-studies   /es/recursos/estudios-de-mercado
+// Mesma linguagem da lista de apresentações: hero do v2 e cartões a, b, c.
+import Layout from '@/layouts/Layout.astro';
+import StudyCard from '@/components/studies/StudyCard.astro';
+import { cardVariant } from '@/lib/presentations';
+import { getStudies, studyAlternates, studyLabels } from '@/lib/studies';
+import { blogPath, HTML_LANG, studiesPath, studyPath, type Lang } from '@/i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const labels = studyLabels(lang);
+const studies = getStudies();
+const empty = studies.length === 0;
+
+const site = Astro.site ?? new URL('https://dinn.ai');
+const listUrl = new URL(studiesPath(lang), site).href;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: labels.name,
+    description: labels.metaDescription,
+    inLanguage: HTML_LANG[lang],
+    url: listUrl,
+    ...(empty
+      ? {}
+      : {
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: studies.map((study, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              url: new URL(studyPath(lang, study.slug), site).href,
+              name: study.langs[lang].title,
+            })),
+          },
+        }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: labels.breadcrumbHome, item: new URL('/', site).href },
+      { '@type': 'ListItem', position: 2, name: labels.name, item: listUrl },
+    ],
+  },
+];
+---
+
+<Layout
+  title={labels.metaTitle}
+  description={labels.metaDescription}
+  lang={lang}
+  alternates={studyAlternates()}
+  langRoute
+  jsonLd={jsonLd}
+  noindex={empty}
+>
+  <div class="h2 pr sm">
+    <header class="h2-hero bg-hero">
+      <div class="h2-wrap">
+        <div class="h2-hero-grid">
+          <h1 class="h2-hero-title">{labels.heroTitle}</h1>
+          <div class="h2-hero-side">
+            <p class="h2-hero-sub">{labels.heroLead}</p>
+          </div>
+        </div>
+
+        <section class="sm-about" aria-labelledby="sm-about-title">
+          <h2 id="sm-about-title" class="sm-about-title">{labels.aboutTitle}</h2>
+          <ul class="sm-about-list">
+            {labels.about.map((item) => (
+              <li>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </header>
+
+    <div class="h2-wrap bg-body">
+      {empty ? (
+        <div class="bg-empty">
+          <h2>{labels.emptyTitle}</h2>
+          <p>{labels.emptyDesc}</p>
+          <a href={blogPath(lang)} class="btn btn-primary">{labels.emptyCta}</a>
+        </div>
+      ) : (
+        <section aria-labelledby="sm-list-title">
+          <h2 id="sm-list-title" class="sm-list-title">{labels.listTitle}</h2>
+          <ul class="pr-grid">
+            {studies.map((study, i) => (
+              <li>
+                <StudyCard study={study} lang={lang} variant={cardVariant(i)} />
+              </li>
+            ))}
+            <li>
+              <article class="pr-card sm-order">
+                <h3 class="sm-order-title">{labels.order.title}</h3>
+                <p class="sm-order-text">{labels.order.text}</p>
+                <a href="/pesquisas" class="btn btn-primary sm-order-cta">{labels.order.cta}</a>
+              </article>
+            </li>
+          </ul>
+        </section>
+      )}
+    </div>
+  </div>
+</Layout>
