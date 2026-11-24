@@ -179,7 +179,9 @@ export function buildPayload(values: ContactValues, ctx: { lang: string; pageUri
 
 export type SubmitResult = { ok: true } | { ok: false; reason: 'not-configured' | 'rejected' | 'network' };
 
-export async function submitToHubSpot(payload: ReturnType<typeof buildPayload>): Promise<SubmitResult> {
+export async function submitToHubSpot(
+  payload: ReturnType<typeof buildPayload> | ReturnType<typeof buildStudyPayload>,
+): Promise<SubmitResult> {
   if (!HUBSPOT_FORM_GUID) {
     console.warn('[contato] PUBLIC_HUBSPOT_FORM_GUID não está definido: o envio não foi feito.');
     return { ok: false, reason: 'not-configured' };
@@ -193,4 +195,59 @@ export async function submitToHubSpot(payload: ReturnType<typeof buildPayload>):
   } catch {
     return { ok: false, reason: 'network' };
   }
+}
+
+// --- Relatórios e estudos de mercado (modal de download) ---------------------------
+// Mesmo formulário do HubSpot do /contato, para o lead entrar no mesmo fluxo de
+// atendimento nível 1 (Lia). Só 4 campos: nome, empresa, função e e-mail. A origem
+// fica marcada em `dinn_conteudo_origem` como `relatorios-estudos-de-mercado:<slug>`
+// e o pedido em `dinn_contexto_pedido` diz qual estudo e em qual idioma.
+
+/** Prefixo de `dinn_conteudo_origem` para quem veio do download de estudo. */
+export const STUDY_CONTENT_PREFIX = 'relatorios-estudos-de-mercado';
+
+export type StudyLeadValues = { name: string; company: string; role: string; email: string };
+
+export function buildStudyPayload(
+  values: StudyLeadValues,
+  ctx: {
+    lang: string;
+    pageUri: string;
+    slug: string;
+    title: string;
+    fileLang: string;
+    consentText: string;
+    utm: Utm;
+    hutk?: string;
+    journey?: Journey;
+  },
+) {
+  const fields: { name: string; value: string }[] = [
+    { name: FIELDS.email, value: values.email.trim().toLowerCase() },
+    { name: FIELDS.company, value: values.company.trim() },
+    { name: FIELDS.firstname, value: values.name.trim() },
+    { name: FIELDS.role, value: values.role },
+    { name: FIELDS.origin, value: ORIGIN_VALUE },
+    { name: FIELDS.language, value: ctx.lang },
+    { name: FIELDS.content, value: `${STUDY_CONTENT_PREFIX}:${ctx.slug}`.slice(0, 120) },
+    { name: FIELDS.context, value: `Relatórios e Estudos de Mercado: baixou "${ctx.title}" (${ctx.fileLang.toUpperCase()})`.slice(0, 500) },
+    { name: FIELDS.channel, value: [ctx.utm.source || 'site', ctx.utm.medium || 'organic'].join('/') },
+  ];
+  if (ctx.utm.campaign) fields.push({ name: FIELDS.campaign, value: ctx.utm.campaign });
+  if (ctx.journey?.firstPage) fields.push({ name: FIELDS.firstPage, value: ctx.journey.firstPage });
+  if (ctx.journey?.previousPage) fields.push({ name: FIELDS.previousPage, value: ctx.journey.previousPage });
+  if (ctx.journey?.referrerHost) fields.push({ name: FIELDS.referrerHost, value: ctx.journey.referrerHost });
+
+  return {
+    submittedAt: Date.now(),
+    fields,
+    context: {
+      ...(ctx.hutk ? { hutk: ctx.hutk } : {}),
+      pageUri: ctx.pageUri,
+      pageName: 'Relatórios e Estudos de Mercado | Dinn',
+    },
+    legalConsentOptions: {
+      consent: { consentToProcess: true, text: ctx.consentText },
+    },
+  };
 }

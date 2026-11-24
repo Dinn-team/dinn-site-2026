@@ -1,0 +1,17 @@
+---
+import StudyPage from '@/components/studies/StudyPage.astro';
+import { getStudies } from '@/lib/studies';
+
+// Página de um estudo de mercado. O slug é o mesmo nos três idiomas.
+export function getStaticPaths() {
+  const studies = getStudies();
+  return studies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study, others: studies.filter((s) => s.id !== study.id).slice(0, 3) },
+  }));
+}
+
+const { study, others } = Astro.props;
+---
+
+<StudyPage study={study} lang="es" others={others} />
