@@ -1032,8 +1032,8 @@ export const es419 = {
     reviewedBy: "Revisión: {name}",
     scopeNote: "La Inteligencia de Mercado de Dinn hizo este estudio con apoyo de inteligencia artificial en la búsqueda y la redacción. Verificamos los datos en las fuentes citadas. Este estudio no es un artículo revisado por pares. No es un dictamen médico, jurídico ni regulatorio.",
     form: {
-      title: "Descargar el estudio completo",
-      lead: "Complete los 4 campos. La descarga empieza cuando los envíe.",
+      title: "Descargar el estudio",
+      lead: "Complete los campos para iniciar la descarga.",
       name: "Nombre",
       company: "Empresa",
       role: "Función",

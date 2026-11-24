@@ -93,6 +93,8 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
       openedAt.current = Date.now();
       if (status !== 'done') setStatus('idle');
       dialogRef.current?.showModal();
+      // O cursor começa no primeiro campo, não no botão de fechar.
+      dialogRef.current?.querySelector<HTMLInputElement>('#sm-name')?.focus();
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
@@ -184,7 +186,6 @@ export default function StudyDownload({ lang, slug, files, roles, labels }: Prop
         ) : (
           <form onSubmit={onSubmit} noValidate>
             <h2 id="sm-dl-title" className="ct-form-title">{labels.title}</h2>
-            <p className="sm-dl-study">{files[lang].title}</p>
             <p className="ct-form-lead">{labels.lead}</p>
 
             <div className="ct-row">

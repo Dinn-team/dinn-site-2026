@@ -98,21 +98,23 @@
 .sm-zoom-more .btn { align-self: flex-start; margin-top: 6px; }
 
 /* ---- Modal de download ---- */
-.sm-dl { margin: auto; width: min(94vw, 560px); max-width: none; max-height: 94svh; padding: 0; border: 0; border-radius: 24px; background: var(--background); color: var(--foreground); overflow: visible; box-shadow: 0 40px 90px -30px rgba(8, 9, 10, 0.55); }
+.sm-dl { margin: auto; width: min(94vw, 520px); max-width: none; max-height: calc(100svh - 32px); padding: 0; border: 0; border-radius: 24px; background: var(--background); color: var(--foreground); overflow: hidden; box-shadow: 0 40px 90px -30px rgba(8, 9, 10, 0.55); }
 .sm-dl::backdrop { background: rgba(8, 9, 10, 0.6); }
 .sm-dl[open] { animation: sm-dl-in 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
 @keyframes sm-dl-in { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
-.sm-dl-box { position: relative; max-height: 94svh; overflow-y: auto; padding: clamp(24px, 4vw, 36px); }
-.sm-dl-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--muted); color: var(--foreground); cursor: pointer; transition: background 0.2s; }
+/* A caixa só rola em tela muito baixa. A barra fica dentro dos cantos redondos (o modal corta o excesso). */
+.sm-dl-box { position: relative; max-height: calc(100svh - 32px); overflow-y: auto; overscroll-behavior: contain; padding: 28px; scrollbar-width: thin; scrollbar-color: color-mix(in oklab, var(--foreground) 20%, transparent) transparent; }
+.sm-dl-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--muted); color: var(--foreground); cursor: pointer; transition: background 0.2s; }
 .sm-dl-close:hover { background: color-mix(in oklab, var(--foreground) 10%, var(--muted)); }
 .sm-dl-close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-.sm-dl .ct-form-title { margin: 0; padding-right: 44px; }
-.sm-dl-study { margin: 8px 0 0; padding-right: 20px; font-size: 15px; font-weight: 500; line-height: 1.45; color: var(--foreground); }
-.sm-dl .ct-form-lead { margin-top: 6px; }
-.sm-dl-langs { margin: 0 0 18px; padding: 0; border: 0; }
+.sm-dl .ct-form-title { margin: 0; padding-right: 44px; font-size: 24px; line-height: 1.2; }
+.sm-dl .ct-form-lead { margin: 6px 0 20px; }
+.sm-dl .ct-field { margin-bottom: 14px; }
+.sm-dl .ct-field input, .sm-dl .dd-trigger { padding-top: 11px; padding-bottom: 11px; }
+.sm-dl-langs { margin: 0 0 20px; padding: 0; border: 0; }
 .sm-dl-langs legend { margin-bottom: 8px; padding: 0; font-size: 14px; font-weight: 600; color: var(--foreground); }
 .sm-dl .ct-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-.sm-dl-consent { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+.sm-dl-consent { margin: 12px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--muted-foreground); }
 .sm-dl-consent a { color: var(--primary); text-underline-offset: 3px; }
 .sm-dl .ct-done h2 { margin-top: 18px; }
 
@@ -135,6 +137,9 @@
   .sm-zoom-tools { gap: 2px; }
   .sm-zoom-dl { margin: 0 4px; padding: 8px 12px; font-size: 13px; }
   .sm-zoom-pages { gap: 10px; padding: 10px; }
+  /* Modal: nome e empresa seguem lado a lado, para caber sem rolar. */
+  .sm-dl .ct-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sm-dl-box { padding: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sm-dl[open] { animation: none; }

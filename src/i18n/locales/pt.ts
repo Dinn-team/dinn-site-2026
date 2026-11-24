@@ -1032,8 +1032,8 @@ export const ptBR = {
     reviewedBy: "Revisão: {name}",
     scopeNote: "A Inteligência de Mercado da Dinn fez este estudo com apoio de inteligência artificial na busca e na redação. Conferimos os dados nas fontes citadas. Este estudo não é artigo revisado por pares. Não é parecer médico, jurídico ou regulatório.",
     form: {
-      title: "Baixar o estudo completo",
-      lead: "Preencha os 4 campos. O download começa quando você enviar.",
+      title: "Baixar o estudo",
+      lead: "Preencha os campos para começar o download.",
       name: "Nome",
       company: "Empresa",
       role: "Função",

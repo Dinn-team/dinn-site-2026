@@ -1032,8 +1032,8 @@ export const enUS = {
     reviewedBy: "Review: {name}",
     scopeNote: "Dinn Market Intelligence made this study with AI support for search and writing. We checked the data in the cited sources. This study is not a peer-reviewed article. It is not medical, legal or regulatory advice.",
     form: {
-      title: "Download the full study",
-      lead: "Fill in the 4 fields. The download starts when you send them.",
+      title: "Download the study",
+      lead: "Fill in the fields to start the download.",
       name: "Name",
       company: "Company",
       role: "Role",
