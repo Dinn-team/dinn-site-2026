@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { ArrowRight, CheckCircle2, MailCheck } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 import { Rich } from '@/lib/rich-text';
@@ -90,8 +90,7 @@ export function ContactPage() {
     return er;
   };
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async () => {
     if (status === 'sending') return;
     const er = validate();
     setErrors(er);
@@ -153,6 +152,15 @@ export function ContactPage() {
     setStatus(result.ok ? 'done' : 'error');
   };
 
+  // Enter num campo de texto envia, como num formulário comum.
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const el = e.target as HTMLElement;
+    if (e.key === 'Enter' && el.tagName === 'INPUT' && !['radio', 'checkbox'].includes((el as HTMLInputElement).type)) {
+      e.preventDefault();
+      void onSubmit();
+    }
+  };
+
   const fieldProps = (key: keyof Errors) => ({
     'aria-invalid': errors[key] ? true : undefined,
     'aria-describedby': errors[key] ? `ct-${key}-err` : undefined,
@@ -198,7 +206,9 @@ export function ContactPage() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={onSubmit} noValidate aria-labelledby="ct-form-title">
+              // Sem <form> de propósito: o script de rastreio do HubSpot captura todo <form>
+              // como "Unidentified Form" e gera uma conversão a mais. O envio é só o da API.
+              <div className="ct-form" role="form" aria-labelledby="ct-form-title" onKeyDown={onKeyDown}>
                 <h2 id="ct-form-title" className="ct-form-title">{t('contact.form.title')}</h2>
                 <p className="ct-form-lead">{t('contact.form.lead')}</p>
 
@@ -385,12 +395,12 @@ export function ContactPage() {
                   </p>
                 )}
 
-                <button type="submit" className="btn btn-primary btn-lg ct-submit" disabled={status === 'sending'}>
+                <button type="button" onClick={() => void onSubmit()} className="btn btn-primary btn-lg ct-submit" disabled={status === 'sending'}>
                   {status === 'sending' ? t('contact.form.sending') : t('contact.form.submit')}
                   {status !== 'sending' && <ArrowRight size={18} aria-hidden="true" />}
                 </button>
                 <p className="ct-fine"><MailCheck size={14} aria-hidden="true" /> {t('contact.form.fine')}</p>
-              </form>
+              </div>
             )}
           </div>
         </div>
