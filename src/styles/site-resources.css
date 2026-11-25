@@ -123,3 +123,15 @@
 @media (prefers-reduced-motion: reduce) {
   .cs-alert-dot { animation: none; }
 }
+
+/* Hub /recursos: seis cartões em duas linhas de três. O rótulo "Recursos" ocupa as
+   duas linhas na primeira coluna. Filhos: 1 = rótulo, 2 a 7 = cartões. */
+.pl-grid.rh-grid .pl-lead { grid-row: span 2; }
+.pl-grid.rh-grid .pl-col:nth-child(n + 5) { border-top: 1px solid var(--border); }
+@media (max-width: 1100px) {
+  .pl-grid.rh-grid .pl-lead { grid-row: auto; }
+  .pl-grid.rh-grid .pl-col:nth-child(5) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 860px) {
+  .pl-grid.rh-grid .pl-col:nth-child(2) { border-top: 0; }
+}

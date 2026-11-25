@@ -514,12 +514,12 @@ export const pagesEn = {
   resources: {
     meta: {
       title: "Resources | Dinn",
-      description: "Blog, customer stories and what's new at Dinn: content to understand the pharmaceutical channel and follow releases."
+      description: "Blog, presentations, market studies, customer stories, what's new and comparisons from Dinn: content to understand the pharmaceutical channel."
     },
     hero: {
       eyebrow: "Resources",
       title: "Content, stories and news *from Dinn*",
-      lead: "Choose where to start: read articles and guides, read customer stories or follow platform releases."
+      lead: "Choose where to start: articles, presentations, market studies, customer stories, releases or comparisons."
     },
     items: [
       {
@@ -530,6 +530,24 @@ export const pagesEn = {
         chips: ["Articles", "Guides", "Topics"],
         cta: "Read the blog",
         href: "/blog"
+      },
+      {
+        id: "presentations",
+        type: "Presentations",
+        title: "Blog articles as slide decks",
+        desc: "The key points of each article in a few slides. Download them as PDF or PPTX.",
+        chips: ["Slides", "PDF", "PPTX"],
+        cta: "See presentations",
+        href: "/apresentacoes"
+      },
+      {
+        id: "studies",
+        type: "Market studies",
+        title: "Reports on the pharma channel",
+        desc: "Studies with market data and a historical analysis of public sources. Read a sample and download the full study.",
+        chips: ["Market data", "Public sources", "PT, EN and ES"],
+        cta: "See studies",
+        href: "/recursos/estudos-de-mercado"
       },
       {
         id: "cases",
@@ -548,6 +566,15 @@ export const pagesEn = {
         chips: ["New", "Improvements", "Fixes"],
         cta: "See the history",
         href: "/recursos/changelog"
+      },
+      {
+        id: "compare",
+        type: "Comparisons",
+        title: "Dinn next to the tools you use",
+        desc: "See the role of audits, CRM, BI, data collection and general AI. See where Dinn fits.",
+        chips: ["Audits", "CRM and BI", "AI"],
+        cta: "See comparisons",
+        href: "/comparativos"
       }
     ],
     openItem: "Open",
