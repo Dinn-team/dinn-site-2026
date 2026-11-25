@@ -1,6 +1,6 @@
 import { Box, Frame, Line3, vars } from './iso';
 
-// Três ilustrações para Recursos: blog, casos e novidades. Mesma linguagem das
+// Ilustrações para Recursos: blog, apresentações, estudos, casos, novidades e comparativos. Mesma linguagem das
 // demais (linha de 1 px, um detalhe em roxo, movimento no hover do cartão).
 
 /** Blog: um feed de artigos; no hover os cartões se abrem, um para cada lado. */
@@ -92,6 +92,57 @@ export function IlLayers({ label }: { label?: string }) {
         </g>
         <Line3 a={[60, 60, 0]} b={[60, 60, 60]} className="il-guide" />
         <Line3 a={[-60, 60, 0]} b={[-60, 60, 60]} className="il-guide" />
+      </g>
+    </Frame>
+  );
+}
+
+/** Apresentações: três slides em pé, um atrás do outro; no hover eles se abrem em leque. */
+export function IlDeck({ label }: { label?: string }) {
+  const slides = [
+    { x: -58, y: -30, d: -1 },
+    { x: -50, y: -14, d: 1 },
+    { x: -42, y: 2, d: 0 },
+  ];
+  const f = 5; // face da frente do slide da frente (y + profundidade)
+  return (
+    <Frame label={label} vb="-137 -116 275 191">
+      <Box x={-74} y={-44} w={148} d={88} h={4} />
+      {slides.map((sl, i) => (
+        <g key={i} className="il-feed" style={vars({ '--d': sl.d })}>
+          <Box x={sl.x} y={sl.y} z={4} w={92} d={3} h={52} />
+        </g>
+      ))}
+      <Line3 a={[-32, f, 46]} b={[2, f, 46]} className="il-accent" />
+      <Line3 a={[-32, f, 37]} b={[14, f, 37]} className="il-line" />
+      <Line3 a={[-32, f, 30]} b={[6, f, 30]} className="il-line" />
+      {[0, 1, 2].map((i) => (
+        <g key={i} className="il-bar" style={vars({ '--i': i })}>
+          <Line3 a={[22 + i * 7, f, 12]} b={[22 + i * 7, f, 20 + i * 7]} className="il-accent" />
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
+/** Estudos de mercado: páginas do relatório com um gráfico que cresce no hover. */
+export function IlReport({ label }: { label?: string }) {
+  const hs = [10, 16, 12, 24];
+  return (
+    <Frame label={label} vb="-120 -86 240 180">
+      <g transform="translate(0 24)">
+        <Box x={-42} y={-58} w={84} d={116} h={3} />
+        <Box x={-38} y={-54} z={5} w={84} d={116} h={3} />
+        <Box x={-34} y={-50} z={10} w={84} d={116} h={3} />
+        <Line3 a={[-24, -38, 13]} b={[14, -38, 13]} className="il-accent" />
+        <Line3 a={[-24, -28, 13]} b={[30, -28, 13]} className="il-line" />
+        <Line3 a={[-24, -20, 13]} b={[22, -20, 13]} className="il-line" />
+        {hs.map((h, i) => (
+          <g key={i} className="il-bar" style={vars({ '--i': i })}>
+            <Box x={-22 + i * 15} y={10} z={13} w={10} d={10} h={h} topClass={i === 3 ? 'il-accent-face' : ''} />
+          </g>
+        ))}
+        <Line3 a={[-24, 36, 13]} b={[30, 36, 13]} className="il-line" />
       </g>
     </Frame>
   );

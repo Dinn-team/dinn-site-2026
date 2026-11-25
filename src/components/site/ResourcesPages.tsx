@@ -1,19 +1,20 @@
 import { Check } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
-import { blogPath } from '@/i18n/routes';
+import { blogPath, presentationsPath, studiesPath, type Lang } from '@/i18n/routes';
 import { Rich } from '@/lib/rich-text';
 import { PATHS } from '@/lib/site-map';
 import { contactUrl } from '@/lib/links';
 import { ChatWidget2 } from '@/components/home2/ChatWidget2';
-import { IlBlog, IlCases, IlChangelog } from '@/components/illustrations/resources';
+import { IlBlog, IlCases, IlChangelog, IlDeck, IlLayers, IlReport } from '@/components/illustrations/resources';
 import { ClosingCard, PageCta, PageHero } from './PageShell';
 
-// Hub de Recursos no padrão v2 e na estrutura dos Planos: três portas de
-// entrada em colunas com fio fino (blog, casos e novidades), cada uma com uma
+// Hub de Recursos no padrão v2 e na estrutura dos Planos: seis portas de
+// entrada em colunas com fio fino, três por linha (blog, apresentações,
+// estudos de mercado; casos, novidades, comparativos), cada uma com uma
 // ilustração animada no hover. O conteúdo mora em cada destino.
 
 type Card = {
-  id: 'blog' | 'cases' | 'changelog';
+  id: 'blog' | 'presentations' | 'studies' | 'cases' | 'changelog' | 'compare';
   type: string;
   title: string;
   desc: string;
@@ -22,7 +23,15 @@ type Card = {
   href: string;
 };
 
-const ART = { blog: IlBlog, cases: IlCases, changelog: IlChangelog };
+const ART = { blog: IlBlog, presentations: IlDeck, studies: IlReport, cases: IlCases, changelog: IlChangelog, compare: IlLayers };
+
+/** Blog, apresentações e estudos têm rota própria em cada idioma. */
+function itemHref(it: Card, lang: Lang): string {
+  if (it.id === 'blog') return blogPath(lang);
+  if (it.id === 'presentations') return presentationsPath(lang);
+  if (it.id === 'studies') return studiesPath(lang);
+  return it.href;
+}
 
 export function ResourcesHub() {
   const { t, lang } = useTranslation();
@@ -43,12 +52,12 @@ export function ResourcesHub() {
 
       <section className="pl-plans" aria-label={t('resources.hero.eyebrow') as string}>
         <div className="h2-wrap">
-          <div className="pl-grid">
+          <div className="pl-grid rh-grid">
             <div className="pl-lead">
               <p className="pl-lead-title">{t('resources.hero.eyebrow')}</p>
             </div>
             {items.map((it) => {
-              const Art = ART[it.id];
+              const Art = ART[it.id] ?? IlBlog;
               return (
                 <article key={it.id} className="pl-col">
                   <div className="pl-card rs-card il-host">
@@ -56,7 +65,7 @@ export function ResourcesHub() {
                     <h3>{it.type}</h3>
                     <p>{it.title}</p>
                   </div>
-                  <a className="btn btn-primary pl-cta" href={it.href === '/blog' ? blogPath(lang) : it.href}>{it.cta}</a>
+                  <a className="btn btn-primary pl-cta" href={itemHref(it, lang as Lang)}>{it.cta}</a>
                   <p className="pl-from">{it.desc}</p>
                   <ul className="pl-list">
                     {it.chips.map((c) => (

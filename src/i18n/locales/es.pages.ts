@@ -514,12 +514,12 @@ export const pagesEs = {
   resources: {
     meta: {
       title: "Recursos | Dinn",
-      description: "Blog, casos de clientes y novedades de Dinn: contenido para entender el canal farmacéutico y seguir las novedades."
+      description: "Blog, presentaciones, estudios de mercado, casos de clientes, novedades y comparativos de Dinn: contenido para entender el canal farmacéutico."
     },
     hero: {
       eyebrow: "Recursos",
       title: "Contenido, historias y novedades *de Dinn*",
-      lead: "Elige por dónde empezar: leer artículos y guías, leer casos de clientes o seguir las novedades de la plataforma."
+      lead: "Elige por dónde empezar: artículos, presentaciones, estudios de mercado, casos de clientes, novedades o comparativos."
     },
     items: [
       {
@@ -530,6 +530,24 @@ export const pagesEs = {
         chips: ["Artículos", "Guías", "Temas"],
         cta: "Leer el blog",
         href: "/blog"
+      },
+      {
+        id: "presentations",
+        type: "Presentaciones",
+        title: "Artículos del blog en diapositivas",
+        desc: "Los puntos principales de cada artículo en pocas diapositivas. Descárguelas en PDF o PPTX.",
+        chips: ["Diapositivas", "PDF", "PPTX"],
+        cta: "Ver presentaciones",
+        href: "/apresentacoes"
+      },
+      {
+        id: "studies",
+        type: "Estudios de mercado",
+        title: "Informes sobre el canal farma",
+        desc: "Estudios con datos de mercado y análisis histórico de fuentes públicas. Lea una muestra y descargue el estudio completo.",
+        chips: ["Datos de mercado", "Fuentes públicas", "PT, EN y ES"],
+        cta: "Ver estudios",
+        href: "/recursos/estudos-de-mercado"
       },
       {
         id: "cases",
@@ -548,6 +566,15 @@ export const pagesEs = {
         chips: ["Novedades", "Mejoras", "Correcciones"],
         cta: "Ver el historial",
         href: "/recursos/changelog"
+      },
+      {
+        id: "compare",
+        type: "Comparativos",
+        title: "Dinn junto a lo que ya usa",
+        desc: "Vea el papel de auditorías, CRM, BI, recolección de datos e IA generalista. Vea dónde encaja Dinn.",
+        chips: ["Auditorías", "CRM y BI", "IA"],
+        cta: "Ver comparativos",
+        href: "/comparativos"
       }
     ],
     openItem: "Abrir",
