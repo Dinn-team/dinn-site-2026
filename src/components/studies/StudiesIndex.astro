@@ -17,7 +17,7 @@ const labels = studyLabels(lang);
 const studies = getStudies();
 const empty = studies.length === 0;
 
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const listUrl = new URL(studiesPath(lang), site).href;
 
 const jsonLd = [

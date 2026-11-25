@@ -15,7 +15,7 @@ const labels = presentationLabels(lang);
 const posts = await getPresentations(lang);
 const empty = posts.length === 0;
 
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const listUrl = new URL(presentationsPath(lang), site).href;
 
 const jsonLd = [

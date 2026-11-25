@@ -22,7 +22,7 @@ export function presentationFileRoute(lang: Lang, format: 'pdf' | 'pptx') {
 
   const GET: APIRoute = async ({ props, site }) => {
     const post = props.post as PresentationPost;
-    const origin = site ?? new URL('https://dinn.ai');
+    const origin = site ?? new URL('https://www.dinn.ai');
     const bytes =
       format === 'pdf'
         ? await buildPresentationPdf(post, lang, origin)

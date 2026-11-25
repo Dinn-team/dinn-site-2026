@@ -12,7 +12,7 @@ export function getStaticPaths() {
 }
 
 const { slug, title, description } = Astro.props;
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const article = {
   '@context': 'https://schema.org',
   '@type': 'Article',

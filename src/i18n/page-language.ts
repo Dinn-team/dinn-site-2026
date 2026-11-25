@@ -48,7 +48,7 @@ export function routeToLanguage(lang: Lang, options: { useFallback?: boolean } =
   const target = alternateHref(lang) ?? (options.useFallback ? fallbackHref(lang) : null);
   if (!target) return false;
 
-  // O hreflang é absoluto (https://dinn.ai/...), mas o leitor pode estar em
+  // O hreflang é absoluto (https://www.dinn.ai/...), mas o leitor pode estar em
   // localhost ou num preview da Vercel: navegamos só pelo caminho, mantendo o
   // domínio em que ele está.
   const url = new URL(target, window.location.href);

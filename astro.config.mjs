@@ -8,7 +8,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // Base para URLs absolutas (canonical, og:url, sitemap). Sem isso o
   // @astrojs/sitemap não gera nada e as tags canônicas ficam relativas.
-  site: process.env.PUBLIC_SITE_URL || 'https://dinn.ai',
+  // O endereço oficial é o www: a Vercel redireciona dinn.ai para www.dinn.ai.
+  // Canonical e sitemap precisam apontar para o endereço que responde 200,
+  // senão o Google lê cada página como "página com redirecionamento".
+  site: process.env.PUBLIC_SITE_URL || 'https://www.dinn.ai',
 
   integrations: [
     react(),

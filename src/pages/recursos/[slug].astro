@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const { slug } = Astro.props;
 const guide = pagesPt.resources.guide.slugs[slug];
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 
 // Data de atualização fica em um só lugar: a mesma do texto exibido.
 const article = {
