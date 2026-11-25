@@ -33,7 +33,7 @@ const date = formatStudyDate(lang, study.publishedAt);
 const gradient = studyGradient(study);
 const remaining = Math.max(text.pages - text.sample.length, 0);
 
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const pageUrl = new URL(studyPath(lang, study.slug), site).href;
 const listUrl = new URL(studiesPath(lang), site).href;
 const description = text.subtitle || text.abstract[0]?.slice(0, 200) || text.title;

@@ -60,7 +60,7 @@ const metaDescription = normalizeDescription(description);
 // URL canônica sempre com barra final, para bater com o formato de diretório
 // que o Astro gera e com as URLs do sitemap. Divergir aqui faria a mesma página
 // ser indexada em duas variantes.
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = new URL(path, site).href;
 const imageUrl = new URL(image, site).href;

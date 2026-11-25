@@ -31,7 +31,7 @@ const labels = presentationLabels(lang);
 const blog = blogLabels(lang);
 const slug = post.slug.current;
 
-const site = Astro.site ?? new URL('https://dinn.ai');
+const site = Astro.site ?? new URL('https://www.dinn.ai');
 const pageUrl = new URL(presentationPath(lang, slug), site).href;
 const articleUrl = new URL(articlePath(lang, slug), site).href;
 const listUrl = new URL(presentationsPath(lang), site).href;
