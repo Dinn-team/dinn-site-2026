@@ -27,7 +27,7 @@ const node = (t: Tr, n: ReactNode) => (typeof n === 'string' ? t(n) : n);
 
 export const RW = 1280;
 export const RH = 800;
-export const BRAND = '#5130e9';
+export const BRAND = '#7008e7';
 export const SKY = '#0ea5e9';
 export const AMBER = '#f59e0b';
 export const GREEN = '#10b981';
@@ -214,7 +214,7 @@ export function RGauge({ v, on = true }: { v: number; on?: boolean }) {
   return (
     <span className="rl-gauge">
       <svg viewBox="0 0 42 42" aria-hidden="true">
-        <circle cx="21" cy="21" r={r} fill="none" stroke="#ece8fd" strokeWidth="3.5" />
+        <circle cx="21" cy="21" r={r} fill="none" stroke="#f1ebfc" strokeWidth="3.5" />
         <circle cx="21" cy="21" r={r} fill="none" stroke={BRAND} strokeWidth="3.5" strokeLinecap="round" transform="rotate(-90 21 21)"
           strokeDasharray={`${on ? Math.max(0.5, (v / 100) * C) : 0} ${C}`} style={{ transition: 'stroke-dasharray 1s cubic-bezier(.16,1,.3,1)' }} />
       </svg>

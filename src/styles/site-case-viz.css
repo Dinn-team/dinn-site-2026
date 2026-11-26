@@ -73,7 +73,7 @@
 .da-stage { position: relative; width: 100%; overflow: hidden; border-radius: 12px; background: #fff; }
 
 /* Tokens do produto (design-tokens.json do dinn-manager-app) */
-.dnn-app { --cv-card: #fff; --cv-track: #efeff3; --a-brand: #5625f2; --a-fg: #0a0a0a; --a-mfg: #737373; --a-border: #e5e5e5; --a-muted: #f7f7f8; transform-origin: top left; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--a-muted); color: var(--a-fg); font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4; }
+.dnn-app { --cv-card: #fff; --cv-track: #efeff3; --a-brand: #7008e7; --a-fg: #0a0a0a; --a-mfg: #737373; --a-border: #e5e5e5; --a-muted: #f7f7f8; transform-origin: top left; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--a-muted); color: var(--a-fg); font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4; }
 .dnn-app * { box-sizing: border-box; }
 .dnn-app h3, .dnn-app h4, .dnn-app p { margin: 0; }
 .dnn-app .cv-axis { fill: var(--a-mfg); }
@@ -147,14 +147,14 @@
 .da-store small { font-size: 12px; color: var(--a-mfg); }
 .da-store-lv { display: flex; justify-content: space-between; align-items: center; }
 .da-store-lv .da-badge { font-size: 11px; padding: 2px 8px; }
-.da-conf { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #eee9fd; color: var(--a-brand); font-size: 12px; font-weight: 700; }
+.da-conf { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #f1ebfc; color: var(--a-brand); font-size: 12px; font-weight: 700; }
 .da-map { position: relative; overflow: hidden; }
 .da-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .da-popup { position: absolute; left: 290px; top: 70px; width: 232px; display: grid; gap: 8px; padding: 14px; border-radius: 20px; background: #fff; box-shadow: 0 12px 32px rgba(10, 10, 10, 0.18); transform: translate(-30px, 0); }
 .da-popup-head { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 14px; }
 .da-popup small { font-size: 11.5px; color: var(--a-mfg); }
 .da-popup em { display: block; font-style: normal; font-size: 11px; color: var(--a-mfg); }
-.da-tag { padding: 2px 8px; border-radius: 999px; background: #eee9fd; color: var(--a-brand); font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+.da-tag { padding: 2px 8px; border-radius: 999px; background: #f1ebfc; color: var(--a-brand); font-size: 10.5px; font-weight: 600; white-space: nowrap; }
 .da-popup-stock { padding: 10px 12px; border-radius: 14px; background: var(--a-muted); display: grid; gap: 2px; }
 .da-popup-stock b { font-size: 20px; }
 .da-popup-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }

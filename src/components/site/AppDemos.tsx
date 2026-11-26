@@ -18,7 +18,7 @@ import { DinnOrbIcon } from './DinnOrb';
 //   tela com um anel. A rolagem do palco troca o passo.
 // Com "reduzir movimento", o laço mostra só o estado final, sem cursor.
 
-export const BRAND = '#5625f2';
+export const BRAND = '#7008e7';
 export const GREY = '#a3a3b2';
 export const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 export const fmt = (v: number, d = 0) => v.toLocaleString(demoLocale(), { minimumFractionDigits: d, maximumFractionDigits: d });

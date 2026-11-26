@@ -67,7 +67,7 @@ Troque a tela com `key={id}` para o laço recomeçar limpo.
 
 - Uma ideia por plano. A câmera não persegue o cursor.
 - Sem selo "Beta", sem cadeado, sem "teste grátis" dentro da tela.
-- Cores dentro da tela são as do app (`#5130E9`), presas em `site-real-app.css`.
+- Cores dentro da tela são as do app (`#7008E7`), presas em `site-real-app.css`.
 - Função não lançada nunca aparece como pronta.
 - Jean (Atividades, Configurações e WhatsApp) e Dinn Conecta ainda usam telas de spec, sem print.
 
