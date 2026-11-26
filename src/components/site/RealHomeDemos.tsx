@@ -210,7 +210,7 @@ const TURN_ROWS: TurnRow[] = [
   ['Rede Saúde Mais Água Verde', 'Rede Saúde Mais', 'Leve', 1, 4, '0 un.', '10 un.', '1 un.', 'Curitiba/PR', 'Av. República Argentina, 2050', 44.9, '1 un.'],
   ['Rede Farmacore Trindade', 'Rede Farmacore', 'Leve', 0, 20, '1 un.', '7 un.', '1 un.', 'Florianópolis/SC', 'Rua Lauro Linhares, 203', 42.9, '2 un.'],
 ];
-const SEG = { out: ['#f9b4a1', '#ff6b3d'], idle: ['#fcd79b', '#f8b84e'], turn: ['#c4b2fa', BRAND] };
+const SEG = { out: ['#f9b4a1', '#ff6b3d'], idle: ['#fcd79b', '#f8b84e'], turn: ['#c9aaf7', BRAND] };
 
 const TURN_DEF: Def = {
   beats: [

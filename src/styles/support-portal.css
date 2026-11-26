@@ -18,10 +18,10 @@
   --sidebar: oklch(0.985 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --accent: oklch(0.97 0 0);
-  --brand: #5625f2;
+  --brand: #7008e7;
   --brand-foreground: #ffffff;
   --subtle-foreground: #8f8f8f;
-  --unread: #5625f2;
+  --unread: #7008e7;
   --shadow-dialog: 0 16px 32px -8px rgb(0 0 0 / 0.19);
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
@@ -117,7 +117,7 @@
 .pt .msg { display: flex; align-items: flex-start; gap: 8px; }
 .pt .msg.mine { flex-direction: row-reverse; }
 .pt .bubble { max-width: 85%; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--border); border-radius: 24px; padding: 8px 12px; font-size: 14px; background: var(--card); border-top-left-radius: 4px; }
-.pt .bubble.mine { background: color-mix(in oklab, #5625f2 10%, transparent); border-color: color-mix(in oklab, #5625f2 20%, transparent); border-top-left-radius: 24px; border-top-right-radius: 4px; }
+.pt .bubble.mine { background: color-mix(in oklab, var(--brand) 10%, transparent); border-color: color-mix(in oklab, var(--brand) 20%, transparent); border-top-left-radius: 24px; border-top-right-radius: 4px; }
 .pt .bubble.team { background: color-mix(in oklab, var(--brand) 10%, transparent); border-color: color-mix(in oklab, var(--brand) 30%, transparent); }
 .pt .bubble .who { display: flex; align-items: baseline; gap: 8px; font-size: 12px; color: var(--muted-foreground); }
 .pt .bubble .who b { font-weight: 500; color: var(--foreground); }

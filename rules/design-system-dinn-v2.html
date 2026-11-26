@@ -21,7 +21,7 @@
   --background:#fff; --foreground:#0a0a0a; --card:#fff;
   --muted:#f5f5f5; --muted-foreground:#636363; --border:#e5e5e5;
   --primary:#7008e7; --primary-hov:#5b06bd; --primary-foreground:#fff;
-  --brand-ink:#08090a; --brand-lime:#e4f222; --brand-orange:#fd673e; --brand-ref:#5130e9;
+  --brand-ink:#08090a; --brand-lime:#e4f222; --brand-orange:#fd673e; --brand-ref:#7008e7;
   --chart-1:#7008e7; --chart-2:#c9aaf7; --chart-3:#08090a; --chart-4:#e4f222; --chart-5:#fd673e;
   --chart-deep:#3d0a82; --chart-soft:#e1d0fb; --chart-track:#f1ebfc;
   --chart-2-line:#a97ff0; --chart-5-line:#ee5a2f;
@@ -261,17 +261,17 @@ section.sec.alt{background:var(--muted)}
 .app{position:relative;border-radius:14px;overflow:hidden;background:#f7f7f8;color:#18181b;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 40px 90px -40px rgba(8,9,10,.7);aspect-ratio:16/10;display:grid;grid-template-columns:20% 1fr;font-size:12px}
 .app aside{background:#fafafa;border-right:1px solid #e4e4e7;padding:14px 10px;display:grid;gap:6px;align-content:start}
 .app aside img{height:16px;width:auto;margin-bottom:10px}
-.app aside span{padding:6px 8px;border-radius:8px;color:#71717a}.app aside span.on{background:#f1eefe;color:#5130e9;font-weight:500}
+.app aside span{padding:6px 8px;border-radius:8px;color:#71717a}.app aside span.on{background:#f1ebfc;color:#7008e7;font-weight:500}
 .app main{padding:14px;display:grid;gap:10px;align-content:start}
 .app .k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .app .k div{background:#fff;border:1px solid #e4e4e7;border-radius:10px;padding:10px}
 .app .k small{color:#71717a;display:block}.app .k b{font-size:20px;font-weight:500}
 .app .bars{background:#fff;border:1px solid #e4e4e7;border-radius:10px;padding:10px;display:flex;align-items:flex-end;gap:6px;height:90px}
-.app .bars i{flex:1;background:#5130e9;border-radius:4px 4px 0 0;transform-origin:bottom;transform:scaleY(0)}
-.app .btn5{background:#5130e9;color:#fff;border-radius:9999px;padding:6px 14px;width:fit-content;font-weight:600}
+.app .bars i{flex:1;background:#7008e7;border-radius:4px 4px 0 0;transform-origin:bottom;transform:scaleY(0)}
+.app .btn5{background:#7008e7;color:#fff;border-radius:9999px;padding:6px 14px;width:fit-content;font-weight:600}
 .cur-x{position:absolute;left:0;top:0;width:30px;height:30px;z-index:4;pointer-events:none}
 .cur-y{width:30px;height:30px}
-.ripple{position:absolute;width:30px;height:30px;border-radius:50%;border:2px solid #5130e9;opacity:0;z-index:3}
+.ripple{position:absolute;width:30px;height:30px;border-radius:50%;border:2px solid #7008e7;opacity:0;z-index:3}
 
 /* VÍDEO — quadros 1920x1080 em unidades de contêiner (1cqw = 19,2 px no vídeo) */
 .vf{position:relative;container-type:inline-size;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--brand-ink);isolation:isolate}
@@ -418,7 +418,7 @@ section.sec.alt{background:var(--muted)}
     <h3 class="h3">Paleta da marca (identidade, seção 10.1)</h3>
     <div class="grid g4">
       <button class="sw tall" data-copy="#08090A"><i style="background:var(--brand-ink)"></i><div><b>Preto da marca</b><small>#08090A · --brand-ink</small><small>Palco escuro, texto sobre cor clara</small></div></button>
-      <button class="sw tall" data-copy="#5130E9"><i style="background:var(--brand-ref)"></i><div><b>Roxo Dinn (referência)</b><small>#5130E9</small><small>Valor da marca. Vale no vídeo V7 e dentro das telas do produto</small></div></button>
+      <button class="sw tall" data-copy="#7008E7"><i style="background:var(--brand-ref)"></i><div><b>Roxo Dinn</b><small>#7008E7 · --primary</small><small>Roxo oficial único. Vale no site, no Portal e nas telas do produto</small></div></button>
       <button class="sw tall" data-copy="#E4F222"><i style="background:var(--brand-lime)"></i><div><b>Verde-limão</b><small>#E4F222 · --brand-lime</small><small>Apoio: confirmação, passo ativo, pico. Texto sobre ele é preto</small></div></button>
       <button class="sw tall" data-copy="#FD673E"><i style="background:var(--brand-orange)"></i><div><b>Laranja</b><small>#FD673E · --brand-orange</small><small>Apoio: calor, alerta, ruptura, convite</small></div></button>
     </div>
@@ -427,8 +427,8 @@ section.sec.alt{background:var(--muted)}
       <div class="stack" role="img" aria-label="92 por cento neutro, 5 por cento roxo, 2 por cento limão, 1 por cento laranja"><i style="width:92%;background:var(--muted)"></i><i style="width:5%;background:var(--primary)"></i><i style="width:2%;background:var(--brand-lime)"></i><i style="width:1%;background:var(--brand-orange)"></i></div>
     </div>
     <div class="card" style="margin-top:28px;display:grid;gap:6px">
-      <b style="font-weight:500">Decisão aberta: dois roxos</b>
-      <span class="note">O token <code>--primary</code> do site vale hoje <code>#7008E7</code> (oklch 0,491 0,27 292,6). A referência da marca é <code>#5130E9</code>. O vídeo V7 usa <code>#5130E9</code>, por decisão do owner. O Design System do app fixa <code>#5625F2</code>. Trocar o token muda o site inteiro. A decisão é do Renan.</span>
+      <b style="font-weight:500">Roxo oficial: #7008E7</b>
+      <span class="note">Decisão do Renan em 26/11/2026. É o valor do token <code>--primary</code> (oklch 0,491 0,27 292,6). Os roxos <code>#5130E9</code> e <code>#5625F2</code> saíram de uso. O vídeo V7, já publicado, ainda mostra o roxo antigo.</span>
     </div>
 
     <h3 class="h3">Cores de gráfico (<code>rules/charts-tokens.css</code>)</h3>
@@ -839,7 +839,7 @@ section.sec.alt{background:var(--muted)}
     <h3 class="h3">Janela do produto dentro do vídeo</h3>
     <div class="grid g3">
       <div class="card"><b style="font-weight:500">Referência 1440 × 900</b><p class="note" style="margin-top:6px">Menu lateral de 256 px, barra do topo de 64 px. Fundo <code>#FFFFFF</code>, superfície <code>#F4F4F5</code>, borda <code>#E4E4E7</code>, texto <code>#18181B</code>.</p></div>
-      <div class="card"><b style="font-weight:500">Roxo único dentro da tela</b><p class="note" style="margin-top:6px"><code>#5130E9</code>, suave <code>#F1EEFE</code>, borda <code>#CFC6FA</code>. O vídeo usa um roxo só.</p></div>
+      <div class="card"><b style="font-weight:500">Roxo único dentro da tela</b><p class="note" style="margin-top:6px"><code>#7008E7</code>, suave <code>#F1EBFC</code>, borda <code>#C9AAF7</code>. O vídeo usa um roxo só.</p></div>
       <div class="card"><b style="font-weight:500">Rodapé obrigatório</b><p class="note" style="margin-top:6px">"Dados e nomes ilustrativos." Dado com data (D-1) e marca de observado ou estimado.</p></div>
     </div>
 

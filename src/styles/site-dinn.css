@@ -141,7 +141,7 @@
 }
 
 /* ---- Ícone do Dinn (DinnOrb.tsx): a grade de pontos pulsa a partir do centro ---- */
-.dinn-orb { color: var(--a-brand, #5625f2); overflow: visible; }
+.dinn-orb { color: var(--a-brand, var(--primary)); overflow: visible; }
 .dinn-orb circle { transform-box: fill-box; transform-origin: center; animation: dinn-orb 1.6s ease-in-out infinite; }
 @keyframes dinn-orb {
   0%, 100% { opacity: .28; transform: scale(.55); }
