@@ -184,8 +184,8 @@ function BrainCanvas({ progress, outputsCount, onLayout }: { progress: { current
       if (s3 > 0.01) {
         const bc = { x: L.box.x + L.box.size * 0.5, y: L.box.y + L.box.size * 0.48 };
         const halo = ctx!.createRadialGradient(bc.x, bc.y, 0, bc.x, bc.y, L.box.size * 0.6);
-        halo.addColorStop(0, `rgba(86,37,242,${0.32 * s3})`);
-        halo.addColorStop(1, 'rgba(86,37,242,0)');
+        halo.addColorStop(0, `rgba(112,8,231,${0.32 * s3})`);
+        halo.addColorStop(1, 'rgba(112,8,231,0)');
         ctx!.fillStyle = halo;
         ctx!.fillRect(L.box.x - L.box.size * 0.2, L.box.y - L.box.size * 0.2, L.box.size * 1.4, L.box.size * 1.4);
         ctx!.lineWidth = 0.7;

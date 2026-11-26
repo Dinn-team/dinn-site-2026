@@ -27,7 +27,7 @@ export const show = (v: number): CSSProperties => ({ opacity: v, transform: `tra
 export function Chip({ x, y, text, tone = 'lilac', v = 1, w }: { x: number; y: number; text: string; tone?: 'lilac' | 'amber' | 'red' | 'green'; v?: number; w?: number }) {
   const width = w ?? Math.max(60, text.length * 6.6 + 26);
   const colors = {
-    lilac: { bg: 'rgba(86,37,242,0.4)', line: 'rgba(183,158,255,0.7)', fg: '#fff' },
+    lilac: { bg: 'rgba(112,8,231,0.4)', line: 'rgba(183,158,255,0.7)', fg: '#fff' },
     amber: { bg: 'rgba(251,191,36,0.16)', line: 'rgba(251,191,36,0.7)', fg: '#FDE68A' },
     red: { bg: 'rgba(239,68,68,0.18)', line: 'rgba(239,68,68,0.75)', fg: '#FECACA' },
     green: { bg: 'rgba(16,185,129,0.16)', line: 'rgba(16,185,129,0.7)', fg: '#A7F3D0' },
@@ -224,7 +224,7 @@ export function SacScene({ p, L, shared }: SceneProps) {
       <g clipPath="url(#sac-clip)">
         <rect x={20} y={20} width={350} height={400} fill="rgba(255,255,255,0.04)" />
         {streets.map((d, i) => <path key={i} d={d} stroke="rgba(255,255,255,0.05)" strokeWidth={4} fill="none" />)}
-        <circle cx={me.x} cy={me.y} r={150 * ring} fill="rgba(86,37,242,0.1)" stroke="rgba(183,158,255,0.55)" strokeDasharray="4 5" />
+        <circle cx={me.x} cy={me.y} r={150 * ring} fill="rgba(112,8,231,0.1)" stroke="rgba(183,158,255,0.55)" strokeDasharray="4 5" />
         <circle cx={me.x} cy={me.y} r={90 * ring} fill="none" stroke="rgba(183,158,255,0.3)" strokeDasharray="3 5" />
       </g>
       {pins.map((pin, i) => {
@@ -305,7 +305,7 @@ export function LaunchScene({ p, L, shared }: SceneProps) {
         const row = Math.floor(i / 6);
         return (
           <g key={r} style={{ opacity: seg(p, 0.7, 0.8) }} className="as-g">
-            <rect x={x0 + col * 74} y={334 + row * 44} width={64} height={34} rx={10} fill={on ? 'rgba(86,37,242,0.85)' : 'rgba(255,255,255,0.06)'} stroke={on ? 'rgba(183,158,255,0.8)' : 'rgba(255,255,255,0.12)'} style={{ transition: 'fill 0.4s' }} />
+            <rect x={x0 + col * 74} y={334 + row * 44} width={64} height={34} rx={10} fill={on ? 'rgba(112,8,231,0.85)' : 'rgba(255,255,255,0.06)'} stroke={on ? 'rgba(183,158,255,0.8)' : 'rgba(255,255,255,0.12)'} style={{ transition: 'fill 0.4s' }} />
             <text x={x0 + col * 74 + 32} y={356 + row * 44} textAnchor="middle" fontSize={12} fontWeight={600} fill={on ? '#fff' : 'rgba(255,255,255,0.45)'}>{r}</text>
           </g>
         );
@@ -339,7 +339,7 @@ export function TechScene({ p, L, shared }: SceneProps) {
         );
       })}
       <g className="as-g">
-        <circle cx={hub.x} cy={hub.y} r={44} fill="rgba(86,37,242,0.5)" stroke="rgba(183,158,255,0.8)" strokeWidth={1.5} />
+        <circle cx={hub.x} cy={hub.y} r={44} fill="rgba(112,8,231,0.5)" stroke="rgba(183,158,255,0.8)" strokeWidth={1.5} />
         <circle className="as-pulse as-pulse-slow" cx={hub.x} cy={hub.y} r={44} fill="none" stroke={LILAC} />
         <text x={hub.x} y={hub.y + 6} textAnchor="middle" fontSize={17} fontWeight={700} fill="#fff">{L.hub}</text>
       </g>
@@ -352,7 +352,7 @@ export function TechScene({ p, L, shared }: SceneProps) {
           <g key={d}>
             <path d={`M${hub.x + 44},${hub.y} C${360},${hub.y} ${370},${dy(i)} 430,${dy(i)}`} fill="none" stroke="rgba(183,158,255,0.5)" strokeWidth={1.6} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - v} />
             <g style={show(v)} className="as-g">
-              <rect x={430} y={dy(i) - 20} width={110} height={40} rx={12} fill="rgba(86,37,242,0.3)" stroke="rgba(183,158,255,0.6)" />
+              <rect x={430} y={dy(i) - 20} width={110} height={40} rx={12} fill="rgba(112,8,231,0.3)" stroke="rgba(183,158,255,0.6)" />
               <text x={485} y={dy(i) + 5} textAnchor="middle" fontSize={12.5} fontWeight={600} fill="#fff">{d}</text>
             </g>
           </g>
