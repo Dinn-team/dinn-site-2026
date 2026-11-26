@@ -38,7 +38,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
                   border: `1.5px solid ${isOpen ? 'var(--primary)' : '#E5E7EB'}`,
                   borderRadius: '12px',
                   overflow: 'hidden',
-                  boxShadow: isOpen ? '0 4px 20px rgba(86,37,242,0.08)' : 'none',
+                  boxShadow: isOpen ? '0 4px 20px rgba(112,8,231,0.08)' : 'none',
                   transition: 'border-color 0.2s, box-shadow 0.2s',
                 }}
               >
@@ -71,7 +71,7 @@ export default function FAQ({ items: itemsProp, title, id = 'faq' }: { items?: I
                     width: '32px',
                     height: '32px',
                     borderRadius: '50%',
-                    background: isOpen ? 'rgba(86,37,242,0.08)' : '#F3F4F6',
+                    background: isOpen ? 'rgba(112,8,231,0.08)' : '#F3F4F6',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

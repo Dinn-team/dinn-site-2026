@@ -281,7 +281,7 @@ export function DynamicIslandTOC({
                         textAlign: 'left',
                         fontSize: '15px',
                         transition: 'all 0.2s ease-out',
-                        backgroundColor: isActive ? 'rgba(86, 37, 242, 0.08)' : (isHovered ? '#F3F4F6' : 'transparent'),
+                        backgroundColor: isActive ? 'rgba(112, 8, 231, 0.08)' : (isHovered ? '#F3F4F6' : 'transparent'),
                         color: isActive ? 'var(--color-accent, var(--primary))' : (isHovered ? 'var(--foreground)' : '#6B7280'),
                         fontWeight: isActive ? 600 : 500,
                       }}

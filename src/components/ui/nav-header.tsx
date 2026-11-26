@@ -229,7 +229,7 @@ const Tab = ({
                 role="menuitem"
                 href={a.href}
                 style={{ padding: "10px 12px", borderRadius: "10px", fontSize: "14px", fontWeight: 500, color: "var(--foreground)", textDecoration: "none", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(86,37,242,0.08)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(112,8,231,0.08)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
               >
                 {a.label}
